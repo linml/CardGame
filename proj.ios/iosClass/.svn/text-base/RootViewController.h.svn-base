@@ -1,0 +1,16 @@
+//
+//  en_cubeAppController.h
+//  en.cube
+//
+//  Created by xianbei1987 on 13-5-17.
+//  Copyright __MyCompanyName__ 2013年. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+
+@interface RootViewController : UIViewController {
+
+}
+
+@end

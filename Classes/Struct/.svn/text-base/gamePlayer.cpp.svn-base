@@ -1,0 +1,55 @@
+//
+//  gamePlayer.cpp
+//  91.cube
+//
+//  Created by xianbei1987 on 13-5-24.
+//
+//
+
+#include "gamePlayer.h"
+
+#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
+{\
+for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+    delete *it; \
+    *it=NULL; \
+} \
+VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+}
+
+CGamePlayer::CGamePlayer()
+{
+    m_nFaceTo = 0;
+    m_stcCurrenPos.x = 10;
+    m_stcCurrenPos.y = 10;
+    m_stcCurrenPos.z = 10;
+    forTest();
+}
+CGamePlayer::~CGamePlayer()
+{
+    DELETE_POINT_VECTOR(m_vZhangdouCardSprite, vector<CCardSprite *>);
+    
+    DELETE_POINT_VECTOR(m_vZhangdouCardSprite, vector<CCardSprite *>);
+    
+}
+
+
+
+void CGamePlayer::forTest()
+{
+    CCardSprite *cardproperty=new CCardSprite ();
+    cardproperty->m_cardData.m_sPlayerCardName="haha";
+    cardproperty->m_cardData.m_unCardLevel=3;
+    cardproperty->m_cardData.m_unPlayerCardAttack=100;
+    cardproperty->m_cardData.m_unPlayerCardDefence=200;
+    cardproperty->m_cardData.m_unHp=5000;
+    this->m_vZhangdouCardSprite.push_back(cardproperty);
+    
+    cardproperty=new CCardSprite ();
+    cardproperty->m_cardData.m_sPlayerCardName="gaga";
+    cardproperty->m_cardData.m_unCardLevel=3;
+    cardproperty->m_cardData.m_unPlayerCardAttack=100;
+    cardproperty->m_cardData.m_unPlayerCardDefence=200;
+    cardproperty->m_cardData.m_unHp=50000;
+   this->m_vZhangdouCardSprite.push_back(cardproperty);
+}

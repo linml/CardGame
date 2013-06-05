@@ -1,0 +1,29 @@
+//
+//  CFightLayer.h
+//  91.cube
+//
+//  Created by linminglu on 13-6-3.
+//
+//
+
+#ifndef ___1_cube__CFightLayer__
+#define ___1_cube__CFightLayer__
+
+#include <iostream>
+#include "cocos2d.h"
+using namespace cocos2d;
+using namespace std;
+class CFightLayer :public CCLayer{
+public:
+    CFightLayer();
+    ~CFightLayer();
+    CREATE_FUNC(CFightLayer);
+    void  updateGetGameDataToGetServerRandow();
+public:
+    bool init();
+private:
+    
+    
+};
+
+#endif /* defined(___1_cube__CFightLayer__) */

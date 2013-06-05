@@ -1,0 +1,68 @@
+//
+//  CFightLayer.cpp
+//  91.cube
+//
+//  Created by linminglu on 13-6-3.
+//
+//
+
+#include "CFightLayer.h"
+#include "PtMapUtility.h"
+#include "CardLayer.h"
+#include "ScenePlistConfig.h"
+#include "gamePlayer.h"
+
+CFightLayer::CFightLayer()
+{
+    
+}
+
+CFightLayer::~CFightLayer()
+{
+    
+}
+
+bool CFightLayer::init()
+{
+    CCSize winsize = CCDirector::sharedDirector()->getWinSize();
+	CCLog("MapScene::init");
+	bool bRet = false;
+	do
+	{
+		char *tmp = NULL;
+		CC_BREAK_IF(!CCLayer::init());
+		tmp = (char *)this->getUserData();
+        CCLog("CFightLayer:%s",tmp);
+		PtMapUtility::addChildFromScript(this,tmp);
+		bRet = true;
+	} while (0);
+    //定义更具global的 appdata 值得 添加了 cccardlayer的 类别
+    
+// 玩家 战斗时候的卡牌
+    if(SinglePlayer::instance()->m_vZhangdouCardSprite.size()>0)
+    {
+        CCardLayer *sprite1=CCardLayer::CreateSprite<CCardLayer>(layer_cardSprite.c_str(), SinglePlayer::instance()->m_vZhangdouCardSprite[0]) ;//CreateSprite<CCardLayer>(layer_cardSprite,NULL);
+        this->addChild(sprite1,1,100);
+        sprite1->setPosition(ccp(0,0));
+        sprite1->setAnchorPoint(CCPointZero);
+
+    
+    }
+    
+    if(SinglePlayer::instance()->m_vZhangdouCardSprite.size()>1)
+    {
+        CCardLayer *sprite1=CCardLayer::CreateSprite<CCardLayer>(layer_cardSprite.c_str(), SinglePlayer::instance()->m_vZhangdouCardSprite[1]) ;//CreateSprite<CCardLayer>(layer_cardSprite,NULL);
+        this->addChild(sprite1,2,101);
+        sprite1->setPosition(ccp(400,0));
+        //sprite1->getCamera()->setEyeXYZ(0,180.0f, 0);// (90);
+        sprite1->setAnchorPoint(ccp(0.5,0.5)); 
+    }
+   //init游戏的随机的卡牌
+   //获取玩家Monster
+	return bRet;
+}
+
+void CFightLayer::updateGetGameDataToGetServerRandow()
+{
+    
+}
