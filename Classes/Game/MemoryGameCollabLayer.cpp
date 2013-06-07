@@ -34,14 +34,15 @@ bool  MemoryGameCollabLayer::isEqualt(int indexBefore,int indexAfter)
 
 bool MemoryGameCollabLayer::initWithMapFile(const char *fileName)
 {
-    CCSprite *sprite=CCSprite::create((mapImagesPath+"memorybackgroud.png").c_str());
+    CCSprite *sprite=CCSprite::create((g_mapImagesPath+"memorybackgroud.png").c_str());
     addChild(sprite,0);
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile((mapImagesPath+"memorygame.plist").c_str());
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile((g_mapImagesPath+"memorygame.plist").c_str());
     srand(time(0));
     addChildSprite();
     setTouchEnabled(true);
     return true;
 }
+
 bool MemoryGameCollabLayer::addChildSprite()
 {
     m_iFanPanCount=0;
@@ -93,9 +94,9 @@ bool MemoryGameCollabLayer::addChildSprite()
         recttouct.tag=i+1000;
         this->vTouchMapRect.push_back(recttouct);
     }
-    
     return true;
 }
+
 CCPoint MemoryGameCollabLayer::getSpritePosition(int &row, int &colum)
 {
     CCPoint point=ccp(-210,-120);

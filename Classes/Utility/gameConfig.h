@@ -20,25 +20,35 @@ const string resRootPath = "resource_cn/";
 
 #endif
 
-const string sysSoundPath = resRootPath+"sound/sys_sound_effect/";//系统音效
-const string bgSoundPath = resRootPath+"sound/background/";//背景音乐
+#define CSTR_FILEPTAH(ptah,fileName) ((ptah+fileName).c_str())
 
-const string wordFilePath = resRootPath+"word.plist";
-const string wordDirPath = resRootPath+"word/";
+#define PT_ERR_LOG(msg)\
+cerr << "PT Log :" << __FILE__ <<endl \
+     << "        line : " << __LINE__ <<endl \
+     << "        Compiled on " << __DATE__ \
+     << " at " << __TIME__ <<endl \
+     << "        message : " << msg <<endl  \
+
+
+const string g_sysSoundPath = resRootPath+"sound/sys_sound_effect/";//系统音效
+const string g_bgSoundPath = resRootPath+"sound/background/";//背景音乐
+
+const string g_wordFilePath = resRootPath+"word.plist";
+const string g_wordDirPath = resRootPath+"word/";
 
 //路径
-const std::string mapPath = resRootPath+"map/";
-const std::string mapSpritePath = resRootPath+"sprite/";
-const std::string mapImagesPath = resRootPath+"img/";
-const std::string headImagesPath = resRootPath+"./";
+const std::string g_mapPath = resRootPath+"map/";
+const std::string g_mapSpritePath = resRootPath+"sprite/";
+const std::string g_mapImagesPath = resRootPath+"img/";
+const std::string g_headImagesPath = resRootPath+"./";
 const std::string plistPath=resRootPath +"uiScript/";
 
-const string sFont = "Helvetica";
-const string sFont_title = "Georgia-BoldItalic";
-const string sFont_btn = "Helvetica-Bold";
+const string g_sFont = "Helvetica";
+const string g_sFont_title = "Georgia-BoldItalic";
+const string g_sFont_btn = "Helvetica-Bold";
 
 //注意 编辑器中使用大小 -1--就代表 T形按钮 100%
-const int custom_font_size[] = {
+const int g_custom_font_size[] = {
     10,             //0  空值,不能使用这个参数
     13,             //1  T形按钮 100%
     12,             //2  T形按钮 95% 选中状态
@@ -63,10 +73,10 @@ const int custom_font_size[] = {
 };
 
 //字体颜色
-const ccColor3B color_white = {255,255,255};
+const ccColor3B g_color_white = {255,255,255};
 
 //统一自定义的字体大小和颜色  但在代码中要写custom_color[i-1]
-const ccColor3B custom_color[] = {
+const ccColor3B g_custom_color[] = {
     {241,200,58},   //1
     {76,191,244},   //2
     {71,29,16},     //3

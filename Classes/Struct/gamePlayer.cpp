@@ -66,7 +66,7 @@ void CGamePlayer::forTest()
     cardproperty->m_cardData.m_unPlayerCardDefence=9;
     cardproperty->m_cardData.m_unHp=9;
     cardproperty->m_cardData.m_unCurrentHp=9;
-    cardproperty->m_cardData.m_pBasicSkill=new CCraftsmanship
+    //cardproperty->m_cardData.m_pBasicSkill=new CCraftsmanship
     this->m_vZhangdouCardSprite.push_back(cardproperty);
     
     cardproperty=new CCardSprite ();

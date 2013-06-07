@@ -1,4 +1,4 @@
-#include "PtMapUtility.h"
+﻿#include "PtMapUtility.h"
 #include "gameTools.h"
 //#include "CCFileUtils.h" 
 #include "stdlib.h"
@@ -157,9 +157,12 @@ namespace PtMapUtility {
         if (layerFile == "") {
             layer = new CCLayer();
             layer->autorelease();
-        } else 
-{
+        } else {
+<<<<<<< .mine
+            layerFile=g_sMapPath+layerFile;
+=======
             layerFile=g_mapPath+layerFile;
+>>>>>>> .r476
             layer = layerWithFile(layerFile);
         }
         
@@ -216,8 +219,11 @@ namespace PtMapUtility {
                 //第二种方式从某plist文件中的key获得文字
                 string wordFile = string(valueForKey("wordFile", nodeData));
                 if (wordFile == "") {
-
+<<<<<<< .mine
+                    wordFile = g_swordFilePath;
+=======
                     wordFile = g_wordFilePath;
+>>>>>>> .r476
                 }
                 string wordKey = string(valueForKey("key", nodeData));
                 CCLOG("wordFile:%s",wordFile.c_str());
@@ -442,7 +448,11 @@ namespace PtMapUtility {
             //第二种方式从某plist文件中的key获得文字
             string wordFile = string(valueForKey("wordFile", data));
             if (wordFile == "") {
+<<<<<<< .mine
+                wordFile = g_swordFilePath;
+=======
                 wordFile = g_wordFilePath;
+>>>>>>> .r476
             }
             string wordKey = string(valueForKey("key", data));
             word = Utility::getWordWithFile(wordFile, wordKey.c_str());

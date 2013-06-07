@@ -15,7 +15,7 @@ using namespace Utility;
 
 HBSprite::HBSprite(const char* fileName)
 {
-    string sFileName = mapSpritePath + string(fileName);
+    string sFileName = g_mapSpritePath + string(fileName);
 
     std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(sFileName.c_str());
 
@@ -32,7 +32,7 @@ void HBSprite::initHBSprite(CCDictionary* data)
 	int index = imagePath.rfind('/',imagePath.size());
 	imageName = imagePath.substr(index + 1,imagePath.size() - index);
 //#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-    imageName = mapImagesPath + imageName;
+    imageName = g_mapImagesPath + imageName;
 //#endif
 	//imageName = "地表4-ok2.png";
 	//切片数据

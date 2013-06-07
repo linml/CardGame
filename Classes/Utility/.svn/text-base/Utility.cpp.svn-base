@@ -166,7 +166,7 @@ namespace Utility {
         //先寻找缓冲
         CCDictionary* data = WordCache::sharedWordCache()->WordByName(file.c_str());
         if(!data) {
-            string fileName = wordDirPath + file;
+            string fileName = g_wordDirPath + file;
             std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(fileName.c_str());
             CCLOG("word path = %s",m_sPlistFile.c_str());
             data = CCDictionary::dictionaryWithContentsOfFile(m_sPlistFile.c_str());
@@ -180,7 +180,7 @@ namespace Utility {
     }
     
     string getWordWithFile(const char* str) {
-        return getWordWithFile(wordFilePath, str);
+        return getWordWithFile(g_wordFilePath, str);
     }
     
 }

@@ -1,4 +1,4 @@
-#include "Utility.h"
+﻿#include "Utility.h"
 #include "gameTools.h"
 //#include "CCFileUtils.h" 
 #include "stdlib.h"
@@ -166,7 +166,11 @@ namespace Utility {
         //先寻找缓冲
         CCDictionary* data = WordCache::sharedWordCache()->WordByName(file.c_str());
         if(!data) {
+<<<<<<< .mine
+            string fileName = g_sWordDirPath + file;
+=======
             string fileName = g_wordDirPath + file;
+>>>>>>> .r476
             std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(fileName.c_str());
             CCLOG("word path = %s",m_sPlistFile.c_str());
             data = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
@@ -180,8 +184,11 @@ namespace Utility {
     }
     
     string getWordWithFile(const char* str) {
-
+<<<<<<< .mine
+        return getWordWithFile(g_swordFilePath, str);
+=======
         return getWordWithFile(g_wordFilePath, str);
+>>>>>>> .r476
     }
     
 }

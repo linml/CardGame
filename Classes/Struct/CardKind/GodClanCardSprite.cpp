@@ -23,7 +23,7 @@ CGodClanCardSprite::~CGodClanCardSprite()
 }
 string CGodClanCardSprite::getName()
 {
-    CCDictionary* data = WordCache::sharedWordCache()->WordByName(string(wordDirPath+"word.plist").c_str());
+    CCDictionary* data = WordCache::sharedWordCache()->WordByName(string(g_wordDirPath+"word.plist").c_str());
     
     return string(GameTools::valueForKey("GodClan", data));
 }
