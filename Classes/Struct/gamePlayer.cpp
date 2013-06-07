@@ -59,12 +59,14 @@ void CGamePlayer::forTestMonster()
 void CGamePlayer::forTest()
 {
     CCardSprite *cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="haha";
-    cardproperty->m_cardData.m_unCardLevel=3;
-    cardproperty->m_cardData.m_unPlayerCardAttack=100;
-    cardproperty->m_cardData.m_unPlayerCardDefence=200;
-    cardproperty->m_cardData.m_unHp=1000;
-    cardproperty->m_cardData.m_unCurrentHp=1000;
+    cardproperty->m_cardData.m_sPlayerCardName="雷娜斯";
+    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
+    cardproperty->m_cardData.m_unCardLevel=5;
+    cardproperty->m_cardData.m_unPlayerCardAttack=20;
+    cardproperty->m_cardData.m_unPlayerCardDefence=9;
+    cardproperty->m_cardData.m_unHp=9;
+    cardproperty->m_cardData.m_unCurrentHp=9;
+    cardproperty->m_cardData.m_pBasicSkill=new CCraftsmanship
     this->m_vZhangdouCardSprite.push_back(cardproperty);
     
     cardproperty=new CCardSprite ();
@@ -104,4 +106,4 @@ void CGamePlayer::forTest()
     this->m_vZhangdouCardSprite.push_back(cardproperty);
 }
 
-#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) 
+//#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

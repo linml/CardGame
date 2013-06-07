@@ -263,7 +263,7 @@ namespace PtMapUtility {
             string fileName = string(valueForKey("fileName", nodeData));
             if (fileName != "")
             {
-                CCParticleSystemQuad* particle = CCParticleSystemQuad::particleWithFile(fileName.c_str());
+                CCParticleSystemQuad* particle = CCParticleSystemQuad::create(fileName.c_str());
 //                #if (CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
 //                if(iPlatfrom == PLATFORM_IPHONE) {
 //                    particle->setScale(0.5);
@@ -293,7 +293,7 @@ namespace PtMapUtility {
         string sType = string(valueForKey("spriteName", data));
         
         if (sType != "") {
-            CCSprite* sprite = CCSprite::spriteWithSpriteFrameName(sType.c_str());
+            CCSprite* sprite = CCSprite::create(sType.c_str());
             //读取初始化和动作
             setSpriteDatInfo(sprite, data);
             return sprite;
@@ -305,12 +305,12 @@ namespace PtMapUtility {
             if (sRect != "") {
                 CCRect rect = ccRectForKey("spriteRect", data);
                 //            sType = mapImagesPath + sType;
-                CCSprite* sprite = CCSprite::spriteWithFile(sType.c_str(), rect);
+                CCSprite* sprite = CCSprite::create(sType.c_str(), rect);
                 //读取初始化和动作
                 setSpriteDatInfo(sprite, data);
                 return sprite;
             } else {
-                CCSprite* sprite = CCSprite::spriteWithFile(sType.c_str());
+                CCSprite* sprite = CCSprite::create(sType.c_str());
                 //读取初始化和动作
                 setSpriteDatInfo(sprite, data);
                 return sprite;
@@ -367,7 +367,7 @@ namespace PtMapUtility {
         //区域大小
         string sSize = string(valueForKey("size", data));
         if (sSize == "") {
-            layer = CCLayerColor::layerWithColor(color);
+            layer = CCLayerColor::create(color);
         } else {
             CCPoint size = pointFromString(sSize);
 //            size = GameTools::HB_POINT_PIXELS_TO_POINTS(size);

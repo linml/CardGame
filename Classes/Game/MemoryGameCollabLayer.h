@@ -11,9 +11,9 @@
 
 #include <iostream>
 #include "cocos2d.h"
-#include "BaseLayer.h"
+#include "CBaseLayer.h"
 using namespace cocos2d;
-class MemoryGameCollabLayer :public BaseLayer
+class MemoryGameCollabLayer :public CBaseLayer
 {
 public:
     MemoryGameCollabLayer();

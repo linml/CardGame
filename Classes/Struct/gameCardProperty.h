@@ -33,6 +33,11 @@ class CCraftsmanship;   //技能
 class CGameCardProperty //卡牌
 {
 public:
+    CGameCardProperty()
+    {
+        m_pBasicSkill=m_pDeadSkill=m_pIncreaseSkill=m_pAdvocacy=NULL;
+    }
+    ~CGameCardProperty();
     int m_nPlayerCardIndex;
     string m_sPlayerCardName;         //卡牌名字
     unsigned int m_unCardLevel;        // 卡佩的星级
@@ -45,7 +50,10 @@ public:
     unsigned int m_unCurrentHp;
     int  m_nPojia;
     int  m_nGeDang;
-    vector<CCraftsmanship *>m_vCardCraftsmanship;
+    CCraftsmanship *m_pBasicSkill;  //基础技能
+    CCraftsmanship *m_pDeadSkill;   //战魂加持
+    CCraftsmanship *m_pIncreaseSkill;//增幅技能
+    CCraftsmanship *m_pAdvocacy;     //  拥护技能
 };
 
 

@@ -169,7 +169,7 @@ namespace Utility {
             string fileName = wordDirPath + file;
             std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(fileName.c_str());
             CCLOG("word path = %s",m_sPlistFile.c_str());
-            data = CCDictionary::dictionaryWithContentsOfFile(m_sPlistFile.c_str());
+            data = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
             //添加缓冲
             WordCache::sharedWordCache()->addWord(data, file.c_str());
             CCLOG("新文字");
@@ -266,7 +266,7 @@ int TouchRect::SearchTouchTag(CCPoint pos, vector<TouchRect>& vTouchRect, CCSpri
     {
         
         CCRect rect = vTouchRect[i].rect;
-        if (CCRect::CCRectContainsPoint(rect, pos))
+        if (rect.containsPoint(pos))
         {
             touch_tag = vTouchRect[i].tag;
             if(btnSprite)

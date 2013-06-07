@@ -56,7 +56,7 @@ CCSprite *CCardLayer::getHero()
 {
     CCLayer *maplayer=getMapByTag();
 
-    if (maplayer->getChildByTag(0)->getChildByTag(DEF_FIGHT_CARD_HERO))
+    if (maplayer&&maplayer->getChildByTag(0)->getChildByTag(DEF_FIGHT_CARD_HERO))
     {
         return (CCSprite *)(maplayer->getChildByTag(0)->getChildByTag(DEF_FIGHT_CARD_HERO));
     }
@@ -106,26 +106,37 @@ void CCardLayer::showFightLayer()
 
 void CCardLayer::showName(std::string str)
 {
-    CCLayer *maplayer=getMapByTag();
-    CCLog("card name:%s",str.c_str());
-    CCLog("card count:%d",getChildrenCount());
-    CCNode *node=maplayer->getChildByTag(0)->getChildByTag(0); //get label
-    if(node->getChildByTag(DEF_FIGHT_CARD_NAME))
+    CCNode *node=Utility::getNodeByTag(this, "1,0,0"); //get label
+    if(node && node->getChildByTag(DEF_FIGHT_CARD_NAME))
     {
         CCLabelTTF *label=(CCLabelTTF *)(node->getChildByTag(DEF_FIGHT_CARD_NAME));
                label->setString(str.c_str());
-        
     }
-    
 }
 
-void CCardLayer::animationHeroMove()
+void CCardLayer::animationBeiGongji(int isRight)
+{
+     CCSprite *sprite=getHero();
+     sprite->runAction(CCSequence::create(CCMoveBy::create(0.2f, ccp((25*isRight), 0)),CCMoveBy::create(0.1f, ccp(-25*isRight,0)),NULL));
+}
+
+void CCardLayer::animationHeroMove(int fangxiang)
 {
     CCSprite *sprite=getHero();
     if(sprite)
     {
-        sprite->runAction(CCSequence::create(CCMoveBy::create(0.2f, ccp(50, 0)),CCMoveBy::create(0.2f, ccp(-50, 0)),NULL));
+        sprite->runAction(CCSequence::create(CCMoveBy::create(0.2f, ccp((-25)*fangxiang, 0)),CCMoveBy::create(0.1f, ccp(50*fangxiang, 0)),CCMoveBy::create(0.1f, ccp(-25*fangxiang, 0)),NULL));
     }
+}
+
+void CCardLayer::animationHeroMoveLeft()
+{
+    animationHeroMove(-1);
+}
+
+void CCardLayer::animationHeroMoveRight()
+{
+    animationHeroMove(1);
 }
 
 void CCardLayer::showCardWholeLayer()

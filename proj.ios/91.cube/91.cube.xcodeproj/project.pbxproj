@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F34AE8E1760945F00A6433C /* LoadingScene.cpp */; };
 		6F3EFC9D1752F00A00765322 /* gameCardProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFC9B1752F00A00765322 /* gameCardProperty.cpp */; };
 		6F3EFCAC1753086200765322 /* DragonClanCardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCA11753086200765322 /* DragonClanCardSprite.cpp */; };
 		6F3EFCAD1753086200765322 /* GodClanCardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCA31753086200765322 /* GodClanCardSprite.cpp */; };
@@ -16,7 +17,7 @@
 		6F3EFCB9175308E900765322 /* CraftsmanshipMul.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB4175308E900765322 /* CraftsmanshipMul.cpp */; };
 		6F3EFCBA175308E900765322 /* CardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB6175308E900765322 /* CardSprite.cpp */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
-		6FA6AFB2174F6A1D00608A73 /* BaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAA174F6A1D00608A73 /* BaseLayer.cpp */; };
+		6FA6AFB2174F6A1D00608A73 /* CBaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */; };
 		6FA6AFB3174F6A1D00608A73 /* CSingleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAC174F6A1D00608A73 /* CSingleton.cpp */; };
 		6FA6AFB4174F6A1D00608A73 /* PuzzleStruct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAE174F6A1D00608A73 /* PuzzleStruct.cpp */; };
 		6FA6AFB5174F6A1D00608A73 /* SceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFB0174F6A1D00608A73 /* SceneManager.cpp */; };
@@ -240,6 +241,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F34AE8E1760945F00A6433C /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
+		6F34AE8F1760945F00A6433C /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
 		6F3EFC9B1752F00A00765322 /* gameCardProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameCardProperty.cpp; sourceTree = "<group>"; };
 		6F3EFC9C1752F00A00765322 /* gameCardProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameCardProperty.h; sourceTree = "<group>"; };
 		6F3EFCA11753086200765322 /* DragonClanCardSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DragonClanCardSprite.cpp; sourceTree = "<group>"; };
@@ -258,8 +261,8 @@
 		6F3EFCB7175308E900765322 /* CardSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSprite.h; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
 		6F3EFCBC17536D6700765322 /* CEvolutionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEvolutionLayer.h; sourceTree = "<group>"; };
-		6FA6AFAA174F6A1D00608A73 /* BaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseLayer.cpp; sourceTree = "<group>"; };
-		6FA6AFAB174F6A1D00608A73 /* BaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseLayer.h; sourceTree = "<group>"; };
+		6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBaseLayer.cpp; sourceTree = "<group>"; };
+		6FA6AFAB174F6A1D00608A73 /* CBaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBaseLayer.h; sourceTree = "<group>"; };
 		6FA6AFAC174F6A1D00608A73 /* CSingleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSingleton.cpp; sourceTree = "<group>"; };
 		6FA6AFAD174F6A1D00608A73 /* CSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSingleton.h; sourceTree = "<group>"; };
 		6FA6AFAE174F6A1D00608A73 /* PuzzleStruct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PuzzleStruct.cpp; sourceTree = "<group>"; };
@@ -272,7 +275,6 @@
 		6FA6AFCB174F6A3200608A73 /* ExplorationLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplorationLayer.h; sourceTree = "<group>"; };
 		6FA6AFCC174F6A3200608A73 /* MapScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MapScene.cpp; sourceTree = "<group>"; };
 		6FA6AFCD174F6A3200608A73 /* MapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapScene.h; sourceTree = "<group>"; };
-		6FA6AFCE174F6A3200608A73 /* ScenePlistConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScenePlistConfig.h; sourceTree = "<group>"; };
 		6FA6AFCF174F6A3200608A73 /* TaskSceneLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskSceneLayer.cpp; sourceTree = "<group>"; };
 		6FA6AFD0174F6A3200608A73 /* TaskSceneLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskSceneLayer.h; sourceTree = "<group>"; };
 		6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryGameCollabLayer.cpp; sourceTree = "<group>"; };
@@ -793,8 +795,8 @@
 		6FA6AFA9174F6A1D00608A73 /* BaseControl */ = {
 			isa = PBXGroup;
 			children = (
-				6FA6AFAA174F6A1D00608A73 /* BaseLayer.cpp */,
-				6FA6AFAB174F6A1D00608A73 /* BaseLayer.h */,
+				6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */,
+				6FA6AFAB174F6A1D00608A73 /* CBaseLayer.h */,
 				6FA6AFAC174F6A1D00608A73 /* CSingleton.cpp */,
 				6FA6AFAD174F6A1D00608A73 /* CSingleton.h */,
 				6FA6AFAE174F6A1D00608A73 /* PuzzleStruct.cpp */,
@@ -814,7 +816,6 @@
 				6FA6AFCB174F6A3200608A73 /* ExplorationLayer.h */,
 				6FA6AFCC174F6A3200608A73 /* MapScene.cpp */,
 				6FA6AFCD174F6A3200608A73 /* MapScene.h */,
-				6FA6AFCE174F6A3200608A73 /* ScenePlistConfig.h */,
 				6FA6AFCF174F6A3200608A73 /* TaskSceneLayer.cpp */,
 				6FA6AFD0174F6A3200608A73 /* TaskSceneLayer.h */,
 				6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */,
@@ -897,6 +898,8 @@
 		9F801315175493D400EEC0BC /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				6F34AE8E1760945F00A6433C /* LoadingScene.cpp */,
+				6F34AE8F1760945F00A6433C /* LoadingScene.h */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -2046,7 +2049,7 @@
 				9F55A127174B0F710068E44A /* WordCache.cpp in Sources */,
 				9F6227C7174F1230006A7D69 /* gameLogic.cpp in Sources */,
 				9F6227C8174F1230006A7D69 /* gamePlayer.cpp in Sources */,
-				6FA6AFB2174F6A1D00608A73 /* BaseLayer.cpp in Sources */,
+				6FA6AFB2174F6A1D00608A73 /* CBaseLayer.cpp in Sources */,
 				6FA6AFB3174F6A1D00608A73 /* CSingleton.cpp in Sources */,
 				6FA6AFB4174F6A1D00608A73 /* PuzzleStruct.cpp in Sources */,
 				6FA6AFB5174F6A1D00608A73 /* SceneManager.cpp in Sources */,
@@ -2068,6 +2071,7 @@
 				6FAEDE88175C77A600F5FDC2 /* CFightLayer.cpp in Sources */,
 				9FB94F95175DDF570002B887 /* PtJsonUtility.cpp in Sources */,
 				6FD364AF175F1CA500862198 /* CJinengTeXiao.cpp in Sources */,
+				6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

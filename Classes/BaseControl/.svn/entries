@@ -1,7 +1,7 @@
 10
 
 dir
-439
+461
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/BaseControl
 svn://merlin@192.168.2.2/sdp
 
@@ -59,6 +59,29 @@ phileas
 
 
 3034
+
+CBaseLayer.h
+file
+455
+
+
+add
+
+3eb5abb4f52c0f3d9767496031faab87
+
+
+
+
+
+
+
+
+
+
+
+copied
+svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/BaseControl/BaseLayer.h
+455
 
 PuzzleStruct.h
 file
@@ -133,7 +156,7 @@ file
 
 
 
-
+delete
 2013-05-28T10:07:53.000000Z
 62665ca70d7c161ef1351eed60dc107e
 2013-05-28T10:45:35.280910Z
@@ -230,12 +253,35 @@ phileas
 
 1761
 
+CBaseLayer.cpp
+file
+455
+
+
+add
+
+62665ca70d7c161ef1351eed60dc107e
+
+
+
+
+
+
+
+
+
+
+
+copied
+svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/BaseControl/BaseLayer.cpp
+455
+
 BaseLayer.h
 file
 
 
 
-
+delete
 2013-05-28T06:21:16.000000Z
 3eb5abb4f52c0f3d9767496031faab87
 2013-05-28T10:45:35.280910Z

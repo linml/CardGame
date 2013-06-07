@@ -31,9 +31,12 @@ class SceneManager
     SceneManager();
 public:
     void runMapScene();
+
+    bool runSceneSelect(int touch_tag);
+    void runTargetScene(EN_CURRSCENE en_targetScene);
+private:
     void runCreateCardScene();
     void runTaskScene();
-    bool runSceneSelect(int touch_tag);
     void runExplorationScene();
     void runEvolutionScene();
     void runUpgradeScene();

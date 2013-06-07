@@ -10,7 +10,7 @@
 #define __kapeipuzzle__CardFactoryLayer__
 
 #include <iostream>
-#include "BaseLayer.h"
+#include "CBaseLayer.h"
 using namespace cocos2d;
 using namespace std;
 struct pagSprite {
@@ -29,7 +29,7 @@ struct pagSprite {
 };
 
 
-class CardFactoryLayer :public BaseLayer
+class CardFactoryLayer :public CBaseLayer
 {
 public:
     CardFactoryLayer();

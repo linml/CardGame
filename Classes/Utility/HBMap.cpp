@@ -16,8 +16,7 @@ HBMap::HBMap(const char* fileName)
 {
     string sFileName = string(fileName);
     std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(sFileName.c_str());
-//    assert(access(m_sPlistFile, ))
-	CCDictionary* mapData = CCDictionary::dictionaryWithContentsOfFile(m_sPlistFile.c_str());   
+	CCDictionary* mapData = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
     initHBMap(mapData);
 }
 

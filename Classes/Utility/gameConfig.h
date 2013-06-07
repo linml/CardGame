@@ -31,6 +31,7 @@ const std::string mapPath = resRootPath+"map/";
 const std::string mapSpritePath = resRootPath+"sprite/";
 const std::string mapImagesPath = resRootPath+"img/";
 const std::string headImagesPath = resRootPath+"./";
+const std::string plistPath=resRootPath +"uiScript/";
 
 const string sFont = "Helvetica";
 const string sFont_title = "Georgia-BoldItalic";
@@ -97,5 +98,34 @@ typedef struct TPlayTask {
     int m_nTaskNumber;
     bool m_bTaskComplete;
 } TPlayTask;
+
+//define scene  plist
+const std::string scene_datting =resRootPath+"uiScript/card.plist";
+const std::string scene_suipian =resRootPath+"uiScript/kk.plist";
+const std::string scene_task    =resRootPath+"uiScript/task.plist";
+const std::string scene_exploration=resRootPath+"uiScript/room.plist";
+const std::string scene_evolution=resRootPath + "uiScript/mall_evolution.plist";
+const std::string scene_fightscene=resRootPath+"uiScript/card.plist";
+const std::string layer_cardSprite=resRootPath +"uiScript/cubeCardSprite.plist";
+
+
+/****
+ * task  任务
+ * exploration 探险
+ * lineup  阵容
+ * puzzle  拼图
+ * shop    商城
+ * email   邮件
+ * option  选项
+ */
+const std::string g_str_taskScenePlist=plistPath+"taskScene.plist";
+const std::string g_str_explorationPlist=plistPath+"explorationScene.plist";
+const std::string g_str_lineupSettingPlist=plistPath+"lineupSettingScene.plist";
+const std::string g_str_puzzlePlist=plistPath+"puzzleScene.plist";
+const std::string g_str_shopPlist=plistPath+"shopScene.plist";
+const std::string g_str_emailPlist=plistPath +"emailScene.plist";
+const std::string g_str_optionPlist=plistPath+"optionScene.plist";
+
+
 
 #endif

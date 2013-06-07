@@ -19,7 +19,7 @@ HBSprite::HBSprite(const char* fileName)
 
     std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(sFileName.c_str());
 
-	CCDictionary* spriteData = CCDictionary::dictionaryWithContentsOfFile(m_sPlistFile.c_str());
+	CCDictionary* spriteData = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
 
     initHBSprite(spriteData);
 
@@ -205,14 +205,16 @@ CCSprite* HBSprite::initHBSpriteBatchNode(CCSpriteBatchNode* spriteBatchNode,con
 	//initSpriteProperty(sprite,property);
 	return NULL;
 }
+
 //初始化精灵属性
 CCSprite* HBSprite::initHBSprite(const string& imageName,const SpriteProperty& property)
 {
     CCRect rect = property.clipRect;
-	CCSprite* sprite = CCSprite::spriteWithFile(imageName.c_str(),rect);
+	CCSprite* sprite = CCSprite::create(imageName.c_str(),rect);
 	initSpriteProperty(sprite,property);
 	return sprite;
 }
+
 //初始化精灵属性
 void HBSprite::initSpriteProperty(CCSprite* sprite,const SpriteProperty& property)
 {
@@ -246,7 +248,7 @@ CCSpriteBatchNode* HBSprite::createCCSpriteBatchNode()
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX||CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	CCSpriteBatchNode* spriteBatchNode = CCSpriteBatchNode::batchNodeWithFile(imageName.c_str());
 #else
-	CCSpriteBatchNode* spriteBatchNode = CCSpriteBatchNode::batchNodeWithFile(imageName.c_str());
+	CCSpriteBatchNode* spriteBatchNode = CCSpriteBatchNode::create(imageName.c_str());
 #endif
 	return spriteBatchNode;
 }
@@ -265,5 +267,5 @@ CCPoint HBSprite::getSpriteOffset()
 CCSprite* HBSprite::HBSpriteWithName(const char* fileName,const char* mapSpriteName)
 {
 
-	return (CCSprite*)CCSprite::node;
+	return (CCSprite*)CCSprite::create();
 }

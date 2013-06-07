@@ -9,7 +9,7 @@
 #include "CFightLayer.h"
 #include "PtMapUtility.h"
 #include "CardLayer.h"
-#include "ScenePlistConfig.h"
+#include "gameConfig.h"
 #include "gamePlayer.h"
 #include "CJinengTeXiao.h"
 
@@ -38,17 +38,26 @@ bool SortByM1( const SFightCardSprite *v1, const SFightCardSprite  *v2)//注意�
     }
     return true;
 }
+/*序号, 技能, 伤害值得 */
+/*****序号gongjizhe
+ 0 技能 普通攻击
+ 1 技能 触发%200的攻击
+ 2 技能 格挡
+ 
+ 
+ */
+const int fightdata[10][7]={
 
-const int fightdata[8][3]={
-    /*序号, 技能, 伤害值得 */
-    {0,1,10},
-    {4,5,100},
-    {5,0,1000},
-    {0,7,500},
-    {1,0,500},
-    {4,2,500},
-    {5,0,1500},
-    {5,2,1000},
+    {0,0,7,0,0,0,0}, //普通攻击
+    {4,5,0,0,0,0,3}, //吸血伤害
+    {5,0,5,0,0,0,0}, //
+    {9,2,0,0,0,0,0},
+    {1,0,0,0,0,0,0},
+    {2,0,0,0,0,0,0},
+    {1,0,0,0,0,0,0},
+    {2,0,0,0,0,0,2},
+    {0,1,1,0,0,0,1},
+    {2,0,0,0,0,0,0}
 };
 
 
@@ -199,6 +208,9 @@ bool CFightLayer::init()
     labelttf->setColor(ccc3(255, 0, 0));
     setText("对战ing");
     currIndexBegin=currIndexEnd=0;
+    currOwnCardSprite=(CCardLayer *)getChildByTag(m_vfightCardSprite[0]->tag);
+    monsterCardSprite=(CCardLayer *)getChildByTag(m_vMonsterCardSprite[0]->tag);
+    
     schedule(schedule_selector(CFightLayer::updateGetGameDataToGetServerRandow), 0.5);
 	return bRet;
 }
@@ -281,10 +293,7 @@ void CFightLayer::dealWithFight()
     
     if(fightdata[currIndexBegin][0]<=4)
     {
-        CJinengTeXiao *jinneng=NULL;
-       // currOwnCardSprite=(CCardLayer *)getChildByTag(1000+fightdata[currIndexBegin][0]);
-       // monsterCardSprite=(CCardLayer *)getChildByTag(1000+fightdata[currIndexBegin][0])
-        
+        CJinengTeXiao *jinneng=NULL;        
         switch (fightdata[currIndexBegin][1])
         {
             case 0:
@@ -310,7 +319,7 @@ void CFightLayer::dealWithFight()
             default:
                 break;
         }
-        jinneng->showTexiao(this, NULL);
+        jinneng->showAnimation(this, currOwnCardSprite,monsterCardSprite);
     }
     
 }
@@ -338,4 +347,4 @@ void CFightLayer::updateGetGameDataToGetServerRandow()
     }
 }
 
-#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)
+//#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

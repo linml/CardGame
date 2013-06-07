@@ -69,7 +69,6 @@ public:
     CC_DEPRECATED_ATTRIBUTE static CCLayer *node(void);
     /** create one layer */
     static CCLayer *create(void);
-
     virtual void onEnter();
     virtual void onExit();
     virtual void onEnterTransitionDidFinish();

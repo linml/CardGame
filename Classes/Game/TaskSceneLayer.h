@@ -10,10 +10,10 @@
 #define __en_cube__TaskSceneLayer__
 
 #include <iostream>
-#include "BaseLayer.h"
+#include "CBaseLayer.h"
 using namespace cocos2d;
 using namespace std;
-class TaskSceneLayer :public BaseLayer
+class TaskSceneLayer :public CBaseLayer
 {
 public:
     TaskSceneLayer();

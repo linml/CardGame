@@ -11,11 +11,11 @@
 
 #include <iostream>
 
-#include "BaseLayer.h"
+#include "CBaseLayer.h"
 #include "CardSprite.h"
 #include "GameSpriteConfig.h"
 
-class CCardLayer :public BaseLayer
+class CCardLayer :public CBaseLayer
 {
 public:
     CCardLayer();
@@ -32,9 +32,13 @@ public:
     void showName(std::string str);
     void showStarLevel(int level);
     CCSprite *getHero();
-    void  animationHeroMove();
-    bool setSpriteProperty(CCardSprite *spriteProperty);
+    void  animationHeroMoveRight();
+    void  animationHeroMoveLeft();
+    void  animationBeiGongji(int isRight);
+    bool  setSpriteProperty(CCardSprite *spriteProperty);
     CCLayer *getMapByTag();
+private:
+    void animationHeroMove(int fangxiang);
 private:
     string mapFileName;
     CCardSprite *m_cCardSpriteProperty;
@@ -52,7 +56,6 @@ T *CCardLayer::CreateSprite(const char *fileName,CCardSprite *spriteProperty)
     }
     layer->autorelease();
     return layer;
-    
 }
 
 

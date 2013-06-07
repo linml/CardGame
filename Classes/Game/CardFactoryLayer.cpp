@@ -16,8 +16,7 @@ void CreateGray(CCSprite *sprite)
 {
     // CC_BREAK_IF(!CCSprite::initWithTexture(pTexture, tRect));
     
-    GLchar* pszFragSource =
-    "#ifdef GL_ES \n \
+    char pszFragSource[] ="#ifdef GL_ES \n \
     precision mediump float; \n \
     #endif \n \
     uniform sampler2D u_texture; \n \
