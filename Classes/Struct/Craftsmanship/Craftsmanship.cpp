@@ -8,42 +8,45 @@
 
 #include "Craftsmanship.h"
 
-void CCraftsmanship::SetComponent(CCardSprite *component)
+
+CCraftsmanship::CCraftsmanship()
 {
-    this->cardSprite=component;
+    
 }
 
-void CCraftsmanship::GetAbilityValue()
+CCraftsmanship::~CCraftsmanship()
 {
-    return ;
+    
 }
 
-unsigned int CCraftsmanship::getHp()
+
+
+int  CCraftsmanship::getSkillIndex()
 {
-    return m_cardData.m_unHp;
+    return m_indexSkill;
 }
 
-unsigned int CCraftsmanship::getPlayerCardAttack()
+void CCraftsmanship::setSkillIndex(int index)
 {
-    return m_cardData.m_unPlayerCardAttack;
+    this->m_indexSkill=index;
 }
 
-unsigned int CCraftsmanship::getPlayerCardDefence()
+void CCraftsmanship::setSkillCategorey(EN_SKILL enskill)
 {
-    return m_cardData.m_unPlayerCardDefence;
+    this->m_eskill=enskill;
 }
 
-int CCraftsmanship::getGeDang()
+string CCraftsmanship::getSkillFileName()
 {
-    return m_cardData.m_nGeDang;
+    return m_sSkillFileName;
 }
 
-int CCraftsmanship::getPojia()
+EN_SKILL CCraftsmanship::getSkillCategory()
 {
-    return m_cardData.m_nPojia;
+    return m_eskill;
 }
 
-string CCraftsmanship::getName()
+string CCraftsmanship::getSkillName()
 {
-    return "";
+    return m_strSkillName;
 }

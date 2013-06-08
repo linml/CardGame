@@ -66,43 +66,62 @@ void CGamePlayer::forTest()
     cardproperty->m_cardData.m_unPlayerCardDefence=9;
     cardproperty->m_cardData.m_unHp=9;
     cardproperty->m_cardData.m_unCurrentHp=9;
+    cardproperty->m_cardData.m_vSkillList.push_back(1);
+    cardproperty->m_cardData.m_vSkillList.push_back(2);
+    cardproperty->m_cardData.m_vSkillList.push_back(3);
     //cardproperty->m_cardData.m_pBasicSkill=new CCraftsmanship
     this->m_vZhangdouCardSprite.push_back(cardproperty);
     
     cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="dada";
+    cardproperty->m_cardData.m_sPlayerCardName="奥比里西斯";
     cardproperty->m_cardData.m_unCardLevel=4;
-    cardproperty->m_cardData.m_unPlayerCardAttack=100;
-    cardproperty->m_cardData.m_unPlayerCardDefence=200;
-    cardproperty->m_cardData.m_unHp=1000;
-    cardproperty->m_cardData.m_unCurrentHp=1000;
+    cardproperty->m_cardData.m_unPlayerCardAttack=14;
+    cardproperty->m_cardData.m_unPlayerCardDefence=13;
+    cardproperty->m_cardData.m_unHp=10;
+    cardproperty->m_cardData.m_unCurrentHp=10;
+    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
+    cardproperty->m_cardData.m_vSkillList.push_back(4);
+    cardproperty->m_cardData.m_vSkillList.push_back(5);
+    cardproperty->m_cardData.m_vSkillList.push_back(6);
     this->m_vZhangdouCardSprite.push_back(cardproperty);
     
     cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="caca";
-    cardproperty->m_cardData.m_unCardLevel=1;
-    cardproperty->m_cardData.m_unPlayerCardAttack=100;
-    cardproperty->m_cardData.m_unPlayerCardDefence=200;
-    cardproperty->m_cardData.m_unHp=1000;
-    cardproperty->m_cardData.m_unCurrentHp=1000;
-    this->m_vZhangdouCardSprite.push_back(cardproperty);
-    
-    cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="cucu";
-    cardproperty->m_cardData.m_unCardLevel=5;
-    cardproperty->m_cardData.m_unPlayerCardAttack=100;
-    cardproperty->m_cardData.m_unPlayerCardDefence=200;
-    cardproperty->m_cardData.m_unHp=4000;
-    cardproperty->m_cardData.m_unCurrentHp=2000;
-    this->m_vZhangdouCardSprite.push_back(cardproperty);
-    
-    cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="cici";
+    cardproperty->m_cardData.m_sPlayerCardName="芙蕾雅";
     cardproperty->m_cardData.m_unCardLevel=2;
-    cardproperty->m_cardData.m_unPlayerCardAttack=100;
-    cardproperty->m_cardData.m_unPlayerCardDefence=200;
-    cardproperty->m_cardData.m_unHp=3000;
-    cardproperty->m_cardData.m_unCurrentHp=3000;
+    cardproperty->m_cardData.m_unPlayerCardAttack=17;
+    cardproperty->m_cardData.m_unPlayerCardDefence=7;
+    cardproperty->m_cardData.m_unHp=6;
+    cardproperty->m_cardData.m_unCurrentHp=6;
+    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
+    cardproperty->m_cardData.m_vSkillList.push_back(7);
+    cardproperty->m_cardData.m_vSkillList.push_back(8);
+    cardproperty->m_cardData.m_vSkillList.push_back(9);
+    this->m_vZhangdouCardSprite.push_back(cardproperty);
+    
+    cardproperty=new CCardSprite ();
+    cardproperty->m_cardData.m_sPlayerCardName="阿尔维斯";
+    cardproperty->m_cardData.m_unCardLevel=3;
+    cardproperty->m_cardData.m_unPlayerCardAttack=15;
+    cardproperty->m_cardData.m_unPlayerCardDefence=8;
+    cardproperty->m_cardData.m_unHp=7;
+    cardproperty->m_cardData.m_unCurrentHp=7;
+    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
+    cardproperty->m_cardData.m_vSkillList.push_back(10);
+    cardproperty->m_cardData.m_vSkillList.push_back(11);
+    cardproperty->m_cardData.m_vSkillList.push_back(12);
+    this->m_vZhangdouCardSprite.push_back(cardproperty);
+    
+    cardproperty=new CCardSprite ();
+    cardproperty->m_cardData.m_sPlayerCardName="霜牙";
+    cardproperty->m_cardData.m_unCardLevel=3;
+    cardproperty->m_cardData.m_unPlayerCardAttack=19;
+    cardproperty->m_cardData.m_unPlayerCardDefence=10;
+    cardproperty->m_cardData.m_unHp=8;
+    cardproperty->m_cardData.m_unCurrentHp=8;
+    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
+    cardproperty->m_cardData.m_vSkillList.push_back(13);
+    cardproperty->m_cardData.m_vSkillList.push_back(14);
+    cardproperty->m_cardData.m_vSkillList.push_back(15);
     this->m_vZhangdouCardSprite.push_back(cardproperty);
 }
 

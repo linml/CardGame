@@ -17,10 +17,16 @@ delete POINT;  POINT=NULL ; \
 }\
 }
 
+CGameCardProperty::CGameCardProperty()
+{
+  m_vSkillList.clear();// NULL;
+}
+
+
 CGameCardProperty::~CGameCardProperty()
 {
-    DELETE_SAFT(m_pAdvocacy);
-    DELETE_SAFT(m_pBasicSkill);
-    DELETE_SAFT(m_pDeadSkill);
-    DELETE_SAFT(m_pIncreaseSkill);
+//    DELETE_SAFT(m_pAdvocacy);
+//    DELETE_SAFT(m_pBasicSkill);
+//    DELETE_SAFT(m_pDeadSkill);
+//    DELETE_SAFT(m_pIncreaseSkill);
 }

@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef ___1_cube__CFightLayer__
-#define ___1_cube__CFightLayer__
+#ifndef ___1_cube__CFightLayerScene__
+#define ___1_cube__CFightLayerScene__
 
 #include <iostream>
 #include "cocos2d.h"
@@ -20,15 +20,23 @@ struct SFightCardSprite {
     bool isDead;
     int  tag;
 };
+struct SATKLIST {
+    int gongjiZheindex;
+    int gongjiShanghai;
+    int gongjiJiNeng
+    int gongjiZijijiaxue;
+    int gongji
+};
 
 
-class CFightLayer :public CCLayer{
+class CFightLayerScene :public CCLayer{
 public:
-    CFightLayer();
-    ~CFightLayer();
-    CREATE_FUNC(CFightLayer);
+    CFightLayerScene();
+    ~CFightLayerScene();
+    CREATE_FUNC(CFightLayerScene);
     void  updateGetGameDataToGetServerRandow();
 public:
+    static CCScene *scene();
     bool init();
 private:
     void createOwnFightCardPosition();
@@ -37,7 +45,7 @@ private:
     void updateHp(CCardSprite *pCardSprite,CCardSprite *pMonsterCardSprite);
     void setText(const char *data);
     int  getWinStats();
-    void dealWithFight();
+    void dealWithFight(CCObject *object);
 private:
     vector<SFightCardSprite *>m_vfightCardSprite;
     vector<SFightCardSprite *>m_vMonsterCardSprite;

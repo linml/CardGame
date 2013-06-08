@@ -29,6 +29,9 @@ public:
     void showCardWholeLayer();
     int getHp();
     int getMp();
+    void showAtk();
+    void showDef();
+
     void showName(std::string str);
     void showStarLevel(int level);
     CCSprite *getHero();

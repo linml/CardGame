@@ -1,12 +1,12 @@
 //
-//  CFightLayer.cpp
+//  CFightLayerScene.cpp
 //  91.cube
 //
 //  Created by linminglu on 13-6-3.
 //
 //
 
-#include "CFightLayer.h"
+#include "CFightLayerScene.h"
 #include "PtMapUtility.h"
 #include "CardLayer.h"
 #include "gameConfig.h"
@@ -26,7 +26,7 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
  *技能值列表   1 , 火焰燃烧
  2 攻击添加50%
  3 冰冻效果
- 4 
+ 4
  5
  7 死亡技能 +1000
  */
@@ -43,12 +43,10 @@ bool SortByM1( const SFightCardSprite *v1, const SFightCardSprite  *v2)//注意�
  0 技能 普通攻击
  1 技能 触发%200的攻击
  2 技能 格挡
- 
- 
  */
 //应该是用
 const int fightdata[10][7]={
-
+    
     {0,0,7,0,0,0,0}, //普通攻击
     {4,5,0,0,0,0,3}, //吸血伤害
     {5,0,20,0,0,0,0}, //无视防御伤害20 //下一张卡牌的
@@ -63,23 +61,33 @@ const int fightdata[10][7]={
 
 
 
-
-CFightLayer::CFightLayer()
+CFightLayerScene::CFightLayerScene()
 {
     m_vfightCardSprite.clear();
     m_vMonsterCardSprite.clear();
 }
 
 
-CFightLayer::~CFightLayer()
+CFightLayerScene::~CFightLayerScene()
 {
     DELETE_POINT_VECTOR(m_vfightCardSprite,vector<SFightCardSprite *>);
     DELETE_POINT_VECTOR(m_vMonsterCardSprite,vector<SFightCardSprite *>);
     
-    SinglePlayer::instance()->forTestDeleteMonster();   
+    SinglePlayer::instance()->forTestDeleteMonster();
 }
 
-void CFightLayer::createMonster()
+CCScene *CFightLayerScene::scene()
+{
+    CCScene *pScene=CCScene::create();
+    CFightLayerScene *mapLayer = new CFightLayerScene();
+    mapLayer->setUserData((void*)(scene_fightscene.c_str()));
+    mapLayer->init();
+    mapLayer->autorelease();
+    pScene->addChild(mapLayer);
+    return pScene;
+}
+
+void CFightLayerScene::createMonster()
 {
     SinglePlayer::instance()->forTestMonster();
     // 玩家 战斗时候的卡牌
@@ -89,18 +97,17 @@ void CFightLayer::createMonster()
         SFightCardSprite *fightCard=new SFightCardSprite;
         fightCard->cardsprite=*it;
         fightCard->isDead=false;
+        if ((*it)->m_cardData.m_unCurrentHp==0) {
+            fightCard->isDead=true;
+        }
         m_vMonsterCardSprite.push_back(fightCard);
     }
-    vector<SFightCardSprite*>::iterator it =m_vMonsterCardSprite.end();
-    
-    sort(m_vMonsterCardSprite.begin(), --it,SortByM1);
     //布阵
     for (int i=0;i<m_vMonsterCardSprite.size();i++)
     {
         m_vMonsterCardSprite[i]->tag=1000+i;
         if(i==0)
         {
-            CCLog("ccc");
             CCardLayer *sprite1=CCardLayer::CreateSprite<CCardLayer>(layer_cardSprite.c_str(), m_vMonsterCardSprite[i]->cardsprite) ;
             this->addChild(sprite1,1,m_vMonsterCardSprite[i]->tag);
             sprite1->setPosition(ccp(1024-400,300));
@@ -120,7 +127,8 @@ void CFightLayer::createMonster()
             sprite1->setAnchorPoint(CCPointZero);
             sprite1->setScale(0.6);
         }
-        else{
+        else
+        {
             //放在 拥护的位置
             CCardLayer *sprite1=CCardLayer::CreateSprite<CCardLayer>(layer_cardSprite.c_str(), m_vMonsterCardSprite[i]->cardsprite);
             this->addChild(sprite1,1,m_vMonsterCardSprite[i]->tag);
@@ -132,7 +140,7 @@ void CFightLayer::createMonster()
 }
 
 
-void CFightLayer::createOwnFightCardPosition()
+void CFightLayerScene::createOwnFightCardPosition()
 {
     
     // 玩家 战斗时候的卡牌
@@ -144,9 +152,6 @@ void CFightLayer::createOwnFightCardPosition()
         fightCard->isDead=false;
         m_vfightCardSprite.push_back(fightCard);
     }
-    vector<SFightCardSprite*>::iterator it =m_vfightCardSprite.end();
-    
-    sort(m_vfightCardSprite.begin(), --it,SortByM1);
     //布阵
     for (int i=0;i<m_vfightCardSprite.size();i++)
     {
@@ -184,7 +189,7 @@ void CFightLayer::createOwnFightCardPosition()
     }
 }
 
-bool CFightLayer::init()
+bool CFightLayerScene::init()
 {
     CCSize winsize = CCDirector::sharedDirector()->getWinSize();
     currOwnCardSprite=NULL;
@@ -212,27 +217,27 @@ bool CFightLayer::init()
     currOwnCardSprite=(CCardLayer *)getChildByTag(m_vfightCardSprite[0]->tag);
     monsterCardSprite=(CCardLayer *)getChildByTag(m_vMonsterCardSprite[0]->tag);
     
-    schedule(schedule_selector(CFightLayer::updateGetGameDataToGetServerRandow), 0.5);
+    scheduleOnce(schedule_selector(CFightLayerScene::updateGetGameDataToGetServerRandow), 1.0f);
 	return bRet;
 }
 
-void CFightLayer::setText(const char *data)
+void CFightLayerScene::setText(const char *data)
 {
     CCLabelTTF *labelttf=(CCLabelTTF *) this->getChildByTag(20002);
     labelttf->setString(data);
 }
 
 
-void CFightLayer::updateHp(CCardSprite *pCardSprite,CCardSprite *pMonsterCardSprite)
+void CFightLayerScene::updateHp(CCardSprite *pCardSprite,CCardSprite *pMonsterCardSprite)
 {
     CCLabelTTF *pLabel=(CCLabelTTF *)this->getChildByTag(20000);
     setHp(pCardSprite, pLabel);
     CCLabelTTF *pMonsterLabel=(CCLabelTTF *)this->getChildByTag(20001);
     setHp(pMonsterCardSprite, pMonsterLabel);
-  
+    
 }
 
-void CFightLayer::setHp(CCardSprite *pCardSprite, cocos2d::CCLabelTTF *labelttf)
+void CFightLayerScene::setHp(CCardSprite *pCardSprite, cocos2d::CCLabelTTF *labelttf)
 {
     if(pCardSprite==NULL)
     {
@@ -245,7 +250,7 @@ void CFightLayer::setHp(CCardSprite *pCardSprite, cocos2d::CCLabelTTF *labelttf)
     labelttf->setString(data);
 }
 
-int CFightLayer::getWinStats()
+int CFightLayerScene::getWinStats()
 {
     //先判断
     bool isCardAllDead=true;
@@ -279,73 +284,33 @@ int CFightLayer::getWinStats()
     {
         for (int i=0; i<m_vMonsterCardSprite.size(); i++)
         {
-                if (!m_vMonsterCardSprite[i]->isDead)
-                {
-                    return 0;
-                }
+            if (!m_vMonsterCardSprite[i]->isDead)
+            {
+                return 0;
             }
+        }
         return 1;
     }
 }
 
 
-void CFightLayer::dealWithFight()
+void CFightLayerScene::dealWithFight(CCObject *object)
 {
-    
-    if(fightdata[currIndexBegin][0]<=4)
+    //当开局的时候
+    if (currIndexBegin!=0 || currIndexBegin==currIndexEnd)
     {
-        CJinengTeXiao *jinneng=NULL;        
-        switch (fightdata[currIndexBegin][1])
-        {
-            case 0:
-                break;
-            case 1:
-                jinneng=new CJinengTeXiaoTexiao0();
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
-            case 4:
-                break;
-            case 5:
-                setText("SEND JINENG 5");
-                jinneng=new CJinengTeXiaoTexiao5();
-                break;
-            case 6:
-                break;
-            case 7:
-                break;
-                
-            default:
-                break;
-        }
-        jinneng->showAnimation(this, currOwnCardSprite,monsterCardSprite);
+        return;
     }
+    if(currIndexEnd== )
     
+
+       
 }
 
-void CFightLayer::updateGetGameDataToGetServerRandow()
+void CFightLayerScene::updateGetGameDataToGetServerRandow()
 {
-    if(currIndexBegin==currIndexEnd)
-    {
-        currIndexBegin++;
-        //走下一个流程
-        dealWithFight();
-        int winstatus=getWinStats();
-        if(winstatus==1)
-        {
-            unschedule(schedule_selector(CFightLayer::updateGetGameDataToGetServerRandow));
-            setText("U win");
-        }
-        else if(winstatus==-1)
-        {
-            unschedule(schedule_selector(CFightLayer::updateGetGameDataToGetServerRandow));
-            setText("U LOSE");
-
-            
-        }
-    }
+    //延时 执行了这个函数
+    dealWithFight(this);
 }
 
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

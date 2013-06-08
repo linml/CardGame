@@ -46,6 +46,7 @@ const std::string plistPath=resRootPath +"uiScript/";
 const string g_sFont = "Helvetica";
 const string g_sFont_title = "Georgia-BoldItalic";
 const string g_sFont_btn = "Helvetica-Bold";
+const std::string g_str_skillPathPlist=resRootPath +"particle/skill-texiao/";
 
 //注意 编辑器中使用大小 -1--就代表 T形按钮 100%
 const int g_custom_font_size[] = {
@@ -135,6 +136,7 @@ const std::string g_str_puzzlePlist=plistPath+"puzzleScene.plist";
 const std::string g_str_shopPlist=plistPath+"shopScene.plist";
 const std::string g_str_emailPlist=plistPath +"emailScene.plist";
 const std::string g_str_optionPlist=plistPath+"optionScene.plist";
+
 
 
 

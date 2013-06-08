@@ -19,6 +19,11 @@ CCardLayer::CCardLayer()
 
 CCardLayer::~CCardLayer()
 {
+    if(m_cCardSpriteProperty)
+    {
+        delete m_cCardSpriteProperty;
+        m_cCardSpriteProperty=NULL;
+    }
     
 }
 
@@ -28,7 +33,7 @@ bool CCardLayer::setSpriteProperty(CCardSprite *spriteProperty)
     {
         return  false;
     }
-    this->m_cCardSpriteProperty=spriteProperty;
+    this->m_cCardSpriteProperty=new  CCardSprite( *spriteProperty);
     return true;
 }
 
@@ -49,8 +54,11 @@ bool CCardLayer::initWithMapFile(const char *fileName)
 	} while (0);
     showStarLevel(m_cCardSpriteProperty->m_cardData.m_unCardLevel);
     showName(m_cCardSpriteProperty->m_cardData.m_sPlayerCardName);
+    showAtk();
+    showDef();
     return bRet;
 }
+
 
 CCSprite *CCardLayer::getHero()
 {
@@ -102,6 +110,30 @@ void CCardLayer::showStarLevel(int level)
 void CCardLayer::showFightLayer()
 {
     
+}
+void CCardLayer::showDef()
+{
+    char data[20];
+    sprintf(data, "%d",m_cCardSpriteProperty->m_cardData.m_unPlayerCardDefence);
+ 
+    CCNode *node=Utility::getNodeByTag(this, "1,0,17"); //get label
+    if(node && node->getChildByTag(DEF_FIGHT_CARD_DEF_LABEL))
+    {
+        CCLabelTTF *label=(CCLabelTTF *)(node->getChildByTag(DEF_FIGHT_CARD_DEF_LABEL));
+        label->setString(data);
+    }
+
+}
+void CCardLayer::showAtk()
+{
+    char data[20];
+    sprintf(data, "%d",m_cCardSpriteProperty->m_cardData.m_unPlayerCardAttack);
+    CCNode *node=Utility::getNodeByTag(this, "1,0,17"); //get label
+    if(node && node->getChildByTag(DEF_FIGHT_CARD_ATK_LABEL))
+    {
+        CCLabelTTF *label=(CCLabelTTF *)(node->getChildByTag(DEF_FIGHT_CARD_ATK_LABEL));
+        label->setString(data);
+    }
 }
 
 void CCardLayer::showName(std::string str)

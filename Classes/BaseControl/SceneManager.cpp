@@ -14,7 +14,7 @@
 #include "ExplorationLayer.h"
 #include "CEvolutionLayer.h"
 #include "gameConfig.h"
-#include "CFightLayer.h"
+#include "CFightLayerScene.h"
 #include "LoadingScene.h"
 
 SceneManager::SceneManager()
@@ -162,21 +162,17 @@ void SceneManager::runFightScene()
     if(m_currscene!=EN_CURRSCENE_FIGHTSCENE)
     {
         // create a scene. it's an autorelease object
+        m_currscene=EN_CURRSCENE_FIGHTSCENE;
         CCDirector *pDirector=CCDirector::sharedDirector();
-        CCScene *pScene = CCScene::create();
-        CFightLayer *mapLayer = new CFightLayer();
-        mapLayer->setUserData((void*)(scene_fightscene.c_str()));
-        mapLayer->init();
-        mapLayer->autorelease();
-        pScene->addChild(mapLayer);
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+            pDirector->replaceScene(CCTransitionFade::create(1.0f,CFightLayerScene::scene()));
         }
-        else{
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
+        else
+        {
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,CFightLayerScene::scene()));
         }
-        m_currscene=EN_CURRSCENE_FIGHTSCENE;
+        
     }
     
 }

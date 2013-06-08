@@ -14,7 +14,7 @@
 		6F3EFCAF1753086200765322 /* MachineClanCardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCA71753086200765322 /* MachineClanCardSprite.cpp */; };
 		6F3EFCB01753086200765322 /* PneumaClanCardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCA91753086200765322 /* PneumaClanCardSprite.cpp */; };
 		6F3EFCB8175308E900765322 /* Craftsmanship.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB2175308E900765322 /* Craftsmanship.cpp */; };
-		6F3EFCB9175308E900765322 /* CraftsmanshipMul.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB4175308E900765322 /* CraftsmanshipMul.cpp */; };
+		6F3EFCB9175308E900765322 /* CSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB4175308E900765322 /* CSkillManager.cpp */; };
 		6F3EFCBA175308E900765322 /* CardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB6175308E900765322 /* CardSprite.cpp */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
 		6FA6AFB2174F6A1D00608A73 /* CBaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */; };
@@ -26,8 +26,8 @@
 		6FA6AFDB174F6A3200608A73 /* MapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFCC174F6A3200608A73 /* MapScene.cpp */; };
 		6FA6AFDC174F6A3200608A73 /* TaskSceneLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFCF174F6A3200608A73 /* TaskSceneLayer.cpp */; };
 		6FA9B47E175456F2001472E7 /* MemoryGameCollabLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */; };
-		6FAEDE82175C34BA00F5FDC2 /* CardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAEDE80175C34BA00F5FDC2 /* CardLayer.cpp */; };
-		6FAEDE88175C77A600F5FDC2 /* CFightLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAEDE86175C77A500F5FDC2 /* CFightLayer.cpp */; };
+		6FAEDE88175C77A600F5FDC2 /* CFightLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAEDE86175C77A500F5FDC2 /* CFightLayerScene.cpp */; };
+		6FAFF1461762BFCF007F7778 /* CardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAFF1441762BFCF007F7778 /* CardLayer.cpp */; };
 		6FD364AF175F1CA500862198 /* CJinengTeXiao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FD364AD175F1CA500862198 /* CJinengTeXiao.cpp */; };
 		9F55A11F174B0F710068E44A /* gameTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F55A10D174B0F710068E44A /* gameTools.cpp */; };
 		9F55A120174B0F710068E44A /* HBMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F55A10F174B0F710068E44A /* HBMap.cpp */; };
@@ -255,8 +255,8 @@
 		6F3EFCAA1753086200765322 /* PneumaClanCardSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PneumaClanCardSprite.h; sourceTree = "<group>"; };
 		6F3EFCB2175308E900765322 /* Craftsmanship.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Craftsmanship.cpp; sourceTree = "<group>"; };
 		6F3EFCB3175308E900765322 /* Craftsmanship.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Craftsmanship.h; sourceTree = "<group>"; };
-		6F3EFCB4175308E900765322 /* CraftsmanshipMul.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CraftsmanshipMul.cpp; sourceTree = "<group>"; };
-		6F3EFCB5175308E900765322 /* CraftsmanshipMul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CraftsmanshipMul.h; sourceTree = "<group>"; };
+		6F3EFCB4175308E900765322 /* CSkillManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSkillManager.cpp; sourceTree = "<group>"; };
+		6F3EFCB5175308E900765322 /* CSkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSkillManager.h; sourceTree = "<group>"; };
 		6F3EFCB6175308E900765322 /* CardSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardSprite.cpp; sourceTree = "<group>"; };
 		6F3EFCB7175308E900765322 /* CardSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSprite.h; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
@@ -279,11 +279,11 @@
 		6FA6AFD0174F6A3200608A73 /* TaskSceneLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskSceneLayer.h; sourceTree = "<group>"; };
 		6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryGameCollabLayer.cpp; sourceTree = "<group>"; };
 		6FA9B47D175456F2001472E7 /* MemoryGameCollabLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryGameCollabLayer.h; sourceTree = "<group>"; };
-		6FAEDE80175C34BA00F5FDC2 /* CardLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardLayer.cpp; sourceTree = "<group>"; };
-		6FAEDE81175C34BA00F5FDC2 /* CardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardLayer.h; sourceTree = "<group>"; };
 		6FAEDE84175C3A3E00F5FDC2 /* GameSpriteConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSpriteConfig.h; sourceTree = "<group>"; };
-		6FAEDE86175C77A500F5FDC2 /* CFightLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightLayer.cpp; sourceTree = "<group>"; };
-		6FAEDE87175C77A500F5FDC2 /* CFightLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightLayer.h; sourceTree = "<group>"; };
+		6FAEDE86175C77A500F5FDC2 /* CFightLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CFightLayerScene.cpp; path = ../../Game/CFightLayerScene.cpp; sourceTree = "<group>"; };
+		6FAEDE87175C77A500F5FDC2 /* CFightLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CFightLayerScene.h; path = ../../Game/CFightLayerScene.h; sourceTree = "<group>"; };
+		6FAFF1441762BFCF007F7778 /* CardLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardLayer.cpp; sourceTree = "<group>"; };
+		6FAFF1451762BFCF007F7778 /* CardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardLayer.h; sourceTree = "<group>"; };
 		6FD364AD175F1CA500862198 /* CJinengTeXiao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CJinengTeXiao.cpp; sourceTree = "<group>"; };
 		6FD364AE175F1CA500862198 /* CJinengTeXiao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJinengTeXiao.h; sourceTree = "<group>"; };
 		9F55A10C174B0F710068E44A /* gameConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameConfig.h; sourceTree = "<group>"; };
@@ -786,8 +786,8 @@
 			children = (
 				6F3EFCB2175308E900765322 /* Craftsmanship.cpp */,
 				6F3EFCB3175308E900765322 /* Craftsmanship.h */,
-				6F3EFCB4175308E900765322 /* CraftsmanshipMul.cpp */,
-				6F3EFCB5175308E900765322 /* CraftsmanshipMul.h */,
+				6F3EFCB4175308E900765322 /* CSkillManager.cpp */,
+				6F3EFCB5175308E900765322 /* CSkillManager.h */,
 			);
 			path = Craftsmanship;
 			sourceTree = "<group>";
@@ -822,14 +822,19 @@
 				6F3EFCBC17536D6700765322 /* CEvolutionLayer.h */,
 				6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */,
 				6FA9B47D175456F2001472E7 /* MemoryGameCollabLayer.h */,
-				6FAEDE80175C34BA00F5FDC2 /* CardLayer.cpp */,
-				6FAEDE81175C34BA00F5FDC2 /* CardLayer.h */,
-				6FAEDE86175C77A500F5FDC2 /* CFightLayer.cpp */,
-				6FAEDE87175C77A500F5FDC2 /* CFightLayer.h */,
 				6FD364AD175F1CA500862198 /* CJinengTeXiao.cpp */,
 				6FD364AE175F1CA500862198 /* CJinengTeXiao.h */,
 			);
 			path = Game;
+			sourceTree = "<group>";
+		};
+		6FAFF1431762BBDD007F7778 /* FightScene */ = {
+			isa = PBXGroup;
+			children = (
+				6FAEDE86175C77A500F5FDC2 /* CFightLayerScene.cpp */,
+				6FAEDE87175C77A500F5FDC2 /* CFightLayerScene.h */,
+			);
+			path = FightScene;
 			sourceTree = "<group>";
 		};
 		9F55A10B174B0F710068E44A /* Utility */ = {
@@ -898,6 +903,8 @@
 		9F801315175493D400EEC0BC /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				6FAFF1441762BFCF007F7778 /* CardLayer.cpp */,
+				6FAFF1451762BFCF007F7778 /* CardLayer.h */,
 				6F34AE8E1760945F00A6433C /* LoadingScene.cpp */,
 				6F34AE8F1760945F00A6433C /* LoadingScene.h */,
 			);
@@ -907,6 +914,7 @@
 		9F801316175493D400EEC0BC /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				6FAFF1431762BBDD007F7778 /* FightScene */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -2063,15 +2071,15 @@
 				6F3EFCAF1753086200765322 /* MachineClanCardSprite.cpp in Sources */,
 				6F3EFCB01753086200765322 /* PneumaClanCardSprite.cpp in Sources */,
 				6F3EFCB8175308E900765322 /* Craftsmanship.cpp in Sources */,
-				6F3EFCB9175308E900765322 /* CraftsmanshipMul.cpp in Sources */,
+				6F3EFCB9175308E900765322 /* CSkillManager.cpp in Sources */,
 				6F3EFCBA175308E900765322 /* CardSprite.cpp in Sources */,
 				6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */,
 				6FA9B47E175456F2001472E7 /* MemoryGameCollabLayer.cpp in Sources */,
-				6FAEDE82175C34BA00F5FDC2 /* CardLayer.cpp in Sources */,
-				6FAEDE88175C77A600F5FDC2 /* CFightLayer.cpp in Sources */,
+				6FAEDE88175C77A600F5FDC2 /* CFightLayerScene.cpp in Sources */,
 				9FB94F95175DDF570002B887 /* PtJsonUtility.cpp in Sources */,
 				6FD364AF175F1CA500862198 /* CJinengTeXiao.cpp in Sources */,
 				6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */,
+				6FAFF1461762BFCF007F7778 /* CardLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

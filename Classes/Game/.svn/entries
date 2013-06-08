@@ -99,7 +99,7 @@ file
 
 
 
-
+delete
 2013-06-04T06:15:58.000000Z
 9f9ca51b60fc4b0717dc6afcb2f76050
 2013-06-04T08:34:41.137729Z
@@ -303,7 +303,7 @@ file
 
 
 
-
+delete
 2013-06-04T02:24:50.000000Z
 af7e753ef07a1e772285ec6754a5db26
 2013-06-04T02:45:52.061579Z
@@ -434,6 +434,29 @@ merlin
 
 1037
 
+CFightLayerScene.cpp
+file
+
+
+
+add
+
+9f9ca51b60fc4b0717dc6afcb2f76050
+
+
+
+
+
+
+
+
+
+
+
+copied
+svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Game/CFightLayer.cpp
+461
+
 MemoryGameCollabLayer.h
 file
 
@@ -535,6 +558,29 @@ merlin
 
 
 1036
+
+CFightLayerScene.h
+file
+
+
+
+add
+
+af7e753ef07a1e772285ec6754a5db26
+
+
+
+
+
+
+
+
+
+
+
+copied
+svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Game/CFightLayer.h
+461
 
 CJinengTeXiao.cpp
 file

@@ -12,30 +12,47 @@
 #include <iostream>
 using namespace std;
 #include "CardSprite.h"
-//技能的父类   利用装饰模式。
-enum EN_JINENGLEVELE
+//建立一个技能特效表
+/**
+ *Advocacy 拥护
+ *Increase 增幅
+ *Blessing 加持
+ */
+
+enum EN_SKILL
 {
-    EN_JINENGLEVELE_PUTONGJINENG  = 0,
-    EN_JINENGLEVELE_TESHUJINENG  = 1,
-    EN_JINENGLEVELE_TESHUJINENG2 =2,
-    EN_JINENGLEVELE_FUZHUJINENG =3
+    EN_SKILL_BASICSKILL  = 0, //
+    EN_SKILL_BLESSINGSKILL = 1, //死亡技能
+    EN_SKILL_INCREASESKILL =2, //
+    EN_SKILL_ADVOCACYSKILL =3
 };
 
 
-class CCraftsmanship :public CCardSprite
+class CCraftsmanship
 {
-protected:
-    CCardSprite *cardSprite;
 public:
-    void SetComponent(CCardSprite *component); //任何种族 添加了这个技能都对应增加什么东西
-    void GetAbilityValue();
-    unsigned int getHp();//血量
-    unsigned int getPlayerCardAttack();
-    unsigned int getPlayerCardDefence();
-    int getGeDang();
-    int getPojia();
-    virtual string getName();
-protected:
-    EN_JINENGLEVELE  m_jineng;
+    CCraftsmanship();
+    ~CCraftsmanship();
+    CCraftsmanship(EN_SKILL skill,int index,string strSkillName,string strSkillFileName)
+    {
+        this->m_eskill=skill;
+        this->m_indexSkill=index;
+        this->m_strSkillName=strSkillName;
+        this->m_sSkillFileName=strSkillFileName;
+    }
+public:
+    int     getSkillIndex();
+    void    setSkillIndex(int index);
+    void    setSkillCategorey(EN_SKILL );
+    string  getSkillName();
+    string  getSkillFileName();
+    EN_SKILL getSkillCategory();
+   
+public:
+    EN_SKILL  m_eskill; //技能的类型
+    int m_indexSkill;   //jineng
+    string m_strSkillName;       //skillName
+    string m_sSkillFileName;
 };
+
 #endif /* defined(__en_cube__Craftsmanship__) */
