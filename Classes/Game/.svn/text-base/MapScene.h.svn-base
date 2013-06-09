@@ -25,15 +25,11 @@ public:
 	virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
 	virtual void registerWithTouchDispatcher(void);
 	virtual void onExit();
-
 public:
 	bool handleTouchSpritePool(CCPoint point);
-
 protected:
 	void refeshPlist();
-	
 	void timerRefesh(float dt);
-
 protected:
 	int index;
 

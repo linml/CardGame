@@ -1,15 +1,15 @@
 10
 
 dir
-449
+500
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/en.cube/assets/resource_en/uiScript
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-04T02:48:38.630834Z
-432
-merlin
+2013-06-09T02:07:00.491966Z
+488
+phileas
 
 
 
@@ -59,6 +59,40 @@ merlin
 
 
 9323
+
+login.plist
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+87ccc8764cd1cbd3c03cbbb1324803ed
+2013-06-09T02:07:00.491966Z
+488
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1104
 
 card.plist
 file
@@ -230,6 +264,40 @@ merlin
 
 5129
 
+hall.plist
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+7366a2c1ecf079c0169d06231fbff9a5
+2013-06-09T02:07:00.491966Z
+488
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+416
+
 task.plist
 file
 
@@ -263,4 +331,38 @@ merlin
 
 
 16809
+
+exploration.plist
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+cd1fa874fe8b31841d8a276cb7d308cc
+2013-06-09T02:07:00.491966Z
+488
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+721
 

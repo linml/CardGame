@@ -12,17 +12,17 @@
 #include "SceneManager.h"
 #include "gamePlayer.h"
 #include "gameLogic.h"
-ExplorationLayer::ExplorationLayer()
+CExplorationLayer::CExplorationLayer()
 {
     
 }
 
-ExplorationLayer::~ExplorationLayer()
+CExplorationLayer::~CExplorationLayer()
 {
     
 }
 
-void ExplorationLayer::dealWhithTouchEndSprite(cocos2d::CCSprite *touchSprite, int touch_tag)
+void CExplorationLayer::dealWhithTouchEndSprite(cocos2d::CCSprite *touchSprite, int touch_tag)
 {
     if(!SingleSceneManager::instance()->runSceneSelect(touch_tag))
     {
@@ -33,7 +33,7 @@ void ExplorationLayer::dealWhithTouchEndSprite(cocos2d::CCSprite *touchSprite, i
         }
     }
 }
-bool ExplorationLayer::dealGotoRoom(CCSprite * touchSprite,int touch_tag)
+bool CExplorationLayer::dealGotoRoom(CCSprite * touchSprite,int touch_tag)
 {
     switch (touch_tag) {
         case 3001:
@@ -67,11 +67,17 @@ bool ExplorationLayer::dealGotoRoom(CCSprite * touchSprite,int touch_tag)
 }
 
 
+CCScene *CExplorationLayer::scene()
+{
+    CCScene *pScene=CCScene::create();
+    CExplorationLayer *taskscene=CExplorationLayer::Create<CExplorationLayer>(scene_exploration.c_str());
+    pScene->addChild(taskscene);
+    return  pScene;
+}
 
 
 
-
-bool ExplorationLayer::initWithMapFile(const char *fileName)
+bool CExplorationLayer::initWithMapFile(const char *fileName)
 {
     CCSize winsize = CCDirector::sharedDirector()->getWinSize();
 	CCLog("CardFactoryLayer::initWithMapFile");

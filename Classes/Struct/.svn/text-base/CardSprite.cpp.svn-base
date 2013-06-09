@@ -17,6 +17,7 @@ CCardSprite::~CCardSprite()
 {
     
 }
+
 string CCardSprite::getName()
 {
     return "";

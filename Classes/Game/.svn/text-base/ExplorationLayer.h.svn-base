@@ -10,19 +10,20 @@
 #define __en_cube__ExplorationLayer__
 
 #include <iostream>
-#include "BaseLayer.h"
+#include "CBaseLayer.h"
 
-class ExplorationLayer :public BaseLayer
+class CExplorationLayer :public CBaseLayer
 {
 public:
-    ExplorationLayer();
-    ~ExplorationLayer();
+    CExplorationLayer();
+    ~CExplorationLayer();
 public:
     bool initWithMapFile(const char *fileName);
     void dealWhithTouchEndSprite(CCSprite * touchSprite,int touch_tag);
 protected:
     bool dealGotoRoom(CCSprite * touchSprite,int touch_tag);
 public:
+    static CCScene *scene();
 private:
     string mapFileName;
 };

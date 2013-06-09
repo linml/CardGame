@@ -1,14 +1,14 @@
 10
 
 dir
-441
+499
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.ios/91.cube/91.cube.xcodeproj
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-04T08:49:29.324491Z
-439
+2013-06-04T10:11:32.276409Z
+445
 wood
 
 
@@ -31,23 +31,37 @@ dir
 
 project.pbxproj
 file
+500
+
+
+
+2013-06-08T06:16:21.000000Z
+4ae8bbc02fa594fbe91987560c04a285
+2013-06-09T06:23:44.004754Z
+500
+merlin
 
 
 
 
 
-bee8bf2853248214dc546ed90b624705
-2013-06-04T08:49:29.324491Z
-439
-wood
 
 
 
 
 
-project.pbxproj.r433
-project.pbxproj.r439
-project.pbxproj.mine
+
+
+
+
+
+
+
+
+
+
+
+189363
 
 project.xcworkspace
 dir

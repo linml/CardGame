@@ -16,7 +16,8 @@ PuzzleSprite::~PuzzleSprite()
     
 }
 
-PuzzleSprite* PuzzleSprite::create( const char* pszFileName ){
+PuzzleSprite* PuzzleSprite::create( const char* pszFileName )
+{
     PuzzleSprite* graySprite = new PuzzleSprite;
     if (graySprite && graySprite->initWithFile(pszFileName))
     {
@@ -33,8 +34,7 @@ bool PuzzleSprite::initWithTexture(CCTexture2D* pTexture, const CCRect& tRect ){
     do{
         CC_BREAK_IF(!CCSprite::initWithTexture(pTexture, tRect));
         
-        GLchar* pszFragSource =
-        "#ifdef GL_ES \n \
+        char pszFragSource[] ="#ifdef GL_ES \n \
         precision mediump float; \n \
         #endif \n \
         uniform sampler2D u_texture; \n \

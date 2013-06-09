@@ -1,15 +1,15 @@
 10
 
 dir
-461
+493
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/BaseControl
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-04T02:45:52.061579Z
-431
-merlin
+2013-06-09T02:12:34.502147Z
+489
+phileas
 
 
 
@@ -28,14 +28,82 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 PuzzleStruct.cpp
 file
+494
+
+
+
+2013-06-07T02:26:58.000000Z
+3206e87c2350e821f4c43d0fcfe71b54
+2013-06-09T06:14:51.822193Z
+494
+merlin
 
 
 
 
-2013-05-24T09:26:13.000000Z
-07a298e65db42b28186d5fadca59db78
-2013-05-24T02:08:23.386359Z
-384
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3025
+
+CBaseLayer.h
+file
+494
+
+
+
+2013-06-06T10:14:05.000000Z
+1e7509d7e1831f77bcdb87783b068805
+2013-06-09T06:14:51.822193Z
+494
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1382
+
+LayoutLayer.h
+file
+
+
+
+
+2013-06-09T06:09:42.000000Z
+7a29b0f09b4536eda697734b66b31f32
+2013-06-09T02:12:34.502147Z
+489
 phileas
 
 
@@ -58,30 +126,7 @@ phileas
 
 
 
-3034
-
-CBaseLayer.h
-file
-455
-
-
-add
-
-3eb5abb4f52c0f3d9767496031faab87
-
-
-
-
-
-
-
-
-
-
-
-copied
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/BaseControl/BaseLayer.h
-455
+783
 
 PuzzleStruct.h
 file
@@ -153,15 +198,7 @@ phileas
 
 BaseLayer.cpp
 file
-
-
-
-delete
-2013-05-28T10:07:53.000000Z
-62665ca70d7c161ef1351eed60dc107e
-2013-05-28T10:45:35.280910Z
-411
-merlin
+494
 
 
 
@@ -181,20 +218,18 @@ merlin
 
 
 
-
-
-2212
+deleted
 
 SceneManager.cpp
 file
+494
 
 
 
-
-2013-06-03T08:58:13.000000Z
-c566f246cad7187ce859d985e04e6873
-2013-06-04T02:45:52.061579Z
-431
+2013-06-09T06:14:27.000000Z
+f65447cc727c6287de9e59466274dfae
+2013-06-09T06:14:51.822193Z
+494
 merlin
 
 
@@ -217,7 +252,7 @@ merlin
 
 
 
-5318
+6774
 
 CSingleton.h
 file
@@ -255,38 +290,75 @@ phileas
 
 CBaseLayer.cpp
 file
-455
-
-
-add
-
-62665ca70d7c161ef1351eed60dc107e
+494
 
 
 
-
-
-
+2013-06-06T07:24:53.000000Z
+e2d06fe41604ff4bd94cd290d1fd0bbe
+2013-06-09T06:14:51.822193Z
+494
+merlin
 
 
 
 
 
-copied
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/BaseControl/BaseLayer.cpp
-455
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2268
+
+LayoutLayer.cpp
+file
+
+
+
+
+2013-06-09T06:09:43.000000Z
+a0ab5f359a11571d00fadc5190d5e8bc
+2013-06-09T02:12:34.502147Z
+489
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1874
 
 BaseLayer.h
 file
-
-
-
-delete
-2013-05-28T06:21:16.000000Z
-3eb5abb4f52c0f3d9767496031faab87
-2013-05-28T10:45:35.280910Z
-411
-merlin
+494
 
 
 
@@ -306,20 +378,18 @@ merlin
 
 
 
-
-
-1398
+deleted
 
 SceneManager.h
 file
+494
 
 
 
-
-2013-06-03T08:57:40.000000Z
-036ece135f55549777c57255a7e64ce2
-2013-06-04T02:45:52.061579Z
-431
+2013-06-09T06:09:43.000000Z
+d4b40f46466dbd239e3c950b7d7ef4b0
+2013-06-09T06:14:51.822193Z
+494
 merlin
 
 
@@ -342,5 +412,5 @@ merlin
 
 
 
-1020
+1147
 

@@ -33,12 +33,14 @@ class CCraftsmanship
 public:
     CCraftsmanship();
     ~CCraftsmanship();
-    CCraftsmanship(EN_SKILL skill,int index,string strSkillName,string strSkillFileName)
+    CCraftsmanship(EN_SKILL skill,int index,string strSkillName,string strSkillFileName,int huihe,int gailv)
     {
         this->m_eskill=skill;
         this->m_indexSkill=index;
         this->m_strSkillName=strSkillName;
         this->m_sSkillFileName=strSkillFileName;
+        this->m_ihuihe=huihe;
+        this->m_igailv=gailv;
     }
 public:
     int     getSkillIndex();
@@ -49,10 +51,55 @@ public:
     EN_SKILL getSkillCategory();
    
 public:
-    EN_SKILL  m_eskill; //技能的类型
-    int m_indexSkill;   //jineng
+    EN_SKILL  m_eskill;         //技能的类型
+    int m_indexSkill;            //jineng
     string m_strSkillName;       //skillName
     string m_sSkillFileName;
+    int  m_ihuihe;
+    int  m_igailv;
 };
 
+class  BasicCCraftsmanship :public CCraftsmanship
+{
+public:
+    BasicCCraftsmanship(int index,string strSkillName,string strSkillFileName,int huihe,int gailv):
+    CCraftsmanship(EN_SKILL_BASICSKILL,index,strSkillName,strSkillFileName,huihe,gailv)
+    {
+     
+    }
+};
+
+class  DeadCCraftsmanship :public CCraftsmanship
+{
+public:
+    DeadCCraftsmanship(int index,string strSkillName,string strSkillFileName,int huihe,int gailv):
+    CCraftsmanship(EN_SKILL_BLESSINGSKILL,index,strSkillName,strSkillFileName,huihe,gailv)
+    {
+        
+    }
+
+};
+class  IncreaseCCraftsmanship :public CCraftsmanship
+{
+public:
+    IncreaseCCraftsmanship(int index,string strSkillName,string strSkillFileName,int huihe,int gailv):
+    CCraftsmanship(EN_SKILL_INCREASESKILL,index,strSkillName,strSkillFileName,huihe,gailv)
+    {
+        
+    }
+};
+
+
+class  AdvocacyCCraftsmanship :public CCraftsmanship
+{
+public:
+    AdvocacyCCraftsmanship(int index,string strSkillName,string strSkillFileName,int huihe,int gailv):
+    CCraftsmanship(EN_SKILL_BLESSINGSKILL,index,strSkillName,strSkillFileName,huihe,gailv)
+    {
+        
+    }
+};
+
+
+//不同技能的概率
 #endif /* defined(__en_cube__Craftsmanship__) */

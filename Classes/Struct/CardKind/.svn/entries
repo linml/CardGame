@@ -1,15 +1,15 @@
 10
 
 dir
-461
+493
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct/CardKind
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-05-27T03:44:15.646409Z
-392
-merlin
+2013-06-09T02:29:54.104876Z
+490
+phileas
 
 
 
@@ -134,11 +134,11 @@ file
 
 
 
-2013-05-27T03:14:56.000000Z
-cdaab999f7493ded298a217916ffb36b
-2013-05-27T03:44:15.646409Z
-392
-merlin
+2013-06-07T09:54:55.000000Z
+59a9ae9664c4e5ed7027dc4236db4ad4
+2013-06-09T02:29:54.104876Z
+490
+phileas
 
 
 
@@ -160,7 +160,7 @@ merlin
 
 
 
-594
+596
 
 MachineClanCardSprite.h
 file

@@ -1,4 +1,4 @@
-﻿#include "PtSoundTool.h"
+#include "PtSoundTool.h"
 #include "cocos2d.h"
 #include "gameConfig.h"
 #include "SimpleAudioEngine.h" 

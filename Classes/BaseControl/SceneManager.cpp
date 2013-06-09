@@ -1,4 +1,4 @@
-﻿//
+//
 //  SceneManager.cpp
 //  en.cube
 //
@@ -16,6 +16,8 @@
 #include "gameConfig.h"
 #include "CFightLayerScene.h"
 #include "LoadingScene.h"
+
+#include "LoginScene.h"
 
 SceneManager::SceneManager()
 {
@@ -230,4 +232,11 @@ void SceneManager::runExplorationScene()
             pDirector->runWithScene(CCTransitionFade::create(1.0f,CExplorationLayer::scene()));
         }
     }
+}
+
+// test:
+void SceneManager::runTest()
+{
+    CCScene *scene = CLoginScene::scene();
+    CCDirector::sharedDirector()->runWithScene(scene);
 }

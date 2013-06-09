@@ -30,9 +30,11 @@ enum EN_CARDCATEGORY
 };
 
 class CCraftsmanship;   //技能
-class CGameCardProperty //卡牌
+class CGameCardProperty //卡牌 卡牌的属性
 {
 public:
+    CGameCardProperty();
+    ~CGameCardProperty();
     int m_nPlayerCardIndex;
     string m_sPlayerCardName;         //卡牌名字
     unsigned int m_unCardLevel;        // 卡佩的星级
@@ -42,9 +44,10 @@ public:
     unsigned int m_unPlayerCardAttack; //攻击力
     unsigned int m_unPlayerCardDefence;//防御力：
     unsigned int m_unHp ;              //血量
+    unsigned int m_unCurrentHp;
     int  m_nPojia;
     int  m_nGeDang;
-    vector<CCraftsmanship *>m_vCardCraftsmanship;
+    vector<int>m_vSkillList;  //技能列表
 };
 
 

@@ -1,15 +1,15 @@
 10
 
 dir
-461
+493
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Game
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-04T08:34:41.137729Z
-437
-merlin
+2013-06-09T02:12:34.502147Z
+489
+phileas
 
 
 
@@ -25,23 +25,27 @@ merlin
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+
+
+
+
+
+
+
+()
 
 CardFactoryLayer.cpp
 file
+499
 
 
 
-
-2013-05-24T09:26:13.000000Z
-d51d0df4770118a3bda01f3e19eb6c8e
-2013-05-24T02:08:23.386359Z
-384
-phileas
-
-
-
-
-
+2013-06-06T01:29:10.000000Z
+3e5eedf91193238f36d0d28843bc03df
+2013-06-09T06:22:45.633268Z
+499
+merlin
 
 
 
@@ -58,19 +62,24 @@ phileas
 
 
 
-7795
+
+
+
+
+
+7789
 
 MapScene.h
 file
+499
 
 
 
-
-2013-05-24T09:26:13.000000Z
-7bc1ef335a8733bce3328336336196aa
-2013-05-24T02:08:23.386359Z
-384
-phileas
+2013-06-06T06:30:33.000000Z
+28322e916ff748bb0985d4e2c86043b7
+2013-06-09T06:22:45.633268Z
+499
+merlin
 has-props
 
 
@@ -92,52 +101,18 @@ has-props
 
 
 
-762
-
-CFightLayer.cpp
-file
-
-
-
-delete
-2013-06-04T06:15:58.000000Z
-9f9ca51b60fc4b0717dc6afcb2f76050
-2013-06-04T08:34:41.137729Z
-437
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1757
+753
 
 ExplorationLayer.cpp
 file
+499
 
 
 
-
-2013-05-27T11:06:26.000000Z
-3d62f6b3dd34bad49c1c84c57eddbfda
-2013-05-27T11:10:32.029020Z
-401
+2013-06-07T03:55:57.000000Z
+df2121141dc16fb393e5e7c8745313ee
+2013-06-09T06:22:45.633268Z
+499
 merlin
 
 
@@ -160,52 +135,42 @@ merlin
 
 
 
-2816
+3060
+
+CFightLayer.cpp
+file
+499
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+deleted
 
 CardFactoryLayer.h
 file
+499
 
 
 
-
-2013-05-24T09:26:13.000000Z
-2a4e019d28198114095eb15479968f9d
-2013-05-24T02:08:23.386359Z
-384
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1477
-
-ScenePlistConfig.h
-file
-
-
-
-
-2013-06-06T07:06:02.000000Z
-5ec6e58a7bb0716c55ead2155361717c
-2013-06-04T02:45:52.061579Z
-431
+2013-06-06T03:51:33.000000Z
+1e941efd1373ce36eb5120068bef2de6
+2013-06-09T06:22:45.633268Z
+499
 merlin
 
 
@@ -228,7 +193,7 @@ merlin
 
 
 
-748
+1479
 
 CardLayer.cpp
 file
@@ -236,7 +201,7 @@ file
 
 
 
-2013-06-04T01:33:47.000000Z
+2013-06-09T06:09:42.000000Z
 7116d7b4993dbc5340f4d85cca09e724
 2013-06-04T02:45:52.061579Z
 431
@@ -266,14 +231,14 @@ merlin
 
 ExplorationLayer.h
 file
+499
 
 
 
-
-2013-05-27T10:51:51.000000Z
-f27a654dbcfdcdf4cceb5c58699507ec
-2013-05-27T11:10:32.029020Z
-401
+2013-06-07T03:31:39.000000Z
+0e27fdc8a7c14026d09d2198215f9bd3
+2013-06-09T06:22:45.633268Z
+499
 merlin
 
 
@@ -296,19 +261,11 @@ merlin
 
 
 
-605
+639
 
 CFightLayer.h
 file
-
-
-
-delete
-2013-06-04T02:24:50.000000Z
-af7e753ef07a1e772285ec6754a5db26
-2013-06-04T02:45:52.061579Z
-431
-merlin
+499
 
 
 
@@ -328,9 +285,7 @@ merlin
 
 
 
-
-
-488
+deleted
 
 CardLayer.h
 file
@@ -338,7 +293,7 @@ file
 
 
 
-2013-06-03T10:03:18.000000Z
+2013-06-09T06:09:42.000000Z
 78e4cf2a95b3f4500ed5fb061bdd31c1
 2013-06-04T02:45:52.061579Z
 431
@@ -368,14 +323,14 @@ merlin
 
 MemoryGameCollabLayer.cpp
 file
+499
 
 
 
-
-2013-05-28T09:46:54.000000Z
-d727dbbb17c7ea6084a9e212c35ea25f
-2013-05-28T10:45:35.280910Z
-411
+2013-06-07T10:00:11.000000Z
+7cb4b4062e2f6ec5d38093c638e93056
+2013-06-09T06:22:45.633268Z
+499
 merlin
 
 
@@ -398,7 +353,7 @@ merlin
 
 
 
-5915
+5916
 
 TaskSceneLayer.cpp
 file
@@ -436,37 +391,48 @@ merlin
 
 CFightLayerScene.cpp
 file
+499
 
 
 
-add
-
-9f9ca51b60fc4b0717dc6afcb2f76050
-
-
-
-
-
-
-
+2013-06-08T08:26:28.000000Z
+b32d75806856a432e5359171d1f48ce6
+2013-06-09T06:22:45.633268Z
+499
+merlin
 
 
 
 
-copied
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Game/CFightLayer.cpp
-461
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9257
 
 MemoryGameCollabLayer.h
 file
+499
 
 
 
-
-2013-05-28T09:43:32.000000Z
-49c4e493294ca8c30125fa06bd7ea219
-2013-05-28T10:45:35.280910Z
-411
+2013-06-06T03:51:32.000000Z
+e88493194f5f7e308c4d73b02ad6d90a
+2013-06-09T06:22:45.633268Z
+499
 merlin
 
 
@@ -489,24 +455,19 @@ merlin
 
 
 
-1233
+1235
 
 TaskSceneLayer.h
 file
+499
 
 
 
-
-2013-05-24T09:26:13.000000Z
-6b5798851a67a9e458644aa212f5cc4f
-2013-05-24T02:08:23.386359Z
-384
-phileas
-
-
-
-
-
+2013-06-06T03:51:31.000000Z
+5de2c11c8bf207a7a4789b02826ef20e
+2013-06-09T06:22:45.633268Z
+499
+merlin
 
 
 
@@ -523,18 +484,23 @@ phileas
 
 
 
-565
+
+
+
+
+
+567
 
 CEvolutionLayer.cpp
 file
+499
 
 
 
-
-2013-05-27T10:33:34.000000Z
-d0c9c61df6e89378c1e0416192045ba3
-2013-05-27T11:10:32.029020Z
-401
+2013-06-07T04:01:16.000000Z
+01e59d9b0adc0d8bf0691d9e2d2fef75
+2013-06-09T06:22:45.633268Z
+499
 merlin
 
 
@@ -557,48 +523,18 @@ merlin
 
 
 
-1036
+1263
 
 CFightLayerScene.h
 file
+499
 
 
 
-add
-
-af7e753ef07a1e772285ec6754a5db26
-
-
-
-
-
-
-
-
-
-
-
-copied
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Game/CFightLayer.h
-461
-
-CJinengTeXiao.cpp
-file
-0
-
-
-add
-
-CEvolutionLayer.h
-file
-
-
-
-
-2013-05-27T10:32:35.000000Z
-32956d5b7b9684013229268421288baf
-2013-05-27T11:10:32.029020Z
-401
+2013-06-09T02:43:28.000000Z
+114ff3f38042ea254102e3115178f064
+2013-06-09T06:22:45.633268Z
+499
 merlin
 
 
@@ -621,19 +557,87 @@ merlin
 
 
 
-580
+1329
+
+CJinengTeXiao.cpp
+file
+499
+
+
+
+2013-06-05T07:13:41.000000Z
+d8fa6862e98ec19afdb8e43d8b018d6d
+2013-06-09T06:22:45.633268Z
+499
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+110
+
+CEvolutionLayer.h
+file
+499
+
+
+
+2013-06-07T04:00:18.000000Z
+3233ba1a5bd80cfae4f8394e3894f368
+2013-06-09T06:22:45.633268Z
+499
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+611
 
 MapScene.cpp
 file
+499
 
 
 
-
-2013-05-24T09:26:13.000000Z
-6f54fdcf885e474fedcb5da1fcfc83fa
-2013-05-24T02:08:23.386359Z
-384
-phileas
+2013-06-05T01:39:15.000000Z
+7062dceacaa12e0316589e097f0a978f
+2013-06-09T06:22:45.633268Z
+499
+merlin
 has-props
 
 
@@ -655,12 +659,39 @@ has-props
 
 
 
-2277
+2244
 
 CJinengTeXiao.h
 file
-0
+499
 
 
-add
+
+2013-06-06T05:58:31.000000Z
+247b1688928cbe80ef2a441ab778f613
+2013-06-09T06:22:45.633268Z
+499
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2254
 

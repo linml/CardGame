@@ -20,6 +20,10 @@ public:
     CSkillManager();
     ~CSkillManager();
     CCraftsmanship *getSkillByIndex(int index);
+    void dealWithSkillShanghai(int index,vectror<SFightCardSprite *>ownCardProperty,vectror<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex);
+    
+    
+    
 public:
     vector<CCraftsmanship* >m_skillList;
 

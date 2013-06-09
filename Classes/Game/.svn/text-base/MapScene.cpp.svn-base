@@ -72,7 +72,6 @@ bool MapScene::handleTouchSpritePool( CCPoint point )
 	CCSprite* touchSprite= CCSprite::create();
 	int touch_tag = -1;
 	touch_tag = TouchRect::SearchTouchTag(point, vTouchMapRect, &touchSprite);
-    CCLog("tag==%d",touch_tag);
 	if(!SingleSceneManager::instance()->runSceneSelect(touch_tag))
     {
         

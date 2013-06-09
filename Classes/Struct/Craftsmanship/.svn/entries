@@ -1,7 +1,7 @@
 10
 
 dir
-461
+493
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct/Craftsmanship
 svn://merlin@192.168.2.2/sdp
 
@@ -28,14 +28,38 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 CraftsmanshipMul.cpp
 file
+495
 
 
 
-delete
-2013-05-27T03:49:30.000000Z
-ce8887e297da97a3dee41df93c12ea7b
-2013-05-27T07:55:53.042141Z
-398
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+deleted
+
+CSkillManager.h
+file
+495
+
+
+
+2013-06-08T06:16:57.000000Z
+a0f9d39e7e9c93cffcdc06354f62d0d1
+2013-06-09T06:16:52.445186Z
+495
 merlin
 
 
@@ -58,18 +82,18 @@ merlin
 
 
 
-1128
+544
 
 Craftsmanship.cpp
 file
+495
 
 
 
-
-2013-05-24T08:15:01.000000Z
-bd3a2ff2e11bd0137d104735dff06f2d
-2013-05-27T03:44:15.646409Z
-392
+2013-06-08T07:25:48.000000Z
+b2874f05760acf68dfbed9a0efd68c81
+2013-06-09T06:16:52.445186Z
+495
 merlin
 
 
@@ -92,42 +116,11 @@ merlin
 
 
 
-727
-
-CraftsmanshipManager.h
-file
-
-
-
-add
-
-a65e1679833dcd487467416c4f198c0a
-
-
-
-
-
-
-
-
-
-
-
-copied
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct/Craftsmanship/CraftsmanshipMul.h
-461
+655
 
 CraftsmanshipMul.h
 file
-
-
-
-delete
-2013-05-27T03:48:48.000000Z
-a65e1679833dcd487467416c4f198c0a
-2013-05-27T07:55:53.042141Z
-398
-merlin
+495
 
 
 
@@ -147,20 +140,18 @@ merlin
 
 
 
-
-
-1042
+deleted
 
 Craftsmanship.h
 file
+495
 
 
 
-
-2013-05-27T03:27:00.000000Z
-46d2b55239167540ee61feb3def7b046
-2013-05-27T03:44:15.646409Z
-392
+2013-06-08T07:56:01.000000Z
+04bfb5ec08418f0c2fa2a82b55ea084b
+2013-06-09T06:16:52.445186Z
+495
 merlin
 
 
@@ -183,28 +174,39 @@ merlin
 
 
 
-947
+1233
 
-CraftsmanshipManager.cpp
+CSkillManager.cpp
 file
+495
 
 
 
-add
-
-ce8887e297da97a3dee41df93c12ea7b
-
-
-
-
-
-
-
+2013-06-08T07:45:03.000000Z
+37898b2c36ae4f86c86664ce7d75e0b6
+2013-06-09T06:16:52.445186Z
+495
+merlin
 
 
 
 
-copied
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct/Craftsmanship/CraftsmanshipMul.cpp
-461
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3363
 

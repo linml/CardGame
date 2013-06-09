@@ -13,12 +13,19 @@
 
 CEvolutionLayer::CEvolutionLayer()
 {
-    
+   
 }
 
 CEvolutionLayer::~CEvolutionLayer()
 {
     
+}
+CCScene *CEvolutionLayer::scene()
+{
+    CCScene *pScene=CCScene::create();
+    CEvolutionLayer *taskscene=CEvolutionLayer::Create<CEvolutionLayer>(scene_evolution.c_str());
+    pScene->addChild(taskscene);
+    return  pScene;
 }
 
 void CEvolutionLayer::dealWhithTouchEndSprite(cocos2d::CCSprite *touchSprite, int touch_tag)

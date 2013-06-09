@@ -24,6 +24,10 @@ public:
     vector<CCardSprite *>m_vZhangdouCardSprite;
     
     void forTest();
+    //
+    void forTestMonster();
+    void forTestDeleteMonster();
+    vector<CCardSprite *>m_vMonsterCardSprite;
     
 public:
     CGamePlayer();

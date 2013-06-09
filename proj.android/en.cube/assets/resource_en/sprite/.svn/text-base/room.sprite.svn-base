@@ -3,7 +3,7 @@
     <key>spriteFileName</key>
     <string>room</string>
     <key>imagePath</key>
-    <string>../resource/image/room.png</string>
+    <string>../Library/Application Support/iPhone Simulator/6.1/Applications/33C246C2-32ED-4F91-A782-D9073F17BAC8/MapView.app/resource/image/room.png</string>
     <key>clipData</key>
     <dict>
         <key>clip0</key>
@@ -30,7 +30,7 @@
                 <key>filp</key>
                 <integer>0</integer>
                 <key>scale</key>
-                <string>0.7</string>
+                <string>1</string>
                 <key>rotate</key>
                 <string>0</string>
                 <key>anchor</key>
@@ -46,7 +46,7 @@
                 <key>filp</key>
                 <integer>0</integer>
                 <key>scale</key>
-                <string>0.7</string>
+                <string>1</string>
                 <key>rotate</key>
                 <string>0</string>
                 <key>anchor</key>
@@ -62,7 +62,7 @@
                 <key>filp</key>
                 <integer>0</integer>
                 <key>scale</key>
-                <string>0.7</string>
+                <string>1</string>
                 <key>rotate</key>
                 <string>0</string>
                 <key>anchor</key>
@@ -78,7 +78,7 @@
                 <key>filp</key>
                 <integer>0</integer>
                 <key>scale</key>
-                <string>0.7</string>
+                <string>1</string>
                 <key>rotate</key>
                 <string>0</string>
                 <key>anchor</key>
@@ -94,7 +94,7 @@
                 <key>filp</key>
                 <integer>0</integer>
                 <key>scale</key>
-                <string>0.7</string>
+                <string>1</string>
                 <key>rotate</key>
                 <string>0</string>
                 <key>anchor</key>

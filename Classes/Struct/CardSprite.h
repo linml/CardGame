@@ -31,5 +31,18 @@ public:
 };
 
 
+struct SFightCardSprite {
+    SFightCardSprite()
+    {
+        m_ibingdong=0;
+        tag=0;
+        cardsprite=NULL;
+    }
+    CCardSprite *cardsprite;
+    bool isDead;
+    int  tag;
+    int  m_ibingdong;
+    int  m_huduanshanghai;
+};
 
 #endif /* defined(__en_cube__CardSprite__) */

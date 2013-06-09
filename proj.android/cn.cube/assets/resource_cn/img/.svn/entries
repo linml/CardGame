@@ -1,15 +1,15 @@
 10
 
 dir
-449
+500
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/en.cube/assets/resource_en/img
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-04T02:48:38.630834Z
-432
-merlin
+2013-06-09T02:07:00.491966Z
+488
+phileas
 
 
 
@@ -25,40 +25,6 @@ merlin
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
-
-room.png
-file
-
-
-
-
-2013-06-04T10:46:14.000000Z
-b3fafd61f0f6960e09ffb78de15c5b51
-2013-05-23T10:28:35.885191Z
-382
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-641197
 
 cubeCardSprite.png
 file
@@ -94,17 +60,17 @@ has-props
 
 263928
 
-memorygame.png
+cmplogo.png
 file
 
 
 
 
-2013-06-04T10:46:14.000000Z
-4425199e412cee40a992931f24014d55
-2013-05-28T10:45:20.368791Z
-410
-merlin
+2013-06-09T06:24:31.000000Z
+5ccb5ec6f5d5847637bb95f961f55b5e
+2013-06-07T07:57:52.540466Z
+473
+phileas
 has-props
 
 
@@ -126,7 +92,7 @@ has-props
 
 
 
-85808
+10620
 
 task.png
 file
@@ -162,6 +128,40 @@ has-props
 
 539860
 
+memorygame.png
+file
+
+
+
+
+2013-06-04T10:46:14.000000Z
+4425199e412cee40a992931f24014d55
+2013-05-28T10:45:20.368791Z
+410
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+85808
+
 kk.png
 file
 
@@ -195,74 +195,6 @@ has-props
 
 
 175285
-
-mall.png
-file
-
-
-
-
-2013-06-04T10:46:14.000000Z
-0ccbfab94e9e41cb877662a944fe681e
-2013-05-27T08:39:25.114113Z
-399
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-267838
-
-card.png
-file
-
-
-
-
-2013-06-04T10:46:14.000000Z
-7052bff754273fb122f3d0cb26c8d6f6
-2013-05-23T10:28:35.885191Z
-382
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-246345
 
 memorygame.plist
 file
@@ -298,16 +230,16 @@ merlin
 
 17690
 
-memorybackgroud.png
+card.png
 file
 
 
 
 
 2013-06-04T10:46:14.000000Z
-78cff36ef802e84f80ec73812ab5ab46
-2013-05-28T10:45:20.368791Z
-410
+7052bff754273fb122f3d0cb26c8d6f6
+2013-05-23T10:28:35.885191Z
+382
 merlin
 has-props
 
@@ -330,7 +262,7 @@ has-props
 
 
 
-471068
+246345
 
 HelloWorld.png
 file
@@ -365,4 +297,310 @@ has-props
 
 
 138777
+
+room.png
+file
+
+
+
+
+2013-06-04T10:46:14.000000Z
+b3fafd61f0f6960e09ffb78de15c5b51
+2013-05-23T10:28:35.885191Z
+382
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+641197
+
+logon.png
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+77a3d29e5ebea1e128f951601bd14e23
+2013-06-09T02:07:00.491966Z
+488
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+120516
+
+hall.png
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+701c3f93aaed50a01ddde5b24f6a96c6
+2013-06-09T02:07:00.491966Z
+488
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1106467
+
+main.png
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+c78ed671d7cf98a36c39eccafb5ec528
+2013-06-09T02:07:00.491966Z
+488
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+196076
+
+logon.plist
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+ef3c0b13356c6eaa3ae9c168aade3e81
+2013-06-09T02:07:00.491966Z
+488
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5436
+
+mall.png
+file
+
+
+
+
+2013-06-04T10:46:14.000000Z
+0ccbfab94e9e41cb877662a944fe681e
+2013-05-27T08:39:25.114113Z
+399
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+267838
+
+bg.png
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+159142b963633071630ac086c287e7a9
+2013-06-09T02:07:00.491966Z
+488
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+831867
+
+memorybackgroud.png
+file
+
+
+
+
+2013-06-04T10:46:14.000000Z
+78cff36ef802e84f80ec73812ab5ab46
+2013-05-28T10:45:20.368791Z
+410
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+471068
+
+main.plist
+file
+
+
+
+
+2013-06-09T06:24:31.000000Z
+249ad6880dfbb8d1998dc85d5673e4c2
+2013-06-09T02:07:00.491966Z
+488
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8257
 
