@@ -22,3 +22,37 @@ string CCardSprite::getName()
 {
     return "";
 }
+void SFightCardSprite::initShangHai()
+{
+    m_iJianMianShanghai=0;
+    m_iHuduanshanghai=0;
+    if (m_iXuanYun>=1)
+    {
+        m_iXuanYun--;
+
+    }
+    if(m_ibingdong>=1)
+    {
+      m_ibingdong--;
+    }
+    
+}
+
+void SFightCardSprite::fantanShanghai(SFightCardSprite **sfightCardSprite)
+{
+    (*sfightCardSprite)->cardsprite->m_cardData.m_unCurrentHp-=m_iHuduanshanghai;
+}
+
+
+void SFightCardSprite::dealLastHp()
+{
+    this->cardsprite->m_cardData.m_unCurrentHp += m_iJianMianShanghai;
+    this->cardsprite->m_cardData.m_unCurrentHp  +=m_iHuduanshanghai;
+}
+
+
+bool SFightCardSprite::isCannotATK()
+{
+    return m_ibingdong||m_iXuanYun;
+}
+

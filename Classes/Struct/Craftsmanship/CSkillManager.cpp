@@ -8,27 +8,26 @@
 
 #include "CSkillManager.h"
 #include "gameConfig.h"
-#include
 /*
- class CCraftsmanship gstr_sskillList[]=
- {
- {EN_SKILL_BASICSKILL,1,"女神之枪"},
- {EN_SKILL_BLESSINGSKILL,2,"女神之拥"},
- {EN_SKILL_ADVOCACYSKILL,3,"英灵颂歌"},
- {EN_SKILL_BASICSKILL,4,"寒霜号角"},
- {EN_SKILL_BLESSINGSKILL,5,"水晶龙甲"},
- {EN_SKILL_ADVOCACYSKILL,6,"岩石技能"},
- {EN_SKILL_BASICSKILL,7,"藤编"},
- {EN_SKILL_BLESSINGSKILL,8,"冰雪森林"},
- {EN_SKILL_ADVOCACYSKILL,9,"回复术"},
- {EN_SKILL_BASICSKILL,10,"铁锤挥击"},
- {EN_SKILL_BLESSINGSKILL,11,"大地守护"},
- {EN_SKILL_ADVOCACYSKILL,12,"精锻"},
- {EN_SKILL_BASICSKILL,13,"霜爪击"},
- {EN_SKILL_BLESSINGSKILL,14,"狼魂"},
- {EN_SKILL_ADVOCACYSKILL,15,"撕咬"},
- };
- */
+class CCraftsmanship gstr_sskillList[]=
+{
+{EN_SKILL_BASICSKILL,1,"女神之枪"},
+{EN_SKILL_BLESSINGSKILL,2,"女神之拥"},
+{EN_SKILL_ADVOCACYSKILL,3,"英灵颂歌"},
+{EN_SKILL_BASICSKILL,4,"寒霜号角"},
+{EN_SKILL_BLESSINGSKILL,5,"水晶龙甲"},
+{EN_SKILL_ADVOCACYSKILL,6,"岩石技能"},
+{EN_SKILL_BASICSKILL,7,"藤编"},
+{EN_SKILL_BLESSINGSKILL,8,"冰雪森林"},
+{EN_SKILL_ADVOCACYSKILL,9,"回复术"},
+{EN_SKILL_BASICSKILL,10,"铁锤挥击"},
+{EN_SKILL_BLESSINGSKILL,11,"大地守护"},
+{EN_SKILL_ADVOCACYSKILL,12,"精锻"},
+{EN_SKILL_BASICSKILL,13,"霜爪击"},
+{EN_SKILL_BLESSINGSKILL,14,"狼魂"},
+{EN_SKILL_ADVOCACYSKILL,15,"撕咬"},
+};
+*/
 
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
@@ -38,7 +37,10 @@ delete *it; \
 } \
 VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
-
+inline  int  RangeLand(int min=1,int max=100)
+{
+   return  rand() % (max-min+1) + min;
+}
 CSkillManager::CSkillManager()
 {
     m_skillList.push_back(new BasicCCraftsmanship(1,"女神之枪",g_str_skillPathPlist+"0-sanmang.plist",3,1));//,
@@ -72,6 +74,27 @@ CCraftsmanship *CSkillManager::getSkillByIndex(int index)
     }
     return NULL;
 }
+
+void CSkillManager::puTongGongJi(SFightCardSprite ** ownSprite, SFightCardSprite **enemySprite)
+{
+    if((*ownSprite)->isCannotATK())
+    {
+        return;
+    }
+    else
+    {
+        //普通攻击    A攻击者攻击- B敌人的防御  =伤害  需要加上  防护的伤害
+        (*enemySprite)->cardsprite->m_cardData.m_unCurrentHp -=(* ownSprite)->cardsprite->m_cardData.m_unPlayerCardAttack-(*enemySprite)->cardsprite->m_cardData.m_unPlayerCardDefence;
+       (*enemySprite)->dealLastHp();
+       (*enemySprite)->fantanShanghai(ownSprite);
+       (*enemySprite)->initShangHai();
+
+    }
+
+}
+
+
+
 void CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex)
 {
     if(ownIndex>ownCardProperty.size() ||enemyIndex >enemyCardpropert.size() )
@@ -82,16 +105,22 @@ void CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprite
     switch (skillIndex) {
         case 0:
         {
-            enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp=ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unPlayerCardAttack-enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unPlayerCardDefence;
+            puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
         }
             break;
         case 1:
         {
+            if(ownCardProperty[ownIndex]->isCannotATK())
+            {
+                return;
+            }
             //回合攻击
             enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp=ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unPlayerCardAttack*2-enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unPlayerCardDefence;
-            
+            enemyCardpropert[enemyIndex]->dealLastHp();
+            enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
+            enemyCardpropert[enemyIndex]->initShangHai();
         }
-            break;
+        break;
         case 2:
         {
             //死亡加成
@@ -107,23 +136,27 @@ void CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprite
         case 3:
         {
             //拥护攻击
-                if(rand()%2==0)
+            if(RangeLand()>=50)
+            {
+                ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp   +=2;
+                if(ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp>
+                  ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp )
                 {
-                    ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp+=2;
-                    enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp-=2;
+                    ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp = ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp ;
                 }
-                else
-                {
-                     enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp -= ownCardProperty.back()->cardsprite->m_cardData.m_unPlayerCardAttack-
-                    enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unPlayerCardDefence;
-                }
+                enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp -=2;
+            }
+            else
+            {
+               puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
+            }
         }
             break;
         case 4:
         {
-            ownCardProperty[i]->isDm_ibingdongead+=1;
+            ownCardProperty[ownIndex]->m_ibingdong+=1;
         }
-        break;
+            break;
         case 5:
         {
             for (int i=0; i<ownCardProperty.size(); i++)
@@ -134,190 +167,69 @@ void CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprite
                 }
             }
         }
-        break;
+            break;
         case 6:
         {
-            ownCardProperty[ownIndex]->m_huduanshanghai+=2;
+            if(RangeLand()<=50)
+            {
+               puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
+            }
+            else
+            {
+                ownCardProperty[ownIndex]->m_iHuduanshanghai+=2;
+            }
         }
-            break;
+        break;
         case 7:
         {
-          
+         
+        }
+        break;
+        case 8:
+        {
+
             
         }
             break;
-        case 2:
+        case 9:
         {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
+                     
+        }
+            break;
+        case 10:
+        {
+                       
+        }
+            break;
+        case 11:
+        {
+                       
+        }
+            break;
+        case 12:
+        {
+                        
+        }
+            break;
+        case 13:
+        {
+            
             
         }
             break;
-        case 2:
+        case 14:
         {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
+           
             
         }
             break;
-        case 2:
+        case 15:
         {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
+                        
         }
             break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
+        default:
             break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
-            break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
-            break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
-            break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
-            break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++)
-            {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
-            break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++)
-            {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
-            break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++)
-            {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
-            break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
-            break;
-        case 2:
-        {
-            for (int i=0; i<ownCardProperty.size(); i++) {
-                if(!ownCardProperty[i]->isDead)
-                {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-                }
-            }
-            
-        }
     }
-    break;
-case 2:
-    {
-        for (int i=0; i<ownCardProperty.size(); i++) {
-            if(!ownCardProperty[i]->isDead)
-            {
-                ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-            }
-        }
-        
-    }
-    break;
-case 2:
-    {
-        for (int i=0; i<ownCardProperty.size(); i++) {
-            if(!ownCardProperty[i]->isDead)
-            {
-                ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=5;
-            }
-        }
-        
-    }
-    
-    break;
-default:
-    break;
-}
 }
 

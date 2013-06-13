@@ -1,15 +1,15 @@
 10
 
 dir
-493
+502
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Game
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-09T02:12:34.502147Z
-489
-phileas
+2013-06-09T06:22:45.633268Z
+499
+merlin
 
 
 
@@ -37,7 +37,7 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 CardFactoryLayer.cpp
 file
-499
+
 
 
 
@@ -71,7 +71,7 @@ merlin
 
 MapScene.h
 file
-499
+
 
 
 
@@ -105,7 +105,7 @@ has-props
 
 ExplorationLayer.cpp
 file
-499
+
 
 
 
@@ -137,33 +137,9 @@ merlin
 
 3060
 
-CFightLayer.cpp
-file
-499
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-deleted
-
 CardFactoryLayer.h
 file
-499
+
 
 
 
@@ -194,6 +170,40 @@ merlin
 
 
 1479
+
+ExplorationLayer.h
+file
+
+
+
+
+2013-06-07T03:31:39.000000Z
+0e27fdc8a7c14026d09d2198215f9bd3
+2013-06-09T06:22:45.633268Z
+499
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+639
 
 CardLayer.cpp
 file
@@ -228,64 +238,6 @@ merlin
 
 
 3230
-
-ExplorationLayer.h
-file
-499
-
-
-
-2013-06-07T03:31:39.000000Z
-0e27fdc8a7c14026d09d2198215f9bd3
-2013-06-09T06:22:45.633268Z
-499
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-639
-
-CFightLayer.h
-file
-499
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-deleted
 
 CardLayer.h
 file
@@ -323,7 +275,7 @@ merlin
 
 MemoryGameCollabLayer.cpp
 file
-499
+
 
 
 
@@ -391,11 +343,11 @@ merlin
 
 CFightLayerScene.cpp
 file
-499
 
 
 
-2013-06-08T08:26:28.000000Z
+
+2013-06-13T02:56:44.000000Z
 b32d75806856a432e5359171d1f48ce6
 2013-06-09T06:22:45.633268Z
 499
@@ -425,7 +377,7 @@ merlin
 
 MemoryGameCollabLayer.h
 file
-499
+
 
 
 
@@ -459,7 +411,7 @@ merlin
 
 TaskSceneLayer.h
 file
-499
+
 
 
 
@@ -493,7 +445,7 @@ merlin
 
 CEvolutionLayer.cpp
 file
-499
+
 
 
 
@@ -527,11 +479,11 @@ merlin
 
 CFightLayerScene.h
 file
-499
 
 
 
-2013-06-09T02:43:28.000000Z
+
+2013-06-13T02:56:44.000000Z
 114ff3f38042ea254102e3115178f064
 2013-06-09T06:22:45.633268Z
 499
@@ -561,7 +513,7 @@ merlin
 
 CJinengTeXiao.cpp
 file
-499
+
 
 
 
@@ -595,7 +547,7 @@ merlin
 
 CEvolutionLayer.h
 file
-499
+
 
 
 
@@ -629,7 +581,7 @@ merlin
 
 MapScene.cpp
 file
-499
+
 
 
 
@@ -663,7 +615,7 @@ has-props
 
 CJinengTeXiao.h
 file
-499
+
 
 
 

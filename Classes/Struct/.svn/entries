@@ -1,15 +1,15 @@
 10
 
 dir
-493
+502
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-09T02:29:54.104876Z
-490
-phileas
+2013-06-09T06:17:06.224614Z
+496
+merlin
 
 
 
@@ -31,7 +31,7 @@ dir
 
 CardSprite.cpp
 file
-496
+
 
 
 
@@ -136,7 +136,7 @@ merlin
 
 gamePlayer.cpp
 file
-496
+
 
 
 
@@ -170,7 +170,7 @@ merlin
 
 gameCardProperty.cpp
 file
-496
+
 
 
 
@@ -204,7 +204,7 @@ merlin
 
 gamePlayer.h
 file
-496
+
 
 
 
@@ -238,7 +238,7 @@ merlin
 
 GameSpriteConfig.h
 file
-496
+
 
 
 
@@ -272,7 +272,7 @@ merlin
 
 gameCardProperty.h
 file
-496
+
 
 
 

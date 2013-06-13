@@ -31,18 +31,33 @@ public:
 };
 
 
-struct SFightCardSprite {
+class SFightCardSprite {
+public:
     SFightCardSprite()
     {
         m_ibingdong=0;
         tag=0;
+        m_iXuanYun=0;
         cardsprite=NULL;
+        m_iHuduanshanghai=0;
     }
+    
+    bool isCannotATK(); //判断当前是否处于可以攻击的状态
+    void initShangHai();
+     
+    void dealLastHp(); //处理  最后的 HP  加上减免伤害
+    void fantanShanghai(SFightCardSprite **cardsprite);
+    
     CCardSprite *cardsprite;
     bool isDead;
     int  tag;
+    
     int  m_ibingdong;
-    int  m_huduanshanghai;
+    int  m_iXuanYun;
+    
+    int  m_iHuduanshanghai;//护盾伤害  反弹
+    int  m_iJianMianShanghai;//减免伤害
+    
 };
 
 #endif /* defined(__en_cube__CardSprite__) */

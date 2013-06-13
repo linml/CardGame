@@ -1,15 +1,15 @@
 10
 
 dir
-493
+502
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/BaseControl
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-09T02:12:34.502147Z
-489
-phileas
+2013-06-09T06:14:51.822193Z
+494
+merlin
 
 
 
@@ -28,7 +28,7 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 PuzzleStruct.cpp
 file
-494
+
 
 
 
@@ -62,7 +62,7 @@ merlin
 
 CBaseLayer.h
 file
-494
+
 
 
 
@@ -196,33 +196,9 @@ phileas
 
 1292
 
-BaseLayer.cpp
-file
-494
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-deleted
-
 SceneManager.cpp
 file
-494
+
 
 
 
@@ -290,7 +266,7 @@ phileas
 
 CBaseLayer.cpp
 file
-494
+
 
 
 
@@ -356,33 +332,9 @@ phileas
 
 1874
 
-BaseLayer.h
-file
-494
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-deleted
-
 SceneManager.h
 file
-494
+
 
 
 

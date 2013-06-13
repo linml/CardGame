@@ -67,16 +67,18 @@ void CAsgardLayer::handlerTouch()
 {
     switch (m_nTouchTag) {
         case GLADSHEIM_TOUCH_TAG:
-
+            // to do:
             break;
             
         case VALHALLA_TOUCH_TAG:
-            
+            // to do:
             break;
         case BIFROST_TOUCH_TAG:
+            // to do:
             
             break;
         case ZIONCANYON_TOUCH_TAG:
+            // to do:
             
             break;
         default:

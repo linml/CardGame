@@ -1,14 +1,14 @@
 10
 
 dir
-493
+502
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Scene
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-09T02:29:54.104876Z
-490
+2013-06-09T10:20:18.289924Z
+501
 phileas
 
 
@@ -32,6 +32,9 @@ dir
 
 
 add
+
+ExplorationScene
+dir
 
 LoginScene
 dir
