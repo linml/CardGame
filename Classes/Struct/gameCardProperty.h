@@ -36,6 +36,7 @@ public:
     CGameCardProperty();
     ~CGameCardProperty();
     int m_nPlayerCardIndex;
+    void initJineng(int jichujineng,int zhengfuskill,int zhanghunskill,int yonghuskill);
     string m_sPlayerCardName;         //卡牌名字
     unsigned int m_unCardLevel;        // 卡佩的星级
     EN_CARDKIND  m_eCardKind;          //组别类型
@@ -44,10 +45,15 @@ public:
     unsigned int m_unPlayerCardAttack; //攻击力
     unsigned int m_unPlayerCardDefence;//防御力：
     unsigned int m_unHp ;              //血量
-    unsigned int m_unCurrentHp;
+    string   m_sResourceName  ;  //资源名字
+    int m_unCurrentHp;
     int  m_nPojia;
     int  m_nGeDang;
-    vector<int>m_vSkillList;  //技能列表
+    //技能列表
+    int  m_iJiChuJineng;
+    int  m_iZhengFuJineng;
+    int  m_iZhangHunJiachi;
+    int  m_iYongHuJineng;
 };
 
 

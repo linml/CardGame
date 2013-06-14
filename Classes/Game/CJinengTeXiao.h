@@ -95,16 +95,15 @@ public:
     {
         if(m_pGongjiNode)
         {
-            ((CCardLayer *)m_pGongjiNode)->animationHeroMoveRight();
+  //          ((CCardLayer *)m_pGongjiNode)->animationHeroMoveRight();
         }
         CCParticleSystemQuad  *particle=CCParticleSystemQuad::create((resRootPath+"particle/skill-texiao/26-xingxing.plist").c_str());
         particle->setPosition(ccp(200,500));
         layer->addChild(particle,100,288);
         if(m_pBeigongji)
         {
-            ((CCardLayer *)m_pBeigongji)->animationBeiGongji(1);
-            
-          
+//            ((CCardLayer *)m_pBeigongji)->animationBeiGongji(1);
+
         }
     }
 };

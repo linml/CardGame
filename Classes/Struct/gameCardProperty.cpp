@@ -19,7 +19,19 @@ delete POINT;  POINT=NULL ; \
 
 CGameCardProperty::CGameCardProperty()
 {
-  m_vSkillList.clear();// NULL;
+    //m_vSkillList.clear();// NULL;
+    m_iJiChuJineng=-1;
+    m_iYongHuJineng=-1;
+    m_iZhangHunJiachi=-1;
+    m_iZhengFuJineng=-1;
+}
+
+void CGameCardProperty::initJineng(int jichujineng,int zhengfuskill,int zhanghunskill,int yonghuskill)
+{
+    m_iJiChuJineng=jichujineng;
+    m_iYongHuJineng=zhengfuskill;
+    m_iZhangHunJiachi=zhanghunskill;
+    m_iZhengFuJineng=yonghuskill;
 }
 
 

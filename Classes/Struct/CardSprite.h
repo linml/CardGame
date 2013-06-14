@@ -24,6 +24,7 @@ class CCardSprite
 {
 public:
     CCardSprite();
+    CCardSprite(CCardSprite &t1);
     virtual ~CCardSprite();
     virtual  std::string getName();
 public:
@@ -40,6 +41,9 @@ public:
         m_iXuanYun=0;
         cardsprite=NULL;
         m_iHuduanshanghai=0;
+        m_iJianMianShanghai=0;
+        m_iHuduanshanghai=0;
+        m_iJiaFang=0;
     }
     
     bool isCannotATK(); //判断当前是否处于可以攻击的状态
@@ -54,9 +58,10 @@ public:
     
     int  m_ibingdong;
     int  m_iXuanYun;
-    
+    int  m_iJiaFang;
     int  m_iHuduanshanghai;//护盾伤害  反弹
     int  m_iJianMianShanghai;//减免伤害
+    class CCardPanel *m_CardPanel;
     
 };
 

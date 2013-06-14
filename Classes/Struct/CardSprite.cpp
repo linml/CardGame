@@ -13,6 +13,11 @@ CCardSprite::CCardSprite()
     
 }
 
+CCardSprite::CCardSprite(CCardSprite &t1)
+{
+    this->m_cardData=t1.m_cardData;
+    
+}
 CCardSprite::~CCardSprite()
 {
     

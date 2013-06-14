@@ -14,21 +14,18 @@
 #include "Craftsmanship.h"
 #include "CSingleton.h"
 using namespace std;
-
-class CSkillManager {
+//技能管理类
+class CSkillManager :public cocos2d::CCObject {
 public:
     CSkillManager();
     ~CSkillManager();
     CCraftsmanship *getSkillByIndex(int index);
-    void dealWithSkillShanghai(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex);
-    void puTongGongJi(SFightCardSprite **ownCardProperty,SFightCardSprite **enemyCardpropert);
+    void dealWithSkillShanghai(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int &jiaHp,int &jianhp);
+    int puTongGongJi(SFightCardSprite **ownCardProperty,SFightCardSprite **enemyCardpropert);
     /*
      
      */
-    
-    
-    
-    
+ 
 public:
     vector<CCraftsmanship* >m_skillList;
 

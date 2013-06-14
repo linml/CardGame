@@ -49,7 +49,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->runWithScene(scene);
     */
     
-   SingleSceneManager::instance()->runMapScene();
+   SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
     return true;
 }
 

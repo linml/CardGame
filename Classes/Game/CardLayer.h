@@ -10,12 +10,11 @@
 #define ___1_cube__CardLayer__
 
 #include <iostream>
-
-#include "BaseLayer.h"
+#include "CBaseLayer.h"
 #include "CardSprite.h"
 #include "GameSpriteConfig.h"
 
-class CCardLayer :public BaseLayer
+class CCardLayer :public CBaseLayer
 {
 public:
     CCardLayer();
