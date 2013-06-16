@@ -50,10 +50,10 @@ public:
     int  m_nPojia;
     int  m_nGeDang;
     //技能列表
-    int  m_iJiChuJineng;
-    int  m_iZhengFuJineng;
-    int  m_iZhangHunJiachi;
-    int  m_iYongHuJineng;
+    int  m_iJiChuJineng;  //基础攻击技能
+    int  m_iZhengFuJineng; //增幅技能
+    int  m_iZhangHunJiachi;//战魂加持
+    int  m_iYongHuJineng;//拥护技能
 };
 
 

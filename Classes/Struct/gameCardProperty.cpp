@@ -29,16 +29,16 @@ CGameCardProperty::CGameCardProperty()
 void CGameCardProperty::initJineng(int jichujineng,int zhengfuskill,int zhanghunskill,int yonghuskill)
 {
     m_iJiChuJineng=jichujineng;
-    m_iYongHuJineng=zhengfuskill;
+    m_iZhengFuJineng=zhengfuskill;
     m_iZhangHunJiachi=zhanghunskill;
-    m_iZhengFuJineng=yonghuskill;
+    m_iYongHuJineng=yonghuskill;
 }
 
 
 CGameCardProperty::~CGameCardProperty()
 {
-//    DELETE_SAFT(m_pAdvocacy);
-//    DELETE_SAFT(m_pBasicSkill);
-//    DELETE_SAFT(m_pDeadSkill);
-//    DELETE_SAFT(m_pIncreaseSkill);
+    //    DELETE_SAFT(m_pAdvocacy);
+    //    DELETE_SAFT(m_pBasicSkill);
+    //    DELETE_SAFT(m_pDeadSkill);
+    //    DELETE_SAFT(m_pIncreaseSkill);
 }

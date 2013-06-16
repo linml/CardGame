@@ -51,7 +51,7 @@ void SFightCardSprite::fantanShanghai(SFightCardSprite **sfightCardSprite)
 
 void SFightCardSprite::dealLastHp()
 {
-    this->cardsprite->m_cardData.m_unCurrentHp += m_iJianMianShanghai;
+    this->cardsprite->m_cardData.m_unCurrentHp  += m_iJianMianShanghai;
     this->cardsprite->m_cardData.m_unCurrentHp  +=m_iHuduanshanghai;
 }
 
