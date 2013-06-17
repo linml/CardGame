@@ -37,6 +37,8 @@ public:
     ~CGameCardProperty();
     int m_nPlayerCardIndex;
     void initJineng(int jichujineng,int zhengfuskill,int zhanghunskill,int yonghuskill);
+    void setAddCurrentHp(int  iHp);
+    void setAddHp(int iHp);
     string m_sPlayerCardName;         //卡牌名字
     unsigned int m_unCardLevel;        // 卡佩的星级
     EN_CARDKIND  m_eCardKind;          //组别类型

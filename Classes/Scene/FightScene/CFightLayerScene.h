@@ -43,7 +43,9 @@ private:
     void initAssignHuihe();
     void initOwnHuihe();
     void initMonsterHuihe();
+
 public:
+        void animationMoveToLast(class CCObject  *pSend);
     void dealWithFight(CCObject *object);
     void loseDialog();
     void winDialog();

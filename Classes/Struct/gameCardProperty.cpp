@@ -19,11 +19,29 @@ delete POINT;  POINT=NULL ; \
 
 CGameCardProperty::CGameCardProperty()
 {
-    //m_vSkillList.clear();// NULL;
     m_iJiChuJineng=-1;
     m_iYongHuJineng=-1;
     m_iZhangHunJiachi=-1;
     m_iZhengFuJineng=-1;
+}
+
+void CGameCardProperty::setAddCurrentHp(int iHp)
+{
+    m_unCurrentHp +=iHp;
+    if(m_unCurrentHp>m_unHp)
+    {
+        m_unCurrentHp=m_unHp;
+    }
+}
+
+void CGameCardProperty::setAddHp(int  iHp)
+{
+    m_unHp+=iHp;
+    m_unCurrentHp +=iHp;
+    if(m_unCurrentHp>m_unHp)
+    {
+        m_unCurrentHp=m_unHp;
+    }
 }
 
 void CGameCardProperty::initJineng(int jichujineng,int zhengfuskill,int zhanghunskill,int yonghuskill)
@@ -37,8 +55,5 @@ void CGameCardProperty::initJineng(int jichujineng,int zhengfuskill,int zhanghun
 
 CGameCardProperty::~CGameCardProperty()
 {
-    //    DELETE_SAFT(m_pAdvocacy);
-    //    DELETE_SAFT(m_pBasicSkill);
-    //    DELETE_SAFT(m_pDeadSkill);
-    //    DELETE_SAFT(m_pIncreaseSkill);
+    
 }

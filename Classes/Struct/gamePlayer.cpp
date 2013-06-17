@@ -92,7 +92,7 @@ static void  FightCarderInit()
     cardproperty->m_cardData.m_sResourceName="test_card";
     cardproperty->m_cardData.m_unCurrentHp=4;
     cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
-    cardproperty->m_cardData.initJineng(16, -1, 17, -1);
+    cardproperty->m_cardData.initJineng(16, -1, 17, 0);
     g_FightCard.push_back(cardproperty);
 }
 CGamePlayer::CGamePlayer()

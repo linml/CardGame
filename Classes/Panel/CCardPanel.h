@@ -21,6 +21,7 @@ public:
 public:
     static  CCardPanel  *Create(const char *pngFileName, const char *name);
     CCLabelTTF *getLabel();
+    void setDead();
 private:
     bool initSprite(const char *pngFileName,const char *name);
 };

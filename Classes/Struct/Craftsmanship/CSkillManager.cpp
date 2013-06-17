@@ -117,8 +117,8 @@ void CSkillManager::animationDealWithSkillShanghai(vector<SFightCardSprite *>own
     CCardPanel * fightSprite=(CCardPanel *)(layer->getChildByTag(ownCardProperty[ownIndex]->tag));
     fightSprite->runAction(CCSequence::create(
                                               CCMoveBy::create(0.2f,ccp(0,100)),CCCallFuncND::create(layer, callfuncND_selector(CFightLayerScene::animationCardPanel),(void *)&ownCardProperty[ownIndex]->tag),
-                                              CCDelayTime::create(0.1f),
-                                              CCCallFuncND::create(layer, callfuncND_selector(CFightLayerScene::animationShouShang),(void *)&enemyCardpropert[enemyIndex]->tag),  CCDelayTime::create(0.1f),CCCallFuncN::create(fightSprite, callfuncN_selector(CFightLayerScene::animationMoveBack)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::setVistablHit)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL
+                                                    CCDelayTime::create(0.1f),
+                                                    CCCallFuncND::create(layer, callfuncND_selector(CFightLayerScene::animationShouShang),(void *)&enemyCardpropert[enemyIndex]->tag),  CCDelayTime::create(0.1f),CCMoveBy::create(0.2f,ccp(0,-100)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::setVistablHit)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL
                                               ));
 }
 
@@ -129,10 +129,13 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
     this->layer=layer;
     if(ownIndex>ownCardProperty.size() ||enemyIndex >enemyCardpropert.size() )
     {
+        cout<<"AAAAAAAAAAAAAAAA"<<endl;
         PT_ERR_LOG("error");
         return ;
     }
-    switch (skillIndex) {
+    cout<<"skillIndex===>"<<skillIndex<<endl;
+    switch (skillIndex)
+    {
         case 0:
         {
             jianHp=puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
@@ -147,6 +150,7 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
         {
             if(ownCardProperty[ownIndex]->isCannotATK())
             {
+                layer->getChildByTag(ownCardProperty[ownIndex]->tag)->runAction(CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)));
                 return ;
             }
             jianHp= enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
@@ -156,6 +160,7 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
             enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
             enemyCardpropert[enemyIndex]->initShangHai();
             jianHp-=enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+            animationDealWithSkillShanghai(ownCardProperty,enemyCardpropert,ownIndex,enemyIndex,jiaHp,jianHp,layer);
             
         }
             break;
@@ -172,11 +177,17 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
                     this->layer->addChild(sprite,1000,3100);
                     CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
                     sprite->setPosition(ccp(point.x,point.y+200));
-                    sprite->runAction(
-                                      CCSequence::create(
-                                                         CCMoveTo::create(0.2f, point)
-                                                         ,CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite),(void*)(sprite))
-                                                         ,NULL));
+                    if(i!=3)
+                    {
+                        sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                    }
+                    else
+                    {
+                        cout<<"run dealwithFight"<<endl;
+                        sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+                    }
+
+                    
                 }
             }
         }
@@ -187,24 +198,23 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
             if(RangeLand()>=50)
             {
                 //吸血效果
-                ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp   +=2;
-                if(ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp>
-                   ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp )
-                {
-                    ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp = ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp ;
-                }
+                ownCardProperty[ownIndex]->cardsprite->m_cardData.setAddCurrentHp(2);
                 enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp -=2;
+                 animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
                 
             }
             else
             {
                 puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
+                animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
             }
         }
             break;
         case 4:
         {
-            enemyCardpropert[enemyIndex]->m_ibingdong+=1; //没几个回合 发动冰冻技能
+            enemyCardpropert[enemyIndex]->m_ibingdong+=1; //回合 发动冰冻技能
+          CCardPanel *card=(CCardPanel *)layer->getChildByTag(ownCardProperty[ownIndex]->tag)  ;
+            card->runAction(CCSequence::create(CCMoveBy::create(0.2f, ccp(0,100)),CCDelayTime::create(0.2f),CCMoveBy::create(0.2f, ccp(0,-100)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL));
         }
             break;
         case 5:
@@ -222,7 +232,16 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
                 this->layer->addChild(sprite,1000,ownCardProperty[i]->tag);
                 CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
                 sprite->setPosition(ccp(point.x,point.y+200));
-                sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                if(i!=3)
+                {
+                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                }
+                else
+                {
+                    cout<<"run dealwithFight"<<endl;
+                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+                }
+
             }
         }
             break;
@@ -267,6 +286,7 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
             enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
             enemyCardpropert[enemyIndex]->initShangHai();
             jianHp-=enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+            animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
         }
             break;
         case 8:
@@ -276,8 +296,7 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
             {
                 if(!ownCardProperty[i]->isDead)
                 {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unHp +=3;
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unCurrentHp=ownCardProperty[i]->cardsprite->m_cardData.m_unHp;
+                    ownCardProperty[i]->cardsprite->m_cardData.setAddCurrentHp(3);
                 }
             }
             for (int i=ownIndex; i<=3; i++) {
@@ -285,7 +304,16 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
                 this->layer->addChild(sprite,1000,ownCardProperty[i]->tag);
                 CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
                 sprite->setPosition(ccp(point.x,point.y+200));
-                sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                if(i!=3)
+                {
+                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                }
+                else
+                {
+                    cout<<"run dealwithFight"<<endl;
+                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+                }
+
             }
             
         }
@@ -295,14 +323,12 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
             if(RangeLand()<=50)
             {
                 jianHp =puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
+                animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
             }
             else
             {
-                ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp+=3; //两倍伤害
-                if( ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp<=ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp)
-                {
-                    ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp=ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp;
-                }
+                ownCardProperty[ownIndex]->cardsprite->m_cardData.setAddCurrentHp(3); //两倍伤害
+                animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
             }
         }
             break;
@@ -312,7 +338,7 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
             CCSprite *sprite=CCSprite::create((g_mapImagesPath +"/fighting/buff_2.png").c_str());
             CCPoint point=layer->getChildByTag(ownCardProperty[ownIndex]->tag)->getPosition();
             sprite->setPosition(ccp(point.x,point.y+200));
-            sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+            sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL));
         }
             break;
         case 11:
@@ -330,7 +356,16 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
                 this->layer->addChild(sprite,1000,ownCardProperty[i]->tag);
                 CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
                 sprite->setPosition(ccp(point.x,point.y+200));
-                sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                if(i!=3)
+                {
+                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                }
+                else
+                {
+                    cout<<"run dealwithFight"<<endl;
+                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+                }
+
             }
             
         }
@@ -365,6 +400,7 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
             enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
             enemyCardpropert[enemyIndex]->initShangHai();
             jianHp-=enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+             animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
             
         }
             break;
@@ -383,7 +419,16 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
                 this->layer->addChild(sprite,1000,ownCardProperty[i]->tag);
                 CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
                 sprite->setPosition(ccp(point.x,point.y+200));
-                sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                if(i!=3)
+                {
+                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+                }
+                else
+                {
+                    cout<<"run dealwithFight"<<endl;
+                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+                }
+
             }
             
             
@@ -391,13 +436,13 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
             break;
         case 15:
         {
-            layer->getChildByTag(ownCardProperty[ownIndex]->tag)->runAction(CCSequence::create(CCMoveBy::create(0.2f, ccp(0,100)),CCMoveBy::create(0.2f, ccp(0,-100)),NULL));
             for (int i=0; i<ownCardProperty.size()-1; i++)
             {
                 cout<<"===="<<endl;
                 if(!ownCardProperty[i]->isDead)
                 {
-                    ownCardProperty[i]->cardsprite->m_cardData.m_unCurrentHp+=1;
+                    cout<<"un dead"<<i<<endl;
+                    ownCardProperty[i]->cardsprite->m_cardData.setAddCurrentHp(1);
                     CCSprite *sprite =CCSprite::create((g_mapImagesPath+"/fighting/buff_2.png").c_str());
                     layer->addChild(sprite,100,i+400+ownCardProperty[i]->tag);
                     CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
@@ -406,13 +451,23 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
                     {
                         sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
                     }
-                    else{
+                    else
+                    {
+                        cout<<"run dealwithFight"<<endl;
                         sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL));
                     }
                     
-                }
-                
+                } 
             }
+        }
+            break;
+        case 16:
+            animationDealWithSkillShanghai(ownCardProperty,enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+            break;
+        case 17:
+        {
+            CCardPanel *sprite=(CCardPanel *)layer->getChildByTag(ownCardProperty[ownIndex]->tag);
+            sprite->runAction(CCSequence::create(CCMoveBy::create(0.2f,ccp(0,100)),CCDelayTime::create(0.2f),CCMoveBy::create(0.2f,ccp(0,-100)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
         }
             break;
         default:
