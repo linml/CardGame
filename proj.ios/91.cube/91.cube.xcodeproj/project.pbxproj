@@ -17,6 +17,7 @@
 		6F3EFCB9175308E900765322 /* CSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB4175308E900765322 /* CSkillManager.cpp */; };
 		6F3EFCBA175308E900765322 /* CardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB6175308E900765322 /* CardSprite.cpp */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
+		6F7434081770573700304838 /* CFightingLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7434061770573700304838 /* CFightingLayerScene.cpp */; };
 		6F780744176457910049321C /* CFightLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780742176457910049321C /* CFightLayerScene.cpp */; };
 		6F780751176469830049321C /* HallScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780746176469830049321C /* HallScene.cpp */; };
 		6F780752176469830049321C /* AsgardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780749176469830049321C /* AsgardLayer.cpp */; };
@@ -271,6 +272,8 @@
 		6F3EFCB7175308E900765322 /* CardSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSprite.h; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
 		6F3EFCBC17536D6700765322 /* CEvolutionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEvolutionLayer.h; sourceTree = "<group>"; };
+		6F7434061770573700304838 /* CFightingLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightingLayerScene.cpp; sourceTree = "<group>"; };
+		6F7434071770573700304838 /* CFightingLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightingLayerScene.h; sourceTree = "<group>"; };
 		6F780742176457910049321C /* CFightLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightLayerScene.cpp; sourceTree = "<group>"; };
 		6F780743176457910049321C /* CFightLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightLayerScene.h; sourceTree = "<group>"; };
 		6F780746176469830049321C /* HallScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HallScene.cpp; sourceTree = "<group>"; };
@@ -906,6 +909,8 @@
 				8E6CE598176EFF9800CF5C0D /* Layer */,
 				6F780742176457910049321C /* CFightLayerScene.cpp */,
 				6F780743176457910049321C /* CFightLayerScene.h */,
+				6F7434061770573700304838 /* CFightingLayerScene.cpp */,
+				6F7434071770573700304838 /* CFightingLayerScene.h */,
 			);
 			path = FightScene;
 			sourceTree = "<group>";
@@ -2196,6 +2201,7 @@
 				8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */,
 				8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */,
 				8E6CE59B176EFFD400CF5C0D /* FightResultConfirm.cpp in Sources */,
+				6F7434081770573700304838 /* CFightingLayerScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -89,7 +89,7 @@ CCScene *CFightLayerScene::scene()
 {
     CCScene *pScene=CCScene::create();
     CFightLayerScene *mapLayer = new CFightLayerScene();
-    mapLayer->setUserData((void*)(scene_fightscene.c_str()));
+    mapLayer->setUserData((void*)(scene_fightscene.c_str())); //没神马用。 
     mapLayer->init();
     mapLayer->autorelease();
     pScene->addChild(mapLayer);
@@ -116,7 +116,7 @@ void CFightLayerScene::createMonster()
     for (int i=0;i<m_vMonsterCardSprite.size();i++)
     {
         m_vMonsterCardSprite[i]->tag=1000+i;
-        if(i==4)
+        if(i==m_vMonsterCardSprite.size()-1)//设置最后一张为 辅助英雄
         {
             //放在 拥护的位置
             CCardPanel *sprite1=CCardPanel::Create((g_mapImagesPath+"fighting/"+m_vMonsterCardSprite[i]->cardsprite->m_cardData.m_sResourceName+"_3.png").c_str(), m_vMonsterCardSprite[i]->cardsprite->m_cardData.m_sPlayerCardName.c_str()) ;
@@ -130,7 +130,7 @@ void CFightLayerScene::createMonster()
         {
             CCardPanel *sprite1=CCardPanel::Create((g_mapImagesPath+"fighting/"+m_vMonsterCardSprite[i]->cardsprite->m_cardData.m_sResourceName+"_2.png").c_str(), m_vMonsterCardSprite[i]->cardsprite->m_cardData.m_sPlayerCardName.c_str()) ;
             this->addChild(sprite1,1,m_vMonsterCardSprite[i]->tag);
-            sprite1->setPosition(ccp(wndsize.width*0.5+20+i*118,wndsize.height*0.5));
+            sprite1->setPosition(ccp(wndsize.width*0.5+100+i*118,wndsize.height*0.5));
             sprite1->setFlipX(true);
         }
     }
@@ -155,7 +155,7 @@ void CFightLayerScene::createOwnFightCardPosition()
     {
         m_vfightCardSprite[i]->tag=100+i;
         
-        if(i==4)
+        if(i==m_vfightCardSprite.size()-1)
         {
             //放在 拥护的位置
             CCardPanel *sprite1=CCardPanel::Create((g_mapImagesPath+"fighting/"+m_vfightCardSprite[i]->cardsprite->m_cardData.m_sResourceName+"_3.png").c_str(), m_vfightCardSprite[i]->cardsprite->m_cardData.m_sPlayerCardName.c_str()) ;
@@ -167,7 +167,7 @@ void CFightLayerScene::createOwnFightCardPosition()
         {
             CCardPanel *sprite1=CCardPanel::Create((g_mapImagesPath+"fighting/"+m_vfightCardSprite[i]->cardsprite->m_cardData.m_sResourceName+"_2.png").c_str(), m_vfightCardSprite[i]->cardsprite->m_cardData.m_sPlayerCardName.c_str()) ;
             this->addChild(sprite1,5-i,m_vfightCardSprite[i]->tag);
-            sprite1->setPosition(ccp(winsize.width/2-130-i*118,winsize.height*.5));
+            sprite1->setPosition(ccp(winsize.width/2-100-i*118,winsize.height*.5));
         }
     }
 }
@@ -256,6 +256,7 @@ void CFightLayerScene::setHp(CCardSprite *pCardSprite, cocos2d::CCLabelTTF *labe
 
 void CFightLayerScene::initOwnHuihe()
 {
+    cout<<"m_iZhujiangHuihe:"<<m_iZhujiangHuihe<<endl;
     m_iZhujiangHuihe=G_SkillManager::instance()->getSkillByIndex(m_vfightCardSprite[m_vFightCardIndex]->cardsprite->m_cardData.m_iJiChuJineng)->m_ihuihe;
 }
 
@@ -318,7 +319,7 @@ void CFightLayerScene::callBackOwnAnimationChangeFlag(CCObject *pSend)
 void CFightLayerScene::callBackMonsterAnimationChangeFlag(CCObject *pSend)
 {
      cout<<(this->isMonsterEnd?"isMonsterEnd:true":"isMonsterEnd:false")<<endl;
-    this->isMonsterEnd=true;
+     this->isMonsterEnd=true;
 }
 
 void CFightLayerScene::checkOwnIsDeadAndMove()
@@ -390,15 +391,11 @@ void CFightLayerScene::checkMonsterIsDeadAndMove()
 {
     if (m_vMonsterCardSprite[m_vMonsterCardIndex]->isDead)
     {
-      
-         ((CCardPanel *)(this->getChildByTag(m_vMonsterCardSprite[m_vMonsterCardIndex]->tag)))->setDead();
+        ((CCardPanel *)(this->getChildByTag(m_vMonsterCardSprite[m_vMonsterCardIndex]->tag)))->setDead();
         isMonsterEnd=false;
          G_SkillManager::instance()->dealWithSkillShanghai(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite->m_cardData.m_iZhangHunJiachi,m_vMonsterCardSprite,m_vfightCardSprite,m_vMonsterCardIndex,m_vFightCardIndex, jiaHp, JianHp,this);
-
-        m_vMonsterCardIndex++;
+       m_vMonsterCardIndex++;
        initMonsterHuihe();
-        
-       
    }
 }
 void CFightLayerScene::secheudelUpdateToDoDealWith(float times)
@@ -410,6 +407,7 @@ void CFightLayerScene::secheudelUpdateToDoDealWith(float times)
          fightLogic(gongjiHuiHe); 
     }
 }
+
 void CFightLayerScene::dealWithFight(CCObject *object)
 {
     
@@ -471,6 +469,7 @@ void CFightLayerScene::winDialog()
 
     cout<<"win"<<endl;
 }
+
 void CFightLayerScene::animationCardPanel(class CCardPanel *card, void *tag)
 {
     if(getChildByTag(30000))
@@ -553,9 +552,7 @@ void CFightLayerScene::fightLogic(int  huihe)
             cout<<"indexYonghu:"<<indexYonghu<<endl;
             G_SkillManager::instance()->dealWithSkillShanghai(indexYonghu, m_vfightCardSprite, m_vMonsterCardSprite, 4, m_vMonsterCardIndex,jiaHp,JianHp,this);
             
-               
         }
-            
             break;
         case -1:
         {
@@ -575,7 +572,6 @@ void CFightLayerScene::fightLogic(int  huihe)
                 G_SkillManager::instance()->dealWithSkillShanghai(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite->m_cardData.m_iJiChuJineng, m_vMonsterCardSprite,m_vfightCardSprite,m_vMonsterCardIndex, m_vFightCardIndex,jiaHp,JianHp,this);
                 setHp(m_vfightCardSprite[m_vFightCardIndex]->cardsprite,(CCLabelTTF*) getChildByTag(20001));
             }
-            
         }
             break;
         case -2:
@@ -589,7 +585,6 @@ void CFightLayerScene::fightLogic(int  huihe)
         default:
             break;
     }
-    //this->runAction(CCCallFunc::create(this, callfunc_selector(CFightLayerScene::dealWithFight)));
 }
 
 void CFightLayerScene::updateGetGameDataToGetServerRandow()

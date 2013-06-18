@@ -45,6 +45,15 @@ public:
         m_iHuduanshanghai=0;
         m_iJiaFang=0;
     }
+    ~SFightCardSprite()
+    {
+        if(cardsprite)
+        {
+            delete cardsprite;
+            cardsprite=NULL;
+        }
+        
+    }
     
     bool isCannotATK(); //判断当前是否处于可以攻击的状态
     void initShangHai();

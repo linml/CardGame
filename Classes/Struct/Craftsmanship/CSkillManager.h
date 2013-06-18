@@ -13,6 +13,22 @@
 #include "Craftsmanship.h"
 #include "CSingleton.h"
 using namespace std;
+struct  SAnimationFps {
+    SAnimationFps();
+    ~SAnimationFps();
+    SAnimationFps(int spendAnimationAuthor,int skillIndex,int spendCurrHp,int spendHp,int monsterCurrHp,int monsterHp);
+    int  m_spendAnimationAuthor;
+    int  m_skillIndex;
+    int  m_spendCurrHp;
+    int  m_spendHp;
+    int  m_monsterCurrHp;
+    int  m_monsterHp;
+};
+
+
+
+
+
 //技能管理类
 class CSkillManager :public cocos2d::CCObject {
 public:
@@ -22,12 +38,18 @@ public:
     void dealWithSkillShanghai(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int &jiaHp,int &jianhp,cocos2d::CCLayer *layer);
     
     void animationDealWithSkillShanghai(vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int &jiaHp,int &jianhp,cocos2d::CCLayer *layer);
+    
     int puTongGongJi(SFightCardSprite **ownCardProperty,SFightCardSprite **enemyCardpropert);
     void removeSprite(cocos2d::CCNode *node,void *tag);
     /*
      
-     */
- 
+    */
+    void dealWithSkillShanghaiList(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe);
+    void clearAnimationList();
+    vector<SAnimationFps *> getAnimation();
+    
+private:
+    vector<SAnimationFps *>m_Animationlist;
 public:
     vector<CCraftsmanship* >m_skillList;
 private:

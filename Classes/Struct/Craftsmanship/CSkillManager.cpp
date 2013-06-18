@@ -45,6 +45,28 @@ inline  int  RangeLand(int min=1,int max=100)
 {
     return  rand() % (max-min+1) + min;
 }
+
+SAnimationFps::SAnimationFps()
+{
+    
+}
+
+SAnimationFps::~SAnimationFps()
+{
+    
+}
+SAnimationFps::SAnimationFps(int spendAnimationAuthor,int skillIndex,int spendCurrHp,int spendHp,int monsterCurrHp,int monsterHp)
+{
+    m_monsterCurrHp=monsterCurrHp;
+    m_monsterHp=monsterHp;
+    m_spendAnimationAuthor=spendAnimationAuthor;
+    m_spendCurrHp=spendCurrHp;
+    m_spendHp=spendHp;    
+}
+
+
+
+
 CSkillManager::CSkillManager()
 {
     m_skillList.push_back(new BasicCCraftsmanship(1,"女神之枪",g_str_skillPathPlist+"0-sanmang.plist",3,1));//,
@@ -476,10 +498,379 @@ void  CSkillManager::dealWithSkillShanghai(int skillIndex,vector<SFightCardSprit
     if(enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp==0)
     {
         enemyCardpropert[enemyIndex]->isDead=true;
+      // ((CCardPanel *)(layer->getChildByTag(enemyCardpropert[enemyIndex]->tag)))->setDead();
     }
     if(ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp==0)
     {
         ownCardProperty[ownIndex]->isDead=true;
     }
+}
+
+
+
+
+void CSkillManager::dealWithSkillShanghaiList(int skillIndex,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe)
+{
+//    if(ownIndex>ownCardProperty.size() ||enemyIndex >enemyCardpropert.size() )
+//    {
+//        PT_ERR_LOG("error");
+//        return ;
+//    }
+//    cout<<"skillIndex===>"<<skillIndex<<endl;
+//    switch (skillIndex)
+//    {
+//        case 0:
+//        {
+//            puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
+//            this->m_Animationlist.push_back(new SAnimationFps(ownIndex))
+//        }
+//            break;
+//        case 1:
+//        {
+//            if(ownCardProperty[ownIndex]->isCannotATK())
+//            {
+//                layer->getChildByTag(ownCardProperty[ownIndex]->tag)->runAction(CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)));
+//                return ;
+//            }
+//            jianHp= enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+//            //回合攻击
+//            enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp -= ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unPlayerCardAttack*2-enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unPlayerCardDefence;
+//            enemyCardpropert[enemyIndex]->dealLastHp();
+//            enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
+//            enemyCardpropert[enemyIndex]->initShangHai();
+//            jianHp-=enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+//            animationDealWithSkillShanghai(ownCardProperty,enemyCardpropert,ownIndex,enemyIndex,jiaHp,jianHp,layer);
+//            
+//        }
+//            break;
+//        case 2:
+//        {
+//            //死亡加成
+//            for (int i=0; i<ownCardProperty.size(); i++) {
+//                if(!ownCardProperty[i]->isDead)
+//                {
+//                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardAttack+=5;
+//                }
+//                for (int i=ownIndex; i<=3; i++) {
+//                    CCSprite *sprite =CCSprite::create((g_mapImagesPath+"/fighting/buff_1.png").c_str());
+//                    this->layer->addChild(sprite,1000,3100);
+//                    CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
+//                    sprite->setPosition(ccp(point.x,point.y+200));
+//                    if(i!=3)
+//                    {
+//                        sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+//                    }
+//                    else
+//                    {
+//                        cout<<"run dealwithFight"<<endl;
+//                        sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+//                    }
+//                    
+//                    
+//                }
+//            }
+//        }
+//            break;
+//        case 3:
+//        {
+//            //拥护攻击
+//            if(RangeLand()>=50)
+//            {
+//                //吸血效果
+//                ownCardProperty[ownIndex]->cardsprite->m_cardData.setAddCurrentHp(2);
+//                enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp -=2;
+//                animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//                
+//            }
+//            else
+//            {
+//                puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
+//                animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//            }
+//        }
+//            break;
+//        case 4:
+//        {
+//            enemyCardpropert[enemyIndex]->m_ibingdong+=1; //回合 发动冰冻技能
+//            CCardPanel *card=(CCardPanel *)layer->getChildByTag(ownCardProperty[ownIndex]->tag)  ;
+//            card->runAction(CCSequence::create(CCMoveBy::create(0.2f, ccp(0,100)),CCDelayTime::create(0.2f),CCMoveBy::create(0.2f, ccp(0,-100)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL));
+//        }
+//            break;
+//        case 5:
+//        {
+//            for (int i=0; i<ownCardProperty.size(); i++)
+//            {
+//                if(!ownCardProperty[i]->isDead)
+//                {
+//                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=3;
+//                }
+//            }
+//            for (int i=ownIndex; i<=3; i++)
+//            {
+//                CCSprite *sprite =CCSprite::create((g_mapImagesPath+"/fighting/buff_2.png").c_str());
+//                this->layer->addChild(sprite,1000,ownCardProperty[i]->tag);
+//                CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
+//                sprite->setPosition(ccp(point.x,point.y+200));
+//                if(i!=3)
+//                {
+//                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+//                }
+//                else
+//                {
+//                    cout<<"run dealwithFight"<<endl;
+//                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+//                }
+//                
+//            }
+//        }
+//            break;
+//        case 6:
+//        {
+//            if(RangeLand()<=50)
+//            {
+//                jianHp =puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
+//                animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//            }
+//            else
+//            {
+//                
+//                for (int i=0; i<=3; i++) {
+//                    
+//                    if(!ownCardProperty[i]->isDead)
+//                    {
+//                        ownCardProperty[i]->m_iHuduanshanghai+=2;
+//                        CCSprite *sprite =CCSprite::create((g_mapImagesPath+"/fighting/buff_2.png").c_str());
+//                        this->layer->addChild(sprite,1000,11111);
+//                        CCPoint point=layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
+//                        sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL));
+//                        break;
+//                    }
+//                    
+//                }
+//                
+//                
+//            }
+//        }
+//            break;
+//        case 7:
+//        {
+//            if(ownCardProperty[ownIndex]->isCannotATK())
+//            {
+//                return ;
+//            }
+//            jianHp= enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+//            //回合攻击
+//            enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp -= 3;
+//            enemyCardpropert[enemyIndex]->dealLastHp();
+//            enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
+//            enemyCardpropert[enemyIndex]->initShangHai();
+//            jianHp-=enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+//            animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//        }
+//            break;
+//        case 8:
+//        {
+//            
+//            for (int i=ownIndex; i<ownCardProperty.size(); i++)
+//            {
+//                if(!ownCardProperty[i]->isDead)
+//                {
+//                    ownCardProperty[i]->cardsprite->m_cardData.setAddCurrentHp(3);
+//                }
+//            }
+//            for (int i=ownIndex; i<=3; i++) {
+//                CCSprite *sprite =CCSprite::create((g_mapImagesPath+"/fighting/buff_2.png").c_str());
+//                this->layer->addChild(sprite,1000,ownCardProperty[i]->tag);
+//                CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
+//                sprite->setPosition(ccp(point.x,point.y+200));
+//                if(i!=3)
+//                {
+//                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+//                }
+//                else
+//                {
+//                    cout<<"run dealwithFight"<<endl;
+//                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+//                }
+//                
+//            }
+//            
+//        }
+//            break;
+//        case 9:
+//        {
+//            if(RangeLand()<=50)
+//            {
+//                jianHp =puTongGongJi(&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex]);
+//                animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//            }
+//            else
+//            {
+//                ownCardProperty[ownIndex]->cardsprite->m_cardData.setAddCurrentHp(3); //两倍伤害
+//                animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//            }
+//        }
+//            break;
+//        case 10:
+//        {
+//            ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unPlayerCardDefence+=3;
+//            CCSprite *sprite=CCSprite::create((g_mapImagesPath +"/fighting/buff_2.png").c_str());
+//            CCPoint point=layer->getChildByTag(ownCardProperty[ownIndex]->tag)->getPosition();
+//            sprite->setPosition(ccp(point.x,point.y+200));
+//            sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL));
+//        }
+//            break;
+//        case 11:
+//        {
+//            for (int i=ownIndex; i<ownCardProperty.size(); i++)
+//            {
+//                if(!ownCardProperty[i]->isDead)
+//                {
+//                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardAttack +=1;
+//                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardDefence+=1;
+//                }
+//            }
+//            for (int i=ownIndex; i<=3; i++) {
+//                CCSprite *sprite =CCSprite::create((g_mapImagesPath+"/fighting/buff_2.png").c_str());
+//                this->layer->addChild(sprite,1000,ownCardProperty[i]->tag);
+//                CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
+//                sprite->setPosition(ccp(point.x,point.y+200));
+//                if(i!=3)
+//                {
+//                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+//                }
+//                else
+//                {
+//                    cout<<"run dealwithFight"<<endl;
+//                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+//                }
+//                
+//            }
+//            
+//        }
+//            break;
+//        case 12:
+//        {
+//            if(ownCardProperty[ownIndex]->isCannotATK())
+//            {
+//                return ;
+//            }
+//            jianHp= enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+//            //回合攻击
+//            enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp -= (ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unPlayerCardAttack-enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unPlayerCardDefence)*2;
+//            enemyCardpropert[enemyIndex]->dealLastHp();
+//            enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
+//            enemyCardpropert[enemyIndex]->initShangHai();
+//            jianHp-=enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+//            animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//            
+//        }
+//            break;
+//        case 13:
+//        {
+//            if(ownCardProperty[ownIndex]->isCannotATK())
+//            {
+//                return ;
+//            }
+//            jianHp= enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+//            //回合攻击
+//            enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp -= (ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unPlayerCardAttack-enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unPlayerCardDefence)*1.5;
+//            enemyCardpropert[enemyIndex]->dealLastHp();
+//            enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
+//            enemyCardpropert[enemyIndex]->initShangHai();
+//            jianHp-=enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
+//            animationDealWithSkillShanghai(ownCardProperty, enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//            
+//        }
+//            break;
+//        case 14:
+//        {
+//            for (int i=ownIndex; i<ownCardProperty.size(); i++)
+//            {
+//                if(!ownCardProperty[i]->isDead)
+//                {
+//                    ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardAttack +=2;
+//                    ownCardProperty[i]->cardsprite->m_cardData.m_unCurrentHp+=1;
+//                }
+//            }
+//            for (int i=ownIndex; i<=3; i++) {
+//                CCSprite *sprite =CCSprite::create((g_mapImagesPath+"/fighting/buff_2.png").c_str());
+//                this->layer->addChild(sprite,1000,ownCardProperty[i]->tag);
+//                CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
+//                sprite->setPosition(ccp(point.x,point.y+200));
+//                if(i!=3)
+//                {
+//                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+//                }
+//                else
+//                {
+//                    cout<<"run dealwithFight"<<endl;
+//                    sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+//                }
+//                
+//            }
+//            
+//            
+//        }
+//            break;
+//        case 15:
+//        {
+//            for (int i=0; i<ownCardProperty.size()-1; i++)
+//            {
+//                cout<<"===="<<endl;
+//                if(!ownCardProperty[i]->isDead)
+//                {
+//                    cout<<"un dead"<<i<<endl;
+//                    ownCardProperty[i]->cardsprite->m_cardData.setAddCurrentHp(1);
+//                    CCSprite *sprite =CCSprite::create((g_mapImagesPath+"/fighting/buff_2.png").c_str());
+//                    layer->addChild(sprite,100,i+400+ownCardProperty[i]->tag);
+//                    CCPoint point=this->layer->getChildByTag(ownCardProperty[i]->tag)->getPosition();
+//                    sprite->setPosition(ccp(point.x,point.y+200));
+//                    if(i!=3)
+//                    {
+//                        sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f), CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),NULL));
+//                    }
+//                    else
+//                    {
+//                        cout<<"run dealwithFight"<<endl;
+//                        sprite->runAction(CCSequence::create(CCMoveTo::create(0.2f, point),CCDelayTime::create(0.2f),CCCallFuncND::create(this, callfuncND_selector(CSkillManager::removeSprite), (void*)(sprite)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::dealWithFight)),NULL));
+//                    }
+//                    
+//                }
+//            }
+//        }
+//            break;
+//        case 16:
+//            animationDealWithSkillShanghai(ownCardProperty,enemyCardpropert, ownIndex, enemyIndex, jiaHp, jianHp, layer);
+//            break;
+//        case 17:
+//        {
+//            CCardPanel *sprite=(CCardPanel *)layer->getChildByTag(ownCardProperty[ownIndex]->tag);
+//            sprite->runAction(CCSequence::create(CCMoveBy::create(0.2f,ccp(0,100)),CCDelayTime::create(0.2f),CCMoveBy::create(0.2f,ccp(0,-100)),CCCallFunc::create(layer, callfunc_selector(CFightLayerScene::animationMoveToLast)),NULL));
+//        }
+//            break;
+//        default:
+//            break;
+//    }
+//    if(enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp==0)
+//    {
+//        enemyCardpropert[enemyIndex]->isDead=true;
+//        // ((CCardPanel *)(layer->getChildByTag(enemyCardpropert[enemyIndex]->tag)))->setDead();
+//    }
+//    if(ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp==0)
+//    {
+//        ownCardProperty[ownIndex]->isDead=true;
+//    }
+}
+
+void CSkillManager::clearAnimationList()
+{
+    
+    DELETE_POINT_VECTOR(m_Animationlist, vector<SAnimationFps *>)
+}
+
+vector<SAnimationFps *> CSkillManager::getAnimation()
+{
+    return this->m_Animationlist;
 }
 
