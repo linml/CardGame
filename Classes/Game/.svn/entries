@@ -1,14 +1,14 @@
 10
 
 dir
-510
+543
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Game
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-09T06:22:45.633268Z
-499
+2013-06-17T07:10:27.192443Z
+515
 merlin
 
 
@@ -162,40 +162,6 @@ merlin
 
 1479
 
-ExplorationLayer.h
-file
-
-
-
-
-2013-06-17T05:38:42.000000Z
-0e27fdc8a7c14026d09d2198215f9bd3
-2013-06-09T06:22:45.633268Z
-499
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-639
-
 CardLayer.cpp
 file
 
@@ -230,9 +196,43 @@ merlin
 
 3230
 
+ExplorationLayer.h
+file
+
+
+
+
+2013-06-17T05:38:42.000000Z
+0e27fdc8a7c14026d09d2198215f9bd3
+2013-06-09T06:22:45.633268Z
+499
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+639
+
 CardLayer.h
 file
-513
+
 
 
 
@@ -331,30 +331,6 @@ merlin
 
 
 1037
-
-CFightLayerScene.cpp
-file
-515
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-deleted
 
 MemoryGameCollabLayer.h
 file
@@ -457,30 +433,6 @@ merlin
 
 
 1263
-
-CFightLayerScene.h
-file
-515
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-deleted
 
 CJinengTeXiao.cpp
 file
@@ -586,7 +538,7 @@ has-props
 
 CJinengTeXiao.h
 file
-513
+
 
 
 

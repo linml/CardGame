@@ -107,15 +107,16 @@ CGamePlayer::CGamePlayer()
 
 CGamePlayer::~CGamePlayer()
 {
-    DELETE_POINT_VECTOR(m_vZhangdouCardSprite, vector<CCardSprite *>);
+    //DELETE_POINT_VECTOR(m_vZhangdouCardSprite, vector<CCardSprite *>);
     
-    DELETE_POINT_VECTOR(m_vZhangdouCardSprite, vector<CCardSprite *>);
+   // DELETE_POINT_VECTOR(m_vZhangdouCardSprite, vector<CCardSprite *>);
     
 }
 
 void CGamePlayer::forTestDeleteMonster()
 {
-    DELETE_POINT_VECTOR(m_vMonsterCardSprite,vector<CCardSprite *>);
+   // DELETE_POINT_VECTOR(m_vMonsterCardSprite,vector<CCardSprite *>);
+    m_vMonsterCardSprite.erase(m_vMonsterCardSprite.begin(), m_vMonsterCardSprite.end());
 }
 
 void CGamePlayer::forTestMonster()

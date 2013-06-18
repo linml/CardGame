@@ -36,6 +36,9 @@
 		6FB08A4A176EE7E700683F10 /* LayoutLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A49176EE7E700683F10 /* LayoutLayer.cpp */; };
 		6FB08A4D176EE84200683F10 /* Biforest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A4B176EE84200683F10 /* Biforest.cpp */; };
 		6FD364AF175F1CA500862198 /* CJinengTeXiao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FD364AD175F1CA500862198 /* CJinengTeXiao.cpp */; };
+		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
+		8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */; };
+		8E6CE59B176EFFD400CF5C0D /* FightResultConfirm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE599176EFFD400CF5C0D /* FightResultConfirm.cpp */; };
 		9F55A11F174B0F710068E44A /* gameTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F55A10D174B0F710068E44A /* gameTools.cpp */; };
 		9F55A120174B0F710068E44A /* HBMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F55A10F174B0F710068E44A /* HBMap.cpp */; };
 		9F55A121174B0F710068E44A /* HBSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F55A111174B0F710068E44A /* HBSprite.cpp */; };
@@ -307,6 +310,12 @@
 		6FB08A4C176EE84200683F10 /* Biforest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Biforest.h; sourceTree = "<group>"; };
 		6FD364AD175F1CA500862198 /* CJinengTeXiao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CJinengTeXiao.cpp; sourceTree = "<group>"; };
 		6FD364AE175F1CA500862198 /* CJinengTeXiao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJinengTeXiao.h; sourceTree = "<group>"; };
+		8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExplorationScene.cpp; sourceTree = "<group>"; };
+		8E6CE592176EEF1E00CF5C0D /* ExplorationScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplorationScene.h; sourceTree = "<group>"; };
+		8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CConfirmLayer.cpp; sourceTree = "<group>"; };
+		8E6CE595176EEF1E00CF5C0D /* CConfirmLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CConfirmLayer.h; sourceTree = "<group>"; };
+		8E6CE599176EFFD400CF5C0D /* FightResultConfirm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FightResultConfirm.cpp; sourceTree = "<group>"; };
+		8E6CE59A176EFFD400CF5C0D /* FightResultConfirm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightResultConfirm.h; sourceTree = "<group>"; };
 		9F55A10C174B0F710068E44A /* gameConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameConfig.h; sourceTree = "<group>"; };
 		9F55A10D174B0F710068E44A /* gameTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameTools.cpp; sourceTree = "<group>"; };
 		9F55A10E174B0F710068E44A /* gameTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameTools.h; sourceTree = "<group>"; };
@@ -894,10 +903,39 @@
 		6FAFF1431762BBDD007F7778 /* FightScene */ = {
 			isa = PBXGroup;
 			children = (
+				8E6CE598176EFF9800CF5C0D /* Layer */,
 				6F780742176457910049321C /* CFightLayerScene.cpp */,
 				6F780743176457910049321C /* CFightLayerScene.h */,
 			);
 			path = FightScene;
+			sourceTree = "<group>";
+		};
+		8E6CE590176EEF1E00CF5C0D /* ExplorationScene */ = {
+			isa = PBXGroup;
+			children = (
+				8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */,
+				8E6CE592176EEF1E00CF5C0D /* ExplorationScene.h */,
+				8E6CE593176EEF1E00CF5C0D /* Layer */,
+			);
+			path = ExplorationScene;
+			sourceTree = "<group>";
+		};
+		8E6CE593176EEF1E00CF5C0D /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */,
+				8E6CE595176EEF1E00CF5C0D /* CConfirmLayer.h */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
+		8E6CE598176EFF9800CF5C0D /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				8E6CE599176EFFD400CF5C0D /* FightResultConfirm.cpp */,
+				8E6CE59A176EFFD400CF5C0D /* FightResultConfirm.h */,
+			);
+			path = Layer;
 			sourceTree = "<group>";
 		};
 		9F55A10B174B0F710068E44A /* Utility */ = {
@@ -979,6 +1017,7 @@
 		9F801316175493D400EEC0BC /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				8E6CE590176EEF1E00CF5C0D /* ExplorationScene */,
 				6F780745176469830049321C /* HallScene */,
 				6F78074B176469830049321C /* LoginScene */,
 				6FAFF1431762BBDD007F7778 /* FightScene */,
@@ -2154,6 +2193,9 @@
 				6FAD466A176ABFBF0061CDF1 /* CCardPanel.cpp in Sources */,
 				6FB08A4A176EE7E700683F10 /* LayoutLayer.cpp in Sources */,
 				6FB08A4D176EE84200683F10 /* Biforest.cpp in Sources */,
+				8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */,
+				8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */,
+				8E6CE59B176EFFD400CF5C0D /* FightResultConfirm.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

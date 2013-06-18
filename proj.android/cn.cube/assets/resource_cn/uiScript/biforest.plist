@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>biforest</key>
+		<dict>
+			<key>initProperty</key>
+			<dict>
+				<key>tag</key>
+				<string>2</string>
+			</dict>
+			<key>layerFile</key>
+			<string>biforest.map</string>
+			<key>type</key>
+			<string>Layer</string>
+			<key>z</key>
+			<string>3</string>
+		</dict>
+		<key>t_ch_1</key>
+		<dict>
+			<key>tagArray</key>
+			<string>2,0,1</string>
+			<key>touch_tag</key>
+			<string>2001</string>
+			<key>type</key>
+			<string>Touch</string>
+		</dict>
+		<key>t_close</key>
+		<dict>
+			<key>tagArray</key>
+			<string>2,0,4</string>
+			<key>touch_tag</key>
+			<string>2004</string>
+			<key>type</key>
+			<string>Touch</string>
+		</dict>
+		<key>t_ch_2</key>
+		<dict>
+			<key>tagArray</key>
+			<string>2,0,2</string>
+			<key>touch_tag</key>
+			<string>2002</string>
+			<key>type</key>
+			<string>Touch</string>
+		</dict>
+		<key>t_ch_1_1</key>
+		<dict>
+			<key>tagArray</key>
+			<string>2,0,3</string>
+			<key>touch_tag</key>
+			<string>2003</string>
+			<key>type</key>
+			<string>Touch</string>
+		</dict>
+		<key>t_go</key>
+		<dict>
+			<key>tagArray</key>
+			<string>2,0,7</string>
+			<key>touch_tag</key>
+			<string>2005</string>
+			<key>type</key>
+			<string>Touch</string>
+		</dict>
+		
+	</dict>
+</plist>
+

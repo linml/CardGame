@@ -9,7 +9,7 @@
 #include "Biforest.h"
 #include "AsgardLayer.h"
 #include "gameConfig.h"
-#include "SceneManager.h"
+#include "ExplorationScene.h"
 
 static CCPoint p;
 
@@ -132,7 +132,9 @@ void CBiforestLayer::handlerTouch()
             break;
         case 2005:
             //如果是场景切换 请调用scenemanage
-            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_EXPLORATIONSCENE);
+            //SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_EXPLORATIONSCENE);
+            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CExploration::scene()));
+
             break;
             
         default:

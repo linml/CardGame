@@ -32,6 +32,10 @@ CExploration::CExploration()
 
 CExploration::~CExploration()
 {
+    if (m_cMaps)
+    {
+        m_cMaps->release();
+    }
     
 }
 
@@ -90,6 +94,7 @@ bool CExploration::initExploration()
         
         // init map:
         m_cMaps = LayoutLayer::create();
+        m_cMaps->retain();
         m_cMaps->initWithFile(this, CSTR_FILEPTAH(plistPath, "exploration.plist"));
         
         CCNode *node = m_cMaps->getElementByTags("0");
@@ -152,9 +157,13 @@ bool CExploration::initExploration()
         
         // bottom buttons:
         
+        char buffer[10] = {0};
+        sprintf(buffer, "%d/10",g_nLevle+1);
         btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "mission.png"));
-        
         btnActivity->setPosition(ccp(size.width/2, btnActivity->getContentSize().height/2 +15.0f));
+        pLabel = CCLabelTTF::create(buffer, "Scissor Cuts", 20);
+        pLabel->setPosition(ccp(150,60));
+        btnActivity->addChild(pLabel);
         this->addChild(btnActivity, 200, 2004);
         Utility::addTouchRect(2004, btnActivity, m_cTouches);
         
@@ -242,7 +251,25 @@ bool CExploration::initExploration()
 
 void CExploration::handlerTouch()
 {
-    CCLog("CExploration:%d", m_nTouchTag);
+    CCLog("CExploration:%d, %d", m_nTouchTag, g_nLevle
+          );
+    
+    if (g_nLevle == 9 )
+    {
+        if (m_nTouchTag == CENTER_TOUCH_TAG)
+        {
+            CCLog("CExploration:: center.. break");
+            attachConfirm();
+        }else if(m_nTouchTag == 2008)
+        {
+            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
+            
+        }
+            
+        return;
+        
+    }
+    
     switch (m_nTouchTag) {
         case LEFT_TOUCH_TAG:
             CCLog("CExploration:: left");
@@ -277,59 +304,50 @@ void CExploration::randonArrows(const int inLevle)
     char buffer[50] = {};
    
     srand(time(NULL));
+    
     if (inLevle >= 0 && inLevle < 9)
     {
         for (int i = 0; i < 3; i++)
         {
                 g_array[i] = random()%4;
-               
-                for (int j = i-1; j >= 0; j--)
-                {
-                        if (g_array[i]== g_array[j])
-                        {
-                            i--;
-                        }
-                }
-        
         }
 
     
 
-    CCNode *node = NULL;
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 4; j++)
+        CCNode *node = NULL;
+        for (int i = 0; i < 3; i++)
         {
-            memset(buffer, 0, sizeof(char)*50);
-            sprintf(buffer, "1,%d,%d", j,i);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-            node = NULL;
-            node = m_cMaps->getElementByTags(buffer);
-           
-            if (node)
+            for (int j = 0; j < 4; j++)
             {
+                memset(buffer, 0, sizeof(char)*50);
+                sprintf(buffer, "1,%d,%d", j,i);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+                node = NULL;
+                node = m_cMaps->getElementByTags(buffer);
+           
+                if (node)
+                {
               
-                if (j == g_array[i])
-                {
-                    CCLog("true: %d, %d", j,i);
-                    node->setVisible(true);
-                    node->setScale(0.5f);
-                }else
-                {
-                    node->setVisible(false);   
-                }
+                    if (j == g_array[i])
+                    {
+                        node->setVisible(true);
+                        node->setScale(0.5f);
+                    }else
+                    {
+                        node->setVisible(false);   
+                    }
 
                 
-            }
-            else
-            {
-                CCLog("error: %d, %d", i,j);
-            }
+                }
+                else
+                {
+                    CCLog("error: %d, %d", i,j);
+                }
            
-            
-        }
+                
+            }
         
         }
-    }else
+    }else if(g_nLevle == 9)
     {
         CCNode *node ;
         for (int i = 0; i < 3; i++)
@@ -366,7 +384,6 @@ void CExploration::randonArrows(const int inLevle)
             }
             
         }
-        g_nLevle = 0;
 
     }
 
@@ -379,11 +396,12 @@ void CExploration::attachConfirm()
     node = m_cMaps->getElementByTags("1");
     if(node)
     {
-        //removeChild(node, true);
-          node->setVisible(false);
+        CCLog("the ...");
+        removeChild(node, true);
+         // node->setVisible(false);
+        CConfirmLayer *layer = CConfirmLayer::create();
+        this->addChild(layer, 5, 10);
     }
     
-    CConfirmLayer *layer = CConfirmLayer::create();
-    this->addChild(layer);
     
 }

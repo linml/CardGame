@@ -1,14 +1,14 @@
 10
 
 dir
-525
+543
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/particle
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-17T08:00:39.291630Z
-525
+2013-06-17T08:03:58.732365Z
+532
 merlin
 
 
@@ -28,7 +28,7 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 10-chouxue.png
 file
-532
+
 
 
 
@@ -62,7 +62,7 @@ has-props
 
 weapon2006-1.png
 file
-530
+
 
 
 
@@ -96,7 +96,7 @@ has-props
 
 9-buff.plist
 file
-532
+
 
 
 
@@ -130,7 +130,7 @@ merlin
 
 1-buff.png
 file
-532
+
 
 
 
@@ -170,7 +170,7 @@ dir
 
 10-chouxue.plist
 file
-532
+
 
 
 
@@ -204,7 +204,7 @@ merlin
 
 weapon2006-1.plist
 file
-530
+
 
 
 
@@ -238,7 +238,7 @@ merlin
 
 1-buff.plist
 file
-532
+
 
 
 
@@ -272,7 +272,7 @@ merlin
 
 9-buff.png
 file
-532
+
 
 
 

@@ -37,8 +37,9 @@ public:
 protected:
     void initConfirm();
     void handlerTouch();
+
 protected:
-    
+    bool m_bFight;
     int m_nTouchTag;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;

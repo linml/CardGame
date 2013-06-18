@@ -1,15 +1,15 @@
 10
 
 dir
-525
+543
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/sprite
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-17T08:00:39.291630Z
-525
-merlin
+2013-06-18T01:15:16.799500Z
+543
+phileas
 
 
 
@@ -26,9 +26,77 @@ merlin
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
+arrow.sprite
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+949731b6b519765d310ff4784455cf53
+2013-06-18T01:15:16.799500Z
+543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6904
+
+button.sprite
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+46a89f3fafefe35d2dea5ac1a0c0db1d
+2013-06-18T01:15:16.799500Z
+543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+804
+
 room.sprite
 file
-528
+
 
 
 
@@ -60,9 +128,77 @@ merlin
 
 3631
 
+biforest.sprite
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+738e2bbec8518db8b76893cf9e6d99f2
+2013-06-18T01:15:16.799500Z
+543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4710
+
+confirm.sprite
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+824439fb855238e3fb8cbf6c25a9ae4b
+2013-06-18T01:15:16.799500Z
+543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3501
+
 logon.sprite
 file
-528
+
 
 
 
@@ -94,9 +230,43 @@ merlin
 
 5980
 
+fight_confirm.sprite
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+3ae8ada2b8462954dc8b7012e0ec41a8
+2013-06-18T01:15:16.799500Z
+543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1559
+
 cubeCardSprite.sprite
 file
-528
+
 
 
 
@@ -130,7 +300,7 @@ merlin
 
 task.sprite
 file
-528
+
 
 
 
@@ -162,9 +332,43 @@ merlin
 
 6441
 
+door.sprite
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+17f56397d7968e7c519434921234b6de
+2013-06-18T01:15:16.799500Z
+543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2014
+
 main.sprite
 file
-528
+
 
 
 
@@ -198,7 +402,7 @@ merlin
 
 kk.sprite
 file
-528
+
 
 
 
@@ -232,7 +436,7 @@ merlin
 
 mall.sprite
 file
-528
+
 
 
 
@@ -266,7 +470,7 @@ has-props
 
 card.sprite
 file
-528
+
 
 
 

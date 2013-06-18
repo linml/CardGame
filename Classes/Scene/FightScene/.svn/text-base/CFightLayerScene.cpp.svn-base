@@ -15,6 +15,10 @@
 
 #include "CCardPanel.h"
 
+
+#include "FightResultConfirm.h"
+
+
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -446,11 +450,25 @@ void CFightLayerScene::dealWithFight(CCObject *object)
 
 void CFightLayerScene::loseDialog()
 {
+    int tmp = 0;
+    FightResultConfirm * resultConfirm = new FightResultConfirm();
+    resultConfirm->setUserData((void*)tmp);
+    resultConfirm->init();
+    resultConfirm->autorelease();
+    addChild(resultConfirm, 100000);
+    
     cout<<"lose"<<endl;
 }
 
 void CFightLayerScene::winDialog()
 {
+    int tmp = 1;
+    FightResultConfirm * resultConfirm = new FightResultConfirm();
+    resultConfirm->setUserData((void*)tmp);
+    resultConfirm->init();
+    resultConfirm->autorelease();
+    addChild(resultConfirm, 1000000);
+
     cout<<"win"<<endl;
 }
 void CFightLayerScene::animationCardPanel(class CCardPanel *card, void *tag)
@@ -507,11 +525,12 @@ void CFightLayerScene::fightLogic(int  huihe)
     switch (huihe) {
         case 1:
             //主将发动攻击
+               gongjiHuiHe--;
             if(m_iZhujiangHuihe!=0)
             {
                  cout<<"huihe1:"<<huihe<<endl;
                 m_iZhujiangHuihe--;
-                gongjiHuiHe--;
+             
                 //动画效果
                 G_SkillManager::instance()->dealWithSkillShanghai(0, m_vfightCardSprite, m_vMonsterCardSprite, m_vFightCardIndex, m_vMonsterCardIndex,jiaHp,JianHp,this);
                 setHp(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite,(CCLabelTTF*) getChildByTag(20001));
@@ -519,7 +538,7 @@ void CFightLayerScene::fightLogic(int  huihe)
             }
             else
             { cout<<"huihe2:"<<huihe<<" "<<m_vfightCardSprite[m_vFightCardIndex]->cardsprite->m_cardData.m_iJiChuJineng<<endl;
-                gongjiHuiHe--;
+               // gongjiHuiHe--;
                 G_SkillManager::instance()->dealWithSkillShanghai(m_vfightCardSprite[m_vFightCardIndex]->cardsprite->m_cardData.m_iJiChuJineng, m_vfightCardSprite, m_vMonsterCardSprite, m_vFightCardIndex, m_vMonsterCardIndex,jiaHp,JianHp,this);
                 setHp(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite,(CCLabelTTF*) getChildByTag(20001));
                 initOwnHuihe();

@@ -3,30 +3,30 @@
     <key>mapInfo</key>
     <dict>
         <key>mapName</key>
-        <string>door</string>
+        <string>mapName</string>
         <key>mapSize</key>
         <string>{100,100}</string>
         <key>backgroundColor</key>
-        <string>{33,128,97,255}</string>
+        <string>{0,0,0,255}</string>
         <key>gridInfo</key>
         <string>{64,64,16,12}</string>
         <key>layerNameArray</key>
-        <string>exploration</string>
+        <string>door</string>
     </dict>
     <key>walkWay</key>
     <dict/>
     <key>mapLayers</key>
     <dict>
-        <key>exploration</key>
+        <key>door</key>
         <dict>
             <key>mapSprite0</key>
             <dict>
                 <key>spriteName</key>
-                <string>room</string>
+                <string>door</string>
                 <key>mapSpriteName</key>
                 <string>clip0</string>
                 <key>pos</key>
-                <string>{390,201}</string>
+                <string>{13,134}</string>
                 <key>z</key>
                 <integer>0</integer>
                 <key>tag</key>
@@ -35,11 +35,11 @@
             <key>mapSprite1</key>
             <dict>
                 <key>spriteName</key>
-                <string>room</string>
+                <string>door</string>
                 <key>mapSpriteName</key>
-                <string>clip3</string>
+                <string>clip1</string>
                 <key>pos</key>
-                <string>{636,123}</string>
+                <string>{266,259}</string>
                 <key>z</key>
                 <integer>5</integer>
                 <key>tag</key>
@@ -48,11 +48,11 @@
             <key>mapSprite2</key>
             <dict>
                 <key>spriteName</key>
-                <string>room</string>
+                <string>door</string>
                 <key>mapSpriteName</key>
-                <string>clip4</string>
+                <string>clip2</string>
                 <key>pos</key>
-                <string>{197,126}</string>
+                <string>{747,141}</string>
                 <key>z</key>
                 <integer>10</integer>
                 <key>tag</key>

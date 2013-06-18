@@ -46,6 +46,7 @@ protected:
     void randonArrows(const int inLevle);
     void attachConfirm();
 
+
 protected:
     int m_nTouchTag;
     

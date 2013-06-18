@@ -44,6 +44,7 @@ private:
     
     void runLoginScene();
     //test
+public:
     void runTest();
 
 public:

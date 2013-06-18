@@ -16,7 +16,7 @@
 #include "gameConfig.h"
 #include "CFightLayerScene.h"
 #include "LoadingScene.h"
-
+#include "ExplorationScene.h"
 #include "LoginScene.h"
 
 SceneManager::SceneManager()
@@ -225,11 +225,11 @@ void SceneManager::runExplorationScene()
         CCDirector *pDirector=CCDirector::sharedDirector();
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,CExplorationLayer::scene()));
+            pDirector->replaceScene(CCTransitionFade::create(1.0f,CExploration::scene()));
         }
         else
         {
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,CExplorationLayer::scene()));
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,CExploration::scene()));
         }
     }
 }

@@ -1,15 +1,15 @@
 10
 
 dir
-525
+543
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-17T08:00:39.291630Z
-525
-merlin
+2013-06-18T01:15:16.799500Z
+543
+phileas
 
 
 
@@ -26,9 +26,77 @@ merlin
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
+button2.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+553906bc9b61b1ab653ba87017653d6c
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5389
+
+confirm.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+14e18d32106c22aacde3c7b54e3926aa
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+79473
+
 cubeCardSprite.png
 file
-535
+
 
 
 
@@ -62,7 +130,7 @@ has-props
 
 cmplogo.png
 file
-535
+
 
 
 
@@ -94,43 +162,9 @@ has-props
 
 10620
 
-memorygame.png
-file
-534
-
-
-
-2013-06-17T08:02:49.000000Z
-4425199e412cee40a992931f24014d55
-2013-06-17T08:04:18.973589Z
-534
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-85808
-
 task.png
 file
-534
+
 
 
 
@@ -162,9 +196,77 @@ has-props
 
 539860
 
+memorygame.png
+file
+
+
+
+
+2013-06-17T08:02:49.000000Z
+4425199e412cee40a992931f24014d55
+2013-06-17T08:04:18.973589Z
+534
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+85808
+
+door.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+d5e1191c099bb85848bfd98506f71a11
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+415310
+
 kk.png
 file
-534
+
 
 
 
@@ -196,43 +298,9 @@ has-props
 
 175285
 
-memorygame.plist
-file
-534
-
-
-
-2013-06-17T08:02:49.000000Z
-8a12e346a74c098ccd0f35d988979604
-2013-06-17T08:04:18.973589Z
-534
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-17690
-
 card.png
 file
-535
+
 
 
 
@@ -264,9 +332,43 @@ has-props
 
 246345
 
+memorygame.plist
+file
+
+
+
+
+2013-06-17T08:02:49.000000Z
+8a12e346a74c098ccd0f35d988979604
+2013-06-17T08:04:18.973589Z
+534
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+17690
+
 HelloWorld.png
 file
-534
+
 
 
 
@@ -298,12 +400,43 @@ has-props
 
 138777
 
-fighting
-dir
+button.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+afd18ffc73486f4aa18b1e4b6df0eff9
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5618
 
 room.png
 file
-534
+
 
 
 
@@ -335,9 +468,80 @@ has-props
 
 641197
 
+fighting
+dir
+
+d_card.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+df47effb7af4d08a2dca2807afeaef30
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+157221
+
+biforest.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+86c2313651708551d3e0f61d75425340
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+163298
+
 logon.png
 file
-534
+
 
 
 
@@ -369,9 +573,43 @@ has-props
 
 120516
 
+fight_confirm.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+00de258d94616ee00c79f7463745e9cc
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+71078
+
 hall.png
 file
-534
+
 
 
 
@@ -403,9 +641,77 @@ has-props
 
 1106467
 
+mission.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+0f7a3181e7a3f7fab1066b0489cbee1a
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6431
+
+red_wolf_1.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+21ff50894a068f52c047d4eed2127d69
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+228202
+
 main.png
 file
-534
+
 
 
 
@@ -437,43 +743,9 @@ has-props
 
 196076
 
-logon.plist
-file
-534
-
-
-
-2013-06-17T08:02:49.000000Z
-ef3c0b13356c6eaa3ae9c168aade3e81
-2013-06-17T08:04:18.973589Z
-534
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5436
-
 mall.png
 file
-534
+
 
 
 
@@ -505,9 +777,43 @@ has-props
 
 267838
 
+logon.plist
+file
+
+
+
+
+2013-06-17T08:02:49.000000Z
+ef3c0b13356c6eaa3ae9c168aade3e81
+2013-06-17T08:04:18.973589Z
+534
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5436
+
 bg.png
 file
-535
+
 
 
 
@@ -541,7 +847,7 @@ has-props
 
 memorybackgroud.png
 file
-534
+
 
 
 
@@ -573,9 +879,77 @@ has-props
 
 471068
 
+ironforest.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+32d74ea137b76fb3db98092fa46319a0
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1336313
+
+arrow.png
+file
+
+
+
+
+2013-06-18T01:17:12.000000Z
+a0b9914f09ad956606ae122cc544afe4
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+260903
+
 main.plist
 file
-534
+
 
 
 

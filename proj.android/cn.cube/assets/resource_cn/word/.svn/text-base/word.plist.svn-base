@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>名字</string>
+	<string>DEMO</string>
 	<key>gold</key>
 	<string>金币</string>
 	<key>cash</key>
@@ -62,5 +62,32 @@
 	<string>进化</string>
 	<key>upgrade</key>
 	<string>升级</string>
+	<key>valkyries</key>
+	<string>英灵殿</string>
+	<key>gladsheim</key>
+	<string>金宫</string>
+	<key>duplicate</key>
+	<string>神宝库</string>
+	<key>bifrost</key>
+	<string>彩虹桥</string>
+	<key>title</key>
+	<string>DEMO测试</string>
+	<key>activity</key>
+	<string>活动</string>
+	<key>back</key>
+	<string>回城</string>
+	<key>voltron</key>
+	<string>英灵</string>
+	<key>packsack</key>
+	<string>背包</string>
+	<key>indeterminate</key>
+	<string>无用</string>
+	<key>level</key>
+	<string>Lv3</string>
+	
+	<key>win</key>
+	<string>恭喜你！</string>
+	<key>lose</key>
+	<string>下次继续！</string>
 </dict>
 </plist>
