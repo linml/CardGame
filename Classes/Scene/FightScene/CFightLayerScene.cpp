@@ -81,6 +81,7 @@ CFightLayerScene::~CFightLayerScene()
 {
     DELETE_POINT_VECTOR(m_vfightCardSprite,vector<SFightCardSprite *>);
     DELETE_POINT_VECTOR(m_vMonsterCardSprite,vector<SFightCardSprite *>);
+    
     SinglePlayer::instance()->forTestDeleteMonster();
 }
 
@@ -180,14 +181,13 @@ bool CFightLayerScene::init()
     m_vMonsterCardIndex=0;
     m_iZhujiangHuihe=0;
     m_iMonsterZhujiangHuihe=0;
-	CCLog("CFightLayerScene::init");
-
-    //设置背景图层
+	CCLog("MapScene::init");
+	//init bg;
+    
     CCSprite *bgSprite=CCSprite::create((g_mapImagesPath+"fighting/battle_bg11.png").c_str());
     assert(bgSprite!=NULL);
     bgSprite->setPosition(ccp(winsize.width*0.5,winsize.height*0.5));
     addChild(bgSprite,0);
-
     
     //init Touxiang
     //    CCSprite *leftHeadImage =CCSprite::create((g_mapImagesPath+"fighting/head_left.png").c_str());
@@ -228,10 +228,7 @@ bool CFightLayerScene::init()
 void CFightLayerScene::setText(const char *data)
 {
     CCLabelTTF *labelttf=(CCLabelTTF *) this->getChildByTag(20002);
-    if(labelttf)
-    {
-        labelttf->setString(data);
-    }
+    labelttf->setString(data);
 }
 
 
