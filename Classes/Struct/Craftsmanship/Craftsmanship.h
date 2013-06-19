@@ -28,6 +28,23 @@ enum EN_SKILL
 };
 
 
+class  SAnimationFps {
+public:
+    SAnimationFps();
+    ~SAnimationFps();
+    SAnimationFps(int spendAnimationAuthor,int skillIndex,int spendCurrHp,int spendHp,int monsterCurrHp,int monsterHp,int iHuihe,int iJiaxue=0,int iShanghai=0);
+public:
+    int  m_spendAnimationAuthor;
+    int  m_skillIndex;
+    int  m_spendCurrHp;
+    int  m_spendHp;
+    int  m_monsterCurrHp;
+    int  m_monsterHp;
+    int  m_iHuihe;
+    int  m_iShanghai;
+    int  m_iJiaxue;
+};
+
 class CCraftsmanship
 {
 public:

@@ -30,6 +30,16 @@ public:
 public:
     CGameCardProperty m_cardData;
 };
+struct SkillBuff
+{
+    SkillBuff(int index,int huihe=-99)
+    {
+        m_index=index;
+        m_huihe=huihe;
+    }
+    int m_index;
+    int m_huihe;
+};
 
 
 class SFightCardSprite {
@@ -44,16 +54,10 @@ public:
         m_iJianMianShanghai=0;
         m_iHuduanshanghai=0;
         m_iJiaFang=0;
+        m_iShuiMian=0;
     }
-    ~SFightCardSprite()
-    {
-        if(cardsprite)
-        {
-            delete cardsprite;
-            cardsprite=NULL;
-        }
-        
-    }
+    ~SFightCardSprite();
+
     
     bool isCannotATK(); //判断当前是否处于可以攻击的状态
     void initShangHai();
@@ -68,9 +72,11 @@ public:
     int  m_ibingdong;
     int  m_iXuanYun;
     int  m_iJiaFang;
+    int  m_iShuiMian;
     int  m_iHuduanshanghai;//护盾伤害  反弹
     int  m_iJianMianShanghai;//减免伤害
     class CCardPanel *m_CardPanel;
+    vector<SkillBuff *>m_vbuffSkill;
     
 };
 

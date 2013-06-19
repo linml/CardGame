@@ -12,6 +12,7 @@
 #include "ExplorationScene.h"
 #include "SceneManager.h"
 #include "CFightLayerScene.h"
+#include "CFightingLayerScene.h"
 
 CConfirmLayer::CConfirmLayer()
 {
@@ -130,8 +131,8 @@ void CConfirmLayer::handlerTouch()
                     g_nLevle++;
                 }
                
-               CCDirector::sharedDirector()->replaceScene(CFightLayerScene::scene());
-//                 SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
+              CCDirector::sharedDirector()->replaceScene(CFightingLayerScene::scene());
+                //SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
                 removeFromParentAndCleanup(true);
                 break;
             default:

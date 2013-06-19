@@ -8,6 +8,17 @@
 
 #include "CardSprite.h"
 
+
+#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
+{\
+for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+delete *it; \
+*it=NULL; \
+} \
+VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+}
+
+
 CCardSprite::CCardSprite()
 {
     
@@ -27,6 +38,18 @@ string CCardSprite::getName()
 {
     return "";
 }
+
+SFightCardSprite::~SFightCardSprite()
+{
+        if(cardsprite)
+        {
+            delete cardsprite;
+            cardsprite=NULL;
+        }
+        DELETE_POINT_VECTOR(m_vbuffSkill,  vector<SkillBuff *>);
+}
+
+
 void SFightCardSprite::initShangHai()
 {
     m_iJianMianShanghai=0;
@@ -58,6 +81,6 @@ void SFightCardSprite::dealLastHp()
 
 bool SFightCardSprite::isCannotATK()
 {
-    return m_ibingdong||m_iXuanYun;
+    return m_ibingdong||m_iXuanYun||m_iShuiMian;
 }
 

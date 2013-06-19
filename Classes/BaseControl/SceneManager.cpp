@@ -18,6 +18,7 @@
 #include "LoadingScene.h"
 #include "ExplorationScene.h"
 #include "LoginScene.h"
+#include "CFightingLayerScene.h"
 
 SceneManager::SceneManager()
 {
@@ -168,11 +169,11 @@ void SceneManager::runFightScene()
         CCDirector *pDirector=CCDirector::sharedDirector();
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,CFightLayerScene::scene()));
+            pDirector->replaceScene(CCTransitionFade::create(1.0f,CFightingLayerScene::scene()));
         }
         else
         {
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,CFightLayerScene::scene()));
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,CFightingLayerScene::scene()));
         }
         
     }

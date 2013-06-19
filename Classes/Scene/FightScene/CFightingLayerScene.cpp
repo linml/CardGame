@@ -46,6 +46,7 @@ CFightingLayerScene::CFightingLayerScene()
     gongjiHuiHe=1;
     isOwnActionEnd=false;
     isMonsterEnd=false;
+    isDoingAnimation=false;
 }
 
 
@@ -296,9 +297,7 @@ void CFightingLayerScene::checkOwnIsDeadAndMove()
 {
     if (m_vfightCardSprite[m_vFightCardIndex]->isDead)
     {
-        ((CCardPanel *)(this->getChildByTag(m_vfightCardSprite[m_vFightCardIndex]->tag)))->setDead();
-        
-        G_SkillManager::instance()->dealWithSkillShanghai(m_vfightCardSprite[m_vFightCardIndex]->cardsprite->m_cardData.m_iZhangHunJiachi, m_vfightCardSprite, m_vMonsterCardSprite, m_vFightCardIndex,m_vMonsterCardIndex, jiaHp, JianHp,this);
+        //((CCardPanel *)(this->getChildByTag(m_vfightCardSprite[m_vFightCardIndex]->tag)))->setDead();
         m_vFightCardIndex++;
         initOwnHuihe();
         
@@ -361,8 +360,6 @@ void CFightingLayerScene::checkMonsterIsDeadAndMove()
 {
     if (m_vMonsterCardSprite[m_vMonsterCardIndex]->isDead)
     {
-        ((CCardPanel *)(this->getChildByTag(m_vMonsterCardSprite[m_vMonsterCardIndex]->tag)))->setDead();
-        G_SkillManager::instance()->dealWithSkillShanghai(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite->m_cardData.m_iZhangHunJiachi,m_vMonsterCardSprite,m_vfightCardSprite,m_vMonsterCardIndex,m_vFightCardIndex, jiaHp, JianHp,this);
         m_vMonsterCardIndex++;
         initMonsterHuihe();
     }
@@ -400,9 +397,43 @@ void CFightingLayerScene::dealWithFight(CCObject *object)
     else
     {
         unschedule(schedule_selector(CFightingLayerScene::updateGetGameDataToGetServerRandow));
+        currentSwfIndex=0;
+        initBufferEnd=true;
+        if( G_SkillManager::instance()->getAnimation().size()>0)
+        {
+            schedule(schedule_selector(CFightingLayerScene::startAnimationSwf));
+        }
     }
     
 }
+
+void CFightingLayerScene::startAnimationSwf(float data)
+{
+    if(currentSwfIndex < G_SkillManager::instance()->getAnimation().size() && currentSwfIndex>=0)
+    {
+        if(!isDoingAnimation)
+        {
+            isDoingAnimation=true;
+            SAnimationFps *saFps=G_SkillManager::instance()->getAnimation()[currentSwfIndex];
+            switch (saFps->m_iHuihe)
+            {
+                case 1:
+                    break;
+                case 0:
+                    break;
+                case -1:
+                    break;
+                case -2:
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    
+}
+
+
 
 void CFightingLayerScene::loseDialog()
 {
@@ -487,57 +518,46 @@ void CFightingLayerScene::fightLogic(int  huihe)
             {
                 cout<<"huihe1:"<<huihe<<endl;
                 m_iZhujiangHuihe--;
-                
-                //动画效果
-                G_SkillManager::instance()->dealWithSkillShanghai(0, m_vfightCardSprite, m_vMonsterCardSprite, m_vFightCardIndex, m_vMonsterCardIndex,jiaHp,JianHp,this);
-                setHp(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite,(CCLabelTTF*) getChildByTag(20001));
-                
+                G_SkillManager::instance()->dealWithSkillShanghaiList(0, m_vfightCardSprite, m_vMonsterCardSprite, m_vFightCardIndex, m_vMonsterCardIndex,1);               
             }
             else
             { cout<<"huihe2:"<<huihe<<" "<<m_vfightCardSprite[m_vFightCardIndex]->cardsprite->m_cardData.m_iJiChuJineng<<endl;
-                // gongjiHuiHe--;
-                G_SkillManager::instance()->dealWithSkillShanghai(m_vfightCardSprite[m_vFightCardIndex]->cardsprite->m_cardData.m_iJiChuJineng, m_vfightCardSprite, m_vMonsterCardSprite, m_vFightCardIndex, m_vMonsterCardIndex,jiaHp,JianHp,this);
-                setHp(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite,(CCLabelTTF*) getChildByTag(20001));
-                initOwnHuihe();
+                G_SkillManager::instance()->dealWithSkillShanghaiList(m_vfightCardSprite[m_vFightCardIndex]->cardsprite->m_cardData.m_iJiChuJineng, m_vfightCardSprite, m_vMonsterCardSprite, m_vFightCardIndex, m_vMonsterCardIndex,1);  
             }
             break;
         case 0:
         {
             //拥护技能
             //动画效果
-            int indexYonghu=m_vfightCardSprite[4]->cardsprite->m_cardData.m_iYongHuJineng;
+            int indexYonghu=m_vfightCardSprite[m_vfightCardSprite.size()-1]->cardsprite->m_cardData.m_iYongHuJineng;
             gongjiHuiHe--;
             cout<<"indexYonghu:"<<indexYonghu<<endl;
-            G_SkillManager::instance()->dealWithSkillShanghai(indexYonghu, m_vfightCardSprite, m_vMonsterCardSprite, 4, m_vMonsterCardIndex,jiaHp,JianHp,this);
+            G_SkillManager::instance()->dealWithSkillShanghaiList(indexYonghu, m_vfightCardSprite, m_vMonsterCardSprite, m_vFightCardIndex, m_vMonsterCardIndex,0); 
             
         }
             break;
         case -1:
         {
             gongjiHuiHe--;
-            
             if(m_iMonsterZhujiangHuihe!=0)
             {
                 m_iMonsterZhujiangHuihe--;
                 //动画效果
-                G_SkillManager::instance()->dealWithSkillShanghai(0, m_vMonsterCardSprite,m_vfightCardSprite,m_vMonsterCardIndex, m_vFightCardIndex,jiaHp,JianHp,this);
-                setHp(m_vfightCardSprite[m_vFightCardIndex]->cardsprite,(CCLabelTTF*) getChildByTag(20001));
+                G_SkillManager::instance()->dealWithSkillShanghaiList(0, m_vMonsterCardSprite,m_vfightCardSprite,m_vMonsterCardIndex, m_vFightCardIndex,-1);
             }
             else
             {
-                cout<<"===>>>>"<<m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite->m_cardData.m_iJiChuJineng<<endl;
-                initMonsterHuihe();
-                G_SkillManager::instance()->dealWithSkillShanghai(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite->m_cardData.m_iJiChuJineng, m_vMonsterCardSprite,m_vfightCardSprite,m_vMonsterCardIndex, m_vFightCardIndex,jiaHp,JianHp,this);
-                setHp(m_vfightCardSprite[m_vFightCardIndex]->cardsprite,(CCLabelTTF*) getChildByTag(20001));
-            }
+               int HuiheJineng=m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite->m_cardData.m_iJiChuJineng;
+                G_SkillManager::instance()->dealWithSkillShanghaiList(HuiheJineng, m_vMonsterCardSprite,m_vfightCardSprite,m_vMonsterCardIndex, m_vFightCardIndex,-1);
+             }
         }
             break;
         case -2:
         {
-            int indexYonghu=m_vMonsterCardSprite[4]->cardsprite->m_cardData.m_iYongHuJineng;
+            int indexYonghu=m_vMonsterCardSprite[m_vMonsterCardSprite.size()-1]->cardsprite->m_cardData.m_iYongHuJineng;
             gongjiHuiHe=1;
             cout<<"indexYonghu:"<<indexYonghu<<endl;
-            G_SkillManager::instance()->dealWithSkillShanghai(indexYonghu, m_vMonsterCardSprite,m_vfightCardSprite , 4, m_vFightCardIndex,jiaHp,JianHp,this);
+            G_SkillManager::instance()->dealWithSkillShanghaiList(indexYonghu, m_vMonsterCardSprite,m_vfightCardSprite ,m_vMonsterCardSprite.size()-1, m_vFightCardIndex,-2);
         }
             break;
         default:

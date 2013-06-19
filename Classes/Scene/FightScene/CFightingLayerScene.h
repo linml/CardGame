@@ -39,11 +39,11 @@ private:
 public:
     void animationMoveToLast(class CCObject  *pSend);
     void dealWithFight(CCObject *object);
+    void startAnimationSwf(float  data);
     void loseDialog();
     void winDialog();
     void fightLogic(int huihe);
 public:
-    
     void animationCardPanel(class CCardPanel *card,void *tag);
     void animationShouShang(class CCardPanel *card,void *tag);
     void animationMoveBack(class CCardPanel *card);
@@ -54,7 +54,6 @@ private:
     void checkOwnIsDeadAndMove();
     void checkMonsterIsDeadAndMove();
     void secheudelUpdateToDoDealWith(float time);
-    
 private:
     vector<SFightCardSprite *>m_vfightCardSprite;
     vector<SFightCardSprite *>m_vMonsterCardSprite;
@@ -69,5 +68,12 @@ private:
     int     JianHp;
     bool    isOwnActionEnd;
     bool    isMonsterEnd;
+    
+    
+private:
+    bool initBufferEnd;
+    int  currentSwfIndex;
+    bool isDoingAnimation;
+
 };
 #endif /* defined(___1_cube__CFightingLayerScene__) */
