@@ -9,6 +9,7 @@
 #include "AsgardLayer.h"
 #include "gameConfig.h"
 #include "Biforest.h"
+#include "TaskLayer.h"
 
 
 CAsgardLayer::CAsgardLayer()
@@ -77,11 +78,13 @@ void CAsgardLayer::initArsgard()
 
 void CAsgardLayer::handlerTouch()
 {
-    CBiforestLayer * layer = NULL;
+    CCLayer * layer = NULL;
     CCLog("CAsgardLayer m_nTag : %d ", m_nTouchTag);
     switch (m_nTouchTag) {
         case GLADSHEIM_TOUCH_TAG:
             // to do:
+           // layer = CTaskLayer::create();
+            //this->getParent()->addChild(layer, 30000, 6002);
             break;
             
         case VALHALLA_TOUCH_TAG:

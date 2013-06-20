@@ -118,6 +118,10 @@ void FightResultConfirm::handlerTouch()
             
         }else
         {
+            if (m_nResult == 1)
+            {
+                g_nLevle++;
+            }
             CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f,CExploration::scene()));
         }
         CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);

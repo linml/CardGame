@@ -1,7 +1,7 @@
 10
 
 dir
-543
+578
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/BaseControl
 svn://merlin@192.168.2.2/sdp
 
@@ -198,20 +198,15 @@ phileas
 
 SceneManager.cpp
 file
+579
 
 
 
-
-2013-06-18T02:40:10.000000Z
-f70f74fa8522f304aceaf4b1d8ff01ca
-2013-06-18T01:13:03.446453Z
-542
-phileas
-
-
-
-
-
+2013-06-20T08:59:13.000000Z
+624ae703e36e7dd3ee6736caec34ecce
+2013-06-20T09:12:59.064081Z
+579
+merlin
 
 
 
@@ -228,7 +223,12 @@ phileas
 
 
 
-6793
+
+
+
+
+
+6832
 
 CBaseLayer.cpp
 file

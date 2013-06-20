@@ -1,14 +1,14 @@
 10
 
 dir
-543
+565
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/uiScript
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-18T01:15:16.799500Z
-543
+2013-06-18T07:23:43.230110Z
+545
 phileas
 
 
@@ -59,6 +59,40 @@ merlin
 
 
 9323
+
+demo_task.plist
+file
+
+
+
+
+2013-06-20T02:03:55.000000Z
+69f739bc840a6ad5c8fb6fdadeeb3f0a
+2013-06-18T07:23:43.230110Z
+545
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1311
 
 login.plist
 file

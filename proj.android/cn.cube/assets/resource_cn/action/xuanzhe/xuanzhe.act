@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>xz1</key>
+	<dict>
+		<key>action</key>
+		<string>(sequence:(animate:8,xuanzhe/xuanzhe0.ani,0.1);(hide:))</string>
+		<key>nodeType</key>
+		<string>sprite</string>
+		<key>opacity</key>
+		<string>255</string>
+		<key>position</key>
+		<string>640,320</string>
+		<key>scaleX</key>
+		<string>2</string>
+		<key>scaleY</key>
+		<string>2</string>
+		<key>tag</key>
+		<string>1</string>
+		<key>visable</key>
+		<string>1</string>
+		<key>zOrder</key>
+		<string>1</string>
+	</dict>
+    <key>xz2</key>
+	<dict>
+        <key>action</key>
+		<string>(sequence:(delayTime:0.8);(show:))</string>
+        <key>actionForever</key>
+		<string>(repeatForever:(animate:7,xuanzhe/xuanzhe1.ani,0.1);(delayTime:2.1))</string>
+		<key>nodeType</key>
+		<string>sprite</string>
+		<key>opacity</key>
+		<string>255</string>
+		<key>position</key>
+		<string>640,320</string>
+		<key>scaleX</key>
+		<string>2</string>
+		<key>scaleY</key>
+		<string>2</string>
+		<key>tag</key>
+		<string>2</string>
+		<key>visable</key>
+		<string>0</string>
+		<key>zOrder</key>
+		<string>1</string>
+	</dict>
+
+</dict>
+</plist>

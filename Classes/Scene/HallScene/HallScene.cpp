@@ -12,6 +12,8 @@
 #include "gameConfig.h"
 #include "AsgardLayer.h"
 #include "WordCache.h"
+#include "ScrollWordsSprite.h"
+
 
 CCScene* CHallScene::scene()
 {
@@ -147,12 +149,21 @@ bool CHallScene::initHall()
             btnActivity->addChild(pLabel);
             
             // bottom buttons:
-            
+            word = Utility::getWordWithFile("word.plist", "synopsis");
+            CScrollWordSprite *scrollWord = CScrollWordSprite::create(word.c_str(), "arial",20, CCSizeMake(200, 0), kCCTextAlignmentCenter, kCCVerticalTextAlignmentTop);
+            scrollWord->setScroll(true);
+            scrollWord->setScrollRect(CCRectMake(0, 0, 200, 60));
+            scrollWord->setPosition(ccp(60, 20));
+            scrollWord->setScrollStep(1.0f);
+            scrollWord->setAnchorPoint(CCPointZero);
+
             btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "mission.png"));
             
             btnActivity->setPosition(ccp(size.width/2, btnActivity->getContentSize().height/2 +15.0f));
             this->addChild(btnActivity, 200, 2004);
+            btnActivity->addChild(scrollWord);
             Utility::addTouchRect(2004, btnActivity, m_cTouches);
+            
             
             btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
             btnActivity->setPosition(ccp(size.width-230, btnActivity->getContentSize().height/2 +15.0f));
@@ -244,7 +255,8 @@ bool CHallScene::initHall()
 void CHallScene::handlerTouch()
 {
     CCLog("touch tag : %d", m_nTouchTag);
-    switch (m_nTouchTag) {
+    switch (m_nTouchTag)
+    {
         case 2001:
             
             break;

@@ -37,9 +37,11 @@ public:
     void dealWithSkillShanghaiList(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe);
     void shangHaiZhiLogic(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe);
     void putongGongji(int index,SFightCardSprite **ownSprite,SFightCardSprite **enemyCardpropert,int ownIndex,int enemyIndex,int Huihe);
+    void monsterDead(int  huihe);
+    void fightDead(int  huihe);
     
     void clearAnimationList();
-    vector<SAnimationFps *> getAnimation();
+    vector<SAnimationFps *> getAnimationVector();
     
 private:
     vector<SAnimationFps *>m_Animationlist;

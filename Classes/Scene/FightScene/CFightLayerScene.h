@@ -45,7 +45,7 @@ private:
     void initMonsterHuihe();
 
 public:
-        void animationMoveToLast(class CCObject  *pSend);
+    void animationMoveToLast(class CCObject  *pSend);
     void dealWithFight(CCObject *object);
     void loseDialog();
     void winDialog();
@@ -56,6 +56,8 @@ public:
     void animationShouShang(class CCardPanel *card,void *tag);
     void animationMoveBack(class CCardPanel *card);
     void setVistablHit();
+   
+    
 private:
     void callBackOwnAnimationChangeFlag(CCObject *pSend);
     void callBackMonsterAnimationChangeFlag(CCObject *pSend);

@@ -128,7 +128,7 @@ void CConfirmLayer::handlerTouch()
                   //  g_nLevle = 0;
                 }else
                 {
-                    g_nLevle++;
+                  //  g_nLevle++;
                 }
                
               CCDirector::sharedDirector()->replaceScene(CFightingLayerScene::scene());

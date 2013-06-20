@@ -26,6 +26,8 @@ public:
     static CCScene *scene();
     bool init();
 private:
+    void initText();
+private:
     void createOwnFightCardPosition();
     void setHp(CCardSprite *pCardSprite,CCLabelTTF *labelttf);
     void createMonster();
@@ -35,6 +37,11 @@ private:
     void initAssignHuihe();
     void initOwnHuihe();
     void initMonsterHuihe();
+    void showFightAnimation(CCNode *pSend,void *tag);
+    void removeSprite(CCNode *node,void *tag);
+public:
+    void animationSwf(int skillIndex,vector<SFightCardSprite *>ownFightCard,vector<SFightCardSprite *>MonstFightCard,int oWnindex,int  MonsteIndex,class SAnimationFps * spfs);
+    void basicAnimation(vector<SFightCardSprite *>ownFightCard,vector<SFightCardSprite *>MonstFightCard,int  oWnindex,int  MonsteIndex,class SAnimationFps * spfs);
     
 public:
     void animationMoveToLast(class CCObject  *pSend);
@@ -48,6 +55,12 @@ public:
     void animationShouShang(class CCardPanel *card,void *tag);
     void animationMoveBack(class CCardPanel *card);
     void setVistablHit();
+    void animationHpFight(class CCNode *card,void *tag);
+    void animationHpMonster(class CCNode *card,void *tag);
+    void setHideHpAnimation();
+    void nextAnimation();
+    void updateSetHp();
+
 private:
     void callBackOwnAnimationChangeFlag(CCObject *pSend);
     void callBackMonsterAnimationChangeFlag(CCObject *pSend);
@@ -68,6 +81,7 @@ private:
     int     JianHp;
     bool    isOwnActionEnd;
     bool    isMonsterEnd;
+    class   SAnimationFps *m_sfps;
     
     
 private:

@@ -527,7 +527,15 @@ int CSkillManager::checkShanghai(int OldCurrHp,int NewCurrHp)
         return OldCurrHp-NewCurrHp;
     }
 }
+void CSkillManager::monsterDead(int  huihe)
+{
+   m_Animationlist.push_back(new SAnimationFps(0,999,0,0,0,0,huihe,0,0));
+}
 
+void CSkillManager::fightDead(int  huihe)
+{
+     m_Animationlist.push_back(new SAnimationFps(0,1000,0,0,0,0,huihe,0,0));
+}
 void CSkillManager::putongGongji(int index,SFightCardSprite **ownSprite,SFightCardSprite **enemySprite,int ownIndex,int enemyIndex,int Huihe)
 {
     int OwncurrHp=(*ownSprite)->cardsprite->m_cardData.m_unCurrentHp;
@@ -536,7 +544,7 @@ void CSkillManager::putongGongji(int index,SFightCardSprite **ownSprite,SFightCa
     if(iShangHai!=-1)
     {
         OwncurrHp=checkShanghai(OwncurrHp,(*ownSprite)->cardsprite->m_cardData.m_unCurrentHp);
-        MonsterHp=checkShanghai(OwncurrHp,(*enemySprite)->cardsprite->m_cardData.m_unCurrentHp);
+        MonsterHp=checkShanghai(MonsterHp,(*enemySprite)->cardsprite->m_cardData.m_unCurrentHp);
         m_Animationlist.push_back(new SAnimationFps(ownIndex,0,(*ownSprite)->cardsprite->m_cardData.m_unCurrentHp,(*ownSprite)->cardsprite->m_cardData.m_unHp,(*enemySprite)->cardsprite->m_cardData.m_unCurrentHp,(*enemySprite)->cardsprite->m_cardData.m_unHp,Huihe,OwncurrHp,MonsterHp));
     }
     else
@@ -548,6 +556,7 @@ void CSkillManager::putongGongji(int index,SFightCardSprite **ownSprite,SFightCa
 void CSkillManager::shangHaiZhiLogic(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe)
 {
     int OwncurrHp=ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp;
+    cout<<"OwncurrHp"<<OwncurrHp<<endl;
     int MonsterHp=enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp;
     switch (index) {
         case 1:
@@ -580,7 +589,9 @@ void CSkillManager::shangHaiZhiLogic(int index,vector<SFightCardSprite *>ownCard
     enemyCardpropert[enemyIndex]->fantanShanghai(&ownCardProperty[ownIndex]);
     enemyCardpropert[enemyIndex]->initShangHai();
     OwncurrHp=checkShanghai(OwncurrHp,ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp);
-    MonsterHp=checkShanghai(OwncurrHp,enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp);
+    MonsterHp=checkShanghai(MonsterHp,enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp);
+    cout<<"enemyCardpropert:"<<enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp<<endl;
+    cout<<"ownCardProperty:"<<ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp<<endl;
     m_Animationlist.push_back(new SAnimationFps(ownIndex,index,ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp,ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp,enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp,enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unHp,Huihe,OwncurrHp,MonsterHp));
 }
 void CSkillManager::dealWithSkillShanghaiList(int skillIndex,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe)
@@ -610,6 +621,7 @@ void CSkillManager::dealWithSkillShanghaiList(int skillIndex,vector<SFightCardSp
             break;
         case 2:
         {
+            m_Animationlist.push_back(new SAnimationFps(ownIndex,2,ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp,ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp,enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp,enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unHp,Huihe,0,0));
             //战魂加持技能
             for (int i=0; i<ownCardProperty.size(); i++)
             {
@@ -618,8 +630,7 @@ void CSkillManager::dealWithSkillShanghaiList(int skillIndex,vector<SFightCardSp
                     ownCardProperty[i]->cardsprite->m_cardData.m_unPlayerCardAttack+=5;
                     ownCardProperty[i]->m_vbuffSkill.push_back(new SkillBuff(5)); //增加攻击力
                 }
-            }
-            m_Animationlist.push_back(new SAnimationFps(ownIndex,2,ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp,ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unHp,enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp,enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unHp,Huihe,0,0));
+            }            
         }
             break;
         case 3:
@@ -784,11 +795,13 @@ void CSkillManager::dealWithSkillShanghaiList(int skillIndex,vector<SFightCardSp
         default:
             break;
     }
-    if(enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp==0)
+    if(enemyCardpropert[enemyIndex]->cardsprite->m_cardData.m_unCurrentHp<=0)
     {
+        //敌人移动
         enemyCardpropert[enemyIndex]->isDead=true;
     }
-    if(ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp==0)
+            //自己移动
+    if(ownCardProperty[ownIndex]->cardsprite->m_cardData.m_unCurrentHp<=0)
     {
         ownCardProperty[ownIndex]->isDead=true;
     }
@@ -800,7 +813,7 @@ void CSkillManager::clearAnimationList()
     DELETE_POINT_VECTOR(m_Animationlist, vector<SAnimationFps *>)
 }
 
-vector<SAnimationFps *> CSkillManager::getAnimation()
+vector<SAnimationFps *> CSkillManager::getAnimationVector()
 {
     return this->m_Animationlist;
 }

@@ -215,12 +215,14 @@ bool CFightLayerScene::init()
     setHp(m_vfightCardSprite[m_vFightCardIndex]->cardsprite, labelttf);
     setHp(m_vMonsterCardSprite[m_vMonsterCardIndex]->cardsprite, labelttfMonster);
     initAssignHuihe();
+    
     CCSprite *sprite=CCSprite ::create((g_mapImagesPath+"fighting/hiten_1.png").c_str());
     addChild(sprite,15,30001);
     sprite->setVisible(false);
     CCSprite *sprite2=CCSprite ::create((g_mapImagesPath+"fighting/skill_1.png").c_str());
     addChild(sprite2,15,30000);
     sprite2->setVisible(false);
+  
     scheduleOnce(schedule_selector(CFightLayerScene::updateGetGameDataToGetServerRandow), 1.0f);
     return true;
 }

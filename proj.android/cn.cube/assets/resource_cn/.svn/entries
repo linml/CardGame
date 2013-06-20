@@ -1,15 +1,15 @@
 10
 
 dir
-543
+565
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-18T01:15:16.799500Z
-543
-phileas
+2013-06-20T02:25:48.171719Z
+565
+wood
 
 
 
@@ -48,5 +48,8 @@ img
 dir
 
 map
+dir
+
+action
 dir
 

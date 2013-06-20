@@ -17,6 +17,7 @@
 		6F3EFCB9175308E900765322 /* CSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB4175308E900765322 /* CSkillManager.cpp */; };
 		6F3EFCBA175308E900765322 /* CardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB6175308E900765322 /* CardSprite.cpp */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
+		6F7434081770573700304838 /* CFightingLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7434061770573700304838 /* CFightingLayerScene.cpp */; };
 		6F780744176457910049321C /* CFightLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780742176457910049321C /* CFightLayerScene.cpp */; };
 		6F780751176469830049321C /* HallScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780746176469830049321C /* HallScene.cpp */; };
 		6F780752176469830049321C /* AsgardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780749176469830049321C /* AsgardLayer.cpp */; };
@@ -36,6 +37,8 @@
 		6FB08A4A176EE7E700683F10 /* LayoutLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A49176EE7E700683F10 /* LayoutLayer.cpp */; };
 		6FB08A4D176EE84200683F10 /* Biforest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A4B176EE84200683F10 /* Biforest.cpp */; };
 		6FD364AF175F1CA500862198 /* CJinengTeXiao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FD364AD175F1CA500862198 /* CJinengTeXiao.cpp */; };
+		8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E13F18A17700F5F0050812F /* TaskLayer.cpp */; };
+		8E47FF9C17719A3D00F71102 /* ScrollWordsSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E47FF9A17719A3D00F71102 /* ScrollWordsSprite.cpp */; };
 		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
 		8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */; };
 		8E6CE59B176EFFD400CF5C0D /* FightResultConfirm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE599176EFFD400CF5C0D /* FightResultConfirm.cpp */; };
@@ -271,6 +274,8 @@
 		6F3EFCB7175308E900765322 /* CardSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardSprite.h; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
 		6F3EFCBC17536D6700765322 /* CEvolutionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEvolutionLayer.h; sourceTree = "<group>"; };
+		6F7434061770573700304838 /* CFightingLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightingLayerScene.cpp; sourceTree = "<group>"; };
+		6F7434071770573700304838 /* CFightingLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightingLayerScene.h; sourceTree = "<group>"; };
 		6F780742176457910049321C /* CFightLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightLayerScene.cpp; sourceTree = "<group>"; };
 		6F780743176457910049321C /* CFightLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightLayerScene.h; sourceTree = "<group>"; };
 		6F780746176469830049321C /* HallScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HallScene.cpp; sourceTree = "<group>"; };
@@ -310,6 +315,10 @@
 		6FB08A4C176EE84200683F10 /* Biforest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Biforest.h; sourceTree = "<group>"; };
 		6FD364AD175F1CA500862198 /* CJinengTeXiao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CJinengTeXiao.cpp; sourceTree = "<group>"; };
 		6FD364AE175F1CA500862198 /* CJinengTeXiao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CJinengTeXiao.h; sourceTree = "<group>"; };
+		8E13F18A17700F5F0050812F /* TaskLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskLayer.cpp; sourceTree = "<group>"; };
+		8E13F18B17700F5F0050812F /* TaskLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskLayer.h; sourceTree = "<group>"; };
+		8E47FF9A17719A3D00F71102 /* ScrollWordsSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ScrollWordsSprite.cpp; sourceTree = "<group>"; };
+		8E47FF9B17719A3D00F71102 /* ScrollWordsSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollWordsSprite.h; sourceTree = "<group>"; };
 		8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExplorationScene.cpp; sourceTree = "<group>"; };
 		8E6CE592176EEF1E00CF5C0D /* ExplorationScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExplorationScene.h; sourceTree = "<group>"; };
 		8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CConfirmLayer.cpp; sourceTree = "<group>"; };
@@ -839,6 +848,8 @@
 				6FB08A4C176EE84200683F10 /* Biforest.h */,
 				6F780749176469830049321C /* AsgardLayer.cpp */,
 				6F78074A176469830049321C /* AsgardLayer.h */,
+				8E13F18A17700F5F0050812F /* TaskLayer.cpp */,
+				8E13F18B17700F5F0050812F /* TaskLayer.h */,
 			);
 			path = Layer;
 			sourceTree = "<group>";
@@ -906,6 +917,8 @@
 				8E6CE598176EFF9800CF5C0D /* Layer */,
 				6F780742176457910049321C /* CFightLayerScene.cpp */,
 				6F780743176457910049321C /* CFightLayerScene.h */,
+				6F7434061770573700304838 /* CFightingLayerScene.cpp */,
+				6F7434071770573700304838 /* CFightingLayerScene.h */,
 			);
 			path = FightScene;
 			sourceTree = "<group>";
@@ -997,6 +1010,8 @@
 				6F3EFC9B1752F00A00765322 /* gameCardProperty.cpp */,
 				6F3EFC9C1752F00A00765322 /* gameCardProperty.h */,
 				6FAEDE84175C3A3E00F5FDC2 /* GameSpriteConfig.h */,
+				8E47FF9A17719A3D00F71102 /* ScrollWordsSprite.cpp */,
+				8E47FF9B17719A3D00F71102 /* ScrollWordsSprite.h */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -2196,6 +2211,9 @@
 				8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */,
 				8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */,
 				8E6CE59B176EFFD400CF5C0D /* FightResultConfirm.cpp in Sources */,
+				6F7434081770573700304838 /* CFightingLayerScene.cpp in Sources */,
+				8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */,
+				8E47FF9C17719A3D00F71102 /* ScrollWordsSprite.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

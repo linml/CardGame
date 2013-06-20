@@ -44,22 +44,8 @@ bool AppDelegate::applicationDidFinishLaunching()
 	// set FPS. the default value is 1.0/60 if you don't call this
 	pDirector->setAnimationInterval(1.0 / 60);
     
-   /*
-    CCScene *scene=CCScene::create();
-    MemoryGameCollabLayer *layer=MemoryGameCollabLayer::Create<MemoryGameCollabLayer>("123");
-    scene->addChild(layer);
-    CCSize size =pDirector->getWinSize();
-    layer->setPosition(ccp(size.width/2,size.height/2));
-    scene->autorelease();
-    pDirector->runWithScene(scene);
-    */
-
-  // SingleSceneManager::instance()->runMapScene();
     SingleSceneManager::instance()->runTest();
-   // pDirector->runWithScene(HelloWorld::scene());
-
-    
-   SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
+   //SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
     return true;
 }
 

@@ -59,7 +59,7 @@ bool AppDelegate::applicationDidFinishLaunching()
    // pDirector->runWithScene(HelloWorld::scene());
 
     
-  // SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
+   //SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
     return true;
 }
 

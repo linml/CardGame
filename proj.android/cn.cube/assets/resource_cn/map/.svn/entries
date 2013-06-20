@@ -1,14 +1,14 @@
 10
 
 dir
-543
+565
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/map
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-18T01:15:16.799500Z
-543
+2013-06-18T07:23:43.230110Z
+545
 phileas
 
 
@@ -94,6 +94,40 @@ merlin
 
 8717
 
+demo_task.map
+file
+
+
+
+
+2013-06-20T02:03:55.000000Z
+1bd518370ca282b041d4544a4e1c02c3
+2013-06-18T07:23:43.230110Z
+545
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7754
+
 card.map
 file
 
@@ -162,40 +196,6 @@ merlin
 
 7382
 
-biforest.map
-file
-
-
-
-
-2013-06-18T02:40:10.000000Z
-18c281c7f3ed045d9016943e85a7c6cf
-2013-06-18T01:15:16.799500Z
-543
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4115
-
 arrows.map
 file
 
@@ -230,17 +230,17 @@ phileas
 
 5991
 
-logon.map
+biforest.map
 file
 
 
 
 
 2013-06-18T02:40:10.000000Z
-4a994260b730001d06dd0450417a94be
-2013-06-17T08:04:07.499268Z
-533
-merlin
+18c281c7f3ed045d9016943e85a7c6cf
+2013-06-18T01:15:16.799500Z
+543
+phileas
 
 
 
@@ -262,7 +262,7 @@ merlin
 
 
 
-18378
+4115
 
 fight_confirm.map
 file
@@ -297,6 +297,40 @@ phileas
 
 
 1501
+
+logon.map
+file
+
+
+
+
+2013-06-18T02:40:10.000000Z
+4a994260b730001d06dd0450417a94be
+2013-06-17T08:04:07.499268Z
+533
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18378
 
 main.map
 file
