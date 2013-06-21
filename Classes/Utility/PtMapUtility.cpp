@@ -6,6 +6,7 @@
 #include "HBSprite.h"
 #include "HBSpriteCache.h"
 #include "MapLayerData.h"
+#include "PtActionUtility.h"
 
 
 namespace PtMapUtility {
@@ -48,26 +49,26 @@ namespace PtMapUtility {
             }
         }
         
-//        //判断是否要动作
-//        for (int i = 0; i < vKey->count(); i++) {
-//            CCString* key=(CCString*)vKey->objectAtIndex(i);
-//            if (key->m_sString == "actions") {
-//                //action数据
-//                createActions(data, &vActions);
-//                break;
-//            }
-//        }
-//        
-//        //判断是否runAction
-//        string runActionName = string(valueForKey("runAction", data));
-//        if (runActionName != "") {
-//            setAction(layer, runActionName, &vActions);
-//        }
-//        
-//        //删除vAction
-//        for (int i = 0; i < vActions.size(); i++) {
-//            delete vActions[i];
-//        }
+        //判断是否要动作
+        for (int i = 0; i < vKey->count(); i++) {
+            CCString* key=(CCString*)vKey->objectAtIndex(i);
+            if (key->m_sString == "actions") {
+                //action数据
+                PtActionUtility::createActions(data, &vActions);
+                break;
+            }
+        }
+
+        //判断是否runAction
+        string runActionName = string(valueForKey("runAction", data));
+        if (runActionName != "") {
+            PtActionUtility::setAction(layer, runActionName, &vActions);
+        }
+        
+        //删除vAction
+        for (int i = 0; i < vActions.size(); i++) {
+            delete vActions[i];
+        }
         
     }
 
@@ -671,7 +672,7 @@ namespace PtMapUtility {
     //读取精灵相关信息（初始化属性，z，动作，runAction）
     void setSpriteDatInfo(CCSprite* sprite, CCDictionary* data) {
         CCArray* vKey = data->allKeys();
-//        vector<ActionData*> vActions;
+        vector<ActionData*> vActions;
         
         //判断是否要初始化
         for (int i = 0; i < vKey->count(); i++) {
@@ -684,32 +685,32 @@ namespace PtMapUtility {
             }
         }
         
-//        //判断是否要动作
-//        for (int i = 0; i < vKey.size(); i++) {
-//            if (vKey[i] == "actions") {
-//                //action数据
-//                createActions(data, &vActions);
-//                //            CCDictionary<std::string, CCObject*>* actionData = (CCDictionary<std::string, CCObject*>*)data->objectForKey("actions");
-//                //            createActions(actionData,&vActions);
-//                break;
-//            }
-//        }
-//        
-//
-//        //判断是否runAction
-//        for (int i = 0; i < vKey.size(); i++) {
-//            if (vKey[i] == "runAction") {
-//                string runActionName = string(valueForKey("runAction", data));
-//                setAction(sprite, runActionName, &vActions);
-//                
-//                break;
-//            }
-//        }
-//        
-//        //删除vAction
-//        for (int i = 0; i < vActions.size(); i++) {
-//            delete vActions[i];
-//        }
+        //判断是否要动作
+        for (int i = 0; i < vKey->count(); i++) {
+            CCString* key = (CCString*)vKey->objectAtIndex(i);
+            if (key->m_sString == "actions") {
+                //action数据
+                PtActionUtility::createActions(data, &vActions);
+                break;
+            }
+        }
+
+
+        //判断是否runAction
+        for (int i = 0; i < vKey->count(); i++) {
+            CCString* key = (CCString*)vKey->objectAtIndex(i);
+            if (key->m_sString == "runAction") {
+                string runActionName = string(valueForKey("runAction", data));
+                PtActionUtility::setAction(sprite, runActionName, &vActions);
+                
+                break;
+            }
+        }
+        
+        //删除vAction
+        for (int i = 0; i < vActions.size(); i++) {
+            delete vActions[i];
+        }
     }
     
     //添加相关地图信息到缓存中
@@ -728,29 +729,6 @@ namespace PtMapUtility {
         
     }
     
-//    //读取精灵动作
-//    void createActions(CCDictionary* data, vector<ActionData*>* vActions)
-//    {
-//        CCArray*
-//        CCMutableArray<CCString*>* vActionString = (CCMutableArray<CCString*>*) data->objectForKey(string("actions"));
-//        CCMutableArray<CCString*>::CCMutableArrayIterator iter;
-//        int i = 0;
-//        char tmp[10];
-//        for (iter = vActionString->begin(); iter != vActionString->end(); ++iter, i++)
-//        {
-//            //动作id
-//            ActionData* actionData = new ActionData;
-//            string str("Item ");
-//            sprintf(tmp, "%d", i);
-//            actionData->actionName = (str + tmp);
-//            
-//            string action = ((CCString*) (*iter))->m_sString;
-//            actionData->action = action;
-//            actionData->actionType = getSubStr_endStr(action, "(");
-//            
-//            vActions->push_back(actionData);
-//        }
-//    }
     
     //添加touchRect
     void addTouchRectFromScript(const string& fileName, CCNode* node, vector<TouchRect>* vTouchRect) {

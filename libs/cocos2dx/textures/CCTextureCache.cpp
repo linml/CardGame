@@ -237,8 +237,25 @@ const char* CCTextureCache::description()
     return CCString::createWithFormat("<CCTextureCache | Number of textures = %u>", m_pTextures->count())->getCString();
 }
 
+const char* CCTextureCache::getKeyForTexture(CCTexture2D* texture)
+{
+    if( ! texture )
+        return NULL;
+    
+    CCArray* keys = m_pTextures->allKeysForObject(texture);
+    
+    if (keys->count() == 0)
+        return NULL;
+    
+    CCString *pRet = new CCString();
+    pRet->autorelease();
+    pRet = (CCString*)keys->objectAtIndex(0);
+    
+    return pRet->m_sString.c_str();
+}
+
 CCDictionary* CCTextureCache::snapshotTextures()
-{ 
+{
     CCDictionary* pRet = new CCDictionary();
     CCDictElement* pElement = NULL;
     CCDICT_FOREACH(m_pTextures, pElement)

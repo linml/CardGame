@@ -4,6 +4,8 @@
 #include "stdlib.h"
 #include "WordCache.h"
 #include "gameConfig.h"
+#include "HBActionAni.h"
+#include "HBActionAniCache.h"
 
 namespace Utility {    
     
@@ -183,6 +185,33 @@ namespace Utility {
 
         return getWordWithFile(g_wordFilePath, str);
     }
+    
+    int runPtActionScript(CCNode* node, const char* filePtah, int tag)
+    {
+        CCSprite* spr = CCSprite::create();
+        spr->setTag(tag);
+        spr->setPosition(ccp(0,0));
+        HBActionAni* ani = HBActionAniCache::sharedActionAniCache()->addActionAniWithFile(CSTR_FILEPTAH(g_ActionFilePath,filePtah));
+        node->addChild(spr);
+        ani->runAnimationBy(spr);
+        return 0;
+        
+    }
+    
+    int stopPtActionScript(CCNode* node,int tag)
+    {
+        CCNode* childNode = node->getChildByTag(tag);
+        childNode->stopAllActions();
+        childNode->removeFromParentAndCleanup(true);
+        return 0;
+    }
+    
+    int addPtActionScript(const char* filePtah)
+    {
+        HBActionAniCache::sharedActionAniCache()->addActionAniWithFile(CSTR_FILEPTAH(g_ActionFilePath,filePtah));
+        return 0;
+    }
+
     
 }
 

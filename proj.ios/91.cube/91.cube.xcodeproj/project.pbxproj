@@ -54,6 +54,16 @@
 		9F55A12A174B154B0068E44A /* resource_cn in Resources */ = {isa = PBXBuildFile; fileRef = 9F55A129174B154B0068E44A /* resource_cn */; };
 		9F6227C7174F1230006A7D69 /* gameLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6227AD174F122F006A7D69 /* gameLogic.cpp */; };
 		9F6227C8174F1230006A7D69 /* gamePlayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F6227B0174F122F006A7D69 /* gamePlayer.cpp */; };
+		9F9A36941773EA8900E504D7 /* HBActionAni.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A36801773EA8900E504D7 /* HBActionAni.cpp */; };
+		9F9A36951773EA8900E504D7 /* HBActionAniCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A36821773EA8900E504D7 /* HBActionAniCache.cpp */; };
+		9F9A36961773EA8900E504D7 /* HBActionManage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A36841773EA8900E504D7 /* HBActionManage.cpp */; };
+		9F9A36971773EA8900E504D7 /* HBActionScript.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A36861773EA8900E504D7 /* HBActionScript.cpp */; };
+		9F9A36981773EA8900E504D7 /* HBActionScriptCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A36881773EA8900E504D7 /* HBActionScriptCache.cpp */; };
+		9F9A36991773EA8900E504D7 /* HBAnimationCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A368A1773EA8900E504D7 /* HBAnimationCache.cpp */; };
+		9F9A369A1773EA8900E504D7 /* ImageTools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A368C1773EA8900E504D7 /* ImageTools.cpp */; };
+		9F9A369B1773EA8900E504D7 /* PtActionUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A368E1773EA8900E504D7 /* PtActionUtility.cpp */; };
+		9F9A369C1773EA8900E504D7 /* PtHttpClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A36901773EA8900E504D7 /* PtHttpClient.cpp */; };
+		9F9A369D1773EA8900E504D7 /* PtShake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F9A36921773EA8900E504D7 /* PtShake.cpp */; };
 		9FB94F95175DDF570002B887 /* PtJsonUtility.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FB94F93175DDF570002B887 /* PtJsonUtility.cpp */; };
 		9FC6ED871746084F0091BE98 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC6ED861746084F0091BE98 /* QuartzCore.framework */; };
 		9FC6ED891746084F0091BE98 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FC6ED881746084F0091BE98 /* OpenGLES.framework */; };
@@ -352,6 +362,26 @@
 		9F6227B1174F122F006A7D69 /* gamePlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gamePlayer.h; sourceTree = "<group>"; };
 		9F6227B2174F122F006A7D69 /* gameStruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameStruct.h; sourceTree = "<group>"; };
 		9F6227D2174F1475006A7D69 /* Database.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Database.cpp; sourceTree = "<group>"; };
+		9F9A36801773EA8900E504D7 /* HBActionAni.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HBActionAni.cpp; sourceTree = "<group>"; };
+		9F9A36811773EA8900E504D7 /* HBActionAni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBActionAni.h; sourceTree = "<group>"; };
+		9F9A36821773EA8900E504D7 /* HBActionAniCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HBActionAniCache.cpp; sourceTree = "<group>"; };
+		9F9A36831773EA8900E504D7 /* HBActionAniCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBActionAniCache.h; sourceTree = "<group>"; };
+		9F9A36841773EA8900E504D7 /* HBActionManage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HBActionManage.cpp; sourceTree = "<group>"; };
+		9F9A36851773EA8900E504D7 /* HBActionManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBActionManage.h; sourceTree = "<group>"; };
+		9F9A36861773EA8900E504D7 /* HBActionScript.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HBActionScript.cpp; sourceTree = "<group>"; };
+		9F9A36871773EA8900E504D7 /* HBActionScript.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBActionScript.h; sourceTree = "<group>"; };
+		9F9A36881773EA8900E504D7 /* HBActionScriptCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HBActionScriptCache.cpp; sourceTree = "<group>"; };
+		9F9A36891773EA8900E504D7 /* HBActionScriptCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBActionScriptCache.h; sourceTree = "<group>"; };
+		9F9A368A1773EA8900E504D7 /* HBAnimationCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HBAnimationCache.cpp; sourceTree = "<group>"; };
+		9F9A368B1773EA8900E504D7 /* HBAnimationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HBAnimationCache.h; sourceTree = "<group>"; };
+		9F9A368C1773EA8900E504D7 /* ImageTools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ImageTools.cpp; sourceTree = "<group>"; };
+		9F9A368D1773EA8900E504D7 /* ImageTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTools.h; sourceTree = "<group>"; };
+		9F9A368E1773EA8900E504D7 /* PtActionUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PtActionUtility.cpp; sourceTree = "<group>"; };
+		9F9A368F1773EA8900E504D7 /* PtActionUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PtActionUtility.h; sourceTree = "<group>"; };
+		9F9A36901773EA8900E504D7 /* PtHttpClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PtHttpClient.cpp; sourceTree = "<group>"; };
+		9F9A36911773EA8900E504D7 /* PtHttpClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PtHttpClient.h; sourceTree = "<group>"; };
+		9F9A36921773EA8900E504D7 /* PtShake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PtShake.cpp; sourceTree = "<group>"; };
+		9F9A36931773EA8900E504D7 /* PtShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PtShake.h; sourceTree = "<group>"; };
 		9FB94F93175DDF570002B887 /* PtJsonUtility.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PtJsonUtility.cpp; sourceTree = "<group>"; };
 		9FB94F94175DDF570002B887 /* PtJsonUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PtJsonUtility.h; sourceTree = "<group>"; };
 		9FC6ED821746084F0091BE98 /* 91.cube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 91.cube.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -954,6 +984,15 @@
 		9F55A10B174B0F710068E44A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				9F9A367F1773EA8900E504D7 /* Animation */,
+				9F9A368C1773EA8900E504D7 /* ImageTools.cpp */,
+				9F9A368D1773EA8900E504D7 /* ImageTools.h */,
+				9F9A368E1773EA8900E504D7 /* PtActionUtility.cpp */,
+				9F9A368F1773EA8900E504D7 /* PtActionUtility.h */,
+				9F9A36901773EA8900E504D7 /* PtHttpClient.cpp */,
+				9F9A36911773EA8900E504D7 /* PtHttpClient.h */,
+				9F9A36921773EA8900E504D7 /* PtShake.cpp */,
+				9F9A36931773EA8900E504D7 /* PtShake.h */,
 				9FB94F93175DDF570002B887 /* PtJsonUtility.cpp */,
 				9FB94F94175DDF570002B887 /* PtJsonUtility.h */,
 				9F55A10C174B0F710068E44A /* gameConfig.h */,
@@ -1038,6 +1077,25 @@
 				6FAFF1431762BBDD007F7778 /* FightScene */,
 			);
 			path = Scene;
+			sourceTree = "<group>";
+		};
+		9F9A367F1773EA8900E504D7 /* Animation */ = {
+			isa = PBXGroup;
+			children = (
+				9F9A36801773EA8900E504D7 /* HBActionAni.cpp */,
+				9F9A36811773EA8900E504D7 /* HBActionAni.h */,
+				9F9A36821773EA8900E504D7 /* HBActionAniCache.cpp */,
+				9F9A36831773EA8900E504D7 /* HBActionAniCache.h */,
+				9F9A36841773EA8900E504D7 /* HBActionManage.cpp */,
+				9F9A36851773EA8900E504D7 /* HBActionManage.h */,
+				9F9A36861773EA8900E504D7 /* HBActionScript.cpp */,
+				9F9A36871773EA8900E504D7 /* HBActionScript.h */,
+				9F9A36881773EA8900E504D7 /* HBActionScriptCache.cpp */,
+				9F9A36891773EA8900E504D7 /* HBActionScriptCache.h */,
+				9F9A368A1773EA8900E504D7 /* HBAnimationCache.cpp */,
+				9F9A368B1773EA8900E504D7 /* HBAnimationCache.h */,
+			);
+			path = Animation;
 			sourceTree = "<group>";
 		};
 		9FC6ED771746084F0091BE98 = {
@@ -2214,6 +2272,16 @@
 				6F7434081770573700304838 /* CFightingLayerScene.cpp in Sources */,
 				8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */,
 				8E47FF9C17719A3D00F71102 /* ScrollWordsSprite.cpp in Sources */,
+				9F9A36941773EA8900E504D7 /* HBActionAni.cpp in Sources */,
+				9F9A36951773EA8900E504D7 /* HBActionAniCache.cpp in Sources */,
+				9F9A36961773EA8900E504D7 /* HBActionManage.cpp in Sources */,
+				9F9A36971773EA8900E504D7 /* HBActionScript.cpp in Sources */,
+				9F9A36981773EA8900E504D7 /* HBActionScriptCache.cpp in Sources */,
+				9F9A36991773EA8900E504D7 /* HBAnimationCache.cpp in Sources */,
+				9F9A369A1773EA8900E504D7 /* ImageTools.cpp in Sources */,
+				9F9A369B1773EA8900E504D7 /* PtActionUtility.cpp in Sources */,
+				9F9A369C1773EA8900E504D7 /* PtHttpClient.cpp in Sources */,
+				9F9A369D1773EA8900E504D7 /* PtShake.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

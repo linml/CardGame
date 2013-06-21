@@ -11,7 +11,7 @@
 		<key>opacity</key>
 		<string>255</string>
 		<key>position</key>
-		<string>320,320</string>
+		<string>50,150</string>
 		<key>scaleX</key>
 		<string>1</string>
 		<key>scaleY</key>
@@ -21,7 +21,9 @@
 		<key>visable</key>
 		<string>1</string>
 		<key>zOrder</key>
-		<string>1</string>
+		<string>-1</string>
+        <key>anchorPosition</key>
+		<string>0.5,0.5</string>
 	</dict>
 </dict>
 </plist>

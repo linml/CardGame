@@ -68,6 +68,46 @@ namespace GameTools {
 		return tmp;
 	}
     
+    vector<string> splitString(const string& s_str,const char* from_c,const char* to_c)
+    {
+        string substr = getSubStr(s_str,from_c,to_c);
+        return splitArgString(substr.c_str(),",");
+    }
+    
+    vector<std::string> splitStringSpecial(const char *str)
+	{
+		string mainStr = str;
+		vector<std::string> tmp;
+		int pos = 0;
+		while((pos = mainStr.find(";",pos+1,1))!=string::npos)
+		{
+			string str1 = mainStr.substr(0,pos);
+			int count1 = find_count_of(str1.c_str(),"(");
+			int count2 = find_count_of(str1.c_str(),")");
+			if (count1 == count2)
+			{
+				tmp.push_back(mainStr.substr(0,pos));
+				mainStr = mainStr.substr(pos+1);
+				pos = 0;
+			}
+		}
+		tmp.push_back(mainStr);
+		return tmp;
+	}
+    
+    int find_count_of(const char *str,const char *c)
+	{
+		string tmp = str;
+		int pos = 0;
+		int count = 0;
+		while((pos = tmp.find(c))!=string::npos)
+		{
+			tmp = tmp.substr(pos+1);
+			count++;
+		}
+		return count;
+	}
+    
     string getSubStr(const string& s_str, const char* from_c, const char* to_c)
     {
         int start = s_str.find_first_of(from_c);

@@ -24,6 +24,8 @@ public:
     void setDead();
 private:
     bool initSprite(const char *pngFileName,const char *name);
+public:
+    bool isAddTexiao;
 };
 
 #endif /* defined(___1_cube__CCardPanel__) */

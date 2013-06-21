@@ -10,6 +10,7 @@
 #include "gameConfig.h"
 #include "HallScene.h"
 #include "CConfirmLayer.h"
+#include "SceneManager.h"
 
 int g_nLevle = 0;
 int g_array[3]={0};
@@ -262,7 +263,8 @@ void CExploration::handlerTouch()
             attachConfirm();
         }else if(m_nTouchTag == 2008)
         {
-            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
+//            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
+            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
             
         }
             
@@ -292,7 +294,9 @@ void CExploration::handlerTouch()
             break;
             
         case 2008:
-            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
+            //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
+             SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+            
             break;
         default:
             break;

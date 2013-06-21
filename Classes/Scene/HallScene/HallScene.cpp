@@ -150,11 +150,11 @@ bool CHallScene::initHall()
             
             // bottom buttons:
             word = Utility::getWordWithFile("word.plist", "synopsis");
-            CScrollWordSprite *scrollWord = CScrollWordSprite::create(word.c_str(), "arial",20, CCSizeMake(200, 0), kCCTextAlignmentCenter, kCCVerticalTextAlignmentTop);
+            CScrollWordSprite *scrollWord = CScrollWordSprite::create(word.c_str(), "arial",20, CCSizeMake(250, 0), kCCTextAlignmentCenter, kCCVerticalTextAlignmentTop);
             scrollWord->setScroll(true);
-            scrollWord->setScrollRect(CCRectMake(0, 0, 200, 60));
-            scrollWord->setPosition(ccp(60, 20));
-            scrollWord->setScrollStep(1.0f);
+            scrollWord->setScrollRect(CCRectMake(0, 0, 250, 60));
+            scrollWord->setPosition(ccp(30, 20));
+            scrollWord->setScrollStep(0.50f);
             scrollWord->setAnchorPoint(CCPointZero);
 
             btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "mission.png"));

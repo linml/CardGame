@@ -131,8 +131,9 @@ void CConfirmLayer::handlerTouch()
                   //  g_nLevle++;
                 }
                
-              CCDirector::sharedDirector()->replaceScene(CFightingLayerScene::scene());
-                //SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
+	     CCDirector::sharedDirector()->replaceScene(CFightLayerScene::scene());
+             SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
+
                 removeFromParentAndCleanup(true);
                 break;
             default:
@@ -152,6 +153,7 @@ void CConfirmLayer::handlerTouch()
                     g_nLevle++;
                 }
                 CCDirector::sharedDirector()->replaceScene(CExploration::scene());
+             //   SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_EXPLORATIONSCENE);
                 removeFromParentAndCleanup(true);
                 break;
             default:

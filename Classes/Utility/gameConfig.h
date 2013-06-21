@@ -32,6 +32,7 @@ cerr << "PT Log :" << __FILE__ <<endl \
 
 const string g_sysSoundPath = resRootPath+"sound/sys_sound_effect/";//系统音效
 const string g_bgSoundPath = resRootPath+"sound/background/";//背景音乐
+const string g_soundPath = resRootPath+"sound/";//音效路径
 
 const string g_wordFilePath = resRootPath+"word.plist";
 const string g_wordDirPath = resRootPath+"word/";
@@ -42,6 +43,9 @@ const std::string g_mapSpritePath = resRootPath+"sprite/";
 const std::string g_mapImagesPath = resRootPath+"img/";
 const std::string g_headImagesPath = resRootPath+"./";
 const std::string plistPath=resRootPath +"uiScript/";
+
+const std::string g_ActionFilePath = resRootPath+"action/";
+
 
 const string g_sFont = "Helvetica";
 const string g_sFont_title = "Georgia-BoldItalic";
@@ -72,6 +76,9 @@ const int g_custom_font_size[] = {
     
     8,              //13
 };
+
+const int g_iFontSize[] = {0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,
+    12,12,13,13,14,14,15,15,16,16,17,17,18,18,19,19,20,20,21,21,22,22,23,23,24,24,25};
 
 //字体颜色
 const ccColor3B g_color_white = {255,255,255};

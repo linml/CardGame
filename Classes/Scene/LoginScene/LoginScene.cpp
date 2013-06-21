@@ -10,7 +10,7 @@
 
 #include "LoginScene.h"
 #include "LogoLayer.h"
-
+#include "SceneManager.h"
 #include "Utility.h"
 
 
@@ -87,9 +87,10 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             break;
         case BUTTON_PLAY_TAG:
             
-            CCDirector::sharedDirector()->replaceScene(
-                                                       CCTransitionFade::create(1.5f, CHallScene::scene())
-            );
+//            CCDirector::sharedDirector()->replaceScene(
+//                                                       CCTransitionFade::create(1.5f, CHallScene::scene())
+//            );
+              SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
             return true;
         default:
             break;

@@ -83,8 +83,8 @@ void CAsgardLayer::handlerTouch()
     switch (m_nTouchTag) {
         case GLADSHEIM_TOUCH_TAG:
             // to do:
-           // layer = CTaskLayer::create();
-            //this->getParent()->addChild(layer, 30000, 6002);
+            layer = CTaskLayer::create();
+            this->getParent()->addChild(layer, 30000, 6002);
             break;
             
         case VALHALLA_TOUCH_TAG:

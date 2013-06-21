@@ -11,6 +11,7 @@
 #include "gameConfig.h"
 #include "HallScene.h"
 #include "ExplorationScene.h"
+#include "SceneManager.h"
 
 FightResultConfirm::FightResultConfirm()
 {
@@ -112,7 +113,8 @@ void FightResultConfirm::handlerTouch()
     {
         if (g_nLevle == 9 && m_nResult == 1)
         {
-            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, CHallScene::scene()));
+            //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f, CHallScene::scene()));
+            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
             g_nLevle = 0;
 
             
@@ -122,7 +124,8 @@ void FightResultConfirm::handlerTouch()
             {
                 g_nLevle++;
             }
-            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f,CExploration::scene()));
+           // CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(0.5f,CExploration::scene()));
+              SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_EXPLORATIONSCENE);
         }
         CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 

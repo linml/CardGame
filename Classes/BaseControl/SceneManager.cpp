@@ -19,6 +19,8 @@
 #include "ExplorationScene.h"
 #include "LoginScene.h"
 #include "CFightingLayerScene.h"
+#include "LoginScene.h"
+#include "HallScene.h"
 
 SceneManager::SceneManager()
 {
@@ -72,6 +74,13 @@ void SceneManager::runCreateCardScene()
 void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene)
 {
     switch (en_targetScene) {
+            
+        case EN_CURRSCENE_LOGINSCENE:
+            runLoginScene();
+            break;
+        case EN_CURRSCENE_HALLSCENE:
+            runHallScene();
+            break;
         case EN_CURRSCENE_MAPSCENE :
             runMapScene();
             break;
@@ -138,6 +147,48 @@ bool SceneManager::runSceneSelect(int touch_tag)
         CCDirector::sharedDirector()->replaceScene(LoadingScene::sceneWithTargetScene(targScene));
     }
     return true;;
+}
+
+
+void SceneManager::runLoginScene()
+{
+    if(m_currscene!=EN_CURRSCENE_LOGINSCENE)
+    {
+        m_currscene=EN_CURRSCENE_LOGINSCENE;
+        CCDirector *pDirector=CCDirector::sharedDirector();
+        
+        CCScene *pScene = CLoginScene::scene();
+        
+        if(pDirector->getRunningScene())
+        {
+            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+        }
+        else
+        {
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
+        }
+    }
+
+}
+void SceneManager::runHallScene()
+{
+    if(m_currscene!=EN_CURRSCENE_HALLSCENE)
+    {
+        m_currscene=EN_CURRSCENE_HALLSCENE;
+        CCDirector *pDirector=CCDirector::sharedDirector();
+        
+        CCScene *pScene = CHallScene::scene();
+        
+        if(pDirector->getRunningScene())
+        {
+            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+        }
+        else
+        {
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
+        }
+    }
+
 }
 
 void SceneManager::runTaskScene()

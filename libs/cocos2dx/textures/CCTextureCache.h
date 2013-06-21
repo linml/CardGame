@@ -67,6 +67,8 @@ public:
 
     CCTextureCache();
     virtual ~CCTextureCache();
+    
+    
 
     const char* description(void);
 
@@ -79,6 +81,9 @@ public:
     @since v0.99.0
     */
     static void purgeSharedTextureCache();
+    
+    //add pt wood
+    const char* getKeyForTexture(CCTexture2D* texture);
 
     /** Returns a Texture2D object given an file image
     * If the file image was not previously loaded, it will create a new CCTexture2D

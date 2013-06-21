@@ -24,12 +24,6 @@ const string type_init_exitttf = "initExistTTF";
 class TouchRect;
 class HBMap;
 
-class ActionData {
-public:
-	string actionName;
-	string actionType;
-	string action;
-};
 
 namespace PtMapUtility {
     

@@ -35,6 +35,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     CCEGLView::sharedOpenGLView()->setDesignResolutionSize(1024, 768,kResolutionShowAll);
 
+    pDirector->setProjection(kCCDirectorProjection2D);
 
 	// turn on display FPS
 	//pDirector->setDisplayStats(true);
@@ -43,9 +44,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	pDirector->setAnimationInterval(1.0 / 60);
+
+
+    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
+  //  pDirector->runWithScene(HelloWorld::scene());
+
     
-    SingleSceneManager::instance()->runTest();
-   //SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
+  // SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
+
     return true;
 }
 

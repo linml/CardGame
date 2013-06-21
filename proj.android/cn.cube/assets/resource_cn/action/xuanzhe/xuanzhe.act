@@ -11,7 +11,7 @@
 		<key>opacity</key>
 		<string>255</string>
 		<key>position</key>
-		<string>640,320</string>
+		<string>-48,-40</string>
 		<key>scaleX</key>
 		<string>2</string>
 		<key>scaleY</key>
@@ -21,7 +21,9 @@
 		<key>visable</key>
 		<string>1</string>
 		<key>zOrder</key>
-		<string>1</string>
+		<string>-1</string>
+        <key>anchorPosition</key>
+		<string>0,0</string>
 	</dict>
     <key>xz2</key>
 	<dict>
@@ -34,7 +36,7 @@
 		<key>opacity</key>
 		<string>255</string>
 		<key>position</key>
-		<string>640,320</string>
+		<string>-48,-40</string>
 		<key>scaleX</key>
 		<string>2</string>
 		<key>scaleY</key>
@@ -44,7 +46,9 @@
 		<key>visable</key>
 		<string>0</string>
 		<key>zOrder</key>
-		<string>1</string>
+		<string>-1</string>
+        <key>anchorPosition</key>
+		<string>0,0</string>
 	</dict>
 
 </dict>

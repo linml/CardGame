@@ -37,8 +37,11 @@ private:
     void initAssignHuihe();
     void initOwnHuihe();
     void initMonsterHuihe();
+    void showJuqi(CCNode*node);
+    void hideJuqi(CCNode *node);
     void showFightAnimation(CCNode *pSend,void *tag);
     void removeSprite(CCNode *node,void *tag);
+    void runSchedule();
 public:
     void animationSwf(int skillIndex,vector<SFightCardSprite *>ownFightCard,vector<SFightCardSprite *>MonstFightCard,int oWnindex,int  MonsteIndex,class SAnimationFps * spfs);
     void basicAnimation(vector<SFightCardSprite *>ownFightCard,vector<SFightCardSprite *>MonstFightCard,int  oWnindex,int  MonsteIndex,class SAnimationFps * spfs);
@@ -58,7 +61,7 @@ public:
     void animationHpFight(class CCNode *card,void *tag);
     void animationHpMonster(class CCNode *card,void *tag);
     void setHideHpAnimation();
-    void nextAnimation();
+    void nextAnimation(CCNode *node);
     void updateSetHp();
 
 private:

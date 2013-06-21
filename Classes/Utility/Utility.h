@@ -9,6 +9,8 @@ using namespace cocos2d;
 using namespace GameTools;
 
 
+#define PTACTIONANI_TAG 361008
+
 class TouchRect;
 
 namespace Utility {
@@ -57,7 +59,9 @@ namespace Utility {
     string getWordWithFile(const string& file, const char* str);
     string getWordWithFile(const char* str);
 
-
+    int runPtActionScript(CCNode* node, const char* filePtah,int tag);
+    int stopPtActionScript(CCNode* node,int tag);
+    int addPtActionScript(const char* filePtah);
 
 }
 

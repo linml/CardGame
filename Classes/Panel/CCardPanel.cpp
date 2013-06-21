@@ -9,7 +9,7 @@
 #include "CCardPanel.h"
 CCardPanel::CCardPanel()
 {
-    
+    isAddTexiao=false;
 }
 
 CCardPanel::~CCardPanel()
