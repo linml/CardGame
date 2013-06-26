@@ -14,7 +14,6 @@
 #include "gameConfig.h"
 #include "CardLayer.h"
 using namespace  cocos2d;
-
 class CJinengTeXiao :public CCObject
 {
 public:
@@ -107,17 +106,4 @@ public:
         }
     }
 };
-
-class CJinengTeXiaoTexiao6:public CJinengTeXiao
-{
-    
-public:
-    virtual void showTexiao(CCLayer *layer)
-    {
-        
-    }
-};
-
-
-
 #endif /* defined(___1_cube__CJinengTeXiao__) */

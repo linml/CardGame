@@ -143,11 +143,10 @@ void CFightLayerScene::createOwnFightCardPosition()
     // 玩家 战斗时候的卡牌
     for (vector<CCardSprite *>::iterator it=SinglePlayer::instance()->m_vZhangdouCardSprite.begin(); it!=SinglePlayer::instance()->m_vZhangdouCardSprite.end(); it++)
     {
-        CCLog("dddd");
         SFightCardSprite *fightCard=new SFightCardSprite;
         fightCard->cardsprite=new  CCardSprite(**it);// 使用的时候 应该是复制 起卡牌的属性
         fightCard->isDead=false;
-        std::cout<<fightCard->cardsprite->m_cardData.m_iYongHuJineng<<endl;
+        //std::cout<<fightCard->cardsprite->m_cardData.m_iYongHuJineng<<endl;
         m_vfightCardSprite.push_back(fightCard);
     }
     //布阵

@@ -109,7 +109,7 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
     printf("%s\n",pchData);
     CCNotificationCenter::sharedNotificationCenter()->postNotification(MSG_HTTPCLIENT, (CCObject*)pchData);
 
-    delete[] pchData;
+//    delete[] pchData;
 
 }
 
@@ -117,7 +117,7 @@ void CPtHttpClient::notificationMsgRecevice(CCObject* obj)
 {
 //    PtJsonUtility::JsonStringParse((char*)obj);
     stcRequestInf inf = m_qRequestInf.front();
-    CCNotificationCenter::sharedNotificationCenter()->postNotification(inf.m_pSelector, NULL);
+    CCNotificationCenter::sharedNotificationCenter()->postNotification(inf.m_pSelector, (CCObject*)obj);
     m_qRequestInf.pop();
     if(!m_qRequestInf.empty())
     {

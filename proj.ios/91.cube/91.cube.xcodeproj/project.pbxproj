@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F20C648177A8E5F00ABE53A /* CCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F20C646177A8E5F00ABE53A /* CCard.cpp */; };
 		6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F34AE8E1760945F00A6433C /* LoadingScene.cpp */; };
 		6F3EFC9D1752F00A00765322 /* gameCardProperty.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFC9B1752F00A00765322 /* gameCardProperty.cpp */; };
 		6F3EFCAC1753086200765322 /* DragonClanCardSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCA11753086200765322 /* DragonClanCardSprite.cpp */; };
@@ -264,6 +265,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F20C646177A8E5F00ABE53A /* CCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCard.cpp; sourceTree = "<group>"; };
+		6F20C647177A8E5F00ABE53A /* CCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCard.h; sourceTree = "<group>"; };
 		6F34AE8E1760945F00A6433C /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
 		6F34AE8F1760945F00A6433C /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
 		6F3EFC9B1752F00A00765322 /* gameCardProperty.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = gameCardProperty.cpp; sourceTree = "<group>"; };
@@ -1051,6 +1054,8 @@
 				6FAEDE84175C3A3E00F5FDC2 /* GameSpriteConfig.h */,
 				8E47FF9A17719A3D00F71102 /* ScrollWordsSprite.cpp */,
 				8E47FF9B17719A3D00F71102 /* ScrollWordsSprite.h */,
+				6F20C646177A8E5F00ABE53A /* CCard.cpp */,
+				6F20C647177A8E5F00ABE53A /* CCard.h */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -2282,6 +2287,7 @@
 				9F9A369B1773EA8900E504D7 /* PtActionUtility.cpp in Sources */,
 				9F9A369C1773EA8900E504D7 /* PtHttpClient.cpp in Sources */,
 				9F9A369D1773EA8900E504D7 /* PtShake.cpp in Sources */,
+				6F20C648177A8E5F00ABE53A /* CCard.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

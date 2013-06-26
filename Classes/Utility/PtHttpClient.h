@@ -17,12 +17,37 @@ using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace std;
 
+#define SERVER_INF_ADR "http://cube.games.com/cube_test/trunk/web/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
+#define SERVER_SID "sid"
+#define SERVER_NAME "name"
+#define SERVER_IP "ip"
+#define SERVER_ISUSE "is_use"
+
+#define ADDHTTPREQUEST(URL,NOTIFICATIONTAG,HTTPREQUESTTAG,CALLBACK)\
+{\
+    stcRequestInf inf;\
+    inf.m_pchURL=URL;\
+    inf.m_RequestType=CCHttpRequest::kHttpGet;\
+    inf.m_pSelector = NOTIFICATIONTAG;\
+    inf.m_pchTag = HTTPREQUESTTAG;\
+    CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector, NULL);\
+}
+
 typedef struct STC_HTTPINF {
     const char* m_pchURL;
     const char* m_pSelector;
     const char* m_pchTag;
     CCHttpRequest::HttpRequestType m_RequestType;
 } stcRequestInf;
+
+typedef struct STC_SERVER_INF
+{
+    int m_nSid;
+    string m_strName;
+    string m_strIp;
+    bool m_bIsUse;
+} stcServerInf;
 
 
 class CPtHttpClient : public CCObject{

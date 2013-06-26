@@ -1,14 +1,14 @@
 10
 
 dir
-565
+615
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-18T07:23:43.230110Z
-545
+2013-06-20T06:24:55.151265Z
+568
 phileas
 
 
@@ -134,10 +134,10 @@ file
 
 
 
-2013-06-20T02:03:55.000000Z
-68492f23d30e7f5913f68d53e0f69555
-2013-06-18T07:23:43.230110Z
-545
+2013-06-26T10:04:22.000000Z
+3d7df2c92219306701046d0e9423f33b
+2013-06-20T06:24:55.151265Z
+568
 phileas
 has-props
 
@@ -160,7 +160,7 @@ has-props
 
 
 
-393253
+397911
 
 room.png
 file
@@ -638,40 +638,6 @@ has-props
 
 175285
 
-card.png
-file
-
-
-
-
-2013-06-18T02:40:10.000000Z
-7052bff754273fb122f3d0cb26c8d6f6
-2013-06-17T08:04:26.620182Z
-535
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-246345
-
 memorygame.plist
 file
 
@@ -706,17 +672,17 @@ merlin
 
 17690
 
-button.png
+card.png
 file
 
 
 
 
 2013-06-18T02:40:10.000000Z
-afd18ffc73486f4aa18b1e4b6df0eff9
-2013-06-18T01:15:16.799500Z
-543
-phileas
+7052bff754273fb122f3d0cb26c8d6f6
+2013-06-17T08:04:26.620182Z
+535
+merlin
 has-props
 
 
@@ -738,7 +704,7 @@ has-props
 
 
 
-5618
+246345
 
 HelloWorld.png
 file
@@ -774,6 +740,43 @@ has-props
 
 138777
 
+button.png
+file
+
+
+
+
+2013-06-18T02:40:10.000000Z
+afd18ffc73486f4aa18b1e4b6df0eff9
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5618
+
+fighting
+dir
+
 d_card.png
 file
 
@@ -807,9 +810,6 @@ has-props
 
 
 157221
-
-fighting
-dir
 
 biforest.png
 file
@@ -981,40 +981,6 @@ has-props
 
 831867
 
-memorybackgroud.png
-file
-
-
-
-
-2013-06-18T02:40:10.000000Z
-78cff36ef802e84f80ec73812ab5ab46
-2013-06-17T08:04:18.973589Z
-534
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-471068
-
 arrow.png
 file
 
@@ -1048,4 +1014,38 @@ has-props
 
 
 260903
+
+memorybackgroud.png
+file
+
+
+
+
+2013-06-18T02:40:10.000000Z
+78cff36ef802e84f80ec73812ab5ab46
+2013-06-17T08:04:18.973589Z
+534
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+471068
 

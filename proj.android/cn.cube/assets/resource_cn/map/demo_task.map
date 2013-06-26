@@ -32,6 +32,19 @@
                 <key>tag</key>
                 <integer>0</integer>
             </dict>
+            <key>mapSprite1</key>
+            <dict>
+                <key>spriteName</key>
+                <string>demo_task</string>
+                <key>mapSpriteName</key>
+                <string>close</string>
+                <key>pos</key>
+                <string>{892,96}</string>
+                <key>z</key>
+                <integer>5</integer>
+                <key>tag</key>
+                <integer>1</integer>
+            </dict>
         </dict>
         <key>mission_ui</key>
         <dict>

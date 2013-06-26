@@ -1,7 +1,7 @@
 10
 
 dir
-565
+615
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/fighting
 svn://merlin@192.168.2.2/sdp
 
@@ -468,6 +468,40 @@ has-props
 
 157319
 
+purple_princess_2.png
+file
+
+
+
+
+2013-06-18T02:40:10.000000Z
+9cbb19952035755452139feeca9247f1
+2013-06-17T08:04:34.430341Z
+536
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+78701
+
 green_raynas_2.png
 file
 
@@ -536,14 +570,14 @@ has-props
 
 16848
 
-purple_princess_2.png
+purple_princess_3.png
 file
 
 
 
 
 2013-06-18T02:40:10.000000Z
-9cbb19952035755452139feeca9247f1
+d125316ac45f3ae13c19a65510ed1e26
 2013-06-17T08:04:34.430341Z
 536
 merlin
@@ -568,7 +602,7 @@ has-props
 
 
 
-78701
+50759
 
 green_raynas_3.png
 file
@@ -604,14 +638,14 @@ has-props
 
 33333
 
-purple_princess_3.png
+purple_princess_4.png
 file
 
 
 
 
 2013-06-18T02:40:10.000000Z
-d125316ac45f3ae13c19a65510ed1e26
+4f2bb44788f64599d33ad8bca281049e
 2013-06-17T08:04:34.430341Z
 536
 merlin
@@ -636,7 +670,7 @@ has-props
 
 
 
-50759
+27577
 
 green_raynas_4.png
 file
@@ -671,40 +705,6 @@ has-props
 
 
 21255
-
-purple_princess_4.png
-file
-
-
-
-
-2013-06-18T02:40:10.000000Z
-4f2bb44788f64599d33ad8bca281049e
-2013-06-17T08:04:34.430341Z
-536
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-27577
 
 deadmark.png
 file
@@ -910,40 +910,6 @@ has-props
 
 50268
 
-gold_aerwise_4.png
-file
-
-
-
-
-2013-06-18T02:40:10.000000Z
-5a7bfa3e2279fe47ec0bb16b522681fe
-2013-06-17T08:04:34.430341Z
-536
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-29090
-
 hiten_1.png
 file
 
@@ -977,6 +943,40 @@ has-props
 
 
 12527
+
+gold_aerwise_4.png
+file
+
+
+
+
+2013-06-18T02:40:10.000000Z
+5a7bfa3e2279fe47ec0bb16b522681fe
+2013-06-17T08:04:34.430341Z
+536
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+29090
 
 blue_aobraysies_1.png
 file

@@ -38,6 +38,8 @@
         <string>{53,721,101,53}</string>
         <key>mission_button_2</key>
         <string>{243,722,101,57}</string>
+        <key>close</key>
+        <string>{447,721,46,45}</string>
     </dict>
     <key>mapSpriteData</key>
     <dict>
@@ -284,6 +286,22 @@
         <key>mission_button_2</key>
         <dict>
             <key>mission_button_2</key>
+            <dict>
+                <key>pos</key>
+                <string>{0,0}</string>
+                <key>filp</key>
+                <integer>0</integer>
+                <key>scale</key>
+                <string>1</string>
+                <key>rotate</key>
+                <string>0</string>
+                <key>anchor</key>
+                <string>{0,1}</string>
+            </dict>
+        </dict>
+        <key>close</key>
+        <dict>
+            <key>close</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>

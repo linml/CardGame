@@ -11,6 +11,7 @@
 #include "gameStruct.h"
 #include "CSingleton.h"
 #include "CardSprite.h"
+#include "CCard.h"
 #include <vector>
 using namespace std;
 
@@ -24,6 +25,9 @@ public:
     vector<CCardSprite *>m_vZhangdouCardSprite;
     
     void forTest();
+    
+    void forTestCard();
+    void forTestMonsterCard();
     //
     void forTestMonster();
     void forTestDeleteMonster();
@@ -32,6 +36,12 @@ public:
 public:
     CGamePlayer();
     ~CGamePlayer();
+    void clearAllCard();
+    void initAllCard(const char *cardFileName);
+public:
+    map<int, CCard *>m_hashmapAllCard;
+    vector<CCard *>m_hashmapFight;
+    vector<CCard *>m_hashmapMonster;
 };
 typedef Singleton<CGamePlayer> SinglePlayer;
 
