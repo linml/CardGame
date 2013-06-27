@@ -128,8 +128,22 @@ merlin
 
 2143
 
+CCardFightingLayerScene.cpp
+file
+0
+
+
+add
+
 Layer
 dir
+
+CCardFightingLayerScene.h
+file
+0
+
+
+add
 
 CFightingLayerScene.cpp
 file

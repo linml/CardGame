@@ -934,7 +934,7 @@ bool CFightingLayerScene::init()
     
     initAssignHuihe();
 
-   Utility::addPtActionScript("juqi1/juqi1.act");
+    Utility::addPtActionScript("juqi1/juqi1.act");
     
     CCSprite *sprite=CCSprite ::create((g_mapImagesPath+"fighting/hiten_1.png").c_str());
     addChild(sprite,15,30001);

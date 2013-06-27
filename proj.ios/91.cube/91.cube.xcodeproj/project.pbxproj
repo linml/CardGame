@@ -24,6 +24,8 @@
 		6F780752176469830049321C /* AsgardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780749176469830049321C /* AsgardLayer.cpp */; };
 		6F780753176469830049321C /* LogoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F78074D176469830049321C /* LogoLayer.cpp */; };
 		6F780754176469830049321C /* LoginScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F78074F176469830049321C /* LoginScene.cpp */; };
+		6F9EB36E177C273F00A36359 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F9EB36D177C273F00A36359 /* Default-568h@2x.png */; };
+		6F9EB371177C2CAB00A36359 /* CCardFightingLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F9EB36F177C2CAA00A36359 /* CCardFightingLayerScene.cpp */; };
 		6FA6AFB2174F6A1D00608A73 /* CBaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */; };
 		6FA6AFB3174F6A1D00608A73 /* CSingleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAC174F6A1D00608A73 /* CSingleton.cpp */; };
 		6FA6AFB4174F6A1D00608A73 /* PuzzleStruct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAE174F6A1D00608A73 /* PuzzleStruct.cpp */; };
@@ -299,6 +301,9 @@
 		6F78074E176469830049321C /* LogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoLayer.h; sourceTree = "<group>"; };
 		6F78074F176469830049321C /* LoginScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoginScene.cpp; sourceTree = "<group>"; };
 		6F780750176469830049321C /* LoginScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScene.h; sourceTree = "<group>"; };
+		6F9EB36D177C273F00A36359 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6F9EB36F177C2CAA00A36359 /* CCardFightingLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardFightingLayerScene.cpp; sourceTree = "<group>"; };
+		6F9EB370177C2CAA00A36359 /* CCardFightingLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardFightingLayerScene.h; sourceTree = "<group>"; };
 		6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBaseLayer.cpp; sourceTree = "<group>"; };
 		6FA6AFAB174F6A1D00608A73 /* CBaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBaseLayer.h; sourceTree = "<group>"; };
 		6FA6AFAC174F6A1D00608A73 /* CSingleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSingleton.cpp; sourceTree = "<group>"; };
@@ -952,6 +957,8 @@
 				6F780743176457910049321C /* CFightLayerScene.h */,
 				6F7434061770573700304838 /* CFightingLayerScene.cpp */,
 				6F7434071770573700304838 /* CFightingLayerScene.h */,
+				6F9EB36F177C2CAA00A36359 /* CCardFightingLayerScene.cpp */,
+				6F9EB370177C2CAA00A36359 /* CCardFightingLayerScene.h */,
 			);
 			path = FightScene;
 			sourceTree = "<group>";
@@ -1106,6 +1113,7 @@
 		9FC6ED771746084F0091BE98 = {
 			isa = PBXGroup;
 			children = (
+				6F9EB36D177C273F00A36359 /* Default-568h@2x.png */,
 				9FC6ED961746084F0091BE98 /* 91.cube */,
 				9FC6ED851746084F0091BE98 /* Frameworks */,
 				9FC6ED831746084F0091BE98 /* Products */,
@@ -2046,6 +2054,7 @@
 				9FC6F21917460BFF0091BE98 /* ChangeLog in Resources */,
 				9FC6F21A17460BFF0091BE98 /* CMakeLists.txt in Resources */,
 				9F55A12A174B154B0068E44A /* resource_cn in Resources */,
+				6F9EB36E177C273F00A36359 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2288,6 +2297,7 @@
 				9F9A369C1773EA8900E504D7 /* PtHttpClient.cpp in Sources */,
 				9F9A369D1773EA8900E504D7 /* PtShake.cpp in Sources */,
 				6F20C648177A8E5F00ABE53A /* CCard.cpp in Sources */,
+				6F9EB371177C2CAB00A36359 /* CCardFightingLayerScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,24 +8,47 @@
 
 #include "LoadingScene.h"
 #include "SceneManager.h"
+#include "PtHttpClient.h"
+#include "gamePlayer.h"
+#include "Utility.h"
 
 LoadingScene::LoadingScene()
 {
     
 }
 
-LoadingScene *LoadingScene::sceneWithTargetScene(EN_CURRSCENE targetScene)
+LoadingScene *LoadingScene::sceneWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targetScene)
 {
     // 以下代码生成了一个当前类的自动释放对象
     LoadingScene *aLoadingScene = new LoadingScene();
-    aLoadingScene->initWithTargetScene(targetScene);
+    aLoadingScene->initWithTargetScene(currScene,targetScene);
     aLoadingScene->autorelease();
     return aLoadingScene;
 }
 
-bool LoadingScene::initWithTargetScene(EN_CURRSCENE targetScene) {
+void LoadingScene::addParticle()
+{
+    Utility::addPtActionScript("juqi1/juqi1.act");
+    for (int i=0; i< SinglePlayer::instance()->m_hashmapFight.size() ; i++)
+    {
+        
+    }
+    for (int i=0; i< SinglePlayer::instance()->m_hashmapMonster.size() ; i++)
+    {
+        
+    }
+    //加载例子特效
+}
+
+void LoadingScene::delParticle()
+{
+    
+}
+
+bool LoadingScene::initWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targetScene) {
     if (CCScene::init()) {
         targetScene_ = targetScene;
+        m_currScene_ = currScene;
         //创建一个Label标签放在屏幕中央
         CCLabelTTF* label = CCLabelTTF::labelWithString("Loading ...",
                                                         "Arial", 64);
@@ -34,20 +57,39 @@ bool LoadingScene::initWithTargetScene(EN_CURRSCENE targetScene) {
         this->addChild(label);
         // 必须在下一帧才加载目标场景！
         this->runAction(CCSequence::create(CCDelayTime::create(1.0),CCCallFunc::create(this, callfunc_selector(LoadingScene::doscheule)),NULL));
-        
         return true;
     }
     
     return false;
 }
+
+
 void LoadingScene::doscheule()
 {
+    if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
+    {
+        cout<<"this  will get tiem  load  server monster"<<endl;
+        //ADDHTTPREQUEST(URL, NOTIFICATIONTAG, HTTPREQUESTTAG, CALLBACK)
+        //遍历list  加载栗子文件
+        //addParticle();//加载例子特效cache中
+        addParticle();
+    }
     this->scheduleUpdate();
 }
 
 void LoadingScene::update(float delta) {
-    //终止所有的预定信息
-    this->unscheduleAllSelectors();
-    // 通过TargetScenes这个枚举类型来决定加载哪个场景
-    SingleSceneManager::instance()->runTargetScene(targetScene_);
+    
+    if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
+    {
+        //loading the  例子效果
+        addParticle();
+    
+    }
+    else
+    {
+        //终止所有的预定信息
+        this->unscheduleAllSelectors();
+        // 通过TargetScenes这个枚举类型来决定加载哪个场景
+        SingleSceneManager::instance()->runTargetScene(targetScene_);
+    }
 }

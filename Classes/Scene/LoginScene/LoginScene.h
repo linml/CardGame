@@ -47,7 +47,7 @@ public:
     
     void loginCallBack(CCNode * pSender);
     void setLogoOverCallBack();
-    
+    void callBackObject(CCObject *obj);
 protected:
     bool initLogin();
     bool handleTouchSpritePool(CCPoint point);

@@ -73,8 +73,8 @@ private:
 private:
     vector<SFightCardSprite *>m_vfightCardSprite;
     vector<SFightCardSprite *>m_vMonsterCardSprite;
-    class CCardLayer  *currOwnCardSprite;
-    class CCardLayer  *monsterCardSprite;
+    class   CCardLayer  *currOwnCardSprite;
+    class   CCardLayer  *monsterCardSprite;
     int     m_iZhujiangHuihe;
     int     m_iMonsterZhujiangHuihe;
     int     m_vFightCardIndex;

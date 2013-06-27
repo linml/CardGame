@@ -7,6 +7,7 @@
 //
 
 #include "CCard.h"
+
 CCard::CCard()
 {
     m_icard_id=0;
@@ -33,18 +34,27 @@ CCard::CCard()
     
 }
 
-namespace PathCube {
-    void initCardArray(CCDictionary *directory,const char *cardFileName)
+CFightCard::CFightCard(CCard *card)
+{
+    tag=-1;
+    if(card)
     {
-                clearCardArray(directory);
-                directory = CCDictionary::createWithContentsOfFile(cardFileName);
+        m_pCard=new CCard(*card);
+        this->m_iCurrHp=m_pCard->m_icardhp;
     }
-    void clearCardArray(CCDictionary *directory)
+    else
     {
-        if(directory!=NULL)
-        {
-            directory->release();
-            directory=NULL;
-        }
+        m_pCard=NULL;
     }
 }
+
+CFightCard::~CFightCard()
+{
+    if(m_pCard)
+    {
+        delete  m_pCard;
+        m_pCard=NULL;
+    }
+    
+}
+

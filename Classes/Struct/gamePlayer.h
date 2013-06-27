@@ -20,24 +20,21 @@ public:
     int m_nFaceTo;
     int m_nTurnTo;
     STC_HOUSEPOS m_stcCurrenPos;
- 
     vector<CCardSprite *>m_vYongyouCardSprite;
     vector<CCardSprite *>m_vZhangdouCardSprite;
-    
     void forTest();
-    
     void forTestCard();
     void forTestMonsterCard();
     //
     void forTestMonster();
     void forTestDeleteMonster();
     vector<CCardSprite *>m_vMonsterCardSprite;
-    
 public:
     CGamePlayer();
     ~CGamePlayer();
     void clearAllCard();
     void initAllCard(const char *cardFileName);
+//根据loading的界面配置了 游戏的  资料
 public:
     map<int, CCard *>m_hashmapAllCard;
     vector<CCard *>m_hashmapFight;

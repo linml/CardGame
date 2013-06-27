@@ -12,6 +12,7 @@
 #include "LogoLayer.h"
 #include "SceneManager.h"
 #include "Utility.h"
+#include "PtHttpClient.h"
 
 
 
@@ -149,12 +150,23 @@ bool CLoginScene::initLogin()
         maps->getTouchRects(touchRect);
         bRet = true;
         
-       
+        ADDHTTPREQUEST(
+                       SERVER_INF_ADR("m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95") ,
+                       "xiannnnn",
+                       "111",
+                       callfuncO_selector(CLoginScene::callBackObject)
+                       );
         
     } while (0);
     return bRet;
     
 }
+void CLoginScene::callBackObject(cocos2d::CCObject *obj
+                                 )
+{
+    cout<<(char *)obj;
+}
+
 
 
 

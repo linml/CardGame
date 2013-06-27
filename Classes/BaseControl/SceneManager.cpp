@@ -144,7 +144,7 @@ bool SceneManager::runSceneSelect(int touch_tag)
     
     if(m_currscene!=targScene && targScene!=EN_CURRSCENE_NONE)
     {
-        CCDirector::sharedDirector()->replaceScene(LoadingScene::sceneWithTargetScene(targScene));
+        CCDirector::sharedDirector()->replaceScene(LoadingScene::sceneWithTargetScene(m_currscene,targScene));
     }
     return true;;
 }

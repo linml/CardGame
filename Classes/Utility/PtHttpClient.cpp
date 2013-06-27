@@ -38,12 +38,15 @@ CPtHttpClient* CPtHttpClient::sharePtHttpClient()
 
 void CPtHttpClient::send(stcRequestInf tInf)
 {
-    printf("send %s\n",tInf.m_pchTag);
+    printf("send %s \n",tInf.m_pchURL);
     CCHttpRequest* request = new CCHttpRequest();
+    cout<<"merlin:"<<tInf.m_pchURL<<endl;
     request->setUrl(tInf.m_pchURL);
     request->setRequestType(tInf.m_RequestType);
     request->setResponseCallback(this, callfuncND_selector(CPtHttpClient::onHttpRequestCompleted));
     request->setTag(tInf.m_pchTag);
+    tInf.jsonstr="{a:10}";
+    request->setRequestData(tInf.jsonstr.c_str(), tInf.jsonstr.length());
     CCHttpClient::getInstance()->send(request);
     request->release();
     m_bIsSending = true ;
@@ -63,7 +66,7 @@ void CPtHttpClient::addRequest(stcRequestInf tInf)
 
 void CPtHttpClient::addRequest(const char* pchUrl, const char* pchSelector, const char* pchTag,CCHttpRequest::HttpRequestType requestType)
 {
-    stcRequestInf inf = {pchUrl,pchSelector,pchTag,requestType};
+    stcRequestInf inf = {pchUrl,pchSelector,pchTag,"",requestType};
     addRequest(inf);
 }
 

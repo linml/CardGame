@@ -36,14 +36,26 @@ public:
     int m_iskillDead;
     int m_iskillBuff;
     string m_scard_tips;
-    string m_scard_resources;
+    string m_scard_resources;  
     string m_scard_head;
     string m_scard_groud;
 };
-using namespace cocos2d;
-namespace PathCube {
-    void initCardArray(CCDictionary *directory,const char *cardFileName);
-    void clearCardArray(CCDictionary *directory);
+
+
+//FIGHTING CARD
+class  CFightCard {
+public:
+    CFightCard(CCard *card);
+    ~CFightCard();
+public:
+    int m_iCurrHp; //当前HP
+    int tag; //当前卡牌的tag
+public:
+    CCard *m_pCard;
+    
 };
+
+
+
 
 #endif /* defined(___1_cube__CCard__) */
