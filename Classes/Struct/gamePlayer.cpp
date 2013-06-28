@@ -105,6 +105,7 @@ CGamePlayer::CGamePlayer()
     FightCarderInit();
     forTest();
     initAllCard((resRootPath+"card.plist").c_str());
+    forTestCard();
 }
 
 CGamePlayer::~CGamePlayer()
@@ -156,7 +157,9 @@ void CGamePlayer::forTestCard()
         for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
             if(tempindex==index)
             {
+                cout<<"card id:"<<it->first<<endl;;
               m_hashmapFight.push_back(it->second);
+                
                 break;
             }
             tempindex++;
@@ -166,7 +169,7 @@ void CGamePlayer::forTestCard()
 
 void CGamePlayer::forTestMonsterCard()
 {
-    srand(time(0));
+    //srand(time(0));
     for (int i=0;i<5;i++)
     {
         int index=rand()%m_hashmapAllCard.size();
@@ -174,6 +177,7 @@ void CGamePlayer::forTestMonsterCard()
         for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
             if(tempindex==index)
             {
+                cout<<"card Monster id:"<<it->first<<endl;
                 m_hashmapMonster.push_back(it->second);
                 break;
             }

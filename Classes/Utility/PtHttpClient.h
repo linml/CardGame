@@ -17,7 +17,7 @@ using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace std;
 //m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95
-#define SERVER_INF_ADR(JSON) "http://cube.games.com/cube_test/trunk/web/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
+#define SERVER_INF_ADR(JSON) "http://cube.games.com/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
 
 #define SERVER_SID "sid"
 #define SERVER_NAME "name"

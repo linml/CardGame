@@ -34,13 +34,18 @@ CCard::CCard()
     
 }
 
-CFightCard::CFightCard(CCard *card)
+CFightCard::CFightCard(CCard *card,int level)
 {
     tag=-1;
     if(card)
     {
+        
         m_pCard=new CCard(*card);
-        this->m_iCurrHp=m_pCard->m_icardhp;
+        this->m_iCurrHp=m_pCard->m_icardhp*0.8*level;
+        m_iHp=m_iCurrHp;
+        m_attack=card->m_icard_attack*0.75*level;
+        m_defend=card->m_icard_defend*0.5*level;
+        isDead=false;
     }
     else
     {

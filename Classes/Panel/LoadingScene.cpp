@@ -11,6 +11,7 @@
 #include "PtHttpClient.h"
 #include "gamePlayer.h"
 #include "Utility.h"
+#include "gamePlayer.h"
 
 LoadingScene::LoadingScene()
 {
@@ -50,7 +51,7 @@ bool LoadingScene::initWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targe
         targetScene_ = targetScene;
         m_currScene_ = currScene;
         //创建一个Label标签放在屏幕中央
-        CCLabelTTF* label = CCLabelTTF::labelWithString("Loading ...",
+        CCLabelTTF* label = CCLabelTTF::create("Loading ...",
                                                         "Arial", 64);
         CCSize size = CCDirector::sharedDirector()->getWinSize();
         label->setPosition(ccp(size.width / 2, size.height / 2));
@@ -69,10 +70,7 @@ void LoadingScene::doscheule()
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
         cout<<"this  will get tiem  load  server monster"<<endl;
-        //ADDHTTPREQUEST(URL, NOTIFICATIONTAG, HTTPREQUESTTAG, CALLBACK)
-        //遍历list  加载栗子文件
-        //addParticle();//加载例子特效cache中
-        addParticle();
+        SinglePlayer::instance()->forTestMonsterCard();
     }
     this->scheduleUpdate();
 }
@@ -82,14 +80,10 @@ void LoadingScene::update(float delta) {
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
         //loading the  例子效果
-        addParticle();
-    
+        addParticle();    
     }
-    else
-    {
         //终止所有的预定信息
         this->unscheduleAllSelectors();
         // 通过TargetScenes这个枚举类型来决定加载哪个场景
         SingleSceneManager::instance()->runTargetScene(targetScene_);
-    }
 }

@@ -26,6 +26,13 @@ phileas
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
+CGamesCard.h
+file
+0
+
+
+add
+
 LoadingScene.h
 file
 
@@ -195,6 +202,13 @@ phileas
 
 
 3068
+
+CGamesCard.cpp
+file
+0
+
+
+add
 
 CardLayer.h
 file

@@ -35,24 +35,27 @@ public:
     int m_iskillHelp;
     int m_iskillDead;
     int m_iskillBuff;
-    string m_scard_tips;
-    string m_scard_resources;  
-    string m_scard_head;
-    string m_scard_groud;
+    string m_scard_tips; //描述
+    string m_scard_resources;  //资源
+    string m_scard_head;  //头像
+    string m_scard_groud; //
 };
 
 
 //FIGHTING CARD
 class  CFightCard {
 public:
-    CFightCard(CCard *card);
+    CFightCard(CCard *card,int level=1);
     ~CFightCard();
 public:
     int m_iCurrHp; //当前HP
+    int m_iHp;     //当前总的HP
+    int m_attack;  //当前按的攻击力量
+    int m_defend;   //当前的防御力
     int tag; //当前卡牌的tag
+    bool isDead;
 public:
     CCard *m_pCard;
-    
 };
 
 
