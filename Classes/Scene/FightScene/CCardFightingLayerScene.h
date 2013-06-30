@@ -33,7 +33,9 @@ private:
     void createFightCard();
     void createMonsterCard();
     int getWinStats();
-    void fightLogic(int iHuihe);
+    void fightLogic(int &iHuihe);
+    void checkOwnIsDeadAndMove();
+    void checkMonsterIsDeadAndMove();
 private:
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;

@@ -10,6 +10,7 @@
 #include "gamePlayer.h"
 #include "CGamesCard.h"
 #include "gameConfig.h"
+#include "CSkillManager.h"
 
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
@@ -35,7 +36,7 @@ CCScene *CCardFightingLayerScene::scene()
 
 CCardFightingLayerScene::CCardFightingLayerScene()
 {
-    
+    m_iHuihe=1;
 }
 
 CCardFightingLayerScene::~CCardFightingLayerScene()
@@ -55,7 +56,7 @@ bool CCardFightingLayerScene::init()
     createFightCard();
     createMonsterCard();
     m_iFightingCardIndex=m_iMonsterCardIndex=0;
-    scheduleOnce(schedule_selector(CCardFightingLayerScene::locgicSchudel), 1.0f);
+    schedule(schedule_selector(CCardFightingLayerScene::locgicSchudel));
     return true;
 }
 
@@ -92,10 +93,30 @@ int CCardFightingLayerScene::getWinStats()
 }
 
 
+void CCardFightingLayerScene::checkMonsterIsDeadAndMove()
+{
+    if (m_vMonsterCard[m_iMonsterCardIndex]->isDead)
+    {
+       G_SkillManager::instance()->fightDead(3);
+        m_iMonsterCardIndex++;
+        //initMonsterHuihe();
+    }
+}
+void CCardFightingLayerScene::checkOwnIsDeadAndMove()
+{
+    if (m_vFightingCard[m_iFightingCardIndex]->isDead)
+    {
+        G_SkillManager::instance()->fightDead(2);
+        m_iFightingCardIndex++;
+        //initOwnHuihe();
+    }
+}
+static int tempaaaa=0;
 void CCardFightingLayerScene::locgicSchudel(float t)
 {
+    tempaaaa++;
     int winStatus=getWinStats();
-    cout<<"winStatus="<<winStatus<<endl;
+    cout<<"winStatus="<<winStatus<<"   huihe:"<<tempaaaa<<endl;
     //先判断是否全部死亡；
     if(winStatus==0)
     {
@@ -103,12 +124,57 @@ void CCardFightingLayerScene::locgicSchudel(float t)
         {
             fightLogic(m_iHuihe);
         }
+        else{
+            checkOwnIsDeadAndMove();
+            checkMonsterIsDeadAndMove();
+
+        }
 
     }
+    else
+    {
+        unschedule(schedule_selector(CCardFightingLayerScene::locgicSchudel));
+        CCLog("cout :  winstatus=+-1");
+    }
 }
-void CCardFightingLayerScene::fightLogic(int iHuihe)
+
+void CCardFightingLayerScene::fightLogic(int &iHuihe)
 {
-    
+    cout<<"huihe:"<<iHuihe<<endl;
+    switch (iHuihe)
+    {
+        case 1:
+            G_SkillManager::instance()->refactorJisuan(0, m_vFightingCard, m_vMonsterCard, m_iFightingCardIndex, m_iMonsterCardIndex,1);
+            break;
+        case 0:
+        {
+
+            G_SkillManager::instance()->refactorJisuan(0, m_vFightingCard, m_vMonsterCard, m_vFightingCard.size()-1, m_iMonsterCardIndex,0);
+            
+        }
+            break;
+        case -1:
+        {
+                G_SkillManager::instance()->refactorJisuan(0, m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex, m_iFightingCardIndex,-1);
+        }
+            break;
+        case -2:
+        {
+            G_SkillManager::instance()->refactorJisuan(0, m_vMonsterCard,m_vFightingCard,m_vMonsterCard.size()-1, m_iFightingCardIndex,-2);
+        }
+            break;
+        default:
+            break;
+    }
+      
+    if(iHuihe==-2)
+    {
+        iHuihe=1;
+    }
+    else
+    {
+          iHuihe--;
+    }
 }
 
 void CCardFightingLayerScene::createFightCard()
@@ -144,7 +210,8 @@ void CCardFightingLayerScene::createFightCard()
 void CCardFightingLayerScene::createMonsterCard()
 {
     CCSize wndsize=CCDirector::sharedDirector()->getWinSize();
-    for (int i=0; i<SinglePlayer::instance()->m_hashmapMonster.size(); i++) {
+    for (int i=0; i<SinglePlayer::instance()->m_hashmapMonster.size(); i++)
+    {
         m_vMonsterCard.push_back(new CFightCard(SinglePlayer::instance()->m_hashmapMonster[i]));
     }
     for (int  i=0; i<m_vMonsterCard.size(); i++) {

@@ -806,6 +806,61 @@ void CSkillManager::dealWithSkillShanghaiList(int skillIndex,vector<SFightCardSp
         ownCardProperty[ownIndex]->isDead=true;
     }
 }
+int CSkillManager::refactorpuTongGongJi(CFightCard **ownCardProperty,CFightCard **enemyCardpropert)
+{
+    int oldHp=(*ownCardProperty)->m_iCurrHp;
+    //普通攻击    A攻击者攻击- B敌人的防御  =伤害  需要加上  防护的伤害
+    (*enemyCardpropert)->m_iCurrHp -=(* ownCardProperty)->m_attack-(*enemyCardpropert)->m_defend;
+    if((*enemyCardpropert)->m_iCurrHp<0)
+    {
+        (*enemyCardpropert)->m_iCurrHp=0;
+    }
+    int retHp=oldHp-(*enemyCardpropert)->m_iCurrHp;
+    return retHp>=0?retHp:0;
+}
+void CSkillManager::basicGongji(int index,CFightCard **ownCard,CFightCard **monsterCard,int ownIndex,int monstexIndex,int Huihe)
+{
+    int OwncurrHp=(*ownCard)->m_iCurrHp;
+    int MonsterHp=(*monsterCard)->m_iCurrHp;
+    
+    if(refactorpuTongGongJi(ownCard,monsterCard)!=-1)
+    {
+        OwncurrHp=checkShanghai(OwncurrHp,(*ownCard)->m_iCurrHp);
+        MonsterHp=checkShanghai(MonsterHp,(*monsterCard)->m_iCurrHp);
+        m_Animationlist.push_back(new SAnimationFps(ownIndex,0,(*ownCard)->m_iCurrHp,(*ownCard)->m_iHp,(*monsterCard)->m_iCurrHp,(*monsterCard)->m_iHp,Huihe,OwncurrHp,MonsterHp));
+    }
+    
+}
+
+void CSkillManager::refactorJisuan(int skillIndex,vector<CFightCard *>ownCardProperty,vector<CFightCard *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe)
+{
+    if(ownIndex > ownCardProperty.size() || enemyIndex >enemyCardpropert.size() )
+    {
+        PT_ERR_LOG("error");
+        return ;
+    }
+    switch (skillIndex)
+    {
+        case 0:
+        {
+            basicGongji(skillIndex,&ownCardProperty[ownIndex],&enemyCardpropert[enemyIndex],ownIndex,enemyIndex,Huihe);
+        }
+      break;
+     default:
+      break;
+    }
+    if(enemyCardpropert[enemyIndex]->m_iCurrHp<=0)
+    {
+        //敌人移动
+        enemyCardpropert[enemyIndex]->isDead=true;
+    }
+    //自己移动
+    if(ownCardProperty[ownIndex]->m_iCurrHp<=0)
+    {
+        ownCardProperty[ownIndex]->isDead=true;
+    }
+
+}
 
 void CSkillManager::clearAnimationList()
 {

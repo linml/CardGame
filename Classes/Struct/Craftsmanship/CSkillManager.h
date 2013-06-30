@@ -12,6 +12,7 @@
 #include <vector>
 #include "Craftsmanship.h"
 #include "CSingleton.h"
+#include "CCard.h"
 using namespace std;
 
 
@@ -26,6 +27,7 @@ public:
     void animationDealWithSkillShanghai(vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int &jiaHp,int &jianhp,cocos2d::CCLayer *layer);
     
     int puTongGongJi(SFightCardSprite **ownCardProperty,SFightCardSprite **enemyCardpropert);
+    
     void removeSprite(cocos2d::CCNode *node,void *tag);
     
     void appendAnimationListBuffer(int ownIndex,int Huihe,SFightCardSprite *ownCardProperty,SFightCardSprite *enemyCardpropert);
@@ -37,6 +39,13 @@ public:
     void dealWithSkillShanghaiList(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe);
     void shangHaiZhiLogic(int index,vector<SFightCardSprite *>ownCardProperty,vector<SFightCardSprite *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe);
     void putongGongji(int index,SFightCardSprite **ownSprite,SFightCardSprite **enemyCardpropert,int ownIndex,int enemyIndex,int Huihe);
+    
+    void refactorJisuan(int index,vector<CFightCard *>ownCardProperty,vector<CFightCard *> enemyCardpropert,int  ownIndex,int enemyIndex,int Huihe);
+    void basicGongji(int index,CFightCard **ownCard,CFightCard **monsterCard,int ownIndex,int monstexIndex,int Huihe);
+    int refactorpuTongGongJi(CFightCard **ownCardProperty,CFightCard **enemyCardpropert);
+
+    
+    
     void monsterDead(int  huihe);
     void fightDead(int  huihe);
     
