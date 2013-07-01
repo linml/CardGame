@@ -1,5 +1,5 @@
 #include "CPtListViewWidget.h"
-
+#include "CPtTableItem.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
 
@@ -19,70 +19,77 @@ TableView* TableView::create(cocos2d::extension::CCTableViewDataSource *dataSour
     return table;
 }
 
-void TableView::setControlTouchDelegate(TableViewDelegate *inTouchEnd)
-{
 
-     m_pTouchEnd = inTouchEnd;
-    
-}
 
 bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-    CCLog("TableView::ccTouchBegan");
-    CCNode *cell = getCell(pTouch);
-    if (cell)
+    if (getDirection() == kCCScrollViewDirectionVertical)
     {
-        CCLayer *layer = (CCLayer*)cell->getChildByTag(0);
-        if (layer)
+        m_bTouchDragSelect = false;
+        m_pSelectItem = getCell(pTouch);
+        if (m_pSelectItem)
         {
-            layer->ccTouchBegan(pTouch, pEvent);
+            CCLog("m_pSelectItem: %d, the parent: %d",(int)m_pSelectItem, m_pSelectItem->getParent());
+            CCTouchDelegate *touchDelegate = (CCTouchDelegate*)m_pSelectItem;
+            if (touchDelegate)
+            {
+                m_bTouchDragSelect = touchDelegate->ccTouchBegan(pTouch, pEvent);
+            }
         }
+        if (m_bTouchDragSelect)
+        {
+            return m_bTouchDragSelect;
+        }
+
     }
-    
     return CCTableView::ccTouchBegan(pTouch, pEvent);
 }
 void TableView::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
-    CCLog("TableView::ccTouchMoved");
-    CCNode *cell = getCell(pTouch);
-    if (cell)
+    if (getDirection() == kCCScrollViewDirectionVertical)
     {
-        CCLayer *layer = (CCLayer*)cell->getChildByTag(0);
-        if (layer)
+    
+        if (m_bTouchDragSelect)
         {
-            layer->ccTouchBegan(pTouch, pEvent);
+            if (m_pSelectItem)
+            {
+                CCLog("m_pSelectItem: %d",(int)m_pSelectItem);
+                CCTouchDelegate *touchDelegate = (CCTouchDelegate*)m_pSelectItem;
+                if (touchDelegate)
+                {
+                    touchDelegate->ccTouchMoved(pTouch, pEvent);
+                }
+            }
+            
+            return;
         }
     }
-    CCTableView::ccTouchMoved(pTouch, pEvent);
+  
+    CCScrollView::ccTouchMoved(pTouch, pEvent);
 }
 
 
 void TableView::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
-    if (!this->isVisible()) {
-        return;
-    }
-    if (m_pTouches->count() == 1 && !this->isTouchMoved()) {
-        unsigned int        index;
-        CCTableViewCell   *cell;
-        CCPoint           point;
-        
-        point = this->getContainer()->convertTouchToNodeSpace(pTouch);
-        if (m_eVordering == kCCTableViewFillTopDown) {
-            CCSize cellSize = m_pDataSource->cellSizeForTable(this);
-            point.y -= cellSize.height;
-        }
-        index = this->_indexFromOffset(point);
-        cell  = this->_cellWithIndex(index);
-        
-        if (cell)
+    if (getDirection() == kCCScrollViewDirectionVertical)
+    {
+        if (m_bTouchDragSelect)
         {
-            m_pTableViewDelegate->tableCellTouched(this, cell);
-            TouchEnd(this, cell, pTouch);
+            if (m_pSelectItem)
+            {
+                CCLog("m_pSelectItem: %d",(int)m_pSelectItem);
+                CCTouchDelegate *touchDelegate = (CCTouchDelegate*)m_pSelectItem;
+                if (touchDelegate)
+                {
+                    touchDelegate->ccTouchEnded(pTouch, pEvent);
+                }
+            }
+            
+            return;
         }
+
     }
-    CCScrollView::ccTouchEnded(pTouch, pEvent);
-}
+    CCTableView::ccTouchEnded(pTouch, pEvent);}
 
 
 
@@ -144,7 +151,11 @@ void TableView::visit()
 		ccArray *arrayData = m_pChildren->data;
 		unsigned int i=0;
         // add
-        sortAllChildren();
+       // if (getDirection() == kCCScrollViewDirectionVertical)
+        {
+              sortAllChildren();
+        }
+      
 		// draw children zOrder < 0
 		for( ; i < arrayData->num; i++ )
         {
@@ -185,20 +196,11 @@ void TableView::visit()
 }
 
 
-void TableView::TouchEnd(cocos2d::CCNode *parent, cocos2d::CCNode *current, cocos2d::CCTouch *pTouch)
-{
-  
-    if (m_pTouchEnd)
-    {
-        m_pTouchEnd->TouchEnd(parent, current, pTouch);
-    }
-    
-}
 
 CCNode * TableView::getCell(CCTouch *pTouch)
 {
     unsigned int        index;
-    CCTableViewCell   *cell;
+    CCTableViewCell   *cell=NULL;
     CCPoint           point;
     
     point = this->getContainer()->convertTouchToNodeSpace(pTouch);
@@ -209,7 +211,43 @@ CCNode * TableView::getCell(CCTouch *pTouch)
     index = this->_indexFromOffset(point);
     cell  = this->_cellWithIndex(index);
     
-    return cell;
+    if (cell)
+    {
+        CCPoint location = pTouch->getLocation();
+        location =  cell->convertToNodeSpace(location);
+        
+        
+        CCArray *children = cell->getChildren();
+        
+        if (children == NULL)
+        {
+            return NULL;
+        }
+        for (int i = 0; i < children->count(); i++)
+        {
+            
+            
+            
+            CCNode *pSprite =(CCNode *) children->objectAtIndex(i);
+            if (pSprite)
+            {
+                if (pSprite->getParent() == NULL)
+                {
+                    pSprite->setParent(cell);
+                }
+                if(pSprite->boundingBox().containsPoint(location))
+                {
+                    return pSprite;
+                    
+                    break;
+                }
+            }
+        }
+        
+    }
+    
+    
+    return NULL;
 
 }
 
@@ -219,14 +257,14 @@ void TableView::addBackground(cocos2d::CCNode *node, int zorder /* = 0*/ , int t
     
 }
 
-CPtListViewWidget * CPtListViewWidget::create(CCArray*items, CCSize containerSize, CCSize paddingSize, int inColumCount)
+CPtListViewWidget * CPtListViewWidget::create(CCArray*items, CCSize containerSize,  CCScrollViewDirection direction, CCSize paddingSize, int inColumCount)
 {
     
     CPtListViewWidget * layer = new CPtListViewWidget();
     if (layer)
     {
         layer->autorelease();
-        if(!layer->init(items, containerSize, paddingSize, inColumCount))
+        if(!layer->init(items, containerSize, direction, paddingSize, inColumCount))
         {
             delete layer;
             layer = NULL;
@@ -261,10 +299,11 @@ void CPtListViewWidget::setBackGround(cocos2d::CCLayer *layer, int zorder, int t
     }
 }
 
-void CPtListViewWidget::initData(CCArray *items, CCSize containerSize, CCSize paddingSize, int inColumCount)
+void CPtListViewWidget::initData(CCArray *items, CCSize containerSize, CCScrollViewDirection direction, CCSize paddingSize, int inColumCount)
 {
     m_cItems = items;
     m_cItems->retain();
+   
     m_nColumcount = inColumCount;
     m_nRows = (m_cItems == NULL)? 1 : m_cItems->count() / m_nColumcount;
     m_nRows += (m_cItems->count() % m_nColumcount) == 0 ? 0 : 1;
@@ -272,6 +311,9 @@ void CPtListViewWidget::initData(CCArray *items, CCSize containerSize, CCSize pa
     m_fContainerWidth = containerSize.width;
     m_cItemSize   = CCSizeZero;
     m_cPaddingSize = paddingSize;
+    m_cDirection = direction;
+    
+    
     if (items && items->count() > 0)
     {
         CCNode * node = (CCNode *)items->objectAtIndex(0);
@@ -279,22 +321,24 @@ void CPtListViewWidget::initData(CCArray *items, CCSize containerSize, CCSize pa
     }
 }
 
-bool CPtListViewWidget::init(CCArray *items, CCSize containerSize, CCSize itemSize, int inColumCount)
+bool CPtListViewWidget::init(CCArray *items, CCSize containerSize, CCScrollViewDirection direction, CCSize itemSize, int inColumCount)
 {
 	bool bRet = false;
 	do
 	{
 		CC_BREAK_IF( !CCLayer::init() );
-        initData(items, containerSize, itemSize, inColumCount);
+        initData(items, containerSize, direction, itemSize, inColumCount);
         m_pBackground = CCLayer::create();
 		m_pTableView = TableView::create(this, CCSizeMake(containerSize.width, containerSize.height));
-        
-        ((TableView*)m_pTableView)->setControlTouchDelegate(this);
         ((TableView*)m_pTableView)->addBackground(m_pBackground);
-        m_pTableView->setDirection(kCCScrollViewDirectionVertical);
+        m_pTableView->setDirection(direction);
 		m_pTableView->setPosition(CCPointZero);
 		m_pTableView->setDelegate(this);
-		m_pTableView->setVerticalFillOrder(kCCTableViewFillTopDown);
+        if (direction == kCCScrollViewDirectionVertical)
+        {
+            m_pTableView->setVerticalFillOrder(kCCTableViewFillTopDown);
+        }
+		
 		this->addChild(m_pTableView);
 		m_pTableView->reloadData();
 
@@ -315,7 +359,12 @@ void CPtListViewWidget::tableCellTouched(CCTableView* table, CCTableViewCell* ce
 
 CCSize CPtListViewWidget::cellSizeForTable(CCTableView *table)
 {
-    return CCSizeMake(m_fContainerWidth, (m_cItemSize.height + m_cPaddingSize.height*2));
+    if (m_cDirection == kCCScrollViewDirectionHorizontal)
+    {
+       return  CCSizeMake(m_cItemSize.width+m_cPaddingSize.width, m_cItemSize.height+m_cPaddingSize.height*10);
+    }
+   
+    return CCSizeMake(m_cItemSize.width + m_cPaddingSize.width, (m_cItemSize.height + m_cPaddingSize.height*2));
 }
 
 CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigned int idx)
@@ -333,35 +382,52 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
         pCell->removeAllChildrenWithCleanup(true);
     }
 
-    int index = 0;
-    for (int i = 0; i < m_nColumcount; i++)
+    if (m_cDirection == kCCScrollViewDirectionHorizontal)
     {
-        index = i+idx*m_nColumcount;
-        if (index >= m_cItems->count())
+       
+        CCNode *pSprite = ((CPtTableItem *) m_cItems->objectAtIndex(idx))->getDisplayView();
+        if (pSprite == NULL)
         {
-            break;
+            CCLog("item is null");
+            return  NULL;
         }
-        CCString *pString = CCString::createWithFormat("%d", i+idx*m_nColumcount);
-        CCNode *pSprite =(CCNode *) m_cItems->objectAtIndex(i+idx*m_nColumcount); // CCSprite::create("listitem.png");
-        CCPoint point = CCPointMake(pSprite->getContentSize().width, 0);
-        if(pSprite->getParent())
-        {
-            pSprite->setParent(NULL);
-        }
-        
+        pSprite->setParent(NULL);
         pSprite->setAnchorPoint(CCPointZero);
-        pSprite->setPosition(ccp(point.x *i + m_cPaddingSize.width*(i+1) , 0));
+        pSprite->setPosition(ccp(m_cPaddingSize.width, m_cPaddingSize.height*2));
         pCell->addChild(pSprite);
+    
         
-        CCLabelTTF *pLabel = CCLabelTTF::create(pString->getCString(), "Arial", 20.0);
-        pLabel->setPosition(ccp(0 , 0));
-        pLabel->setAnchorPoint(CCPointZero);
-        pLabel->setTag(123);
-        pSprite->addChild(pLabel);
-
+        return pCell;
+    }
+    else
+    {
+        CCLog("vertical");
+        int index = 0;
+        for (int i = 0; i < m_nColumcount; i++)
+        {
+            index = i+idx*m_nColumcount;
+            if (index >= m_cItems->count())
+            {
+                break;
+            }
+            
+            CCNode *pSprite =(CCNode *) m_cItems->objectAtIndex(i+idx*m_nColumcount); 
+            CCPoint point = CCPointMake(pSprite->getContentSize().width, 0);
+            if(pSprite->getParent())
+            {
+                pSprite->setParent(NULL);
+            }
+            
+            pSprite->setAnchorPoint(CCPointZero);
+            pSprite->setPosition(ccp(point.x *i + m_cPaddingSize.width*(i+1) , 0));
+            pCell->addChild(pSprite);
+            
+        }
+        
+        return pCell;
     }
     
-    return pCell;
+   
 }
 
 unsigned int CPtListViewWidget::numberOfCellsInTableView(CCTableView *table)
@@ -369,41 +435,15 @@ unsigned int CPtListViewWidget::numberOfCellsInTableView(CCTableView *table)
     return m_nRows;
 }
 
-void CPtListViewWidget::TouchEnd(CCNode *parent, CCNode *current, CCTouch *pTouch)
-{
-    CCLOG("ListViewLayer::TouchEnd");
-    CCPoint location = pTouch->getLocation();
-    location =  current->convertToNodeSpace(location);
-    CCTableViewCell * cell = (CCTableViewCell *)current;
-    int index =  cell->getIdx();
-    int id;
-    for (int i = 0; i < m_nColumcount; i++)
-    {
-        id = i+index*m_nColumcount;
-     
-        if (id >= m_cItems->count())
-        {
-            break;
-        }
-        CCNode *pSprite =(CCNode *) m_cItems->objectAtIndex(id);
-        
-        if (pSprite)
-        {
-            if(pSprite->boundingBox().containsPoint(location))
-            {
-                CCLog("the %d", id);
-                break;
-            }
-        }
-    }
-}
 
 void CPtListViewWidget::scrollViewDidScroll(CCScrollView *view)
 {
+  
 }
 
 void CPtListViewWidget::scrollViewDidZoom(CCScrollView *view)
 {
+    
 }
 
 

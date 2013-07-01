@@ -39,5 +39,10 @@ namespace PtJsonUtility {
     
     //保存json文件
     void writeJsonToFile(json::Object oJsonObject, const char* sFileName);
+    
+    void writeJsonToString(json::Object oJsonObject, string& sFileName);
+    
+    //从plist文件中获取字典对象
+    CCDictionary* getDicFromPlist(const char* fileName);
 }
 #endif

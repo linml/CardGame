@@ -10,13 +10,8 @@ using namespace std;
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-class TableViewDelegate
-{
-public:
-    virtual void TouchEnd(CCNode *parent, CCNode *current, CCTouch *pTouch) = 0;
-};
 
-class TableView : public CCTableView, public TableViewDelegate
+class TableView : public CCTableView
 {
     
 public:
@@ -24,31 +19,32 @@ public:
     static TableView*  create(CCTableViewDataSource* dataSource, CCSize size);
     
 public:
-    void setControlTouchDelegate(TableViewDelegate *inTouchEnd);
 public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
   //  virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void TouchEnd(CCNode *parent, CCNode *current, CCTouch *pTouch);
     
     virtual void addBackground(CCNode *node, int zorder = 0 , int tag = -1);
     virtual void visit();
 public:
     CCNode *getCell(CCTouch *pTouch);
+    
 protected:
-    TableViewDelegate *m_pTouchEnd;
+    CCNode * m_pSelectItem;
+    bool m_bTouchDragSelect;
+
 protected:
     void beforeDraw();
     void afterDraw();
 };
 
 
-class CPtListViewWidget : public cocos2d::CCLayer, public cocos2d::extension::CCTableViewDataSource, public cocos2d::extension::CCTableViewDelegate, public TableViewDelegate
+class CPtListViewWidget : public cocos2d::CCLayer, public cocos2d::extension::CCTableViewDataSource, public cocos2d::extension::CCTableViewDelegate
 {
     
 public:
-    static CPtListViewWidget *create(CCArray *items, CCSize containerSize, CCSize itemSize, int inColumCount);
+    static CPtListViewWidget *create(CCArray *items,  CCSize containerSize,  CCScrollViewDirection direction, CCSize itemSize, int inColumCount);
     
 public:
     CPtListViewWidget();
@@ -56,8 +52,9 @@ public:
     void setBackGround(CCLayer *layer, int zorder = -100, int tag = 1);
     void setPaddingWidth(float paddWidth);
     void setPaddingHeight(float paddingHeight);
+    void setChipEnable(const bool & inChipEnable);
 public:
-    virtual bool init(CCArray *items, CCSize containerSize, CCSize PaddingSize = CCSizeMake(5, 2.5), int inColumCount = 1);
+    virtual bool init(CCArray *items, CCSize containerSize,CCScrollViewDirection direction = kCCScrollViewDirectionVertical,  CCSize PaddingSize = CCSizeMake(5, 2.5), int inColumCount = 1);
     
     virtual void scrollViewDidScroll(cocos2d::extension::CCScrollView* view);
 
@@ -71,11 +68,11 @@ public:
 
     virtual unsigned int numberOfCellsInTableView(cocos2d::extension::CCTableView *table);
 
-    virtual void TouchEnd(CCNode *parent, CCNode *current, CCTouch *pTouch);
+
     
     
 protected:
-    void initData(CCArray *items, CCSize containerSize, CCSize itemSize, int inColumCount);
+    void initData(CCArray *items, CCSize containerSize, CCScrollViewDirection direction, CCSize itemSize, int inColumCount);
 protected:
     
     int m_nRows;
@@ -83,6 +80,7 @@ protected:
     CCTableView * m_pTableView;
     CCLayer *m_pBackground;
     CCSize m_cItemSize;
+    CCScrollViewDirection m_cDirection;
     CC_PROPERTY(CCSize, m_cPaddingSize, PaddingSize);
     CC_PROPERTY(int, m_nColumcount, ColumCount);
     CC_PROPERTY(float, m_fContainerWidth, ContainerWidth);

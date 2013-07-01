@@ -20,7 +20,7 @@ public:
     CCard();
     int m_icard_id;
     string m_scard_name;
-    unsigned char  m_ccard_color;  ///背景底色
+    unsigned char  m_ccard_next;  ///背景底色
     unsigned short int  m_sicard_star;
     int m_icard_stirps;   //种族
     int m_icard_suit;      //随机数值
@@ -31,6 +31,7 @@ public:
     int m_icard_attack; //攻击力
     int m_icard_defend; //防御力
     int m_icardhp;    //卡牌的总的HP
+    int m_iusually_attack;
     int m_iskillLine;
     int m_iskillHelp;
     int m_iskillDead;

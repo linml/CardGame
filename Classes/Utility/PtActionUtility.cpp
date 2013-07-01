@@ -65,25 +65,25 @@ namespace PtActionUtility {
         if (actionType == act_sequence) {
             //取actionName 进一步解析
             vector<string> vActionName = GameTools::splitString(sAction, "(", ")");
-            CCArray* seqActionArray = CCArray::arrayWithCapacity(vActionName.size());
+            CCArray* seqActionArray = CCArray::createWithCapacity(vActionName.size());
             for (int i = 0; i < vActionName.size(); i++) {
                 string action = getSActionWithName(vActionName[i], vActions);
                 CCAction* seqAction = decodeStringToAction(action, vActions);
                 seqActionArray->addObject(seqAction);
             }
-            CCAction* action = CCSequence::actionWithArray(seqActionArray);
+            CCAction* action = CCSequence::create(seqActionArray);
             //        seqActionArray->release();
             return action;
         } else if (actionType == act_spawn) {
             //取actionName 进一步解析
             vector<string> vActionName = splitString(sAction, "(", ")");
-            CCArray* seqActionArray = CCArray::arrayWithCapacity(vActionName.size());
+            CCArray* seqActionArray = CCArray::createWithCapacity(vActionName.size());
             for (int i = 0; i < vActionName.size(); i++) {
                 string action = getSActionWithName(vActionName[i], vActions);
                 CCAction* seqAction = decodeStringToAction(action, vActions);
                 seqActionArray->addObject(seqAction);
             }
-            CCAction* action = CCSpawn::actionWithArray(seqActionArray);
+            CCAction* action = CCSpawn::create(seqActionArray);
             //        seqActionArray->release();
             return action;
         } else if (actionType == act_repeat) {
@@ -94,14 +94,14 @@ namespace PtActionUtility {
             CCAction* repeatAction = decodeStringToAction(saction, vActions);
             //次数
             int times = atoi(vValue[1].c_str());
-            CCActionInterval* action = CCRepeat::actionWithAction((CCFiniteTimeAction*) repeatAction, times);
+            CCActionInterval* action = CCRepeat::create((CCFiniteTimeAction*) repeatAction, times);
             return action;
         } else if (actionType == act_repeatforever) {
             //参数是名字 要进一步解析
             string actionName = getSubStr(sAction, "(", ")");
             string saction = getSActionWithName(actionName, vActions);
             CCAction* repeatAction = decodeStringToAction(saction, vActions);
-            CCActionInterval* action = CCRepeatForever::actionWithAction((CCActionInterval*) repeatAction);
+            CCActionInterval* action = CCRepeatForever::create((CCActionInterval*) repeatAction);
             return action;
         } else if (actionType == act_reverse) {
             //参数是名字 要进一步解析
@@ -125,45 +125,45 @@ namespace PtActionUtility {
             return (CCAction*) action;
         } else if (actionType == act_place) {
             CCPoint point = pointFromString(getSubStr(sAction, "(", ")").c_str());
-            return CCPlace::actionWithPosition(point);
+            return CCPlace::create(point);
         } else if (actionType == act_delay) {
             float time = atof(getSubStr(sAction, "(", ")").c_str());
-            return CCDelayTime::actionWithDuration(time);
+            return CCDelayTime::create(time);
         } else if (actionType == act_move_to) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             CCPoint desPos = pointFromString(vValue[1]);
-            CCActionInterval* action = CCMoveTo::actionWithDuration(time, desPos);
+            CCActionInterval* action = CCMoveTo::create(time, desPos);
             return action;
         } else if (actionType == act_move_by) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             CCPoint desPos = pointFromString(vValue[1]);
-            CCActionInterval* action = CCMoveBy::actionWithDuration(time, desPos);
+            CCActionInterval* action = CCMoveBy::create(time, desPos);
             return action;
         } else if (actionType == act_rotate_to) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             float angle = atof(vValue[1].c_str());
-            CCActionInterval* action = CCRotateTo::actionWithDuration(time, angle);
+            CCActionInterval* action = CCRotateTo::create(time, angle);
             return action;
         } else if (actionType == act_rotate_by) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             float angle = atof(vValue[1].c_str());
-            CCActionInterval* action = CCRotateBy::actionWithDuration(time, angle);
+            CCActionInterval* action = CCRotateBy::create(time, angle);
             return action;
         } else if (actionType == act_scale_to) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             if (vValue.size() == 2) {
                 float scale = atof(vValue[1].c_str());
-                CCActionInterval* action = CCScaleTo::actionWithDuration(time, scale);
+                CCActionInterval* action = CCScaleTo::create(time, scale);
                 return action;
             } else {
                 float scaleX = atof(vValue[1].c_str());
                 float scaleY = atof(vValue[2].c_str());
-                CCActionInterval* action = CCScaleTo::actionWithDuration(time, scaleX, scaleY);
+                CCActionInterval* action = CCScaleTo::create(time, scaleX, scaleY);
                 return action;
             }
         } else if (actionType == act_scale_by) {
@@ -171,12 +171,12 @@ namespace PtActionUtility {
             float time = atof(vValue[0].c_str());
             if (vValue.size() == 2) {
                 float scale = atof(vValue[1].c_str());
-                CCActionInterval* action = CCScaleBy::actionWithDuration(time, scale);
+                CCActionInterval* action = CCScaleBy::create(time, scale);
                 return action;
             } else {
                 float scaleX = atof(vValue[1].c_str());
                 float scaleY = atof(vValue[2].c_str());
-                CCActionInterval* action = CCScaleBy::actionWithDuration(time, scaleX, scaleY);
+                CCActionInterval* action = CCScaleBy::create(time, scaleX, scaleY);
                 return action;
             }
         } else if (actionType == act_skew_to) {
@@ -184,54 +184,54 @@ namespace PtActionUtility {
             float time = atof(vValue[0].c_str());
             float sx = atof(vValue[1].c_str());
             float sy = atof(vValue[2].c_str());
-            CCActionInterval* action = CCSkewTo::actionWithDuration(time, sx, sy);
+            CCActionInterval* action = CCSkewTo::create(time, sx, sy);
             return action;
         } else if (actionType == act_skew_by) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             float sx = atof(vValue[1].c_str());
             float sy = atof(vValue[2].c_str());
-            CCActionInterval* action = CCSkewBy::actionWithDuration(time, sx, sy);
+            CCActionInterval* action = CCSkewBy::create(time, sx, sy);
             return action;
         } else if (actionType == act_fade_in) {
             float time = atof(getSubStr(sAction, "(", ")").c_str());
-            CCActionInterval* action = CCFadeIn::actionWithDuration(time);
+            CCActionInterval* action = CCFadeIn::create(time);
             return action;
         } else if (actionType == act_fade_out) {
             float time = atof(getSubStr(sAction, "(", ")").c_str());
-            CCActionInterval* action = CCFadeOut::actionWithDuration(time);
+            CCActionInterval* action = CCFadeOut::create(time);
             return action;
         } else if (actionType == act_fade_to) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             float opacity = atof(vValue[1].c_str());
             
-            CCActionInterval* action = CCFadeTo::actionWithDuration(time, opacity);
+            CCActionInterval* action = CCFadeTo::create(time, opacity);
             return action;
         } else if (actionType == act_blink) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             float times = atof(vValue[1].c_str());
-            return CCBlink::actionWithDuration(time, times);
+            return CCBlink::create(time, times);
         } else if (actionType == act_tint_to) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             int red = atoi(vValue[1].c_str());
             int green = atoi(vValue[2].c_str());
             int blue = atoi(vValue[3].c_str());
-            return CCTintTo::actionWithDuration(time, red, green, blue);
+            return CCTintTo::create(time, red, green, blue);
         } else if (actionType == act_tint_by) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             int red = atoi(vValue[1].c_str());
             int green = atoi(vValue[2].c_str());
             int blue = atoi(vValue[3].c_str());
-            return CCTintBy::actionWithDuration(time, red, green, blue);
+            return CCTintBy::create(time, red, green, blue);
         } else if (actionType == act_over) {
             CCSprite* sprite = new CCSprite();
             sprite->init();
             sprite->autorelease();
-            CCCallFunc* action = CCCallFunc::actionWithTarget(sprite, callfunc_selector(ActionCallFun::actionOver));
+            CCCallFunc* action = CCCallFunc::create(sprite, callfunc_selector(ActionCallFun::actionOver));
             return action;
         } else if (actionType == act_remove_self) {
             
@@ -242,7 +242,7 @@ namespace PtActionUtility {
     //取得脚本在的一个组合动画
     CCAction* getRunActionWithActionFile(const string& file) {
         std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(file.c_str());
-        CCDictionary* data =CCDictionary::dictionaryWithContentsOfFile(m_sPlistFile.c_str());
+        CCDictionary* data =CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
         
         CCAction* action = NULL;
         CCArray* vKey = data->allKeys();
@@ -280,7 +280,7 @@ namespace PtActionUtility {
     //载入动画文件，生成动画
     void createAniWithFile(const string& file) {
         std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(file.c_str());
-        CCDictionary* data = CCDictionary::dictionaryWithContentsOfFile(m_sPlistFile.c_str());
+        CCDictionary* data = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
         
         CCArray* vAniName = data->allKeys();
         vector<string> vAniFrames;
@@ -305,7 +305,7 @@ namespace PtActionUtility {
                 CCSpriteFrame* frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(vAniFrames[j].c_str());
                 aniFrames->addObject(frame);
             }
-            CCAnimation* ani = CCAnimation::animationWithSpriteFrames(aniFrames, delay);
+            CCAnimation* ani = CCAnimation::create(aniFrames, delay);
 //            aniFrames->release();
             
             CCAnimationCache::sharedAnimationCache()->addAnimation(ani, key->m_sString.c_str());
@@ -316,7 +316,7 @@ namespace PtActionUtility {
     //载入动画文件，生成动画
     CCAnimation* createAniWithFile(const char* file, const char* aniName, float delay) {
         std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(file);
-        CCDictionary* data = CCDictionary::dictionaryWithContentsOfFile(m_sPlistFile.c_str());
+        CCDictionary* data = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
         
         CCArray* vAniName = data->allKeys();
         vector<string> vAniFrames;
@@ -338,7 +338,7 @@ namespace PtActionUtility {
                     CCSpriteFrame* frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(vAniFrames[j].c_str());
                     aniFrames->addObject(frame);
                 }
-                CCAnimation* ani = CCAnimation::animationWithSpriteFrames(aniFrames, delay);
+                CCAnimation* ani = CCAnimation::create(aniFrames, delay);
 //                aniFrames->release();
                 
                 return ani;
@@ -350,7 +350,7 @@ namespace PtActionUtility {
     //读取动作文件(runAction and actions)
     void readSpriteActionFile(const string& file, CCSprite* sprite,const string& key) {
         std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(file.c_str());
-        CCDictionary* data = CCDictionary::dictionaryWithContentsOfFile(m_sPlistFile.c_str());
+        CCDictionary* data = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
         
         if(key == "") {
             PtMapUtility::setSpriteDatInfo(sprite, data);

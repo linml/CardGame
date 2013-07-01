@@ -130,10 +130,7 @@ void CConfirmLayer::handlerTouch()
                 {
                   //  g_nLevle++;
                 }
-               
-	     CCDirector::sharedDirector()->replaceScene(CFightLayerScene::scene());
-             SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
-
+            SingleSceneManager::instance()->runSceneSelect(1007);
                 removeFromParentAndCleanup(true);
                 break;
             default:

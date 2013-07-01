@@ -17,7 +17,10 @@ using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace std;
 //m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95
-#define SERVER_INF_ADR(JSON) "http://cube.games.com/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
+#define SERVER_INF_ADR(JSON) "http://192.168.152.148/cube/cube_svn/cube_svn/trunk/web/api.php?m=Resource&a=xiamen&uid=194&sig=2ac2b1e302c46976beaab20a68ef95"
+
+
+//"http://cube.games.com/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
 
 #define SERVER_SID "sid"
 #define SERVER_NAME "name"
@@ -32,6 +35,7 @@ using namespace std;
     inf.m_RequestType=CCHttpRequest::kHttpPost;\
     inf.m_pSelector = NOTIFICATIONTAG;\
     inf.m_pchTag = HTTPREQUESTTAG;\
+    inf.m_pchData = NULL;\
     CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector, NULL);\
 }
@@ -42,6 +46,7 @@ typedef struct STC_HTTPINF {
     const char* m_pchTag;
     string jsonstr;
     CCHttpRequest::HttpRequestType m_RequestType;
+    const char* m_pchData;
 } stcRequestInf;
 
 typedef struct STC_SERVER_INF
@@ -63,7 +68,7 @@ public:
     
     void addRequest(stcRequestInf tInf);
     
-    void addRequest(const char* pchUrl, const char* pchSelector, const char* pchTag,CCHttpRequest::HttpRequestType requestType = CCHttpRequest::kHttpGet);
+    void addRequest(const char* pchUrl, const char* pchSelector, const char* pchTag,const char* pchData = NULL,CCHttpRequest::HttpRequestType requestType = CCHttpRequest::kHttpPost);
     
     int getRequestQueueSize();
     

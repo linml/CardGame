@@ -38,15 +38,16 @@ CPtHttpClient* CPtHttpClient::sharePtHttpClient()
 
 void CPtHttpClient::send(stcRequestInf tInf)
 {
-    printf("send %s \n",tInf.m_pchURL);
+    printf("send %s\n",tInf.m_pchURL);
     CCHttpRequest* request = new CCHttpRequest();
-    cout<<"merlin:"<<tInf.m_pchURL<<endl;
     request->setUrl(tInf.m_pchURL);
+    request->setRequestData("{\"ddd\":\"这是中文\"}", strlen("{\"ddd\":\"这是中文\"}"));
     request->setRequestType(tInf.m_RequestType);
     request->setResponseCallback(this, callfuncND_selector(CPtHttpClient::onHttpRequestCompleted));
+    if (tInf.m_RequestType ==  CCHttpRequest::kHttpPost && tInf.m_pchData) {
+        request->setRequestData(tInf.m_pchData, strlen(tInf.m_pchData));
+    }
     request->setTag(tInf.m_pchTag);
-    tInf.jsonstr="{a:10}";
-    request->setRequestData(tInf.jsonstr.c_str(), tInf.jsonstr.length());
     CCHttpClient::getInstance()->send(request);
     request->release();
     m_bIsSending = true ;
@@ -64,10 +65,10 @@ void CPtHttpClient::addRequest(stcRequestInf tInf)
     }
 }
 
-void CPtHttpClient::addRequest(const char* pchUrl, const char* pchSelector, const char* pchTag,CCHttpRequest::HttpRequestType requestType)
+void CPtHttpClient::addRequest(const char* pchUrl, const char* pchSelector, const char* pchTag, const char* pchData ,CCHttpRequest::HttpRequestType requestType)
 {
-    stcRequestInf inf = {pchUrl,pchSelector,pchTag,"",requestType};
-    addRequest(inf);
+    //stcRequestInf inf = {pchUrl,pchSelector,pchTag,requestType,pchData};
+    //addRequest(inf);
 }
 
 void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)

@@ -14,7 +14,15 @@
 #include "CCard.h"
 #include <vector>
 using namespace std;
-
+struct SLevelPlayer {
+    int m_iLevel;
+    int m_iCard_max;
+    int m_iLeadership;
+    int m_iFriend_max;
+    int m_iHP;
+    int m_iMp;
+    int m_iexp;
+};
 class CGamePlayer {
 public:
     int m_nFaceTo;
@@ -39,6 +47,25 @@ public:
     map<int, CCard *>m_hashmapAllCard;
     vector<CCard *>m_hashmapFight;
     vector<CCard *>m_hashmapMonster;
+    
+private:
+    int m_iCurrentExp;
+    int m_iCurrentHp;
+    int m_iCurrentMp;
+   struct SLevelPlayer *m_sLevelPlayer;
+public:
+    bool isCanUpdateLevel(int nExp);
+    bool UpdateLevel();
+    int getTotoalHp();
+    int getCurrentHp();
+    int getTotoalMp();
+    int getCurrentMp();
+    int getTotalExp();
+    int getCurrentExp();
+    void setCurrentHp(int nHp);
+    void setCurrentMp(int nMp);
+    void setCurrentExp(int nExp);
+
 };
 typedef Singleton<CGamePlayer> SinglePlayer;
 

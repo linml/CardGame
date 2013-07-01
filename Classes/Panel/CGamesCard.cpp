@@ -110,13 +110,13 @@ void CGamesCard::createHero(const char *str)
 
 bool CGamesCard::initBg(CCard *card)
 {
-    char data[20];
-    sprintf(data, "%s_%0.2d.png",card->m_scard_groud.c_str(),(int)card->m_ccard_color);
-    if(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(card->m_scard_groud.c_str())==NULL)
-    {
-//
-        return false;
-    }
+//    char data[20];
+//    sprintf(data, "%s_%0.2d.png",card->m_scard_groud.c_str(),(int)card->m_ccard_color);
+//    if(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(card->m_scard_groud.c_str())==NULL)
+//    {
+////
+//        return false;
+//    }
 //    initWithFile(data);
     return true;
 }

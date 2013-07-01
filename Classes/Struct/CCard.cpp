@@ -12,7 +12,7 @@ CCard::CCard()
 {
     m_icard_id=0;
     m_scard_name.clear();
-    m_ccard_color=0;;
+    m_ccard_next=0;;
     m_sicard_star=1;
     m_icard_stirps=0;
     m_icard_suit=0;

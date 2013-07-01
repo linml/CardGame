@@ -15,6 +15,7 @@ using namespace std;
 #include "cocos2d.h"
 using namespace cocos2d;
 class CFightCard;
+class SAnimationFps;
 
 class CCardFightingLayerScene : public CCLayer
 {
@@ -36,15 +37,21 @@ private:
     void fightLogic(int &iHuihe);
     void checkOwnIsDeadAndMove();
     void checkMonsterIsDeadAndMove();
+    void animationSwf(int skillIndex,vector<CFightCard *>ownFightCard,vector<CFightCard *>MonstFightCard,int  oWnindex,int  MonsteIndex, SAnimationFps * spfs);
+    void MoveCardSprite(vector<CFightCard *> &card);
+    void basicAnimation(vector<CFightCard *>ownFightCard,vector<CFightCard *>MonstFightCard,int  oWnindex,int  MonsteIndex, SAnimationFps * spfs);
 private:
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;
-private:
     int m_iFightingCardIndex;
     int m_iMonsterCardIndex;
     int m_iHuihe;
+private:
+    bool m_bIsAnimationEnd;
+    int  m_iAnimationIndex;
+    vector<SAnimationFps *>m_listAnimationlist;
 public:
-    
+    void AnimaitonEnd(CCObject *obj);
 };
 
 #endif /* defined(___1_cube__CCardFightingLayerScene__) */

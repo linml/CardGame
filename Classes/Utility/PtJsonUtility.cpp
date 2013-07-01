@@ -116,5 +116,24 @@ namespace PtJsonUtility {
     }
     
     void writeJsonToFile(json::Object oJsonObject, const char* sFileName) {
+        
+    }
+    
+    void writeDictionaryToJsonString(CCDictionary* dic, string& sFileName)
+    {
+        
+    }
+    
+    CCDictionary* getDicFromPlist(const char* fileName)
+    {
+        std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(fileName);
+        if( (access(fileName, 0 )) == -1 )
+        {
+            assert("file not exist");
+        }
+        CCDictionary* data = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
+        
+        return data;
+
     }
 }

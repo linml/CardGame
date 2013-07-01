@@ -16,6 +16,7 @@ using namespace std;
 #include "cocos2d.h"
 #include "LayoutLayer.h"
 #include "gameConfig.h"
+#include "PtHttpClient.h"
 
 
 // it should move ot one macro file
@@ -48,6 +49,10 @@ public:
     void loginCallBack(CCNode * pSender);
     void setLogoOverCallBack();
     void callBackObject(CCObject *obj);
+    void msgCallback(CCObject* obj);
+    
+    void serverInf(CCDictionary* dic);
+    
 protected:
     bool initLogin();
     bool handleTouchSpritePool(CCPoint point);
@@ -56,6 +61,8 @@ protected:
     
     LayoutLayer *maps;
     vector<TouchRect> touchRect;
+    
+    vector<stcServerInf> vSerInf;
     
 };
 

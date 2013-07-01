@@ -210,7 +210,7 @@ void CGamePlayer::initAllCard(const char *cardFileName)
         CCard *card=new CCard;
         card->m_icard_id=GameTools::intForKey("card_id", cardDirector);
         card->m_scard_name=string(GameTools::valueForKey("card_name", cardDirector));
-        card->m_ccard_color=GameTools::intForKey("card_color", cardDirector);  ///背景底色
+        card->m_ccard_next=GameTools::intForKey("card_next", cardDirector);  ///背景底色
         card->m_sicard_star=GameTools::intForKey("card_star", cardDirector);
         card->m_icard_stirps=GameTools::intForKey("card_stirps", cardDirector);   //种族
         card->m_icard_suit=GameTools::intForKey("card_suit", cardDirector);      //随机数值
@@ -221,7 +221,8 @@ void CGamePlayer::initAllCard(const char *cardFileName)
         card->m_icard_attack=GameTools::intForKey("card_attack", cardDirector); //攻击力
         card->m_icard_defend=GameTools::intForKey("card_defend", cardDirector); //防御力
         card->m_icardhp=GameTools::intForKey("card_hp",cardDirector);// 卡牌的总的HP
-        card->m_iskillLine=GameTools::intForKey("skill_line", cardDirector);
+        card->m_iusually_attack=GameTools::intForKey("usually_attack", cardDirector);
+        card->m_iskillLine=GameTools::intForKey("skill_anger", cardDirector);
         card->m_iskillHelp=GameTools::intForKey("skill_help", cardDirector);
         card->m_iskillDead=GameTools::intForKey("skill_dead", cardDirector);
         card->m_iskillBuff=GameTools::intForKey("skill_buff", cardDirector);
@@ -232,6 +233,64 @@ void CGamePlayer::initAllCard(const char *cardFileName)
         m_hashmapAllCard[key->intValue()]=card;
     }
     cout<<"=========>>>>"<<m_hashmapAllCard.size()<<endl;
+}
+bool CGamePlayer::isCanUpdateLevel(int nExp)
+{
+    if(m_iCurrentExp+nExp>=m_sLevelPlayer->m_iexp)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool CGamePlayer::UpdateLevel()
+{
+//    do {
+//        <#statements#>
+//    } while (<#condition#>);
+}
+
+int CGamePlayer::getTotoalHp()
+{
+    
+}
+
+int CGamePlayer::getCurrentHp()
+{
+    
+}
+
+int CGamePlayer::getTotoalMp()
+{
+    
+}
+
+int CGamePlayer::getCurrentMp()
+{
+    
+}
+
+int CGamePlayer::getTotalExp()
+{
+    
+}
+
+int CGamePlayer::getCurrentExp()
+{
+    
+}
+void CGamePlayer::setCurrentHp(int nHp)
+{
+    
+    
+}
+void CGamePlayer::setCurrentMp(int nMp)
+{
+    
+}
+void CGamePlayer::setCurrentExp(int nExp)
+{
+    
 }
 
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

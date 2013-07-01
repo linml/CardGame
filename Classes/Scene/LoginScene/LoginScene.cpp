@@ -12,9 +12,9 @@
 #include "LogoLayer.h"
 #include "SceneManager.h"
 #include "Utility.h"
-#include "PtHttpClient.h"
-
-
+#include "PtJsonUtility.h"
+#include "CPtListViewWidget.h"
+#include "CPtTableItem.h"
 
 // implement of the CLoginScene:
 
@@ -149,24 +149,65 @@ bool CLoginScene::initLogin()
       
         maps->getTouchRects(touchRect);
         bRet = true;
-        
-        ADDHTTPREQUEST(
-                       SERVER_INF_ADR("m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95") ,
-                       "xiannnnn",
-                       "111",
-                       callfuncO_selector(CLoginScene::callBackObject)
-                       );
+        ADDHTTPREQUEST(SERVER_INF_ADR("dd"),"xianbeiTest0","menuCloseCallback0",callfuncO_selector(CLoginScene::msgCallback));
         
     } while (0);
     return bRet;
     
 }
-void CLoginScene::callBackObject(cocos2d::CCObject *obj
-                                 )
+
+void CLoginScene::serverInf(CCDictionary* dic)
 {
-    cout<<(char *)obj;
+    CCDictElement* ele = NULL;
+    STC_SERVER_INF inf;
+    CCDICT_FOREACH(dic,ele)
+    {
+        CCDictionary* item = (CCDictionary*)ele->getObject();
+        inf.m_nSid = item->valueForKey("sid")->intValue();
+        inf.m_strName = item->valueForKey("name")->m_sString;
+        inf.m_strIp = item->valueForKey("ip")->m_sString;
+        inf.m_bIsUse = item->valueForKey("is_use")->intValue();
+        vSerInf.push_back(inf);
+    }
+    
 }
 
+void CLoginScene::msgCallback(CCObject* obj)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "xianbeiTest0");
+    CCDictionary* dic = PtJsonUtility::JsonStringParse((char*)obj);
+    
+    CCDictElement* ele = NULL;
+    CCDICT_FOREACH(dic,ele)
+    {
+        string key = ele->getStrKey();
+        if (key == "result") {
+            CCDictionary* childDic = (CCDictionary*)ele->getObject();
+            serverInf(childDic);
+        }
+    }
+    printf("xianbei msg:%s\n",(char*)obj);
+    CCArray * array = CCArray::create();
+    for (int i = 0; i < vSerInf.size(); i++)
+    {
+        CCLabelTTF * label = CCLabelTTF::create(vSerInf[i].m_strName.c_str(), "arial", 12.0f);
+        CPtTableItem *item = CPtTableItem::create(CSTR_FILEPTAH(g_mapImagesPath, "HelloWorld.png"), CCRectMake(0, 0 , 100, 40));
+        item->addChild(label);
+        label->setPosition(ccp(0, 0));
+        label->setAnchorPoint(CCPointZero);
+        array->addObject(item);
+       // array->addObject(label);
+        //item->setTouchNode(label);
+        
+    }
+    
+    CPtListViewWidget * listServer = CPtListViewWidget::create(array, CCSizeMake(300, 60), kCCScrollViewDirectionHorizontal, CCSizeMake(2, 5), 1);
+    this->addChild(listServer);
+    listServer->setAnchorPoint(CCPointZero);
+    listServer->setPosition(ccp(30, 40));
+    listServer->setBackGround(CCLayerColor::create(ccc4(125, 0, 0, 125)));
+    
+}
 
 
 

@@ -36,6 +36,8 @@
 		6FA6AFDC174F6A3200608A73 /* TaskSceneLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFCF174F6A3200608A73 /* TaskSceneLayer.cpp */; };
 		6FA9B47E175456F2001472E7 /* MemoryGameCollabLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */; };
 		6FAD466A176ABFBF0061CDF1 /* CCardPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD4668176ABFBF0061CDF1 /* CCardPanel.cpp */; };
+		6FAEE588178119DF00CA2EFE /* CPtListViewWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAEE586178119DF00CA2EFE /* CPtListViewWidget.cpp */; };
+		6FAEE58B17811A4A00CA2EFE /* CPtTableItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAEE58917811A4900CA2EFE /* CPtTableItem.cpp */; };
 		6FAFF1461762BFCF007F7778 /* CardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAFF1441762BFCF007F7778 /* CardLayer.cpp */; };
 		6FB08A4A176EE7E700683F10 /* LayoutLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A49176EE7E700683F10 /* LayoutLayer.cpp */; };
 		6FB08A4D176EE84200683F10 /* Biforest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A4B176EE84200683F10 /* Biforest.cpp */; };
@@ -326,6 +328,10 @@
 		6FAD4668176ABFBF0061CDF1 /* CCardPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardPanel.cpp; sourceTree = "<group>"; };
 		6FAD4669176ABFBF0061CDF1 /* CCardPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardPanel.h; sourceTree = "<group>"; };
 		6FAEDE84175C3A3E00F5FDC2 /* GameSpriteConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSpriteConfig.h; sourceTree = "<group>"; };
+		6FAEE586178119DF00CA2EFE /* CPtListViewWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtListViewWidget.cpp; sourceTree = "<group>"; };
+		6FAEE587178119DF00CA2EFE /* CPtListViewWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtListViewWidget.h; sourceTree = "<group>"; };
+		6FAEE58917811A4900CA2EFE /* CPtTableItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtTableItem.cpp; sourceTree = "<group>"; };
+		6FAEE58A17811A4900CA2EFE /* CPtTableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtTableItem.h; sourceTree = "<group>"; };
 		6FAFF1441762BFCF007F7778 /* CardLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CardLayer.cpp; sourceTree = "<group>"; };
 		6FAFF1451762BFCF007F7778 /* CardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardLayer.h; sourceTree = "<group>"; };
 		6FB08A48176EE7E700683F10 /* LayoutLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutLayer.h; sourceTree = "<group>"; };
@@ -1052,6 +1058,8 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6FAEE58917811A4900CA2EFE /* CPtTableItem.cpp */,
+				6FAEE58A17811A4900CA2EFE /* CPtTableItem.h */,
 				6F3EFCB6175308E900765322 /* CardSprite.cpp */,
 				6F3EFCB7175308E900765322 /* CardSprite.h */,
 				6F3EFCB1175308E900765322 /* Craftsmanship */,
@@ -1073,6 +1081,8 @@
 		9F801315175493D400EEC0BC /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				6FAEE586178119DF00CA2EFE /* CPtListViewWidget.cpp */,
+				6FAEE587178119DF00CA2EFE /* CPtListViewWidget.h */,
 				6FAFF1441762BFCF007F7778 /* CardLayer.cpp */,
 				6FAFF1451762BFCF007F7778 /* CardLayer.h */,
 				6F34AE8E1760945F00A6433C /* LoadingScene.cpp */,
@@ -2304,6 +2314,8 @@
 				6F20C648177A8E5F00ABE53A /* CCard.cpp in Sources */,
 				6F9EB371177C2CAB00A36359 /* CCardFightingLayerScene.cpp in Sources */,
 				6FB379E7177D1E9F00C2DB35 /* CGamesCard.cpp in Sources */,
+				6FAEE588178119DF00CA2EFE /* CPtListViewWidget.cpp in Sources */,
+				6FAEE58B17811A4A00CA2EFE /* CPtTableItem.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
