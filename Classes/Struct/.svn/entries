@@ -1,15 +1,15 @@
 10
 
 dir
-638
+654
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-27T07:59:01.997966Z
-618
-phileas
+2013-07-01T01:09:21.299286Z
+639
+merlin
 
 
 
@@ -201,14 +201,14 @@ phileas
 
 CCard.cpp
 file
-639
+655
 
 
 
-2013-06-28T09:08:20.000000Z
-dab985fdb502d934147788802401d389
-2013-07-01T01:09:21.299286Z
-639
+2013-07-01T01:57:06.000000Z
+f088ce2ec0be21700d4cbecd1aae9288
+2013-07-02T10:13:12.854197Z
+655
 merlin
 
 
@@ -231,41 +231,7 @@ merlin
 
 
 
-1201
-
-CPtTableItem.cpp
-file
-
-
-
-
-2013-07-01T01:07:15.000000Z
-9bd20b0d6c2c633bc1b3b27f68f36e40
-2013-06-27T07:59:01.997966Z
-618
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2047
+1200
 
 gameCardProperty.h
 file
@@ -301,19 +267,50 @@ merlin
 
 1701
 
-Craftsmanship
-dir
+CPtTableItem.cpp
+file
+
+
+
+
+2013-07-01T01:07:15.000000Z
+9bd20b0d6c2c633bc1b3b27f68f36e40
+2013-06-27T07:59:01.997966Z
+618
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2047
 
 CCard.h
 file
-639
+655
 
 
 
-2013-06-28T09:08:24.000000Z
-e47dc6f58fecaaaf2578f80780e08b99
-2013-07-01T01:09:21.299286Z
-639
+2013-07-01T01:56:18.000000Z
+7bead26e6941bf2a494adcb03a791418
+2013-07-02T10:13:12.854197Z
+655
 merlin
 
 
@@ -336,7 +333,10 @@ merlin
 
 
 
-1372
+1398
+
+Craftsmanship
+dir
 
 CPtTableItem.h
 file
@@ -408,14 +408,14 @@ phileas
 
 gamePlayer.cpp
 file
-639
+655
 
 
 
-2013-06-28T08:31:25.000000Z
-9980b9eb4f223d509ae592dcf2d02384
-2013-07-01T01:09:21.299286Z
-639
+2013-07-02T08:45:48.000000Z
+d96260a64f9979ca2b7909db6aecab96
+2013-07-02T10:13:12.854197Z
+655
 merlin
 
 
@@ -438,18 +438,18 @@ merlin
 
 
 
-8948
+7651
 
 gamePlayer.h
 file
-639
+655
 
 
 
-2013-06-27T09:02:56.000000Z
-baa05a985c2305b9ba1ca910e038ff10
-2013-07-01T01:09:21.299286Z
-639
+2013-07-02T06:40:17.000000Z
+18e4987500763ada37f8bf53eba6393c
+2013-07-02T10:13:12.854197Z
+655
 merlin
 
 
@@ -472,7 +472,7 @@ merlin
 
 
 
-1001
+1770
 
 GameSpriteConfig.h
 file

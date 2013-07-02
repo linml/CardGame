@@ -1,15 +1,15 @@
 10
 
 dir
-638
+654
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Scene/LoginScene
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-27T07:59:01.997966Z
-618
-phileas
+2013-07-01T01:09:21.299286Z
+639
+merlin
 
 
 
@@ -28,51 +28,14 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 LoginScene.cpp
 file
+655
 
 
 
-
-2013-07-01T01:08:33.000000Z
-765d5e60bd3671385294e6a3a9ff3a0e
-2013-06-27T07:59:01.997966Z
-618
-phileas
-
-
-
-
-
-LoginScene.cpp.r615
-LoginScene.cpp.r638
-LoginScene.cpp.mine
-
-
-
-
-
-
-
-
-
-
-
-
-
-5308
-
-Layer
-dir
-
-LoginScene.h
-file
-639
-
-
-
-2013-07-01T01:07:16.000000Z
-9293f184a27b342f170d4944f67055fb
-2013-07-01T01:09:21.299286Z
-639
+2013-07-02T07:39:41.000000Z
+7dd3f7c46299dfbd16a0168c9022ff15
+2013-07-02T10:13:12.854197Z
+655
 merlin
 
 
@@ -95,5 +58,42 @@ merlin
 
 
 
-1359
+5471
+
+Layer
+dir
+
+LoginScene.h
+file
+655
+
+
+
+2013-07-02T07:06:29.000000Z
+d4a0d3739791c6422a95df622109a7c5
+2013-07-02T10:13:12.854197Z
+655
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1454
 

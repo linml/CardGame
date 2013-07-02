@@ -50,8 +50,10 @@ public:
     void setLogoOverCallBack();
     void callBackObject(CCObject *obj);
     void msgCallback(CCObject* obj);
-    
     void serverInf(CCDictionary* dic);
+    
+    void scheudoLoadGameConfig(); //异步加载配置
+    void addFunctionInitGames(float t);
     
 protected:
     bool initLogin();

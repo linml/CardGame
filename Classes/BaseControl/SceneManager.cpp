@@ -14,11 +14,9 @@
 #include "ExplorationLayer.h"
 #include "CEvolutionLayer.h"
 #include "gameConfig.h"
-#include "CFightLayerScene.h"
 #include "LoadingScene.h"
 #include "ExplorationScene.h"
 #include "LoginScene.h"
-#include "CFightingLayerScene.h"
 #include "LoginScene.h"
 #include "HallScene.h"
 #include "CCardFightingLayerScene.h"
@@ -112,37 +110,7 @@ bool SceneManager::runSceneSelect(int touch_tag)
 {
     //需要声音否？
     EN_CURRSCENE targScene=EN_CURRSCENE_NONE;
-    switch (touch_tag) {
-        case 1009:
-            targScene=EN_CURRSCENE_TASKSCENE;
-            break;
-        case 1003:
-            targScene=EN_CURRSCENE_MAPSCENE;
-            //            runMapScene();
-            break;
-        case 1005:
-            targScene=EN_CURRSCENE_EXPLORATIONSCENE;
-            //runExplorationScene();
-            break;
-        case 1006:
-            targScene=EN_CURRSCENE_CARDFACTORYSCENE;
-            //            runCreateCardScene();
-            break;
-        case 1004:
-            targScene=EN_CURRSCENE_EVOLUTIONSCENE;
-            // runEvolutionScene();
-            break;
-        case 1007:
-            targScene=EN_CURRSCENE_FIGHTSCENE;
-            //            runFightScene();
-            break;
-        case 1008:
-            break;
-        default:
-            return false;
-            break;
-    }
-    
+    targScene=(EN_CURRSCENE)touch_tag;
     if(m_currscene!=targScene && targScene!=EN_CURRSCENE_NONE)
     {
         CCDirector::sharedDirector()->replaceScene(LoadingScene::sceneWithTargetScene(m_currscene,targScene));

@@ -307,16 +307,19 @@ void CExploration::randonArrows(const int inLevle)
 {
     char buffer[50] = {};
    
-    srand(time(NULL));
+    srand(time(0));
     
     if (inLevle >= 0 && inLevle < 9)
     {
         for (int i = 0; i < 3; i++)
         {
-                g_array[i] = random()%4;
+                g_array[i] = rand()%4;
         }
-
-    
+        cout<<" g_array[i] ";
+        for (int i = 0; i < 3; i++)
+        {
+          cout<<" "<< g_array[i]<<endl;
+        }
 
         CCNode *node = NULL;
         for (int i = 0; i < 3; i++)

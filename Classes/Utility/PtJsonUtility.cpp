@@ -7,6 +7,8 @@
 //
 
 #include "PtJsonUtility.h"
+#include "json.h"
+#include "gameTools.h"
 
 namespace PtJsonUtility {
     
@@ -21,6 +23,26 @@ namespace PtJsonUtility {
         unsigned char* sData = CCFileUtils::sharedFileUtils()->getFileData(sFullName, "r", &size);
         json::Object oFullObj = getJsonObjectByString((char*)sData);
         return oFullObj;
+    }
+    
+    Json::Value getJsonValueByFile(const char* sFileName, bool bWriteable)
+    {
+        unsigned long size;
+        const char* sFullName;
+        string path;
+        
+        sFullName = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(sFileName);
+        CCFileUtils::sharedFileUtils()->setPopupNotify(false);
+        
+        unsigned char* sData = CCFileUtils::sharedFileUtils()->getFileData(sFullName, "r", &size);
+
+        Json::Reader reader;
+        Json::Value root;
+        if (reader.parse((char*)sData, root))  // reader将Json字符串解析到root，root将包含Json里所有子元素
+        {
+            return root;
+        }
+        return Json::Value();
     }
     
     json::Object getJsonObjectByString(const char* stringData)
@@ -59,6 +81,52 @@ namespace PtJsonUtility {
         return oFullObj;
     }
     
+    void ParseDic(Json::Value val,CCDictionary* m_DicData)
+    {
+        Json::Value::iterator jsonIndex = val.begin();
+        int i=0;
+        while (jsonIndex != val.end()) {
+            switch (val[jsonIndex.memberName()].type()) {
+                case (Json::objectValue):
+                {
+                    CCDictionary* subDicData=new CCDictionary();
+                    ParseDic(val[jsonIndex.memberName()],subDicData);
+                    m_DicData->setObject(subDicData, jsonIndex.memberName());
+                    subDicData->autorelease();                    
+                    break;
+                }
+                case (Json::stringValue):
+                {
+                    CCString* data=new CCString(val[jsonIndex.memberName()].asString());
+                    printf("\t%-5dkey %-20s value :%-20s\n",i,jsonIndex.memberName(),data->m_sString.c_str());
+                    m_DicData->setObject(data, jsonIndex.memberName());
+                    break;
+                }
+                case (Json::intValue):
+                {
+                    CCString* data=new CCString( GameTools::ConvertToString( val[jsonIndex.memberName()].asInt()));
+                    printf("\t%-5dkey %-20s value :%-20s\n",i,jsonIndex.memberName(),data->m_sString.c_str());
+                    m_DicData->setObject(data, jsonIndex.memberName());
+                    break;
+                }
+                case (Json::arrayValue):
+                {
+                    
+                    CCString* data=new CCString( GameTools::ConvertToString( val[jsonIndex.memberName()].asInt()));
+                    printf("\t%-5dkey %-20s value :%-20s\n",i,jsonIndex.memberName(),data->m_sString.c_str());
+                    m_DicData->setObject(data, jsonIndex.memberName());
+                    break;
+                }
+
+                default:
+                    break;
+            }
+            i++;
+            jsonIndex++;
+            
+        }
+    }
+    
     void ParseDic(json::Object Object,CCDictionary* m_DicData)
     {
         json::Object::iterator jsonItr;
@@ -91,20 +159,30 @@ namespace PtJsonUtility {
     CCDictionary* JsonFileParse(const char* fileName)
     {
         CCLog("xianbei FileName : %s",fileName);
-        json::Object oFullObject =  getJsonObjectByFile(fileName);
+//        json::Object oFullObject =  getJsonObjectByFile(fileName);
+//        CCDictionary* m_DicData=new CCDictionary();
+//        ParseDic(oFullObject,m_DicData);
+//        oFullObject.Clear();
         CCDictionary* m_DicData=new CCDictionary();
-        ParseDic(oFullObject,m_DicData);
-        oFullObject.Clear();
+        ParseDic(getJsonValueByFile(fileName), m_DicData);
         m_DicData->autorelease();
         return m_DicData;
     }
     
     CCDictionary* JsonStringParse(const char* stringData)
     {
-        json::Object oFullObject =  getJsonObjectByString(stringData);
+
+//        json::Object oFullObject =  getJsonObjectByString(stringData);
+//        CCDictionary* m_DicData=new CCDictionary();
+//        ParseDic(oFullObject,m_DicData);
+//        oFullObject.Clear();
+        Json::Reader reader;
+        Json::Value root;
         CCDictionary* m_DicData=new CCDictionary();
-        ParseDic(oFullObject,m_DicData);
-        oFullObject.Clear();
+        if (reader.parse(stringData, root))  // reader将Json字符串解析到root，root将包含Json里所有子元素
+        {
+            ParseDic(root, m_DicData);
+        }
         m_DicData->autorelease();
         return m_DicData;
     }

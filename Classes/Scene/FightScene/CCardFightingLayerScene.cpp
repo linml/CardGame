@@ -40,6 +40,9 @@ CCardFightingLayerScene::CCardFightingLayerScene()
     m_iHuihe=1;
     m_bIsAnimationEnd=false;
     m_iAnimationIndex=0;
+    m_vFightingCard.clear();
+    m_vMonsterCard.clear();
+    SinglePlayer::instance()->forTestMonsterCard();
 }
 
 CCardFightingLayerScene::~CCardFightingLayerScene()
@@ -215,6 +218,10 @@ void CCardFightingLayerScene::fSchudelUpdate(float t)
 
 int CCardFightingLayerScene::getWinStats()
 {
+    if(m_vFightingCard.size()==0)
+    {
+        return -1;
+    }
     //先判断
     bool isCardAllDead=true;
     for (int i=0; i<m_vFightingCard.size()-1; i++)
@@ -339,7 +346,7 @@ void CCardFightingLayerScene::fightLogic(int &iHuihe)
 
 void CCardFightingLayerScene::createFightCard()
 {
-    cout<<"SinglePlayer::instance()->m_hashmapFight.size():"<<SinglePlayer::instance()->m_hashmapFight.size();
+    cout<<"SinglePlayer::instance()->m_hashmapFight.size():"<<SinglePlayer::instance()->m_hashmapFight.size()<<endl;
     CCSize winsize=CCDirector::sharedDirector()->getWinSize();
     for (int i=0; i<SinglePlayer::instance()->m_hashmapFight.size();i++)
     {

@@ -18,140 +18,47 @@ for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it+
 VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
 
-static vector<CCardSprite *>g_FightCard;
-static void  FightCarderInit()
-{
-    CCardSprite *cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="雷娜斯";
-     cardproperty->m_cardData.m_sResourceName="green_raynas";
-    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
-    cardproperty->m_cardData.m_unCardLevel=5;
-    cardproperty->m_cardData.m_unPlayerCardAttack=20;
-    cardproperty->m_cardData.m_unPlayerCardDefence=9;
-    cardproperty->m_cardData.m_unHp=9;
-    cardproperty->m_cardData.m_unCurrentHp=9;
-    cardproperty->m_cardData.initJineng(1, -1, 2, 3);
-    //cardproperty->m_cardData.m_pBasicSkill=new CCraftsmanship
-    g_FightCard.push_back(cardproperty);
-    
-    cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="奥比里西斯";
-    cardproperty->m_cardData.m_sResourceName="blue_aobraysies";
-    cardproperty->m_cardData.m_unCardLevel=4;
-    cardproperty->m_cardData.m_unPlayerCardAttack=14;
-    cardproperty->m_cardData.m_unPlayerCardDefence=13;
-    cardproperty->m_cardData.m_unHp=10;
-    cardproperty->m_cardData.m_unCurrentHp=10;
-    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
-    cardproperty->m_cardData.initJineng(4, -1, 5, 6);
-    g_FightCard.push_back(cardproperty);
-    
-    cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="芙蕾雅";
-    cardproperty->m_cardData.m_unCardLevel=2;
-     cardproperty->m_cardData.m_sResourceName="purple_princess";
-    cardproperty->m_cardData.m_unPlayerCardAttack=17;
-    cardproperty->m_cardData.m_unPlayerCardDefence=7;
-    cardproperty->m_cardData.m_unHp=6;
-    cardproperty->m_cardData.m_unCurrentHp=6;
-    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
-    cardproperty->m_cardData.initJineng(7, -1, 8, 9);
-    g_FightCard.push_back(cardproperty);
-    
-    cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="阿尔维斯";
-    cardproperty->m_cardData.m_unCardLevel=3;
-    cardproperty->m_cardData.m_sResourceName="gold_aerwise";
-    cardproperty->m_cardData.m_unPlayerCardAttack=15;
-    cardproperty->m_cardData.m_unPlayerCardDefence=8;
-    cardproperty->m_cardData.m_unHp=7;
-    cardproperty->m_cardData.m_unCurrentHp=7;
-    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
-    cardproperty->m_cardData.initJineng(10, -1, 11, 12);
-    g_FightCard.push_back(cardproperty);
-    
-    cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="霜牙";
-    cardproperty->m_cardData.m_sResourceName="red_wolf";
-    cardproperty->m_cardData.m_unCardLevel=3;
-    cardproperty->m_cardData.m_unPlayerCardAttack=19;
-    cardproperty->m_cardData.m_unPlayerCardDefence=10;
-    cardproperty->m_cardData.m_unHp=8;
-    cardproperty->m_cardData.m_unCurrentHp=8;
-    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
-    cardproperty->m_cardData.initJineng(13, -1, 14, 15);
-    g_FightCard.push_back(cardproperty);
-    
-    
-    
-    cardproperty=new CCardSprite ();
-    cardproperty->m_cardData.m_sPlayerCardName="狼";
-    cardproperty->m_cardData.m_unCardLevel=1;
-    cardproperty->m_cardData.m_unPlayerCardAttack=17;
-    cardproperty->m_cardData.m_unPlayerCardDefence=4;
-    cardproperty->m_cardData.m_unHp=4;
-    cardproperty->m_cardData.m_sResourceName="test_card";
-    cardproperty->m_cardData.m_unCurrentHp=4;
-    cardproperty->m_cardData.m_eCardCategory=(EN_CARDCATEGORY)(rand()%4+1);
-    cardproperty->m_cardData.initJineng(16, -1, 17, 0);
-    g_FightCard.push_back(cardproperty);
-}
+
 CGamePlayer::CGamePlayer()
 {
     m_nFaceTo = 0;
     m_stcCurrenPos.x = 10;
     m_stcCurrenPos.y = 10;
     m_stcCurrenPos.z = 10;
-    FightCarderInit();
-    forTest();
-    initAllCard((resRootPath+"card.plist").c_str());
-    forTestCard();
 }
 
 CGamePlayer::~CGamePlayer()
 {
     clearAllCard();
-    //DELETE_POINT_VECTOR(m_vZhangdouCardSprite, vector<CCardSprite *>);
-    
-   // DELETE_POINT_VECTOR(m_vZhangdouCardSprite, vector<CCardSprite *>);
-    
+    clearPlayerTable();
 }
 
-void CGamePlayer::forTestDeleteMonster()
+void CGamePlayer::loadGamesConfig()
 {
-   // DELETE_POINT_VECTOR(m_vMonsterCardSprite,vector<CCardSprite *>);
-    m_vMonsterCardSprite.erase(m_vMonsterCardSprite.begin(), m_vMonsterCardSprite.end());
+    initAllCard((resRootPath+"card.plist").c_str());
+    initPlayerTable((resRootPath +"level_max.plist").c_str());
 }
 
-void CGamePlayer::forTestMonster()
+void CGamePlayer::initGames()
 {
-    forTestDeleteMonster();
-    
-    //随机获取卡牌 5 张
-    srand(time(0));
-    for(int i=0; i<5; i++)
+   
+    if(m_gvPlayerLevel.size()==0)
     {
-        int index=rand()%(g_FightCard.size());
-        this->m_vMonsterCardSprite.push_back(g_FightCard[index]);
+        CCLog("game  player level  error");
     }
-
-}
-
-void CGamePlayer::forTest()
-{
-    for (int i=0 ; i<5; i++) {
-        m_vZhangdouCardSprite.push_back(g_FightCard[i]);
+    else
+    {
+        m_sLevelPlayer=m_gvPlayerLevel[0];
+        initPlayerStatusZero();
     }
     
-    return ;
 }
-
 void CGamePlayer::forTestCard()
 {
     //获取当前所有卡佩里面的5张牌面给原先的
     srand(time(0));
     for (int i=0;i<5;i++)
-    {
+    { 
         int index=rand()%m_hashmapAllCard.size();
         int tempindex=0;
         for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
@@ -169,6 +76,7 @@ void CGamePlayer::forTestCard()
 
 void CGamePlayer::forTestMonsterCard()
 {
+    m_hashmapMonster.erase(m_hashmapMonster.begin(),m_hashmapMonster.end());
     //srand(time(0));
     for (int i=0;i<5;i++)
     {
@@ -210,7 +118,7 @@ void CGamePlayer::initAllCard(const char *cardFileName)
         CCard *card=new CCard;
         card->m_icard_id=GameTools::intForKey("card_id", cardDirector);
         card->m_scard_name=string(GameTools::valueForKey("card_name", cardDirector));
-        card->m_ccard_color=GameTools::intForKey("card_color", cardDirector);  ///背景底色
+        card->m_ccard_next=GameTools::intForKey("card_next", cardDirector);  ///背景底色
         card->m_sicard_star=GameTools::intForKey("card_star", cardDirector);
         card->m_icard_stirps=GameTools::intForKey("card_stirps", cardDirector);   //种族
         card->m_icard_suit=GameTools::intForKey("card_suit", cardDirector);      //随机数值
@@ -221,7 +129,8 @@ void CGamePlayer::initAllCard(const char *cardFileName)
         card->m_icard_attack=GameTools::intForKey("card_attack", cardDirector); //攻击力
         card->m_icard_defend=GameTools::intForKey("card_defend", cardDirector); //防御力
         card->m_icardhp=GameTools::intForKey("card_hp",cardDirector);// 卡牌的总的HP
-        card->m_iskillLine=GameTools::intForKey("skill_line", cardDirector);
+        card->m_iusually_attack=GameTools::intForKey("usually_attack", cardDirector);
+        card->m_iskillLine=GameTools::intForKey("skill_anger", cardDirector);
         card->m_iskillHelp=GameTools::intForKey("skill_help", cardDirector);
         card->m_iskillDead=GameTools::intForKey("skill_dead", cardDirector);
         card->m_iskillBuff=GameTools::intForKey("skill_buff", cardDirector);
@@ -231,7 +140,114 @@ void CGamePlayer::initAllCard(const char *cardFileName)
         card->m_scard_groud=GameTools::valueForKey("card_groud", cardDirector);
         m_hashmapAllCard[key->intValue()]=card;
     }
-    cout<<"=========>>>>"<<m_hashmapAllCard.size()<<endl;
+    cout<<"card plist size ="<<m_hashmapAllCard.size()<<endl;
+}
+
+void CGamePlayer::clearPlayerTable()
+{
+    DELETE_POINT_VECTOR(m_gvPlayerLevel, vector<SLevelPlayer *>)
+}
+
+void CGamePlayer::initPlayerTable(const char *playerFileName)
+{
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile(playerFileName);
+    CCArray *vKeyArray=directory->allKeys();
+    for (int i=0; i<vKeyArray->count(); i++)
+    {
+        CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
+        CCDictionary *playerDictionary=(CCDictionary*)(directory->objectForKey(key->m_sString));
+        SLevelPlayer *playerLevel=new SLevelPlayer;
+        playerLevel->m_iLevel=GameTools::intForKey("level", playerDictionary);
+        playerLevel->m_iCard_max=GameTools::intForKey("card_max", playerDictionary);
+        playerLevel->m_iLeadership=GameTools::intForKey("leadership", playerDictionary);
+        playerLevel->m_iFriend_max=GameTools::intForKey("friend_max",playerDictionary); //好友上线
+        playerLevel->m_iHP=GameTools::intForKey("hp",playerDictionary);
+        playerLevel->m_iMp=GameTools::intForKey("mp",playerDictionary);
+       playerLevel->m_iexp=GameTools::intForKey("exp", playerDictionary);
+       this->m_gvPlayerLevel.push_back(playerLevel);
+    }
+}
+
+
+void CGamePlayer::initPlayerStatusZero()
+{
+    m_iCurrentExp=0;
+    m_iCurrentHp=m_sLevelPlayer->m_iHP;
+    m_iCurrentMp=m_sLevelPlayer->m_iexp;
+}
+
+bool CGamePlayer::isCanUpdateLevel(int nExp)
+{
+    if(m_iCurrentExp+nExp>=m_sLevelPlayer->m_iexp)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool CGamePlayer::UpdateLevel(int nExp)
+{
+    while(isCanUpdateLevel(nExp))
+    {
+        nExp-=m_sLevelPlayer->m_iexp-m_iCurrentExp;
+        if(m_sLevelPlayer->m_iLevel+1<m_gvPlayerLevel.size())
+        {
+            this->m_sLevelPlayer=m_gvPlayerLevel[m_sLevelPlayer->m_iLevel+1];
+            initPlayerStatusZero();
+            m_iCurrentExp=nExp;
+        }
+    }
+    return  true;
+}
+
+void CGamePlayer::getSeverPlayerInfo(cocos2d::CCObject *object)
+{
+    
+}
+
+
+
+int CGamePlayer::getTotoalHp()
+{
+    return m_sLevelPlayer->m_iHP;
+}
+
+int CGamePlayer::getCurrentHp()
+{
+    return this->m_sLevelPlayer->m_iHP;
+}
+
+int CGamePlayer::getTotoalMp()
+{
+    return this->m_sLevelPlayer->m_iHP;
+}
+
+int CGamePlayer::getCurrentMp()
+{
+    return this->m_iCurrentMp;
+}
+
+int CGamePlayer::getTotalExp()
+{
+    return this->m_sLevelPlayer->m_iexp;
+}
+
+int CGamePlayer::getCurrentExp()
+{
+    return this->m_iCurrentExp;
+}
+void CGamePlayer::setCurrentHp(int nHp)
+{
+    this->m_iCurrentHp=nHp;
+    
+}
+void CGamePlayer::setCurrentMp(int nMp)
+{
+    this->m_iCurrentMp=nMp;
+}
+void CGamePlayer::setCurrentExp(int nExp)
+{
+    this->m_iCurrentHp=nExp;
 }
 
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

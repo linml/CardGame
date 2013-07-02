@@ -20,6 +20,13 @@ const string resRootPath = "resource_cn/";
 
 #endif
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+const string g_WordPath = "";
+#endif
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32||CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+const string g_WordPath = "word/";
+#endif
+
 #define CSTR_FILEPTAH(ptah,fileName) ((ptah+fileName).c_str())
 
 #define PT_ERR_LOG(msg)\
@@ -34,7 +41,7 @@ const string g_sysSoundPath = resRootPath+"sound/sys_sound_effect/";//系统音�
 const string g_bgSoundPath = resRootPath+"sound/background/";//背景音乐
 const string g_soundPath = resRootPath+"sound/";//音效路径
 
-const string g_wordFilePath = resRootPath+"word.plist";
+const string g_wordFilePath = "word.plist";
 const string g_wordDirPath = resRootPath+"word/";
 
 //路径

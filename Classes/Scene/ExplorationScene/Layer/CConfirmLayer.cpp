@@ -11,8 +11,6 @@
 #include "AsgardLayer.h"
 #include "ExplorationScene.h"
 #include "SceneManager.h"
-#include "CFightLayerScene.h"
-#include "CFightingLayerScene.h"
 
 CConfirmLayer::CConfirmLayer()
 {
@@ -130,7 +128,7 @@ void CConfirmLayer::handlerTouch()
                 {
                   //  g_nLevle++;
                 }
-            SingleSceneManager::instance()->runSceneSelect(1007);
+            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_FIGHTSCENE);
                 removeFromParentAndCleanup(true);
                 break;
             default:

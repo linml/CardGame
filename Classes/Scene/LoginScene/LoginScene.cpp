@@ -15,6 +15,7 @@
 #include "PtJsonUtility.h"
 #include "CPtListViewWidget.h"
 #include "CPtTableItem.h"
+#include "gamePlayer.h"
 
 // implement of the CLoginScene:
 
@@ -57,18 +58,18 @@ bool CLoginScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     if (m_bLogoOver==false) {
         return false;
     }
-   // CCLog("LoginLayer::ccTouchBegan");
-    
     return handleTouchSpritePool(pTouch->getLocation());
 }
 void CLoginScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
     
 }
+
 void CLoginScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCLog("LoginLayer::ccTouchEnded");
 }
+
 void CLoginScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
     
@@ -87,11 +88,8 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             
             break;
         case BUTTON_PLAY_TAG:
-            
-//            CCDirector::sharedDirector()->replaceScene(
-//                                                       CCTransitionFade::create(1.5f, CHallScene::scene())
-//            );
-              SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+              SinglePlayer::instance()->forTestCard();
+              SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
             return true;
         default:
             break;
@@ -151,6 +149,7 @@ bool CLoginScene::initLogin()
         bRet = true;
         ADDHTTPREQUEST(SERVER_INF_ADR("dd"),"xianbeiTest0","menuCloseCallback0",callfuncO_selector(CLoginScene::msgCallback));
         
+        scheudoLoadGameConfig(); //by merlin
     } while (0);
     return bRet;
     
@@ -210,5 +209,16 @@ void CLoginScene::msgCallback(CCObject* obj)
 }
 
 
+void CLoginScene::scheudoLoadGameConfig()
+{
+    schedule(schedule_selector(CLoginScene::addFunctionInitGames));
+}
+
+
+void CLoginScene::addFunctionInitGames(float t)
+{
+    SinglePlayer::instance()->loadGamesConfig();
+    unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
+}
 
 

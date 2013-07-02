@@ -72,6 +72,15 @@ namespace GameTools {
     
     //将长度为len的整型数组，转换为整型容器
     vector<int> transToIntVector(const int* value,int len);
+    
+    
+    vector<std::string> splitStringByLength(const char *str,const char *c);
+    //生成有颜色区分的文字
+    CCLayer* createDiffColorWord(const string& word,const string& fontName,int fontSize,CCPoint anchor = ccp(0,0),int iChangeLineW = 0,bool isByLen=false);
+    //生成文字
+    CCLabelTTF* createWord(const string& word,const string& font,int intFontSize,ccColor3B color);
+
+
 
 };
 

@@ -13,6 +13,7 @@
 #include "json/writer.h"
 #include "json/elements.h"
 #include "cocos2d.h"
+#include "json.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -21,7 +22,10 @@ namespace PtJsonUtility {
     
     //解析json文件 返回json对象
     json::Object getJsonObjectByFile(const char* sFileName, bool bWriteable = false);
-    
+
+    //解析json文件 返回Json
+    Json::Value getJsonValueByFile(const char* sFileName, bool bWriteable = false);
+
     //解析json字符串 返回json对象
     json::Object getJsonObjectByString(const char* stringData);
     
@@ -33,6 +37,10 @@ namespace PtJsonUtility {
     
     //json对象解析
     void ParseDic(json::Object Object,CCDictionary* m_DicData);
+    
+    //json对象解析
+    void ParseDic(Json::Value Object,CCDictionary* m_DicData);
+
     
     //json对象 debug信息
     void printDebugInfOfJson(json::Object o);

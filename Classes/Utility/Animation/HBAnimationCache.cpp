@@ -102,14 +102,14 @@ CCAnimation* HBAnimationCache::addAnimationWithFile(const char* name,int w,int h
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
 			CCSpriteFrame* spriteFrame;
-			spriteFrame = CCSpriteFrame::frameWithTexture(texture,CCRectMake((float)j*w, (float)i*h, (float)w, (float)h), false, CCPointZero, CCSizeMake((float)w, (float)h));
+			spriteFrame = CCSpriteFrame::createWithTexture(texture,CCRectMake((float)j*w, (float)i*h, (float)w, (float)h), false, CCPointZero, CCSizeMake((float)w, (float)h));
 			// add sprite frame
 			CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFrame(spriteFrame,(aniName+GameTools::ConvertToString(j+i*col)).c_str());
 			Frames->addObject(spriteFrame);
 		}
 	}
     
-	ani = CCAnimation::animationWithSpriteFrames(Frames, animationDelay);
+	ani = CCAnimation::createWithSpriteFrames(Frames, animationDelay);
 //	ani->setName(aniName.c_str());	
 	m_pAnimations->setObject(ani,aniName);
     //bq modify
@@ -199,7 +199,7 @@ CCAnimation* HBAnimationCache::addAnimationWithDictionary(CCDictionary* dict,con
 			ow = abs(ow);
 			oh = abs(oh);
 			// create frame
-			spriteFrame = CCSpriteFrame::frameWithTexture(texture,CCRectMake(x, y, w, h),false,CCPointMake(ox, oy),CCSizeMake(ow, oh));
+			spriteFrame = CCSpriteFrame::createWithTexture(texture,CCRectMake(x, y, w, h),false,CCPointMake(ox, oy),CCSizeMake(ow, oh));
             
 		}
         else {
@@ -221,7 +221,7 @@ CCAnimation* HBAnimationCache::addAnimationWithDictionary(CCDictionary* dict,con
 //		Frames->addObject(frame);
 //	}
 
-	CCAnimation* ani = CCAnimation::animationWithSpriteFrames(Frames,animationDelay);
+	CCAnimation* ani = CCAnimation::create(Frames,animationDelay);
 //	ani->setName(aniName.c_str());
 	m_pAnimations->setObject(ani,aniName);
     //bq modify
@@ -251,7 +251,7 @@ CCAnimation* HBAnimationCache::addAnimationWithFile(const char* name, char** ani
 		return ani;
 	}
 
-	CCDictionary* dict = CCDictionary::dictionaryWithContentsOfFile(path.c_str());
+	CCDictionary* dict = CCDictionary::createWithContentsOfFile(path.c_str());
 
 	
 	return addAnimationWithDictionary(dict,aniName.c_str());
@@ -295,7 +295,7 @@ CCAnimation* HBAnimationCache::reverseAnimationByAni(CCAnimation* ani,const char
 		oFrameArray->addObject(ani->getFrames()->objectAtIndex(i));
 	}
     
-	CCAnimation *reverseAni = CCAnimation::animationWithAnimationFrames(oFrameArray,ani->getDelayPerUnit(),false);
+	CCAnimation *reverseAni = CCAnimation::create(oFrameArray,ani->getDelayPerUnit(),false);
 //	reverseAni->setName(reverseAniName.c_str());
     //bq modify
     oFrameArray->release();
@@ -336,8 +336,8 @@ void HBAnimationCache::dumpHBAnimationCachedInfo()
 	CCArray* keys = m_pAnimations->allKeys();
     for (int i = 0; i < keys->count(); i++)
 	{
-        CCString* key = (CCString*)keys->objectAtIndex(i);
-        CCAnimation* ani = (CCAnimation*)m_pAnimations->objectForKey(key->m_sString);
+ //       CCString* key = (CCString*)keys->objectAtIndex(i);
+//        CCAnimation* ani = (CCAnimation*)m_pAnimations->objectForKey(key->m_sString);
 //        CCLog("aniName = %s,count = %d",keys[i].c_str(),ani->retainCount());
 	}
     

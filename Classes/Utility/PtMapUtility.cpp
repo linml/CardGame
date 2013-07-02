@@ -470,9 +470,9 @@ namespace PtMapUtility {
                 text_align = kCCTextAlignmentCenter;
             }
             size.height = 0;
-            labelTTF = CCLabelTTF::labelWithString(word.c_str(), size, text_align, font.c_str(), intFontSize);
+            labelTTF = CCLabelTTF::create(word.c_str(), font.c_str(),intFontSize,size, text_align  );
         } else {
-            labelTTF = CCLabelTTF::labelWithString(word.c_str(), font.c_str(), intFontSize);
+            labelTTF = CCLabelTTF::create(word.c_str(), font.c_str(), intFontSize);
         }
         
         labelTTF->setColor(color);
