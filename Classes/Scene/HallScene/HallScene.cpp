@@ -12,7 +12,7 @@
 #include "gameConfig.h"
 #include "AsgardLayer.h"
 #include "WordCache.h"
-#include "ScrollWordsSprite.h"
+#include "CPtScrollWordsWidget.h"
 
 
 CCScene* CHallScene::scene()

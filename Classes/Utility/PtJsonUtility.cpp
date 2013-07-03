@@ -81,6 +81,49 @@ namespace PtJsonUtility {
         return oFullObj;
     }
     
+    void ParseArr(Json::Value val,CCArray* m_ArrData)
+    {
+        val.size();
+        for (int i=0; i<val.size(); i++) {
+            switch (val[i].type()) {
+                case (Json::objectValue):
+                {
+                    CCDictionary* subDicData=new CCDictionary();
+                    ParseDic(val[i],subDicData);
+                    m_ArrData->addObject(subDicData);
+                    subDicData->autorelease();
+                    break;
+                }
+                case (Json::stringValue):
+                {
+                    CCString* data=new CCString(val[i].asString());
+                    printf("\t%-5dkey item%-2d value :%-20s\n",i,i,data->m_sString.c_str());
+                    m_ArrData->addObject(data);
+                    break;
+                }
+                case (Json::intValue):
+                {
+                    CCString* data=new CCString( GameTools::ConvertToString( val[i].asInt()));
+                    printf("\t%-5dkey item%-2d value :%-20s\n",i,i,data->m_sString.c_str());
+                    m_ArrData->addObject(data);
+                    break;
+                }
+                case (Json::arrayValue):
+                {
+                    CCArray* arrData=new CCArray();
+                    ParseArr(val[i],arrData);
+                    m_ArrData->addObject(arrData);
+                    arrData->autorelease();
+                    break;
+                }
+                    
+                default:
+                    break;
+ 
+            }
+        }
+    }
+    
     void ParseDic(Json::Value val,CCDictionary* m_DicData)
     {
         Json::Value::iterator jsonIndex = val.begin();
@@ -111,10 +154,10 @@ namespace PtJsonUtility {
                 }
                 case (Json::arrayValue):
                 {
-                    
-                    CCString* data=new CCString( GameTools::ConvertToString( val[jsonIndex.memberName()].asInt()));
-                    printf("\t%-5dkey %-20s value :%-20s\n",i,jsonIndex.memberName(),data->m_sString.c_str());
-                    m_DicData->setObject(data, jsonIndex.memberName());
+                    CCArray* arrData=new CCArray();
+                    ParseArr(val[jsonIndex.memberName()],arrData);
+                    m_DicData->setObject(arrData, jsonIndex.memberName());
+                    arrData->autorelease();
                     break;
                 }
 

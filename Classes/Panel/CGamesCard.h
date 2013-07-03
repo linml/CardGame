@@ -28,6 +28,8 @@ private:
     void createCardName(const char *str);
     void createStart(int start);
     void createHero(const char *str);
+public:
+    bool isAddTexiao;
     
     
     

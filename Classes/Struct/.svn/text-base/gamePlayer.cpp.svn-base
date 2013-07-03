@@ -77,7 +77,6 @@ void CGamePlayer::forTestCard()
 void CGamePlayer::forTestMonsterCard()
 {
     m_hashmapMonster.erase(m_hashmapMonster.begin(),m_hashmapMonster.end());
-    //srand(time(0));
     for (int i=0;i<5;i++)
     {
         int index=rand()%m_hashmapAllCard.size();

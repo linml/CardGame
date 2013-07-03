@@ -39,7 +39,8 @@ namespace PtJsonUtility {
     void ParseDic(json::Object Object,CCDictionary* m_DicData);
     
     //json对象解析
-    void ParseDic(Json::Value Object,CCDictionary* m_DicData);
+    void ParseDic(Json::Value val,CCDictionary* m_DicData);
+    void ParseArr(Json::Value val,CCArray* m_ArrData);
 
     
     //json对象 debug信息

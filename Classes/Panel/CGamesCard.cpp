@@ -24,7 +24,7 @@ static string g_testtemp[5]={
 
 CGamesCard::CGamesCard()
 {
-    
+    isAddTexiao=false;
 }
 
 CGamesCard::~CGamesCard()
@@ -47,35 +47,40 @@ CGamesCard  *CGamesCard::Create(CCard *card,bool isYongHu)
 
 void CGamesCard::setDead()
 {
-    char pszFragSource[] ="#ifdef GL_ES \n \
-    precision mediump float; \n \
-    #endif \n \
-    uniform sampler2D u_texture; \n \
-    varying vec2 v_texCoord; \n \
-    varying vec4 v_fragmentColor; \n \
-    void main(void) \n \
-    { \n \
-    // Convert to greyscale using NTSC weightings \n \
-    float grey = dot(texture2D(u_texture, v_texCoord).rgb, vec3(0.299, 0.587, 0.114)); \n \
-    gl_FragColor = vec4(grey, grey, grey, 1.0); \n \
-    }";
-    
-    CCGLProgram* pProgram = new CCGLProgram();
-    pProgram->initWithVertexShaderByteArray(ccPositionTextureColor_vert, pszFragSource);
-    this->setShaderProgram(pProgram);
-    pProgram->release();
-    CHECK_GL_ERROR_DEBUG();
-    
-    this->getShaderProgram()->addAttribute(kCCAttributeNamePosition, kCCVertexAttrib_Position);
-    this->getShaderProgram()->addAttribute(kCCAttributeNameColor, kCCVertexAttrib_Color);
-    this->getShaderProgram()->addAttribute(kCCAttributeNameTexCoord, kCCVertexAttrib_TexCoords);
-    CHECK_GL_ERROR_DEBUG();
-    
-    this->getShaderProgram()->link();
-    CHECK_GL_ERROR_DEBUG();
-    
-    this->getShaderProgram()->updateUniforms();
-    CHECK_GL_ERROR_DEBUG();
+        CCNode *node=getChildByTag(TAG_GAMECARD_HERO);
+       // CCNode *node=(CCNode *)nodeArray->objectAtIndex(i);
+        char pszFragSource[] ="#ifdef GL_ES \n \
+        precision mediump float; \n \
+        #endif \n \
+        uniform sampler2D u_texture; \n \
+        varying vec2 v_texCoord; \n \
+        varying vec4 v_fragmentColor; \n \
+        void main(void) \n \
+        { \n \
+        // Convert to greyscale using NTSC weightings \n \
+        float grey = dot(texture2D(u_texture, v_texCoord).rgb, vec3(0.299, 0.587, 0.114)); \n \
+        gl_FragColor = vec4(grey, grey, grey, 1.0); \n \
+        }";
+        if(node)
+        {
+        CCGLProgram* pProgram = new CCGLProgram();
+        pProgram->initWithVertexShaderByteArray(ccPositionTextureColor_vert, pszFragSource);
+        node->setShaderProgram(pProgram);
+        pProgram->release();
+        CHECK_GL_ERROR_DEBUG();
+        
+        node->getShaderProgram()->addAttribute(kCCAttributeNamePosition, kCCVertexAttrib_Position);
+        node->getShaderProgram()->addAttribute(kCCAttributeNameColor, kCCVertexAttrib_Color);
+        node->getShaderProgram()->addAttribute(kCCAttributeNameTexCoord, kCCVertexAttrib_TexCoords);
+        CHECK_GL_ERROR_DEBUG();
+        
+        node->getShaderProgram()->link();
+        CHECK_GL_ERROR_DEBUG();
+        
+        node->getShaderProgram()->updateUniforms();
+        CHECK_GL_ERROR_DEBUG();
+        }
+
 }
 
 void CGamesCard::createStart(int start)

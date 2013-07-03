@@ -23,9 +23,12 @@ public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
-  //  virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
-    
-    virtual void addBackground(CCNode *node, int zorder = 0 , int tag = -1);
+    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void registerWithTouchDispatcher()
+    {
+        CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, this->getTouchPriority(), true);
+    }
+    virtual void addBackground(CCNode *node, int zorder = 0 , int tag = 100);
     virtual void visit();
 public:
     CCNode *getCell(CCTouch *pTouch);
@@ -44,7 +47,7 @@ class CPtListViewWidget : public cocos2d::CCLayer, public cocos2d::extension::CC
 {
     
 public:
-    static CPtListViewWidget *create(CCArray *items,  CCSize containerSize,  CCScrollViewDirection direction, CCSize itemSize, int inColumCount);
+    static CPtListViewWidget *create(CCArray *items,  CCSize containerSize,  CCScrollViewDirection direction = kCCScrollViewDirectionVertical,  CCSize PaddingSize = CCSizeMake(5, 2.5), int inColumCount = 1);
     
 public:
     CPtListViewWidget();
@@ -53,6 +56,7 @@ public:
     void setPaddingWidth(float paddWidth);
     void setPaddingHeight(float paddingHeight);
     void setChipEnable(const bool & inChipEnable);
+    CCTableView * getTableView(){ return m_pTableView;};
 public:
     virtual bool init(CCArray *items, CCSize containerSize,CCScrollViewDirection direction = kCCScrollViewDirectionVertical,  CCSize PaddingSize = CCSizeMake(5, 2.5), int inColumCount = 1);
     
@@ -86,6 +90,7 @@ protected:
     CC_PROPERTY(float, m_fContainerWidth, ContainerWidth);
     CC_PROPERTY(float, m_fContainerHeight, ContainerHeight);
     CC_PROPERTY(CCArray*, m_cItems, Items);
+    CC_SYNTHESIZE(CCTableViewDelegate*, m_pTableItemDelegate, TableItemDelegate);
 };
 
 #endif 

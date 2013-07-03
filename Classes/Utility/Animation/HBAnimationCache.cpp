@@ -221,7 +221,7 @@ CCAnimation* HBAnimationCache::addAnimationWithDictionary(CCDictionary* dict,con
 //		Frames->addObject(frame);
 //	}
 
-	CCAnimation* ani = CCAnimation::create(Frames,animationDelay);
+	CCAnimation* ani = CCAnimation::createWithSpriteFrames(Frames,animationDelay);
 //	ani->setName(aniName.c_str());
 	m_pAnimations->setObject(ani,aniName);
     //bq modify
@@ -232,7 +232,7 @@ CCAnimation* HBAnimationCache::addAnimationWithDictionary(CCDictionary* dict,con
 
 CCAnimation* HBAnimationCache::addAnimationWithFile(const char* name, char** aniNameCallBack)
 {
-	CCLOG("HBAnimationCache::addAnimationWithFile name=%s",name);
+	//CCLOG("HBAnimationCache::addAnimationWithFile name=%s",name);
 	std::string path = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(CSTR_FILEPTAH(g_ActionFilePath, name));
 //    path = g_ActionFilePath + path;
 	int pos0 = path.find_last_of("/");

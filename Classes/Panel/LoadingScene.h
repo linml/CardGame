@@ -20,7 +20,7 @@ public:
     static LoadingScene* sceneWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targetScene);
 private:
     virtual void update(float dt);
-    void doscheule();
+    void doScheule();
     bool initWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targetScene);
     void addParticle();
     void delParticle();

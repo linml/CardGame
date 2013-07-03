@@ -146,9 +146,7 @@ bool CLoginScene::initLogin()
         setTouchMode(kCCTouchesOneByOne);
       
         maps->getTouchRects(touchRect);
-        bRet = true;
-        ADDHTTPREQUEST(SERVER_INF_ADR("dd"),"xianbeiTest0","menuCloseCallback0",callfuncO_selector(CLoginScene::msgCallback));
-        
+        bRet = true;        
         scheudoLoadGameConfig(); //by merlin
     } while (0);
     return bRet;

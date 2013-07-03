@@ -802,7 +802,7 @@ CCFiniteTimeAction* HBActionScript::creatFiniteTimeAction(const char* str)
 
 CCAction* HBActionScript::creatAction(const char* str)
 {
-    CCLog("HBActionScript::creatAction 0 :%s",str);
+    //CCLog("HBActionScript::creatAction 0 :%s",str);
 	string mainStr = str;
 	if (mainStr.find_first_of("(")!=0||mainStr.find_last_of(")")!=mainStr.size()-1)
 	{

@@ -59,7 +59,7 @@ HBActionAni* HBActionAniCache::addActionAniWithFile(const char* name)
 	//判断是否存在该动画，有就返回
 	std::string stdName = name;
 	std::string path = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(name);
-	CCLOG("HBActionAniCache::addActionAniWithFile path is %s", path.c_str());
+	//CCLOG("HBActionAniCache::addActionAniWithFile path is %s", path.c_str());
 	if (path.empty())
 	{
 		return NULL;
@@ -81,7 +81,7 @@ HBActionAni* HBActionAniCache::addActionAniWithFile(const char* name)
 	CCFileUtils::sharedFileUtils()->setPopupNotify(false);
 	unsigned long size;
 	unsigned char* bCheckFile = CCFileUtils::sharedFileUtils()->getFileData(path.c_str(),"r",&size);
-    CCLog("xianbei bCheckFile %s",path.c_str());
+    //CCLog("xianbei bCheckFile %s",path.c_str());
 	if (!bCheckFile){
 		CCLOG("load error %s", path.c_str());
         CC_SAFE_DELETE_ARRAY(bCheckFile);
@@ -102,7 +102,7 @@ HBActionAni* HBActionAniCache::addActionAniWithFile(const char* name)
 #else
     CCFileUtils::sharedFileUtils()->setPopupNotify(true);
     CCDictionary* dict = CCDictionary::createWithContentsOfFile(path.c_str());
-    CCLog("HBActionAniCache::addActionAniWithFile %s",path.c_str());
+  //  CCLog("HBActionAniCache::addActionAniWithFile %s",path.c_str());
 #endif
 //	CCLOG("HBActionAniCache::addActionAniWithFile ok");
 	return addActionAniWithDictionary(dict,stdName.c_str());
@@ -110,7 +110,7 @@ HBActionAni* HBActionAniCache::addActionAniWithFile(const char* name)
 
 HBActionAni* HBActionAniCache::addActionAniWithDictionary(CCDictionary* dict,const char* name)
 {
-	CCLOG("HBActionAniCache::addActionAniWithDictionary 1");
+	//CCLOG("HBActionAniCache::addActionAniWithDictionary 1");
 	CCArray* actionScripts = CCArray::create();
 	float duration = 0;
     
@@ -131,7 +131,7 @@ HBActionAni* HBActionAniCache::addActionAniWithDictionary(CCDictionary* dict,con
     for (int i=0; i<keys->count(); i++)
     {
         CCString* actDictKey = (CCString*)keys->objectAtIndex(i);
-        CCLog("xianbei actDictKey %s",actDictKey->m_sString.c_str());
+       // CCLog("xianbei actDictKey %s",actDictKey->m_sString.c_str());
         if(actDictKey->m_sString != "param")
         {
             actDict = (CCDictionary*)dict->objectForKey(actDictKey->m_sString);

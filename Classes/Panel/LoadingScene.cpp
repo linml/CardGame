@@ -57,7 +57,7 @@ bool LoadingScene::initWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targe
         label->setPosition(ccp(size.width / 2, size.height / 2));
         this->addChild(label);
         // 必须在下一帧才加载目标场景！
-        this->runAction(CCSequence::create(CCDelayTime::create(1.0),CCCallFunc::create(this, callfunc_selector(LoadingScene::doscheule)),NULL));
+        this->runAction(CCSequence::create(CCDelayTime::create(1.0),CCCallFunc::create(this, callfunc_selector(LoadingScene::doScheule)),NULL));
         return true;
     }
     
@@ -65,7 +65,7 @@ bool LoadingScene::initWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targe
 }
 
 
-void LoadingScene::doscheule()
+void LoadingScene::doScheule()
 {
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {

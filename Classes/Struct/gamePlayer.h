@@ -10,7 +10,6 @@
 #define _1_cube_gamePlayer_h
 #include "gameStruct.h"
 #include "CSingleton.h"
-#include "CardSprite.h"
 #include "CCard.h"
 #include "cocos2d.h"
 #include <vector>

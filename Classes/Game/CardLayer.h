@@ -11,7 +11,6 @@
 
 #include <iostream>
 #include "CBaseLayer.h"
-#include "CardSprite.h"
 #include "GameSpriteConfig.h"
 
 class CCardLayer :public CBaseLayer
@@ -21,7 +20,7 @@ public:
     ~CCardLayer();
 public:
     template <class T>
-    static T *CreateSprite(const char *fileName,CCardSprite *spriteProperty);
+    static T *CreateSprite(const char *fileName);
     
     bool initWithMapFile(const char *fileName);
     void showFightLayer();
