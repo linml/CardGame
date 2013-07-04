@@ -105,13 +105,13 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
     std::vector<char> *buffer = response->getResponseData();
     char* pchData=new char[(*buffer).size()+1];
     memset(pchData, 0, (*buffer).size()+1);
-    printf("Http Test, dump data: ");
+    //printf("Http Test, dump data: ");
     for (unsigned int i = 0; i < buffer->size(); i++)
     {
         pchData[i]=(*buffer)[i];
     }
     string tmp=string(pchData);
-    printf("%s\n",tmp.c_str());
+   // printf("%s\n",tmp.c_str());
     CCNotificationCenter::sharedNotificationCenter()->postNotification(MSG_HTTPCLIENT, (CCObject*)pchData);
 
 //    delete[] pchData;

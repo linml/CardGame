@@ -25,10 +25,6 @@ struct SLevelPlayer {
 };
 class CGamePlayer : cocos2d::CCObject {
 public:
-    int m_nFaceTo;
-    int m_nTurnTo;
-    STC_HOUSEPOS m_stcCurrenPos;
-
     void forTestCard();
     void forTestMonsterCard();
  public:
@@ -36,8 +32,7 @@ public:
     ~CGamePlayer();
     void initGames();
     void loadGamesConfig();
- public:
-    
+ public:    
    //读取卡牌表格
     void clearAllCard();
     void initAllCard(const char *cardFileName);
@@ -48,12 +43,22 @@ public:
     //读取玩家等级表格子
     void clearPlayerTable();
     void initPlayerTable(const char *playerFileName);
-    vector<SLevelPlayer *>m_gvPlayerLevel;
+  
     
+    
+    vector<SLevelPlayer *>m_gvPlayerLevel;
+    vector<CFightCard *>m_hashmapFightingCard;
+    vector<CFightCard *>m_hashmapMonsterCard;
+    void initByServerDictorny(cocos2d::CCDictionary *dict);
+    void initFightingCardByserverDictorny(cocos2d::CCArray *dict);
+    bool isLoadServer;
 private:
     int m_iCurrentExp;
     int m_iCurrentHp;
     int m_iCurrentMp;
+    int m_iCurrentLeader;
+    int m_iLevel;
+    int m_iCardBagNum;
     struct SLevelPlayer *m_sLevelPlayer;
 public:
     int  getFriendMax();

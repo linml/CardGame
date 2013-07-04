@@ -14,6 +14,7 @@
 #include "CCard.h"
 #include "FightResultConfirm.h"
 #include "Utility.h"
+#include "PtActionUtility.h"
 
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
@@ -126,8 +127,9 @@ void CCardFightingLayerScene::basicAnimation(vector<CFightCard *>ownFightCard,ve
         if(spfs->m_iHuihe!=0 && spfs->m_iHuihe!=-2 )
         {
             CCLog("owniNDEX:%d",oWnindex);
+            PtActionUtility::readSpriteActionFile("resource_cn/boss_icon_Effect.plist",m_tempCardSprite);
             m_tempCardSprite->runAction(CCSequence::create(
-                                                           CCMoveBy::create(0.2f, ccp(0,100)),
+                                                           CCDelayTime::create(0.7f),
                                                            CCCallFuncN::create(m_tempCardSprite, callfuncN_selector(CCardFightingLayerScene::showJuqi)),
                                                            CCCallFuncND::create(this,callfuncND_selector(CCardFightingLayerScene::animationShouShang),(void *)&MonstFightCard[MonsteIndex]->tag), CCDelayTime::create(0.5f),CCCallFunc::create(this, callfunc_selector(CCardFightingLayerScene::setVistablHit)),CCCallFunc::create(m_tempCardSprite, callfunc_selector(CCardFightingLayerScene::hideJuqi)),
                                                            CCMoveBy::create(0.2f, ccp(0,-100)),
@@ -548,11 +550,23 @@ void CCardFightingLayerScene::createFightCard()
 {
     cout<<"SinglePlayer::instance()->m_hashmapFight.size():"<<SinglePlayer::instance()->m_hashmapFight.size()<<endl;
     CCSize winsize=CCDirector::sharedDirector()->getWinSize();
-    for (int i=0; i<SinglePlayer::instance()->m_hashmapFight.size();i++)
+    if(SinglePlayer::instance()->isLoadServer)
     {
-        m_vFightingCard.push_back(new CFightCard(SinglePlayer::instance()->m_hashmapFight[i]));
+        for (int i=0; i<SinglePlayer::instance()->m_hashmapFightingCard.size();i++)
+        {
+            m_vFightingCard.push_back(new CFightCard(*(SinglePlayer::instance()->m_hashmapFightingCard[i])));
+        }
+
     }
-    for (int i=0; i<m_vFightingCard.size(); i++) {
+    else
+    {
+        for (int i=0; i<SinglePlayer::instance()->m_hashmapFight.size();i++)
+        {
+            m_vFightingCard.push_back(new CFightCard(SinglePlayer::instance()->m_hashmapFight[i]));
+        }
+    }
+    for (int i=0; i<m_vFightingCard.size(); i++)
+    {
         if(i!=m_vFightingCard.size()-1)
         {
             CGamesCard *gameCard=CGamesCard::Create(m_vFightingCard[i]->m_pCard,false);

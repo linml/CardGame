@@ -54,6 +54,8 @@ public:
     
     void scheudoLoadGameConfig(); //异步加载配置
     void addFunctionInitGames(float t);
+    void loadServerInfo(CCObject *object);
+    void sendLoadServerInfo();
     
 protected:
     bool initLogin();

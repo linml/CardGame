@@ -46,6 +46,7 @@ public:
 //FIGHTING CARD
 class  CFightCard {
 public:
+    CFightCard();
     CFightCard(CCard *card,int level=1);
     ~CFightCard();
 public:

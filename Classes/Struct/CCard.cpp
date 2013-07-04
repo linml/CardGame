@@ -31,16 +31,20 @@ CCard::CCard()
     m_scard_resources.clear();
     m_scard_head.clear();
     m_scard_groud.clear();
+
     
 }
-
+CFightCard::CFightCard()
+{
+    m_pCard=NULL;
+}
 CFightCard::CFightCard(CCard *card,int level)
 {
     tag=-1;
     if(card)
     {
         
-        m_pCard=new CCard(*card);
+        m_pCard=card;
         this->m_iCurrHp=m_pCard->m_icardhp*0.8*level;
         m_iHp=m_iCurrHp;
         m_attack=card->m_icard_attack*0.75*level;
@@ -55,11 +59,11 @@ CFightCard::CFightCard(CCard *card,int level)
 
 CFightCard::~CFightCard()
 {
-    if(m_pCard)
-    {
-        delete  m_pCard;
-        m_pCard=NULL;
-    }
+//    if(m_pCard)
+//    {
+//        delete  m_pCard;
+//        m_pCard=NULL;
+//    }
     
 }
 

@@ -80,7 +80,8 @@ void LoadingScene::update(float delta) {
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
         //loading the  例子效果
-        addParticle();    
+        addParticle();
+        //addFightResource();
     }
         //终止所有的预定信息
         this->unscheduleAllSelectors();

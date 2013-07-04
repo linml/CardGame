@@ -262,6 +262,11 @@ namespace GameTools {
 		return ccc3(tmp[0],tmp[1],tmp[2]);
 	}
     
+    CCArray *arrayForKey(const char *key, cocos2d::CCDictionary* dict)
+    {
+        return (CCArray*)dict->objectForKey(key);
+    }
+    
     vector<std::string> splitStringByLength(const char *str,const char *c)
 	{
 		vector<std::string> tmp;

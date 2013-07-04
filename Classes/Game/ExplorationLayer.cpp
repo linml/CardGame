@@ -35,34 +35,34 @@ void CExplorationLayer::dealWhithTouchEndSprite(cocos2d::CCSprite *touchSprite, 
 }
 bool CExplorationLayer::dealGotoRoom(CCSprite * touchSprite,int touch_tag)
 {
-    switch (touch_tag) {
-        case 3001:
-            SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_IN;
-            break;
-        case 3002:
-              SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_UP;
-            break;
-        case 3003:
-             SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_DOWN;
-            break;
-        case 3004:
-             SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_RIGHT;
-            break;
-        case 3005:
-             SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_LEFT;
-            break;
-            
-        default:
-            return false;
-    }
-    PtGameLogic::getGoPos(SinglePlayer::instance()->m_stcCurrenPos,SinglePlayer::instance()->m_nFaceTo,SinglePlayer::instance()->m_nTurnTo);
-    char data[40];
-    sprintf(data, "dangqian:{%d,%d,%d}",SinglePlayer::instance()->m_stcCurrenPos.x,SinglePlayer::instance()->m_stcCurrenPos.y,SinglePlayer::instance()->m_stcCurrenPos.z);
-    if(getChildByTag(12222))
-    {
-        CCLabelTTF *label=(CCLabelTTF *)(getChildByTag(12222));
-        label->setString(data);
-    }
+//    switch (touch_tag) {
+//        case 3001:
+//            SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_IN;
+//            break;
+//        case 3002:
+//              SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_UP;
+//            break;
+//        case 3003:
+//             SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_DOWN;
+//            break;
+//        case 3004:
+//             SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_RIGHT;
+//            break;
+//        case 3005:
+//             SinglePlayer::instance()->m_nTurnTo=(int)EN_TURNTO_LEFT;
+//            break;
+//            
+//        default:
+//            return false;
+//    }
+//    PtGameLogic::getGoPos(SinglePlayer::instance()->m_stcCurrenPos,SinglePlayer::instance()->m_nFaceTo,SinglePlayer::instance()->m_nTurnTo);
+//    char data[40];
+//    sprintf(data, "dangqian:{%d,%d,%d}",SinglePlayer::instance()->m_stcCurrenPos.x,SinglePlayer::instance()->m_stcCurrenPos.y,SinglePlayer::instance()->m_stcCurrenPos.z);
+//    if(getChildByTag(12222))
+//    {
+//        CCLabelTTF *label=(CCLabelTTF *)(getChildByTag(12222));
+//        label->setString(data);
+//    }
     return true;
 }
 
@@ -92,7 +92,7 @@ bool CExplorationLayer::initWithMapFile(const char *fileName)
 		PtMapUtility::addChildFromScript(this,mapFileName.c_str());
 		PtMapUtility::addTouchRectFromScript(mapFileName.c_str(), this, &vTouchMapRect);
         char data[40];
-        sprintf(data, "dangqian:{%d,%d,%d}",SinglePlayer::instance()->m_stcCurrenPos.x,SinglePlayer::instance()->m_stcCurrenPos.y,SinglePlayer::instance()->m_stcCurrenPos.z);
+//        sprintf(data, "dangqian:{%d,%d,%d}",SinglePlayer::instance()->m_stcCurrenPos.x,SinglePlayer::instance()->m_stcCurrenPos.y,SinglePlayer::instance()->m_stcCurrenPos.z);
         CCLabelTTF *labelroom=CCLabelTTF::create(data,"Arial",25);
         labelroom->setPosition(ccp(100,600));
         labelroom->setColor(ccc3(255, 0, 0));

@@ -33,6 +33,11 @@ namespace GameTools {
     
 	ccColor3B ccc3ForKey(const char *key, cocos2d::CCDictionary* dict);
     
+    //add By Merlin
+    CCArray *arrayForKey(const char *key, cocos2d::CCDictionary* dict);
+    
+    
+    
     template<class T>
 	std::string ConvertToString(T value)
 	{

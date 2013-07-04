@@ -212,10 +212,24 @@ void CLoginScene::scheudoLoadGameConfig()
     schedule(schedule_selector(CLoginScene::addFunctionInitGames));
 }
 
+void CLoginScene::loadServerInfo(CCObject *object)
+{
+    char *data=(char *)object;
+    CCLog("%s",data);
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+    CCDictionary *userinfodirct=(CCDictionary *)(((CCDictionary *)dirct->objectForKey("result"))->objectForKey("user_info"));
+    SinglePlayer::instance()->initByServerDictorny(userinfodirct);
+    delete []data;
+}
+void CLoginScene::sendLoadServerInfo()
+{
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=GameBegin&a=init&uid=227&sig=2550e9fcdf86908d4fc7ad93b57f74f5&sid=1", "merlin", "merlinaskplayerinfo", callfuncO_selector(CLoginScene::loadServerInfo));
+}
 
 void CLoginScene::addFunctionInitGames(float t)
 {
     SinglePlayer::instance()->loadGamesConfig();
+    sendLoadServerInfo();
     unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
 }
 
