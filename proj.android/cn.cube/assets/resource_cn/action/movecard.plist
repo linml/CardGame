@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>left00</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Spawn(Item 1,Item 2)</string>
+			<string>MoveTo(0.2,{252,100})</string>
+			<string>ScaleTo(0.2,0.6)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 0</string>
+	</dict>
+	<key>left01</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Spawn(Item 1,Item 2)</string>
+			<string>MoveTo(0.2,{412,140})</string>
+			<string>ScaleTo(0.2,1.0)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 0</string>
+	</dict>
+	<key>left02</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Spawn(Item 1,Item 2)</string>
+			<string>MoveTo(0.2,{312,100})</string>
+			<string>ScaleTo(0.2,0.6)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 0</string>
+	</dict>
+	<key>left03</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Spawn(Item 1,Item 2)</string>
+			<string>MoveTo(0.2,{282,100})</string>
+			<string>ScaleTo(0.2,0.6)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 0</string>
+	</dict>
+	<key>right00</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Spawn(Item 1,Item 2)</string>
+			<string>MoveTo(0.2,{772,100})</string>
+			<string>ScaleTo(0.2,0.6)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 0</string>
+	</dict>
+	<key>right01</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Spawn(Item 1,Item 2)</string>
+			<string>MoveTo(0.2,{612,140})</string>
+			<string>ScaleTo(0.2,1.0)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 0</string>
+	</dict>
+	<key>right02</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Spawn(Item 1,Item 2)</string>
+			<string>MoveTo(0.2,{712,100})</string>
+			<string>ScaleTo(0.2,0.6)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 0</string>
+	</dict>
+	<key>right03</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Spawn(Item 1,Item 2)</string>
+			<string>MoveTo(0.2,{742,100})</string>
+			<string>ScaleTo(0.2,0.6)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 0</string>
+	</dict>
+</dict>
+</plist>

@@ -14,9 +14,9 @@
 
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
-    "blue_aobraysies",
-    "gold_aerwise",
-    "green_raynas",
+    "001",
+    "002",
+    "003",
     "purple_princess",
     "red_wolf"
 };
@@ -92,14 +92,14 @@ void CGamesCard::createCardName(const char *str)
     CCLabelTTF *label=CCLabelTTF::create(str, "Arial", 15);
     label->setColor(ccc3(255, 255, 0));
     addChild(label,2);
-    label->setPosition(ccp(0,-200));
+    label->setPosition(ccp(0,-80));
 }
 void CGamesCard::createHero(const char *str)
 {
     FILE *fp = fopen((g_strresource+str).c_str(), "r");
     if(fp==NULL)
     {
-        string cardfile=g_strresource+g_testtemp[rand()%5]+"_2.png";
+        string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+".png";
         CCSprite *sprite=CCSprite::create(cardfile.c_str());
         addChild(sprite,1,TAG_GAMECARD_HERO);
         //sprite->setAnchorPoint(CCPointZero);
@@ -146,7 +146,7 @@ bool CGamesCard::initCreate(CCard *card,bool isYongHu)
         FILE *pFile=fopen((g_strresource +card->m_scard_resources).c_str(), "r");
         if(!pFile)
         {
-            string cardfiletemp=g_strresource+g_testtemp[rand()%5]+"_3.png";
+            string cardfiletemp=g_strresource+"card_res_"+g_testtemp[rand()%3]+".png";
             cout<<cardfiletemp<<endl;
             CCSprite *sprite=CCSprite::create(cardfiletemp.c_str());
             addChild(sprite,1);
@@ -158,7 +158,6 @@ bool CGamesCard::initCreate(CCard *card,bool isYongHu)
             CCSprite *sprite=CCSprite::create((g_strresource +card->m_scard_resources).c_str());
             addChild(sprite,1);
             sprite->setAnchorPoint(CCPointZero);
-           // initWithFile(card->m_scard_head.c_str());
         }
     }
     return true;

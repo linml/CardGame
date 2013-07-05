@@ -233,7 +233,8 @@ namespace PtActionUtility {
             sprite->autorelease();
             CCCallFunc* action = CCCallFunc::create(sprite, callfunc_selector(ActionCallFun::actionOver));
             return action;
-        } else if (actionType == act_remove_self) {
+        }
+        else if (actionType == act_remove_self) {
             
         }
         return NULL;
@@ -372,6 +373,15 @@ void ActionCallFun::actionOver() {
 void ActionCallFun::removeSelf(CCNode* node, void* data) {
 	bool cleanup = (void*) data;
 	node->removeFromParentAndCleanup(cleanup);
+}
+//重设置zorder
+void  ActionCallFun::reZorder(cocos2d::CCNode *node, void *data)
+{
+    int zorder=*(int *)data;
+    if(node->getParent())
+    {
+        node->getParent()->reorderChild(node, zorder);
+    }
 }
 //按钮执行动作结束
 void ActionCallFun::btnActOver()

@@ -38,7 +38,7 @@ private:
     void checkOwnIsDeadAndMove();
     void checkMonsterIsDeadAndMove();
     void animationSwf(int skillIndex,vector<CFightCard *>ownFightCard,vector<CFightCard *>MonstFightCard,int  oWnindex,int  MonsteIndex, SAnimationFps * spfs);
-    void MoveCardSprite(vector<CFightCard *> &card);
+    void MoveCardSprite(vector<CFightCard *> &card,int goIndex,bool isLeft);
     void basicAnimation(vector<CFightCard *>ownFightCard,vector<CFightCard *>MonstFightCard,int  oWnindex,int  MonsteIndex, SAnimationFps * spfs);
     
     void showJuqi(CCNode *node,void *tag);
