@@ -17,6 +17,16 @@
 #include "PtActionUtility.h"
 #include "PtMapUtility.h"
 
+static string  g_strresource=g_mapImagesPath+"fighting/";
+static string g_testtemp[5]={
+    "001",
+    "002",
+    "003",
+    "purple_princess",
+    "red_wolf"
+};
+
+
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -80,6 +90,10 @@ CCardFightingLayerScene::~CCardFightingLayerScene()
 
 bool CCardFightingLayerScene::init()
 {
+    m_vFightHero.clear();
+    m_vMonsterHero.clear();
+    
+    
     CCSize winsize = CCDirector::sharedDirector()->getWinSize();
 	CCLog("CCardFightingLayerScene::init");
     CCSprite *bgSprite=CCSprite::create((g_mapImagesPath+"fighting/bgm.png").c_str());
@@ -126,6 +140,7 @@ bool CCardFightingLayerScene::init()
     
     createFightCard();
     createMonsterCard();
+    createHero();
    
     m_iFightingCardIndex=m_iMonsterCardIndex=0;
     schedule(schedule_selector(CCardFightingLayerScene::locgicSchudel));
@@ -134,12 +149,12 @@ bool CCardFightingLayerScene::init()
 
 void CCardFightingLayerScene::basicAnimation(vector<CFightCard *>ownFightCard,vector<CFightCard *>MonstFightCard,int  oWnindex,int  MonsteIndex, SAnimationFps * spfs)
 {
-    CGamesCard *m_tempCardSprite=(CGamesCard*)getChildByTag(ownFightCard[oWnindex]->tag);
-   if(spfs->m_iHuihe!=0 && spfs->m_iHuihe!=-2 &&m_tempCardSprite->isAddTexiao==false)
+    CCSprite *m_tempCardSprite=(CCSprite*)getChildByTag(ownFightCard[oWnindex]->tag+10);
+   if(spfs->m_iHuihe!=0 && spfs->m_iHuihe!=-2 )
     {
-        m_tempCardSprite->isAddTexiao=true;
+       // m_tempCardSprite->isAddTexiao=true;
 
-       Utility::runPtActionScript(m_tempCardSprite,"xuanzhe/xuanzhe.act",200);
+     //  Utility::runPtActionScript(m_tempCardSprite,"xuanzhe/xuanzhe.act",200);
     }
     
     cout<<"oWnindex:"<<spfs->m_spendAnimationAuthor<<" ownindex:"<<oWnindex<<" spfs->m_iShanghai"<<spfs->m_iShanghai<<" "<<m_tempCardSprite->getTag()<<endl;
@@ -218,7 +233,7 @@ void CCardFightingLayerScene::MoveCardSprite(vector<CFightCard *> &vCard,int goI
                 sprintf(data, "right%0.2d",i);
 
             }
-            CCLog("%s,%d",data,vectemp[i]->tag);
+            CCLog("%s,%d,0x%x",data,vectemp[i]->tag,(CCSprite *)getChildByTag(vectemp[i]->tag));
             PtActionUtility::readSpriteActionFile(g_ActionFilePath+"movecard.plist",(CCSprite *)getChildByTag(vectemp[i]->tag),string(data));
         }
         this->runAction(CCSequence::create(CCDelayTime::create(0.3f),CCCallFunc::create(this, callfunc_selector(CCardFightingLayerScene::AnimaitonEnd)),NULL));
@@ -251,12 +266,14 @@ void CCardFightingLayerScene::fSchudelUpdate(float t)
                         node->setDead();
                         
                     }
+                    m_vFightHero[m_iFightingCardIndex]->setVisible(false);
                     MoveCardSprite(m_vFightingCard,m_iFightingCardIndex,true);
-                    if(node->isAddTexiao)
-                    {
-                        Utility::stopPtActionScript(node, 200);
-                    }
+//                    if(node->isAddTexiao)
+//                    {
+//                        Utility::stopPtActionScript(node, 200);
+//                    }
                     m_iFightingCardIndex++;
+                    m_vFightHero[m_iFightingCardIndex]->setVisible(true);
                     
                 }
                     break;
@@ -268,11 +285,13 @@ void CCardFightingLayerScene::fSchudelUpdate(float t)
                         node->setDead();
                     }
                     MoveCardSprite(m_vMonsterCard,m_iMonsterCardIndex,false);
-                    if(node->isAddTexiao)
-                    {
-                        Utility::stopPtActionScript(node, 200);
-                    }
+//                    if(node->isAddTexiao)
+//                    {
+//                        Utility::stopPtActionScript(node, 200);
+//                    }
+                    m_vMonsterHero[m_iMonsterCardIndex]->setVisible(false);
                     m_iMonsterCardIndex++;
+                    m_vMonsterHero[m_iMonsterCardIndex]->setVisible(true);
                 }
                 default:
                     break;
@@ -634,11 +653,12 @@ void CCardFightingLayerScene::createMonsterCard()
             CGamesCard *gameCard=CGamesCard::Create(m_vMonsterCard[i]->m_pCard,false);
             m_vMonsterCard[i]->tag=1000+i;
             gameCard->setTag(m_vMonsterCard[i]->tag);
-            addChild(gameCard,i+5, m_vMonsterCard[i]->tag);
+            addChild(gameCard,9-i, m_vMonsterCard[i]->tag);
             gameCard->setPosition(getCardPoint(i, false));
             gameCard->setFlipX(true);
             if(i!=0)
             {
+              
                 gameCard->setScale(0.6);
             }
             CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
@@ -652,9 +672,58 @@ void CCardFightingLayerScene::createMonsterCard()
             gameCard->setPosition(ccp(wndsize.width-200,20));
             //  gameCard->setAnchorPoint(ccp(0,0));
             gameCard->setFlipX(true);
-            addChild(gameCard,i+5, m_vMonsterCard[i]->tag);
+            addChild(gameCard,9-i, m_vMonsterCard[i]->tag);
             CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
 
         }
+    }
+}
+void CCardFightingLayerScene::createHero()
+{
+    CCSize wndSize=CCDirector::sharedDirector()->getWinSize();
+    for (int i=0; i<m_vFightingCard.size(); i++) {
+        FILE *fp = fopen((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_resources+".png").c_str(), "r");
+        if(fp==NULL)
+        {
+            string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+"_000"+".png";
+            CCSprite *sprite=CCSprite::create(cardfile.c_str());
+            addChild(sprite,1,m_vFightingCard[i]->tag+10);
+            sprite->setPosition(ccp(wndSize.width*0.5-300,wndSize.height*0.5));
+            sprite->setVisible(false);
+            m_vFightHero.push_back(sprite);
+        }
+        else
+        {
+            fclose(fp);
+            CCSprite *sprite=CCSprite::create((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_resources+".png").c_str());
+            addChild(sprite,1,m_vFightingCard[i]->tag+10);
+            //sprite->setAnchorPoint(CCPointZero);
+        }
+    }
+    if(m_vFightHero.size()>0)
+    {
+        m_vFightHero[0]->setVisible(true);
+    }
+    for (int i=0; i<m_vMonsterCard.size(); i++) {
+        FILE *fp = fopen((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_resources+".png").c_str(), "r");
+        if(fp==NULL)
+        {
+            string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+"_000"+".png";
+            CCSprite *sprite=CCSprite::create(cardfile.c_str());
+            addChild(sprite,1,m_vMonsterCard[i]->tag+10);
+            sprite->setPosition(ccp(wndSize.width*0.5+300,wndSize.height*0.5));
+            sprite->setVisible(false);
+                        m_vMonsterHero.push_back(sprite);
+        }
+        else
+        {
+            fclose(fp);
+            CCSprite *sprite=CCSprite::create((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_resources+".png").c_str());
+            addChild(sprite,1,m_vMonsterCard[i]->tag+10);
+        }
+    }
+    if(m_vMonsterHero.size()>0)
+    {
+        m_vMonsterHero[0]->setVisible(true);
     }
 }

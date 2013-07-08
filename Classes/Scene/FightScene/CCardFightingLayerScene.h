@@ -33,6 +33,11 @@ public:
 private:
     void createFightCard();
     void createMonsterCard();
+private:
+    void createHero();
+    vector<CCSprite *>m_vFightHero;
+    vector<CCSprite *>m_vMonsterHero;
+private:
     int getWinStats();
     void fightLogic(int &iHuihe);
     void checkOwnIsDeadAndMove();

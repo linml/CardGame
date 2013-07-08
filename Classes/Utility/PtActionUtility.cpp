@@ -234,6 +234,14 @@ namespace PtActionUtility {
             CCCallFunc* action = CCCallFunc::create(sprite, callfunc_selector(ActionCallFun::actionOver));
             return action;
         }
+        else if (actionType == act_resetZorder)
+        {
+            int *willZorder =new int;
+            *willZorder=atof(getSubStr(sAction, "(", ")").c_str());
+            //下面一行的该处的NULL 在实际的回调函数中 会直接根本成调用该action的指针地址。TMD的太奇怪的回调了
+            CCCallFuncND* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::resetZorder),(void *)willZorder);
+            return action;
+        }
         else if (actionType == act_remove_self) {
             
         }
@@ -375,12 +383,18 @@ void ActionCallFun::removeSelf(CCNode* node, void* data) {
 	node->removeFromParentAndCleanup(cleanup);
 }
 //重设置zorder
-void  ActionCallFun::reZorder(cocos2d::CCNode *node, void *data)
+void  ActionCallFun::resetZorder(cocos2d::CCNode *node, void *data)
 {
     int zorder=*(int *)data;
-    if(node->getParent())
+    delete (int *)data;
+    data=NULL;
+    if(node&&node->getParent())
     {
+        CCLog("0x%x,%d",node,zorder);
         node->getParent()->reorderChild(node, zorder);
+    }
+    else{
+        CCLog("TMD TMD==%x",node);
     }
 }
 //按钮执行动作结束

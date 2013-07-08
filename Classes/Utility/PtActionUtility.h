@@ -60,7 +60,7 @@ public:
     void removeSelf(CCNode* node,void* data);
     //按钮执行动作结束
     void btnActOver();
-    void reZorder(CCNode *node,void *data);
+    void resetZorder(CCNode *node,void *data);
 };
 
 
