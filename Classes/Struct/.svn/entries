@@ -1,14 +1,14 @@
 10
 
 dir
-676
+681
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-03T10:00:16.926475Z
-663
+2013-07-09T03:19:49.207824Z
+680
 merlin
 
 
@@ -29,19 +29,16 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 CardKind
 dir
 
-Craftsmanship
-dir
-
-CCard.h
+CGamePlayerStruct.cpp
 file
-677
+682
 
 
 
-2013-07-08T10:54:19.000000Z
-2f55a6b22aae3f2b71990910a4fd136a
-2013-07-08T10:54:52.974043Z
-677
+2013-07-09T06:42:48.000000Z
+a2075a57882e9f143c123c44442bf6a7
+2013-07-09T06:55:44.448099Z
+682
 merlin
 
 
@@ -64,7 +61,14 @@ merlin
 
 
 
-1416
+118
+
+CGameLogic.h
+file
+0
+
+
+add
 
 AnimationLogic.h
 file
@@ -100,6 +104,118 @@ merlin
 
 680
 
+CGamePlayerStruct.h
+file
+682
+
+
+
+2013-07-09T06:42:57.000000Z
+a1dbccf25ab988551ef704ec7278d647
+2013-07-09T06:55:44.448099Z
+682
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+408
+
+CCard.cpp
+file
+
+
+
+
+2013-07-09T06:51:48.000000Z
+671a48a085298e7ed80259c243a0c720
+2013-07-08T10:54:52.974043Z
+677
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1245
+
+CConfigResourceLoad.cpp
+file
+0
+
+
+add
+
+Craftsmanship
+dir
+
+CCard.h
+file
+682
+
+
+
+2013-07-09T06:40:16.000000Z
+59b921d128af53d26470fbf88daadce7
+2013-07-09T06:55:44.448099Z
+682
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1485
+
 gameStruct.h
 file
 
@@ -134,16 +250,23 @@ phileas
 
 830
 
+CConfigResourceLoad.h
+file
+0
+
+
+add
+
 gamePlayer.cpp
 file
-677
+682
 
 
 
-2013-07-08T10:54:19.000000Z
-2259ee88209b6c48bba77fad3517757e
-2013-07-08T10:54:52.974043Z
-677
+2013-07-09T06:40:53.000000Z
+0254dea0a7fbdd73cee264315618ed66
+2013-07-09T06:55:44.448099Z
+682
 merlin
 
 
@@ -166,7 +289,14 @@ merlin
 
 
 
-8578
+10099
+
+CGameLogic.cpp
+file
+0
+
+
+add
 
 GameSpriteConfig.h
 file
@@ -204,14 +334,14 @@ merlin
 
 gamePlayer.h
 file
-677
+682
 
 
 
-2013-07-08T10:54:19.000000Z
-35f611ef51f499e2a13ffa7704c189fe
-2013-07-08T10:54:52.974043Z
-677
+2013-07-09T06:51:26.000000Z
+a80128f7f660e9c6264f8d4f2c9a2dfc
+2013-07-09T06:55:44.448099Z
+682
 merlin
 
 
@@ -234,41 +364,7 @@ merlin
 
 
 
-1991
-
-CCard.cpp
-file
-677
-
-
-
-2013-07-08T10:54:19.000000Z
-671a48a085298e7ed80259c243a0c720
-2013-07-08T10:54:52.974043Z
-677
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1245
+2149
 
 AnimationLogic.cpp
 file

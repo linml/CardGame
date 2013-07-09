@@ -13,16 +13,9 @@
 #include "CCard.h"
 #include "cocos2d.h"
 #include <vector>
+#include "CGamePlayerStruct.h"
 using namespace std;
-struct SLevelPlayer {
-    int m_iLevel;
-    int m_iCard_max;
-    int m_iLeadership;
-    int m_iFriend_max; //好友上线
-    int m_iHP;
-    int m_iMp;
-    int m_iexp;
-};
+
 class CGamePlayer : cocos2d::CCObject {
 public:
     void forTestCard();
@@ -43,12 +36,12 @@ public:
     //读取玩家等级表格子
     void clearPlayerTable();
     void initPlayerTable(const char *playerFileName);
-  
-    
-    
+
     vector<SLevelPlayer *>m_gvPlayerLevel;
+ 
     vector<CFightCard *>m_hashmapFightingCard;
     vector<CFightCard *>m_hashmapMonsterCard;
+    
     void initByServerDictorny(cocos2d::CCDictionary *dict);
     void initFightingCardByserverDictorny(cocos2d::CCArray *dict);
     bool isLoadServer;
@@ -76,6 +69,20 @@ public:
     void initPlayerStatusZero();
     //获得服务端的数据并init下数据
     void getSeverPlayerInfo(CCObject *object);
+public:
+    void loadServerCardBag();
+    void clearServerCardBag();
+    void parseCardBagJson(CCObject *obj);
+    void deleteFromCardBag(vector<int>user_CardId);
+    bool isCardBagContainUserCardList(vector<int>User_CardId);
+    bool isLoadCardBagEnd;
+    
+public:
+    //获取 卡包 内容的卡
+    vector<CFightCard *>m_vCardBag;
+    //获取当前阵容（0~2),01攻击  　２防御
+    vector<vector<CFightCard*> >m_vvBattleArray;
+    int m_iCurrentBattle;
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

@@ -19,9 +19,9 @@ class CGamesCard :public  CCSprite
 public:
     CGamesCard();
     ~CGamesCard();
-    static  CGamesCard  *Create(CCard *card,bool isYongHu);
+    static  CGamesCard  *Create(CCard *card);
 public:
-    bool initCreate(CCard *card,bool isYongHu);
+    bool initCreate(CCard *card);
     void setDead();
 private:
     bool initBg(CCard *card);

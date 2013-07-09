@@ -49,6 +49,8 @@ public:
     CFightCard();
     CFightCard(CCard *card,int level=1);
     ~CFightCard();
+private:
+    void init();
 public:
     int m_iCurrHp; //当前HP
     int m_iHp;     //当前总的HP
@@ -56,6 +58,10 @@ public:
     int m_defend;   //当前的防御力
     int tag; //当前卡牌的tag
     bool isDead;
+    int m_iMaxExp;
+    int m_User_Card_ID;
+    int m_iCurrLevel;
+    int m_iCurrExp;
 public:
     CCard *m_pCard;
 };

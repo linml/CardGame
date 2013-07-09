@@ -110,12 +110,7 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
     {
         pchData[i]=(*buffer)[i];
     }
-    string tmp=string(pchData);
-   // printf("%s\n",tmp.c_str());
-    CCNotificationCenter::sharedNotificationCenter()->postNotification(MSG_HTTPCLIENT, (CCObject*)pchData);
-
-//    delete[] pchData;
-
+    CCNotificationCenter::sharedNotificationCenter()->postNotification(MSG_HTTPCLIENT, (CCObject*)pchData);    
 }
 
 void CPtHttpClient::notificationMsgRecevice(CCObject* obj)

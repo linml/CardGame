@@ -227,12 +227,13 @@ void CLoginScene::loadServerInfo(CCObject *object)
 }
 void CLoginScene::sendLoadServerInfo()
 {
-    ADDHTTPREQUEST("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "merlin", "merlinaskplayerinfo", callfuncO_selector(CLoginScene::loadServerInfo));
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "merlin1", "merlinaskplayerinfo1", callfuncO_selector(CLoginScene::loadServerInfo));
 }
 
 void CLoginScene::addFunctionInitGames(float t)
 {
     SinglePlayer::instance()->loadGamesConfig();
+    SinglePlayer::instance()->loadServerCardBag();
     sendLoadServerInfo();
     unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
 }

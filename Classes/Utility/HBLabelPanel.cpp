@@ -54,7 +54,7 @@ void HBLabelPanel::addLabelTTFWithStr(const char* str,int fontSize,ccColor3B col
 {
 	CCLabelTTF* label;
 
-	label = CCLabelTTF::labelWithString(str,g_sFont.c_str(),fontSize);
+	label = CCLabelTTF::create(str,g_sFont.c_str(),fontSize);
 	label->setAnchorPoint(ccp(0,1));
 
 	//居中
@@ -107,7 +107,7 @@ void HBLabelPanel::addLabelTTFWithStr(const char* str,int fontSize,ccColor3B col
 
 void HBLabelPanel::addSprite(const char* path,int offsetY,bool bolCenter)
 {
-	CCSprite* sprite = CCSprite::spriteWithFile(path);
+	CCSprite* sprite = CCSprite::create(path);
 	sprite->setAnchorPoint(ccp(0,1));
 
 	//居中
@@ -130,7 +130,7 @@ void HBLabelPanel::addLabelTTF(const char* str,int fontSize,ccColor3B color,int 
 {
 	string mainStr = str;
 
-	CCLabelTTF* label = CCLabelTTF::labelWithString(mainStr.c_str(),g_sFont.c_str(),fontSize);
+	CCLabelTTF* label = CCLabelTTF::create(mainStr.c_str(),g_sFont.c_str(),fontSize);
         //add bq
 //#if (CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)
 //    if(iPlatfrom == PLATFORM_IPHONE) {

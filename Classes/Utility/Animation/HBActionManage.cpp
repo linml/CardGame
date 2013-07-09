@@ -21,7 +21,7 @@ void HBActionManage::purgeActionManage(void)
 
 bool HBActionManage::init()
 {
-	actionArray = CCArray::array();
+	actionArray = CCArray::create();
 	actionArray->retain();
 	currentPos = -1;
 	runningPos = -1;
@@ -44,7 +44,7 @@ HBActionManage::~HBActionManage(void)
 void HBActionManage::proceed()
 {
 	currentPos++;
-	actionArray->addObject(CCArray::array());
+	actionArray->addObject(CCArray::create());
 }
 
 void HBActionManage::addCurrentAction(CCNode* owner,HBActionAni* ani,float delay)

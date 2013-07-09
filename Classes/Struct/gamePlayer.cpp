@@ -10,6 +10,9 @@
 #include "gameTools.h"
 #include "gameConfig.h"
 #include "Utility.h"
+#include "PtHttpClient.h"
+#include "CConfigResourceLoad.h"
+#include "PtJsonUtility.h"
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -23,7 +26,12 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 CGamePlayer::CGamePlayer()
 {
     isLoadServer=false;
-
+    
+    for (int i=0; i<m_vvBattleArray.size(); i++) {
+        DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> );
+    }
+    m_vvBattleArray.clear();
+    
 }
 
 CGamePlayer::~CGamePlayer()
@@ -52,45 +60,7 @@ void CGamePlayer::initGames()
     }
     
 }
-void CGamePlayer::forTestCard()
-{
-    //获取当前所有卡佩里面的5张牌面给原先的
-    srand(time(0));
-    for (int i=0;i<5;i++)
-    { 
-        int index=rand()%m_hashmapAllCard.size();
-        int tempindex=0;
-        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
-            if(tempindex==index)
-            {
-                cout<<"card id:"<<it->first<<endl;;
-              m_hashmapFight.push_back(it->second);
-                
-                break;
-            }
-            tempindex++;
-        }
-    }
-}
 
-void CGamePlayer::forTestMonsterCard()
-{
-    m_hashmapMonster.erase(m_hashmapMonster.begin(),m_hashmapMonster.end());
-    for (int i=0;i<5;i++)
-    {
-        int index=rand()%m_hashmapAllCard.size();
-        int tempindex=0;
-        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
-            if(tempindex==index)
-            {
-                cout<<"card Monster id:"<<it->first<<endl;
-                m_hashmapMonster.push_back(it->second);
-                break;
-            }
-            tempindex++;
-        }
-    }
-}
 
 void CGamePlayer::clearAllCard()
 {
@@ -108,37 +78,7 @@ void CGamePlayer::clearAllCard()
 
 void CGamePlayer::initAllCard(const char *cardFileName)
 {
-    CCDictionary *directory = CCDictionary::createWithContentsOfFile(cardFileName);
-    CCArray *vKeyArray=directory->allKeys();
-    for (int i=0; i<vKeyArray->count(); i++) {
-        CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
-        CCDictionary *cardDirector=(CCDictionary*)(directory->objectForKey(key->m_sString));
-        CCard *card=new CCard;
-        card->m_icard_id=GameTools::intForKey("card_id", cardDirector);
-        card->m_scard_name=string(GameTools::valueForKey("card_name", cardDirector));
-        card->m_ccard_next=GameTools::intForKey("card_next", cardDirector);  ///背景底色
-        card->m_sicard_star=GameTools::intForKey("card_star", cardDirector);
-        card->m_icard_stirps=GameTools::intForKey("card_stirps", cardDirector);   //种族
-        card->m_icard_suit=GameTools::intForKey("card_suit", cardDirector);      //随机数值
-        card->m_icard_leadership=GameTools::intForKey("card_leadership", cardDirector);
-        card->m_icard_exp=GameTools::intForKey("card_exp", cardDirector);    //吃掉该卡牌的 经验
-        card->m_icard_price=GameTools::intForKey("card_price", cardDirector);  //卖掉该卡佩的 价格
-        card->m_ileve_max=GameTools::intForKey("card_leve_max", cardDirector);   //等级最高级别
-        card->m_icard_attack=GameTools::intForKey("card_attack", cardDirector); //攻击力
-        card->m_icard_defend=GameTools::intForKey("card_defend", cardDirector); //防御力
-        card->m_icardhp=GameTools::intForKey("card_hp",cardDirector);// 卡牌的总的HP
-        card->m_iusually_attack=GameTools::intForKey("usually_attack", cardDirector);
-        card->m_iskillLine=GameTools::intForKey("skill_anger", cardDirector);
-        card->m_iskillHelp=GameTools::intForKey("skill_help", cardDirector);
-        card->m_iskillDead=GameTools::intForKey("skill_dead", cardDirector);
-        card->m_iskillBuff=GameTools::intForKey("skill_buff", cardDirector);
-        card->m_scard_tips=string(GameTools::valueForKey("card_tips", cardDirector));
-        card->m_scard_resources=GameTools::valueForKey("card_resources", cardDirector);
-        card->m_scard_head=GameTools::valueForKey("card_head", cardDirector);
-        card->m_scard_groud=GameTools::valueForKey("card_groud", cardDirector);
-        m_hashmapAllCard[key->intValue()]=card;
-    }
-    cout<<"card plist size ="<<m_hashmapAllCard.size()<<endl;
+    G_SingleCConfigResourceLoad::instance()->loadCardInfo(m_hashmapAllCard, cardFileName);
 }
 
 void CGamePlayer::clearPlayerTable()
@@ -148,22 +88,7 @@ void CGamePlayer::clearPlayerTable()
 
 void CGamePlayer::initPlayerTable(const char *playerFileName)
 {
-    CCDictionary *directory = CCDictionary::createWithContentsOfFile(playerFileName);
-    CCArray *vKeyArray=directory->allKeys();
-    for (int i=0; i<vKeyArray->count(); i++)
-    {
-        CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
-        CCDictionary *playerDictionary=(CCDictionary*)(directory->objectForKey(key->m_sString));
-        SLevelPlayer *playerLevel=new SLevelPlayer;
-        playerLevel->m_iLevel=GameTools::intForKey("level", playerDictionary);
-        playerLevel->m_iCard_max=GameTools::intForKey("card_max", playerDictionary);
-        playerLevel->m_iLeadership=GameTools::intForKey("leadership", playerDictionary);
-        playerLevel->m_iFriend_max=GameTools::intForKey("friend_max",playerDictionary); //好友上线
-        playerLevel->m_iHP=GameTools::intForKey("hp",playerDictionary);
-        playerLevel->m_iMp=GameTools::intForKey("mp",playerDictionary);
-       playerLevel->m_iexp=GameTools::intForKey("exp", playerDictionary);
-       this->m_gvPlayerLevel.push_back(playerLevel);
-    }
+    G_SingleCConfigResourceLoad::instance()->loadPlayerLevelInfo(&m_gvPlayerLevel, playerFileName);
 }
 
 void CGamePlayer::initByServerDictorny(cocos2d::CCDictionary *dict)
@@ -230,6 +155,93 @@ void CGamePlayer::getSeverPlayerInfo(cocos2d::CCObject *object)
     
 }
 
+void CGamePlayer::loadServerCardBag()
+{
+    isLoadCardBagEnd=false;
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "merlin", "merlinaskplayerinfo", callfuncO_selector(CGamePlayer::parseCardBagJson));
+
+}
+
+void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
+{ 
+    clearServerCardBag();
+    //添加card  字符串
+    char *tempdata=(char *)obj;
+    CCLog("%s",tempdata);
+    CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
+    delete []tempdata;
+    tempdata=NULL;
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
+    assert(dict&&"aaaaaaaaa");
+    if(GameTools::intForKey("code", dict)!=0)
+    {
+        CCLog("error");
+        return ;
+    }
+    CCDictionary *directory =(CCDictionary*)dict->objectForKey("result");
+    CCArray *array=directory->allKeys();;
+    for (int i=0; i<array->count(); i++) {
+        CCString *key=(CCString *)array->objectAtIndex(i);
+        CCDictionary *detail=(CCDictionary*)(directory->objectForKey(key->m_sString));
+
+        int level=GameTools::intForKey("level", detail);
+        int card_id=GameTools::intForKey("card_id", detail);
+        int cardexp=GameTools::intForKey("exp", detail);
+        int card_item_id=GameTools::intForKey("card_item_id", detail);
+        CFightCard *fightCard=new CFightCard(m_hashmapAllCard[card_id],level);
+        fightCard->m_iCurrExp=cardexp;
+        fightCard->m_User_Card_ID=card_item_id;
+        m_vCardBag.push_back(fightCard);
+    }
+    
+    isLoadCardBagEnd=true;
+}
+
+void CGamePlayer::clearServerCardBag()
+{
+     DELETE_POINT_VECTOR(m_vCardBag, vector<CFightCard *>);
+}
+
+bool CGamePlayer::isCardBagContainUserCardList(vector<int>User_CardId)
+{
+    for (int i=0; i<User_CardId.size(); i++) {
+        bool isExsit=false;
+        for (vector<CFightCard *>::iterator it=m_vCardBag.begin(); it!=m_vCardBag.end();)
+        {
+            if((*it)->m_User_Card_ID==User_CardId[i])
+            {
+                isExsit=true;
+                break;
+            }
+        }
+        if(!isExsit)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void CGamePlayer::deleteFromCardBag(vector<int>user_CardId)
+{
+    for (int i=0; i<user_CardId.size(); i++)
+    {
+        for (vector<CFightCard *>::iterator it=m_vCardBag.begin(); it!=m_vCardBag.end();)
+        {
+            if((*it)->m_User_Card_ID==user_CardId[i])
+            {
+                CFightCard * temp=*it;
+                it=m_vCardBag.erase(it);
+                delete temp;
+                temp=NULL;
+                break;
+            }
+            else{
+                it++;
+            }
+        }
+    }    
+}
 
 
 int CGamePlayer::getTotoalHp()
@@ -273,6 +285,44 @@ void CGamePlayer::setCurrentMp(int nMp)
 void CGamePlayer::setCurrentExp(int nExp)
 {
     this->m_iCurrentHp=nExp;
+}
+void CGamePlayer::forTestCard()
+{
+    //获取当前所有卡佩里面的5张牌面给原先的
+    srand(time(0));
+    for (int i=0;i<5;i++)
+    {
+        int index=rand()%m_hashmapAllCard.size();
+        int tempindex=0;
+        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
+            if(tempindex==index)
+            {
+                cout<<"card id:"<<it->first<<endl;
+                m_hashmapFight.push_back(it->second);
+                break;
+            }
+            tempindex++;
+        }
+    }
+}
+
+void CGamePlayer::forTestMonsterCard()
+{
+    m_hashmapMonster.erase(m_hashmapMonster.begin(),m_hashmapMonster.end());
+    for (int i=0;i<5;i++)
+    {
+        int index=rand()%m_hashmapAllCard.size();
+        int tempindex=0;
+        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
+            if(tempindex==index)
+            {
+                cout<<"card Monster id:"<<it->first<<endl;
+                m_hashmapMonster.push_back(it->second);
+                break;
+            }
+            tempindex++;
+        }
+    }
 }
 
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

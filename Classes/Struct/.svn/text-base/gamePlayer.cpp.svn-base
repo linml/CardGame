@@ -10,6 +10,7 @@
 #include "gameTools.h"
 #include "gameConfig.h"
 #include "Utility.h"
+#include "PtHttpClient.h"
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -230,6 +231,64 @@ void CGamePlayer::getSeverPlayerInfo(cocos2d::CCObject *object)
     
 }
 
+void CGamePlayer::loadServerCardBag()
+{
+    
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "merlin", "merlinaskplayerinfo", callfuncO_selector(CGamePlayer::parseCardBagJson));
+
+}
+
+void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
+{ 
+    clearServerCardBag();
+    //添加card  字符串
+}
+
+void CGamePlayer::clearServerCardBag()
+{
+     DELETE_POINT_VECTOR(m_vCardBag, vector<CFightCard *>);
+}
+
+bool CGamePlayer::isCardBagContainUserCardList(vector<int>User_CardId)
+{
+    for (int i=0; i<User_CardId.size(); i++) {
+        bool isExsit=false;
+        for (vector<CFightCard *>::iterator it=m_vCardBag.begin(); it!=m_vCardBag.end();)
+        {
+            if((*it)->m_User_Card_ID==User_CardId[i])
+            {
+                isExsit=true;
+                break;
+            }
+        }
+        if(!isExsit)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void CGamePlayer::deleteFromCardBag(vector<int>user_CardId)
+{
+    for (int i=0; i<user_CardId.size(); i++)
+    {
+        for (vector<CFightCard *>::iterator it=m_vCardBag.begin(); it!=m_vCardBag.end();)
+        {
+            if((*it)->m_User_Card_ID==user_CardId[i])
+            {
+                CFightCard * temp=*it;
+                it=m_vCardBag.erase(it);
+                delete temp;
+                temp=NULL;
+                break;
+            }
+            else{
+                it++;
+            }
+        }
+    }    
+}
 
 
 int CGamePlayer::getTotoalHp()

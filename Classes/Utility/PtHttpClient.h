@@ -29,6 +29,8 @@ using namespace std;
 #define SERVER_IP "ip"
 #define SERVER_ISUSE "is_use"
 
+//需要在CALLBACK的函数里面删除传递的参数。 库函数使用malloc 后传递给回调函数 但没做删除处理 必须使用者自己来
+
 #define ADDHTTPREQUEST(URL,NOTIFICATIONTAG,HTTPREQUESTTAG,CALLBACK)\
 {\
     stcRequestInf inf;\

@@ -33,10 +33,10 @@ CGamesCard::~CGamesCard()
 
 }
 
-CGamesCard  *CGamesCard::Create(CCard *card,bool isYongHu)
+CGamesCard  *CGamesCard::Create(CCard *card)
 {
     CGamesCard *cardSprite=new CGamesCard();
-    if(cardSprite ==NULL|| !cardSprite->initCreate(card,isYongHu))
+    if(cardSprite ==NULL|| !cardSprite->initCreate(card))
     {
         delete cardSprite;
         cardSprite=NULL;
@@ -61,6 +61,7 @@ void CGamesCard::setDead()
         float grey = dot(texture2D(u_texture, v_texCoord).rgb, vec3(0.299, 0.587, 0.114)); \n \
         gl_FragColor = vec4(grey, grey, grey, 1.0); \n \
         }";
+    //vec3(0.299, 0.587, 0.114)
         if(node)
         {
         CCGLProgram* pProgram = new CCGLProgram();
@@ -126,7 +127,7 @@ bool CGamesCard::initBg(CCard *card)
     return true;
 }
 
-bool CGamesCard::initCreate(CCard *card,bool isYongHu)
+bool CGamesCard::initCreate(CCard *card)
 {
     assert(card != NULL&&"card is null");
     
@@ -134,31 +135,9 @@ bool CGamesCard::initCreate(CCard *card,bool isYongHu)
     {
         return false;
     }
-    if(!isYongHu)
-    {
-        initBg(card);
-        createHero(card->m_scard_resources.c_str());
-        createStart(card->m_sicard_star);
-        createCardName(card->m_scard_name.c_str());
-    }
-    else
-    {
-        FILE *pFile=fopen((g_strresource +card->m_scard_resources).c_str(), "r");
-        if(!pFile)
-        {
-            string cardfiletemp=g_strresource+"card_res_"+g_testtemp[rand()%3]+".png";
-            cout<<cardfiletemp<<endl;
-            CCSprite *sprite=CCSprite::create(cardfiletemp.c_str());
-            addChild(sprite,1);
-            sprite->setAnchorPoint(CCPointZero);
-        }
-        else
-        {
-            fclose(pFile);
-            CCSprite *sprite=CCSprite::create((g_strresource +card->m_scard_resources).c_str());
-            addChild(sprite,1);
-            sprite->setAnchorPoint(CCPointZero);
-        }
-    }
+    initBg(card);
+    createHero(card->m_scard_resources.c_str());
+    createStart(card->m_sicard_star);
+    createCardName(card->m_scard_name.c_str());
     return true;
 }

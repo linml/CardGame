@@ -312,7 +312,7 @@ namespace GameTools {
     
     CCLabelTTF* createWord(const string& word,const string& font,int intFontSize,ccColor3B color)
     {
-        CCLabelTTF* lab = CCLabelTTF::labelWithString(word.c_str(), font.c_str(), intFontSize);
+        CCLabelTTF* lab = CCLabelTTF::create(word.c_str(), font.c_str(), intFontSize);
         lab->setAnchorPoint(ccp(0.5,0.5));
         lab->setColor(color);
         return lab;
