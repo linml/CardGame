@@ -17,10 +17,11 @@ using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace std;
 
+
 #define SERVER_INF_ADR "http://cube.games.com/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
 
 
-//"http://cube.games.com/api.php?m=GameBegin&a=init&uid=227&sig=2550e9fcdf86908d4fc7ad93b57f74f5&sid=1", "merlin", "merlinaskplayerinfo"
+
 //"http://cube.games.com/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
 
 #define SERVER_SID "sid"

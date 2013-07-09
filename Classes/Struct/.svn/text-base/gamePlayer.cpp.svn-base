@@ -9,6 +9,7 @@
 #include "gamePlayer.h"
 #include "gameTools.h"
 #include "gameConfig.h"
+#include "Utility.h"
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -21,10 +22,8 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 
 CGamePlayer::CGamePlayer()
 {
-    m_nFaceTo = 0;
-    m_stcCurrenPos.x = 10;
-    m_stcCurrenPos.y = 10;
-    m_stcCurrenPos.z = 10;
+    isLoadServer=false;
+
 }
 
 CGamePlayer::~CGamePlayer()
@@ -164,6 +163,33 @@ void CGamePlayer::initPlayerTable(const char *playerFileName)
         playerLevel->m_iMp=GameTools::intForKey("mp",playerDictionary);
        playerLevel->m_iexp=GameTools::intForKey("exp", playerDictionary);
        this->m_gvPlayerLevel.push_back(playerLevel);
+    }
+}
+
+void CGamePlayer::initByServerDictorny(cocos2d::CCDictionary *dict)
+{
+    isLoadServer=true;
+    if(dict)
+    {
+        m_iCurrentExp=GameTools::intForKey("exp",dict);
+        m_iCurrentHp=GameTools::intForKey("hp",dict);
+        m_iCurrentMp=GameTools::intForKey("mp", dict);
+        m_iCurrentLeader=GameTools::intForKey("mp", dict);
+        m_iCardBagNum=GameTools::intForKey("card_bag_num", dict);
+        m_sLevelPlayer=m_gvPlayerLevel[GameTools::intForKey("level", dict)];
+        CCArray *aary=GameTools::arrayForKey("card_info", dict);
+        initFightingCardByserverDictorny(aary);
+    }
+}
+
+void CGamePlayer::initFightingCardByserverDictorny(CCArray *array)
+{
+    for (int i=0; i<array->count(); i++) {
+        CCDictionary *temp=(CCDictionary *)array->objectAtIndex(i);
+        int value=GameTools::intForKey("card_id",temp);
+        int level=GameTools::intForKey("card_level", temp);
+        m_hashmapFightingCard.push_back(new CFightCard(m_hashmapAllCard[value],level));
+        
     }
 }
 

@@ -233,16 +233,13 @@ namespace PtActionUtility {
             sprite->autorelease();
             CCCallFunc* action = CCCallFunc::create(sprite, callfunc_selector(ActionCallFun::actionOver));
             return action;
-        }
-        else if (actionType == act_resetZorder)
+        }else if(actionType==act_reset_zorder)
         {
-            int *willZorder =new int;
-            *willZorder=atof(getSubStr(sAction, "(", ")").c_str());
-            //下面一行的该处的NULL 在实际的回调函数中 会直接根本成调用该action的指针地址。TMD的太奇怪的回调了
-            CCCallFuncND* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::resetZorder),(void *)willZorder);
+            int *zorder=new int;
+            *zorder=atoi(getSubStr(sAction, "(", ")").c_str());
+            CCCallFunc* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::resetZorder), (void*)zorder);
             return action;
-        }
-        else if (actionType == act_remove_self) {
+        } else if (actionType == act_remove_self) {
             
         }
         return NULL;
@@ -382,23 +379,21 @@ void ActionCallFun::removeSelf(CCNode* node, void* data) {
 	bool cleanup = (void*) data;
 	node->removeFromParentAndCleanup(cleanup);
 }
-//重设置zorder
-void  ActionCallFun::resetZorder(cocos2d::CCNode *node, void *data)
-{
-    int zorder=*(int *)data;
-    delete (int *)data;
-    data=NULL;
-    if(node&&node->getParent())
-    {
-        CCLog("0x%x,%d",node,zorder);
-        node->getParent()->reorderChild(node, zorder);
-    }
-    else{
-        CCLog("TMD TMD==%x",node);
-    }
-}
 //按钮执行动作结束
 void ActionCallFun::btnActOver()
 {
     isButtonActing = false;
+}
+//重置 zorder
+void ActionCallFun::resetZorder(CCNode *node,void *data)
+{
+    int tempzorder=*(int *)data;
+    if(node &&node->getParent())
+    {
+        
+        node->getParent()->reorderChild(node, tempzorder);
+    }
+    
+    delete (int *)data;
+    data=NULL;
 }

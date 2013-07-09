@@ -1,4 +1,4 @@
-﻿#include "gameTools.h"
+#include "gameTools.h"
 #include "stdlib.h"
 #include "string.h"
 #include "stdio.h"
@@ -262,7 +262,7 @@ namespace GameTools {
 		return ccc3(tmp[0],tmp[1],tmp[2]);
 	}
     
-    CCArray *arrayForKey(const char *key, cocos2d::CCDictionary* dict)
+    CCArray  *arrayForKey(const char *key,cocos2d::CCDictionary *dict)
     {
         return (CCArray*)dict->objectForKey(key);
     }

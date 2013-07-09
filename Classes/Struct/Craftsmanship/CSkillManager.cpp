@@ -99,7 +99,7 @@ void CSkillManager::basicGongji(int index,CFightCard **ownCard,CFightCard **mons
         OwncurrHp=checkShanghai(OwncurrHp,(*ownCard)->m_iCurrHp);
         MonsterHp=checkShanghai(MonsterHp,(*monsterCard)->m_iCurrHp);
         m_Animationlist.push_back(new SAnimationFps(ownIndex,0,(*ownCard)->m_iCurrHp,(*ownCard)->m_iHp,(*monsterCard)->m_iCurrHp,(*monsterCard)->m_iHp,Huihe,OwncurrHp,MonsterHp));
-        cout<<"huihe:"<<Huihe<<" "<<ownIndex<<" "<<monstexIndex<<endl;
+        cout<<"huihe:"<<Huihe<<" "<<ownIndex<<" "<<monstexIndex<<" "<<0<<endl;
     }
     
 }

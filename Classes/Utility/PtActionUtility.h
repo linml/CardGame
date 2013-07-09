@@ -42,7 +42,7 @@ const std::string act_sequence = "Sequence";
 const std::string act_spawn = "Spawn";
 const std::string act_over = "ActOver"; //踩格子效果动作结束专用
 const std::string act_remove_self = "RemoveSelf";//删除本身
-const std::string act_resetZorder ="ResetZorder" ;
+const std::string act_reset_zorder="ResetZorder";
 
 
 class ActionData {

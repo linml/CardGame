@@ -1,4 +1,4 @@
-﻿#ifndef _GAME_TOOLS_H_
+#ifndef _GAME_TOOLS_H_
 #define _GAME_TOOLS_H_ 
 
 #include <string.h>
