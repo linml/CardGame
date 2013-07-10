@@ -10,6 +10,7 @@
 		6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F34AE8E1760945F00A6433C /* LoadingScene.cpp */; };
 		6F3EFCB9175308E900765322 /* CSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCB4175308E900765322 /* CSkillManager.cpp */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
+		6F7353B4178D34190009D548 /* CCardBufferStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7353B2178D34190009D548 /* CCardBufferStatus.cpp */; };
 		6F780751176469830049321C /* HallScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780746176469830049321C /* HallScene.cpp */; };
 		6F780752176469830049321C /* AsgardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780749176469830049321C /* AsgardLayer.cpp */; };
 		6F780753176469830049321C /* LogoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F78074D176469830049321C /* LogoLayer.cpp */; };
@@ -27,7 +28,6 @@
 		6FA6AFDC174F6A3200608A73 /* TaskSceneLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFCF174F6A3200608A73 /* TaskSceneLayer.cpp */; };
 		6FA9B47E175456F2001472E7 /* MemoryGameCollabLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */; };
 		6FAD05F3178BB120006CFDAF /* CCardFightLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD05F1178BB11F006CFDAF /* CCardFightLogic.cpp */; };
-		6FAD05F6178BD7B7006CFDAF /* CCardBufferStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD05F4178BD7B6006CFDAF /* CCardBufferStatus.cpp */; };
 		6FAD05F9178BD945006CFDAF /* CSkillType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD05F7178BD944006CFDAF /* CSkillType.cpp */; };
 		6FAD05FC178BE869006CFDAF /* CGamePlayerStruct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD05FA178BE868006CFDAF /* CGamePlayerStruct.cpp */; };
 		6FAD05FF178BF008006CFDAF /* CGameLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD05FD178BF008006CFDAF /* CGameLogic.cpp */; };
@@ -280,6 +280,8 @@
 		6F3EFCB5175308E900765322 /* CSkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSkillManager.h; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
 		6F3EFCBC17536D6700765322 /* CEvolutionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEvolutionLayer.h; sourceTree = "<group>"; };
+		6F7353B2178D34190009D548 /* CCardBufferStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardBufferStatus.cpp; sourceTree = "<group>"; };
+		6F7353B3178D34190009D548 /* CCardBufferStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardBufferStatus.h; sourceTree = "<group>"; };
 		6F780746176469830049321C /* HallScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HallScene.cpp; sourceTree = "<group>"; };
 		6F780747176469830049321C /* HallScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HallScene.h; sourceTree = "<group>"; };
 		6F780749176469830049321C /* AsgardLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AsgardLayer.cpp; sourceTree = "<group>"; };
@@ -314,8 +316,6 @@
 		6FA9B47D175456F2001472E7 /* MemoryGameCollabLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryGameCollabLayer.h; sourceTree = "<group>"; };
 		6FAD05F1178BB11F006CFDAF /* CCardFightLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardFightLogic.cpp; sourceTree = "<group>"; };
 		6FAD05F2178BB11F006CFDAF /* CCardFightLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardFightLogic.h; sourceTree = "<group>"; };
-		6FAD05F4178BD7B6006CFDAF /* CCardBufferStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardBufferStatus.cpp; sourceTree = "<group>"; };
-		6FAD05F5178BD7B7006CFDAF /* CCardBufferStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardBufferStatus.h; sourceTree = "<group>"; };
 		6FAD05F7178BD944006CFDAF /* CSkillType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSkillType.cpp; sourceTree = "<group>"; };
 		6FAD05F8178BD944006CFDAF /* CSkillType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSkillType.h; sourceTree = "<group>"; };
 		6FAD05FA178BE868006CFDAF /* CGamePlayerStruct.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGamePlayerStruct.cpp; sourceTree = "<group>"; };
@@ -1037,8 +1037,6 @@
 			children = (
 				6FAD05F1178BB11F006CFDAF /* CCardFightLogic.cpp */,
 				6FAD05F2178BB11F006CFDAF /* CCardFightLogic.h */,
-				6FAD05F4178BD7B6006CFDAF /* CCardBufferStatus.cpp */,
-				6FAD05F5178BD7B7006CFDAF /* CCardBufferStatus.h */,
 				6FAD05F7178BD944006CFDAF /* CSkillType.cpp */,
 				6FAD05F8178BD944006CFDAF /* CSkillType.h */,
 			);
@@ -1144,6 +1142,8 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6F7353B2178D34190009D548 /* CCardBufferStatus.cpp */,
+				6F7353B3178D34190009D548 /* CCardBufferStatus.h */,
 				6F8E60F3178424A900AF5111 /* AnimationLogic.cpp */,
 				6F8E60F4178424A900AF5111 /* AnimationLogic.h */,
 				9FD3F91B17827BD0006C7039 /* CCard.cpp */,
@@ -2529,11 +2529,11 @@
 				6F8E60FA178424BD00AF5111 /* CPtScrollWordsWidget.cpp in Sources */,
 				6F8E60FB178424BD00AF5111 /* CPtTableItem.cpp in Sources */,
 				6FAD05F3178BB120006CFDAF /* CCardFightLogic.cpp in Sources */,
-				6FAD05F6178BD7B7006CFDAF /* CCardBufferStatus.cpp in Sources */,
 				6FAD05F9178BD945006CFDAF /* CSkillType.cpp in Sources */,
 				6FAD05FC178BE869006CFDAF /* CGamePlayerStruct.cpp in Sources */,
 				6FAD05FF178BF008006CFDAF /* CGameLogic.cpp in Sources */,
 				6FAD0602178BF8DB006CFDAF /* CConfigResourceLoad.cpp in Sources */,
+				6F7353B4178D34190009D548 /* CCardBufferStatus.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

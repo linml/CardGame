@@ -42,7 +42,7 @@ public:
     string m_scard_groud; //
 };
 
-
+class CCardBufferStatus;
 //FIGHTING CARD
 class  CFightCard {
 public:
@@ -52,18 +52,23 @@ public:
 private:
     void init();
 public:
-    int m_iCurrHp; //当前HP
-    int m_iHp;     //当前总的HP
-    int m_attack;  //当前按的攻击力量
-    int m_defend;   //当前的防御力
-    int tag; //当前卡牌的tag
-    bool isDead;
-    int m_iMaxExp;
-    int m_User_Card_ID;
-    int m_iCurrLevel;
-    int m_iCurrExp;
+    void initFighting();
 public:
-    CCard *m_pCard;
+    int m_iCurrHp;  //当前HP
+    int m_iHp;      //当前总的HP
+    int m_attack;   //当前按的攻击力量
+    int m_defend;   //当前的防御力
+    int tag;        //当前卡牌的tag
+    int m_iCurrEngry; //当前卡牌的怒气值
+    int m_iEngryMax ; //当前卡牌的最大怒气值得
+    int m_iMaxExp;    //卡牌该等级的max exp
+    int m_User_Card_ID; //卡牌在卡牌背包里面的id
+    int m_iCurrLevel; //当前卡牌的等级
+    int m_iCurrExp;   //当前卡牌拥有的exp
+    bool isDead;     //卡牌是否已经死亡
+public:
+    CCard *m_pCard;    
+    list<CCardBufferStatus *>m_vBuffer; //卡牌拥有的buffer;
 };
 
 

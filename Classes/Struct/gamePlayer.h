@@ -76,6 +76,17 @@ public:
     void deleteFromCardBag(vector<int>user_CardId);
     bool isCardBagContainUserCardList(vector<int>User_CardId);
     bool isLoadCardBagEnd;
+public:
+    void loadServerPlayerInfo();
+    void loadServerPlayerInfoCallBack(CCObject *obj);
+    bool isLoadPlayerInfoEnd;
+    
+    CFightCard *findFightCardByCard_User_ID(int  carduserid);
+    
+    void loadCardTeamInfo();
+    void loadCardTeamInfoCallBack(CCObject *obj);
+    bool isLoadEndCardTeam;
+    
     
 public:
     //获取 卡包 内容的卡
@@ -83,6 +94,7 @@ public:
     //获取当前阵容（0~2),01攻击  　２防御
     vector<vector<CFightCard*> >m_vvBattleArray;
     int m_iCurrentBattle;
+
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

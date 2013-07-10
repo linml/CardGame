@@ -54,19 +54,20 @@ public:
     
     void scheudoLoadGameConfig(); //异步加载配置
     void addFunctionInitGames(float t);
-    void loadServerInfo(CCObject *object);
-    void sendLoadServerInfo();
+    bool addLabelToShowPrecessInfo();
+    void setText(const char *str);
     
 protected:
     bool initLogin();
     bool handleTouchSpritePool(CCPoint point);
 protected:
     bool m_bLogoOver;
-    
     LayoutLayer *maps;
-    vector<TouchRect> touchRect;
-    
+    vector<TouchRect> touchRect; 
     vector<stcServerInf> vSerInf;
+    bool isLoadCardBag;
+    bool isLoadEndConfig;
+    bool isLoadPlayerInfo;
     
 };
 

@@ -35,9 +35,7 @@ delete *it; \
 } \
 VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
-//const CCPoint  g_pointFight[5]={
-//    CCPoint(<#float x#>, <#float y#>)
-//}
+
 
 CCPoint getCardPoint(int index,bool isFightCard)
 {

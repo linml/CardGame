@@ -1,14 +1,14 @@
 10
 
 dir
-681
+684
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-09T03:19:49.207824Z
-680
+2013-07-09T06:55:44.448099Z
+682
 merlin
 
 
@@ -31,7 +31,7 @@ dir
 
 CGamePlayerStruct.cpp
 file
-682
+
 
 
 
@@ -65,10 +65,37 @@ merlin
 
 CGameLogic.h
 file
-0
+685
 
 
-add
+
+2013-07-09T07:18:11.000000Z
+7ddc51cc6818bb39ffb9942f9edf715a
+2013-07-10T01:06:40.022301Z
+685
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+476
 
 AnimationLogic.h
 file
@@ -106,7 +133,7 @@ merlin
 
 CGamePlayerStruct.h
 file
-682
+
 
 
 
@@ -174,24 +201,14 @@ merlin
 
 CConfigResourceLoad.cpp
 file
-0
-
-
-add
-
-Craftsmanship
-dir
-
-CCard.h
-file
-682
+685
 
 
 
-2013-07-09T06:40:16.000000Z
-59b921d128af53d26470fbf88daadce7
-2013-07-09T06:55:44.448099Z
-682
+2013-07-09T08:10:42.000000Z
+f6808e187e41d1e6ccc26baaff7b4df4
+2013-07-10T01:06:40.022301Z
+685
 merlin
 
 
@@ -214,7 +231,44 @@ merlin
 
 
 
-1485
+4022
+
+Craftsmanship
+dir
+
+CCard.h
+file
+685
+
+
+
+2013-07-09T09:18:17.000000Z
+0369c9272a2babef0c3aeddf863096ef
+2013-07-10T01:06:40.022301Z
+685
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1527
 
 gameStruct.h
 file
@@ -252,21 +306,14 @@ phileas
 
 CConfigResourceLoad.h
 file
-0
-
-
-add
-
-gamePlayer.cpp
-file
-682
+685
 
 
 
-2013-07-09T06:40:53.000000Z
-0254dea0a7fbdd73cee264315618ed66
-2013-07-09T06:55:44.448099Z
-682
+2013-07-09T08:10:30.000000Z
+156ececa4604a97480aeeebec87d8a87
+2013-07-10T01:06:40.022301Z
+685
 merlin
 
 
@@ -289,14 +336,75 @@ merlin
 
 
 
-10099
+705
+
+gamePlayer.cpp
+file
+685
+
+
+
+2013-07-09T09:57:01.000000Z
+973eb6bb3b1035acdef03e07ce19071d
+2013-07-10T01:06:40.022301Z
+685
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8283
 
 CGameLogic.cpp
 file
-0
+685
 
 
-add
+
+2013-07-09T07:15:20.000000Z
+34d570623d8151618e8da52a6c6b8b90
+2013-07-10T01:06:40.022301Z
+685
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+104
 
 GameSpriteConfig.h
 file
@@ -334,14 +442,14 @@ merlin
 
 gamePlayer.h
 file
-682
+685
 
 
 
-2013-07-09T06:51:26.000000Z
-a80128f7f660e9c6264f8d4f2c9a2dfc
-2013-07-09T06:55:44.448099Z
-682
+2013-07-09T09:20:37.000000Z
+cfc7fddf241a019ead615eec493c4cbd
+2013-07-10T01:06:40.022301Z
+685
 merlin
 
 
@@ -364,7 +472,7 @@ merlin
 
 
 
-2149
+2312
 
 AnimationLogic.cpp
 file

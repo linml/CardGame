@@ -22,9 +22,9 @@
 CCScene* CLoginScene::scene()
 {
     CCScene *scene = CCScene::create();
-   
+    
     do {
-       
+        
         CLoginScene *login = CLoginScene::create();
         scene->addChild(login, LOGIN_ZORDER);
     } while (0);
@@ -48,6 +48,10 @@ bool CLoginScene::init()
     do {
         CC_BREAK_IF(!CCLayer::init());
         CC_BREAK_IF(!initLogin());
+        ///add  info;
+        
+        addLabelToShowPrecessInfo();
+        
         bRet = true;
     } while (0);
     return bRet;
@@ -79,21 +83,23 @@ void CLoginScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 bool CLoginScene::handleTouchSpritePool(CCPoint point)
 {
     bool bRet = false;
-   
     int tag = -1;
     tag = TouchRect::SearchTouchTag(point, touchRect);
-  
     switch (tag) {
         case -1:
             
             break;
         case BUTTON_PLAY_TAG:
-              SinglePlayer::instance()->forTestCard();
-              SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
-            return true;
+            if(Utility::getNodeByTag(this, "0,2,0")->isVisible())
+            {
+                SinglePlayer::instance()->forTestCard();
+                SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+            }
+            break;
         default:
             break;
     }
+    
     return bRet;
 }
 
@@ -102,7 +108,7 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
 
 void CLoginScene::loginCallBack(cocos2d::CCNode *pSender)
 {
-    // to do the call back 
+    // to do the call back
 }
 
 void CLoginScene::setLogoOverCallBack()
@@ -119,13 +125,13 @@ bool CLoginScene::initLogin()
     do {
         // to do init
         // init variable
-         m_bLogoOver = false;
+        m_bLogoOver = false;
         
         // add logo
         LogoLayer *logo = LogoLayer::create();
         this->addChild(logo, LOGO_ZORDER);;
         
-       
+        
         // note: remember release maps
         maps = LayoutLayer::create();
         maps->retain();
@@ -135,18 +141,24 @@ bool CLoginScene::initLogin()
         CCNode* map = maps->getElementByTags("0");
         if (map)
         {
-           CCSprite* bg = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "bg.png"));
-           bg->setPosition(ccp(winSize.width/2, winSize.height/2));
+            CCSprite* bg = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "bg.png"));
+            bg->setPosition(ccp(winSize.width/2, winSize.height/2));
             map->addChild(bg, -1);
         }
-
         
+        if(Utility::getNodeByTag(this, "0,2,0"))
+        {
+            Utility::getNodeByTag(this, "0,2,0")->setVisible(false);
+        }
         // set layer touche enable
         setTouchEnabled(true);
         setTouchMode(kCCTouchesOneByOne);
-      
+        
         maps->getTouchRects(touchRect);
-        bRet = true;        
+        bRet = true;
+        isLoadCardBag=false;
+        isLoadEndConfig=false;
+        isLoadPlayerInfo=false;
         scheudoLoadGameConfig(); //by merlin
     } while (0);
     return bRet;
@@ -193,7 +205,7 @@ void CLoginScene::msgCallback(CCObject* obj)
         label->setPosition(ccp(0, 0));
         label->setAnchorPoint(CCPointZero);
         array->addObject(item);
-       // array->addObject(label);
+        // array->addObject(label);
         //item->setTouchNode(label);
         
     }
@@ -206,36 +218,63 @@ void CLoginScene::msgCallback(CCObject* obj)
     
 }
 
+void CLoginScene::setText(const char *str)
+{
+    if(getChildByTag(1000))
+    {
+        CCLabelTTF *label=(CCLabelTTF *)(getChildByTag(1000));
+        label->setString(str);
+    }
+}
+
+bool CLoginScene::addLabelToShowPrecessInfo()
+{
+    CCLabelTTF *labelttf=CCLabelTTF::create("app init", "Arial", 15);
+    addChild(labelttf,2,1000);
+    labelttf->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width*0.5, CCDirector::sharedDirector()->getWinSize().height*0.5-300));
+    return true;
+}
 
 void CLoginScene::scheudoLoadGameConfig()
 {
     schedule(schedule_selector(CLoginScene::addFunctionInitGames));
 }
 
-void CLoginScene::loadServerInfo(CCObject *object)
-{
-    char *data=(char *)object;
-    CCLog("%s",data);
-    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
-    if(GameTools::intForKey("code",dirct)==0)
-    {
-        CCDictionary *userinfodirct=(CCDictionary *)(((CCDictionary *)dirct->objectForKey("result"))->objectForKey("user_info"));
-        SinglePlayer::instance()->initByServerDictorny(userinfodirct);
-
-    }
-    delete []data;
-}
-void CLoginScene::sendLoadServerInfo()
-{
-    ADDHTTPREQUEST("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "merlin1", "merlinaskplayerinfo1", callfuncO_selector(CLoginScene::loadServerInfo));
-}
-
 void CLoginScene::addFunctionInitGames(float t)
 {
-    SinglePlayer::instance()->loadGamesConfig();
-    SinglePlayer::instance()->loadServerCardBag();
-    sendLoadServerInfo();
-    unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
+    if(!isLoadEndConfig)
+    {
+        setText("loading  config");
+        SinglePlayer::instance()->loadGamesConfig();
+        isLoadEndConfig=true;
+    }
+    else
+    {
+        if(!isLoadCardBag)
+        {
+            setText("loading card bag");
+            SinglePlayer::instance()->loadServerCardBag();
+            isLoadCardBag=true;
+        }
+        else{
+            if(SinglePlayer::instance()->isLoadCardBagEnd)
+            {
+                if(!isLoadPlayerInfo)
+                {
+                    setText("CARD TEM info");
+                    SinglePlayer::instance()->loadCardTeamInfo();
+                    isLoadPlayerInfo=true;
+                }
+                else if(SinglePlayer::instance()->isLoadEndCardTeam)
+                {
+                      setText("welcome");
+                    unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
+                    Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
+                }
+            }
+        }
+        
+    }
 }
 
 

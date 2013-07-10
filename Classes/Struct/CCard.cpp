@@ -7,6 +7,16 @@
 //
 
 #include "CCard.h"
+#include "CCardBufferStatus.h"
+
+#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
+{\
+for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+delete *it; \
+*it=NULL; \
+} \
+VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+}
 
 CCard::CCard()
 {
@@ -38,6 +48,8 @@ CFightCard::CFightCard()
 {
     m_pCard=NULL;
 }
+
+
 CFightCard::CFightCard(CCard *card,int level)
 {
     tag=-1;
@@ -55,15 +67,17 @@ CFightCard::CFightCard(CCard *card,int level)
     {
         m_pCard=NULL;
     }
+    initFighting();
+}
+
+void CFightCard::initFighting()
+{
+    isDead=false;
+    m_iCurrEngry=0;
+    DELETE_POINT_VECTOR(m_vBuffer,list<CCardBufferStatus*>);
 }
 
 CFightCard::~CFightCard()
 {
-//    if(m_pCard)
-//    {
-//        delete  m_pCard;
-//        m_pCard=NULL;
-//    }
-    
+   
 }
-
