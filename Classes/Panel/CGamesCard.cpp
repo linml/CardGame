@@ -103,7 +103,9 @@ void CGamesCard::createHero(const char *str)
         string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+".png";
         CCSprite *sprite=CCSprite::create(cardfile.c_str());
         addChild(sprite,1,TAG_GAMECARD_HERO);
-        //sprite->setAnchorPoint(CCPointZero);
+        
+        setContentSize(sprite->getContentSize());
+        sprite->setAnchorPoint(CCPointZero);
     }
     else
     {

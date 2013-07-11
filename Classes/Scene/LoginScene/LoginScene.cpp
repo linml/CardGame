@@ -229,9 +229,10 @@ void CLoginScene::setText(const char *str)
 
 bool CLoginScene::addLabelToShowPrecessInfo()
 {
-    CCLabelTTF *labelttf=CCLabelTTF::create("app init", "Arial", 15);
+    CCLabelTTF *labelttf=CCLabelTTF::create("app init", "Arial", 40);
     addChild(labelttf,2,1000);
-    labelttf->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width*0.5, CCDirector::sharedDirector()->getWinSize().height*0.5-300));
+    labelttf->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width*0.5, CCDirector::sharedDirector()->getWinSize().height*0.5-200));
+    labelttf->setColor(ccc3(255, 0, 0));
     return true;
 }
 
@@ -267,7 +268,7 @@ void CLoginScene::addFunctionInitGames(float t)
                 }
                 else if(SinglePlayer::instance()->isLoadEndCardTeam)
                 {
-                      setText("welcome");
+                    setText("welcome");
                     unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
                     Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
                 }

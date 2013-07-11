@@ -372,29 +372,32 @@ namespace PtActionUtility {
 }
 
 //标记动作结束
-void ActionCallFun::actionOver() {
+void ActionCallFun::actionOver()
+{
 	isActionOver = true;
 }
+
 //删除本身
 void ActionCallFun::removeSelf(CCNode* node, void* data) {
 	bool cleanup = (void*) data;
 	node->removeFromParentAndCleanup(cleanup);
 }
+
 //按钮执行动作结束
 void ActionCallFun::btnActOver()
 {
     isButtonActing = false;
 }
+
 //重置 zorder
 void ActionCallFun::resetZorder(CCNode *node,void *data)
 {
     int tempzorder=*(int *)data;
-    if(node &&node->getParent())
+    if(node && node->getParent())
     {
         
         node->getParent()->reorderChild(node, tempzorder);
     }
-    
     delete (int *)data;
     data=NULL;
 }

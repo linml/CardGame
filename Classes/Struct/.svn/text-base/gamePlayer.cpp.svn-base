@@ -16,8 +16,8 @@
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
-    delete *it; \
-    *it=NULL; \
+delete *it; \
+*it=NULL; \
 } \
 VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
@@ -48,7 +48,7 @@ void CGamePlayer::loadGamesConfig()
 
 void CGamePlayer::initGames()
 {
-   
+    
     if(m_gvPlayerLevel.size()==0)
     {
         CCLog("game  player level  error");
@@ -159,11 +159,11 @@ void CGamePlayer::loadServerCardBag()
 {
     isLoadCardBagEnd=false;
     ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "merlin", "merlinaskplayerinfo", callfuncO_selector(CGamePlayer::parseCardBagJson));
-
+    
 }
 
 void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
-{ 
+{
     clearServerCardBag();
     //添加card  字符串
     char *tempdata=(char *)obj;
@@ -183,7 +183,7 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
     for (int i=0; i<array->count(); i++) {
         CCString *key=(CCString *)array->objectAtIndex(i);
         CCDictionary *detail=(CCDictionary*)(directory->objectForKey(key->m_sString));
-
+        
         int level=GameTools::intForKey("level", detail);
         int card_id=GameTools::intForKey("card_id", detail);
         int cardexp=GameTools::intForKey("exp", detail);
@@ -199,7 +199,7 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
 
 void CGamePlayer::clearServerCardBag()
 {
-     DELETE_POINT_VECTOR(m_vCardBag, vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_vCardBag, vector<CFightCard *>);
 }
 
 bool CGamePlayer::isCardBagContainUserCardList(vector<int>User_CardId)
@@ -240,7 +240,90 @@ void CGamePlayer::deleteFromCardBag(vector<int>user_CardId)
                 it++;
             }
         }
-    }    
+    }
+}
+
+void CGamePlayer::loadServerPlayerInfo()
+{
+    isLoadPlayerInfoEnd=false;
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "GetServerPlayerInfo", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::loadServerPlayerInfoCallBack));
+    
+}
+
+void CGamePlayer::loadServerPlayerInfoCallBack(cocos2d::CCObject *obj)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetServerPlayerInfo");
+    char *data=(char *)obj;
+    CCLog("%s",data);
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+    if(GameTools::intForKey("code",dirct)==0)
+    {
+        CCDictionary *userinfodirct=(CCDictionary *)(((CCDictionary *)dirct->objectForKey("result"))->objectForKey("user_info"));
+        SinglePlayer::instance()->initByServerDictorny(userinfodirct);
+        
+    }
+    isLoadPlayerInfoEnd=true;
+    delete []data;
+}
+
+
+void CGamePlayer::loadCardTeamInfo()
+{
+    isLoadEndCardTeam=false;
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetLoadCardItem", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::loadCardTeamInfoCallBack));
+}
+
+void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
+    char *data=(char *)obj;
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+    delete [] data;
+    data=NULL;
+    if(GameTools::intForKey("code",dirct)==0)
+    {
+        CCDictionary *dictresult=(CCDictionary *)dirct->objectForKey("result");
+        CCArray *vKeyArrayresult=dictresult->allKeys();
+        for (int i=0; i<vKeyArrayresult->count(); i++)
+        {
+            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+            if(cardDirector)
+            {
+                vector<CFightCard *>tempVcard(5);
+                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
+                CCArray *vKeyArraytemp=cardtemp->allKeys();
+                for (int i=0; i<vKeyArraytemp->count(); i++)
+                {
+                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
+                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
+                    int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
+                    int position=GameTools::intForKey("position", cardDirectorDetail);
+                    tempVcard[position]=findFightCardByCard_User_ID(card_item_id);
+                }
+                m_vvBattleArray.push_back(tempVcard);
+            }
+        }
+        
+    }
+    isLoadEndCardTeam=true;
+    
+}
+
+
+CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
+{
+    if(m_vCardBag.size()==0)
+    {
+        return NULL;
+    }
+    for (int i=0; i<m_vCardBag.size(); i++) {
+        if(m_vCardBag[i]->m_User_Card_ID==carduserid)
+        {
+            return m_vCardBag[i];
+        }
+    }
+    return NULL;
 }
 
 

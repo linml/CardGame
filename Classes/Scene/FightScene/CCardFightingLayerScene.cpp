@@ -266,10 +266,6 @@ void CCardFightingLayerScene::fSchudelUpdate(float t)
                     }
                     m_vFightHero[m_iFightingCardIndex]->setVisible(false);
                     MoveCardSprite(m_vFightingCard,m_iFightingCardIndex,true);
-//                    if(node->isAddTexiao)
-//                    {
-//                        Utility::stopPtActionScript(node, 200);
-//                    }
                     m_iFightingCardIndex++;
                     m_vFightHero[m_iFightingCardIndex]->setVisible(true);
                     
@@ -580,7 +576,6 @@ void CCardFightingLayerScene::fightLogic(int &iHuihe)
     if(iHuihe==-2)
     {
         tempaaaa++;
-//        cout<<"   huihe:"<<tempaaaa<<endl;
         iHuihe=1;
     }
     else
