@@ -199,6 +199,13 @@ merlin
 
 363
 
+CSkillData.cpp
+file
+0
+
+
+add
+
 CCard.cpp
 file
 
@@ -300,6 +307,13 @@ merlin
 
 
 4022
+
+CSkillData.h
+file
+0
+
+
+add
 
 Craftsmanship
 dir
@@ -408,14 +422,14 @@ merlin
 
 gamePlayer.cpp
 file
+701
 
 
 
-
-2013-07-10T08:36:24.000000Z
-52234bd57c943c015cbe18e0d4c340d8
-2013-07-11T01:57:40.675294Z
-696
+2013-07-12T07:59:20.000000Z
+fa11d08be23e9d0d4c66ecf743bff2da
+2013-07-12T09:30:56.254320Z
+701
 merlin
 
 
@@ -438,7 +452,7 @@ merlin
 
 
 
-11442
+11531
 
 CGameLogic.cpp
 file

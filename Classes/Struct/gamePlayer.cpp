@@ -178,7 +178,7 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
         CCLog("error");
         return ;
     }
-    CCDictionary *directory =(CCDictionary*)dict->objectForKey("result");
+    CCDictionary *directory =(CCDictionary*)((CCDictionary*)dict->objectForKey("result"))->objectForKey("card_item");
     CCArray *array=directory->allKeys();;
     for (int i=0; i<array->count(); i++) {
         CCString *key=(CCString *)array->objectAtIndex(i);
@@ -282,7 +282,7 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
     data=NULL;
     if(GameTools::intForKey("code",dirct)==0)
     {
-        CCDictionary *dictresult=(CCDictionary *)dirct->objectForKey("result");
+        CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
         CCArray *vKeyArrayresult=dictresult->allKeys();
         for (int i=0; i<vKeyArrayresult->count(); i++)
         {

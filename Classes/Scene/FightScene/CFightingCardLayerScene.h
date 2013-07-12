@@ -13,6 +13,12 @@
 #include "cocos2d.h"
 using namespace cocos2d;
 using namespace std;
+class CFightCard;
+enum EN_GAMEFIGHTSTATUS {
+    EN_GAMEFIGHTSTATUS_WIN,   //胜利
+    EN_GAMEFIGHTSTATUS_LOSE,  //失败，
+    EN_GAMEFIGHTSTATUS_NONE,  //需要继续战斗，
+};
 class CFightingCardLayerScene :public CCLayer
 {
 public:
@@ -23,9 +29,27 @@ public:
 public:
     bool init();
     CREATE_FUNC(CFightingCardLayerScene);
+public:
+    void locgicSchudel(float t);
+    EN_GAMEFIGHTSTATUS  getWinStatus();
+    int  m_iTotalHuihe;
+    EN_GAMEFIGHTSTATUS  m_enWinStatus;
 private:
     void createFightCard();
     void createMonsterCard();
+    bool initBggroudPng();
+    bool initAtkPng();
+    bool initText();
+    bool initHitText();
+    CCPoint getCardPoint(int  index, bool isLeftCard);
+private:
+    void loadFromServerTest();
+    void initGame();
+private:
+    vector<CFightCard *>m_vFightingCard;
+    vector<CFightCard *>m_vMonsterCard;
+    int m_iFightCardIndex;
+    int m_iMonsterCardIndex;
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerScene__) */
