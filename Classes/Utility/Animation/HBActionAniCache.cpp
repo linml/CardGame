@@ -102,7 +102,7 @@ HBActionAni* HBActionAniCache::addActionAniWithFile(const char* name)
 #else
     CCFileUtils::sharedFileUtils()->setPopupNotify(true);
     CCDictionary* dict = CCDictionary::createWithContentsOfFile(path.c_str());
-  //  CCLog("HBActionAniCache::addActionAniWithFile %s",path.c_str());
+    CCLog("HBActionAniCache::addActionAniWithFile %s",path.c_str());
 #endif
 //	CCLOG("HBActionAniCache::addActionAniWithFile ok");
 	return addActionAniWithDictionary(dict,stdName.c_str());
@@ -141,14 +141,14 @@ HBActionAni* HBActionAniCache::addActionAniWithDictionary(CCDictionary* dict,con
 			string path = string(name);//IBM EDIT
 			path.append("_");
 			path.append(actDictKey->m_sString);
-            //			CCLOG("HBActionAniCache::addActionAniWithDictionary path = %s",path.c_str());
+            //
+            CCLOG("HBActionAniCache::addActionAniWithDictionary path = %s,%s",path.c_str(),actDictKey->m_sString.c_str());
 			HBActionScriptCache::sharedActionScriptCache()->addActionScript(script, path.c_str());
 //            actionScripts->addObject(CCString::create("xianbei"));
 			actionScripts->addObject(script);
         }
     }
-    
-	HBActionAni* ani = new HBActionAni(name,actionScripts,duration);
+   	HBActionAni* ani = new HBActionAni(name,actionScripts,duration);
 	m_pAnimations->setObject(ani,std::string(name));
 
     //bq modify

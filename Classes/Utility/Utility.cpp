@@ -198,6 +198,19 @@ namespace Utility {
         
     }
     
+    int runPtActionScript(CCNode* node, const char* filePtah, int tag,bool (*p)(const void* p1, const void* p2))
+    {
+        CCSprite* spr = CCSprite::create();
+        spr->setTag(tag);
+        spr->setPosition(ccp(0,0));
+        HBActionAni* ani = HBActionAniCache::sharedActionAniCache()->addActionAniWithFile(CSTR_FILEPTAH(g_ActionFilePath,filePtah));
+        sort(ani->getScripts()->data->arr,ani->getScripts()->data->arr+ani->getScripts()->data->num,p);
+        node->addChild(spr,-1);
+        ani->runAnimationBy(spr);
+        return 0;
+        
+    }
+    
     int stopPtActionScript(CCNode* node,int tag)
     {
         CCNode* childNode = node->getChildByTag(tag);

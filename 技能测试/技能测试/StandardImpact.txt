@@ -1,0 +1,10 @@
+Impact_ID	Impact_name	STIMPACT_ID	isBUFF	mutex	mutexlevel	parameter_1_tips	parameter_1	parameter_2_tips	parameter_2	parameter_3_tips	parameter_3	parameter_4_tips	parameter_4	parameter_5_tips	parameter_5	parameter_6_tips	parameter_6
+INT	STRING	INT	INT	INT	INT	STRING	INT	STRING	INT	STRING	INT	STRING	INT	STRING	INT	STRING	INT
+效果ID	效果名称$1$	效果逻辑ID	是否是持续性效果	互斥ID(效果互相替换用)	互斥优先级	参数1说明	参数值	参数2说明	参数值	参数3说明	参数值	参数4说明	参数值	参数5说明	参数值	参数6说明	参数值
+1	普通攻击	1	0	-1	0	攻击伤害增加	1000	攻击增加百分比	0	敌人当前血量百分比	0	自身最大血量百分比	0	真实伤害	0		0
+2	降防攻击	1	0	-1	0	攻击伤害增加	1011	攻击增加百分比	0	敌人当前血量百分比	0	自身最大血量百分比	0	真实伤害	0		0
+3	护卫攻击	1	0	-1	0	攻击伤害增加	1022	攻击增加百分比	0	敌人当前血量百分比	0	自身最大血量百分比	0	真实伤害	0		0
+11	降低敌防	11	1	-1	0	按填写值修改防御	-200	按百分比修改防御	0	按填写值修改血量	0	按百分比修改血量	0	按填写值修改攻击	0	按百分比修改攻击	0
+12	增加己防	11	1	-1	0	按填写值修改防御		按百分比修改防御	20	按填写值修改血量	0	按百分比修改血量	0	按填写值修改攻击	0	按百分比修改攻击	0
+111	自身加血	11	1	-1	0	按填写值修改防御	-200	按百分比修改防御	0	按填写值修改血量	2000	按百分比修改血量	0	按填写值修改攻击	0	按百分比修改攻击	0
+112	敌人减血	11	1	-1	0	按填写值修改防御		按百分比修改防御	20	按填写值修改血量	0	按百分比修改血量	30	按填写值修改攻击	0	按百分比修改攻击	0

@@ -70,6 +70,13 @@ file
 
 add
 
+CFightingCardLayerLogic.cpp
+file
+0
+
+
+add
+
 Layer
 dir
 
@@ -108,6 +115,13 @@ merlin
 2267
 
 CFightingCardLayerScene.h
+file
+0
+
+
+add
+
+CFightingCardLayerLogic.h
 file
 0
 

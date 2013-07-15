@@ -35,6 +35,7 @@
 		6FB08A4A176EE7E700683F10 /* LayoutLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A49176EE7E700683F10 /* LayoutLayer.cpp */; };
 		6FB08A4D176EE84200683F10 /* Biforest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A4B176EE84200683F10 /* Biforest.cpp */; };
 		6FB094FB178EB44E0024DDCD /* CFightingCardLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB094F9178EB44B0024DDCD /* CFightingCardLayerScene.cpp */; };
+		6FB0B79F1793CE43006D12F7 /* CFightingCardLayerLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0B79D1793CE43006D12F7 /* CFightingCardLayerLogic.cpp */; };
 		6FB15F0F178FE83500CDD79F /* CSkillData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB15F0D178FE83400CDD79F /* CSkillData.cpp */; };
 		8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E13F18A17700F5F0050812F /* TaskLayer.cpp */; };
 		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
@@ -333,6 +334,8 @@
 		6FB08A4C176EE84200683F10 /* Biforest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Biforest.h; sourceTree = "<group>"; };
 		6FB094F9178EB44B0024DDCD /* CFightingCardLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightingCardLayerScene.cpp; sourceTree = "<group>"; };
 		6FB094FA178EB44E0024DDCD /* CFightingCardLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightingCardLayerScene.h; sourceTree = "<group>"; };
+		6FB0B79D1793CE43006D12F7 /* CFightingCardLayerLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightingCardLayerLogic.cpp; sourceTree = "<group>"; };
+		6FB0B79E1793CE43006D12F7 /* CFightingCardLayerLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightingCardLayerLogic.h; sourceTree = "<group>"; };
 		6FB15F0D178FE83400CDD79F /* CSkillData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSkillData.cpp; sourceTree = "<group>"; };
 		6FB15F0E178FE83400CDD79F /* CSkillData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSkillData.h; sourceTree = "<group>"; };
 		6FB379E5177D1E9F00C2DB35 /* CGamesCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGamesCard.cpp; sourceTree = "<group>"; };
@@ -1058,6 +1061,8 @@
 				8E6CE598176EFF9800CF5C0D /* Layer */,
 				6FB094F9178EB44B0024DDCD /* CFightingCardLayerScene.cpp */,
 				6FB094FA178EB44E0024DDCD /* CFightingCardLayerScene.h */,
+				6FB0B79D1793CE43006D12F7 /* CFightingCardLayerLogic.cpp */,
+				6FB0B79E1793CE43006D12F7 /* CFightingCardLayerLogic.h */,
 			);
 			path = FightScene;
 			sourceTree = "<group>";
@@ -2546,6 +2551,7 @@
 				6F7353B4178D34190009D548 /* CCardBufferStatus.cpp in Sources */,
 				6FB094FB178EB44E0024DDCD /* CFightingCardLayerScene.cpp in Sources */,
 				6FB15F0F178FE83500CDD79F /* CSkillData.cpp in Sources */,
+				6FB0B79F1793CE43006D12F7 /* CFightingCardLayerLogic.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

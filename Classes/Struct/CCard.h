@@ -33,9 +33,9 @@ public:
     int m_icardhp;    //卡牌的总的HP
     int m_iusually_attack;
     int m_iskillLine;
-    int m_iskillHelp;
-    int m_iskillDead;
-    int m_iskillBuff;
+    int m_iskillHelp; //拥护技能
+    int m_iskillDead; //死亡技能
+    int m_iskillBuff; //增幅技能
     string m_scard_tips; //描述
     string m_scard_resources;  //资源
     string m_scard_head;  //头像

@@ -1,0 +1,6 @@
+Skill_ID	Skill_name	skill_type	Stskill_ID	cost_1_tips	cost_1_func	cost_1_parameter1	cost_1_parameter2	cost_2_tips	cost_2_func	cost_2_parameter1	cost_2_parameter1	parameter_1_tips	parameter_1	parameter_2_tips	parameter_2	parameter_3_tips	parameter_3	parameter_4_tips	parameter_4	effect_plist	skill_tips
+INT	STRING	INT	INT	STRING	INT	INT	INT	STRING	INT	INT	INT	STRING	INT	STRING	INT	STRING	INT	STRING	INT	STRING	STRING
+"ID,(技能系的ID)"	技能名字$1$	技能类型	技能逻辑ID	条件或消耗参数说明	条件和消耗逻辑	条件或消耗参数值	条件或消耗参数值	条件或消耗参数说明	条件和消耗逻辑	条件或消耗参数值	条件或消耗参数值	参数说明	参数值	参数说明	参数值	参数说明	参数值	参数说明	参数值	特效文件	技能描述(FOR TIP)$1$
+0	普通攻击	怒气	0	-1	-1	-1	-1	-1	-1	-1	-1	伤害效果	1							plist	普通攻击
+1	攻击减防回血	怒气	1	怒气	1	50	-1	-1	-1	-1	-1	伤害效果	2	减防效果	11	加血效果	111			plist	攻击令敌人减防自身回血
+2	攻击加防减血	怒气	2	怒气	1	40	-1	-1	-1	-1	-1	伤害效果	3	加防效果	12	减血效果	112			plist	攻击令自身加防敌人减血

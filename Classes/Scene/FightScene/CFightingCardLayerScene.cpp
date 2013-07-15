@@ -52,6 +52,47 @@ bool CFightingCardLayerScene::init()
     return true;
 }
 
+void  CFightingCardLayerScene::locgicSchudel(float t)
+{
+  ///1  判断 是否战斗超过30回合，2  判断是否胜利 输赢， 3  否则一直回调。
+    EN_GAMEFIGHTSTATUS winStatus=getWinStatus();
+    //先判断是否全部死亡；
+    if(winStatus==EN_GAMEFIGHTSTATUS_NONE)
+    {
+        logicFighting();
+    }
+    else
+    {
+        m_enWinStatus=winStatus;
+        unschedule(schedule_selector(CFightingCardLayerScene::locgicSchudel));
+    }
+    
+}
+
+void CFightingCardLayerScene::logicFighting()
+{
+    m_enHuiheIndex++;
+    if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
+    {
+        CCLog("LEFT1-------->RIGHT1");
+    }
+    else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
+    {
+        CCLog("LEFT5-------->RIGHT1");
+    }
+    else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD)
+    {
+        CCLog("RIGHT1-------->LEFT1");
+        
+    }
+    else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
+    {
+        CCLog("RIGHT5-------->LEFT1");
+        m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
+    }
+}
+
+
 EN_GAMEFIGHTSTATUS CFightingCardLayerScene::getWinStatus()
 {
     if (m_iTotalHuihe>=31) {
@@ -83,22 +124,6 @@ EN_GAMEFIGHTSTATUS CFightingCardLayerScene::getWinStatus()
     return EN_GAMEFIGHTSTATUS_WIN;
 }
 
-void  CFightingCardLayerScene::locgicSchudel(float t)
-{
-  ///1  判断 是否战斗超过30回合，2  判断是否胜利 输赢， 3  否则一直回调。
-    EN_GAMEFIGHTSTATUS winStatus=getWinStatus();
-    //先判断是否全部死亡；
-    if(winStatus==EN_GAMEFIGHTSTATUS_NONE)
-    {
-        
-    }
-    else
-    {
-        m_enWinStatus=winStatus;
-        unschedule(schedule_selector(CFightingCardLayerScene::locgicSchudel));
-    }
-    
-}
 
 void CFightingCardLayerScene::initGame()
 {
