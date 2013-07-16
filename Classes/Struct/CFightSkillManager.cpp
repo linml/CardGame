@@ -13,8 +13,10 @@
 static    map <string,pFunc>m_vSkillManagerLogic;
 static    map <string,pbFunc>m_vCostFuncManager;
 static    map<string, pFunc>m_vEffictManager;
+
 void CFightSkillManager::logicSkill_Putong(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact)
 {
+    //普通攻击
     int value=pSkill->parameter_1;
     CImapact *pImpact=SinglePlayer::instance()->findByImpactId(value);
     if (pImpact)
@@ -61,6 +63,7 @@ void CFightSkillManager::logicSkill_3(CFightCard *pCard,CGamePlayer *pGamePlayer
 {
     
 }
+
 
 void CFightSkillManager::logicSkill_4(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact)
 {
@@ -171,7 +174,9 @@ void CFightSkillManager::effect_0(CFightCard *pCard,CGamePlayer *pGamePlayer,CFi
     }
     
 }
-void CFightSkillManager::effect_1(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact){
+
+void CFightSkillManager::effect_1(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact)
+{
     
 }
 void CFightSkillManager::effect_2(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact){
