@@ -26,6 +26,13 @@ merlin
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
+CFightSkillManager.cpp
+file
+0
+
+
+add
+
 CardKind
 dir
 
@@ -164,6 +171,13 @@ merlin
 
 
 408
+
+CFightSkillManager.h
+file
+0
+
+
+add
 
 CCardBufferStatus.cpp
 file

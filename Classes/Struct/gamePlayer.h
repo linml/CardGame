@@ -15,6 +15,8 @@
 #include <vector>
 #include "CGamePlayerStruct.h"
 using namespace std;
+class CImapact;
+class CSkillData;
 
 class CGamePlayer : cocos2d::CCObject {
 public:
@@ -25,7 +27,8 @@ public:
     ~CGamePlayer();
     void initGames();
     void loadGamesConfig();
- public:    
+ public:
+   //开启程序需要读取下列的几个选项
    //读取卡牌表格
     void clearAllCard();
     void initAllCard(const char *cardFileName);
@@ -38,6 +41,22 @@ public:
     void initPlayerTable(const char *playerFileName);
 
     vector<SLevelPlayer *>m_gvPlayerLevel;
+    
+    //读取技能表格
+    void loadAllSkillInfo(const char *skillFileName);
+    void clearAllSkillInfo();
+    vector<CSkillData *>m_vSkillInfo;
+    
+    //读取效果表格
+    void loadAllEffectInfo(const char *effectFileName);
+    void clearAllEffectInfo();
+    CImapact *findByImpactId( int tempImpactId);
+    vector< CImapact * >m_vImpactInfo;
+    
+public:
+   
+    
+    
  
     vector<CFightCard *>m_hashmapFightingCard;
     vector<CFightCard *>m_hashmapMonsterCard;

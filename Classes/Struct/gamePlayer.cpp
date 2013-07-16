@@ -13,6 +13,8 @@
 #include "PtHttpClient.h"
 #include "CConfigResourceLoad.h"
 #include "PtJsonUtility.h"
+#include "CSkillData.h"
+#include "CFightSkillManager.h"
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -44,6 +46,9 @@ void CGamePlayer::loadGamesConfig()
 {
     initAllCard((resRootPath+"card.plist").c_str());
     initPlayerTable((resRootPath +"level_max.plist").c_str());
+    loadAllSkillInfo((resRootPath+"skill_logic.plist").c_str());
+    loadAllEffectInfo((resRootPath + "effect_logic.plist").c_str());
+    g_FightSkillManager::instance()->initSkill();//加载列表
 }
 
 void CGamePlayer::initGames()
@@ -89,6 +94,40 @@ void CGamePlayer::clearPlayerTable()
 void CGamePlayer::initPlayerTable(const char *playerFileName)
 {
     G_SingleCConfigResourceLoad::instance()->loadPlayerLevelInfo(&m_gvPlayerLevel, playerFileName);
+}
+//读取技能表格
+void CGamePlayer::loadAllSkillInfo(const char *skillFileName)
+{
+    G_SingleCConfigResourceLoad::instance()->loadSkillLogicInfo(m_vSkillInfo, skillFileName);
+}
+
+void CGamePlayer::clearAllSkillInfo()
+{
+    DELETE_POINT_VECTOR(m_vSkillInfo, vector<CSkillData *>);
+
+}
+
+
+//读取效果表格
+void CGamePlayer::loadAllEffectInfo(const char *effectFileName)
+{
+     G_SingleCConfigResourceLoad::instance()->loadEffectLogicInfo(m_vImpactInfo,effectFileName);
+}
+
+void CGamePlayer::clearAllEffectInfo()
+{
+    DELETE_POINT_VECTOR(m_vImpactInfo, vector<CImapact *>);
+}
+
+CImapact *CGamePlayer::findByImpactId(int tempImpactId)
+{
+    for (int i=0 ; i<m_vImpactInfo.size(); i++) {
+        if(tempImpactId==m_vImpactInfo[i]->m_iImapactid)
+        {
+            return m_vImpactInfo[i];
+        }
+    }
+    return NULL;
 }
 
 void CGamePlayer::initByServerDictorny(cocos2d::CCDictionary *dict)

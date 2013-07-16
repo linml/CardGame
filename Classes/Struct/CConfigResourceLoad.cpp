@@ -11,6 +11,7 @@
 #include "gameConfig.h"
 #include "gameTools.h"
 #include "CGamePlayerStruct.h"
+#include "CSkillData.h"
 
 bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const char *cardFileName)
 {
@@ -75,4 +76,80 @@ bool CConfigResourceLoad::loadPlayerLevelInfo(vector<SLevelPlayer *> *vPlayerLev
         return true;
     }
     return false;
+}
+
+bool CConfigResourceLoad::loadSkillLogicInfo(vector<CSkillData *> &vSkillTable,const char *fileName)
+{
+    
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile(fileName);
+    if(directory==NULL)
+    {
+        return false;
+    }
+    CCArray *vKeyArray=directory->allKeys();
+    if(vKeyArray->count()==0)
+    {
+        return false;
+    }
+    for (int i=0; i<vKeyArray->count(); i++)
+    {
+        CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
+        CCDictionary *skillDirector=(CCDictionary*)(directory->objectForKey(key->m_sString));
+        CSkillData *skill=new CSkillData;
+        skill->skill_id=GameTools::intForKey("skill_id", skillDirector);
+        skill->skill_type=GameTools::intForKey("skill_type", skillDirector);
+        skill->stskill_id=GameTools::intForKey("stskill_id", skillDirector);
+        skill->cost_1_func=GameTools::intForKey("cost_1_func", skillDirector);
+        skill->cost_1_parameter1=GameTools::intForKey("cost_1_parameter1", skillDirector);
+        skill->cost_1_parameter2=GameTools::intForKey("cost_1_parameter2", skillDirector);
+        skill->cost_2_func=GameTools::intForKey("cost_2_func", skillDirector);
+        skill->cost_2_parameter1=GameTools::intForKey("cost_2_parameter1", skillDirector);
+        skill->cost_2_parameter2=GameTools::intForKey("cost_2_parameter2", skillDirector);
+        skill->parameter_1=GameTools::intForKey("parameter_1", skillDirector);
+        skill->parameter_2=GameTools::intForKey("parameter_2", skillDirector);
+        skill->parameter_3=GameTools::intForKey("parameter_3", skillDirector);
+        skill->parameter_4=GameTools::intForKey("parameter_4", skillDirector);
+        skill->effect_plist=GameTools::valueForKey("effect_plist", skillDirector);
+
+        vSkillTable.push_back(skill);
+    }
+    return true;
+}
+
+bool CConfigResourceLoad::loadEffectLogicInfo(vector<CImapact *> &vImapactTable,const char *fileName)
+{
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile(fileName);
+    if(directory==NULL)
+    {
+        return false;
+    }
+    CCArray *vKeyArray=directory->allKeys();
+    if(vKeyArray->count()==0)
+    {
+        return false;
+    }
+    for (int i=0; i<vKeyArray->count(); i++)
+    {
+        CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
+        CCDictionary *effectDirector=(CCDictionary*)(directory->objectForKey(key->m_sString));
+        CImapact *skillEffect=new CImapact;
+        skillEffect->m_iImapactid=GameTools::intForKey("m_iImapactid", effectDirector);
+        skillEffect->m_iImpact_name=GameTools::intForKey("m_iImpact_name", effectDirector);
+        skillEffect->m_iStimpact_id=GameTools::intForKey("m_iStimpact_id", effectDirector);
+        skillEffect->m_bIsBuff=GameTools::intForKey("m_bIsBuff", effectDirector);
+        skillEffect->m_iMutex=GameTools::intForKey("m_iMutex", effectDirector);
+        skillEffect->m_iMutex_level=GameTools::intForKey("m_iMutex_level", effectDirector);
+        skillEffect->m_iParameter_1=GameTools::intForKey("m_iParameter_1", effectDirector);
+        skillEffect->m_iParameter_2=GameTools::intForKey("m_iParameter_2", effectDirector);
+        skillEffect->m_iParameter_3=GameTools::intForKey("m_iParameter_3", effectDirector);
+        skillEffect->m_iParameter_4=GameTools::intForKey("m_iParameter_4", effectDirector);
+        skillEffect->m_iParameter_5=GameTools::intForKey("m_iParameter_5", effectDirector);
+        skillEffect->m_iParameter_6=GameTools::intForKey("m_iParameter_6", effectDirector);
+        skillEffect->m_iParameter_7=GameTools::intForKey("m_iParameter_7", effectDirector);
+        skillEffect->m_iParameter_8=GameTools::intForKey("m_iParameter_8", effectDirector);
+         skillEffect->m_iParameter_9=GameTools::intForKey("m_iParameter_9", effectDirector);
+         skillEffect->m_iParameter_10=GameTools::intForKey("m_iParameter_10", effectDirector);
+        vImapactTable.push_back(skillEffect);
+    }
+    return true;
 }

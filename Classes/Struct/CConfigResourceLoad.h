@@ -18,11 +18,15 @@ using namespace cocos2d;
 using namespace std;
 class CCard;
 class SLevelPlayer;
+class CImapact;
+class CSkillData;
 class CConfigResourceLoad :public CCObject
 {
 public:
     bool loadCardInfo(map<int,CCard *> &hashmapAllCard,const char *fileName);
     bool loadPlayerLevelInfo(vector<SLevelPlayer *>*vPlayerLevel,const char *fileName);
+    bool loadSkillLogicInfo(vector<CSkillData *> &vPlayerLevel,const char *fileName);
+    bool loadEffectLogicInfo(vector<CImapact *> &vPlayerLevel,const char *fileName);
 public:
     
 };
