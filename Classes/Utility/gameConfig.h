@@ -153,5 +153,34 @@ const std::string g_str_optionPlist=plistPath+"optionScene.plist";
 
 
 
+enum EN_ATKOBJECT {
+    EN_ATKOBJECT_OWN,
+    EN_ATKOBJECT_OWNTEAM,
+    EN_ATKOBJECT_MONSTER,
+    EN_ATKOBJECT_MONSTERTEAM,
+};
 
+enum EN_SEND_SKILL
+{
+    EN_SEND_SKILL_ANGRY,
+    EN_SEND_SKILL_HELP,
+    EN_SEND_SKILL_DEAD,
+    EN_SEND_SKILL_BUFF,
+};
+
+enum EN_ANIMATIONTYPE
+{
+    EN_ANIMATIONTYPE_HERO,     // 当英雄攻击别人的时候发招的 动画
+    EN_ANIMATIONTYPE_BUFFER,   // 当发现自身带buffer 的时候要展示动画的标志
+    EN_ANIMATIONTYPE_STATUS,   // 当防卫的图标消失的时候
+};
+
+enum  EN_ATKFIGHT_INDEX
+{
+    EN_ATKFIGHT_INDEX_NONE,
+    EN_ATKFIGHT_INDEX_LEFT_LORD,
+    EN_ATKFIGHT_INDEX_LEFT_SUPPORT,
+    EN_ATKFIGHT_INDEX_RIGHT_LORD,
+    EN_ATKFIGHT_INDEX_RIGHT_SUPPORT
+};
 #endif

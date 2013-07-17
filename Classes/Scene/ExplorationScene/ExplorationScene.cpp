@@ -315,12 +315,6 @@ void CExploration::randonArrows(const int inLevle)
         {
                 g_array[i] = rand()%4;
         }
-        cout<<" g_array[i] ";
-        for (int i = 0; i < 3; i++)
-        {
-          cout<<" "<< g_array[i]<<endl;
-        }
-
         CCNode *node = NULL;
         for (int i = 0; i < 3; i++)
         {

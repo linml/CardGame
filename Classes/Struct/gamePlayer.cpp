@@ -15,6 +15,31 @@
 #include "PtJsonUtility.h"
 #include "CSkillData.h"
 #include "CFightSkillManager.h"
+#include <fstream>
+using namespace std;
+string  readFileName(const char *filename)
+{
+    string filpat=CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(filename);
+    std::cout<<filpat<<"===>"<<CCFileUtils::sharedFileUtils()->getResourceDirectory()<<endl;
+    ifstream out;
+    out.open(filpat.c_str(), ios::in);
+    static string result;
+    result.clear();
+    string line;
+    if(!out)
+    {
+        cout<<"aaaa";
+    }
+    while(!out.eof())
+    {
+        std::getline(out,line);
+        result+=line;
+    }
+    out.close();
+    return result;
+}
+
+#define SKILLPUTONGGONGJIID 100000
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -46,8 +71,8 @@ void CGamePlayer::loadGamesConfig()
 {
     initAllCard((resRootPath+"card.plist").c_str());
     initPlayerTable((resRootPath +"level_max.plist").c_str());
-    loadAllSkillInfo((resRootPath+"skill_logic.plist").c_str());
-    loadAllEffectInfo((resRootPath + "effect_logic.plist").c_str());
+    loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
+    loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
     g_FightSkillManager::instance()->initSkill();//加载列表
 }
 
@@ -107,6 +132,29 @@ void CGamePlayer::clearAllSkillInfo()
 
 }
 
+CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
+{
+    for (int i=0; i<m_vSkillInfo.size(); i++) {
+        if(m_vSkillInfo[i]->skill_id==skillId)
+        {
+            return m_vSkillInfo[i];
+        }
+    }
+    return NULL;
+    
+}
+
+CSkillData *CGamePlayer::getPutongGongji()
+{
+    for (int i=0; i<m_vSkillInfo.size(); i++) {
+        if(m_vSkillInfo[i]->skill_id ==SKILLPUTONGGONGJIID)
+        {
+            return m_vSkillInfo[i];
+        }
+    }
+    return NULL;
+}
+
 
 //读取效果表格
 void CGamePlayer::loadAllEffectInfo(const char *effectFileName)
@@ -122,7 +170,7 @@ void CGamePlayer::clearAllEffectInfo()
 CImapact *CGamePlayer::findByImpactId(int tempImpactId)
 {
     for (int i=0 ; i<m_vImpactInfo.size(); i++) {
-        if(tempImpactId==m_vImpactInfo[i]->m_iImapactid)
+        if(tempImpactId==m_vImpactInfo[i]->m_ieffect_id)
         {
             return m_vImpactInfo[i];
         }
@@ -205,11 +253,12 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
 {
     clearServerCardBag();
     //添加card  字符串
-    char *tempdata=(char *)obj;
-    CCLog("%s",tempdata);
+    char *tempdatat=(char *)obj;
+    CCLog("%s",tempdatat);
+    const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
     CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
-    delete []tempdata;
-    tempdata=NULL;
+    delete []tempdatat;
+    tempdatat=NULL;
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
     assert(dict&&"aaaaaaaaa");
     if(GameTools::intForKey("code", dict)!=0)
@@ -315,10 +364,12 @@ void CGamePlayer::loadCardTeamInfo()
 void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
-    char *data=(char *)obj;
+    char *datat=(char *)obj;
+    const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
+    CCLog("%s",data);
     CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
-    delete [] data;
-    data=NULL;
+    delete [] datat;
+    datat=NULL;
     if(GameTools::intForKey("code",dirct)==0)
     {
         CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
@@ -338,7 +389,7 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                     CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
                     int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
                     int position=GameTools::intForKey("position", cardDirectorDetail);
-                    tempVcard[position]=findFightCardByCard_User_ID(card_item_id);
+                    tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
                 }
                 m_vvBattleArray.push_back(tempVcard);
             }

@@ -13,6 +13,10 @@
 #include "PtHttpClient.h"
 #include "CConfigResourceLoad.h"
 #include "PtJsonUtility.h"
+#include "CSkillData.h"
+#include "CFightSkillManager.h"
+
+#define SKILLPUTONGGONGJIID 100000
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -44,6 +48,9 @@ void CGamePlayer::loadGamesConfig()
 {
     initAllCard((resRootPath+"card.plist").c_str());
     initPlayerTable((resRootPath +"level_max.plist").c_str());
+    loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
+    loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
+    g_FightSkillManager::instance()->initSkill();//加载列表
 }
 
 void CGamePlayer::initGames()
@@ -89,6 +96,63 @@ void CGamePlayer::clearPlayerTable()
 void CGamePlayer::initPlayerTable(const char *playerFileName)
 {
     G_SingleCConfigResourceLoad::instance()->loadPlayerLevelInfo(&m_gvPlayerLevel, playerFileName);
+}
+//读取技能表格
+void CGamePlayer::loadAllSkillInfo(const char *skillFileName)
+{
+    G_SingleCConfigResourceLoad::instance()->loadSkillLogicInfo(m_vSkillInfo, skillFileName);
+}
+
+void CGamePlayer::clearAllSkillInfo()
+{
+    DELETE_POINT_VECTOR(m_vSkillInfo, vector<CSkillData *>);
+
+}
+
+bool CGamePlayer::isHaveSkillBySkillId(int skillID)
+{
+    for (int i=0; i<m_vSkillInfo.size(); i++) {
+        if(m_vSkillInfo[i]->skill_id==skillID)
+        {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+CSkillData *CGamePlayer::getPutongGongji()
+{
+    for (int i=0; i<m_vSkillInfo.size(); i++) {
+        if(m_vSkillInfo[i]->skill_id ==SKILLPUTONGGONGJIID)
+        {
+            return m_vSkillInfo[i];
+        }
+    }
+    return NULL;
+}
+
+
+//读取效果表格
+void CGamePlayer::loadAllEffectInfo(const char *effectFileName)
+{
+     G_SingleCConfigResourceLoad::instance()->loadEffectLogicInfo(m_vImpactInfo,effectFileName);
+}
+
+void CGamePlayer::clearAllEffectInfo()
+{
+    DELETE_POINT_VECTOR(m_vImpactInfo, vector<CImapact *>);
+}
+
+CImapact *CGamePlayer::findByImpactId(int tempImpactId)
+{
+    for (int i=0 ; i<m_vImpactInfo.size(); i++) {
+        if(tempImpactId==m_vImpactInfo[i]->m_ieffect_id)
+        {
+            return m_vImpactInfo[i];
+        }
+    }
+    return NULL;
 }
 
 void CGamePlayer::initByServerDictorny(cocos2d::CCDictionary *dict)

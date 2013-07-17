@@ -13,6 +13,7 @@
 #include "gamePlayer.h"
 #include "CCard.h"
 #include "CGamesCard.h"
+#include "CFightingCardLayerLogic.h"
 
 CCScene *CFightingCardLayerScene::scene()
 {
@@ -28,10 +29,15 @@ CCScene *CFightingCardLayerScene::scene()
 
 CFightingCardLayerScene::CFightingCardLayerScene()
 {
-
+    m_friendFightLogic=new  CFightingCardLayerLogic();
 }
 CFightingCardLayerScene::~CFightingCardLayerScene()
 {
+    if(m_friendFightLogic)
+    {
+        delete m_friendFightLogic;
+        m_friendFightLogic=NULL;
+    }
     
 }
 bool CFightingCardLayerScene::init()
@@ -48,6 +54,7 @@ bool CFightingCardLayerScene::init()
     createMonsterCard();
     //计算战斗
     initGame();
+    m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
     schedule(schedule_selector(CFightingCardLayerScene::locgicSchudel));
     return true;
 }
@@ -63,6 +70,7 @@ void  CFightingCardLayerScene::locgicSchudel(float t)
     }
     else
     {
+        cout<<"end logic game"<<endl;
         m_enWinStatus=winStatus;
         unschedule(schedule_selector(CFightingCardLayerScene::locgicSchudel));
     }
@@ -74,21 +82,61 @@ void CFightingCardLayerScene::logicFighting()
     m_enHuiheIndex++;
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
     {
-        CCLog("LEFT1-------->RIGHT1");
+        CCLog("LEFT%d-------->RIGHT%d",m_iFightCardIndex,m_iMonsterCardIndex);
+       // CCAssert(m_vFightingCard[m_iFightCardIndex], "战斗队列中居然有空位的卡牌");
+        m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_vFightingCard[m_iFightCardIndex], this);
+        
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
     {
-        CCLog("LEFT5-------->RIGHT1");
+        CCLog("LEFT5-------->RIGHT%d",m_iMonsterCardIndex);
+         m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_vFightingCard[4], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD)
     {
-        CCLog("RIGHT1-------->LEFT1");
         
+        CCLog("RIGHT%d-------->LEFT%d",m_iMonsterCardIndex,m_iFightCardIndex);
+           CCAssert(m_vMonsterCard[m_iMonsterCardIndex], "敌人队列中居然有空位的卡牌");
+        m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard, m_vMonsterCard[m_iMonsterCardIndex], this);
+
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
-        CCLog("RIGHT5-------->LEFT1");
+        m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard, m_vMonsterCard[4], this);
+        CCLog("RIGHT5-------->LEFT%d",m_iFightCardIndex);
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
+    }
+    if(m_enHuiheIndex>EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
+    {
+        m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
+    }
+    checkIsDead();
+}
+void CFightingCardLayerScene::checkIsDead()
+{
+    if (m_iFightCardIndex<m_vFightingCard.size()-1) {
+        
+        if(m_vFightingCard[m_iFightCardIndex]->m_iCurrHp<=0)
+        {
+            m_vFightingCard[m_iFightCardIndex]->m_iCurrHp=0;
+            m_vFightingCard[m_iFightCardIndex]->isDead=true;
+            //发动死亡技能
+            do {
+                m_iFightCardIndex++;
+            } while (m_vFightingCard[m_iFightCardIndex]==NULL &&m_iFightCardIndex<m_vFightingCard.size()-1);
+        }
+    }
+    if (m_iMonsterCardIndex<m_vMonsterCard.size()-1) {
+        
+        if(m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp<=0)
+        {
+            //发动死亡技能
+            m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp=0;
+            m_vMonsterCard[m_iMonsterCardIndex]->isDead=true;
+            do {
+                m_iMonsterCardIndex++;
+            } while (m_vMonsterCard[m_iMonsterCardIndex]==NULL &&m_iMonsterCardIndex<m_vMonsterCard.size()-1);
+        }
     }
 }
 
@@ -139,7 +187,7 @@ void CFightingCardLayerScene::loadFromServerTest()
         {
             if(SinglePlayer::instance()->m_vvBattleArray[0][i])
             {
-            m_vFightingCard.push_back(new CFightCard(*(SinglePlayer::instance()->m_vvBattleArray[0][i])));
+                m_vFightingCard.push_back(new CFightCard(*(SinglePlayer::instance()->m_vvBattleArray[0][i])));
             }
             else
             {

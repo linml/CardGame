@@ -45,6 +45,9 @@ public:
     //读取技能表格
     void loadAllSkillInfo(const char *skillFileName);
     void clearAllSkillInfo();
+    CSkillData *getPutongGongji();
+    bool isHaveSkillBySkillId(int skillID);
+    CSkillData *getSkillBySkillId(int skillId);
     vector<CSkillData *>m_vSkillInfo;
     
     //读取效果表格
@@ -53,11 +56,7 @@ public:
     CImapact *findByImpactId( int tempImpactId);
     vector< CImapact * >m_vImpactInfo;
     
-public:
-   
-    
-    
- 
+public: 
     vector<CFightCard *>m_hashmapFightingCard;
     vector<CFightCard *>m_hashmapMonsterCard;
     

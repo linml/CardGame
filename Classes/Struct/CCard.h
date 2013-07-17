@@ -40,6 +40,7 @@ public:
     string m_scard_resources;  //资源
     string m_scard_head;  //头像
     string m_scard_groud; //
+    string m_scard_role;
 };
 
 class CCardBufferStatus;

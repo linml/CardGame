@@ -23,6 +23,9 @@ class CFightingCardLayerScene;
 class CFightingCardLayerLogic :public CCObject
 {
 public:
+    CFightingCardLayerLogic();
+    ~CFightingCardLayerLogic();
+public:
     void logicFightGame(vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,CFightCard *pFight,CFightingCardLayerScene *scene);
     //当前是否可以发动怒气技能
     bool isCanSpendAngrySkill(CFightCard *pFight);
@@ -30,9 +33,10 @@ public:
     bool isCanSpendAtkToMonster(CFightCard *pFight);
     //当前添加buffer的属性
     void addOrSubBuffer(CFightCard *pFight);
-    
-    bool isHavaPhysicHarmMagic(CFightCard *pMonstFight);
-    bool isHaveMagicHarm(CFightCard *pMonstFight);
+    //物理免疫的buffer;
+    static bool isHavaPhysicHarmMagic(CFightCard *pMonstFight);
+    //怒气免疫的buffer;
+    static bool isHaveMagicHarm(CFightCard *pMonstFight);
     
     //普通伤害计算
     void basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight);

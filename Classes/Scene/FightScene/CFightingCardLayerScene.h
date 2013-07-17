@@ -11,9 +11,11 @@
 
 #include <iostream>
 #include "cocos2d.h"
+#include "gameConfig.h"
 using namespace cocos2d;
 using namespace std;
 class CFightCard;
+class CFightingCardLayerLogic;
 
 enum EN_GAMEFIGHTSTATUS {
     EN_GAMEFIGHTSTATUS_WIN,   //胜利
@@ -21,14 +23,7 @@ enum EN_GAMEFIGHTSTATUS {
     EN_GAMEFIGHTSTATUS_NONE,  //需要继续战斗，
 };
 
-enum  EN_ATKFIGHT_INDEX
-{
-    EN_ATKFIGHT_INDEX_NONE,
-    EN_ATKFIGHT_INDEX_LEFT_LORD,
-    EN_ATKFIGHT_INDEX_LEFT_SUPPORT,
-    EN_ATKFIGHT_INDEX_RIGHT_LORD,
-    EN_ATKFIGHT_INDEX_RIGHT_SUPPORT
-};
+
 
 class CFightingCardLayerScene :public CCLayer
 {
@@ -59,13 +54,15 @@ private:
 private:
     void loadFromServerTest();
     void initGame();
-private:
+    void checkIsDead();
+public:
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;
     int m_iFightCardIndex;
     int m_iMonsterCardIndex;
 private:
-    friend class CFightingCardLayerLogic ;
+   CFightingCardLayerLogic *m_friendFightLogic;
+   friend class CFightingCardLayerLogic ;
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerScene__) */
