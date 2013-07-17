@@ -17,7 +17,6 @@
 class CAnimationSpriteGameFight
 {
     //暂且先定义这些
-    
 public:
     CAnimationSpriteGameFight();
     EN_ANIMATIONTYPE m_enAnimationType;

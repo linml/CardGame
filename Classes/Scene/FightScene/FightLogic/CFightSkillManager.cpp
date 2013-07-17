@@ -53,9 +53,9 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,CGamePlayer *pGamePlayer
             CSkillData *pPutongSkill=pGamePlayer->getPutongGongji();
             if (pPutongSkill)
             {
+                pCard->m_iCurrEngry+=30;
                 logicSkill_Putong(pCard,pGamePlayer,scene->m_vMonsterCard[scene->m_iMonsterCardIndex],pSkill,NULL);
             }
-            
        }
     }
 }
