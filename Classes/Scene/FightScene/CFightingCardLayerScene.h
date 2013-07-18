@@ -23,7 +23,7 @@ enum EN_GAMEFIGHTSTATUS {
     EN_GAMEFIGHTSTATUS_NONE,  //需要继续战斗，
 };
 
-
+class CAnimationSpriteGameFight;
 
 class CFightingCardLayerScene :public CCLayer
 {
@@ -38,7 +38,13 @@ public:
 public:
     void locgicSchudel(float t);
     EN_GAMEFIGHTSTATUS  getWinStatus();
+    EN_ATKFIGHT_INDEX getHuiHeIndex();
     int  m_iTotalHuihe;
+    
+    void animationSchudel(float t);
+    int animationAndex;
+    bool isAnimationEnd;
+    
 private:
     void logicFighting();
     EN_ATKFIGHT_INDEX m_enHuiheIndex;//记录是否是拥护打斗的。
@@ -49,8 +55,11 @@ private:
     bool initBggroudPng();
     bool initAtkPng();
     bool initText();
+    void createHero();
     bool initHitText();
     CCPoint getCardPoint(int  index, bool isLeftCard);
+    void animationSwf( CAnimationSpriteGameFight *fightAnimation);
+    void skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation);
 private:
     void loadFromServerTest();
     void initGame();
@@ -60,6 +69,9 @@ public:
     vector<CFightCard *>m_vMonsterCard;
     int m_iFightCardIndex;
     int m_iMonsterCardIndex;
+    vector<CAnimationSpriteGameFight *>m_vAnimation;
+    vector<CCSprite *>m_vFightHero;
+    vector<CCSprite *>m_vMonsterHero;
 private:
    CFightingCardLayerLogic *m_friendFightLogic;
    friend class CFightingCardLayerLogic ;

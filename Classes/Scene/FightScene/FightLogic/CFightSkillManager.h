@@ -20,19 +20,19 @@ class CFightCard;
 class CGamePlayer;
 class CSkillData;
 class CImapact;
-class CFightingCardLayerScene;
+class CAnimationSpriteGameFight;
 
 #define STATICCOSTTFUNCTION(FUNCTIONNAME) \
-static bool FUNCTIONNAME(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact); 
+static bool FUNCTIONNAME(CFightCard *pCard); 
 
 #define STATICEFFICEFUNCTION(FUNCTIONNAME) \
-static void FUNCTIONNAME(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
+static void FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
 
 
 
-typedef void (*pFunc) (CFightCard *pCard,CGamePlayer *pGamePlayer,CSkillData *pSkill,CFightingCardLayerScene *scene);
-typedef bool (*pbFunc) (CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact);
-typedef void (*pbEffFunc) (CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
+typedef void (*pFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
+typedef bool (*pbFunc) (CFightCard *pCard);
+typedef void (*pbEffFunc) (CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
 
 class CFightSkillManager
 {
@@ -41,11 +41,14 @@ class CFightSkillManager
     typedef map<string,pbEffFunc>::iterator    IteratorEffMapPfunc;
 public:
     //每一种逻辑ID对应的costfunc 不同。
-    static void logicSkill_Putong(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact);
-    static void logicSkill_1(CFightCard *pCard,CGamePlayer *pGamePlayer,CSkillData *pSkill,CFightingCardLayerScene *scene);
-    static void logicSkill_2(CFightCard *pCard,CGamePlayer *pGamePlayer,CSkillData *pSkill,CFightingCardLayerScene *scene);
-    static void logicSkill_3(CFightCard *pCard,CGamePlayer *pGamePlayer,CSkillData *pSkill,CFightingCardLayerScene *scene);
-    static void logicSkill_4(CFightCard *pCard,CGamePlayer *pGamePlayer,CSkillData *pSkill,CFightingCardLayerScene *scene);
+    static void logicSkill_Putong(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill);
+    static void logicSkill_1(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
+    
+    static void logicSkill_2(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
+    
+    static void logicSkill_3(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
+    
+    static void logicSkill_4(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
     
     //定义一个costfunction 的函数
     //每一种的costfunction的ID  对应的需求不一样
@@ -77,11 +80,27 @@ public:
     STATICEFFICEFUNCTION(effect_10);
     
 public:
-    //进入程序初始化:
+  static  void appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex);
+    //进入程序初始化，加载函数map表格
     void initSkill();
     //根据card的 技能找寻到逻辑id
-    void CardFighting(CFightCard *pCard,CGamePlayer *pGamePlayer,EN_SEND_SKILL enskill, CFightingCardLayerScene *scene);
-
+    void CardFighting(CFightCard *pCard,vector<CFightCard *>fightCard,vector<CFightCard *>monsterCard,int FightIndex,int MonstIndex,EN_SEND_SKILL enskill,EN_ATKFIGHT_INDEX enAtkFightIndex);
+    //当前是否可以发动怒气技能
+    bool isCanSpendAngrySkill(CFightCard *pFight);
+    //当前是否可以攻击
+    bool isCanSpendAtkToMonster(CFightCard *pFight);
+    //当前添加buffer的属性
+    void addOrSubBuffer(CFightCard *pFight);
+    //物理免疫的buffer;
+    static bool isHavaPhysicHarmMagic(CFightCard *pMonstFight);
+    //怒气免疫的buffer;
+    static bool isHaveMagicHarm(CFightCard *pMonstFight);
+    
+    //普通伤害计算
+    void basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight);
+    void clearAnimationList();
+public:
+        static    vector<CAnimationSpriteGameFight *>m_animationVector;
 };
 
 typedef Singleton<CFightSkillManager> g_FightSkillManager;

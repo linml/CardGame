@@ -484,9 +484,10 @@ void CGamePlayer::forTestMonsterCard()
     m_hashmapMonster.erase(m_hashmapMonster.begin(),m_hashmapMonster.end());
     for (int i=0;i<5;i++)
     {
-        int index=rand()%m_hashmapAllCard.size();
+        int index=rand()%9;//.size();
         int tempindex=0;
-        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
+        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++)
+        {
             if(tempindex==index)
             {
                 cout<<"card Monster id:"<<it->first<<endl;

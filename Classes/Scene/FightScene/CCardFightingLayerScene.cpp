@@ -152,7 +152,7 @@ void CCardFightingLayerScene::basicAnimation(vector<CFightCard *>ownFightCard,ve
     {
        // m_tempCardSprite->isAddTexiao=true;
 
-     //  Utility::runPtActionScript(m_tempCardSprite,"xuanzhe/xuanzhe.act",200);
+       //  Utility::runPtActionScript(m_tempCardSprite,"xuanzhe/xuanzhe.act",200);
     }
     
     cout<<"oWnindex:"<<spfs->m_spendAnimationAuthor<<" ownindex:"<<oWnindex<<" spfs->m_iShanghai"<<spfs->m_iShanghai<<" "<<m_tempCardSprite->getTag()<<endl;
@@ -279,10 +279,6 @@ void CCardFightingLayerScene::fSchudelUpdate(float t)
                         node->setDead();
                     }
                     MoveCardSprite(m_vMonsterCard,m_iMonsterCardIndex,false);
-//                    if(node->isAddTexiao)
-//                    {
-//                        Utility::stopPtActionScript(node, 200);
-//                    }
                     m_vMonsterHero[m_iMonsterCardIndex]->setVisible(false);
                     m_iMonsterCardIndex++;
                     m_vMonsterHero[m_iMonsterCardIndex]->setVisible(true);
@@ -705,7 +701,7 @@ void CCardFightingLayerScene::createHero()
             addChild(sprite,1,m_vMonsterCard[i]->tag+10);
             sprite->setPosition(ccp(wndSize.width*0.5+300,wndSize.height*0.5));
             sprite->setVisible(false);
-                        m_vMonsterHero.push_back(sprite);
+            m_vMonsterHero.push_back(sprite);
         }
         else
         {
