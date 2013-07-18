@@ -16,6 +16,8 @@
 #include "CFightingCardLayerLogic.h"
 #include "CAnimationSpriteGameFight.h"
 #include "CFightSkillManager.h"
+#include "CSkillData.h"
+#include "Utility.h"
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
     "001",
@@ -84,7 +86,7 @@ bool CFightingCardLayerScene::init()
 
 void  CFightingCardLayerScene::locgicSchudel(float t)
 {
-  ///1  判断 是否战斗超过30回合，2  判断是否胜利 输赢， 3  否则一直回调。
+    ///1  判断 是否战斗超过30回合，2  判断是否胜利 输赢， 3  否则一直回调。
     EN_GAMEFIGHTSTATUS winStatus=getWinStatus();
     //先判断是否全部死亡；
     if(winStatus==EN_GAMEFIGHTSTATUS_NONE)
@@ -113,23 +115,28 @@ void CFightingCardLayerScene::animationSchudel(float t)
 
 void CFightingCardLayerScene::createHero()
 {
+    m_vFightHero.resize(5);//(5, NULL);
+    m_vMonsterHero.resize(5);//, NULL);
     CCSize wndSize=CCDirector::sharedDirector()->getWinSize();
     for (int i=0; i<m_vFightingCard.size(); i++) {
-        FILE *fp = fopen((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_resources+".png").c_str(), "r");
-        if(fp==NULL)
+        if(m_vFightingCard[i])
         {
-            string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+"_000"+".png";
-            CCSprite *sprite=CCSprite::create(cardfile.c_str());
-            addChild(sprite,1,m_vFightingCard[i]->tag+10);
-            sprite->setPosition(ccp(wndSize.width*0.5-300,wndSize.height*0.5));
-            sprite->setVisible(false);
-            m_vFightHero.push_back(sprite);
-        }
-        else
-        {
-            fclose(fp);
-            CCSprite *sprite=CCSprite::create((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_resources+".png").c_str());
-            addChild(sprite,1,m_vFightingCard[i]->tag+10);
+            FILE *fp = fopen((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_resources+".png").c_str(), "r");
+            if(fp==NULL)
+            {
+                string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+"_000"+".png";
+                CCSprite *sprite=CCSprite::create(cardfile.c_str());
+                addChild(sprite,1,m_vFightingCard[i]->tag+10);
+                sprite->setPosition(ccp(wndSize.width*0.5-300,wndSize.height*0.5));
+                sprite->setVisible(false);
+                m_vFightHero.push_back(sprite);
+            }
+            else
+            {
+                fclose(fp);
+                CCSprite *sprite=CCSprite::create((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_resources+".png").c_str());
+                addChild(sprite,1,m_vFightingCard[i]->tag+10);
+            }
         }
     }
     if(m_vFightHero.size()>0)
@@ -137,21 +144,24 @@ void CFightingCardLayerScene::createHero()
         m_vFightHero[0]->setVisible(true);
     }
     for (int i=0; i<m_vMonsterCard.size(); i++) {
-        FILE *fp = fopen((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_resources+".png").c_str(), "r");
-        if(fp==NULL)
+        if(m_vMonsterCard[i])
         {
-            string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+"_000"+".png";
-            CCSprite *sprite=CCSprite::create(cardfile.c_str());
-            addChild(sprite,1,m_vMonsterCard[i]->tag+10);
-            sprite->setPosition(ccp(wndSize.width*0.5+300,wndSize.height*0.5));
-            sprite->setVisible(false);
-            m_vMonsterHero.push_back(sprite);
-        }
-        else
-        {
-            fclose(fp);
-            CCSprite *sprite=CCSprite::create((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_resources+".png").c_str());
-            addChild(sprite,1,m_vMonsterCard[i]->tag+10);
+            FILE *fp = fopen((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_resources+".png").c_str(), "r");
+            if(fp==NULL)
+            {
+                string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+"_000"+".png";
+                CCSprite *sprite=CCSprite::create(cardfile.c_str());
+                addChild(sprite,1,m_vMonsterCard[i]->tag+10);
+                sprite->setPosition(ccp(wndSize.width*0.5+300,wndSize.height*0.5));
+                sprite->setVisible(false);
+                m_vMonsterHero.push_back(sprite);
+            }
+            else
+            {
+                fclose(fp);
+                CCSprite *sprite=CCSprite::create((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_resources+".png").c_str());
+                addChild(sprite,1,m_vMonsterCard[i]->tag+10);
+            }
         }
     }
     if(m_vMonsterHero.size()>0)
@@ -162,27 +172,38 @@ void CFightingCardLayerScene::createHero()
 
 void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid)
 {
-    if(pSprite ==sprite2)
+    if(pFightSprite ==pMonsterSprite2)
     {
         
     }
+    else
+    {
+        CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillid);
+        if(pFightSprite)
+        {
+            Utility::runPtActionScript(pFightSprite, pSkilldata->effect_plist.c_str(),100);
+        }
+    }
     
 }
-void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation)
+void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster)
 {
     switch (fightAnimation->m_enAnimationType)
     {
         case EN_ANIMATIONTYPE_HERO:
-            showSkill(m_vFightHero[fightAnimation->m_iATKindex],m_vMonsterCard[fightAnimation->m_iDefIndex],fightAnimation->m_iSKillId);
-             break;
-       case EN_ANIMATIONTYPE_BUFFER:
-             break;
-       case EN_ANIMATIONTYPE_STATUS:
-             break;
-       default:
-       break;
-  }
-
+            showSkill(pFight,pMonster,fightAnimation->m_iSKillId);
+            //显示扣血的函数
+            break;
+        case EN_ANIMATIONTYPE_BUFFER:
+            showSkill(pFight,NULL,fightAnimation->m_iSKillId);
+            break;
+        case EN_ANIMATIONTYPE_STATUS:
+            showSkill(pFight,NULL,fightAnimation->m_iSKillId);
+            break;
+        default:
+            break;
+    }
+    
 }
 
 void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnimation)
@@ -192,14 +213,34 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
     {
         case EN_ATKFIGHT_INDEX_LEFT_LORD:
         {
-            
-         }
+            CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
+            CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
+            skillAnimationSwf(fightAnimation,sprite,pMonster);
+        }
             break;
         case EN_ATKFIGHT_INDEX_LEFT_SUPPORT:
+        {
+            CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
+            CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
+            skillAnimationSwf(fightAnimation,sprite,pMonster);
+            
+        }
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_LORD:
+        {
+            CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
+            CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
+            skillAnimationSwf(fightAnimation,sprite,pMonster);
+            
+        }
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_SUPPORT:
+        {
+            CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
+            CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
+            skillAnimationSwf(fightAnimation,sprite,pMonster);
+            
+        }
             break;
         default:
             break;
@@ -212,20 +253,20 @@ void CFightingCardLayerScene::logicFighting()
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
     {
         CCLog("LEFT%d-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-       // CCAssert(m_vFightingCard[m_iFightCardIndex], "战斗队列中居然有空位的卡牌");
+        // CCAssert(m_vFightingCard[m_iFightCardIndex], "战斗队列中居然有空位的卡牌");
         m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex],this);
         
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
     {
         CCLog("LEFT5-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-         m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex, m_vFightingCard[4], this);
+        m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex, m_vFightingCard[4], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD)
     {
         
         CCLog("RIGHT%d-------->LEFT%d,LEFTHP :%d,RIHGHP: %d",m_iMonsterCardIndex,m_iFightCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-           CCAssert(m_vMonsterCard[m_iMonsterCardIndex], "敌人队列中居然有空位的卡牌");
+        //CCAssert(m_vMonsterCard[m_iMonsterCardIndex], "敌人队列中居然有空位的卡牌");
         m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex, m_vMonsterCard[m_iMonsterCardIndex], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
@@ -369,7 +410,7 @@ void CFightingCardLayerScene::createFightCard()
             CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
         }
     }
-
+    
 }
 
 void CFightingCardLayerScene::createMonsterCard()
@@ -410,22 +451,22 @@ void CFightingCardLayerScene::createMonsterCard()
             
         }
     }
-
+    
 }
 CCPoint CFightingCardLayerScene::getCardPoint(int index, bool isLeftCard)
 {
-        CCPoint point;
-        int value=isLeftCard?-1:1;
-        CCSize  size=CCDirector::sharedDirector()->getWinSize();
-        if(index==0)
-        {
-            return CCPoint(size.width*0.5+100*value,140);
-        }
-        else
-        {
-            return CCPoint(size.width*0.5+200*value+30*value*(index-1),100);
-        }
-        
+    CCPoint point;
+    int value=isLeftCard?-1:1;
+    CCSize  size=CCDirector::sharedDirector()->getWinSize();
+    if(index==0)
+    {
+        return CCPoint(size.width*0.5+100*value,140);
+    }
+    else
+    {
+        return CCPoint(size.width*0.5+200*value+30*value*(index-1),100);
+    }
+    
 }
 
 bool CFightingCardLayerScene::initHitText()
