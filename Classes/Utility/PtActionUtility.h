@@ -43,6 +43,7 @@ const std::string act_spawn = "Spawn";
 const std::string act_over = "ActOver"; //踩格子效果动作结束专用
 const std::string act_remove_self = "RemoveSelf";//删除本身
 const std::string act_reset_zorder="ResetZorder";
+const std::string act_animateplist="Animate";
 
 
 class ActionData {
@@ -61,6 +62,7 @@ public:
     //按钮执行动作结束
     void btnActOver();
     void resetZorder(CCNode *node,void *data);
+    void callTexiaoFile(CCNode *node,void *data);
 };
 
 

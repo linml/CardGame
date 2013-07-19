@@ -164,7 +164,7 @@ void CFightSkillManager::effect_0(CFightCard *pCard,CFightCard *pMonterCard,CSki
 {
     cout<<"pMonterCard->m_iCurrHp"<<pMonterCard->m_iCurrHp<<endl;
     if (pCimapact->m_iParameter_1) {
-        pMonterCard->m_iCurrHp-=50;
+        pMonterCard->m_iCurrHp-=pCimapact->m_iParameter_1;
     }
     
     if (pCimapact->m_iParameter_2)

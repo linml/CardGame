@@ -60,7 +60,7 @@ private:
     CCPoint getCardPoint(int  index, bool isLeftCard);
     void animationSwf( CAnimationSpriteGameFight *fightAnimation);
     void skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster);
-    void showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid);
+    void showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation);
 private:
     void loadFromServerTest();
     void initGame();

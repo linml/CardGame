@@ -17,6 +17,7 @@
 #include "CFightSkillManager.h"
 #include <fstream>
 using namespace std;
+#define AAAAFOROSMACHINE
 string  readFileName(const char *filename)
 {
     string filpat=CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(filename);
@@ -245,7 +246,12 @@ void CGamePlayer::getSeverPlayerInfo(cocos2d::CCObject *object)
 void CGamePlayer::loadServerCardBag()
 {
     isLoadCardBagEnd=false;
+#ifndef AAAAFOROSMACHINE
     ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "merlin", "merlinaskplayerinfo", callfuncO_selector(CGamePlayer::parseCardBagJson));
+#else
+    char *data=new char [5];
+    parseCardBagJson((CCObject *)data);
+#endif
     
 }
 
@@ -358,7 +364,12 @@ void CGamePlayer::loadServerPlayerInfoCallBack(cocos2d::CCObject *obj)
 void CGamePlayer::loadCardTeamInfo()
 {
     isLoadEndCardTeam=false;
+ #ifndef AAAAFOROSMACHINE
     ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetLoadCardItem", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::loadCardTeamInfoCallBack));
+#else
+    char *data=new char [5];
+    loadCardTeamInfoCallBack((CCObject *)data);
+#endif
 }
 
 void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)

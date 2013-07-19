@@ -9,6 +9,7 @@
 #include "PtActionUtility.h"
 #include "PtMapUtility.h"
 #include "gameTools.h"
+#include "HBAnimationCache.h"
 
 //格子效果动作完成标记
 bool isActionOver = false;
@@ -240,7 +241,18 @@ namespace PtActionUtility {
             //该地方 的Null会被自动替换成action的使用者
             CCCallFunc* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::resetZorder), (void*)zorder);
             return action;
-        } else if (actionType == act_remove_self) {
+        }
+        else if(actionType==act_animateplist)
+        {
+            string str=getSubStr(sAction, "(", ")");
+            char *data =new char [str.length()+1];
+            sprintf(data, "%s",str.c_str());
+            CCCallFunc* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::callTexiaoFile),(void*)data);
+            return action;
+
+        }
+        
+        else if (actionType == act_remove_self) {
             
         }
         return NULL;
@@ -399,5 +411,16 @@ void ActionCallFun::resetZorder(CCNode *node,void *data)
         node->getParent()->reorderChild(node, tempzorder);
     }
     delete (int *)data;
+    data=NULL;
+}
+
+void ActionCallFun::callTexiaoFile(CCNode *node,void *data)
+{
+    char *filename= (char *)data;
+    if(node)
+    {
+        Utility::runPtActionScript(node, filename, 100);
+    }
+    delete [](char *)data;
     data=NULL;
 }
