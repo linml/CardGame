@@ -44,6 +44,7 @@ const std::string act_over = "ActOver"; //踩格子效果动作结束专用
 const std::string act_remove_self = "RemoveSelf";//删除本身
 const std::string act_reset_zorder="ResetZorder";
 const std::string act_animateplist="Animate";
+const std::string act_hidetag="Removetag";
 
 
 class ActionData {
@@ -63,6 +64,7 @@ public:
     void btnActOver();
     void resetZorder(CCNode *node,void *data);
     void callTexiaoFile(CCNode *node,void *data);
+    void removeChildBytag(CCNode *node,void *data);
 };
 
 

@@ -193,7 +193,8 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
                 PtActionUtility::readSpriteActionFile(pSkilldata->effect_plist, pMonsterSprite2,"MonsterCard");
             }
 #else
-            CCAction *animation=PtActionUtility::getRunActionWithActionFile("resource_cn/boss_icon_Effect.plist");//,pFightSprite);
+  //          Utility::runPtActionScript(pFightSprite, "resource_cn/action/juqi1/juqi1.act", 100);
+           CCAction *animation=PtActionUtility::getRunActionWithActionFile("resource_cn/boss_icon_Effect.plist");//,pFightSprite);
             pFightSprite->runAction(animation);
            /* pFightSprite->runAction(CCSequence::create(animation,
                                                            CCCallFuncN::create(pFightSprite, callfuncN_selector(CCardFightingLayerScene::showJuqi)),

@@ -192,7 +192,7 @@ namespace Utility {
         spr->setTag(tag);
         spr->setPosition(ccp(0,0));
         HBActionAni* ani = HBActionAniCache::sharedActionAniCache()->addActionAniWithFile(CSTR_FILEPTAH(g_ActionFilePath,filePtah));
-        node->addChild(spr,-1);
+        node->addChild(spr);
         ani->runAnimationBy(spr);
         return 0;
         

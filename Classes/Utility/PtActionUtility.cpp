@@ -251,7 +251,14 @@ namespace PtActionUtility {
             return action;
 
         }
-        
+        else if(actionType==act_hidetag)
+        {
+            int *tag=new int;
+            *tag=atoi(getSubStr(sAction, "(", ")").c_str());
+            //该地方 的Null会被自动替换成action的使用者
+            CCCallFunc* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::removeChildBytag), (void*)tag);
+            return action;
+        }
         else if (actionType == act_remove_self) {
             
         }
@@ -413,7 +420,17 @@ void ActionCallFun::resetZorder(CCNode *node,void *data)
     delete (int *)data;
     data=NULL;
 }
-
+void ActionCallFun::removeChildBytag(CCNode *node,void *data)
+{
+    int tag=*(int *)data;
+    if(node )
+    {
+        
+        node->removeChildByTag(tag, false);//(node, tempzorder);
+    }
+    delete (int *)data;
+    data=NULL;
+}
 void ActionCallFun::callTexiaoFile(CCNode *node,void *data)
 {
     char *filename= (char *)data;
