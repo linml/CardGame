@@ -288,13 +288,48 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         case EN_ATKFIGHT_INDEX_LEFT_MOVE:
             m_vFightHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
             m_vFightHero[m_currCAnimationHP->m_iDefIndex]->setVisible(true);
+            moveCardSprite(m_vFightingCard,m_currCAnimationHP->m_iATKindex,true);
             break;
-        case EN_ANIFIGHT_INDEX_RIGHT_MOVE:
+        case EN_ATKFIGHT_INDEX_RIGHT_MOVE:
             m_vMonsterHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
             m_vMonsterHero[m_currCAnimationHP->m_iDefIndex]->setVisible(true);
+             moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);
             break;
         default:
             break;
+    }
+}
+
+void CFightingCardLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goIndex,bool isLeft)
+{
+    if(vCard.size()<=2)
+    {
+        return;
+    }
+    else
+    {
+        vector<CFightCard *>vectemp;
+        vectemp.clear();
+        for (int i=goIndex; i<=vCard.size()-2; i++) {
+            vectemp.push_back(vCard[i]);
+        }
+        for (int i=goIndex-1; i>=0; i--) {
+            vectemp.push_back(vCard[i]);
+        }
+        char data[20];
+        for (int i=0 ; i<vectemp.size(); i++) {
+            if(isLeft)
+            {
+                sprintf(data, "left%0.2d",i);
+            }
+            else{
+                sprintf(data, "right%0.2d",i);
+                
+            }
+            CCLog("%s,%d,0x%x",data,vectemp[i]->tag,(CCSprite *)getChildByTag(vectemp[i]->tag));
+            PtActionUtility::readSpriteActionFile(g_ActionFilePath+"movecard.plist",(CCSprite *)getChildByTag(vectemp[i]->tag),string(data));
+        }
+       runAction(CCSequence::create(CCDelayTime::create(0.3f),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd)),NULL));
     }
 }
 
@@ -446,7 +481,7 @@ void CFightingCardLayerScene::checkIsDead()
                 m_iMonsterCardIndex++;
             } while (m_vMonsterCard[m_iMonsterCardIndex]==NULL &&m_iMonsterCardIndex<m_vMonsterCard.size()-1);
             //m_vMonsterHero[m_iMonsterCardIndex]->setVisible(true);
-         g_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_HERO, EN_ATKFIGHT_INDEX_LEFT_MOVE);
+         g_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_HERO, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
         }
     }
 }

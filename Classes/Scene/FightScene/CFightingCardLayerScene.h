@@ -68,6 +68,7 @@ private:
     void showHpAnimation(CCObject *object);
     void AnimaitonEnd(CCObject *object);
     void showHp(int leftHp,int RightHp);
+    void moveCardSprite(vector<CFightCard *> &vCard,int goIndex,bool isLeft);
     
 private: //action
     void  animationShouShang(CCNode *node,void *tag);

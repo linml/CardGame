@@ -1,14 +1,14 @@
 10
 
 dir
-704
+717
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-12T09:30:56.254320Z
-701
+2013-07-19T09:20:56.010005Z
+717
 merlin
 
 
@@ -25,43 +25,6 @@ merlin
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
-
-CFightSkillManager.cpp
-file
-706
-
-
-
-2013-07-17T01:54:49.000000Z
-3c7054107b5b9dafe7adf7836a59bf95
-2013-07-17T02:37:28.028848Z
-706
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8284
-
-CardKind
-dir
 
 CGamePlayerStruct.cpp
 file
@@ -96,6 +59,9 @@ merlin
 
 
 118
+
+CardKind
+dir
 
 CGameLogic.h
 file
@@ -199,40 +165,6 @@ merlin
 
 408
 
-CFightSkillManager.h
-file
-706
-
-
-
-2013-07-17T01:24:32.000000Z
-ee8a4113a23bffe65a8eb820e436b0d9
-2013-07-17T02:37:28.028848Z
-706
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5303
-
 CCardBufferStatus.cpp
 file
 
@@ -269,7 +201,7 @@ merlin
 
 CSkillData.cpp
 file
-706
+
 
 
 
@@ -369,43 +301,9 @@ merlin
 
 1330
 
-CConfigResourceLoad.cpp
-file
-706
-
-
-
-2013-07-17T01:49:52.000000Z
-54bd845cd76079f67e2d2970fc544e84
-2013-07-17T02:37:28.028848Z
-706
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8018
-
 CSkillData.h
 file
-706
+
 
 
 
@@ -437,12 +335,43 @@ merlin
 
 2323
 
-Craftsmanship
-dir
+CConfigResourceLoad.cpp
+file
+
+
+
+
+2013-07-17T01:49:52.000000Z
+54bd845cd76079f67e2d2970fc544e84
+2013-07-17T02:37:28.028848Z
+706
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8018
 
 CCard.h
 file
-706
+
 
 
 
@@ -473,6 +402,9 @@ merlin
 
 
 1990
+
+Craftsmanship
+dir
 
 gameStruct.h
 file
@@ -510,7 +442,7 @@ phileas
 
 CConfigResourceLoad.h
 file
-706
+
 
 
 
@@ -544,14 +476,41 @@ merlin
 
 CAnimationSpriteGameFight.cpp
 file
-0
 
 
-add
+
+
+2013-07-18T02:10:02.000000Z
+0cafb701bc11b547b78057e96dd498f6
+2013-07-19T09:20:56.010005Z
+717
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1026
 
 gamePlayer.cpp
 file
-706
+
 
 
 
@@ -619,14 +578,41 @@ merlin
 
 CAnimationSpriteGameFight.h
 file
-0
 
 
-add
+
+
+2013-07-18T02:09:01.000000Z
+4d58717759fd17448c9e848e8a893217
+2013-07-19T09:20:56.010005Z
+717
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1190
 
 gamePlayer.h
 file
-706
+
 
 
 
