@@ -40,7 +40,6 @@ public:
     EN_GAMEFIGHTSTATUS  getWinStatus();
     EN_ATKFIGHT_INDEX getHuiHeIndex();
     int  m_iTotalHuihe;
-    
     void animationSchudel(float t);
     int animationAndex;
     bool isAnimationEnd;
@@ -65,6 +64,14 @@ private:
     void loadFromServerTest();
     void initGame();
     void checkIsDead();
+    CAnimationSpriteGameFight *m_currCAnimationHP;
+    void showHpAnimation(CCObject *object);
+    void AnimaitonEnd(CCObject *object);
+    void showHp(int leftHp,int RightHp);
+    
+private: //action
+    void  animationShouShang(CCNode *node,void *tag);
+    
 public:
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;
