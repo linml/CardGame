@@ -24,6 +24,12 @@ public:
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    
+    bool ccTouchDelayBegan(CCTouch *pTouch, CCEvent *pEvent);
+    void ccTouchDelayMove(CCTouch *pTouch, CCEvent *pEvent);
+    void ccTouchDelayEnd(CCTouch *pTouch, CCEvent *pEvent);
+    void ccTouchDelayCancel(CCTouch *pTouch, CCEvent *pEvent);
+    
     virtual void registerWithTouchDispatcher()
     {
         CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, this->getTouchPriority(), true);
@@ -32,14 +38,19 @@ public:
     virtual void visit();
 public:
     CCNode *getCell(CCTouch *pTouch);
+    void setChip(bool  bFlag){ m_bClippingToBounds = bFlag;};
     
 protected:
     CCNode * m_pSelectItem;
     bool m_bTouchDragSelect;
-
+    bool m_bDelay;
 protected:
     void beforeDraw();
     void afterDraw();
+    void timer(float dt);
+    
+    CC_SYNTHESIZE(bool, m_bDelayMode, DelayMode);
+
 };
 
 
@@ -55,14 +66,15 @@ public:
     void setBackGround(CCLayer *layer, int zorder = -100, int tag = 1);
     void setPaddingWidth(float paddWidth);
     void setPaddingHeight(float paddingHeight);
-    void setChipEnable(const bool & inChipEnable);
+    void setChipEnable(bool inChipEnable){ ((TableView*) m_pTableView)->setChip(inChipEnable);};
     CCTableView * getTableView(){ return m_pTableView;};
+    
 public:
     virtual bool init(CCArray *items, CCSize containerSize,CCScrollViewDirection direction = kCCScrollViewDirectionVertical,  CCSize PaddingSize = CCSizeMake(5, 2.5), int inColumCount = 1);
     
-    virtual void scrollViewDidScroll(cocos2d::extension::CCScrollView* view);
+    virtual void scrollViewDidScroll(cocos2d::extension::CCScrollView* view){};
 
-    virtual void scrollViewDidZoom(cocos2d::extension::CCScrollView* view);
+    virtual void scrollViewDidZoom(cocos2d::extension::CCScrollView* view){};
 
     virtual void tableCellTouched(cocos2d::extension::CCTableView* table, cocos2d::extension::CCTableViewCell* cell);
 

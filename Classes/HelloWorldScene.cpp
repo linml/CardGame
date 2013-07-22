@@ -102,7 +102,7 @@ bool HelloWorld::init()
 //    //让演员演示这个动画。
      Utility::runPtActionScript(sprite,"xuanfeng/xuanfeng.act",100);
 //    sprite->runAction(CCRepeatForever::create(action));
-    
+    //removeChildByTag(<#int tag#>, <#bool cleanup#>)
     
     return true;
 }

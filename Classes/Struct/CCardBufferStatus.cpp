@@ -9,10 +9,11 @@
 #include "CCardBufferStatus.h"
 CCardBufferStatus::CCardBufferStatus()
 {
-    m_iBuff_times=0;
-    m_enBuffer_action=EN_BUFF_ACTION_NONE;
-    m_enBuffer_Field=EN_BUFF_FIELD_NONE;
-    m_enBuffer_mark=EN_BUFF_MARK_NONE;
-    m_enBuffer_target=EN_BUFF_TARGET_NONE;
-    m_iValue=0;
+    m_enBuffer_Field=EN_BUFF_FIELD_NONE; //  buffer类型，
+    m_iBuff_effectTimes=0;   //效果的累计次数
+    m_iBuff_showTimes=0;   //显示的次数
+    m_iDataType=0;     //查看buffer  是用  整数加值还是百分比加10
+    m_iValue=0;       //设置浮点数字  百分比 或者是整数的的模式。
+    m_enBuffer_target=EN_BUFF_TARGET_NONE;  //buffer目标;  //待定 看是否添加在最后里面
+
 }

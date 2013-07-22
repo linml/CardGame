@@ -1,14 +1,14 @@
 10
 
 dir
-615
+722
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/fighting
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-17T08:04:34.430341Z
-536
+2013-07-08T08:32:56.657183Z
+669
 merlin
 
 
@@ -130,7 +130,7 @@ has-props
 
 bgm.png
 file
-669
+
 
 
 
@@ -502,16 +502,16 @@ has-props
 
 157319
 
-green_raynas_2.png
+touxiang.png
 file
 
 
 
 
 2013-07-05T06:01:19.000000Z
-6873efc81ee336c3c6d4b5a36b2f883c
-2013-06-17T08:04:34.430341Z
-536
+e21717e7054818851942d3f0540a7bb9
+2013-07-08T08:32:56.657183Z
+669
 merlin
 has-props
 
@@ -534,41 +534,7 @@ has-props
 
 
 
-57208
-
-skill_1.png
-file
-
-
-
-
-2013-07-05T06:01:19.000000Z
-1c8bd21664b655cafaed3f1d1eccb6c0
-2013-06-17T08:04:34.430341Z
-536
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-16848
+48802
 
 purple_princess_2.png
 file
@@ -604,48 +570,14 @@ has-props
 
 78701
 
-touxiang.png
-file
-669
-
-
-
-2013-07-05T06:01:19.000000Z
-e21717e7054818851942d3f0540a7bb9
-2013-07-08T08:32:56.657183Z
-669
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-48802
-
-purple_princess_3.png
+skill_1.png
 file
 
 
 
 
 2013-07-05T06:01:19.000000Z
-d125316ac45f3ae13c19a65510ed1e26
+1c8bd21664b655cafaed3f1d1eccb6c0
 2013-06-17T08:04:34.430341Z
 536
 merlin
@@ -670,7 +602,41 @@ has-props
 
 
 
-50759
+16848
+
+green_raynas_2.png
+file
+
+
+
+
+2013-07-05T06:01:19.000000Z
+6873efc81ee336c3c6d4b5a36b2f883c
+2013-06-17T08:04:34.430341Z
+536
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+57208
 
 green_raynas_3.png
 file
@@ -706,14 +672,14 @@ has-props
 
 33333
 
-purple_princess_4.png
+purple_princess_3.png
 file
 
 
 
 
 2013-07-05T06:01:19.000000Z
-4f2bb44788f64599d33ad8bca281049e
+d125316ac45f3ae13c19a65510ed1e26
 2013-06-17T08:04:34.430341Z
 536
 merlin
@@ -738,7 +704,7 @@ has-props
 
 
 
-27577
+50759
 
 green_raynas_4.png
 file
@@ -774,9 +740,43 @@ has-props
 
 21255
 
+purple_princess_4.png
+file
+
+
+
+
+2013-07-05T06:01:19.000000Z
+4f2bb44788f64599d33ad8bca281049e
+2013-06-17T08:04:34.430341Z
+536
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+27577
+
 card_res_001.png
 file
-669
+
 
 
 
@@ -810,7 +810,7 @@ has-props
 
 card_res_002.png
 file
-669
+
 
 
 
@@ -844,7 +844,7 @@ has-props
 
 card_res_003.png
 file
-669
+
 
 
 
@@ -980,7 +980,7 @@ has-props
 
 card_res_001_000.png
 file
-669
+
 
 
 
@@ -1014,7 +1014,7 @@ has-props
 
 card_res_002_000.png
 file
-669
+
 
 
 
@@ -1048,7 +1048,7 @@ has-props
 
 card_res_003_000.png
 file
-669
+
 
 
 

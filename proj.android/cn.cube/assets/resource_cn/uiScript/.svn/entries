@@ -1,14 +1,14 @@
 10
 
 dir
-615
+722
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/uiScript
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-20T06:24:55.151265Z
-568
+2013-07-08T08:34:05.381962Z
+674
 phileas
 
 
@@ -168,10 +168,10 @@ file
 
 
 
-2013-07-05T06:01:22.000000Z
-bcc9d7dd010b47699ee236a5bf91e625
-2013-06-18T01:15:16.799500Z
-543
+2013-07-22T05:48:09.000000Z
+d2160992684b2586bd9880a9f6369acb
+2013-07-08T08:34:05.381962Z
+674
 phileas
 
 
@@ -194,7 +194,7 @@ phileas
 
 
 
-3234
+3087
 
 task.plist
 file
@@ -298,6 +298,40 @@ merlin
 
 9323
 
+zhandouui.plist
+file
+
+
+
+
+2013-07-05T06:50:24.000000Z
+d48c8e77d9a07ee46ee118cd9d7aeb98
+2013-07-08T08:34:03.847443Z
+673
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+492
+
 demo_task.plist
 file
 
@@ -331,40 +365,6 @@ phileas
 
 
 1556
-
-zhandouui.plist
-file
-673
-
-
-
-2013-07-05T06:50:24.000000Z
-d48c8e77d9a07ee46ee118cd9d7aeb98
-2013-07-08T08:34:03.847443Z
-673
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-492
 
 login.plist
 file
@@ -436,7 +436,7 @@ merlin
 
 zhandouui_png.plist
 file
-673
+
 
 
 

@@ -8,44 +8,34 @@
 
 #include "CPtTableItem.h"
 
-
-CPtTableItem * CPtTableItem::create(const char *pszFileName)
+CPtTableItem::CPtTableItem()
 {
-    CPtTableItem *pSprite = new CPtTableItem();
-    if (pSprite && pSprite->initWithFile(pszFileName))
-    {
-        pSprite->autorelease();
-        return pSprite;
-    }
-    CC_SAFE_DELETE(pSprite);
-    return NULL;
+    m_pDisplayView = NULL;
+    m_pTouchDelegate = NULL;
+    touchNode = NULL;
 }
-
-CPtTableItem * CPtTableItem::create(const char *pszFileName, const cocos2d::CCRect &rect)
+CPtTableItem::~CPtTableItem()
 {
-    
-    CPtTableItem *pobSprite = new CPtTableItem();
-    if (pobSprite && pobSprite->initWithFile(pszFileName, rect))
+    if (m_pDisplayView)
     {
-        pobSprite->autorelease();
-        return pobSprite;
+        m_pDisplayView->release();
     }
-    CC_SAFE_DELETE(pobSprite);
-    return NULL;
 }
 
 
 bool CPtTableItem::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
 
-    bool bRet = false;
+        bool bRet = false;
    
-    
-
         bRet = isSelect(touchNode, pTouch);
         if (bRet)
         {
-        
+            if (m_pTouchDelegate)
+            {
+                return  m_pTouchDelegate->ccTouchBegan(pTouch, pEvent);
+            }
+            
         }
     
     
@@ -56,11 +46,15 @@ bool CPtTableItem::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void CPtTableItem::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
-    
+   
+    if (m_pTouchDelegate)
+    {
+        m_pTouchDelegate->ccTouchMoved(pTouch, pEvent);
+        return;
+    }
     
  
-        CCLog("CCardItem::ccTouchMoved");
-
+       
     
 
     
@@ -68,13 +62,22 @@ void CPtTableItem::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CPtTableItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     
+    if (m_pTouchDelegate)
+    {
+        m_pTouchDelegate->ccTouchEnded(pTouch, pEvent);
+        return;
+    }
    
-        CCLog("CCardItem::ccTouchEnded");
+       
    
 
 }
 void CPtTableItem::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (m_pTouchDelegate)
+    {
+        m_pTouchDelegate->ccTouchCancelled(pTouch, pEvent);
+    }
     
 }
 
@@ -116,3 +119,19 @@ void CPtTableItem::setTouchNode(CCNode *node)
 {
     touchNode = node;
 }
+
+void CPtTableItem::setDisplayView(cocos2d::CCNode *inDisplayview)
+{
+    if (inDisplayview)
+    {
+        if (m_pDisplayView)
+        {
+            m_pDisplayView->release();
+        }
+        inDisplayview->retain();
+        m_pDisplayView = inDisplayview;
+    }
+}
+
+
+

@@ -58,6 +58,10 @@ CScrollWordSprite::~CScrollWordSprite()
    
 }
 
+/*
+ * @breif set whether the word will scroll
+ */
+
 void CScrollWordSprite::setScroll(const bool &inEnable)
 {
     if (inEnable !=  m_bScroll)
@@ -99,7 +103,7 @@ void CScrollWordSprite::setScrollContentWidth(float inWidth)
 }
 
 /*
- * @param inType : 1 horizontal, other is vertical
+ * @param inType : 1 horizontal, 2 is vertical
  */
 void CScrollWordSprite::setScrollDirection(const int &inType)
 {

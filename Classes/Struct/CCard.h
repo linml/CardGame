@@ -54,6 +54,8 @@ private:
     void init();
 public:
     void initFighting();
+    void addEngry(int engry);
+    void subEngry(int engry);
 public:
     int m_iCurrHp;  //当前HP
     int m_iHp;      //当前总的HP

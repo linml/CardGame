@@ -19,7 +19,9 @@
 #include "CSkillData.h"
 #include "Utility.h"
 #include "PtActionUtility.h"
-#define AAAAFOROSMACHINE 
+
+#define AAAAFOROSMACHINE
+
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
     "001",
@@ -28,6 +30,7 @@ static string g_testtemp[5]={
     "purple_princess",
     "red_wolf"
 };
+
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -55,6 +58,7 @@ CFightingCardLayerScene::CFightingCardLayerScene()
     m_friendFightLogic=new  CFightingCardLayerLogic();
     m_vAnimation.clear();
 }
+
 CFightingCardLayerScene::~CFightingCardLayerScene()
 {
     if(m_friendFightLogic)
@@ -70,9 +74,7 @@ bool CFightingCardLayerScene::init()
     m_iTotalHuihe=0;
 	CCLog("CCardFightingLayerScene::init");
     initBggroudPng();
-    
     PtMapUtility::addChildFromScript(this, plistPath+"zhandouui.plist");
-    
     initText();
     initHitText();
     createFightCard();
@@ -189,17 +191,16 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
     }
     else
     {
-        CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillid);
         if(pFightSprite)
         {
 #ifndef AAAAFOROSMACHINE
+            CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillid);            
             PtActionUtility::readSpriteActionFile(pSkilldata->effect_plist,pFightSprite,"FightCard");
             if(pMonsterSprite2)
             {
                 PtActionUtility::readSpriteActionFile(pSkilldata->effect_plist, pMonsterSprite2,"MonsterCard");
             }
 #else
-  //          Utility::runPtActionScript(pFightSprite, "resource_cn/action/juqi1/juqi1.act", 100);
             CCAction *animation=PtActionUtility::getRunActionWithActionFile("resource_cn/boss_icon_Effect.plist");//,pFightSprite);
             CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonsterSprite2);
             CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
@@ -207,6 +208,7 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
             pFightSprite->runAction(CCSequence::create((CCFiniteTimeAction*)animation,nd,callback,endAnimation,NULL));
 #endif
         }
+        
     }
     
 }
@@ -288,12 +290,12 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         case EN_ATKFIGHT_INDEX_LEFT_MOVE:
             m_vFightHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
             m_vFightHero[m_currCAnimationHP->m_iDefIndex]->setVisible(true);
-            moveCardSprite(m_vFightingCard,m_currCAnimationHP->m_iATKindex,true);
+            moveCardSprite(m_vFightingCard,m_currCAnimationHP->m_iATKindex,true);//移动 card
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_MOVE:
             m_vMonsterHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
             m_vMonsterHero[m_currCAnimationHP->m_iDefIndex]->setVisible(true);
-             moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);
+            moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);//移动 card
             break;
         default:
             break;
@@ -329,7 +331,7 @@ void CFightingCardLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goI
             CCLog("%s,%d,0x%x",data,vectemp[i]->tag,(CCSprite *)getChildByTag(vectemp[i]->tag));
             PtActionUtility::readSpriteActionFile(g_ActionFilePath+"movecard.plist",(CCSprite *)getChildByTag(vectemp[i]->tag),string(data));
         }
-       runAction(CCSequence::create(CCDelayTime::create(0.3f),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd)),NULL));
+        runAction(CCSequence::create(CCDelayTime::create(0.3f),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd)),NULL));
     }
 }
 
@@ -339,7 +341,6 @@ void CFightingCardLayerScene::logicFighting()
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
     {
         CCLog("LEFT%d-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-        // CCAssert(m_vFightingCard[m_iFightCardIndex], "战斗队列中居然有空位的卡牌");
         m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex],this);
         
     }
@@ -352,7 +353,6 @@ void CFightingCardLayerScene::logicFighting()
     {
         
         CCLog("RIGHT%d-------->LEFT%d,LEFTHP :%d,RIHGHP: %d",m_iMonsterCardIndex,m_iFightCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-        //CCAssert(m_vMonsterCard[m_iMonsterCardIndex], "敌人队列中居然有空位的卡牌");
         m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex, m_vMonsterCard[m_iMonsterCardIndex], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
@@ -398,7 +398,7 @@ void CFightingCardLayerScene::showHp(int leftHp,int RightHp)
     {
         return;
     }
-     point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5+100),(CCDirector::sharedDirector()->getWinSize().height*0.5));
+    point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5+100),(CCDirector::sharedDirector()->getWinSize().height*0.5));
     labelTTF=(CCLabelTTF *)getChildByTag(30003);
     sprintf(data, "%d",hpValue*(-1));
     labelTTF->setString(data);
@@ -439,7 +439,7 @@ void CFightingCardLayerScene::showHpAnimation(CCObject *object)
                 showHp(m_currCAnimationHP->m_iSubHp,m_currCAnimationHP->m_iAddHp);
                 break;
             case EN_ATKFIGHT_INDEX_RIGHT_SUPPORT:
-               showHp(m_currCAnimationHP->m_iSubHp,m_currCAnimationHP->m_iAddHp);
+                showHp(m_currCAnimationHP->m_iSubHp,m_currCAnimationHP->m_iAddHp);
                 break;
             default:
                 break;
@@ -457,14 +457,14 @@ void CFightingCardLayerScene::checkIsDead()
             int backIndex=m_iFightCardIndex;
             m_vFightingCard[m_iFightCardIndex]->m_iCurrHp=0;
             m_vFightingCard[m_iFightCardIndex]->isDead=true;
-            //m_vFightHero[m_iFightCardIndex]->setVisible(false);
-           
             //发动死亡技能
-            do {
+            g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_DEAD,m_enHuiheIndex);
+            do
+            {
                 m_iFightCardIndex++;
             } while (m_vFightingCard[m_iFightCardIndex]==NULL &&m_iFightCardIndex<m_vFightingCard.size()-1);
-             g_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_HERO, EN_ATKFIGHT_INDEX_LEFT_MOVE);
-            //m_vFightHero[m_iFightCardIndex]->setVisible(true);
+            
+            g_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_HERO, EN_ATKFIGHT_INDEX_LEFT_MOVE);
         }
     }
     if (m_iMonsterCardIndex<m_vMonsterCard.size()-1)
@@ -476,12 +476,11 @@ void CFightingCardLayerScene::checkIsDead()
             int backIndex=m_iMonsterCardIndex;
             m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp=0;
             m_vMonsterCard[m_iMonsterCardIndex]->isDead=true;
-            //m_vMonsterHero[m_iMonsterCardIndex]->setVisible(false);
+            g_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex], m_vMonsterCard ,m_vFightingCard,m_iMonsterCardIndex ,m_iFightCardIndex,EN_SEND_SKILL_DEAD,m_enHuiheIndex);
             do {
                 m_iMonsterCardIndex++;
             } while (m_vMonsterCard[m_iMonsterCardIndex]==NULL &&m_iMonsterCardIndex<m_vMonsterCard.size()-1);
-            //m_vMonsterHero[m_iMonsterCardIndex]->setVisible(true);
-         g_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_HERO, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
+            g_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_HERO, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
         }
     }
 }

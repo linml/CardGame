@@ -68,21 +68,20 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
     if( it!=m_vCostFuncManager.end())
     {
         pbFunc func=it->second;
-        if((*func)(pCard))
+        if((*func)(pCard))   //判断单体的条件是否满足。 
         {
             // 满足条件
             // 发动effect的攻击效果
         }
         else
         {
-            
             CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji();
             if (pPutongSkill)
             {
                 logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);
+                appendAnimation(FightIndex, MonsterIndex, 0, 0, pPutongSkill->skill_id, 0, 0, EN_ANIMATIONTYPE_HERO, enatk);
             }
-            appendAnimation(FightIndex, MonsterIndex, 0, 0, pPutongSkill->skill_id, 0, 0, EN_ANIMATIONTYPE_HERO, enatk);
-       }
+        }
     }
 }
 
@@ -209,7 +208,41 @@ void CFightSkillManager::effect_0(CFightCard *pCard,CFightCard *pMonterCard,CSki
 
 void CFightSkillManager::effect_1(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
+    cout<<"pMonterCard->m_iCurrHp"<<pMonterCard->m_iCurrHp<<endl;
+    //伤害值=（parameter_1+自身卡牌当前攻击力*（parameter_2/100)+目标总血量*parameter_3/100-目标卡牌当前的防御力
     
+    
+    int mShanghai = pCimapact->m_iParameter_1 +pCard->m_attack*pCimapact->m_iParameter_2/100+pMonterCard->m_iHp*pCimapact->m_iParameter_3/100-pMonterCard->m_defend;
+    
+    
+    int atk = pMonterCard->m_attack-pCimapact->m_iParameter_8 -pMonterCard->m_attack*pCimapact->m_iParameter_9/100;
+    
+    
+    int def = (pMonterCard->m_defend -pCimapact->m_iParameter_4)-pMonterCard->m_defend*pCimapact->m_iParameter_5/100;
+    
+    int angry= (pMonterCard->m_iEngryMax)-pCimapact->m_iParameter_6 -
+    pMonterCard->m_iEngryMax *pCimapact->m_iParameter_7/100;
+    
+    if (atk) {
+        pMonterCard->m_attack=atk;
+    }
+    if (def) {
+        pMonterCard->m_defend=def;
+    }
+    if (angry) {
+        pMonterCard
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    目标怒气=目标当前怒气-parameter_6-目标怒气满值*parameter_7/100
 }
 void CFightSkillManager::effect_2(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject){
     

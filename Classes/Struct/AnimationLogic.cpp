@@ -15,7 +15,7 @@ SAnimationFps::SAnimationFps()
 
 SAnimationFps::~SAnimationFps()
 {
-    
+
 }
 SAnimationFps::SAnimationFps(int spendAnimationAuthor,int skillIndex,int spendCurrHp,int spendHp,int monsterCurrHp,int monsterHp,int iHuihe,int iJiaxue,int iShanghai)
 {

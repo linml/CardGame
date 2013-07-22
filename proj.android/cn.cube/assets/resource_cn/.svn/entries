@@ -1,14 +1,14 @@
 10
 
 dir
-615
+722
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-21T06:28:18.604603Z
-593
+2013-07-17T02:37:53.355089Z
+707
 merlin
 
 
@@ -34,7 +34,7 @@ dir
 
 card.plist
 file
-707
+
 
 
 
@@ -68,7 +68,7 @@ merlin
 
 boss_icon_Effect.plist
 file
-671
+
 
 
 
@@ -108,7 +108,7 @@ dir
 
 level_max.plist
 file
-654
+
 
 
 
@@ -145,7 +145,7 @@ dir
 
 skill_effect_config.plist
 file
-707
+
 
 
 
@@ -191,7 +191,7 @@ dir
 
 skill_config.plist
 file
-707
+
 
 
 

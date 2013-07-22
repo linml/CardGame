@@ -46,9 +46,13 @@ enum EN_BUFF_MARK
 enum EN_BUFF_FIELD
 {
     EN_BUFF_FIELD_NONE,
-    EN_BUFF_FIELD_ATTACK,
-    EN_BUFF_FIELD_DEFEND,
-    EN_BUFF_FIELD_HP,
+    EN_BUFF_FIELD_ATTACK,   //影响攻击力
+    EN_BUFF_FIELD_DEFEND,   //影响防御力
+    EN_BUFF_FIELD_HP,       //影响HP，
+    EN_BUFF_FIELD_BINGFENG, //被冰封
+    EN_BUFF_FIELD_XUANYUN,  //眩晕
+    EN_BUFF_FIELD_DUYAO,    //毒药
+
 };
 enum EN_BUFF_TARGET {
     EN_BUFF_TARGET_NONE,
@@ -63,12 +67,12 @@ class CCardBufferStatus :public CCObject
 {
 public:
     CCardBufferStatus();
-    int m_iBuff_times;
-    EN_BUFF_FIELD m_enBuffer_Field;
-    EN_BUFF_TARGET m_enBuffer_target;
-    EN_BUFF_ACTION m_enBuffer_action;
-    EN_BUFF_MARK  m_enBuffer_mark;
-    int m_iValue;
+    EN_BUFF_FIELD m_enBuffer_Field; //  buffer类型，
+    int    m_iBuff_effectTimes;   //效果的累计次数
+    int    m_iBuff_showTimes;   //显示的次数
+    int    m_iDataType;     //查看buffer  是用  整数加值还是百分比加10
+    float  m_iValue;       //设置浮点数字  百分比 或者是整数的的模式。
+    EN_BUFF_TARGET m_enBuffer_target;  //buffer目标;  //待定 看是否添加在最后里面
 };
 
 #endif /* defined(___1_cube__CCardBufferStatus__) */

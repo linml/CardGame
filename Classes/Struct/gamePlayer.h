@@ -55,8 +55,9 @@ public:
     void clearAllEffectInfo();
     CImapact *findByImpactId( int tempImpactId);
     vector< CImapact * >m_vImpactInfo;
-    
-public: 
+
+ 
+public:
     vector<CFightCard *>m_hashmapFightingCard;
     vector<CFightCard *>m_hashmapMonsterCard;
     
@@ -87,24 +88,26 @@ public:
     void initPlayerStatusZero();
     //获得服务端的数据并init下数据
     void getSeverPlayerInfo(CCObject *object);
-public:
+public: //读取卡包的信息
     void loadServerCardBag();
     void clearServerCardBag();
     void parseCardBagJson(CCObject *obj);
     void deleteFromCardBag(vector<int>user_CardId);
     bool isCardBagContainUserCardList(vector<int>User_CardId);
     bool isLoadCardBagEnd;
-public:
+public: //读取英雄的信息
     void loadServerPlayerInfo();
     void loadServerPlayerInfoCallBack(CCObject *obj);
     bool isLoadPlayerInfoEnd;
-    
     CFightCard *findFightCardByCard_User_ID(int  carduserid);
-    
+public: //读取 卡队列的信息
     void loadCardTeamInfo();
     void loadCardTeamInfoCallBack(CCObject *obj);
     bool isLoadEndCardTeam;
-    
+public:
+    //读取对战别的英雄对战的阵容
+    void loadRival(int  rivalUid);
+    void parseRival(CCObject *object);
     
 public:
     //获取 卡包 内容的卡

@@ -23,11 +23,25 @@ public:
 public:
     bool initCreate(CCard *card);
     void setDead();
-private:
+    void setLive();
+    CGamesCard *getCopy();
+    bool getSuit(int &outSuit, int &outSequence);
+    CCard *getCardData(){ return m_pCardData;};
+protected:
+    void setLive(CCNode *node);
+    void setDead(CCNode *node);
     bool initBg(CCard *card);
     void createCardName(const char *str);
     void createStart(int start);
     void createHero(const char *str);
+    void createBackground(const char *str);
+    void createSuit(int inSuit);
+    void createStirps(int inStirps);
+    void createData(const int &inAtk, const int &inHp, const int &inRcv, const int &inDef);
+       
+protected:
+    CCLabelTTF *label;
+    CCard *m_pCardData;
 public:
     bool isAddTexiao;
     

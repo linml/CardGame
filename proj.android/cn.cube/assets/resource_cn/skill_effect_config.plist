@@ -121,7 +121,7 @@
 		<key>isbuff</key>
 		<string>1</string>
 		<key>show_times</key>
-		<string>3</string>
+		<string>1</string>
 		<key>mutex</key>
 		<string>1</string>
 		<key>mutex_level</key>
@@ -172,7 +172,7 @@
 		<key>effect_id</key>
 		<string>100021</string>
 		<key>effect_logic</key>
-		<string>11</string>
+		<string>4</string>
 		<key>isbuff</key>
 		<string>0</string>
 		<key>show_times</key>
@@ -227,7 +227,7 @@
 		<key>effect_id</key>
 		<string>100022</string>
 		<key>effect_logic</key>
-		<string>1</string>
+		<string>5</string>
 		<key>isbuff</key>
 		<string>0</string>
 		<key>show_times</key>
@@ -282,7 +282,7 @@
 		<key>effect_id</key>
 		<string>100012</string>
 		<key>effect_logic</key>
-		<string>11</string>
+		<string>6</string>
 		<key>isbuff</key>
 		<string>0</string>
 		<key>show_times</key>
