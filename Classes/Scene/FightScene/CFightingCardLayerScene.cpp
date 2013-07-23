@@ -413,7 +413,12 @@ void CFightingCardLayerScene::logicFighting()
     {
            CCLog("RIGHT5-------->LEFT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
         m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex, m_vMonsterCard[4], this);
-     
+        
+        CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
+        CFightSkillManager::dealWithBuffer(m_vFightingCard[4],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_SUPPORT);
+        CFightSkillManager::dealWithBuffer(m_vMonsterCard[m_iMonsterCardIndex],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_LORD);
+        CFightSkillManager::dealWithBuffer(m_vMonsterCard[4],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_SUPPORT);
+
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
         m_iTotalHuihe++;
         CCLog("========>%d",m_iTotalHuihe);
@@ -422,11 +427,7 @@ void CFightingCardLayerScene::logicFighting()
     {
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
     }
-    CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
-    CFightSkillManager::dealWithBuffer(m_vFightingCard[4],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_SUPPORT);
-    CFightSkillManager::dealWithBuffer(m_vMonsterCard[m_iMonsterCardIndex],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_LORD);
-    CFightSkillManager::dealWithBuffer(m_vMonsterCard[4],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_SUPPORT);
-
+    
 
     checkIsDead();
 }

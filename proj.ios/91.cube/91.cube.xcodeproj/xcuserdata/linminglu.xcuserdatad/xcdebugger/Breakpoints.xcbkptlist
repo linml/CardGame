@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-         timestampString = "396271106.13659"
+         timestampString = "396275385.155932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "92"
-         endingLineNumber = "92"
+         startingLineNumber = "93"
+         endingLineNumber = "93"
          landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-         timestampString = "396271930.889962"
+         timestampString = "396275385.155932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "240"
-         endingLineNumber = "240"
+         startingLineNumber = "241"
+         endingLineNumber = "241"
          landmarkName = "CFightSkillManager::effect_1(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -60,11 +60,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerScene.cpp"
-         timestampString = "396272777.705584"
+         timestampString = "396275385.155932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "410"
-         endingLineNumber = "410"
+         startingLineNumber = "408"
+         endingLineNumber = "408"
          landmarkName = "CFightingCardLayerScene::logicFighting()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,12 +73,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-         timestampString = "396272790.880088"
+         timestampString = "396275385.155932"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "428"
-         endingLineNumber = "428"
+         startingLineNumber = "429"
+         endingLineNumber = "429"
          landmarkName = "CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/FightScene/CFightingCardLayerScene.cpp"
+         timestampString = "396275979.124954"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "430"
+         endingLineNumber = "430"
+         landmarkName = "CFightingCardLayerScene::logicFighting()"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
