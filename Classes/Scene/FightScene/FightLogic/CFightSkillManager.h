@@ -21,6 +21,7 @@ class CGamePlayer;
 class CSkillData;
 class CImapact;
 class CAnimationSpriteGameFight;
+class CCardBufferStatus;
 
 #define STATICCOSTTFUNCTION(FUNCTIONNAME) \
 static bool FUNCTIONNAME(CFightCard *pCard); 
@@ -42,6 +43,7 @@ class CFightSkillManager
 public:
     //每一种逻辑ID对应的costfunc 不同。
     static void logicSkill_Putong(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill);
+    static void logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid);
     static void logicSkill_1(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
     
     static void logicSkill_2(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
@@ -81,6 +83,9 @@ public:
     
 public:
   static  void appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex);
+    static  void addSkillBuffer(CFightCard *pMonster,CCardBufferStatus *buffer);
+    static  void dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex );//处理自身的buffer
+    
     //进入程序初始化，加载函数map表格
     void initSkill();
     //根据card的 技能找寻到逻辑id
@@ -95,6 +100,10 @@ public:
     static bool isHavaPhysicHarmMagic(CFightCard *pMonstFight);
     //怒气免疫的buffer;
     static bool isHaveMagicHarm(CFightCard *pMonstFight);
+//    static int getShangHai(CFightCard *pFight, CFightCard *pMonstFight,CImapact *pEffect);
+//    static int getEngry(CFightCard *pMonstFight,CImapact *pEffect);
+//    static int getAtk(CFightCard *pMonstFight,CImapact *pEffect);
+//    static int getDef(CFightCard *pMonstFight,CImapact *pEffect);
     
     //普通伤害计算
     void basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight);

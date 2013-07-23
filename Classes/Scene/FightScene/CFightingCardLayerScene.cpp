@@ -104,19 +104,20 @@ void  CFightingCardLayerScene::locgicSchudel(float t)
         unschedule(schedule_selector(CFightingCardLayerScene::locgicSchudel));
         animationAndex=0;
         isAnimationEnd=true;
+        m_itotalAnimation=g_FightSkillManager::instance()->m_animationVector.size();
         schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
     }
 }
 
 void CFightingCardLayerScene::animationSchudel(float t)
 {
-    if (isAnimationEnd && animationAndex<g_FightSkillManager::instance()->m_animationVector.size()) {
+    if (isAnimationEnd && animationAndex<m_itotalAnimation) {
         isAnimationEnd=false;
         CAnimationSpriteGameFight *fightAnimation=g_FightSkillManager::instance()->m_animationVector[animationAndex];
         this->m_currCAnimationHP=fightAnimation;
         animationSwf(fightAnimation);
     }
-    if(animationAndex==g_FightSkillManager::instance()->m_animationVector.size())
+    else  if(animationAndex==m_itotalAnimation)
     {
         unschedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
         CCLog("end animation");
@@ -258,32 +259,84 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
     {
         case EN_ATKFIGHT_INDEX_LEFT_LORD:
         {
-            CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
-            CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
-            skillAnimationSwf(fightAnimation,sprite,pMonster);
+            if(m_vFightHero[fightAnimation->m_iATKindex])
+            {
+                if(m_vFightHero[4])
+                {
+                    m_vFightHero[4]->setVisible(false);
+                }
+                m_vFightHero[fightAnimation->m_iATKindex]->setVisible(true);
+                
+                CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
+                CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
+                skillAnimationSwf(fightAnimation,sprite,pMonster);
+            }
+            else
+            {
+                AnimaitonEnd(NULL);
+                                return;
+            }
         }
             break;
         case EN_ATKFIGHT_INDEX_LEFT_SUPPORT:
         {
-            CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
-            CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
-            skillAnimationSwf(fightAnimation,sprite,pMonster);
+            if(m_vFightHero[4])
+            {
+                if(m_vFightHero[fightAnimation->m_iATKindex])
+                {
+                    m_vFightHero[fightAnimation->m_iATKindex]->setVisible(false);
+                }
+                m_vFightHero[4]->setVisible(true);
+                CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
+                CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
+                skillAnimationSwf(fightAnimation,sprite,pMonster);
+            }
+            else
+            {
+                AnimaitonEnd(NULL);
+                return;
+            }
             
         }
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_LORD:
         {
-            CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
-            CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
-            skillAnimationSwf(fightAnimation,pMonster,sprite);
+            if(m_vMonsterHero[fightAnimation->m_iDefIndex])
+            {
+                m_vMonsterHero[fightAnimation->m_iDefIndex]->setVisible(true);
+                if(m_vMonsterHero[4])
+                {
+                    m_vMonsterHero[4]->setVisible(false);
+                }
+                CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
+                CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
+                skillAnimationSwf(fightAnimation,pMonster,sprite);
+            }
+            else{
+                AnimaitonEnd(NULL);
+                return;
+            }
             
         }
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_SUPPORT:
         {
-            CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
-            CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
-            skillAnimationSwf(fightAnimation,pMonster,sprite);
+            if(m_vMonsterHero[4])
+            {
+                if(m_vMonsterHero[fightAnimation->m_iDefIndex])
+                {
+                    m_vMonsterHero[fightAnimation->m_iDefIndex]->setVisible(false);
+                }
+                m_vMonsterHero[4]->setVisible(true);
+                CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
+                CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
+                skillAnimationSwf(fightAnimation,pMonster,sprite);
+            }
+            else
+            {
+                AnimaitonEnd(NULL);
+                return;
+            }
             
         }
             break;
@@ -341,24 +394,26 @@ void CFightingCardLayerScene::logicFighting()
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
     {
         CCLog("LEFT%d-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-        m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex],this);
+               m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex],this);
         
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
     {
         CCLog("LEFT5-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-        m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex, m_vFightingCard[4], this);
+                m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex, m_vFightingCard[4], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD)
     {
         
         CCLog("RIGHT%d-------->LEFT%d,LEFTHP :%d,RIHGHP: %d",m_iMonsterCardIndex,m_iFightCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
+       
         m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex, m_vMonsterCard[m_iMonsterCardIndex], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
+           CCLog("RIGHT5-------->LEFT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
         m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex, m_vMonsterCard[4], this);
-        CCLog("RIGHT5-------->LEFT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
+     
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
         m_iTotalHuihe++;
         CCLog("========>%d",m_iTotalHuihe);
@@ -367,6 +422,12 @@ void CFightingCardLayerScene::logicFighting()
     {
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
     }
+    CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
+    CFightSkillManager::dealWithBuffer(m_vFightingCard[4],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_SUPPORT);
+    CFightSkillManager::dealWithBuffer(m_vMonsterCard[m_iMonsterCardIndex],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_LORD);
+    CFightSkillManager::dealWithBuffer(m_vMonsterCard[4],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_SUPPORT);
+
+
     checkIsDead();
 }
 
@@ -463,7 +524,6 @@ void CFightingCardLayerScene::checkIsDead()
             {
                 m_iFightCardIndex++;
             } while (m_vFightingCard[m_iFightCardIndex]==NULL &&m_iFightCardIndex<m_vFightingCard.size()-1);
-            
             g_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_HERO, EN_ATKFIGHT_INDEX_LEFT_MOVE);
         }
     }

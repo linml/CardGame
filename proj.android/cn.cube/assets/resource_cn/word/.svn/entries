@@ -1,14 +1,14 @@
 10
 
 dir
-722
+739
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/word
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-06-20T07:35:09.173394Z
-574
+2013-07-22T06:13:26.779914Z
+725
 phileas
 
 
@@ -93,4 +93,38 @@ phileas
 
 
 2848
+
+story.plist
+file
+
+
+
+
+2013-07-23T05:47:26.000000Z
+4bd7de00e7b00c29adf96a68d5e0cdb1
+2013-07-22T06:13:26.779914Z
+725
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+889
 

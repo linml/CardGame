@@ -70,8 +70,8 @@ CGamePlayer::~CGamePlayer()
 
 void CGamePlayer::loadGamesConfig()
 {
-    initAllCard((resRootPath+"card.plist").c_str());
-    initPlayerTable((resRootPath +"level_max.plist").c_str());
+    initAllCard((resRootPath+"card_config.plist").c_str());
+    initPlayerTable((resRootPath +"level_config.plist").c_str());
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
     g_FightSkillManager::instance()->initSkill();//加载列表
@@ -210,13 +210,13 @@ void CGamePlayer::initFightingCardByserverDictorny(CCArray *array)
 void CGamePlayer::initPlayerStatusZero()
 {
     m_iCurrentExp=0;
-    m_iCurrentHp=m_sLevelPlayer->m_iHP;
-    m_iCurrentMp=m_sLevelPlayer->m_iexp;
+    m_iCurrentHp=m_sLevelPlayer->m_iHP_max;
+    m_iCurrentMp=m_sLevelPlayer->m_iExp_max;
 }
 
 bool CGamePlayer::isCanUpdateLevel(int nExp)
 {
-    if(m_iCurrentExp+nExp>=m_sLevelPlayer->m_iexp)
+    if(m_iCurrentExp+nExp>=m_sLevelPlayer->m_iExp_max)
     {
         return true;
     }
@@ -227,7 +227,7 @@ bool CGamePlayer::UpdateLevel(int nExp)
 {
     while(isCanUpdateLevel(nExp))
     {
-        nExp-=m_sLevelPlayer->m_iexp-m_iCurrentExp;
+        nExp-=m_sLevelPlayer->m_iExp_max-m_iCurrentExp;
         if(m_sLevelPlayer->m_iLevel+1<m_gvPlayerLevel.size())
         {
             this->m_sLevelPlayer=m_gvPlayerLevel[m_sLevelPlayer->m_iLevel+1];
@@ -428,48 +428,6 @@ CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
 }
 
 
-int CGamePlayer::getTotoalHp()
-{
-    return m_sLevelPlayer->m_iHP;
-}
-
-int CGamePlayer::getCurrentHp()
-{
-    return this->m_sLevelPlayer->m_iHP;
-}
-
-int CGamePlayer::getTotoalMp()
-{
-    return this->m_sLevelPlayer->m_iHP;
-}
-
-int CGamePlayer::getCurrentMp()
-{
-    return this->m_iCurrentMp;
-}
-
-int CGamePlayer::getTotalExp()
-{
-    return this->m_sLevelPlayer->m_iexp;
-}
-
-int CGamePlayer::getCurrentExp()
-{
-    return this->m_iCurrentExp;
-}
-void CGamePlayer::setCurrentHp(int nHp)
-{
-    this->m_iCurrentHp=nHp;
-    
-}
-void CGamePlayer::setCurrentMp(int nMp)
-{
-    this->m_iCurrentMp=nMp;
-}
-void CGamePlayer::setCurrentExp(int nExp)
-{
-    this->m_iCurrentHp=nExp;
-}
 void CGamePlayer::forTestCard()
 {
     //获取当前所有卡佩里面的5张牌面给原先的

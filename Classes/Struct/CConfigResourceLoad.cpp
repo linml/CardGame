@@ -42,7 +42,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_scard_tips=string(GameTools::valueForKey("card_tips", cardDirector));
         card->m_scard_resources=GameTools::valueForKey("card_resources", cardDirector);
         card->m_scard_head=GameTools::valueForKey("card_head", cardDirector);
-        card->m_scard_groud=GameTools::valueForKey("card_groud", cardDirector);
+        card->m_scard_ground=GameTools::valueForKey("card_ground", cardDirector);
         card->m_scard_role=GameTools::valueForKey("card_role", cardDirector);
         hashmapAllCard[key->intValue()]=card;
     }
@@ -65,11 +65,11 @@ bool CConfigResourceLoad::loadPlayerLevelInfo(vector<SLevelPlayer *> *vPlayerLev
         SLevelPlayer *playerLevel=new SLevelPlayer;
         playerLevel->m_iLevel=GameTools::intForKey("level", playerDictionary);
         playerLevel->m_iCard_max=GameTools::intForKey("card_max", playerDictionary);
-        playerLevel->m_iLeadership=GameTools::intForKey("leadership", playerDictionary);
+        playerLevel->m_iLeader_max=GameTools::intForKey("leader_max", playerDictionary);
         playerLevel->m_iFriend_max=GameTools::intForKey("friend_max",playerDictionary); //好友上线
-        playerLevel->m_iHP=GameTools::intForKey("hp",playerDictionary);
-        playerLevel->m_iMp=GameTools::intForKey("mp",playerDictionary);
-        playerLevel->m_iexp=GameTools::intForKey("exp", playerDictionary);
+        playerLevel->m_iHP_max=GameTools::intForKey("hp_max",playerDictionary);
+        playerLevel->m_iMp_max=GameTools::intForKey("mp_max",playerDictionary);
+        playerLevel->m_iExp_max=GameTools::intForKey("exp_max", playerDictionary);
         vPlayerLevel->push_back(playerLevel);
     }
     if(vPlayerLevel->size()>0)
@@ -110,6 +110,8 @@ bool CConfigResourceLoad::loadSkillLogicInfo(vector<CSkillData *> &vSkillTable,c
         skill->parameter_2=GameTools::intForKey("parameter_2", skillDirector);
         skill->parameter_3=GameTools::intForKey("parameter_3", skillDirector);
         skill->parameter_4=GameTools::intForKey("parameter_4", skillDirector);
+        skill->parameter_5=GameTools::intForKey("parameter_5", skillDirector);
+        skill->parameter_6=GameTools::intForKey("parameter_6", skillDirector);
         skill->effect_plist=GameTools::valueForKey("effect_plist", skillDirector);
 
         vSkillTable.push_back(skill);

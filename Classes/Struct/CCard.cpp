@@ -40,8 +40,8 @@ CCard::CCard()
     m_scard_tips.clear();
     m_scard_resources.clear();
     m_scard_head.clear();
-    m_scard_groud.clear();
-
+    m_scard_ground.clear();
+    
     
 }
 CFightCard::CFightCard()
@@ -57,10 +57,10 @@ CFightCard::CFightCard(CCard *card,int level)
     {
         
         m_pCard=card;
-        this->m_iCurrHp=m_pCard->m_icardhp*0.8*level;
+        this->m_iCurrHp=m_pCard->m_icardhp;
         m_iHp=m_iCurrHp;
-        m_attack=card->m_icard_attack*0.75*level;
-        m_defend=card->m_icard_defend*0.5*level;
+        m_attack=card->m_icard_attack;
+        m_defend=card->m_icard_defend;
         isDead=false;
     }
     else
@@ -79,5 +79,35 @@ void CFightCard::initFighting()
 
 CFightCard::~CFightCard()
 {
-   
+    
+}
+
+void CFightCard::appendBuffer(CCardBufferStatus *buffer)
+{
+    if(m_vBuffer.size()==0)
+    {
+        m_vBuffer.push_back(buffer);
+    }
+    else{
+        list<CCardBufferStatus *>::iterator it;
+        for (it=m_vBuffer.begin(); it!=m_vBuffer.end(); it++)
+        {
+            if((*it)->m_mutex==buffer->m_mutex && (*it)->m_enBuffer_Field==buffer->m_enBuffer_Field)
+            {
+                if ((*it)->m_mutexlevel >= buffer->m_mutexlevel) {
+                    delete buffer;
+                    buffer=NULL;
+                }
+                else
+                {
+                    m_vBuffer.erase(it);
+                    delete *it;
+                    *it=NULL;
+                    m_vBuffer.push_back(buffer);
+                    break;
+                }
+            }
+        }
+    }
+    
 }

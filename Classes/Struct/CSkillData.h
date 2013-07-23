@@ -34,6 +34,8 @@ public:
     int parameter_2;        //参数值 || 效果ID
     int parameter_3;        //参数值 || 效果ID
     int parameter_4;        //参数值 || 效果ID
+    int parameter_5;
+    int parameter_6;
     string effect_plist;  //特效文件地址
 
 };

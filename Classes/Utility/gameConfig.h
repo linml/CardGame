@@ -1,6 +1,7 @@
 #ifndef _GAME_CONFIG_H_
 #define _GAME_CONFIG_H_
-
+#include <string>
+#include "cocos2d.h"
 using namespace std;
 using namespace cocos2d;
 
@@ -185,4 +186,39 @@ enum  EN_ATKFIGHT_INDEX
     EN_ATKFIGHT_INDEX_LEFT_MOVE,
     EN_ATKFIGHT_INDEX_RIGHT_MOVE
 };
+//处理的类型
+enum EN_BUFF_FIELD_TYPE
+{
+    EN_BUFF_FIELD_TYPE_NONE=0,
+    EN_BUFF_FIELD_TYPE_ATTACK,   //影响攻击力
+    EN_BUFF_FIELD_TYPE_DEFEND,   //影响防御力
+    EN_BUFF_FIELD_TYPE_ANGRY,    //怒气
+    EN_BUFF_FIELD_TYPE_HP,       //影响HP，
+    EN_BUFF_FIELD_TYPE_BINGFENG, //被冰封
+    EN_BUFF_FIELD_TYPE_XUANYUN,  //眩晕
+    EN_BUFF_FIELD_TYPE_DUYAO,    //毒药
+    
+};
+enum EN_BUFF_ACTION
+{
+    EN_BUFF_ACTION_NONE,
+    EN_BUFF_ACTION_ADD,
+    EN_BUFF_ACTION_SUB
+};
+//乘以还是add
+enum EN_BUFF_MARK
+{
+    EN_BUFF_MARK_NONE,
+    EN_BUFF_MARK_MULTIPY,
+    EN_BUFF_MARK_ADD
+};
+
+enum EN_BUFF_TARGET {
+    EN_BUFF_TARGET_NONE,
+    EN_BUFF_TARGET_OWNZERO,
+    EN_BUFF_TARGET_OWNALL,
+    EN_BUFF_TARGET_MONSTERZERO,
+    EN_BUFF_TARGET_MONSTERALL
+};
+
 #endif

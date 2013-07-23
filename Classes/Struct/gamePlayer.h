@@ -76,15 +76,6 @@ public:
     int  getFriendMax();
     bool isCanUpdateLevel(int nExp);
     bool UpdateLevel(int nExp);
-    int getTotoalHp();
-    int getCurrentHp();
-    int getTotoalMp();
-    int getCurrentMp();
-    int getTotalExp();
-    int getCurrentExp();
-    void setCurrentHp(int nHp);
-    void setCurrentMp(int nMp);
-    void setCurrentExp(int nExp);
     void initPlayerStatusZero();
     //获得服务端的数据并init下数据
     void getSeverPlayerInfo(CCObject *object);

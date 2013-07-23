@@ -1,3 +1,4 @@
+
 //
 //  CCardBufferStatus.cpp
 //  91.cube
@@ -7,13 +8,19 @@
 //
 
 #include "CCardBufferStatus.h"
-CCardBufferStatus::CCardBufferStatus()
-{
-    m_enBuffer_Field=EN_BUFF_FIELD_NONE; //  buffer类型，
-    m_iBuff_effectTimes=0;   //效果的累计次数
-    m_iBuff_showTimes=0;   //显示的次数
-    m_iDataType=0;     //查看buffer  是用  整数加值还是百分比加10
-    m_iValue=0;       //设置浮点数字  百分比 或者是整数的的模式。
-    m_enBuffer_target=EN_BUFF_TARGET_NONE;  //buffer目标;  //待定 看是否添加在最后里面
 
+CCardBufferStatus::CCardBufferStatus(int buff_effectTimes,
+                  int buff_showTimes,
+                  bool isDeal,
+                  int mutex,
+                  int mutexlevel,
+                  float value,EN_BUFF_FIELD_TYPE enBuffer_Field)
+{
+    m_enBuffer_Field=enBuffer_Field;
+    m_bIsBeDeal=isDeal;
+    m_iBuff_effectTimes=buff_effectTimes;
+    m_iBuff_showTimes=buff_showTimes;
+    m_iValue=value;
+    m_mutex=mutex;
+    m_mutexlevel=mutexlevel;
 }

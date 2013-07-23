@@ -1,15 +1,15 @@
 10
 
 dir
-722
+739
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/fighting
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-08T08:32:56.657183Z
-669
-merlin
+2013-07-22T06:13:53.868860Z
+726
+phileas
 
 
 
@@ -128,6 +128,40 @@ has-props
 
 7066
 
+peo1.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+541298aca0201be0235c85bb4419e722
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+31756
+
 bgm.png
 file
 
@@ -161,6 +195,40 @@ has-props
 
 
 1484468
+
+bg1.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+0a0c2c3128a704e30b46bcb8d9f60902
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+14827
 
 战斗界面示意图.jpg
 file
@@ -298,6 +366,40 @@ has-props
 
 51422
 
+peo.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+79d90e907130c7ff4d2413440238f496
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+47804
+
 red_wolf_4.png
 file
 
@@ -331,6 +433,40 @@ has-props
 
 
 28442
+
+zz1.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+1949087c86e6cdf6204d1040ace9bf06
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4145
 
 battle_bg11.png
 file
@@ -366,6 +502,278 @@ has-props
 
 883584
 
+kuang0.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+4fb60fc2217c580d760f7d4cb9e1b722
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+37359
+
+zz2.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+0c858475eb04e8e2f9d9c87ecefaa5cc
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4140
+
+zz3.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+dead65a97e0043c1bad70c335baa736f
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4137
+
+kuang1.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+46a2a32ca7f66176087f162125f9a5dc
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3874
+
+zz4.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+cb7e73964bbe9bd65f41e7cc6ab2bec9
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+30376
+
+kuang2.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+ef981156aaba89624da384f5aa14cc56
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3889
+
+zz5 .png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+8a4740f4c2ef477a22c58c91d85dd1ee
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4132
+
+kuang3.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+70455e091347684ed626e3f615c14b4c
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3888
+
 test_card_2.png
 file
 
@@ -400,6 +808,40 @@ has-props
 
 89748
 
+kuang4.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+ecb7b32730f78c873c79017748c2968c
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3888
+
 test_card_3.png
 file
 
@@ -433,6 +875,74 @@ has-props
 
 
 15103
+
+kuang5.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+e174915c368853bfdf3586fb4470cdf7
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3889
+
+kuang6.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+dd37919ba2af0ba8e17fce910490d769
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3889
 
 purple_princess_1.png
 file
@@ -502,48 +1012,14 @@ has-props
 
 157319
 
-touxiang.png
+green_raynas_2.png
 file
 
 
 
 
 2013-07-05T06:01:19.000000Z
-e21717e7054818851942d3f0540a7bb9
-2013-07-08T08:32:56.657183Z
-669
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-48802
-
-purple_princess_2.png
-file
-
-
-
-
-2013-07-05T06:01:19.000000Z
-9cbb19952035755452139feeca9247f1
+6873efc81ee336c3c6d4b5a36b2f883c
 2013-06-17T08:04:34.430341Z
 536
 merlin
@@ -568,7 +1044,7 @@ has-props
 
 
 
-78701
+57208
 
 skill_1.png
 file
@@ -604,14 +1080,14 @@ has-props
 
 16848
 
-green_raynas_2.png
+purple_princess_2.png
 file
 
 
 
 
 2013-07-05T06:01:19.000000Z
-6873efc81ee336c3c6d4b5a36b2f883c
+9cbb19952035755452139feeca9247f1
 2013-06-17T08:04:34.430341Z
 536
 merlin
@@ -636,18 +1112,18 @@ has-props
 
 
 
-57208
+78701
 
-green_raynas_3.png
+touxiang.png
 file
 
 
 
 
 2013-07-05T06:01:19.000000Z
-ebbc3a2bad057f7b0bb32b128e70f199
-2013-06-17T08:04:34.430341Z
-536
+e21717e7054818851942d3f0540a7bb9
+2013-07-08T08:32:56.657183Z
+669
 merlin
 has-props
 
@@ -670,7 +1146,7 @@ has-props
 
 
 
-33333
+48802
 
 purple_princess_3.png
 file
@@ -706,14 +1182,14 @@ has-props
 
 50759
 
-green_raynas_4.png
+green_raynas_3.png
 file
 
 
 
 
 2013-07-05T06:01:19.000000Z
-1725c87e4f402bcd4940084fe3516dc6
+ebbc3a2bad057f7b0bb32b128e70f199
 2013-06-17T08:04:34.430341Z
 536
 merlin
@@ -738,7 +1214,7 @@ has-props
 
 
 
-21255
+33333
 
 purple_princess_4.png
 file
@@ -773,6 +1249,40 @@ has-props
 
 
 27577
+
+green_raynas_4.png
+file
+
+
+
+
+2013-07-05T06:01:19.000000Z
+1725c87e4f402bcd4940084fe3516dc6
+2013-06-17T08:04:34.430341Z
+536
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+21255
 
 card_res_001.png
 file
@@ -876,6 +1386,142 @@ has-props
 
 210128
 
+suit_1.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+91af0278d7c7869ab3dc1bdb07d87fd1
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3099
+
+suit_2.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+6fd677955da61a17fa722deaa3b75f0d
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3111
+
+suit_3.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+e14e5d47c0d5b1f32f06af352c520d53
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3068
+
+suit_4.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+d35bbcf3bc159f9d8352bb4b9839bcde
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3148
+
 deadmark.png
 file
 
@@ -909,6 +1555,40 @@ has-props
 
 
 3947
+
+star.png
+file
+
+
+
+
+2013-07-23T05:47:28.000000Z
+d32a75ac45f68e690af9ee2e4cc48fd8
+2013-07-22T06:13:53.868860Z
+726
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3139
 
 head_left.png
 file

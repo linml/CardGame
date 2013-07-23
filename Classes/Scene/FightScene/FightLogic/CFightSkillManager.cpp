@@ -1,3 +1,4 @@
+
 //
 //  CFightSkillManager.cpp
 //  91.cube
@@ -11,10 +12,12 @@
 #include "CSkillData.h"
 #include "gamePlayer.h"
 #include "CFightingCardLayerScene.h"
-#include "CAnimationSpriteGameFight.h"
+#include "CEffectInterface.h"
+#include "CEffectInterfaceOne.h"
 #include <vector>
 using namespace std;
 
+#include "CAnimationSpriteGameFight.h"
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
@@ -25,11 +28,37 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
 
 
+
 static    map <string,pFunc>m_vSkillManagerLogic;
 static    map <string,pbFunc>m_vCostFuncManager;
 static    map<string, pbEffFunc>m_vEffictManager;
 vector<CAnimationSpriteGameFight *>CFightSkillManager::m_animationVector;
 
+void CFightSkillManager::logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid)
+{
+    //普通攻击
+    int value=paramid;
+    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(value);
+    if (pImpact)
+    {
+        char data[20];
+        sprintf(data, "%d",pImpact->m_ieffect_logic);
+        IteratorEffMapPfunc pt=m_vEffictManager.find(data);
+        if(pt!=m_vEffictManager.end())
+        {
+            pbEffFunc ptfunction=pt->second;
+            for (int i=0; i<pMonterCard.size()-1; i++)
+            {
+                if(pMonterCard[i]&&pMonterCard[i]->m_iCurrHp>0) //攻击第一个 血量大于0的人 也就是主将
+                {
+                    (*ptfunction)(pCard,pMonterCard[i],pSkill,pImpact,EN_ATKOBJECT_MONSTER);//攻击对象对方当个
+                    break;
+                }
+            }
+            
+        }
+    }
+}
 
 void CFightSkillManager::logicSkill_Putong(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill)
 {
@@ -70,16 +99,57 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
         pbFunc func=it->second;
         if((*func)(pCard))   //判断单体的条件是否满足。 
         {
+            int currHp=FightCard[FightIndex]->m_iCurrHp;
+            int engry=FightCard[FightIndex]->m_iCurrEngry;
+            int monstercurrHp=MonsterCard[MonsterIndex]->m_iCurrHp;
+            int monstercurrEngry=MonsterCard[MonsterIndex]->m_iCurrEngry;
             // 满足条件
             // 发动effect的攻击效果
+            if(pSkill->parameter_1!=0)
+            {
+                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+            }
+            if(pSkill->parameter_2!=0)
+            {
+                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_2);
+            }
+            if(pSkill->parameter_3!=0)
+            {
+                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
+            }
+            if(pSkill->parameter_4!=0)
+            {
+                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+            }
+            if(pSkill->parameter_5!=0)
+            {
+                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+            }
+            if(pSkill->parameter_6!=0)
+            {
+                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_6);
+            }
+            currHp-=FightCard[FightIndex]->m_iCurrHp;
+            engry -=FightCard[FightIndex]->m_iCurrEngry;
+            monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
+            monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
+            appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
         }
         else
         {
             CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji();
             if (pPutongSkill)
             {
+                int currHp=FightCard[FightIndex]->m_iCurrHp;
+                int engry=FightCard[FightIndex]->m_iCurrEngry;
+                int monstercurrHp=MonsterCard[MonsterIndex]->m_iCurrHp;
+                int monstercurrEngry=MonsterCard[MonsterIndex]->m_iCurrEngry;
                 logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);
-                appendAnimation(FightIndex, MonsterIndex, 0, 0, pPutongSkill->skill_id, 0, 0, EN_ANIMATIONTYPE_HERO, enatk);
+                currHp-=FightCard[FightIndex]->m_iCurrHp;
+                engry -=FightCard[FightIndex]->m_iCurrEngry;
+                monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
+                monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
+                appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pPutongSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
             }
         }
     }
@@ -105,7 +175,7 @@ void CFightSkillManager::logicSkill_4(CFightCard *pCard,vector<CFightCard *>Figh
 bool CFightSkillManager::costFunc_0(CFightCard *pCard)
 {
     
-    return false;
+    return true;
 }
 
 bool CFightSkillManager::costFunc_1(CFightCard *pCard)
@@ -161,48 +231,8 @@ bool CFightSkillManager::costFunc_9(CFightCard *pCard)
 //每一种的效果id 对应的参数值得又不一样
 void CFightSkillManager::effect_0(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
-    cout<<"pMonterCard->m_iCurrHp"<<pMonterCard->m_iCurrHp<<endl;
-    if (pCimapact->m_iParameter_1) {
-        pMonterCard->m_iCurrHp-=pCimapact->m_iParameter_1;
-    }
-    
-    if (pCimapact->m_iParameter_2)
-    {
-        //计算普通攻击的伤害值得
-    }
-    
-    if (pCimapact->m_iParameter_3)
-    {
-        
-    }
-    if (pCimapact->m_iParameter_4)
-    {
-        
-    }
-    if (pCimapact->m_iParameter_5)
-    {
-        
-    }
-    if (pCimapact->m_iParameter_6)
-    {
-        
-    }
-    if (pCimapact->m_iParameter_7)
-    {
-        
-    }
-    if (pCimapact->m_iParameter_8)
-    {
-        
-    }
-    if (pCimapact->m_iParameter_9)
-    {
-        
-    }
-    if (pCimapact->m_iParameter_10)
-    {
-        
-    }
+    cout<<"0:pMonterCard->m_iCurrHp"<<pMonterCard->m_iCurrHp<<endl;
+//    CEffectInterface *effect=new CEffectInterfaceOne
     
 }
 
@@ -210,39 +240,10 @@ void CFightSkillManager::effect_1(CFightCard *pCard,CFightCard *pMonterCard,CSki
 {
     cout<<"pMonterCard->m_iCurrHp"<<pMonterCard->m_iCurrHp<<endl;
     //伤害值=（parameter_1+自身卡牌当前攻击力*（parameter_2/100)+目标总血量*parameter_3/100-目标卡牌当前的防御力
-    
-    
-    int mShanghai = pCimapact->m_iParameter_1 +pCard->m_attack*pCimapact->m_iParameter_2/100+pMonterCard->m_iHp*pCimapact->m_iParameter_3/100-pMonterCard->m_defend;
-    
-    
-    int atk = pMonterCard->m_attack-pCimapact->m_iParameter_8 -pMonterCard->m_attack*pCimapact->m_iParameter_9/100;
-    
-    
-    int def = (pMonterCard->m_defend -pCimapact->m_iParameter_4)-pMonterCard->m_defend*pCimapact->m_iParameter_5/100;
-    
-    int angry= (pMonterCard->m_iEngryMax)-pCimapact->m_iParameter_6 -
-    pMonterCard->m_iEngryMax *pCimapact->m_iParameter_7/100;
-    
-    if (atk) {
-        pMonterCard->m_attack=atk;
-    }
-    if (def) {
-        pMonterCard->m_defend=def;
-    }
-    if (angry) {
-        pMonterCard
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    目标怒气=目标当前怒气-parameter_6-目标怒气满值*parameter_7/100
+    CEffectInterface *effect=new CEffectInterfaceOne();
+    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+    delete effect;
+    effect=NULL;
 }
 void CFightSkillManager::effect_2(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject){
     
@@ -316,8 +317,7 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
                 (*pfuncCallBack)(pCard,fightCard,monsterCard,FightIndex,MonstIndex,pSkilldata,enAtkFightIndex);
             }
         }
-    }
-    
+    }   
     
 }
 
@@ -357,17 +357,17 @@ void CFightSkillManager::initSkill()
     
     //添加effect id
     
-    m_vEffictManager["1"] =&CFightSkillManager::effect_0;
-    m_vEffictManager["2"] =&CFightSkillManager::effect_1;
-    m_vEffictManager["3"] =&CFightSkillManager::effect_2;
-    m_vEffictManager["4"] =&CFightSkillManager::effect_3;
-    m_vEffictManager["5"] =&CFightSkillManager::effect_4;
-    m_vEffictManager["6"] =&CFightSkillManager::effect_5;
-    m_vEffictManager["7"] =&CFightSkillManager::effect_6;
-    m_vEffictManager["8"] =&CFightSkillManager::effect_7;
-    m_vEffictManager["9"] =&CFightSkillManager::effect_8;
-    m_vEffictManager["10"] =&CFightSkillManager::effect_9;
-    m_vEffictManager["11"]=&CFightSkillManager::effect_10;
+    m_vEffictManager["0"] =&CFightSkillManager::effect_0;
+    m_vEffictManager["1"] =&CFightSkillManager::effect_1;
+    m_vEffictManager["2"] =&CFightSkillManager::effect_2;
+    m_vEffictManager["3"] =&CFightSkillManager::effect_3;
+    m_vEffictManager["4"] =&CFightSkillManager::effect_4;
+    m_vEffictManager["5"] =&CFightSkillManager::effect_5;
+    m_vEffictManager["6"] =&CFightSkillManager::effect_6;
+    m_vEffictManager["7"] =&CFightSkillManager::effect_7;
+    m_vEffictManager["8"] =&CFightSkillManager::effect_8;
+    m_vEffictManager["9"] =&CFightSkillManager::effect_9;
+    m_vEffictManager["10"]=&CFightSkillManager::effect_10;
 }
 
 
@@ -422,3 +422,136 @@ void CFightSkillManager::basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight
     //取得技能上的值得 来计算；
     //pFightCard->m_pCard->m_iskillLine
 }
+
+void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex)//处理自身的buffer
+{
+    
+    if (pFightCard==NULL || pFightCard->m_vBuffer.size()==0) {
+        return;
+    }
+    for (list<CCardBufferStatus *>::iterator it=pFightCard->m_vBuffer.begin(); it!=pFightCard->m_vBuffer.end();)
+    {
+        CCardBufferStatus *pCardBuffer=(*it);
+        bool isNeedAddIterator=true;
+        switch ((pCardBuffer)->m_enBuffer_Field)
+        {
+            case EN_BUFF_FIELD_TYPE_ATTACK:   //影响攻击力 攻击力我只回复一次。不带这样多次减去的
+                if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
+                {
+                    pFightCard->m_attack+=-pCardBuffer->m_iValue*pCardBuffer->m_iBuff_effectTimes;   //恢复攻击力
+                    pFightCard->m_vBuffer.erase(it);
+                    delete pCardBuffer;
+                    pCardBuffer=NULL;
+                    isNeedAddIterator=false;
+                }
+                else
+                {
+                    if (pCardBuffer->m_iBuff_effectTimes>0)
+                    {
+                        pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
+                        pFightCard->m_attack+=pCardBuffer->m_iValue;
+
+                    }
+                    if (pCardBuffer->m_iBuff_showTimes>0)
+                    {
+                        pCardBuffer->m_iBuff_showTimes--;
+                       appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
+                    }
+               }
+                break;
+            case EN_BUFF_FIELD_TYPE_DEFEND:   //影响防御力
+            {
+                if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
+                {
+                    pFightCard->m_defend+=-pCardBuffer->m_iValue*pCardBuffer->m_iBuff_effectTimes;   //恢复攻击力
+                    pFightCard->m_vBuffer.erase(it);
+                    delete pCardBuffer;
+                    pCardBuffer=NULL;
+                    isNeedAddIterator=false;
+                }
+                else
+                {
+                    if (pCardBuffer->m_iBuff_effectTimes>0)
+                    {
+                        pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
+                        pFightCard->m_defend+=pCardBuffer->m_iValue;
+                        
+                    }
+                    if (pCardBuffer->m_iBuff_showTimes>0)
+                    {
+                        pCardBuffer->m_iBuff_showTimes--;
+                        appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
+                    }
+                }
+
+            }
+                break;
+            case EN_BUFF_FIELD_TYPE_ANGRY:    //怒气
+            {
+                if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
+                {
+                    pFightCard->m_vBuffer.erase(it);
+                    delete pCardBuffer;
+                    pCardBuffer=NULL;
+                    isNeedAddIterator=false;
+                }
+                else
+                {
+                    if (pCardBuffer->m_iBuff_effectTimes>0)
+                    {
+                        pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
+                        pFightCard->m_iCurrHp+=pCardBuffer->m_iValue;
+                        appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
+
+                        
+                    }
+                    if (pCardBuffer->m_iBuff_showTimes>0)
+                    {
+                        pCardBuffer->m_iBuff_showTimes--;
+                    }
+                }
+                
+            }
+                break;
+            case EN_BUFF_FIELD_TYPE_HP:       //影响HP，
+            {
+                if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
+                {
+                    pFightCard->m_vBuffer.erase(it);
+                    delete pCardBuffer;
+                    pCardBuffer=NULL;
+                    isNeedAddIterator=false;
+                }
+                else
+                {
+                    if (pCardBuffer->m_iBuff_effectTimes>0)
+                    {
+                        pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
+                        pFightCard->m_iCurrHp+=pCardBuffer->m_iValue;
+                        appendAnimation(AtkIndex, DefIndex, 0, pCardBuffer->m_iValue, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
+                    }
+                    if (pCardBuffer->m_iBuff_showTimes>0)
+                    {
+                        pCardBuffer->m_iBuff_showTimes--;
+                    }
+                }
+
+            }
+                break;
+            case EN_BUFF_FIELD_TYPE_BINGFENG: //被冰封
+                break;
+            case EN_BUFF_FIELD_TYPE_XUANYUN:  //眩晕
+                break;
+            case EN_BUFF_FIELD_TYPE_DUYAO:    //毒药:
+                break;
+                
+            default:
+                break;
+        }
+        if(isNeedAddIterator)
+        {
+            it++;
+        }
+    }
+}
+

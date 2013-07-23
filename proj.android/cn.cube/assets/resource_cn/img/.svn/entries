@@ -1,15 +1,15 @@
 10
 
 dir
-722
+739
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-08T08:33:10.081917Z
-670
-merlin
+2013-07-22T06:13:53.868860Z
+726
+phileas
 
 
 
@@ -59,6 +59,74 @@ has-props
 
 
 79473
+
+zhenxingfudong.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+aa73f8a375dfd1782afa98ae001935df
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+23376
+
+chapter_bg.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+e42183108b850e3d10410ffb7ce40835
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5778
 
 task.png
 file
@@ -128,6 +196,74 @@ has-props
 
 415310
 
+card_template.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+e0ce74d9e97fd2596223593b1d2d57fc
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+163588
+
+suit1.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+bf9731c438e3ea93979b346cf9100f46
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+24313
+
 demo_task.png
 file
 
@@ -195,6 +331,108 @@ has-props
 
 
 92515
+
+suit2.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+e68d956f4beee00e488ac6310d3a0858
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+23397
+
+suit3.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+21032ac58b76b23b64e69a2bb6aeea8c
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+22812
+
+suit4.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+96ff1aa897d7ee92e14a1b24e8817661
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+24281
 
 room.png
 file
@@ -366,6 +604,40 @@ has-props
 
 6431
 
+cardBag.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+a9e2ba77d92c0a1a023ebaf0745c4770
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1084912
+
 main.png
 file
 
@@ -536,6 +808,40 @@ has-props
 
 5389
 
+cardsettingscene_bg.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+b43ff5458c78bb14043046031673f425
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1494015
+
 cubeCardSprite.png
 file
 
@@ -672,40 +978,6 @@ has-props
 
 175285
 
-memorygame.plist
-file
-
-
-
-
-2013-07-05T06:01:20.000000Z
-8a12e346a74c098ccd0f35d988979604
-2013-06-17T08:04:18.973589Z
-534
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-17690
-
 card.png
 file
 
@@ -740,18 +1012,17 @@ has-props
 
 246345
 
-HelloWorld.png
+memorygame.plist
 file
 
 
 
 
-2013-07-05T06:01:19.000000Z
-b638d131da4e7c2a9ce369f8a9857ede
+2013-07-05T06:01:20.000000Z
+8a12e346a74c098ccd0f35d988979604
 2013-06-17T08:04:18.973589Z
 534
 merlin
-has-props
 
 
 
@@ -772,7 +1043,8 @@ has-props
 
 
 
-138777
+
+17690
 
 button.png
 file
@@ -808,8 +1080,39 @@ has-props
 
 5618
 
-fighting
-dir
+HelloWorld.png
+file
+
+
+
+
+2013-07-05T06:01:19.000000Z
+b638d131da4e7c2a9ce369f8a9857ede
+2013-06-17T08:04:18.973589Z
+534
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+138777
 
 d_card.png
 file
@@ -844,6 +1147,9 @@ has-props
 
 
 157221
+
+fighting
+dir
 
 biforest.png
 file
@@ -912,6 +1218,40 @@ has-props
 
 
 71078
+
+cardsetting_bg.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+2d5accd32bba04bc4e282aa12aa4a9b3
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+515010
 
 mall.png
 file
@@ -1082,4 +1422,72 @@ has-props
 
 
 260903
+
+cardBg_header.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+96427c8527b9c7226a9cf72cace43779
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+89751
+
+zhenxing.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+4199becb4b860c84cc138f98b7aa0b45
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+173481
 

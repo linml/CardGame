@@ -43,6 +43,7 @@ public:
     void animationSchudel(float t);
     int animationAndex;
     bool isAnimationEnd;
+    int m_itotalAnimation;
     
 private:
     void logicFighting();

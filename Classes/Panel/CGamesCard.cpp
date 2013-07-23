@@ -409,7 +409,7 @@ bool CGamesCard::initCreate(CCard *card)
         return false;
     }
     initBg(card);
-    createBackground(card->m_scard_groud.c_str());
+    createBackground(card->m_scard_ground.c_str());
     createHero(card->m_scard_resources.c_str());
     createStart(card->m_sicard_star);
     createSuit(card->m_icard_suit);

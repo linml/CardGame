@@ -200,7 +200,9 @@ void CLoginScene::msgCallback(CCObject* obj)
     for (int i = 0; i < vSerInf.size(); i++)
     {
         CCLabelTTF * label = CCLabelTTF::create(vSerInf[i].m_strName.c_str(), "arial", 12.0f);
-        CPtTableItem *item = CPtTableItem::create(CSTR_FILEPTAH(g_mapImagesPath, "HelloWorld.png"), CCRectMake(0, 0 , 100, 40));
+        CCSprite * tmp = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "HelloWorld.png"), CCRectMake(0, 0 , 100, 40));
+        CPtTableItem *item = CPtTableItem::create();
+        item->addChild(tmp);
         item->addChild(label);
         label->setPosition(ccp(0, 0));
         label->setAnchorPoint(CCPointZero);

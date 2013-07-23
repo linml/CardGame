@@ -29,19 +29,19 @@
 			<key>cost_parameter_p_2</key>
 			<string>0</string>
 			<key>parameter_tips_1</key>
-			<string>给敌方主卡的一次性效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_1</key>
 			<string>100000</string>
 			<key>parameter_tips_2</key>
-			<string>给我方主卡的一次性效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_2</key>
 			<string>0</string>
 			<key>parameter_tips_3</key>
-			<string>给敌方主卡的每次生效效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_3</key>
 			<string>0</string>
 			<key>parameter_tips_4</key>
-			<string>给我方主卡的每次生效效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_4</key>
 			<string>0</string>
 			<key>parameter_tips_5</key>
@@ -62,7 +62,7 @@
 			<key>skill_id</key>
 			<string>100001</string>
 			<key>skill_name</key>
-			<string>攻击</string>
+			<string>暴怒攻击</string>
 			<key>skill_type</key>
 			<string>1</string>
 			<key>skill_logic</key>
@@ -72,7 +72,7 @@
 			<key>cost_func_1</key>
 			<string>1</string>
 			<key>cost_parameter_1</key>
-			<string>100</string>
+			<string>200</string>
 			<key>cost_parameter_p_1</key>
 			<string>0</string>
 			<key>cost_tips_2</key>
@@ -84,19 +84,19 @@
 			<key>cost_parameter_p_2</key>
 			<string>0</string>
 			<key>parameter_tips_1</key>
-			<string>给敌方主卡的一次性效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_1</key>
 			<string>100001</string>
 			<key>parameter_tips_2</key>
-			<string>给我方主卡的一次性效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_2</key>
 			<string>0</string>
 			<key>parameter_tips_3</key>
-			<string>给敌方主卡的每次生效效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_3</key>
 			<string>0</string>
 			<key>parameter_tips_4</key>
-			<string>给我方主卡的每次生效效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_4</key>
 			<string>0</string>
 			<key>parameter_tips_5</key>
@@ -117,7 +117,7 @@
 			<key>skill_id</key>
 			<string>100002</string>
 			<key>skill_name</key>
-			<string>减防回血</string>
+			<string>破甲一击</string>
 			<key>skill_type</key>
 			<string>2</string>
 			<key>skill_logic</key>
@@ -139,19 +139,19 @@
 			<key>cost_parameter_p_2</key>
 			<string>0</string>
 			<key>parameter_tips_1</key>
-			<string>给敌方主卡的一次性效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_1</key>
 			<string>0</string>
 			<key>parameter_tips_2</key>
-			<string>给我方主卡的一次性效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_2</key>
-			<string>100012</string>
+			<string>0</string>
 			<key>parameter_tips_3</key>
-			<string>给敌方主卡的每次生效效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_3</key>
 			<string>100011</string>
 			<key>parameter_tips_4</key>
-			<string>给我方主卡的每次生效效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_4</key>
 			<string>0</string>
 			<key>parameter_tips_5</key>
@@ -194,19 +194,19 @@
 			<key>cost_parameter_p_2</key>
 			<string>0</string>
 			<key>parameter_tips_1</key>
-			<string>给敌方主卡的一次性效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_1</key>
 			<string>0</string>
 			<key>parameter_tips_2</key>
-			<string>给我方主卡的一次性效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_2</key>
 			<string>0</string>
 			<key>parameter_tips_3</key>
-			<string>给敌方主卡的每次生效效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_3</key>
 			<string>0</string>
 			<key>parameter_tips_4</key>
-			<string>给我方主卡的每次生效效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_4</key>
 			<string>0</string>
 			<key>parameter_tips_5</key>
@@ -249,19 +249,19 @@
 			<key>cost_parameter_p_2</key>
 			<string>0</string>
 			<key>parameter_tips_1</key>
-			<string>给敌方主卡的一次性效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_1</key>
 			<string>0</string>
 			<key>parameter_tips_2</key>
-			<string>给我方主卡的一次性效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_2</key>
 			<string>0</string>
 			<key>parameter_tips_3</key>
-			<string>给敌方主卡的每次生效效果</string>
+			<string>给敌方主卡的效果</string>
 			<key>parameter_3</key>
 			<string>0</string>
 			<key>parameter_tips_4</key>
-			<string>给我方主卡的每次生效效果</string>
+			<string>给我方主卡的效果</string>
 			<key>parameter_4</key>
 			<string>0</string>
 			<key>parameter_tips_5</key>
