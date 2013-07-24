@@ -71,7 +71,7 @@ void LoadingScene::doScheule()
     {
         cout<<"this  will get tiem  load  server monster"<<endl;
         //SinglePlayer::instance()->forTestMonsterCard();
-        SinglePlayer::instance()->loadRival(1);
+        SinglePlayer::instance()->loadRival(194,3); //在阵容 进去的界面应该算这个值得啊
     }
     this->scheduleUpdate();
 }

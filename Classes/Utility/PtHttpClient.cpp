@@ -41,10 +41,10 @@ void CPtHttpClient::send(stcRequestInf tInf)
     printf("send %s\n",tInf.m_pchURL);
     CCHttpRequest* request = new CCHttpRequest();
     request->setUrl(tInf.m_pchURL);
-    request->setRequestData("{\"ddd\":\"这是中文\"}", strlen("{\"ddd\":\"这是中文\"}"));
     request->setRequestType(tInf.m_RequestType);
     request->setResponseCallback(this, callfuncND_selector(CPtHttpClient::onHttpRequestCompleted));
     if (tInf.m_RequestType ==  CCHttpRequest::kHttpPost && tInf.m_pchData) {
+        printf("post data:%s\n",tInf.m_pchData);
         request->setRequestData(tInf.m_pchData, strlen(tInf.m_pchData));
     }
     request->setTag(tInf.m_pchTag);

@@ -250,6 +250,9 @@ void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fight
         case EN_ANIMATIONTYPE_STATUS:
             showSkill(pFight,NULL,fightAnimation->m_iSKillId,fightAnimation);
             break;
+        case EN_ANIMATIONTYPE_SKILL:
+           // showSkill(pFight, pMonster, fightAnimation->m_iSKillId, fightAnimation);
+            break;
         default:
             break;
     }
@@ -516,12 +519,12 @@ void CFightingCardLayerScene::showHpAnimation(CCObject *object)
 }
 void CFightingCardLayerScene::checkSendZengfu()
 {
-    if(!m_vFightingCard[m_iFightCardIndex]->isSendZengfu)
+    if(!m_vFightingCard[m_iFightCardIndex]->isSendZengfu) //判断是否触发了 增幅技能
     {
       m_vFightingCard[m_iFightCardIndex]->isSendZengfu=true;
        g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_LEFT_LORD);
     }
-    if(!m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu)
+    if(!m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu)//判断是否触发了 增幅技能
     {
         m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu=true;
         g_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex],m_vMonsterCard,m_vMonsterCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_RIGHT_LORD);
@@ -669,9 +672,19 @@ void CFightingCardLayerScene::createFightCard()
 void CFightingCardLayerScene::createMonsterCard()
 {
     CCSize wndsize=CCDirector::sharedDirector()->getWinSize();
-    for (int i=0; i<SinglePlayer::instance()->m_hashmapMonster.size(); i++)
+    if(!SinglePlayer::instance()->isLoadFightTeam)
     {
-        m_vMonsterCard.push_back(new CFightCard(SinglePlayer::instance()->m_hashmapMonster[i]));
+        for (int i=0; i<SinglePlayer::instance()->m_hashmapMonster.size(); i++)
+        {
+            m_vMonsterCard.push_back(new CFightCard(SinglePlayer::instance()->m_hashmapMonster[i]));
+        }
+    }
+    else
+    {
+        for (int i=0; i<SinglePlayer::instance()->m_hashmapMonsterCard.size(); i++)
+        {
+            m_vMonsterCard.push_back(SinglePlayer::instance()->m_hashmapMonsterCard[i]);
+        }
     }
     for (int  i=0; i<m_vMonsterCard.size(); i++)
     {

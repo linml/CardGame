@@ -468,7 +468,7 @@ void CGamePlayer::forTestMonsterCard()
     }
 }
 
-void CGamePlayer::loadRival(int  rivalUid)
+void CGamePlayer::loadRival(int  usid,int  troops)
 {
     isLoadFightTeam=false;
 #ifndef AAAAFOROSMACHINE
@@ -476,8 +476,13 @@ void CGamePlayer::loadRival(int  rivalUid)
 #else
     //char *data=new char [5];
     //parseRival((CCObject *)data);
-   // ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1&troops=3", callfuncO_selector(CGamePlayer::parseRival));
-    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&troops=3", "GetFightTeam", "merlinaskplayerinfo1",callfuncO_selector(CGamePlayer::parseRival));
+    char data[20];
+    sprintf(data, "%d",usid);
+    string str=string("info={\"uid\":")+ data;
+    sprintf(data, "%d",troops);
+    str +=string(",\"troops\":")+data+"}";
+    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1",str.c_str(),callfuncO_selector(CGamePlayer::parseRival));
+
 #endif
 }
 
@@ -487,35 +492,39 @@ void CGamePlayer::parseRival(CCObject *object)
     char *datat=(char *)object;
     //const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
     CCLog("%s",datat);
-//    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
-//    delete [] datat;
-//    datat=NULL;
-//    if(GameTools::intForKey("code",dirct)==0)
-//    {
-//        CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
-//        CCArray *vKeyArrayresult=dictresult->allKeys();
-//        for (int i=0; i<vKeyArrayresult->count(); i++)
-//        {
-//            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
-//            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
-//            if(cardDirector)
-//            {
-//                vector<CFightCard *>tempVcard(5);
-//                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
-//                CCArray *vKeyArraytemp=cardtemp->allKeys();
-//                for (int i=0; i<vKeyArraytemp->count(); i++)
-//                {
-//                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
-//                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
-//                    int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
-//                    int position=GameTools::intForKey("position", cardDirectorDetail);
-//                    tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
-//                }
-//                m_vvBattleArray.push_back(tempVcard);
-//            }
-//        }
-//        
-//    }
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+    delete [] datat;
+    datat=NULL;
+    if(GameTools::intForKey("code",dirct)==0)
+    {
+        CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
+        CCArray *vKeyArrayresult=dictresult->allKeys();
+        for (int i=0; i<vKeyArrayresult->count(); i++)
+        {
+            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+            if(cardDirector)
+            {
+                DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*>);
+                m_hashmapMonsterCard.resize(5);
+                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
+                CCArray *vKeyArraytemp=cardtemp->allKeys();
+                for (int i=0; i<vKeyArraytemp->count(); i++)
+                {
+                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
+                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
+                    int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
+                    int position=GameTools::intForKey("position", cardDirectorDetail);
+                    position=(position-1<0?0:position-1);
+                    int level=GameTools::intForKey("level", cardDirectorDetail);
+                    //需要显示一个花色的问题。 
+                   // int suit=GameTools::intForKey("suit", cardDirectorDetail);
+                    m_hashmapMonsterCard[position]=new CFightCard(m_hashmapAllCard[card_id],level);
+                }
+           }
+       }
+        
+    }
     isLoadFightTeam=true;
 
 }

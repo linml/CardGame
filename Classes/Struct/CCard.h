@@ -53,8 +53,6 @@ private:
     void init();
 public:
     void initFighting();
-//    void addEngry(int engry);
-//    void subEngry(int engry);
     void appendBuffer(CCardBufferStatus *buffer);
     void needRebackAtkAndBuf(CCardBufferStatus *buffer);
 public:
@@ -72,7 +70,7 @@ public:
     bool isDead;     //卡牌是否已经死亡
     int addAtk;      //绿色属性攻击 暂定，基本没用
     int addDef;      //绿色属性防御暂定， 基本没用
-    bool isSendZengfu;
+    bool isSendZengfu;  
     
 public:
     CCard *m_pCard;    

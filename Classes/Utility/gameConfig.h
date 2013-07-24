@@ -174,6 +174,7 @@ enum EN_ANIMATIONTYPE
     EN_ANIMATIONTYPE_HERO,     // 当英雄攻击别人的时候发招的 动画
     EN_ANIMATIONTYPE_BUFFER,   // 当发现自身带buffer 的时候要展示动画的标志
     EN_ANIMATIONTYPE_STATUS,   // 当防卫的图标消失的时候
+    EN_ANIMATIONTYPE_SKILL
 };
 
 enum  EN_ATKFIGHT_INDEX

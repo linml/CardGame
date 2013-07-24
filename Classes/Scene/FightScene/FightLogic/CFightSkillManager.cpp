@@ -117,12 +117,14 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
             {
                 logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
             }
+            
             if(pSkill->parameter_4!=0)
             {
                 logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
             }
             if(pSkill->parameter_5!=0)
             {
+                //发动增幅技能的特效plist
                 for (int i=MonsterIndex; i<MonsterCard.size(); i++)
                 {
                     if(MonsterCard[i]&&MonsterCard[i]->m_iCurrHp>=0)
@@ -130,15 +132,17 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
                         logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,i,pSkill,pSkill->parameter_5);
                     }
                 }
+                //觉得这里需要添加个特效的文件
+                //appendAnimation(FightIndex, MonsterIndex, 0, 0, pSkill->skill_id,0, 0, EN_ANIMATIONTYPE_SKILL, enatk);
             }
             if(pSkill->parameter_6!=0)
             {
+                //觉得这里需要添加个特效的文件
                 for (int i=FightIndex; i<FightCard.size(); i++)
                 {
                     if(FightCard[i]&&FightCard[i]->m_iCurrHp>=0)
                     {
                         logicSkillFight(pCard,FightCard,FightCard,FightIndex,i,pSkill,pSkill->parameter_6);
-
                     }
                 }
             }
@@ -258,9 +262,12 @@ void CFightSkillManager::effect_1(CFightCard *pCard,CFightCard *pMonterCard,CSki
     delete effect;
     effect=NULL;
 }
-void CFightSkillManager::effect_2(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject){
+
+void CFightSkillManager::effect_2(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
+{
     
 }
+
 void CFightSkillManager::effect_3(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
     
