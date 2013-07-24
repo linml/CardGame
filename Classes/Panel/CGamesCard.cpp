@@ -33,7 +33,7 @@ CGamesCard::~CGamesCard()
 
 }
 
-CGamesCard  *CGamesCard::Create(CCard *card)
+CGamesCard  *CGamesCard::Create(CFightCard *card)
 {
     CGamesCard *cardSprite=new CGamesCard();
     if(cardSprite ==NULL|| !cardSprite->initCreate(card))
@@ -43,6 +43,11 @@ CGamesCard  *CGamesCard::Create(CCard *card)
     }
     cardSprite->autorelease();
     return cardSprite;
+}
+
+CCard *CGamesCard::getCardData()
+{
+     return m_pCardData->m_pCard;
 }
 
 CGamesCard * CGamesCard::getCopy()
@@ -220,7 +225,7 @@ void CGamesCard::createSuit(int inSuit)
 
 bool CGamesCard::getSuit(int &outSuit, int &outSequence)
 {
-    int inSuit = m_pCardData->m_icard_suit;
+    int inSuit = m_pCardData->m_iSuit;
     if (inSuit <= 0 || inSuit > 52)
     {
         CCLog("suit: error");
@@ -386,7 +391,7 @@ void CGamesCard::createHero(const char *str)
     }
 }
 
-bool CGamesCard::initBg(CCard *card)
+bool CGamesCard::initBg(CFightCard *card)
 {
 //    char data[20];
 //    sprintf(data, "%s_%0.2d.png",card->m_scard_groud.c_str(),(int)card->m_ccard_color);
@@ -399,7 +404,7 @@ bool CGamesCard::initBg(CCard *card)
     return true;
 }
 
-bool CGamesCard::initCreate(CCard *card)
+bool CGamesCard::initCreate(CFightCard *card)
 {
     assert(card != NULL&&"card is null");
     
@@ -409,12 +414,12 @@ bool CGamesCard::initCreate(CCard *card)
         return false;
     }
     initBg(card);
-    createBackground(card->m_scard_ground.c_str());
-    createHero(card->m_scard_resources.c_str());
-    createStart(card->m_sicard_star);
-    createSuit(card->m_icard_suit);
-    createStirps(card->m_icard_stirps);
-    createCardName(card->m_scard_name.c_str());
-    createData(card->m_icard_attack, card->m_icardhp, card->m_icard_leadership, card->m_icard_defend);
+    createBackground(card->m_pCard->m_scard_ground.c_str());
+    createHero(card->m_pCard->m_scard_resources.c_str());
+    createStart(card->m_pCard->m_sicard_star);
+    createSuit(card->m_iSuit);
+    createStirps(card->m_pCard->m_icard_stirps);
+    createCardName(card->m_pCard->m_scard_name.c_str());
+    createData(card->m_pCard->m_icard_attack, card->m_pCard->m_icardhp, card->m_pCard->m_icard_leadership, card->m_pCard->m_icard_defend);
     return true;
 }

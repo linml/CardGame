@@ -13,24 +13,25 @@
 using namespace  std;
 #include "cocos2d.h"
 using namespace cocos2d;
+class CFightCard;
 class CCard;
 class CGamesCard :public  CCSprite
 {
 public:
     CGamesCard();
     ~CGamesCard();
-    static  CGamesCard  *Create(CCard *card);
+    static  CGamesCard  *Create(CFightCard *card);
 public:
-    bool initCreate(CCard *card);
+    bool initCreate(CFightCard *card);
     void setDead();
     void setLive();
     CGamesCard *getCopy();
     bool getSuit(int &outSuit, int &outSequence);
-    CCard *getCardData(){ return m_pCardData;};
+    CCard *getCardData();
 protected:
     void setLive(CCNode *node);
     void setDead(CCNode *node);
-    bool initBg(CCard *card);
+    bool initBg(CFightCard *card);
     void createCardName(const char *str);
     void createStart(int start);
     void createHero(const char *str);
@@ -41,7 +42,7 @@ protected:
        
 protected:
     CCLabelTTF *label;
-    CCard *m_pCardData;
+    CFightCard *m_pCardData;
 public:
     bool isAddTexiao;   
 };

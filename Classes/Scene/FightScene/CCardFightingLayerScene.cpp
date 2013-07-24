@@ -604,7 +604,7 @@ void CCardFightingLayerScene::createFightCard()
     {
         if(i!=m_vFightingCard.size()-1)
         {
-            CGamesCard *gameCard=CGamesCard::Create(m_vFightingCard[i]->m_pCard);
+            CGamesCard *gameCard=CGamesCard::Create(m_vFightingCard[i]);
             m_vFightingCard[i]->tag=100+i;
             gameCard->setTag(m_vFightingCard[i]->tag);
             addChild(gameCard,8-i,m_vFightingCard[i]->tag);
@@ -617,7 +617,7 @@ void CCardFightingLayerScene::createFightCard()
         }
         else
         {
-            CGamesCard *gameCard=CGamesCard::Create(m_vFightingCard[i]->m_pCard);
+            CGamesCard *gameCard=CGamesCard::Create(m_vFightingCard[i]);
             m_vFightingCard[i]->tag=100+i;
             gameCard->setTag(m_vFightingCard[i]->tag);
             gameCard->setPosition(ccp(20,20));
@@ -639,7 +639,7 @@ void CCardFightingLayerScene::createMonsterCard()
     for (int  i=0; i<m_vMonsterCard.size(); i++) {
         if(i!=m_vMonsterCard.size()-1)
         {
-            CGamesCard *gameCard=CGamesCard::Create(m_vMonsterCard[i]->m_pCard);
+            CGamesCard *gameCard=CGamesCard::Create(m_vMonsterCard[i]);
             m_vMonsterCard[i]->tag=1000+i;
             gameCard->setTag(m_vMonsterCard[i]->tag);
             addChild(gameCard,9-i, m_vMonsterCard[i]->tag);
@@ -655,7 +655,7 @@ void CCardFightingLayerScene::createMonsterCard()
         }
         else
         {
-            CGamesCard *gameCard=CGamesCard::Create(m_vMonsterCard[i]->m_pCard);
+            CGamesCard *gameCard=CGamesCard::Create(m_vMonsterCard[i]);
             m_vMonsterCard[i]->tag=1000+i;
             gameCard->setTag(m_vMonsterCard[i]->tag);
             gameCard->setPosition(ccp(wndsize.width-200,20));

@@ -38,10 +38,10 @@ public:
 public:
     void locgicSchudel(float t);
     EN_GAMEFIGHTSTATUS  getWinStatus();
-    EN_ATKFIGHT_INDEX getHuiHeIndex();
+    EN_ATKFIGHT_INDEX   getHuiHeIndex();
     int  m_iTotalHuihe;
     void animationSchudel(float t);
-    int animationAndex;
+    int  animationAndex;
     bool isAnimationEnd;
     int m_itotalAnimation;
     
@@ -69,7 +69,7 @@ private:
     CAnimationSpriteGameFight *m_currCAnimationHP;
     void showHpAnimation(CCObject *object);
     void AnimaitonEnd(CCObject *object);
-    void showHp(int leftHp,int RightHp);
+    void showHp(int leftHp,int RightHp); //回调该方法显示血液
     void moveCardSprite(vector<CFightCard *> &vCard,int goIndex,bool isLeft);
     
 private: 

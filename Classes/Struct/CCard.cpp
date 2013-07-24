@@ -53,6 +53,7 @@ CFightCard::CFightCard()
 CFightCard::CFightCard(CCard *card,int level)
 {
     tag=-1;
+    m_iSuit=1;
     if(card)
     {
         
@@ -62,6 +63,7 @@ CFightCard::CFightCard(CCard *card,int level)
         m_attack=card->m_icard_attack;
         m_defend=card->m_icard_defend;
         isDead=false;
+        m_iSuit=card->m_icard_suit;
     }
     else
     {

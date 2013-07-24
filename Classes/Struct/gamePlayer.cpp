@@ -17,11 +17,9 @@
 #include "CFightSkillManager.h"
 #include <fstream>
 using namespace std;
-#define AAAAFOROSMACHINE
 string  readFileName(const char *filename)
 {
     string filpat=CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(filename);
-    std::cout<<filpat<<"===>"<<CCFileUtils::sharedFileUtils()->getResourceDirectory()<<endl;
     ifstream out;
     out.open(filpat.c_str(), ios::in);
     static string result;
@@ -181,7 +179,6 @@ CImapact *CGamePlayer::findByImpactId(int tempImpactId)
 
 void CGamePlayer::initByServerDictorny(cocos2d::CCDictionary *dict)
 {
-    isLoadServer=true;
     if(dict)
     {
         m_iCurrentExp=GameTools::intForKey("exp",dict);
@@ -193,6 +190,7 @@ void CGamePlayer::initByServerDictorny(cocos2d::CCDictionary *dict)
         CCArray *aary=GameTools::arrayForKey("card_info", dict);
         initFightingCardByserverDictorny(aary);
     }
+   isLoadServer=true;
 }
 
 void CGamePlayer::initFightingCardByserverDictorny(CCArray *array)
@@ -261,8 +259,8 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
     //添加card  字符串
     char *tempdatat=(char *)obj;
     CCLog("%s",tempdatat);
-    const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
-    CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
+    //const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
+    CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdatat);
     delete []tempdatat;
     tempdatat=NULL;
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
@@ -354,7 +352,6 @@ void CGamePlayer::loadServerPlayerInfoCallBack(cocos2d::CCObject *obj)
     {
         CCDictionary *userinfodirct=(CCDictionary *)(((CCDictionary *)dirct->objectForKey("result"))->objectForKey("user_info"));
         SinglePlayer::instance()->initByServerDictorny(userinfodirct);
-        
     }
     isLoadPlayerInfoEnd=true;
     delete []data;
@@ -377,8 +374,8 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
     char *datat=(char *)obj;
     const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
-    CCLog("%s",data);
-    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+    CCLog("%s",datat);
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
     delete [] datat;
     datat=NULL;
     if(GameTools::intForKey("code",dirct)==0)
@@ -472,10 +469,13 @@ void CGamePlayer::loadRival(int  usid,int  troops)
 {
     isLoadFightTeam=false;
 #ifndef AAAAFOROSMACHINE
-    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::parseRival));
+    char data[20];
+    sprintf(data, "%d",usid);
+    string str=string("info={\"uid\":")+ data;
+    sprintf(data, "%d",troops);
+    str +=string(",\"troops\":")+data+"}";
+    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1",str.c_str(),callfuncO_selector(CGamePlayer::parseRival));
 #else
-    //char *data=new char [5];
-    //parseRival((CCObject *)data);
     char data[20];
     sprintf(data, "%d",usid);
     string str=string("info={\"uid\":")+ data;
@@ -515,11 +515,13 @@ void CGamePlayer::parseRival(CCObject *object)
                     CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
                     int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
                     int position=GameTools::intForKey("position", cardDirectorDetail);
-                    position=(position-1<0?0:position-1);
+                    position=(position-1<0?0:position-1); //后台的数据的postion 是1开始的。 
                     int level=GameTools::intForKey("level", cardDirectorDetail);
                     //需要显示一个花色的问题。 
-                   // int suit=GameTools::intForKey("suit", cardDirectorDetail);
-                    m_hashmapMonsterCard[position]=new CFightCard(m_hashmapAllCard[card_id],level);
+                    int suit=GameTools::intForKey("suit", cardDirectorDetail); //花色
+                    CFightCard *pFightCard=new CFightCard(m_hashmapAllCard[card_id],level);
+                    pFightCard->m_iSuit=suit;
+                    m_hashmapMonsterCard[position]=pFightCard;
                 }
            }
        }
