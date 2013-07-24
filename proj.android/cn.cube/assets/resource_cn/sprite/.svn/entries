@@ -1,7 +1,7 @@
 10
 
 dir
-739
+750
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/sprite
 svn://merlin@192.168.2.2/sdp
 
@@ -128,40 +128,6 @@ phileas
 
 4710
 
-logon.sprite
-file
-
-
-
-
-2013-07-05T06:01:22.000000Z
-c9dbdc10b187c91c32a1da9bd3c04345
-2013-06-17T08:03:18.289114Z
-528
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5980
-
 fight_confirm.sprite
 file
 
@@ -195,6 +161,40 @@ phileas
 
 
 1559
+
+logon.sprite
+file
+
+
+
+
+2013-07-05T06:01:22.000000Z
+c9dbdc10b187c91c32a1da9bd3c04345
+2013-06-17T08:03:18.289114Z
+528
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5980
 
 main.sprite
 file
@@ -298,40 +298,6 @@ phileas
 
 948
 
-arrow.sprite
-file
-
-
-
-
-2013-07-05T06:01:22.000000Z
-949731b6b519765d310ff4784455cf53
-2013-06-18T01:15:16.799500Z
-543
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6904
-
 zhenxing.sprite
 file
 
@@ -366,14 +332,14 @@ phileas
 
 2435
 
-confirm.sprite
+arrow.sprite
 file
 
 
 
 
 2013-07-05T06:01:22.000000Z
-824439fb855238e3fb8cbf6c25a9ae4b
+949731b6b519765d310ff4784455cf53
 2013-06-18T01:15:16.799500Z
 543
 phileas
@@ -398,7 +364,7 @@ phileas
 
 
 
-3501
+6904
 
 zhenxingfudong.sprite
 file
@@ -433,6 +399,40 @@ phileas
 
 
 10133
+
+confirm.sprite
+file
+
+
+
+
+2013-07-05T06:01:22.000000Z
+824439fb855238e3fb8cbf6c25a9ae4b
+2013-06-18T01:15:16.799500Z
+543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3501
 
 cubeCardSprite.sprite
 file

@@ -55,6 +55,7 @@ public:
     void clearAllEffectInfo();
     CImapact *findByImpactId( int tempImpactId);
     vector< CImapact * >m_vImpactInfo;
+    
 
  
 public:
@@ -99,6 +100,7 @@ public:
     //读取对战别的英雄对战的阵容
     void loadRival(int  rivalUid);
     void parseRival(CCObject *object);
+    bool isLoadFightTeam;
     
 public:
     //获取 卡包 内容的卡

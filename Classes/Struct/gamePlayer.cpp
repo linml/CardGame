@@ -468,4 +468,56 @@ void CGamePlayer::forTestMonsterCard()
     }
 }
 
+void CGamePlayer::loadRival(int  rivalUid)
+{
+    isLoadFightTeam=false;
+#ifndef AAAAFOROSMACHINE
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::parseRival));
+#else
+    //char *data=new char [5];
+    //parseRival((CCObject *)data);
+   // ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1&troops=3", callfuncO_selector(CGamePlayer::parseRival));
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&troops=3", "GetFightTeam", "merlinaskplayerinfo1",callfuncO_selector(CGamePlayer::parseRival));
+#endif
+}
+
+void CGamePlayer::parseRival(CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetFightTeam");
+    char *datat=(char *)object;
+    //const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
+    CCLog("%s",datat);
+//    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+//    delete [] datat;
+//    datat=NULL;
+//    if(GameTools::intForKey("code",dirct)==0)
+//    {
+//        CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
+//        CCArray *vKeyArrayresult=dictresult->allKeys();
+//        for (int i=0; i<vKeyArrayresult->count(); i++)
+//        {
+//            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+//            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+//            if(cardDirector)
+//            {
+//                vector<CFightCard *>tempVcard(5);
+//                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
+//                CCArray *vKeyArraytemp=cardtemp->allKeys();
+//                for (int i=0; i<vKeyArraytemp->count(); i++)
+//                {
+//                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
+//                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
+//                    int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
+//                    int position=GameTools::intForKey("position", cardDirectorDetail);
+//                    tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
+//                }
+//                m_vvBattleArray.push_back(tempVcard);
+//            }
+//        }
+//        
+//    }
+    isLoadFightTeam=true;
+
+}
+
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

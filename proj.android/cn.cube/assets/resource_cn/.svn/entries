@@ -1,7 +1,7 @@
 10
 
 dir
-739
+750
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.2/sdp
 
@@ -26,10 +26,214 @@ phileas
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
-uiScript
+boss_icon_Effect.plist
+file
+751
+
+
+
+2013-07-19T05:29:42.000000Z
+4be3d724dedaf81a1ef285db239d4524
+2013-07-24T05:45:04.908367Z
+751
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+974
+
+level_config.plist
+file
+751
+
+
+
+2013-07-23T04:49:07.000000Z
+0880c8d24fe44925f2525398c4f7a2fa
+2013-07-24T05:45:04.908367Z
+751
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+36202
+
+card_config.plist
+file
+751
+
+
+
+2013-07-23T06:06:02.000000Z
+c80696a9bab735b202be620e7ce52272
+2013-07-24T05:45:04.908367Z
+751
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+113946
+
+sound
 dir
 
-particle
+skill_config.plist
+file
+751
+
+
+
+2013-07-24T02:46:22.000000Z
+143fc4b236771d8c5fc6a2dc086765b5
+2013-07-24T05:45:04.908367Z
+751
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7644
+
+cardteam.txt
+file
+751
+
+
+
+2013-07-17T07:50:28.000000Z
+7130b957a8886e0385a5b157b3d303ae
+2013-07-24T05:45:04.908367Z
+751
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2401
+
+cardbg.txt
+file
+751
+
+
+
+2013-07-18T03:34:41.000000Z
+4e1023978b233901581d0c44495f7f13
+2013-07-24T05:45:04.908367Z
+751
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1545
+
+uiScript
 dir
 
 card.plist
@@ -38,7 +242,7 @@ file
 
 
 
-2013-07-23T05:47:25.000000Z
+2013-07-24T05:44:32.000000Z
 542f3dc1458deea1c364b5ffff38ae9d
 2013-07-17T02:37:53.355089Z
 707
@@ -66,44 +270,7 @@ merlin
 
 111578
 
-boss_icon_Effect.plist
-file
-
-
-
-
-2013-07-05T06:01:18.000000Z
-d93ac8a7a6c157cb5435345a5a342917
-2013-07-08T08:33:28.410577Z
-671
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-904
-
-font
-dir
-
-sprite
+particle
 dir
 
 level_max.plist
@@ -140,19 +307,22 @@ merlin
 
 34894
 
-sound
+sprite
+dir
+
+font
 dir
 
 skill_effect_config.plist
 file
+751
 
 
 
-
-2013-07-16T09:26:55.000000Z
-ff223c9762bb3c8ca536234ea91bc6eb
-2013-07-17T02:37:53.355089Z
-707
+2013-07-23T01:47:06.000000Z
+71e23169ef3c49517213d64f09bb2bfd
+2013-07-24T05:45:04.908367Z
+751
 merlin
 
 
@@ -175,7 +345,7 @@ merlin
 
 
 
-9704
+9683
 
 word
 dir
@@ -188,38 +358,4 @@ dir
 
 action
 dir
-
-skill_config.plist
-file
-
-
-
-
-2013-07-16T09:27:00.000000Z
-e3841ad7b22b224eb5cc411bedf2117f
-2013-07-17T02:37:53.355089Z
-707
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8089
 

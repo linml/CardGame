@@ -634,7 +634,7 @@ void CCardFightingLayerScene::createMonsterCard()
     CCSize wndsize=CCDirector::sharedDirector()->getWinSize();
     for (int i=0; i<SinglePlayer::instance()->m_hashmapMonster.size(); i++)
     {
-        m_vMonsterCard.push_back(new CFightCard(SinglePlayer::instance()->m_hashmapMonster[i]));
+       // m_vMonsterCard[i]=(new CFightCard(SinglePlayer::instance()->m_hashmapMonster[i]);
     }
     for (int  i=0; i<m_vMonsterCard.size(); i++) {
         if(i!=m_vMonsterCard.size()-1)

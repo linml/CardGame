@@ -1,7 +1,7 @@
 10
 
 dir
-737
+751
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Panel
 svn://merlin@192.168.2.2/sdp
 
@@ -28,48 +28,14 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 CGamesCard.h
 file
+752
 
 
 
-
-2013-07-22T03:46:49.000000Z
-77e3e0611cfe04f9da195037fa324fc9
-2013-07-22T02:43:15.978182Z
-721
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1164
-
-LoadingScene.h
-file
-
-
-
-
-2013-07-08T10:54:19.000000Z
-a98718d62673852fd09a76fe83d8bf9f
-2013-07-03T09:14:10.788112Z
-661
+2013-07-24T02:59:25.000000Z
+d7971f2804f40a35ede69cd6e1eb8fc0
+2013-07-24T05:46:28.813696Z
+752
 merlin
 
 
@@ -92,7 +58,41 @@ merlin
 
 
 
-774
+1152
+
+LoadingScene.h
+file
+752
+
+
+
+2013-07-24T01:41:38.000000Z
+0d8ee25cd11111d80bd736cb9b17b6d7
+2013-07-24T05:46:28.813696Z
+752
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+760
 
 CPtEditBoxWidget.cpp
 file
@@ -134,7 +134,7 @@ file
 
 
 
-2013-07-22T03:46:49.000000Z
+2013-07-23T02:53:07.000000Z
 04de24ae4fd255505f202d0b4dec731a
 2013-07-22T02:43:15.978182Z
 721
@@ -270,7 +270,7 @@ file
 
 
 
-2013-07-22T03:46:49.000000Z
+2013-07-23T03:02:22.000000Z
 744ad21fedca25fd4789261f5951cf4a
 2013-07-22T02:43:15.978182Z
 721
@@ -436,34 +436,14 @@ phileas
 
 CGamesCard.cpp
 file
+752
 
 
 
-
-
-d25d5d42e2b660f0c19730aa7ae7694f
-2013-07-22T02:43:15.978182Z
-721
-phileas
-
-
-
-
-
-CGamesCard.cpp.r717
-CGamesCard.cpp.r721
-CGamesCard.cpp.mine
-
-LoadingScene.cpp
-file
-
-
-
-
-2013-07-08T10:54:19.000000Z
-4d2ce6c525a93398f192512a02fac713
-2013-07-08T10:54:52.974043Z
-677
+2013-07-23T06:09:49.000000Z
+ae9ddee6894f47b799628775d13abf3e
+2013-07-24T05:46:28.813696Z
+752
 merlin
 
 
@@ -486,7 +466,41 @@ merlin
 
 
 
-2414
+11039
+
+LoadingScene.cpp
+file
+752
+
+
+
+2013-07-24T02:46:21.000000Z
+cf056781036d9d6e54178ed017ec7b90
+2013-07-24T05:46:28.813696Z
+752
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2732
 
 CPtBatterArray.h
 file

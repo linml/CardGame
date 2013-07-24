@@ -70,7 +70,8 @@ void LoadingScene::doScheule()
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
         cout<<"this  will get tiem  load  server monster"<<endl;
-        SinglePlayer::instance()->forTestMonsterCard();
+        //SinglePlayer::instance()->forTestMonsterCard();
+        SinglePlayer::instance()->loadRival(1);
     }
     this->scheduleUpdate();
 }
@@ -81,10 +82,18 @@ void LoadingScene::update(float delta) {
     {
         //loading the  例子效果
         addParticle();
-        //addFightResource();
+        if(SinglePlayer::instance()->isLoadFightTeam)
+        {
+            this->unscheduleAllSelectors();
+            // 通过TargetScenes这个枚举类型来决定加载哪个场景
+            SingleSceneManager::instance()->runTargetScene(targetScene_);
+        }
     }
+    else{
+    
         //终止所有的预定信息
         this->unscheduleAllSelectors();
         // 通过TargetScenes这个枚举类型来决定加载哪个场景
         SingleSceneManager::instance()->runTargetScene(targetScene_);
+    }
 }

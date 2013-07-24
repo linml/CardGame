@@ -44,6 +44,20 @@ using namespace std;
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector, NULL);\
 }
 
+#define ADDHTTPREQUESTPOSTDATA(URL,NOTIFICATIONTAG,HTTPREQUESTTAG,__POSTSTR__,CALLBACK)\
+{\
+stcRequestInf inf;\
+inf.m_pchURL = URL; \
+cout<<inf.m_pchURL<<endl; \
+inf.m_RequestType=CCHttpRequest::kHttpPost;\
+inf.m_pSelector = NOTIFICATIONTAG;\
+inf.m_pchTag = HTTPREQUESTTAG;\
+inf.m_pchData = __POSTSTR__;\
+CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
+CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector, NULL);\
+}
+
+
 typedef struct STC_HTTPINF {
     const char* m_pchURL;
     const char* m_pSelector;

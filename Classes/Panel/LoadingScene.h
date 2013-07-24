@@ -24,9 +24,7 @@ private:
     bool initWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targetScene);
     void addParticle();
     void delParticle();
-    
-    
-    
+
     EN_CURRSCENE targetScene_;
     EN_CURRSCENE m_currScene_;
 public:

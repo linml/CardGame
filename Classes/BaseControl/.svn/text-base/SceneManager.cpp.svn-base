@@ -20,6 +20,7 @@
 #include "LoginScene.h"
 #include "HallScene.h"
 #include "CCardFightingLayerScene.h"
+#include "CFightingCardLayerScene.h"
 
 SceneManager::SceneManager()
 {
@@ -189,11 +190,11 @@ void SceneManager::runFightScene()
         CCDirector *pDirector=CCDirector::sharedDirector();
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,CCardFightingLayerScene::scene()));
+            pDirector->replaceScene(CCTransitionFade::create(1.0f,CFightingCardLayerScene::scene()));
         }
         else
         {
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,CCardFightingLayerScene::scene()));
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,CFightingCardLayerScene::scene()));
         }
         
     }

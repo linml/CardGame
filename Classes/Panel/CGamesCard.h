@@ -43,9 +43,6 @@ protected:
     CCLabelTTF *label;
     CCard *m_pCardData;
 public:
-    bool isAddTexiao;
-    
-    
-    
+    bool isAddTexiao;   
 };
 #endif /* defined(___1_cube__CGamesCard__) */

@@ -111,7 +111,7 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
             }
             if(pSkill->parameter_2!=0)
             {
-                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_2);
+                logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
             }
             if(pSkill->parameter_3!=0)
             {
@@ -119,15 +119,28 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
             }
             if(pSkill->parameter_4!=0)
             {
-                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+                logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
             }
             if(pSkill->parameter_5!=0)
             {
-                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+                for (int i=MonsterIndex; i<MonsterCard.size(); i++)
+                {
+                    if(MonsterCard[i]&&MonsterCard[i]->m_iCurrHp>=0)
+                    {
+                        logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,i,pSkill,pSkill->parameter_5);
+                    }
+                }
             }
             if(pSkill->parameter_6!=0)
             {
-                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_6);
+                for (int i=FightIndex; i<FightCard.size(); i++)
+                {
+                    if(FightCard[i]&&FightCard[i]->m_iCurrHp>=0)
+                    {
+                        logicSkillFight(pCard,FightCard,FightCard,FightIndex,i,pSkill,pSkill->parameter_6);
+
+                    }
+                }
             }
             currHp-=FightCard[FightIndex]->m_iCurrHp;
             engry -=FightCard[FightIndex]->m_iCurrEngry;

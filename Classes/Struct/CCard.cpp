@@ -72,6 +72,7 @@ CFightCard::CFightCard(CCard *card,int level)
 
 void CFightCard::initFighting()
 {
+    isSendZengfu=false;
     isDead=false;
     m_iCurrEngry=0;
     DELETE_POINT_VECTOR(m_vBuffer,list<CCardBufferStatus*>);
@@ -80,6 +81,21 @@ void CFightCard::initFighting()
 CFightCard::~CFightCard()
 {
     
+}
+
+void CFightCard::needRebackAtkAndBuf(CCardBufferStatus *buffer)
+{
+    
+    switch (buffer->m_enBuffer_Field) {
+        case  EN_BUFF_FIELD_TYPE_ATTACK:   //影响攻击力
+            this->m_attack+=-buffer->m_iValue;
+            break;
+        case  EN_BUFF_FIELD_TYPE_DEFEND:   //影响防御力:
+            this->m_defend +=-buffer->m_iValue;
+            break;
+        default:
+            break;
+    }
 }
 
 void CFightCard::appendBuffer(CCardBufferStatus *buffer)
@@ -92,14 +108,16 @@ void CFightCard::appendBuffer(CCardBufferStatus *buffer)
         list<CCardBufferStatus *>::iterator it;
         for (it=m_vBuffer.begin(); it!=m_vBuffer.end(); it++)
         {
+            //如果mutex的需要 一样的话， 并且字段的类型都是一样的话。
             if((*it)->m_mutex==buffer->m_mutex && (*it)->m_enBuffer_Field==buffer->m_enBuffer_Field)
             {
-                if ((*it)->m_mutexlevel >= buffer->m_mutexlevel) {
+                if ((*it)->m_mutexlevel > buffer->m_mutexlevel) {
                     delete buffer;
                     buffer=NULL;
                 }
                 else
                 {
+                    needRebackAtkAndBuf(*it);
                     m_vBuffer.erase(it);
                     delete *it;
                     *it=NULL;

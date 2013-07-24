@@ -65,13 +65,14 @@ private:
     void loadFromServerTest();
     void initGame();
     void checkIsDead();
+    void checkSendZengfu();
     CAnimationSpriteGameFight *m_currCAnimationHP;
     void showHpAnimation(CCObject *object);
     void AnimaitonEnd(CCObject *object);
     void showHp(int leftHp,int RightHp);
     void moveCardSprite(vector<CFightCard *> &vCard,int goIndex,bool isLeft);
     
-private: //action
+private: 
     void  animationShouShang(CCNode *node,void *tag);
     
 public:

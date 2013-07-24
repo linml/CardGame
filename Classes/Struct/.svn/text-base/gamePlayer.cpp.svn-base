@@ -15,6 +15,30 @@
 #include "PtJsonUtility.h"
 #include "CSkillData.h"
 #include "CFightSkillManager.h"
+#include <fstream>
+using namespace std;
+#define AAAAFOROSMACHINE
+string  readFileName(const char *filename)
+{
+    string filpat=CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(filename);
+    std::cout<<filpat<<"===>"<<CCFileUtils::sharedFileUtils()->getResourceDirectory()<<endl;
+    ifstream out;
+    out.open(filpat.c_str(), ios::in);
+    static string result;
+    result.clear();
+    string line;
+    if(!out)
+    {
+        cout<<"aaaa";
+    }
+    while(!out.eof())
+    {
+        std::getline(out,line);
+        result+=line;
+    }
+    out.close();
+    return result;
+}
 
 #define SKILLPUTONGGONGJIID 100000
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
@@ -46,8 +70,8 @@ CGamePlayer::~CGamePlayer()
 
 void CGamePlayer::loadGamesConfig()
 {
-    initAllCard((resRootPath+"card.plist").c_str());
-    initPlayerTable((resRootPath +"level_max.plist").c_str());
+    initAllCard((resRootPath+"card_config.plist").c_str());
+    initPlayerTable((resRootPath +"level_config.plist").c_str());
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
     g_FightSkillManager::instance()->initSkill();//加载列表
@@ -109,16 +133,16 @@ void CGamePlayer::clearAllSkillInfo()
 
 }
 
-bool CGamePlayer::isHaveSkillBySkillId(int skillID)
+CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
 {
     for (int i=0; i<m_vSkillInfo.size(); i++) {
-        if(m_vSkillInfo[i]->skill_id==skillID)
+        if(m_vSkillInfo[i]->skill_id==skillId)
         {
-            return true;
+            return m_vSkillInfo[i];
         }
     }
+    return NULL;
     
-    return false;
 }
 
 CSkillData *CGamePlayer::getPutongGongji()
@@ -186,13 +210,13 @@ void CGamePlayer::initFightingCardByserverDictorny(CCArray *array)
 void CGamePlayer::initPlayerStatusZero()
 {
     m_iCurrentExp=0;
-    m_iCurrentHp=m_sLevelPlayer->m_iHP;
-    m_iCurrentMp=m_sLevelPlayer->m_iexp;
+    m_iCurrentHp=m_sLevelPlayer->m_iHP_max;
+    m_iCurrentMp=m_sLevelPlayer->m_iExp_max;
 }
 
 bool CGamePlayer::isCanUpdateLevel(int nExp)
 {
-    if(m_iCurrentExp+nExp>=m_sLevelPlayer->m_iexp)
+    if(m_iCurrentExp+nExp>=m_sLevelPlayer->m_iExp_max)
     {
         return true;
     }
@@ -203,7 +227,7 @@ bool CGamePlayer::UpdateLevel(int nExp)
 {
     while(isCanUpdateLevel(nExp))
     {
-        nExp-=m_sLevelPlayer->m_iexp-m_iCurrentExp;
+        nExp-=m_sLevelPlayer->m_iExp_max-m_iCurrentExp;
         if(m_sLevelPlayer->m_iLevel+1<m_gvPlayerLevel.size())
         {
             this->m_sLevelPlayer=m_gvPlayerLevel[m_sLevelPlayer->m_iLevel+1];
@@ -222,7 +246,12 @@ void CGamePlayer::getSeverPlayerInfo(cocos2d::CCObject *object)
 void CGamePlayer::loadServerCardBag()
 {
     isLoadCardBagEnd=false;
+#ifndef AAAAFOROSMACHINE
     ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "merlin", "merlinaskplayerinfo", callfuncO_selector(CGamePlayer::parseCardBagJson));
+#else
+    char *data=new char [5];
+    parseCardBagJson((CCObject *)data);
+#endif
     
 }
 
@@ -230,11 +259,12 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
 {
     clearServerCardBag();
     //添加card  字符串
-    char *tempdata=(char *)obj;
-    CCLog("%s",tempdata);
+    char *tempdatat=(char *)obj;
+    CCLog("%s",tempdatat);
+    const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
     CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
-    delete []tempdata;
-    tempdata=NULL;
+    delete []tempdatat;
+    tempdatat=NULL;
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
     assert(dict&&"aaaaaaaaa");
     if(GameTools::intForKey("code", dict)!=0)
@@ -334,16 +364,23 @@ void CGamePlayer::loadServerPlayerInfoCallBack(cocos2d::CCObject *obj)
 void CGamePlayer::loadCardTeamInfo()
 {
     isLoadEndCardTeam=false;
+ #ifndef AAAAFOROSMACHINE
     ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetLoadCardItem", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::loadCardTeamInfoCallBack));
+#else
+    char *data=new char [5];
+    loadCardTeamInfoCallBack((CCObject *)data);
+#endif
 }
 
 void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
-    char *data=(char *)obj;
+    char *datat=(char *)obj;
+    const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
+    CCLog("%s",data);
     CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
-    delete [] data;
-    data=NULL;
+    delete [] datat;
+    datat=NULL;
     if(GameTools::intForKey("code",dirct)==0)
     {
         CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
@@ -363,7 +400,7 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                     CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
                     int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
                     int position=GameTools::intForKey("position", cardDirectorDetail);
-                    tempVcard[position]=findFightCardByCard_User_ID(card_item_id);
+                    tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
                 }
                 m_vvBattleArray.push_back(tempVcard);
             }
@@ -391,48 +428,6 @@ CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
 }
 
 
-int CGamePlayer::getTotoalHp()
-{
-    return m_sLevelPlayer->m_iHP;
-}
-
-int CGamePlayer::getCurrentHp()
-{
-    return this->m_sLevelPlayer->m_iHP;
-}
-
-int CGamePlayer::getTotoalMp()
-{
-    return this->m_sLevelPlayer->m_iHP;
-}
-
-int CGamePlayer::getCurrentMp()
-{
-    return this->m_iCurrentMp;
-}
-
-int CGamePlayer::getTotalExp()
-{
-    return this->m_sLevelPlayer->m_iexp;
-}
-
-int CGamePlayer::getCurrentExp()
-{
-    return this->m_iCurrentExp;
-}
-void CGamePlayer::setCurrentHp(int nHp)
-{
-    this->m_iCurrentHp=nHp;
-    
-}
-void CGamePlayer::setCurrentMp(int nMp)
-{
-    this->m_iCurrentMp=nMp;
-}
-void CGamePlayer::setCurrentExp(int nExp)
-{
-    this->m_iCurrentHp=nExp;
-}
 void CGamePlayer::forTestCard()
 {
     //获取当前所有卡佩里面的5张牌面给原先的
@@ -458,9 +453,10 @@ void CGamePlayer::forTestMonsterCard()
     m_hashmapMonster.erase(m_hashmapMonster.begin(),m_hashmapMonster.end());
     for (int i=0;i<5;i++)
     {
-        int index=rand()%m_hashmapAllCard.size();
+        int index=rand()%9;//.size();
         int tempindex=0;
-        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
+        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++)
+        {
             if(tempindex==index)
             {
                 cout<<"card Monster id:"<<it->first<<endl;
@@ -470,6 +466,58 @@ void CGamePlayer::forTestMonsterCard()
             tempindex++;
         }
     }
+}
+
+void CGamePlayer::loadRival(int  rivalUid)
+{
+    isLoadFightTeam=false;
+#ifndef AAAAFOROSMACHINE
+    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::parseRival));
+#else
+    //char *data=new char [5];
+    //parseRival((CCObject *)data);
+   // ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1&troops=3", callfuncO_selector(CGamePlayer::parseRival));
+    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Fight&a=fight&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1&troops=3","\"result\":\"123123123123\"",callfuncO_selector(CGamePlayer::parseRival));
+#endif
+}
+
+void CGamePlayer::parseRival(CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetFightTeam");
+    char *datat=(char *)object;
+    //const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
+    CCLog("%s",datat);
+//    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+//    delete [] datat;
+//    datat=NULL;
+//    if(GameTools::intForKey("code",dirct)==0)
+//    {
+//        CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
+//        CCArray *vKeyArrayresult=dictresult->allKeys();
+//        for (int i=0; i<vKeyArrayresult->count(); i++)
+//        {
+//            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+//            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+//            if(cardDirector)
+//            {
+//                vector<CFightCard *>tempVcard(5);
+//                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
+//                CCArray *vKeyArraytemp=cardtemp->allKeys();
+//                for (int i=0; i<vKeyArraytemp->count(); i++)
+//                {
+//                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
+//                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
+//                    int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
+//                    int position=GameTools::intForKey("position", cardDirectorDetail);
+//                    tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
+//                }
+//                m_vvBattleArray.push_back(tempVcard);
+//            }
+//        }
+//        
+//    }
+    isLoadFightTeam=true;
+
 }
 
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

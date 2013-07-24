@@ -44,30 +44,31 @@ void CEffectInterfaceOne::logicFightingCardByFightAndMonster(CFightCard *pCard,C
     int atk=0;
     if(pImapact->m_iParameter_8!=0||pImapact->m_iParameter_9!=0)
     {
-         atk=pMonster->m_attack-pImapact->m_iParameter_8 -pMonster->m_attack*pImapact->m_iParameter_9/100;
+         atk= +pImapact->m_iParameter_8 + pMonster->m_attack*pImapact->m_iParameter_9/100;
          if (atk!=0)
          {
-             pMonster->m_attack+=-atk;
              CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-atk,EN_BUFF_FIELD_TYPE_ATTACK);
              pMonster->appendBuffer(buffer);
+             pMonster->m_attack += -atk;
          }
     }
     int def=0;
     if(pImapact->m_iParameter_4 ||pImapact->m_iParameter_5)
     {
-        def =  pImapact->m_iParameter_4  - pMonster->m_defend*pImapact->m_iParameter_5/100;
-        pMonster->m_defend += -def;
-        CCLog("def - %d",def);
+        def =  pImapact->m_iParameter_4  + pMonster->m_defend*pImapact->m_iParameter_5/100;
         CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,EN_BUFF_FIELD_TYPE_DEFEND);
         pMonster->appendBuffer(buffer);
+        pMonster->m_defend += -def;
+        CCLog("def - %d",def);
     }
     int engry=0;
     if(pImapact->m_iParameter_6!=0 ||pImapact->m_iParameter_7!=0)
     {
-     engry= (pMonster->m_iEngryMax)-pImapact->m_iParameter_6 -
+        engry= +pImapact->m_iParameter_6 +
         pMonster->m_iEngryMax  * pImapact->m_iParameter_7/100;
         if (engry) {
-            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,engry,EN_BUFF_FIELD_TYPE_ANGRY);
+            pMonster->m_iCurrEngry -= engry;
+            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-engry,EN_BUFF_FIELD_TYPE_ANGRY);
             pMonster->appendBuffer(buffer); 
         }
     }

@@ -20,7 +20,8 @@ CCScene* CExploration::scene()
 {
     CCScene *scene = CCScene::create();
     CExploration *layer = CExploration::create();
-    if (layer) {
+    if (layer)
+    {
         scene->addChild(layer);
     }
     return scene;
