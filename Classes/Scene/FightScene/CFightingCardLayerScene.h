@@ -44,7 +44,8 @@ public:
     int  animationAndex;
     bool isAnimationEnd;
     int m_itotalAnimation;
-    
+private:
+    void textSkillInfo(CAnimationSpriteGameFight *fight);
 private:
     void logicFighting();
     EN_ATKFIGHT_INDEX m_enHuiheIndex;//记录是否是拥护打斗的。
@@ -57,15 +58,22 @@ private:
     bool initText();
     void createHero();
     bool initHitText();
+    
+    // 创建显示文本比如，怒气，Hp信息;
+    void createEngryText();
+    void createHpText();
+
+    
+    //
     CCPoint getCardPoint(int  index, bool isLeftCard);
     void animationSwf( CAnimationSpriteGameFight *fightAnimation);
     void skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster);
     void showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation);
 private:
     void loadFromServerTest();
-    void initGame();
-    void checkIsDead();
-    void checkSendZengfu();
+    void initGame(); 
+    void checkIsDead(); //判断对方是否死亡
+    void checkSendZengfu(); //判断是否发送增幅技能
     CAnimationSpriteGameFight *m_currCAnimationHP;
     void showHpAnimation(CCObject *object);
     void AnimaitonEnd(CCObject *object);

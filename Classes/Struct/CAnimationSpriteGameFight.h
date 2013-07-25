@@ -41,7 +41,19 @@ public:
     int  m_iSubEngry;
     int  m_iSKillId;
     int  spritetag;
+public:
     
+    friend inline ostream & operator << (ostream & os, CAnimationSpriteGameFight &t1)
+    {
+        cout <<"{"
+        <<"\t卡牌发动者   :"<< t1.m_iATKindex<<"\n"
+        << "\t卡牌受害者  :"<< t1.m_iDefIndex<<"\n"
+        << "\t卡牌HP     :"<< t1.m_iSubHp<<"\n"
+        << "\t卡牌ANGRY  :"<< t1.m_iSubEngry<<"\n"
+        << "\t发动技能    :"<< t1.m_iSKillId<<"\n"
+        <<"}"<<endl;
+        return os;
+   }
 };
 
 #endif /* defined(___1_cube__CAnimationSpriteGameFight__) */

@@ -80,6 +80,7 @@ public:
     void initPlayerStatusZero();
     //获得服务端的数据并init下数据
     void getSeverPlayerInfo(CCObject *object);
+//以后这个通讯的会单独抽离在通讯的框架里面。
 public: //读取卡包的信息
     void loadServerCardBag();
     void clearServerCardBag();

@@ -80,6 +80,7 @@ public:
     STATICEFFICEFUNCTION(effect_8);
     STATICEFFICEFUNCTION(effect_9);
     STATICEFFICEFUNCTION(effect_10);
+    STATICEFFICEFUNCTION(effect_11);
     
 public:
   static  void appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex);

@@ -48,6 +48,7 @@ class  CFightCard {
 public:
     CFightCard();
     CFightCard(CCard *card,int level=1);
+    
     ~CFightCard();
 private:
     void init();
@@ -76,6 +77,17 @@ public:
 public:
     CCard *m_pCard;    
     list<CCardBufferStatus *>m_vBuffer; //卡牌拥有的buffer;
+public: //for test
+    friend inline ostream & operator << (ostream & os, CFightCard &t1)
+    {
+        cout <<"{"
+             <<"\t卡牌HP   :"<< t1.m_iCurrHp<<"\n"
+             << "\t卡牌ENGRY:"<< t1.m_iCurrEngry<<"\n"
+             << "\t卡牌ATK  :"<< t1.m_attack<<"\n"
+             << "\t卡牌DEF  :"<< t1.m_defend<<std::endl
+             <<"}"<<endl;
+        return os;
+    }
 };
 
 

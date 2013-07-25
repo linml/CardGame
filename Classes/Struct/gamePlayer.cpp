@@ -373,7 +373,7 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
     char *datat=(char *)obj;
-    const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
+    //const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
     CCLog("%s",datat);
     CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
     delete [] datat;

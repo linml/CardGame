@@ -77,6 +77,8 @@ bool CFightingCardLayerScene::init()
     PtMapUtility::addChildFromScript(this, plistPath+"zhandouui.plist");
     initText();
     initHitText();
+    createHpText();
+    createEngryText();
     createFightCard();
     createMonsterCard();
     //计算战斗
@@ -251,7 +253,7 @@ void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fight
             showSkill(pFight,NULL,fightAnimation->m_iSKillId,fightAnimation);
             break;
         case EN_ANIMATIONTYPE_SKILL:
-           // showSkill(pFight, pMonster, fightAnimation->m_iSKillId, fightAnimation);
+            textSkillInfo(fightAnimation);
             break;
         default:
             break;
@@ -281,7 +283,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
             else
             {
                 AnimaitonEnd(NULL);
-                                return;
+                return;
             }
         }
             break;
@@ -397,30 +399,25 @@ void CFightingCardLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goI
 
 void CFightingCardLayerScene::logicFighting()
 {
-    CCLog("BEGIN:LEFT%d-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
     checkSendZengfu();
     m_enHuiheIndex++;
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
     {
-        CCLog("LEFT%d-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-               m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex],this);
+                      m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex],this);
         
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
     {
-        CCLog("LEFT5-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
+       
                 m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex, m_vFightingCard[4], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD)
     {
-        
-        CCLog("RIGHT%d-------->LEFT%d,LEFTHP :%d,RIHGHP: %d",m_iMonsterCardIndex,m_iFightCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
-       
         m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex, m_vMonsterCard[m_iMonsterCardIndex], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
-           CCLog("RIGHT5-------->LEFT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
+         
         m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex, m_vMonsterCard[4], this);
         
         CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
@@ -436,8 +433,6 @@ void CFightingCardLayerScene::logicFighting()
     {
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
     }
-    
-    CCLog("END:LEFT%d-------->RIGHT%d,LEFTHP :%d,RIHGHP: %d",m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp);
     checkIsDead();
 }
 
@@ -523,11 +518,13 @@ void CFightingCardLayerScene::checkSendZengfu()
     {
       m_vFightingCard[m_iFightCardIndex]->isSendZengfu=true;
        g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_LEFT_LORD);
+ 
     }
     if(!m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu)//判断是否触发了 增幅技能
     {
         m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu=true;
         g_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex],m_vMonsterCard,m_vMonsterCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_RIGHT_LORD);
+       //append增幅技能
     }
 }
 
@@ -735,6 +732,19 @@ CCPoint CFightingCardLayerScene::getCardPoint(int index, bool isLeftCard)
     
 }
 
+void CFightingCardLayerScene::textSkillInfo(CAnimationSpriteGameFight *fight)
+{
+    if (getChildByTag(20003)) {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(20003);
+        char data[20];
+        sprintf(data,"发送技能%d",fight->m_iSKillId);//, 
+        labelttf->setString(data);
+        labelttf->runAction(CCSequence::create(CCFadeIn::create(0.5),CCFadeOut::create(0.5),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd)),NULL));
+        
+    }
+}
+
+
 bool CFightingCardLayerScene::initHitText()
 {
     //设置加血扣血的
@@ -750,21 +760,32 @@ bool CFightingCardLayerScene::initHitText()
     return true;
 }
 
+// 创建显示文本比如，怒气，Hp信息;
+void CFightingCardLayerScene::createEngryText()
+{
+    CCLabelTTF *labelttf=CCLabelTTF::create("1", "Arail", 25);
+    addChild(labelttf,10,87777);
+    labelttf->setPosition(ccp(300,600));
+    labelttf=CCLabelTTF::create("2", "Arail", 25);
+    addChild(labelttf,10,87778);
+    labelttf->setPosition(ccp(874,600));
+}
+
+//创建HPtext
+void CFightingCardLayerScene::createHpText()
+{
+    CCLabelTTF *labelttf=CCLabelTTF::create("1", "Arail", 25);
+    addChild(labelttf,10,77777);
+    labelttf->setPosition(ccp(150,600));
+    labelttf=CCLabelTTF::create("2", "Arail", 25);
+    addChild(labelttf,10,77778);
+    labelttf->setPosition(ccp(724,600));
+}
+
 bool CFightingCardLayerScene::initText()
 {
     CCSize winsize=CCDirector::sharedDirector()->getWinSize();
-    //血量数值
-    CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 35);
-    labelttf->setPosition(ccp(150,700));
-    labelttf->setColor(ccc3(255, 0, 0));
-    this->addChild(labelttf,10,20000);
-    
-    CCLabelTTF *labelttfMonster=CCLabelTTF::create("", "Arial", 35);
-    labelttfMonster->setPosition(ccp(624,700));
-    labelttfMonster->setColor(ccc3(255, 0, 0));
-    addChild(labelttfMonster,10,20001);
-    
-    
+    //中间显示战斗时候的界面 显示信息
     CCLabelTTF *labelttfVersion=CCLabelTTF::create("", "Arial", 50);
     labelttfVersion->setPosition(ccp(winsize.width*0.5,winsize.height-100));
     labelttfVersion->setColor(ccc3(0, 0, 255));
@@ -772,8 +793,7 @@ bool CFightingCardLayerScene::initText()
     return true;
 }
 
-
-
+//攻击的时候 显示的图片
 bool CFightingCardLayerScene::initAtkPng()
 {
     CCSprite *sprite=CCSprite ::create((g_mapImagesPath+"fighting/hiten_1.png").c_str());
@@ -784,7 +804,7 @@ bool CFightingCardLayerScene::initAtkPng()
     sprite2->setVisible(false);
     return true;
 }
-
+// 初始化 背景图片
 bool CFightingCardLayerScene::initBggroudPng()
 {
     CCSize  winsize=CCDirector::sharedDirector()->getWinSize();

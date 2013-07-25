@@ -133,7 +133,7 @@ void CBiforestLayer::handlerTouch()
             break;
         case 2005:
             //如果是场景切换 请调用scenemanage
-            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_EXPLORATIONSCENE);
+            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
           //  CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CExploration::scene()));
 
             break;

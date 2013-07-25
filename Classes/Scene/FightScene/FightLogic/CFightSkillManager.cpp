@@ -14,6 +14,7 @@
 #include "CFightingCardLayerScene.h"
 #include "CEffectInterface.h"
 #include "CEffectInterfaceOne.h"
+#include "CEffectInterfaceEleven.h"
 #include <vector>
 using namespace std;
 
@@ -47,15 +48,10 @@ void CFightSkillManager::logicSkillFight(CFightCard *pCard,vector< CFightCard *>
         if(pt!=m_vEffictManager.end())
         {
             pbEffFunc ptfunction=pt->second;
-            for (int i=0; i<pMonterCard.size()-1; i++)
+            if(pMonterCard[MonsterIndex]&&pMonterCard[MonsterIndex]->m_iCurrHp>0) //攻击第一个 血量大于0的人 也就是主将
             {
-                if(pMonterCard[i]&&pMonterCard[i]->m_iCurrHp>0) //攻击第一个 血量大于0的人 也就是主将
-                {
-                    (*ptfunction)(pCard,pMonterCard[i],pSkill,pImpact,EN_ATKOBJECT_MONSTER);//攻击对象对方当个
-                    break;
-                }
-            }
-            
+                (*ptfunction)(pCard,pMonterCard[MonsterIndex],pSkill,pImpact,EN_ATKOBJECT_MONSTER);//攻击对象对方当个
+            }            
         }
     }
 }
@@ -300,6 +296,13 @@ void CFightSkillManager::effect_10(CFightCard *pCard,CFightCard *pMonterCard,CSk
 {
     
 }
+void CFightSkillManager::effect_11(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
+{
+    CEffectInterface *effect=new CEffectInterfaceEleven();
+    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+    delete effect;
+    effect=NULL;
+}
 
 void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>fightCard,vector<CFightCard *>monsterCard,int FightIndex,int MonstIndex,EN_SEND_SKILL enskill,EN_ATKFIGHT_INDEX enAtkFightIndex)
 {
@@ -319,6 +322,8 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
                 break;
             case EN_SEND_SKILL_BUFF:
                 pSkilldata=SinglePlayer::instance()->getSkillBySkillId(pCard->m_pCard->m_iskillBuff);
+                appendAnimation(FightIndex, FightIndex, 0, 0,pSkilldata->skill_id, 0, 0, EN_ANIMATIONTYPE_SKILL, enAtkFightIndex
+                                ); //添加一个增幅技能
                 break;
             default:
                 break;
@@ -331,9 +336,9 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
             IteratorMapPfunc it=m_vSkillManagerLogic.find(data);
             if(it!=m_vSkillManagerLogic.end())
             {
-                //攻击可能是群体攻击 所以这个地方需要修改
+                // 攻击可能是群体攻击 所以这个地方需要修改
                 pFunc pfuncCallBack=it->second;
-                //调用发动技能
+                // 调用发动技能
                 (*pfuncCallBack)(pCard,fightCard,monsterCard,FightIndex,MonstIndex,pSkilldata,enAtkFightIndex);
             }
         }
@@ -388,6 +393,7 @@ void CFightSkillManager::initSkill()
     m_vEffictManager["8"] =&CFightSkillManager::effect_8;
     m_vEffictManager["9"] =&CFightSkillManager::effect_9;
     m_vEffictManager["10"]=&CFightSkillManager::effect_10;
+    m_vEffictManager["11"]=&CFightSkillManager::effect_11;
 }
 
 
