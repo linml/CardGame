@@ -58,6 +58,7 @@ private:
     bool initText();
     void createHero();
     bool initHitText();
+    void yinCangRenWu(vector<CCSprite *>vsprite);
     
     // 创建显示文本比如，怒气，Hp信息;
     void createEngryText();

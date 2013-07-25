@@ -31,9 +31,9 @@ public:
 public:
     bool m_bIsBeDeal;                    
     EN_BUFF_FIELD_TYPE m_enBuffer_Field; //  buffer类型，
-    int    m_iBuff_effectTimes;   //效果的累计次数
-    int    m_iBuff_showTimes;   //显示的次数
-    float  m_iValue;       //设置浮点数字  百分比 或者是整数的的模式。
+    int    m_iBuff_effectTimes;          //效果的累计次数
+    int    m_iBuff_showTimes;           //显示的次数
+    float  m_iValue;                     //设置浮点数字  百分比 或者是整数的的模式。
     int    m_mutex;
     int    m_mutexlevel;
     int    m_oldValue;

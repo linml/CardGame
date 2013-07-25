@@ -150,6 +150,7 @@ void CFightingCardLayerScene::createHero()
                 fclose(fp);
                 CCSprite *sprite=CCSprite::create((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_resources+".png").c_str());
                 addChild(sprite,1,m_vFightingCard[i]->tag+10);
+                sprite->setVisible(false);
                 m_vFightHero[i]=sprite;
             }
         }
@@ -176,6 +177,8 @@ void CFightingCardLayerScene::createHero()
                 fclose(fp);
                 CCSprite *sprite=CCSprite::create((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_resources+".png").c_str());
                 addChild(sprite,1,m_vMonsterCard[i]->tag+10);
+                sprite->setVisible(false);
+                sprite->setFlipX(true);
                 m_vMonsterHero[i]=sprite;
             }
         }
@@ -270,10 +273,8 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         {
             if(m_vFightHero[fightAnimation->m_iATKindex])
             {
-                if(m_vFightHero[4])
-                {
-                    m_vFightHero[4]->setVisible(false);
-                }
+                
+                yinCangRenWu(m_vFightHero);
                 m_vFightHero[fightAnimation->m_iATKindex]->setVisible(true);
                 
                 CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
@@ -291,10 +292,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         {
             if(m_vFightHero[4])
             {
-                if(m_vFightHero[fightAnimation->m_iATKindex])
-                {
-                    m_vFightHero[fightAnimation->m_iATKindex]->setVisible(false);
-                }
+                yinCangRenWu(m_vFightHero);
                 m_vFightHero[4]->setVisible(true);
                 CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
                 CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
@@ -312,11 +310,9 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         {
             if(m_vMonsterHero[fightAnimation->m_iATKindex])
             {
+                yinCangRenWu(m_vMonsterHero);
                 m_vMonsterHero[fightAnimation->m_iATKindex]->setVisible(true);
-                if(m_vMonsterHero[4])
-                {
-                    m_vMonsterHero[4]->setVisible(false);
-                }
+                
                 CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
                 CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
                 skillAnimationSwf(fightAnimation,pMonster,sprite);
@@ -332,11 +328,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         {
             if(m_vMonsterHero[4])
             {
-                if(m_vMonsterHero[fightAnimation->m_iATKindex])
-                {
-                    m_vMonsterHero[fightAnimation->m_iATKindex]->setVisible(false);
-                }
-                m_vMonsterHero[4]->setVisible(true);
+                yinCangRenWu(m_vMonsterHero);                m_vMonsterHero[4]->setVisible(true);
                 CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
                 CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
                 skillAnimationSwf(fightAnimation,pMonster,sprite);
@@ -350,13 +342,9 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         }
             break;
         case EN_ATKFIGHT_INDEX_LEFT_MOVE:
-            m_vFightHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
-            m_vFightHero[m_currCAnimationHP->m_iDefIndex]->setVisible(true);
             moveCardSprite(m_vFightingCard,m_currCAnimationHP->m_iATKindex,true);//移动 card
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_MOVE:
-            m_vMonsterHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
-            m_vMonsterHero[m_currCAnimationHP->m_iDefIndex]->setVisible(true);
             moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);//移动 card
             break;
         default:
@@ -744,6 +732,16 @@ void CFightingCardLayerScene::textSkillInfo(CAnimationSpriteGameFight *fight)
     }
 }
 
+void CFightingCardLayerScene::yinCangRenWu(vector<CCSprite *>vsprite)
+{
+    for (int i=0; i<vsprite.size(); i++)
+    {
+        if(vsprite[i])
+        {
+            vsprite[i]->setVisible(false);
+        }
+    }
+}
 
 bool CFightingCardLayerScene::initHitText()
 {
