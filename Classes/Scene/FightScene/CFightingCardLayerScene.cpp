@@ -426,12 +426,13 @@ void CFightingCardLayerScene::logicFighting()
 
 void CFightingCardLayerScene::showHp(int leftHp,int RightHp)
 {
+    cout<<"left hp:"<<leftHp<<"Right hp:"<<RightHp;
     int hpValue=leftHp;
     if(hpValue==0)
     {
         return;
     }
-    CCPoint point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5-100),(CCDirector::sharedDirector()->getWinSize().height*0.5));
+    CCPoint point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5-200),(CCDirector::sharedDirector()->getWinSize().height*0.5));
     CCLabelTTF *labelTTF=(CCLabelTTF *)getChildByTag(30002);
     char data[20];
     sprintf(data, "%d",hpValue*(-1));
@@ -452,7 +453,7 @@ void CFightingCardLayerScene::showHp(int leftHp,int RightHp)
     {
         return;
     }
-    point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5+100),(CCDirector::sharedDirector()->getWinSize().height*0.5));
+    point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5+200),(CCDirector::sharedDirector()->getWinSize().height*0.5));
     labelTTF=(CCLabelTTF *)getChildByTag(30003);
     sprintf(data, "%d",hpValue*(-1));
     labelTTF->setString(data);
