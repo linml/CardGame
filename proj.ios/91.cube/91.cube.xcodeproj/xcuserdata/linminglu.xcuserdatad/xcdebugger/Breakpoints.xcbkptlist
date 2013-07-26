@@ -55,18 +55,5 @@
          landmarkName = "CTaskLayer::handlerTouch()"
          landmarkType = "5">
       </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-         timestampString = "396511991.580539"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "368"
-         endingLineNumber = "368"
-         landmarkName = "CFightSkillManager::costFunc_2(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)"
-         landmarkType = "5">
-      </FileBreakpoint>
    </FileBreakpoints>
 </Bucket>

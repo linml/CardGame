@@ -1,15 +1,15 @@
 10
 
 dir
-787
+793
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-25T09:07:01.019584Z
-776
-merlin
+2013-07-26T07:33:49.246543Z
+793
+wood
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-07-19T05:29:42.000000Z
-4be3d724dedaf81a1ef285db239d4524
-2013-07-24T05:45:04.908367Z
-751
-merlin
+2013-07-26T06:53:03.000000Z
+90cccffbc44f8f4b51063df0fbb542f7
+2013-07-26T06:42:58.666561Z
+789
+wood
 
 
 
@@ -58,7 +58,7 @@ merlin
 
 
 
-974
+972
 
 level_config.plist
 file
@@ -94,17 +94,20 @@ merlin
 
 36202
 
+sound
+dir
+
 card_config.plist
 file
 
 
 
 
-2013-07-23T06:06:02.000000Z
-c80696a9bab735b202be620e7ce52272
-2013-07-24T05:45:04.908367Z
-751
-merlin
+2013-07-26T06:53:03.000000Z
+5692b3486b67da09f23f1ae511d81dcc
+2013-07-26T06:42:58.666561Z
+789
+wood
 
 
 
@@ -126,10 +129,7 @@ merlin
 
 
 
-113946
-
-sound
-dir
+113949
 
 skill_config.plist
 file
@@ -236,6 +236,9 @@ merlin
 uiScript
 dir
 
+particle
+dir
+
 card.plist
 file
 
@@ -270,7 +273,44 @@ merlin
 
 111578
 
-particle
+boss_icon_Effect_r.plist
+file
+
+
+
+
+2013-07-26T06:53:03.000000Z
+57d4857e89a3ebcf1c8a5cf4e8ab2ef3
+2013-07-26T06:42:58.666561Z
+789
+wood
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+973
+
+font
+dir
+
+sprite
 dir
 
 level_max.plist
@@ -306,12 +346,6 @@ merlin
 
 
 34894
-
-sprite
-dir
-
-font
-dir
 
 skill_effect_config.plist
 file

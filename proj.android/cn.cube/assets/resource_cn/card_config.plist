@@ -41,13 +41,13 @@
 		<key>card_tips</key>
 		<string>card_tips_001</string>
 		<key>card_resources</key>
-		<string>peo1.png</string>
+		<string>peo0.png</string>
 		<key>card_head</key>
 		<string>card_head_001</string>
 		<key>card_ground</key>
 		<string>bg1.png</string>
 		<key>card_role</key>
-		<string>card_role_001</string>
+		<string>card_role_000</string>
 	</dict>
 	<key>100001</key>
 	<dict>
@@ -88,13 +88,13 @@
 		<key>card_tips</key>
 		<string>card_tips_002</string>
 		<key>card_resources</key>
-		<string>peo.png</string>
+		<string>peo1.png</string>
 		<key>card_head</key>
 		<string>card_head_002</string>
 		<key>card_ground</key>
 		<string>bg1.png</string>
 		<key>card_role</key>
-		<string>card_role_002</string>
+		<string>card_role_001</string>
 	</dict>
 	<key>100002</key>
 	<dict>
@@ -135,13 +135,13 @@
 		<key>card_tips</key>
 		<string>card_tips_003</string>
 		<key>card_resources</key>
-		<string>peo1.png</string>
+		<string>peo2.png</string>
 		<key>card_head</key>
 		<string>card_head_003</string>
 		<key>card_ground</key>
 		<string>bg1.png</string>
 		<key>card_role</key>
-		<string>card_role_003</string>
+		<string>card_role_002</string>
 	</dict>
 	<key>100003</key>
 	<dict>
@@ -182,13 +182,13 @@
 		<key>card_tips</key>
 		<string>card_tips_004</string>
 		<key>card_resources</key>
-		<string>peo.png</string>
+		<string>peo3.png</string>
 		<key>card_head</key>
 		<string>card_head_004</string>
 		<key>card_ground</key>
 		<string>bg1.png</string>
 		<key>card_role</key>
-		<string>card_role_004</string>
+		<string>card_role_003</string>
 	</dict>
 	<key>100004</key>
 	<dict>
@@ -417,13 +417,13 @@
 		<key>card_tips</key>
 		<string>card_tips_009</string>
 		<key>card_resources</key>
-		<string>peo.png</string>
+		<string>peo8.png</string>
 		<key>card_head</key>
 		<string>card_head_009</string>
 		<key>card_ground</key>
 		<string>bg1.png</string>
 		<key>card_role</key>
-		<string>card_role_009</string>
+		<string>card_role_008</string>
 	</dict>
 	<key>100009</key>
 	<dict>

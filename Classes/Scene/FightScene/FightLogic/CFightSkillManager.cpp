@@ -86,7 +86,7 @@ void CFightSkillManager::logicSkill_Putong(CFightCard *pCard,vector< CFightCard 
 void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
 {
     //通过找到logc
-    int i=pSkill->cost_func_1;
+    int i=pSkill->skill_logic;
     char data[20];
     sprintf(data, "%d",i);
     IteratorMapPbFunc it=m_vCostFuncManager.find(data);
@@ -190,7 +190,7 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
 void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
 {
     //通过找到logc
-    int i=pSkill->cost_func_1;
+    int i=pSkill->skill_logic;
     char data[20];
     sprintf(data, "%d",i);
     IteratorMapPbFunc it=m_vCostFuncManager.find(data);

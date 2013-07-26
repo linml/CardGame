@@ -1,7 +1,7 @@
 10
 
 dir
-787
+793
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
@@ -25,9 +25,6 @@ merlin
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
-
-CardKind
-dir
 
 CGamePlayerStruct.cpp
 file
@@ -62,6 +59,9 @@ merlin
 
 
 118
+
+CardKind
+dir
 
 CGameLogic.h
 file
@@ -301,40 +301,6 @@ merlin
 
 1177
 
-CConfigResourceLoad.cpp
-file
-
-
-
-
-2013-07-23T09:31:38.000000Z
-fd14f40811ee23194c23eef74e37e863
-2013-07-24T05:46:28.813696Z
-752
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8203
-
 CSkillData.h
 file
 
@@ -369,8 +335,39 @@ merlin
 
 2365
 
-Craftsmanship
-dir
+CConfigResourceLoad.cpp
+file
+
+
+
+
+2013-07-23T09:31:38.000000Z
+fd14f40811ee23194c23eef74e37e863
+2013-07-24T05:46:28.813696Z
+752
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8203
 
 CCard.h
 file
@@ -405,6 +402,9 @@ merlin
 
 
 2668
+
+Craftsmanship
+dir
 
 gameStruct.h
 file

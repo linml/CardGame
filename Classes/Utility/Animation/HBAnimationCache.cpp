@@ -160,7 +160,7 @@ CCAnimation* HBAnimationCache::addAnimationWithDictionary(CCDictionary* dict,con
 	CCArray* Frames = new CCArray();
 	int count = 0;
 
-    CCDictElement* pElement = NULL;    
+    CCDictElement* pElement = NULL;
     CCDICT_FOREACH(framesDict, pElement)
     {
         CCDictionary* frameDict = (CCDictionary*)pElement->getObject();
@@ -208,18 +208,16 @@ CCAnimation* HBAnimationCache::addAnimationWithDictionary(CCDictionary* dict,con
         
 		// add sprite frame
 		CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFrame(spriteFrame,pElement->getStrKey());
-        Frames->addObject(spriteFrame);
-
     }
 
-    
-    
 	std::string aniName = name;
-//	for(int i = 0; i < count; i++) {
-//        CCLog("xianbei %s",(string(name)+ConvertToString(i+1)).c_str());
-//		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName((string(name)+ConvertToString(i+1)).c_str());
-//		Frames->addObject(frame);
-//	}
+	for(int i = 0; i < count; i++) {
+        char achFrameName[64]="";
+        sprintf(achFrameName, "%s%04d",name,i+1);
+//        CCLog("xianbei %s",achFrameName);
+		CCSpriteFrame *frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(achFrameName);
+		Frames->addObject(frame);
+	}
 
 	CCAnimation* ani = CCAnimation::createWithSpriteFrames(Frames,animationDelay);
 //	ani->setName(aniName.c_str());
@@ -295,7 +293,7 @@ CCAnimation* HBAnimationCache::reverseAnimationByAni(CCAnimation* ani,const char
 		oFrameArray->addObject(ani->getFrames()->objectAtIndex(i));
 	}
     
-	CCAnimation *reverseAni = CCAnimation::create(oFrameArray,ani->getDelayPerUnit(),false);
+	CCAnimation *reverseAni = CCAnimation::animationWithAnimationFrames(oFrameArray,ani->getDelayPerUnit(),false);
 //	reverseAni->setName(reverseAniName.c_str());
     //bq modify
     oFrameArray->release();

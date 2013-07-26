@@ -29,8 +29,9 @@ LoadingScene *LoadingScene::sceneWithTargetScene(EN_CURRSCENE currScene,EN_CURRS
 
 void LoadingScene::addParticle()
 {
-    Utility::addPtActionScript("juqi1/juqi1.act");
-    for (int i=0; i< SinglePlayer::instance()->m_hashmapFight.size() ; i++)
+    Utility::addPtActionScript("fire/fire.act");
+    Utility::addPtActionScript("fire/fire2.act");
+   for (int i=0; i< SinglePlayer::instance()->m_hashmapFight.size() ; i++)
     {
         
     }

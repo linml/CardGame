@@ -61,7 +61,8 @@ private:
     bool initText();
     void createHero();
     bool initHitText();
-    void yinCangRenWu(vector<CCSprite *>vsprite);
+    void yinCangRenWu(vector<CCSprite *>vsprite,CCSprite *sprite=NULL);
+    void skillByHeloSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster);
     void initSetUpdateHp(int iCurrHp,int TotalHp,int currEngry,bool isLeft);
     
     // 创建显示文本比如，怒气，Hp信息;
