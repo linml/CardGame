@@ -47,6 +47,7 @@ CCard::CCard()
 CFightCard::CFightCard()
 {
     m_pCard=NULL;
+    m_iCurrEngry=0;
 }
 
 

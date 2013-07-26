@@ -93,7 +93,7 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
     if( it!=m_vCostFuncManager.end())
     {
         pbFunc func=it->second;
-        if((*func)(pCard,MonsterCard[MonsterIndex],pSkill))   //判断单体的条件是否满足。
+        if((*func)(pCard,MonsterCard[MonsterIndex],pSkill)==1)   //判断单体的条件是否满足。
         {
             int currHp=FightCard[FightIndex]->m_iCurrHp;
             int engry=FightCard[FightIndex]->m_iCurrEngry;
@@ -451,6 +451,10 @@ void CFightSkillManager::basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight
 
 void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex)//处理自身的buffer
 {
+    if(AtkIndex==1||DefIndex==1)
+    {
+        CCLog("aaaa");
+    }
     
     if (pFightCard==NULL || pFightCard->m_vBuffer.size()==0) {
         return;
