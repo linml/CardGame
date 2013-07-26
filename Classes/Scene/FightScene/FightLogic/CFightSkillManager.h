@@ -24,7 +24,7 @@ class CAnimationSpriteGameFight;
 class CCardBufferStatus;
 
 #define STATICCOSTTFUNCTION(FUNCTIONNAME) \
-static bool FUNCTIONNAME(CFightCard *pCard); 
+static int FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData);
 
 #define STATICEFFICEFUNCTION(FUNCTIONNAME) \
 static void FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
@@ -32,7 +32,7 @@ static void FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *p
 
 
 typedef void (*pFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
-typedef bool (*pbFunc) (CFightCard *pCard);
+typedef int (*pbFunc) (CFightCard *pCard,CFightCard *pMonster,CSkillData *pData);
 typedef void (*pbEffFunc) (CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
 
 class CFightSkillManager

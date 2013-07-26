@@ -16,6 +16,9 @@
 #include "CSkillData.h"
 #include "CFightSkillManager.h"
 #include <fstream>
+
+#define AAAAFOROSMACHINE 1
+
 using namespace std;
 string  readFileName(const char *filename)
 {
@@ -259,8 +262,13 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
     //添加card  字符串
     char *tempdatat=(char *)obj;
     CCLog("%s",tempdatat);
-    //const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
+#ifndef AAAAFOROSMACHINE
+
     CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdatat);
+#else
+        const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
+     CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
+#endif
     delete []tempdatat;
     tempdatat=NULL;
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
@@ -373,9 +381,14 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
     char *datat=(char *)obj;
-    //const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
+#ifndef  AAAAFOROSMACHINE
+        CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+#else
+    const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
+        CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+#endif
     CCLog("%s",datat);
-    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+
     delete [] datat;
     datat=NULL;
     if(GameTools::intForKey("code",dirct)==0)
@@ -476,12 +489,8 @@ void CGamePlayer::loadRival(int  usid,int  troops)
     str +=string(",\"troops\":")+data+"}";
     ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1",str.c_str(),callfuncO_selector(CGamePlayer::parseRival));
 #else
-    char data[20];
-    sprintf(data, "%d",usid);
-    string str=string("info={\"uid\":")+ data;
-    sprintf(data, "%d",troops);
-    str +=string(",\"troops\":")+data+"}";
-    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1",str.c_str(),callfuncO_selector(CGamePlayer::parseRival));
+    char *data=new char[5];
+    parseRival((CCObject *)data);
 
 #endif
 }
@@ -490,9 +499,12 @@ void CGamePlayer::parseRival(CCObject *object)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetFightTeam");
     char *datat=(char *)object;
-    //const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
-    CCLog("%s",datat);
-    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+#ifndef AAAAFOROSMACHINE
+   CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+#else
+    const  char *data=readFileName((resRootPath +"team.txt").c_str()).c_str();
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+#endif
     delete [] datat;
     datat=NULL;
     if(GameTools::intForKey("code",dirct)==0)

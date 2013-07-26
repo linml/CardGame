@@ -21,6 +21,34 @@
 #include "PtActionUtility.h"
 
 #define AAAAFOROSMACHINE
+struct  SSpriteStatus
+{
+    int m_iCurrHp;
+    int m_iCurrTotalHp;
+    int m_iEngry;
+};
+struct SEveryATKData
+{
+    SEveryATKData()
+    {
+        for(int i=0;i<2;i++)
+        {
+            data[i]=NULL;
+        }
+    }
+    ~SEveryATKData()
+    {
+        for(int i=0;i<2;i++)
+        {
+            if(data[i])
+            {
+                delete data[i];
+                data[i]=NULL;
+            }
+        }
+    }
+    SSpriteStatus *data[2];
+};
 
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
@@ -72,7 +100,7 @@ CFightingCardLayerScene::~CFightingCardLayerScene()
 bool CFightingCardLayerScene::init()
 {
     m_iTotalHuihe=0;
-	CCLog("CCardFightingLayerScene::init");
+    CCLog("CCardFightingLayerScene::init");
     initBggroudPng();
     PtMapUtility::addChildFromScript(this, plistPath+"zhandouui.plist");
     initText();
@@ -123,6 +151,54 @@ void CFightingCardLayerScene::animationSchudel(float t)
     {
         unschedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
         CCLog("end animation");
+    }
+}
+
+void CFightingCardLayerScene::initSetUpdateHp(int iCurrHp,int TotalHp,int currEngry,bool isLeft)
+{
+    if(isLeft)
+    {
+        char data[20];
+        sprintf(data, "HP:%d/%d",iCurrHp,TotalHp);
+        CCLabelTTF *labelTTF=(CCLabelTTF*)getChildByTag(77777);
+        labelTTF->setString(data);
+        sprintf(data, "ENGRY:%d",currEngry);
+        labelTTF=(CCLabelTTF*)getChildByTag(87777);
+        labelTTF->setString(data);
+        
+    }
+    else{
+        char data[20];
+        sprintf(data, "HP:%d/%d",iCurrHp,TotalHp);
+        CCLabelTTF *labelTTF=(CCLabelTTF*)getChildByTag(77778);
+        labelTTF->setString(data);
+        sprintf(data, "ENGRY:%d",currEngry);
+        labelTTF=(CCLabelTTF*)getChildByTag(87778);
+        labelTTF->setString(data);
+    }
+}
+
+void CFightingCardLayerScene::updateHpAndAngry()
+{
+    if(animationAndex<m_vHpAngry.size())
+    {
+        SEveryATKData *eveyatk=m_vHpAngry[animationAndex];
+        if (eveyatk) {
+            SSpriteStatus *spriteleft =eveyatk->data[0];
+            SSpriteStatus *spriteRight=eveyatk->data[1];
+            if (spriteleft) {
+                initSetUpdateHp(spriteleft->m_iCurrHp,spriteleft->m_iCurrTotalHp,spriteleft->m_iEngry,true);
+            }
+            if (spriteRight)
+            {
+                initSetUpdateHp(spriteRight->m_iCurrHp,spriteRight->m_iCurrTotalHp,spriteRight->m_iEngry,false);
+            }
+            
+        }
+    }
+    else
+    {
+        cout<<"aaaaaaaaaaaaaaa"<<endl;
     }
 }
 
@@ -187,7 +263,7 @@ void CFightingCardLayerScene::createHero()
     {
         if( m_vMonsterHero[0])
         {
-        m_vMonsterHero[0]->setVisible(true);
+            m_vMonsterHero[0]->setVisible(true);
         }
     }
 }
@@ -203,7 +279,7 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
         if(pFightSprite)
         {
 #ifndef AAAAFOROSMACHINE
-            CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillid);            
+            CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillid);
             PtActionUtility::readSpriteActionFile(pSkilldata->effect_plist,pFightSprite,"FightCard");
             if(pMonsterSprite2)
             {
@@ -212,11 +288,13 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
 #else
             CCAction *animation=PtActionUtility::getRunActionWithActionFile("resource_cn/boss_icon_Effect.plist");
             CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonsterSprite2);
+            
             CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
+            
             CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
             pFightSprite->runAction(CCSequence::create((CCFiniteTimeAction*)animation,nd,callback,endAnimation,NULL));
 #endif
-        }   
+        }
     }
 }
 void  CFightingCardLayerScene::animationShouShang(CCNode *node,void *tag)
@@ -227,8 +305,10 @@ void  CFightingCardLayerScene::animationShouShang(CCNode *node,void *tag)
         CCSprite * spritetag=(CCSprite *)tag;
         if(spritetag)
         {
-        sprite->setPosition(spritetag->getPosition());
-        sprite->runAction(CCSequence::create(CCShow::create(),CCDelayTime::create(0.2),CCHide::create(),NULL));
+            CCMoveBy *move=CCMoveBy::create(0.1, ccp(20, 0));
+            spritetag->runAction(CCSequence::create(CCDelayTime::create(0.01),move,move->reverse(),NULL));
+            sprite->setPosition(spritetag->getPosition());
+            sprite->runAction(CCSequence::create(CCShow::create(),CCDelayTime::create(0.2),CCHide::create(),NULL));
         }
     }
     else
@@ -236,6 +316,8 @@ void  CFightingCardLayerScene::animationShouShang(CCNode *node,void *tag)
         CCSprite *sprite=CCSprite ::create((g_mapImagesPath+"fighting/hiten_1.png").c_str());
         addChild(sprite,10,30001);
         CCSprite * spritetag=(CCSprite *)tag;
+        CCMoveBy *move=CCMoveBy::create(0.1, ccp(20, 0));
+         spritetag->runAction(CCSequence::create(CCDelayTime::create(0.01),move,move->reverse(),NULL));
         sprite->setPosition(spritetag->getPosition());
         sprite->runAction(CCSequence::create(CCShow::create(),CCDelayTime::create(0.2),CCHide::create(),NULL));
     }
@@ -267,6 +349,8 @@ void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fight
 void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnimation)
 {
     CCLog("animationSwf");
+    
+    updateHpAndAngry();
     switch (fightAnimation->m_enAtkFightIndex)
     {
         case EN_ATKFIGHT_INDEX_LEFT_LORD:
@@ -387,17 +471,40 @@ void CFightingCardLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goI
 
 void CFightingCardLayerScene::logicFighting()
 {
+    SEveryATKData *pEveryAtk=NULL;;
+    if (m_vFightingCard[m_iFightCardIndex]) {
+        pEveryAtk=new SEveryATKData;
+        pEveryAtk->data[0]=new SSpriteStatus;
+        pEveryAtk->data[0]->m_iCurrHp=m_vFightingCard[m_iFightCardIndex]->m_iCurrHp;
+        pEveryAtk->data[0]->m_iCurrTotalHp=m_vFightingCard[m_iFightCardIndex]->m_iHp;
+        pEveryAtk->data[0]->m_iEngry=m_vFightingCard[m_iFightCardIndex]->m_iCurrEngry;
+    }
+    if (m_vMonsterCard[m_iMonsterCardIndex])
+    {
+        if (!pEveryAtk)
+        {
+            pEveryAtk=new SEveryATKData;
+        }
+        pEveryAtk->data[1]=new SSpriteStatus;
+        pEveryAtk->data[1]->m_iCurrHp=m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp;
+        pEveryAtk->data[1]->m_iCurrTotalHp=m_vMonsterCard[m_iMonsterCardIndex]->m_iHp;
+        pEveryAtk->data[1]->m_iEngry=m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrEngry;
+    }
+    if(pEveryAtk)
+    {
+        m_vHpAngry.push_back(pEveryAtk);
+    }
     checkSendZengfu();
     m_enHuiheIndex++;
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
     {
-                      m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex],this);
+        m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard, m_iFightCardIndex,m_iMonsterCardIndex,m_vFightingCard[m_iFightCardIndex],this);
         
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
     {
-       
-                m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex, m_vFightingCard[4], this);
+        
+        m_friendFightLogic->logicFightGame(m_vFightingCard, m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex, m_vFightingCard[4], this);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD)
     {
@@ -405,14 +512,14 @@ void CFightingCardLayerScene::logicFighting()
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
-         
+        
         m_friendFightLogic->logicFightGame(m_vMonsterCard, m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex, m_vMonsterCard[4], this);
         
         CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
         CFightSkillManager::dealWithBuffer(m_vFightingCard[4],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_SUPPORT);
         CFightSkillManager::dealWithBuffer(m_vMonsterCard[m_iMonsterCardIndex],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_LORD);
         CFightSkillManager::dealWithBuffer(m_vMonsterCard[4],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_SUPPORT);
-
+        
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
         m_iTotalHuihe++;
         CCLog("========>%d",m_iTotalHuihe);
@@ -427,46 +534,49 @@ void CFightingCardLayerScene::logicFighting()
 void CFightingCardLayerScene::showHp(int leftHp,int RightHp)
 {
     cout<<"left hp:"<<leftHp<<"Right hp:"<<RightHp;
-    int hpValue=leftHp;
-    if(hpValue==0)
-    {
-        return;
-    }
-    CCPoint point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5-200),(CCDirector::sharedDirector()->getWinSize().height*0.5));
-    CCLabelTTF *labelTTF=(CCLabelTTF *)getChildByTag(30002);
+    CCPoint point;
+    CCLabelTTF *labelTTF=NULL;
     char data[20];
-    sprintf(data, "%d",hpValue*(-1));
-    labelTTF->setString(data);
-    labelTTF->setVisible(true);
-    if(hpValue>0)
+    int hpValue=leftHp;
+    if(hpValue!=0)
     {
-        labelTTF->setPosition(ccp(point.x,point.y+100));
-        labelTTF->runAction(CCSequence::create(CCMoveBy::create(0.2f,CCPoint(0, -100)),CCHide::create(),NULL));
-    }
-    else
-    {
-        labelTTF->setPosition(ccp(point.x,point.y));
-        labelTTF->runAction(CCSequence::create(CCMoveBy::create(0.2f,CCPoint(0, 100)),CCHide::create(),NULL));
+        
+        CCPoint point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5-200),(CCDirector::sharedDirector()->getWinSize().height*0.5));
+        CCLabelTTF *labelTTF=(CCLabelTTF *)getChildByTag(30002);
+        
+        sprintf(data, "%d",hpValue*(-1));
+        labelTTF->setString(data);
+        labelTTF->setVisible(true);
+        if(hpValue>0)
+        {
+            labelTTF->setPosition(ccp(point.x,point.y+100));
+            labelTTF->runAction(CCSequence::create(CCMoveBy::create(0.2f,CCPoint(0, -100)),CCHide::create(),NULL));
+        }
+        else
+        {
+            labelTTF->setPosition(ccp(point.x,point.y));
+            labelTTF->runAction(CCSequence::create(CCMoveBy::create(0.2f,CCPoint(0, 100)),CCHide::create(),NULL));
+        }
     }
     hpValue=RightHp;
-    if(hpValue==0)
+    if(hpValue!=0)
     {
-        return;
-    }
-    point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5+200),(CCDirector::sharedDirector()->getWinSize().height*0.5));
-    labelTTF=(CCLabelTTF *)getChildByTag(30003);
-    sprintf(data, "%d",hpValue*(-1));
-    labelTTF->setString(data);
-    labelTTF->setVisible(true);
-    if(hpValue>0)
-    {
-        labelTTF->setPosition(ccp(point.x,point.y+100));
-        labelTTF->runAction(CCSequence::create(CCMoveBy::create(0.2f,CCPoint(0, -100)),CCHide::create(),NULL));
-    }
-    else
-    {
-        labelTTF->setPosition(ccp(point.x,point.y));
-        labelTTF->runAction(CCSequence::create(CCMoveBy::create(0.2f,CCPoint(0, 100)),CCHide::create(),NULL));
+        
+        point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5+200),(CCDirector::sharedDirector()->getWinSize().height*0.5));
+        labelTTF=(CCLabelTTF *)getChildByTag(30003);
+        sprintf(data, "%d",hpValue*(-1));
+        labelTTF->setString(data);
+        labelTTF->setVisible(true);
+        if(hpValue>0)
+        {
+            labelTTF->setPosition(ccp(point.x,point.y+100));
+            labelTTF->runAction(CCSequence::create(CCMoveBy::create(0.2f,CCPoint(0, -100)),CCHide::create(),NULL));
+        }
+        else
+        {
+            labelTTF->setPosition(ccp(point.x,point.y));
+            labelTTF->runAction(CCSequence::create(CCMoveBy::create(0.2f,CCPoint(0, 100)),CCHide::create(),NULL));
+        }
     }
 }
 
@@ -505,15 +615,15 @@ void CFightingCardLayerScene::checkSendZengfu()
 {
     if(!m_vFightingCard[m_iFightCardIndex]->isSendZengfu) //判断是否触发了 增幅技能
     {
-      m_vFightingCard[m_iFightCardIndex]->isSendZengfu=true;
-       g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_LEFT_LORD);
- 
+        m_vFightingCard[m_iFightCardIndex]->isSendZengfu=true;
+        g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_LEFT_LORD);
+        
     }
     if(!m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu)//判断是否触发了 增幅技能
     {
         m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu=true;
         g_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex],m_vMonsterCard,m_vMonsterCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_RIGHT_LORD);
-       //append增幅技能
+        //append增幅技能
     }
 }
 
@@ -726,7 +836,7 @@ void CFightingCardLayerScene::textSkillInfo(CAnimationSpriteGameFight *fight)
     if (getChildByTag(20003)) {
         CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(20003);
         char data[20];
-        sprintf(data,"发送技能%d",fight->m_iSKillId);//, 
+        sprintf(data,"发送技能%d",fight->m_iSKillId);//,
         labelttf->setString(data);
         labelttf->runAction(CCSequence::create(CCFadeIn::create(0.5),CCFadeOut::create(0.5),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd)),NULL));
         

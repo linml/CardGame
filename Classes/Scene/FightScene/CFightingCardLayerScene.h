@@ -24,6 +24,7 @@ enum EN_GAMEFIGHTSTATUS {
 };
 
 class CAnimationSpriteGameFight;
+class SEveryATKData;
 
 class CFightingCardLayerScene :public CCLayer
 {
@@ -59,10 +60,12 @@ private:
     void createHero();
     bool initHitText();
     void yinCangRenWu(vector<CCSprite *>vsprite);
+    void initSetUpdateHp(int iCurrHp,int TotalHp,int currEngry,bool isLeft);
     
     // 创建显示文本比如，怒气，Hp信息;
     void createEngryText();
     void createHpText();
+    void updateHpAndAngry();
 
     
     //
@@ -92,6 +95,7 @@ public:
     vector<CAnimationSpriteGameFight *>m_vAnimation;
     vector<CCSprite *>m_vFightHero;
     vector<CCSprite *>m_vMonsterHero;
+    vector<SEveryATKData*>m_vHpAngry;
 private:
    CFightingCardLayerLogic *m_friendFightLogic;
    friend class CFightingCardLayerLogic ;

@@ -93,7 +93,7 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
     if( it!=m_vCostFuncManager.end())
     {
         pbFunc func=it->second;
-        if((*func)(pCard))   //判断单体的条件是否满足。 
+        if((*func)(pCard,MonsterCard[MonsterIndex],pSkill))   //判断单体的条件是否满足。
         {
             int currHp=FightCard[FightIndex]->m_iCurrHp;
             int engry=FightCard[FightIndex]->m_iCurrEngry;
@@ -185,55 +185,55 @@ void CFightSkillManager::logicSkill_4(CFightCard *pCard,vector<CFightCard *>Figh
 }
 
 
-bool CFightSkillManager::costFunc_0(CFightCard *pCard)
+int CFightSkillManager::costFunc_0(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
     
     return true;
 }
 
-bool CFightSkillManager::costFunc_1(CFightCard *pCard)
+int CFightSkillManager::costFunc_1(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
-    if(pCard->m_iCurrEngry>=100)
+    if(pCard->m_iCurrEngry>=pData->cost_parameter_1)
     {
-         pCard->m_iCurrEngry-=100;
+         pCard->m_iCurrEngry -=pData->cost_parameter_1;
         //发动怒气技能 并影响起伤害值得
-        return true;
+        return 1;
     }
-    return false;
+    return 0;
 }
 
-bool CFightSkillManager::costFunc_2(CFightCard *pCard)
+int CFightSkillManager::costFunc_2(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
         return   false;
 }
-bool CFightSkillManager::costFunc_3(CFightCard *pCard)
+int CFightSkillManager::costFunc_3(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
     return   false;
 }
-bool CFightSkillManager::costFunc_4(CFightCard *pCard)
+int CFightSkillManager::costFunc_4(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
     return   false;
 }
-bool CFightSkillManager::costFunc_5(CFightCard *pCard)
+int CFightSkillManager::costFunc_5(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
         return false;
 }
-bool CFightSkillManager::costFunc_6(CFightCard *pCard)
+int CFightSkillManager::costFunc_6(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
         return false;
 }
-bool CFightSkillManager::costFunc_7(CFightCard *pCard)
+int CFightSkillManager::costFunc_7(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
         return false;
 }
 
-bool CFightSkillManager::costFunc_8(CFightCard *pCard)
+int CFightSkillManager::costFunc_8(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
     return false;
     
 }
 
-bool CFightSkillManager::costFunc_9(CFightCard *pCard)
+int CFightSkillManager::costFunc_9(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
     return false;
 }
@@ -526,7 +526,8 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                     if (pCardBuffer->m_iBuff_effectTimes>0)
                     {
                         pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
-                        pFightCard->m_iCurrHp+=pCardBuffer->m_iValue;
+                        pFightCard->m_iCurrEngry += pCardBuffer->m_iValue;
+                        CCLog("=======>>>>%f",pCardBuffer->m_iValue);
                         appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
 
                         
