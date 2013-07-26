@@ -11,6 +11,7 @@
 
 #include <iostream>
 using namespace  std;
+#include "CCard.h"
 #include "cocos2d.h"
 using namespace cocos2d;
 class CFightCard;
@@ -27,7 +28,9 @@ public:
     void setLive();
     CGamesCard *getCopy();
     bool getSuit(int &outSuit, int &outSequence);
-    CCard *getCardData();
+
+    CFightCard *getCardData(){ return m_pCardData;};
+
 protected:
     void setLive(CCNode *node);
     void setDead(CCNode *node);
@@ -42,7 +45,9 @@ protected:
        
 protected:
     CCLabelTTF *label;
+
     CFightCard *m_pCardData;
+
 public:
     bool isAddTexiao;   
 };

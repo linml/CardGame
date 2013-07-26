@@ -4,11 +4,18 @@ USING_NS_CC;
 USING_NS_CC_EXT;
 
 
-static bool m_bBegan = false;
-static bool m_bEnable = false;
-static bool m_bMove;
-
 static bool isMove(CCTouch *pTouch);
+
+TableView::TableView()
+{
+    m_bBegan = false;
+    m_bDecide = false;
+    m_bScroll = false;
+}
+TableView::~TableView()
+{
+    
+}
 
 TableView* TableView::create(CCTableViewDataSource* dataSource, CCSize size)
 {
@@ -29,12 +36,8 @@ TableView* TableView::create(cocos2d::extension::CCTableViewDataSource *dataSour
 
 bool TableView::ccTouchDelayBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-    m_bBegan = true;
-    m_bEnable = false;
-    m_bMove = false;
-    m_bTouchDragSelect = false;
-   
     
+    m_cPointBegin = pTouch->getLocation();
     if (!this->isVisible())
     {
         return false;
@@ -42,113 +45,146 @@ bool TableView::ccTouchDelayBegan(CCTouch *pTouch, CCEvent *pEvent)
     CCRect frame;
     CCPoint frameOriginal = this->getParent()->convertToWorldSpace(this->getPosition());
     frame = CCRectMake(frameOriginal.x, frameOriginal.y, m_tViewSize.width, m_tViewSize.height);
-    if (frame.containsPoint(pTouch->getLocation()))
+    
+    //dispatcher does not know about clipping. reject touches outside visible bounds.
+    if (m_pTouches->count() > 2 ||
+        m_bTouchMoved          ||
+        !frame.containsPoint(m_pContainer->convertToWorldSpace(m_pContainer->convertTouchToNodeSpace(pTouch))))
     {
-        m_bDelay = true;
-        scheduleOnce(schedule_selector(TableView::timer),0.030);
-        return  true;
+        return false;
     }
-    return  false;
+
+    m_bTouchDragSelect = false;
+    
+    m_bDecide = false;
+    m_bBegan = false;
+    return true;
+  
+
     
 }
 void TableView::ccTouchDelayMove(CCTouch *pTouch, CCEvent *pEvent)
-{
-    CCPoint delta = pTouch->getDelta();
-    
-    if (!m_bMove)
+{    
+    if (m_bDecide)
     {
-        
-        
-        m_bMove = isMove(pTouch);
-        if (m_bMove)
+        if (m_bScroll)
         {
-            if (m_bDelay == false)
+            if (m_bBegan)
             {
-                
-                m_bTouchDragSelect = false;
-                m_pSelectItem = getCell(pTouch);
-                if (m_pSelectItem)
-                {
-                    CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem) ;
-                    if (touchDelegate)
-                    {
-                        m_bTouchDragSelect = touchDelegate->ccTouchBegan(pTouch, pEvent);
-                    }
-                    
-                }
-
+                CCTableView::ccTouchMoved(pTouch, pEvent);
+            }
+            else
+            {
+                CCTableView::ccTouchBegan(pTouch, pEvent);
+                m_bBegan = true;
             }
             
         }else
         {
-            return;
-        }
-    }
-    
-    
-    if (m_bDelay == false)
-    {
-        
-        if (m_bTouchDragSelect)
-        {
-            if (m_pSelectItem)
+            if (m_bBegan)
             {
-                CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem);
-                if (touchDelegate)
+                if (m_bTouchDragSelect)
                 {
-                    touchDelegate->ccTouchMoved(pTouch, pEvent);
+                    if (m_pSelectItem)
+                    {
+                        CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem);
+                        if (touchDelegate)
+                        {
+                            touchDelegate->ccTouchMoved(pTouch, pEvent);
+                        }
+                    }
+                    
                 }
+
+                return;
             }
             
+            m_bTouchDragSelect = false;
+            m_pSelectItem = getCell(pTouch);
+            if (m_pSelectItem)
+            {
+                CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem) ;
+                if (touchDelegate)
+                {
+                    m_bTouchDragSelect = touchDelegate->ccTouchBegan(pTouch, pEvent);
+                  
+                }
+                if (m_bTouchDragSelect == false)
+                {
+                    m_bScroll = true;
+                    CCTableView::ccTouchBegan(pTouch, pEvent);
+                }
+                
+                m_bBegan = true;
+                
+            }else
+            {
+                m_bScroll = true;
+                CCTableView::ccTouchBegan(pTouch, pEvent);
+                m_bBegan = true;
+            }
+
         }
-    }
-    
-    
-    
-    if (!m_bTouchDragSelect &&m_bBegan)
+    }else
     {
-        
-        m_bBegan = false;
-        CCLog("1");
-        m_bEnable =  CCTableView::ccTouchBegan(pTouch, pEvent);
+        CCPoint pointEnd = pTouch->getLocation();
+        CCPoint p = pTouch->getDelta();
+        if (ccpDistance(m_cPointBegin, pointEnd) < 1)
+        {
+            return;
+        }else
+        {
+            m_bDecide = true;
+            float x = fabs(m_cPointBegin.x-pointEnd.x);
+            float y = fabs(m_cPointBegin.y-pointEnd.y);
+            if (y*0.75 > x)
+            {
+                m_bScroll = true;
+            }else
+            {
+                m_bScroll = false;
+            }
+           
+        }
+        CCLog("p: x, y: %f, %f", p.x, p.y);
     }
-    if (m_bEnable)
-    {
-        CCLog("2");
-        CCScrollView::ccTouchMoved(pTouch, pEvent);
-    }
-    
+       
 }
 void TableView::ccTouchDelayEnd(CCTouch *pTouch, CCEvent *pEvent)
 {
-    if (m_bTouchDragSelect)
+    
+    if (m_bBegan && m_bDecide)
     {
-        if (m_pSelectItem)
+        if (m_bScroll)
         {
-            CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem) ;
-            if (touchDelegate)
+            CCTableView::ccTouchEnded(pTouch, pEvent);
+        }else
+        {
+            if (m_bTouchDragSelect)
             {
-                touchDelegate->ccTouchEnded(pTouch, pEvent);
+                if (m_pSelectItem)
+                {
+                    CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem);
+                    if (touchDelegate)
+                    {
+                        touchDelegate->ccTouchEnded(pTouch, pEvent);
+                    }
+                }
+                
             }
+
         }
-      //  return;
+        
+    }else
+    {
         
     }
-    
-    
-    if (m_bEnable)
-    {
-        CCLog("3");
-        CCTableView::ccTouchEnded(pTouch, pEvent);
-    }
-    
-
 
     
 }
 void TableView::ccTouchDelayCancel(CCTouch *pTouch, CCEvent *pEvent)
 {
-    
+    ccTouchEnded(pTouch, pEvent);
 }
 
 
@@ -171,6 +207,7 @@ bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     
     if (getDirection() == kCCScrollViewDirectionVertical)
     {
+        bool flag = false;
         m_bTouchDragSelect = false;
         m_pSelectItem = getCell(pTouch);
         if (m_pSelectItem)
@@ -182,11 +219,10 @@ bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
             }
             
         }
-        if (m_bTouchDragSelect)
-        {
-            return m_bTouchDragSelect;
-        }
-
+        
+        flag = CCTableView::ccTouchBegan(pTouch, pEvent);
+        flag = flag | m_bTouchDragSelect ;
+        return flag;
     }
     return CCTableView::ccTouchBegan(pTouch, pEvent);
 }
@@ -212,8 +248,9 @@ void TableView::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
                 }
             }
             
-            return;
         }
+        CCScrollView::ccTouchMoved(pTouch, pEvent);
+        return;
     }
     
     if (getViewSize().height > m_pContainer->getContentSize().height)
@@ -244,9 +281,9 @@ void TableView::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
                     touchDelegate->ccTouchEnded(pTouch, pEvent);
                 }
             }
-            
-            return;
         }
+        CCTableView::ccTouchEnded(pTouch, pEvent);
+        return;
 
     }
     CCTableView::ccTouchEnded(pTouch, pEvent);

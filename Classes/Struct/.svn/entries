@@ -1,15 +1,15 @@
 10
 
 dir
-793
+797
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-25T07:36:09.997313Z
-772
-merlin
+2013-07-26T08:18:25.329843Z
+797
+phileas
 
 
 
@@ -25,6 +25,9 @@ merlin
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+CardKind
+dir
 
 CGamePlayerStruct.cpp
 file
@@ -60,8 +63,39 @@ merlin
 
 118
 
-CardKind
-dir
+CPtLevelConfigData.cpp
+file
+
+
+
+
+2013-07-26T08:20:39.000000Z
+92590c9bd0167bd9b33134f70976d777
+2013-07-26T08:18:25.329843Z
+797
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4043
 
 CGameLogic.h
 file
@@ -165,6 +199,40 @@ merlin
 
 420
 
+CPtLevelConfigData.h
+file
+
+
+
+
+2013-07-26T08:20:39.000000Z
+978fd7d28d8de5f64938af520cb7ebf5
+2013-07-26T08:18:25.329843Z
+797
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1490
+
 CCardBufferStatus.cpp
 file
 
@@ -239,33 +307,19 @@ file
 
 
 
-2013-07-25T03:27:14.000000Z
-e32052b6c5a7ec8dbcc6caa11d0ca307
-2013-07-25T07:36:09.997313Z
-772
-merlin
+
+a018ea0434b18e3a3b79dbb41945e8c7
+2013-07-26T08:18:25.329843Z
+797
+phileas
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2996
+CCard.cpp.r793
+CCard.cpp.r797
+CCard.cpp.mine
 
 CCardBufferStatus.h
 file
@@ -301,40 +355,6 @@ merlin
 
 1177
 
-CSkillData.h
-file
-
-
-
-
-2013-07-23T09:31:11.000000Z
-8225918f2e37b227da28cd2a36674ca6
-2013-07-24T05:46:28.813696Z
-752
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2365
-
 CConfigResourceLoad.cpp
 file
 
@@ -369,16 +389,16 @@ merlin
 
 8203
 
-CCard.h
+CSkillData.h
 file
 
 
 
 
-2013-07-25T05:59:39.000000Z
-17d8babe2770477154d9d4bafdd5a7ac
-2013-07-25T07:36:09.997313Z
-772
+2013-07-23T09:31:11.000000Z
+8225918f2e37b227da28cd2a36674ca6
+2013-07-24T05:46:28.813696Z
+752
 merlin
 
 
@@ -401,10 +421,30 @@ merlin
 
 
 
-2668
+2365
 
 Craftsmanship
 dir
+
+CCard.h
+file
+
+
+
+
+
+b7f92115c9146b66d4e260fd5ccea5dc
+2013-07-26T08:18:25.329843Z
+797
+phileas
+
+
+
+
+
+CCard.h.r793
+CCard.h.r797
+CCard.h.mine
 
 gameStruct.h
 file
@@ -514,33 +554,11 @@ file
 
 
 
-2013-07-25T02:14:02.000000Z
-c4d7a3ee7628fc42372828f2ac63c4d3
-2013-07-25T07:36:09.997313Z
-772
-merlin
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-16519
+eea3720b97d5b651de9971fe0e9a3ebe
+2013-07-26T08:18:25.329843Z
+797
+phileas
 
 CGameLogic.cpp
 file

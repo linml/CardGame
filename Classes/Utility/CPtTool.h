@@ -25,6 +25,14 @@ namespace CPtTool
     void  insertMoveNode(CCNode * array[], CCNode *parent, CCNode *inCard, int inCount);
     bool isInNode(CCNode *node, CCPoint & point);
     bool isInNode(CCNode *node,CCTouch *pTouch);
+    
+    bool sameColor(const int suit[],  const int len);
+    int getSuit(const int sequence[], const int len);
+    int getSuitResult(const int suit[], const int sequence[], const int len);
+    
+    int calulate(int card_base_value, int config_value, int star, int correct_value_1, int star_parameter, int correct_value_2,int correct_parameter);
+    int calSupportValue(int base_value, int currentValue, float ractor);
 };
+
 
 #endif

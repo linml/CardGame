@@ -8,6 +8,8 @@
 
 #include "CCard.h"
 #include "CCardBufferStatus.h"
+#include "gameConfig.h"
+#include "CPtTool.h"
 
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
@@ -44,27 +46,90 @@ CCard::CCard()
     
     
 }
+
 CFightCard::CFightCard()
+{
+    init();
+}
+void CFightCard::init()
 {
     m_pCard=NULL;
     m_iCurrEngry=0;
+    m_bInBattleArray = false;
+    m_iCurrHp = 0;  //当前HP
+    m_iHp = 0;      //当前总的HP
+    m_attack = 0;   //当前按的攻击力量
+    m_defend = 0;   //当前的防御力
+    tag = -1;        //当前卡牌的tag
+    m_iCurrEngry = 0; //当前卡牌的怒气值
+    m_iEngryMax = 0 ; //当前卡牌的最大怒气值得
+    m_iMaxExp = 0;    //卡牌该等级的max exp
+    m_User_Card_ID = 0; //卡牌在卡牌背包里面的id
+    m_iCurrLevel = 1; //当前卡牌的等级
+    m_iCurrExp = 0;   //当前卡牌拥有的exp
+    isDead = false;     //卡牌是否已经死亡
+    m_iSuit = 0;
+    
+    m_nCurrentPrice =0; // 从1升级到该级别所需要的金币
+    m_nNeedExp = 0;     // 从1级升到该级别所需要的经验值
+    m_nLeadShip = 0;
 }
 
 
 CFightCard::CFightCard(CCard *card,int level)
 {
     tag=-1;
+
+    init();
+
     m_iSuit=1;
+
     if(card)
     {
-        
         m_pCard=card;
+
         this->m_iCurrHp=m_pCard->m_icardhp;
         m_iHp=m_iCurrHp;
         m_attack=card->m_icard_attack;
         m_defend=card->m_icard_defend;
+
         isDead=false;
+
+        if (level == 1)
+        {
+            // read card.plist data:
+            m_iCurrHp=   m_pCard->m_icardhp;
+            m_iHp=m_iCurrHp;
+            m_attack=card->m_icard_attack;
+            m_defend=card->m_icard_defend;
+            m_nCurrentPrice =0;
+            m_nNeedExp = 0;
+            m_nLeadShip = card->m_icard_leadership;
+        }
+        else
+        {
+            // 累加的
+            CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
+            levelConfig->update(level);
+            
+            for (int i= 2; i <= level; i++)
+            {
+                updateCard(level);
+                CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
+            }
+            m_nCurrentPrice = levelConfig->getConin();
+            m_nNeedExp = levelConfig->getExp();
+            // test:
+            m_nLeadShip = card->m_icard_leadership;
+            
+        }
+        CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
+        
+        m_iMaxExp = SingleLevleConfigData::instance()->getLevelExp(level+1);
+        isDead=false;
+
         m_iSuit=card->m_icard_suit;
+
     }
     else
     {
@@ -95,10 +160,119 @@ bool CFightCard::isHaveBuffer(int prameid)
     return false;
 }
 
+
+void CFightCard::updateCard(int level)
+{
+    if (m_iCurrLevel >= level)
+    {
+        return;
+    }
+    
+    if(level > 1)
+    {
+        CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
+        levelConfig->update(level);
+        m_iHp +=  CPtTool::calulate(m_pCard->m_icardhp,levelConfig->getHp(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+                                    levelConfig->getCorrectTow(), levelConfig->getStarOne());/// m_pCard->m_icardhp;
+        
+        m_attack +=CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+                                   levelConfig->getCorrectTow(), levelConfig->getStarOne());
+        m_defend +=CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+                                   levelConfig->getCorrectTow(), levelConfig->getStarOne());
+        
+        m_nCurrentPrice = levelConfig->getConin();
+        m_nNeedExp = levelConfig->getExp();
+        m_iMaxExp = levelConfig->getLevelExp(level+1);
+    }
+    m_iCurrHp=m_iHp;
+
+}
 CFightCard::~CFightCard()
 {
     
 }
+
+
+/*
+ * @param type: 1: attak, 2: defense, 3: hp
+ */
+int CFightCard:: getAddValue(int level, int type)
+{
+    if (level == 1)
+    {
+        return 0;
+    }
+    
+    CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
+    levelConfig->update(level);
+    int result = 0;
+   
+    switch (type)
+    {
+        case 3:
+            result = CPtTool::calulate(m_pCard->m_icardhp, levelConfig->getHp(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+                                     levelConfig->getCorrectTow(), levelConfig->getStarOne());
+            break;
+            
+        case 1:
+            result =  CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+                                      levelConfig->getCorrectTow(), levelConfig->getStarOne());
+            break;
+        case 2:
+            result = CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+                                       levelConfig->getCorrectTow(), levelConfig->getStarOne());
+            break;
+        default:
+            break;
+    }
+   
+    return   result;
+}
+
+/*
+ * @param:  1: exp
+ */
+int CFightCard::getSupportValue(int type)
+{
+    int result = 0;
+   
+    switch (type)
+    {
+        case 1:
+            result = CPtTool::calSupportValue(m_pCard->m_icard_exp,m_iCurrExp, 0.2);
+            break;
+        default:
+            break;
+    }
+    return result;
+}
+
+/*
+ * @param type: 1: money, 2: exp
+ */
+int CFightCard::getNeedValue(int level, int type)
+{
+    int result = 0;
+    if (level > m_iCurrLevel);
+    {
+        CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
+        levelConfig->update(level);
+        if (type == 1)
+        {
+            result =  levelConfig->getConin()-m_nCurrentPrice;
+        }else if(type == 2)
+        {
+            result = levelConfig->getExp()-m_nNeedExp;
+        }
+
+    }
+  
+    
+  
+    return result;
+    
+}
+
 
 void CFightCard::needRebackAtkAndBuf(CCardBufferStatus *buffer)
 {
@@ -146,3 +320,4 @@ void CFightCard::appendBuffer(CCardBufferStatus *buffer)
     }
     
 }
+

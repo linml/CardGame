@@ -19,6 +19,8 @@ public:
     static TableView*  create(CCTableViewDataSource* dataSource, CCSize size);
     
 public:
+    TableView();
+    virtual ~TableView();
 public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
@@ -44,6 +46,11 @@ protected:
     CCNode * m_pSelectItem;
     bool m_bTouchDragSelect;
     bool m_bDelay;
+    bool m_bBegan;
+    bool m_bDecide;
+    bool m_bScroll;
+    // variable:
+    CCPoint m_cPointBegin;
 protected:
     void beforeDraw();
     void afterDraw();

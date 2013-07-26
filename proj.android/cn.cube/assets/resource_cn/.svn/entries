@@ -1,15 +1,15 @@
 10
 
 dir
-793
+797
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-26T07:33:49.246543Z
-793
-wood
+2013-07-26T08:18:25.329843Z
+797
+phileas
 
 
 
@@ -26,12 +26,46 @@ wood
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
-boss_icon_Effect.plist
+card_level_up_config.plist
 file
 
 
 
 
+2013-07-26T08:29:06.000000Z
+ae31e56ba13471bd2b699ede438ea1ef
+2013-07-26T08:18:25.329843Z
+797
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5459
+
+boss_icon_Effect.plist
+file
+
+
+
+delete
 2013-07-26T06:53:03.000000Z
 90cccffbc44f8f4b51063df0fbb542f7
 2013-07-26T06:42:58.666561Z
@@ -199,6 +233,29 @@ merlin
 
 2401
 
+boss_icon_Effect_l.plist
+file
+
+
+
+add
+
+90cccffbc44f8f4b51063df0fbb542f7
+
+
+
+
+
+
+
+
+
+
+
+copied
+svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/boss_icon_Effect.plist
+797
+
 cardbg.txt
 file
 
@@ -245,11 +302,11 @@ file
 
 
 
-2013-07-24T05:44:32.000000Z
-542f3dc1458deea1c364b5ffff38ae9d
-2013-07-17T02:37:53.355089Z
-707
-merlin
+2013-07-26T08:29:06.000000Z
+edd4855afd3ae033e023fb576de5ca11
+2013-07-26T08:18:25.329843Z
+797
+phileas
 
 
 
@@ -271,7 +328,7 @@ merlin
 
 
 
-111578
+111563
 
 boss_icon_Effect_r.plist
 file

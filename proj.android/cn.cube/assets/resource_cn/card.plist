@@ -41,7 +41,7 @@
 		<key>card_tips</key>
 		<string>card_tips_001</string>
 		<key>card_resources</key>
-		<string>card_res_001</string>
+		<string>peo.png</string>
 		<key>card_head</key>
 		<string>card_head_001</string>
 		<key>card_ground</key>
@@ -62,7 +62,7 @@
 		<key>card_stirps</key>
 		<string>1</string>
 		<key>card_suit</key>
-		<string>3</string>
+		<string>0</string>
 		<key>card_leadership</key>
 		<string>6</string>
 		<key>card_exp</key>
@@ -88,7 +88,7 @@
 		<key>card_tips</key>
 		<string>card_tips_002</string>
 		<key>card_resources</key>
-		<string>card_res_002</string>
+		<string>peo.png</string>
 		<key>card_head</key>
 		<string>card_head_002</string>
 		<key>card_ground</key>
@@ -135,7 +135,7 @@
 		<key>card_tips</key>
 		<string>card_tips_003</string>
 		<key>card_resources</key>
-		<string>card_res_003</string>
+		<string>peo1.png</string>
 		<key>card_head</key>
 		<string>card_head_003</string>
 		<key>card_ground</key>
@@ -156,7 +156,7 @@
 		<key>card_stirps</key>
 		<string>1</string>
 		<key>card_suit</key>
-		<string>51</string>
+		<string>0</string>
 		<key>card_leadership</key>
 		<string>14</string>
 		<key>card_exp</key>

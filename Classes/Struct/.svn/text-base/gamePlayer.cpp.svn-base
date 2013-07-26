@@ -280,13 +280,24 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
         int card_id=GameTools::intForKey("card_id", detail);
         int cardexp=GameTools::intForKey("exp", detail);
         int card_item_id=GameTools::intForKey("card_item_id", detail);
+        int card_suit = GameTools::intForKey("suit", detail);
         CFightCard *fightCard=new CFightCard(m_hashmapAllCard[card_id],level);
         fightCard->m_iCurrExp=cardexp;
         fightCard->m_User_Card_ID=card_item_id;
+        fightCard->m_iSuit = card_suit;
+        fightCard->m_iCurrLevel = level;
+        //get attak, defense, hp value from sever:
+        
+     
+//        fightCard->m_iHp = GameTools::intForKey("hp", detail);
+//        fightCard->m_attack = GameTools::intForKey("attack", detail);
+//        fightCard->m_defend = GameTools::intForKey("defend", detail);
+//        fightCard->m_iCurrHp = fightCard->m_iHp;
         m_vCardBag.push_back(fightCard);
     }
     
     isLoadCardBagEnd=true;
+
 }
 
 void CGamePlayer::clearServerCardBag()

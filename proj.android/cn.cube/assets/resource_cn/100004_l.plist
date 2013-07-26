@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>actions</key>
+	<array>
+		<string>RotateBy(0.5,45)</string>
+		<string>Reverse(Item 0)</string>
+		<string>Delay(0.5)</string>
+		<string>MoveBy(1.2,{100,0})</string>
+		<string>Sequence(Item 0,Item 2,Item 1,Item 2)</string>
+		<string>Spawn(Item 4,Item 3)</string>
+		<string>MoveBy(0.2,{0,100})</string>
+		<string>RepeatForever(Item 3)</string>
+		<string>Repeat(Item 5,5)</string>
+		<string>RotateBy(0.5,360)</string>
+		<string>Repeat(Item 10,1)</string>
+		<string>Blink(1.0,1.0);</string>
+		<string>ScaleTo(0.2,1.0)</string>
+		<string>ScaleTo(0.2,0.5)</string>
+		<string>Sequence(Item 13,Item 12,Item 15,Item 2,Item 16)</string>
+		<string>Animate(wine/wine.act)</string>
+		<string>Removetag(100)</string>
+	</array>
+	<key>runAction</key>
+	<string>Item 14</string>
+</dict>
+</plist>

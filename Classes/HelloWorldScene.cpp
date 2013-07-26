@@ -1,13 +1,21 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "gameConfig.h"
+
+#include "CCardSettingScene.h"
+
 #include "PtActionUtility.h"
 #include "Utility.h"
 #include "HBActionScript.h"
 #include "HBActionAni.h"
 
+
 using namespace cocos2d;
 using namespace CocosDenshion;
+
+
+
+static void test(CCNode *pSender);
 static bool compareScores(const void* p1, const void* p2)
 {
     HBActionScript* score1 = (HBActionScript*)p1;
@@ -15,6 +23,7 @@ static bool compareScores(const void* p1, const void* p2)
     //bool result = score1->getd < score2->raceTime();
     return true;
 }
+
 CCScene* HelloWorld::scene()
 {
     // 'scene' is an autorelease object
@@ -45,9 +54,9 @@ bool HelloWorld::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create((resRootPath+
-                                        "img/CloseNormal.png").c_str(),
-                                        (resRootPath+"img/CloseSelected.png").c_str(),
+    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
+                                        "CloseNormal.png",
+                                        "CloseSelected.png",
                                         this,
                                         menu_selector(HelloWorld::menuCloseCallback) );
     pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
@@ -73,7 +82,11 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
 
+    test(this);
     // add "HelloWorld" splash screen"
+
+ //   CCSprite* pSprite = CCSprite::create("resource_cn/img/HelloWorld.png");
+
   //  CCSprite* pSprite = CCSprite::create("resource_en/img/HelloWorld.png");
 
     // position the sprite on the center of the screen
@@ -114,4 +127,12 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
+}
+
+void test(CCNode *pSender)
+{
+    
+   // CBattleArrayLayer *layer = CBattleArrayLayer::create();
+    CCardSettingScene *layer = CCardSettingScene::create();
+    pSender->addChild(layer);
 }

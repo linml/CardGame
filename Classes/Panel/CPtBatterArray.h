@@ -12,6 +12,9 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include "LayoutLayer.h"
+#include "CCard.h"
+#include "CGamesCard.h"
+#include "gamePlayer.h"
 
 #include <map>
 using namespace cocos2d;
@@ -32,20 +35,31 @@ enum CardSuitKind
 	kTongHua = 1
 };
 
-
+// define class of CPtDisPlayCard
+class CPtDisPlayCard : public CGamesCard
+{
+public:
+    static CPtDisPlayCard  *Create(CFightCard *card);
+public:
+    
+    CC_SYNTHESIZE(CGamesCard*, m_pCardPBagPointer, InCardBagPointer);
+    
+};
+// define class of CPtBattleArray
 
 class CPtBattleArray : public CCLayer
 {
 
 public: 
-	static CPtBattleArray* create(int Tag = 1);
+	static CPtBattleArray* create(vector<CFightCard *> &fightArray, const cocos2d::CCSize &size, const cocos2d::CCPoint &point,int Tag = 1 );
 public:
 	CPtBattleArray();
 	virtual	~CPtBattleArray();
 
 public:
     void initSize(const CCSize& size, const CCPoint & point);
-	bool addCard(CCNode *inCard, const int & inCardType);
+    void initBattleArrayFromServer(vector<CFightCard *> &fightArray);
+	bool addCard(CCNode *inCard, const int & inCardType, const bool &inAppendEnable = false);
 	bool removeCard(const int& inCardType);
     bool replaceCard(CCNode *inCard, const int & inCardType);
     bool isAssistantCard(CCNode *inCard , bool inRemove = false);
@@ -62,7 +76,7 @@ public:
     int  getInsertIndex();
     void updateBattleArray();
     
-    
+    void callBack(CCObject *pSender);
 public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
@@ -76,7 +90,7 @@ protected:
     void initMap();
 	void initData();
     void updateData();
-	
+	void save(vector<CFightCard *> & infightArray);
     void updateCardSuitKind();
     void updateLabel();
     bool hasInterveneCard(){ return m_pCardArray[4] == NULL ? false: true;};
@@ -92,10 +106,15 @@ protected:
     cocos2d::CCPoint m_cPositions[CARDCOUNT];
     LayoutLayer *m_cMaps;
     CCSprite * m_pSuitLogo[CARDCOUNT];
+    CCSprite * m_pSaveBtn;
+    int m_aSuitArray[CARDCOUNT];
+    int m_aSequenceArray[CARDCOUNT];
+    
 //test:
 public:
     int inTag ;
     bool m_bTouchEnable;
+    bool m_bOnClick;
     
 // getter:
     
@@ -155,7 +174,7 @@ protected:
 	CPtBattleArray * m_pCurrentBatterArray;
     
     
-    
+    CGamePlayer *gamePlayer;
 };
 
 #endif

@@ -5,7 +5,7 @@
 //  Created by phileas on 13-7-15.
 //
 //
-
+#include <vector>
 #include "CPtTool.h"
 namespace CPtTool
 {
@@ -285,6 +285,169 @@ namespace CPtTool
         }
         
         return bRet;
+    }
+    
+    bool sameColor(const int suit[],  const int len)
+    {
+        bool bRet = true;
+        for (int i = 0; i < len-1; ++i)
+        {
+            /* code */
+            if (suit[i] != suit[i+1])
+            {
+                /* code */
+                bRet = false;
+                break;
+            }
+        }
+        return bRet;
+    }
+    
+    int getSuit(const int inSequence[], const int len)
+    {
+        
+        int tmpIndex;
+        int sum = 0;
+        int suit = 0;
+        int sequence[5]= {-1};
+        if (len <= 1)
+        {
+            return suit;
+        }
+        
+        for (int i = 0; i < len; i++)
+        {
+            sequence[i] = inSequence[i];
+            sum += sequence[i];
+        }
+        
+       
+
+        for (int i = 0; i < len; ++i)
+        {
+            tmpIndex = i;
+            for (int j = i+1; j  < len; ++j)
+            {
+                if (sequence[j] < sequence[tmpIndex])
+                {
+                    /* code */
+                    tmpIndex = j;
+                }
+            }
+            int tmp = sequence[i];
+            sequence[i] = sequence[tmpIndex];
+            sequence[tmpIndex] = tmp;
+        }
+        
+       
+        if ((sum == len*(sequence[0]+sequence[len-1])/2) && ((sequence[1] - sequence[0]) == 1) && len == 5)
+        {
+            /* code */
+            return 5;
+        }
+        
+        int count[2]={1,1};
+        int index = 0;
+        for (int i = 1; i < len; i++)
+        {
+            if (sequence[i-1] == sequence[i])
+            {
+                count[index]++;
+            }else
+            {
+                if (count[index] != 1)
+                {
+                    index++;
+                }
+            }
+        }
+        if (sequence[0]==sequence[len-1])
+        {
+            count[0]++;
+        }
+        
+        int allcount = count[0] + count[1];
+        switch (allcount)
+        {
+            case 3:
+                //对子
+                suit = 1;
+                break;
+            case 4:
+                if (count[0] == 2)
+                {
+                    suit = 2;
+                    // 两对
+                }else
+                {
+                    suit = 3;
+                    // 三条
+                }
+                break;
+            case 5:
+                if (count[0]==2 || count[1]==2)
+                {
+                    suit = 7;
+                    //葫芦
+                }else
+                {
+                    suit =6;
+                    //四条
+                }
+                break;
+            case 6:
+                // 五条
+                suit = 9;
+                break;
+            default:
+                suit = 0;
+                break;
+        }
+        
+        return suit;
+    }
+
+    int getSuitResult(const int suit[], const int sequence[], const int len)
+    {
+        if (len == 1)
+        {
+            return 0;
+        }
+        else
+        {
+            int tmp = getSuit(sequence, len);
+            if (len == 5)
+            {
+                bool flag = sameColor(suit, len);
+                if (flag)
+                {
+                    if (tmp == 5)
+                    {
+                        return 8;
+                    }else if(tmp == 9 || tmp == 7 || tmp == 6)
+                    {
+                        return  tmp;
+                    }else
+                    {
+                        return 4;
+                    }
+                }
+
+            }
+            return tmp;
+
+           
+        }
+    }
+    
+    int calulate(int card_base_value, int config_value, int star, int correct_value_1, int star_parameter, int correct_value_2,int correct_parameter)
+    {
+        return (card_base_value+ config_value*(star+correct_value_1)*star_parameter+ correct_value_2)*correct_parameter;
+    };
+    
+    int calSupportValue(int base_value,int currentValue, float ractor)
+    {
+        return (base_value+ currentValue*ractor);
     }
 
 };

@@ -3,7 +3,7 @@
     <key>spriteFileName</key>
     <string>zhenxing</string>
     <key>imagePath</key>
-    <string>zhenxing.png</string>
+    <string>../../../../RTX/Wood_Wu/zhenxing 1/zhenxing.png</string>
     <key>clipData</key>
     <dict>
         <key>01_03.png</key>

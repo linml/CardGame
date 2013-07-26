@@ -64,6 +64,7 @@ bool CExplorationLayer::dealGotoRoom(CCSprite * touchSprite,int touch_tag)
 //        label->setString(data);
 //    }
     return true;
+
 }
 
 
@@ -92,7 +93,9 @@ bool CExplorationLayer::initWithMapFile(const char *fileName)
 		PtMapUtility::addChildFromScript(this,mapFileName.c_str());
 		PtMapUtility::addTouchRectFromScript(mapFileName.c_str(), this, &vTouchMapRect);
         char data[40];
+
 //        sprintf(data, "dangqian:{%d,%d,%d}",SinglePlayer::instance()->m_stcCurrenPos.x,SinglePlayer::instance()->m_stcCurrenPos.y,SinglePlayer::instance()->m_stcCurrenPos.z);
+
         CCLabelTTF *labelroom=CCLabelTTF::create(data,"Arial",25);
         labelroom->setPosition(ccp(100,600));
         labelroom->setColor(ccc3(255, 0, 0));

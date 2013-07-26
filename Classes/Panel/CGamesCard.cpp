@@ -33,7 +33,9 @@ CGamesCard::~CGamesCard()
 
 }
 
+
 CGamesCard  *CGamesCard::Create(CFightCard *card)
+
 {
     CGamesCard *cardSprite=new CGamesCard();
     if(cardSprite ==NULL|| !cardSprite->initCreate(card))
@@ -45,10 +47,7 @@ CGamesCard  *CGamesCard::Create(CFightCard *card)
     return cardSprite;
 }
 
-CCard *CGamesCard::getCardData()
-{
-     return m_pCardData->m_pCard;
-}
+
 
 CGamesCard * CGamesCard::getCopy()
 {
@@ -420,6 +419,7 @@ bool CGamesCard::initCreate(CFightCard *card)
     createSuit(card->m_iSuit);
     createStirps(card->m_pCard->m_icard_stirps);
     createCardName(card->m_pCard->m_scard_name.c_str());
-    createData(card->m_pCard->m_icard_attack, card->m_pCard->m_icardhp, card->m_pCard->m_icard_leadership, card->m_pCard->m_icard_defend);
+    createData(card->m_attack, card->m_iHp, card->m_pCard->m_icard_leadership, card->m_defend);
+
     return true;
 }

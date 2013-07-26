@@ -13,8 +13,10 @@
 
 #include <string.h>
 #include "cocos2d.h"
+#include "CPtLevelConfigData.h"
 #include "CCardBufferStatus.h"
 using namespace std;
+using namespace cocos2d;
 class CCard
 {
 public:
@@ -42,9 +44,11 @@ public:
     string m_scard_head;  //头像
     string m_scard_ground; //
     string m_scard_role;
+    
 };
 //FIGHTING CARD
-class  CFightCard {
+class  CFightCard
+{
 public:
     CFightCard();
     CFightCard(CCard *card,int level=1);
@@ -54,9 +58,16 @@ private:
     void init();
 public:
     void initFighting();
+
+    void updateCard(int level);
+    int  getAddValue(int level, int type);
+    int  getNeedValue(int level, int type);
+    int  getSupportValue(int type);
+
     void appendBuffer(CCardBufferStatus *buffer);
     void needRebackAtkAndBuf(CCardBufferStatus *buffer);
     bool isHaveBuffer(int prameid);
+
 public:
     int m_iCurrHp;  //当前HP
     int m_iHp;      //当前总的HP
@@ -70,14 +81,32 @@ public:
     int m_iCurrLevel; //当前卡牌的等级
     int m_iCurrExp;   //当前卡牌拥有的exp
     bool isDead;     //卡牌是否已经死亡
+
+    
+    int m_nCurrentPrice;
+    int m_nNeedExp;
+    int m_nLeadShip;
+    
+
     int addAtk;      //绿色属性攻击 暂定，基本没用
     int addDef;      //绿色属性防御暂定， 基本没用
     bool isSendZengfu;
     int m_iSuit;
     
+
 public:
     CCard *m_pCard;    
     list<CCardBufferStatus *>m_vBuffer; //卡牌拥有的buffer;
+
+
+    // change by phileas.chen 2013.7.22
+    
+    CC_SYNTHESIZE(bool, m_bInBattleArray, InBattleArray);
+   // CC_SYNTHESIZE(CGamesCard*, m_pInCardBagPointer, InCardBagPoint);
+    
+protected:
+    
+
 public: //for test
     friend inline ostream & operator << (ostream & os, CFightCard &t1)
     {
@@ -89,6 +118,7 @@ public: //for test
              <<"}"<<endl;
         return os;
     }
+
 };
 
 

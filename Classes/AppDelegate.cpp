@@ -38,7 +38,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setProjection(kCCDirectorProjection2D);
 
 	// turn on display FPS
-	//pDirector->setDisplayStats(true);
+	pDirector->setDisplayStats(true);
     
     pDirector->setProjection(kCCDirectorProjection2D);
 
