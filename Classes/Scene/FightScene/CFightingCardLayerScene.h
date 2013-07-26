@@ -38,12 +38,14 @@ public:
     CREATE_FUNC(CFightingCardLayerScene);
 public:
     void locgicSchudel(float t);
+    void appendHpAngryUpdate();
     EN_GAMEFIGHTSTATUS  getWinStatus();
     EN_ATKFIGHT_INDEX   getHuiHeIndex();
     int  m_iTotalHuihe;
     void animationSchudel(float t);
     int  animationAndex;
     bool isAnimationEnd;
+    int  hpUpdateIndex;
     int m_itotalAnimation;
 private:
     void textSkillInfo(CAnimationSpriteGameFight *fight);
@@ -66,6 +68,7 @@ private:
     void createEngryText();
     void createHpText();
     void updateHpAndAngry();
+    void initHpEngry();
 
     
     //
@@ -74,10 +77,14 @@ private:
     void skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster);
     void showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation);
 private:
+   void  winDialog();
+    void loseDialog();
+private:
     void loadFromServerTest();
     void initGame(); 
-    void checkIsDead(); //判断对方是否死亡
-    void checkSendZengfu(); //判断是否发送增幅技能
+    bool checkIsDead(); //判断对方是否死亡
+    bool checkSendZengfu(); //判断是否发送增幅技能
+    bool checkFighting();
     CAnimationSpriteGameFight *m_currCAnimationHP;
     void showHpAnimation(CCObject *object);
     void AnimaitonEnd(CCObject *object);

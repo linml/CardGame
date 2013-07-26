@@ -80,6 +80,20 @@ void CFightCard::initFighting()
     m_iCurrEngry=0;
     DELETE_POINT_VECTOR(m_vBuffer,list<CCardBufferStatus*>);
 }
+bool CFightCard::isHaveBuffer(int prameid)
+{
+    if(m_vBuffer.size()==0)
+    {
+        return false;
+    }
+    for (list<CCardBufferStatus *>::iterator it=m_vBuffer.begin() ;it!=m_vBuffer.end();it++) {
+        if((*it)->m_ieffectid==prameid)
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 CFightCard::~CFightCard()
 {

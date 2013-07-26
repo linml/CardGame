@@ -1,14 +1,14 @@
 10
 
 dir
-774
+787
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Scene/FightScene
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-25T07:34:06.807285Z
-770
+2013-07-25T10:57:06.942216Z
+777
 merlin
 
 
@@ -65,7 +65,7 @@ merlin
 
 CFightingCardLayerScene.cpp
 file
-777
+
 
 
 

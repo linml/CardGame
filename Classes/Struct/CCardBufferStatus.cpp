@@ -14,7 +14,7 @@ CCardBufferStatus::CCardBufferStatus(int buff_effectTimes,
                   bool isDeal,
                   int mutex,
                   int mutexlevel,
-                  float value,EN_BUFF_FIELD_TYPE enBuffer_Field)
+                  float value,int effectid,EN_BUFF_FIELD_TYPE enBuffer_Field)
 {
     m_enBuffer_Field=enBuffer_Field;
     m_bIsBeDeal=isDeal;
@@ -23,4 +23,5 @@ CCardBufferStatus::CCardBufferStatus(int buff_effectTimes,
     m_iValue=value;
     m_mutex=mutex;
     m_mutexlevel=mutexlevel;
+    m_ieffectid=effectid;
 }

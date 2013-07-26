@@ -32,7 +32,7 @@ void CEffectInterfaceOne::logicFightingCardByFightAndMonster(CFightCard *pCard,C
         {
             //当前算一次
             pMonster->m_iCurrHp += iShanghaiHp;
-            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,iShanghaiHp,EN_BUFF_FIELD_TYPE_HP);
+            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,iShanghaiHp,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_HP);
             pMonster->appendBuffer(buffer);
         }
         else
@@ -47,7 +47,7 @@ void CEffectInterfaceOne::logicFightingCardByFightAndMonster(CFightCard *pCard,C
          atk= +pImapact->m_iParameter_8 + pMonster->m_attack*pImapact->m_iParameter_9/100;
          if (atk!=0)
          {
-             CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-atk,EN_BUFF_FIELD_TYPE_ATTACK);
+             CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-atk,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ATTACK);
              pMonster->appendBuffer(buffer);
              pMonster->m_attack += -atk;
          }
@@ -56,7 +56,7 @@ void CEffectInterfaceOne::logicFightingCardByFightAndMonster(CFightCard *pCard,C
     if(pImapact->m_iParameter_4 ||pImapact->m_iParameter_5)
     {
         def =  pImapact->m_iParameter_4  + pMonster->m_defend*pImapact->m_iParameter_5/100;
-        CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,EN_BUFF_FIELD_TYPE_DEFEND);
+        CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_DEFEND);
         pMonster->appendBuffer(buffer);
         pMonster->m_defend += -def;
         CCLog("def - %d",def);
@@ -65,10 +65,10 @@ void CEffectInterfaceOne::logicFightingCardByFightAndMonster(CFightCard *pCard,C
     if(pImapact->m_iParameter_6!=0 ||pImapact->m_iParameter_7!=0)
     {
         engry= +pImapact->m_iParameter_6 +
-        pMonster->m_iEngryMax  * pImapact->m_iParameter_7/100;
+        pMonster->m_iCurrEngry  * pImapact->m_iParameter_7/100;
         if (engry) {
             pMonster->m_iCurrEngry += -engry;
-            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-engry,EN_BUFF_FIELD_TYPE_ANGRY);
+            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-engry,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ANGRY);
             pMonster->appendBuffer(buffer); 
         }
     }

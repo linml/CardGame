@@ -56,6 +56,7 @@ public:
     void initFighting();
     void appendBuffer(CCardBufferStatus *buffer);
     void needRebackAtkAndBuf(CCardBufferStatus *buffer);
+    bool isHaveBuffer(int prameid);
 public:
     int m_iCurrHp;  //当前HP
     int m_iHp;      //当前总的HP

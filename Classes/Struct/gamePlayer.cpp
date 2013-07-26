@@ -17,7 +17,7 @@
 #include "CFightSkillManager.h"
 #include <fstream>
 
-#define AAAAFOROSMACHINE 1
+//#define AAAAFOROSMACHINE 1
 
 using namespace std;
 string  readFileName(const char *filename)

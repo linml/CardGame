@@ -27,13 +27,13 @@ void CEffectInterfaceEleven::logicFightingCardByFightAndMonster(CFightCard *pCar
     {
         
         //  恢复血量值的计算公式 parameter_1+自身卡牌攻击力*（parameter_2/100)+目标总血量*parameter_3/100
-        int tempdata=pImapact->m_iParameter_1 +
+        iShanghaiHp=pImapact->m_iParameter_1 +
         pCard->m_attack*pImapact->m_iParameter_2/100+pMonster->m_iHp*pImapact->m_iParameter_3/100;
         if (pImapact->m_ibuff > 0)
         {
             //当前算一次
             pMonster->m_iCurrHp += iShanghaiHp;
-            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,iShanghaiHp,EN_BUFF_FIELD_TYPE_HP);
+            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,iShanghaiHp,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_HP);
             pMonster->appendBuffer(buffer);
         }
         else
@@ -48,7 +48,7 @@ void CEffectInterfaceEleven::logicFightingCardByFightAndMonster(CFightCard *pCar
         atk= +pImapact->m_iParameter_8 + pMonster->m_attack*pImapact->m_iParameter_9/100;
         if (atk!=0)
         {
-            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,atk,EN_BUFF_FIELD_TYPE_ATTACK);
+            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,atk,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ATTACK);
             pMonster->appendBuffer(buffer);
             pMonster->m_attack += atk;
         }
@@ -57,7 +57,7 @@ void CEffectInterfaceEleven::logicFightingCardByFightAndMonster(CFightCard *pCar
     if(pImapact->m_iParameter_4 || pImapact->m_iParameter_5)
     {
         def =  pImapact->m_iParameter_4  + pMonster->m_defend*pImapact->m_iParameter_5/100;
-        CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,EN_BUFF_FIELD_TYPE_DEFEND);
+        CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_DEFEND);
         pMonster->appendBuffer(buffer);
         pMonster->m_defend += def;
         CCLog("def + %d",def);
@@ -69,7 +69,7 @@ void CEffectInterfaceEleven::logicFightingCardByFightAndMonster(CFightCard *pCar
         pMonster->m_iEngryMax  * pImapact->m_iParameter_7/100;
         if (engry) {
             pMonster->m_iCurrEngry += engry;
-            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,+engry,EN_BUFF_FIELD_TYPE_ANGRY);
+            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,+engry,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ANGRY);
             pMonster->appendBuffer(buffer);
         }
     }

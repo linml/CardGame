@@ -60,12 +60,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-         timestampString = "396490223.132942"
+         timestampString = "396511991.580539"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "532"
-         endingLineNumber = "532"
-         landmarkName = "CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex)"
+         startingLineNumber = "368"
+         endingLineNumber = "368"
+         landmarkName = "CFightSkillManager::costFunc_2(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
