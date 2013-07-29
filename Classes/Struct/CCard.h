@@ -64,7 +64,7 @@ public:
     int  getNeedValue(int level, int type);
     int  getSupportValue(int type);
 
-    void appendBuffer(CCardBufferStatus *buffer);
+    bool appendBuffer(CCardBufferStatus *buffer);
     void needRebackAtkAndBuf(CCardBufferStatus *buffer);
     bool isHaveBuffer(int prameid);
 

@@ -63,8 +63,6 @@ public:
     CC_SYNTHESIZE(bool, m_bTableClikEnable, TableClickEnable);
     CC_SYNTHESIZE(bool, m_bTableClickMove, TableClickMove);
 
-    CCDictionary *m_pBattleArrayCards;
-
  
 };
 

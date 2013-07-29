@@ -16,7 +16,7 @@
 #include "CPtBatterArray.h"
 #include "CPtTool.h"
 #include "CCardEnhanceLayer.h"
-
+#include "CCardSettingScene.h"
 static CPtBattleArray * s_currentBattleArray = NULL;
 
 // implement class of CPtBattleArrayItem:
@@ -44,7 +44,7 @@ bool CPtBattleArrayItem::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent
       
     // new add  or replace:
     
-    CGamesCard * displace =dynamic_cast<CPtDisPlayCard *>(this->getDisplayView());
+    CPtDisPlayCard * displace =dynamic_cast<CPtDisPlayCard *>(this->getDisplayView());
     m_pDelegateLayer->m_pMoveCard = displace;
 
     if(displace)
@@ -71,12 +71,12 @@ bool CPtBattleArrayItem::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent
             CCPoint worldPostion = displace->getPosition();
             worldPostion = displace->getParent()->convertToWorldSpace(worldPostion);
             m_pDelegateLayer->m_pMoveCard = displace->getCopy();
-         //   displace->setDead();
+            displace->setDead();
             m_pDelegateLayer->m_pMoveCard->setAnchorPoint(CCPointZero);
             m_pDelegateLayer->m_pMoveCard->setPosition(worldPostion);
             m_pDelegateLayer->addChild(m_pDelegateLayer->m_pMoveCard, 6000, 100);
             m_pDelegateLayer->m_cPrePoint = m_pDelegateLayer->m_pMoveCard->getPosition();
-       //     dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getCardData()->setInCardBagPoint(displace);
+            dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->setInCardBagPointer(displace);
             return true;
         }
         
@@ -122,7 +122,6 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
                         // create new sprite:
                         
                         CGamesCard *node = displace->getCopy();
-                        displace->setDead();
                         m_pDelegateLayer->m_pEnhancePanel->addCard(i, node);
 
                     }
@@ -162,8 +161,7 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             
             if (!rect.intersectsRect(rect1))
             {
-              //  dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getCardData()->getInCardBagPoint()->setLive();
-              //  dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getCardData()->setInCardBagPoint(NULL);
+                dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
                 m_pDelegateLayer->m_pMoveCard->release();
                 m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 
@@ -203,7 +201,7 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
              m_pDelegateLayer->m_pMoveCard->release();
         }else
         {
-        //    dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getCardData()->getInCardBagPoint()->setLive();
+            dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
          //   dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getCardData()->setInCardBagPoint(NULL);
             m_pDelegateLayer->m_pMoveCard->release();
         }
@@ -212,8 +210,8 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         
     }else
     {
-     //   dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getCardData()->getInCardBagPoint()->setLive();
-     //   dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getCardData()->setInCardBagPoint(NULL);
+        dynamic_cast<CPtDisPlayCard*>(m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
+
         m_pDelegateLayer->m_pMoveCard->release();
         m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
        
@@ -234,15 +232,11 @@ void CPtBattleArrayItem::handlerEnhanceOnCliked()
 
 CBattleArrayLayer::CBattleArrayLayer()
 {
-    m_pBattleArrayCards = CCDictionary::create();
-    m_pBattleArrayCards->retain();
+
 }
 CBattleArrayLayer::~CBattleArrayLayer()
 {
-    if (m_pBattleArrayCards)
-    {
-        m_pBattleArrayCards->release();
-    }
+    
 }
 
 bool CBattleArrayLayer::init()
@@ -271,25 +265,25 @@ void CBattleArrayLayer::initCards()
         // change cardData:
         CFightCard * cardData = bag.at(i);
     
-        if (cardData && cardData->m_pCard && cardData->m_pCard->m_icard_suit== 0)
-        {
-            CCLog("reset resource: %d , %d", cardData->m_User_Card_ID, cardData->m_pCard->m_icard_id);
-            // test: change the tmp resource value:
-            cardData->m_pCard->m_icard_suit= cardData->m_iSuit;
-        //    cardData->m_pCard->m_sicard_star = rand()%7 +1;
-            cardData->m_pCard-> m_icard_stirps = rand()%5 +1;   //种族_
-            cardData->m_pCard->m_scard_head="";  //头像
-            cardData->m_pCard->m_scard_ground="bg1.png"; //
-            cardData->m_pCard->m_scard_role="";
-            if ((rand()%200)%2 == 0)
-            {
-                cardData->m_pCard->m_scard_resources="peo.png";
-
-            }else
-            {
-                 cardData->m_pCard->m_scard_resources="peo1.png";
-            }
-        }
+//        if (cardData && cardData->m_pCard && cardData->m_pCard->m_icard_suit== 0)
+//        {
+//            CCLog("reset resource: %d , %d", cardData->m_User_Card_ID, cardData->m_pCard->m_icard_id);
+//            // test: change the tmp resource value:
+//            cardData->m_pCard->m_icard_suit= cardData->m_iSuit;
+//        //    cardData->m_pCard->m_sicard_star = rand()%7 +1;
+//            cardData->m_pCard-> m_icard_stirps = rand()%5 +1;   //种族_
+//            cardData->m_pCard->m_scard_head="";  //头像
+//            cardData->m_pCard->m_scard_ground="bg1.png"; //
+//            cardData->m_pCard->m_scard_role="";
+//            if ((rand()%200)%2 == 0)
+//            {
+//                cardData->m_pCard->m_scard_resources="peo.png";
+//
+//            }else
+//            {
+//                 cardData->m_pCard->m_scard_resources="peo1.png";
+//            }
+//        }
 
         CCLog("reset resource: %d , %d", cardData->m_User_Card_ID, cardData->m_iSuit);
         
@@ -300,11 +294,15 @@ void CBattleArrayLayer::initCards()
         {
             if (cardData->getInBattleArray())
             {
-           //     card->setDead();
+                  card->setDead();
              //   cardData->setInCardBagPoint(card);
+                if (CCardSettingScene::s_pBattleArrayCards)
+                {
+                    CCardSettingScene::s_pBattleArrayCards->setObject(card, cardData->m_User_Card_ID);
+                }
             }
          //
-            card->setScale(0.8f);
+
             CPtBattleArrayItem * item = CPtBattleArrayItem::create();
             item->setDisplayView(card);
             item->setTouchNode(card);

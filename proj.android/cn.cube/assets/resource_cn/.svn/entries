@@ -1,15 +1,15 @@
 10
 
 dir
-797
+806
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-26T08:18:25.329843Z
-797
-phileas
+2013-07-29T03:08:51.338172Z
+806
+merlin
 
 
 
@@ -60,17 +60,17 @@ phileas
 
 5459
 
-boss_icon_Effect.plist
+100000_l.plist
 file
 
 
 
-delete
-2013-07-26T06:53:03.000000Z
-90cccffbc44f8f4b51063df0fbb542f7
-2013-07-26T06:42:58.666561Z
-789
-wood
+
+2013-07-26T10:12:05.000000Z
+a91224efd3e8588f5f088efd12db3595
+2013-07-26T11:17:59.519580Z
+802
+merlin
 
 
 
@@ -92,7 +92,7 @@ wood
 
 
 
-972
+957
 
 level_config.plist
 file
@@ -128,53 +128,16 @@ merlin
 
 36202
 
-sound
-dir
-
 card_config.plist
 file
 
 
 
 
-2013-07-26T06:53:03.000000Z
-5692b3486b67da09f23f1ae511d81dcc
-2013-07-26T06:42:58.666561Z
-789
-wood
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-113949
-
-skill_config.plist
-file
-
-
-
-
-2013-07-24T02:46:22.000000Z
-143fc4b236771d8c5fc6a2dc086765b5
-2013-07-24T05:45:04.908367Z
-751
+2013-07-29T02:42:46.000000Z
+cbc698cdd7f4475815ad32fcdd21c3b4
+2013-07-29T03:08:51.338172Z
+806
 merlin
 
 
@@ -197,7 +160,112 @@ merlin
 
 
 
-7644
+117586
+
+sound
+dir
+
+100004_l.plist
+file
+
+
+
+
+2013-07-26T10:24:50.000000Z
+5b75849d78248bd7f8276812f080f69f
+2013-07-26T11:17:59.519580Z
+802
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+953
+
+100000_r.plist
+file
+
+
+
+
+2013-07-26T10:12:05.000000Z
+319abe9eecdafc4cc8382609a2915de7
+2013-07-26T11:17:59.519580Z
+802
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+958
+
+skill_config.plist
+file
+
+
+
+
+2013-07-26T10:28:05.000000Z
+c46c145b424f5cc71ae817e7027b25bb
+2013-07-26T11:17:59.519580Z
+802
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+14957
 
 cardteam.txt
 file
@@ -238,9 +306,12 @@ file
 
 
 
-add
 
+2013-07-26T10:06:17.000000Z
 90cccffbc44f8f4b51063df0fbb542f7
+2013-07-26T11:17:59.519580Z
+802
+merlin
 
 
 
@@ -252,9 +323,51 @@ add
 
 
 
-copied
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/boss_icon_Effect.plist
-797
+
+
+
+
+
+
+
+
+
+
+972
+
+100004_r.plist
+file
+
+
+
+
+2013-07-26T10:24:50.000000Z
+1e4d9b24dcbf70aba0b9c3ed3ce22aad
+2013-07-26T11:17:59.519580Z
+802
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+954
 
 cardbg.txt
 file
@@ -298,15 +411,7 @@ dir
 
 card.plist
 file
-
-
-
-
-2013-07-26T08:29:06.000000Z
-edd4855afd3ae033e023fb576de5ca11
-2013-07-26T08:18:25.329843Z
-797
-phileas
+807
 
 
 
@@ -326,9 +431,41 @@ phileas
 
 
 
+deleted
+
+team.txt
+file
 
 
-111563
+
+
+2013-07-24T13:00:44.000000Z
+fe4799acbd192f7d54b3f67803e299fa
+2013-07-26T11:17:59.519580Z
+802
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+501
 
 boss_icon_Effect_r.plist
 file
@@ -364,10 +501,10 @@ wood
 
 973
 
-font
+sprite
 dir
 
-sprite
+font
 dir
 
 level_max.plist
@@ -410,10 +547,10 @@ file
 
 
 
-2013-07-23T01:47:06.000000Z
-71e23169ef3c49517213d64f09bb2bfd
-2013-07-24T05:45:04.908367Z
-751
+2013-07-26T06:39:23.000000Z
+140380171b8b10bd6c1ba5a9c79bcade
+2013-07-26T11:17:59.519580Z
+802
 merlin
 
 
@@ -436,7 +573,7 @@ merlin
 
 
 
-9683
+17290
 
 word
 dir

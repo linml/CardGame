@@ -9,6 +9,9 @@
 #include "CCardSettingScene.h"
 #include "CBattleArrayLayer.h"
 #include "gameConfig.h"
+#include "SceneManager.h"
+
+CCDictionary * CCardSettingScene::s_pBattleArrayCards = NULL;
 
 CCScene* CCardSettingScene::scene()
 {
@@ -23,8 +26,12 @@ CCScene* CCardSettingScene::scene()
 
 CCardSettingScene::CCardSettingScene()
 {
-    m_pBattleArrayCards = CCDictionary::create();
-    m_pBattleArrayCards->retain();
+    if (s_pBattleArrayCards == NULL)
+    {
+        s_pBattleArrayCards = CCDictionary::create();
+        s_pBattleArrayCards->retain();
+    }
+   
 }
 
 CCardSettingScene::~CCardSettingScene()
@@ -33,9 +40,10 @@ CCardSettingScene::~CCardSettingScene()
     {
         m_cMaps->release();
     }
-    if (m_pBattleArrayCards)
+    if (s_pBattleArrayCards)
     {
-        m_pBattleArrayCards->release();
+        s_pBattleArrayCards->release();
+        s_pBattleArrayCards = NULL;
     }
 }
 
@@ -130,9 +138,10 @@ void CCardSettingScene::handlerTouch()
 //            CCLog("go to evolution:");
 //            break;
 //            m_pCardSetting->removeLeft();
-//        case 3004:
-//            CCLog("go to sell:");
-//            break;
+        case 3004:
+           // CCLog("go to sell:");
+              SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+            break;
         default:
             return;
     }

@@ -11,6 +11,7 @@
 #include "Biforest.h"
 #include "TaskLayer.h"
 #include "CCardSettingScene.h"
+#include "SceneManager.h"
 
 
 CAsgardLayer::CAsgardLayer()
@@ -81,7 +82,6 @@ void CAsgardLayer::handlerTouch()
 {
     CCLayer * layer = NULL;
     CCLog("CAsgardLayer m_nTag : %d ", m_nTouchTag);
-    CCScene * scene = NULL;
     switch (m_nTouchTag) {
         case GLADSHEIM_TOUCH_TAG:
             // to do:
@@ -91,8 +91,8 @@ void CAsgardLayer::handlerTouch()
             
         case VALHALLA_TOUCH_TAG:
             // to do:
-            scene = CCardSettingScene::scene();
-            CCDirector::sharedDirector()->replaceScene(scene);
+            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_CARDSETTINGSCENE);
+//            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_CARDSETTINGSCENE);
             break;
         case BIFROST_TOUCH_TAG:
             // to do:

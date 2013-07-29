@@ -97,7 +97,7 @@ CFightCard::CFightCard(CCard *card,int level)
 
         if (level == 1)
         {
-            // read card.plist data:
+            // read card_config.plist data:
             m_iCurrHp=   m_pCard->m_icardhp;
             m_iHp=m_iCurrHp;
             m_attack=card->m_icard_attack;
@@ -200,6 +200,23 @@ int CFightCard:: getAddValue(int level, int type)
 {
     if (level == 1)
     {
+        //return 0;
+        
+        switch (type)
+        {
+            case 1:
+                return  m_pCard->m_icard_attack;
+                break;
+            case 2:
+                break;
+                return  m_pCard->m_icard_defend;
+            case 3:
+                return  m_pCard->m_icardhp;
+                break;
+            default:
+                break;
+        }
+        
         return 0;
     }
     
@@ -289,11 +306,12 @@ void CFightCard::needRebackAtkAndBuf(CCardBufferStatus *buffer)
     }
 }
 
-void CFightCard::appendBuffer(CCardBufferStatus *buffer)
+bool CFightCard::appendBuffer(CCardBufferStatus *buffer)
 {
     if(m_vBuffer.size()==0)
     {
         m_vBuffer.push_back(buffer);
+        return true;
     }
     else{
         list<CCardBufferStatus *>::iterator it;
@@ -305,6 +323,7 @@ void CFightCard::appendBuffer(CCardBufferStatus *buffer)
                 if ((*it)->m_mutexlevel > buffer->m_mutexlevel) {
                     delete buffer;
                     buffer=NULL;
+                    
                 }
                 else
                 {
@@ -313,11 +332,11 @@ void CFightCard::appendBuffer(CCardBufferStatus *buffer)
                     delete *it;
                     *it=NULL;
                     m_vBuffer.push_back(buffer);
-                    break;
+                    return true;
                 }
             }
         }
     }
-    
+    return false;
 }
 

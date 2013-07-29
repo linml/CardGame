@@ -1,15 +1,15 @@
 10
 
 dir
-797
+806
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/fighting
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-26T08:18:25.329843Z
-797
-phileas
+2013-07-26T11:17:59.519580Z
+802
+merlin
 
 
 
@@ -372,11 +372,11 @@ file
 
 
 
-2013-07-26T06:53:03.000000Z
-8f98325345b416159898f5e5ecba994b
-2013-07-26T06:42:58.666561Z
-789
-wood
+2013-07-26T07:43:50.000000Z
+81d992ba1f6d8574064a7bb179299886
+2013-07-26T11:17:59.519580Z
+802
+merlin
 has-props
 
 
@@ -398,7 +398,7 @@ has-props
 
 
 
-274817
+274788
 
 card_role_002.png
 file
@@ -542,11 +542,11 @@ file
 
 
 
-2013-07-26T07:21:40.000000Z
-e3093f65a1c6880a37788106daa15665
-2013-07-26T07:21:29.694115Z
-792
-wood
+2013-07-26T07:44:09.000000Z
+1e6cd9129ebe557f9c8950f9fbc7a306
+2013-07-26T11:17:59.519580Z
+802
+merlin
 has-props
 
 
@@ -568,7 +568,7 @@ has-props
 
 
 
-388273
+391074
 
 peo.png
 file
@@ -638,17 +638,17 @@ has-props
 
 4145
 
-battle_bg11.png
+kuang0.png
 file
 
 
 
 
-2013-07-24T05:44:32.000000Z
-313a886e841825ea618ca2f6f66c5a15
-2013-06-17T08:04:34.430341Z
-536
-merlin
+2013-07-23T05:47:28.000000Z
+4fb60fc2217c580d760f7d4cb9e1b722
+2013-07-22T06:13:53.868860Z
+726
+phileas
 has-props
 
 
@@ -670,7 +670,7 @@ has-props
 
 
 
-883584
+37359
 
 zz2.png
 file
@@ -706,17 +706,17 @@ has-props
 
 4140
 
-kuang0.png
+battle_bg11.png
 file
 
 
 
 
-2013-07-23T05:47:28.000000Z
-4fb60fc2217c580d760f7d4cb9e1b722
-2013-07-22T06:13:53.868860Z
-726
-phileas
+2013-07-24T05:44:32.000000Z
+313a886e841825ea618ca2f6f66c5a15
+2013-06-17T08:04:34.430341Z
+536
+merlin
 has-props
 
 
@@ -738,41 +738,7 @@ has-props
 
 
 
-37359
-
-zz3.png
-file
-
-
-
-
-2013-07-23T05:47:28.000000Z
-dead65a97e0043c1bad70c335baa736f
-2013-07-22T06:13:53.868860Z
-726
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4137
+883584
 
 kuang1.png
 file
@@ -808,16 +774,16 @@ has-props
 
 3874
 
-zz4.png
+zz3.png
 file
 
 
 
 
-2013-07-26T08:29:06.000000Z
-ffbd9bdb220ee7b2acf922b63f8ce1b3
-2013-07-26T08:18:25.329843Z
-797
+2013-07-23T05:47:28.000000Z
+dead65a97e0043c1bad70c335baa736f
+2013-07-22T06:13:53.868860Z
+726
 phileas
 has-props
 
@@ -840,7 +806,7 @@ has-props
 
 
 
-4149
+4137
 
 kuang2.png
 file
@@ -876,16 +842,16 @@ has-props
 
 3889
 
-kuang3.png
+zz4.png
 file
 
 
 
 
-2013-07-23T05:47:28.000000Z
-70455e091347684ed626e3f615c14b4c
-2013-07-22T06:13:53.868860Z
-726
+2013-07-26T08:29:06.000000Z
+ffbd9bdb220ee7b2acf922b63f8ce1b3
+2013-07-26T08:18:25.329843Z
+797
 phileas
 has-props
 
@@ -908,7 +874,7 @@ has-props
 
 
 
-3888
+4149
 
 zz5.png
 file
@@ -944,17 +910,17 @@ has-props
 
 4132
 
-test_card_2.png
+kuang3.png
 file
 
 
 
 
-2013-07-05T06:01:19.000000Z
-ac5f83b7a88141cff087077444d5ae36
-2013-06-17T08:04:34.430341Z
-536
-merlin
+2013-07-23T05:47:28.000000Z
+70455e091347684ed626e3f615c14b4c
+2013-07-22T06:13:53.868860Z
+726
+phileas
 has-props
 
 
@@ -976,7 +942,7 @@ has-props
 
 
 
-89748
+3888
 
 kuang4.png
 file
@@ -1012,14 +978,14 @@ has-props
 
 3888
 
-test_card_3.png
+test_card_2.png
 file
 
 
 
 
 2013-07-05T06:01:19.000000Z
-7b275d5348fee6abbe80662cbf1a6f54
+ac5f83b7a88141cff087077444d5ae36
 2013-06-17T08:04:34.430341Z
 536
 merlin
@@ -1044,7 +1010,7 @@ has-props
 
 
 
-15103
+89748
 
 kuang5.png
 file
@@ -1079,6 +1045,40 @@ has-props
 
 
 3889
+
+test_card_3.png
+file
+
+
+
+
+2013-07-05T06:01:19.000000Z
+7b275d5348fee6abbe80662cbf1a6f54
+2013-06-17T08:04:34.430341Z
+536
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+15103
 
 kuang6.png
 file

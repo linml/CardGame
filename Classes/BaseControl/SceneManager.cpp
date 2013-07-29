@@ -17,10 +17,10 @@
 #include "LoadingScene.h"
 #include "ExplorationScene.h"
 #include "LoginScene.h"
-#include "LoginScene.h"
 #include "HallScene.h"
 #include "CCardFightingLayerScene.h"
 #include "CFightingCardLayerScene.h"
+#include "CCardSettingScene.h"
 
 SceneManager::SceneManager()
 {
@@ -102,6 +102,8 @@ void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene)
         case   EN_CURRSCENE_FIGHTSCENE:
             runFightScene();
             break;
+        case EN_CURRSCENE_CARDSETTINGSCENE:
+            runCardSettingScene();
         default:
             break;
     }
@@ -159,6 +161,28 @@ void SceneManager::runHallScene()
         }
     }
 
+}
+
+void SceneManager::runCardSettingScene()
+{
+    if(m_currscene!=EN_CURRSCENE_CARDSETTINGSCENE)
+    {
+        m_currscene=EN_CURRSCENE_CARDSETTINGSCENE;
+        CCDirector *pDirector=CCDirector::sharedDirector();
+        
+        CCScene *pScene = CCardSettingScene::scene();
+        
+        if(pDirector->getRunningScene())
+        {
+            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+        }
+        else
+        {
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
+        }
+    }
+
+    
 }
 
 void SceneManager::runTaskScene()

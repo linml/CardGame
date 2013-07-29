@@ -615,7 +615,8 @@ CCActionInterval* HBActionScript::creatIntervalAction(const char* str)
 		{
 			ani = HBAnimationCache::sharedAnimationCache()->addAnimationWithFile(value[1].c_str(),&aniName);
 			ani->setDelayPerUnit(atof(value[2].c_str()));
-		}else
+		}
+        else
 		{
 			ani = HBAnimationCache::sharedAnimationCache()->addAnimationWithFile(value[1].c_str(),atoi(value[2].c_str()),atoi(value[3].c_str()),&aniName);
 			ani->setDelayPerUnit(atof(value[4].c_str()));

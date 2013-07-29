@@ -26,7 +26,7 @@ public:
     bool initCreate(CFightCard *card);
     void setDead();
     void setLive();
-    CGamesCard *getCopy();
+    virtual CGamesCard *getCopy();
     bool getSuit(int &outSuit, int &outSequence);
 
     CFightCard *getCardData(){ return m_pCardData;};

@@ -30,6 +30,7 @@
 		6FA9A06C17A0CDAE005E14FA /* CEffectInterfaceOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9A06A17A0CDAE005E14FA /* CEffectInterfaceOne.cpp */; };
 		6FA9A06F17A0CDDC005E14FA /* CEffectInterfaceEleven.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9A06D17A0CDDC005E14FA /* CEffectInterfaceEleven.cpp */; };
 		6FA9B47E175456F2001472E7 /* MemoryGameCollabLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */; };
+		6FABAEDC17A6225E00BB5ABD /* CSaveConfirmLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FABAEDA17A6225E00BB5ABD /* CSaveConfirmLayer.cpp */; };
 		6FAD05F3178BB120006CFDAF /* CCardFightLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD05F1178BB11F006CFDAF /* CCardFightLogic.cpp */; };
 		6FAD05F9178BD945006CFDAF /* CSkillType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD05F7178BD944006CFDAF /* CSkillType.cpp */; };
 		6FAD05FC178BE869006CFDAF /* CGamePlayerStruct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD05FA178BE868006CFDAF /* CGamePlayerStruct.cpp */; };
@@ -336,6 +337,8 @@
 		6FA9A06E17A0CDDC005E14FA /* CEffectInterfaceEleven.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterfaceEleven.h; sourceTree = "<group>"; };
 		6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryGameCollabLayer.cpp; sourceTree = "<group>"; };
 		6FA9B47D175456F2001472E7 /* MemoryGameCollabLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryGameCollabLayer.h; sourceTree = "<group>"; };
+		6FABAEDA17A6225E00BB5ABD /* CSaveConfirmLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSaveConfirmLayer.cpp; sourceTree = "<group>"; };
+		6FABAEDB17A6225E00BB5ABD /* CSaveConfirmLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSaveConfirmLayer.h; sourceTree = "<group>"; };
 		6FAD05F1178BB11F006CFDAF /* CCardFightLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardFightLogic.cpp; sourceTree = "<group>"; };
 		6FAD05F2178BB11F006CFDAF /* CCardFightLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardFightLogic.h; sourceTree = "<group>"; };
 		6FAD05F7178BD944006CFDAF /* CSkillType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSkillType.cpp; sourceTree = "<group>"; };
@@ -1121,6 +1124,8 @@
 		6FAD753F17A269C700AB8D8E /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				6FABAEDA17A6225E00BB5ABD /* CSaveConfirmLayer.cpp */,
+				6FABAEDB17A6225E00BB5ABD /* CSaveConfirmLayer.h */,
 				6FAD754017A269C700AB8D8E /* CBattleArrayLayer.cpp */,
 				6FAD754117A269C700AB8D8E /* CBattleArrayLayer.h */,
 				6FAD754217A269C700AB8D8E /* CCardEnhanceLayer.cpp */,
@@ -2656,6 +2661,7 @@
 				6FAD754F17A26A0000AB8D8E /* CPtBarWidget.cpp in Sources */,
 				6FAD755317A26A3800AB8D8E /* CPtTool.cpp in Sources */,
 				6FAD755617A26A6100AB8D8E /* CPtLevelConfigData.cpp in Sources */,
+				6FABAEDC17A6225E00BB5ABD /* CSaveConfirmLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

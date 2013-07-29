@@ -23,6 +23,7 @@ class CCardSettingScene : public CCLayer
 public:
     static CCScene *scene();
     CREATE_FUNC(CCardSettingScene);
+    static CCDictionary *s_pBattleArrayCards;
     
 public:
     CCardSettingScene();
@@ -46,7 +47,6 @@ protected:
     int m_nCurrentTableId;
     CBattleArrayLayer *m_pCardSetting;
     
-    CCDictionary * m_pBattleArrayCards;
     
 // test: network;
     

@@ -25,7 +25,8 @@ enum  EN_CURRSCENE
     EN_CURRSCENE_UPGRADESCENE,
     EN_CURRSCENE_FIGHTSCENE,
     EN_CURRSCENE_HALLSCENE,
-    EN_CURRSCENE_LOGINSCENE
+    EN_CURRSCENE_LOGINSCENE,
+    EN_CURRSCENE_CARDSETTINGSCENE
     
 };
 class SceneManager
@@ -45,6 +46,7 @@ private:
     void runFightScene();
     void runLoginScene();
     void runHallScene();
+    void runCardSettingScene();
     //test
 public:
     void runTest();

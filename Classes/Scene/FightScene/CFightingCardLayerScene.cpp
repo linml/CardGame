@@ -383,7 +383,7 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
                     CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
                     gamecard->runAction(CCSequence::create(CCMoveBy::create(0.2, ccp(0,100)),(CCFiniteTimeAction*)animation,nd,callback,CCMoveBy::create(0.2, ccp(0, -100)), endAnimation,NULL));
                 }
-                
+               
             }
             else if(fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
             {
@@ -558,7 +558,12 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_MOVE:
             //yinCangRenWu(m_vMonsterHero);
-            moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);//移动 card
+                m_vMonsterHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
+                moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);//移动 card
+                if(m_currCAnimationHP->m_iATKindex+1<m_vMonsterHero.size()-1 &&m_vMonsterHero[m_currCAnimationHP->m_iATKindex+1])
+                {
+                    m_vMonsterHero[m_currCAnimationHP->m_iATKindex+1]->setVisible(true);
+                }
             break;
         default:
             break;
@@ -593,7 +598,8 @@ void CFightingCardLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goI
             }
             CCLog("%s,%d,0x%x",data,vectemp[i]->tag,(CCSprite *)getChildByTag(vectemp[i]->tag));
             PtActionUtility::readSpriteActionFile(g_ActionFilePath+"movecard.plist",(CCSprite *)getChildByTag(vectemp[i]->tag),string(data));
-        }
+       }
+        ((CGamesCard *)getChildByTag(vCard[goIndex]->tag))->setDead();
         runAction(CCSequence::create(CCDelayTime::create(0.3f),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd)),NULL));
     }
 }

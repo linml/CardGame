@@ -95,8 +95,8 @@ bool HelloWorld::init()
     // add the sprite as a child to this layer
    // this->addChild(pSprite, 0);
     
-    CCSprite *sprite=CCSprite::create("resource_cn/action/xuanfeng/1.png");
-    addChild(sprite,2,100);
+ //   CCSprite *sprite=CCSprite::create("resource_cn/action/xuanfeng/1.png");
+  //  addChild(sprite,2,100);
 //    CCAnimation* animation = CCAnimation::create();
 //    //共有14帧，这里用for循环将对应的序列图加入到动画中。
 //    for( int i=1;i<=30;i++)
@@ -105,7 +105,7 @@ bool HelloWorld::init()
 //        sprintf(szName, "resource_cn/action/xuanfeng/%d.png", i);
 //        animation->addSpriteFrameWithFileName(szName);
 //    }
-    sprite->setPosition(ccp(size.width/2, size.height/2) );
+   // sprite->setPosition(ccp(size.width/2, size.height/2) );
     //设置每两帧间时间间隔为1秒。
 //    animation->setDelayPerUnit(0.1f);
 //    //设置动画结束后仍保留动画帧信息。
@@ -113,7 +113,7 @@ bool HelloWorld::init()
 //    //由这个动画信息创建一个序列帧动画。
 //    CCAnimate* action = CCAnimate::create(animation);
 //    //让演员演示这个动画。
-     Utility::runPtActionScript(sprite,"xuanfeng/xuanfeng.act",100);
+//     Utility::runPtActionScript(sprite,"xuanfeng/xuanfeng.act",100);
 //    sprite->runAction(CCRepeatForever::create(action));
     //removeChildByTag(<#int tag#>, <#bool cleanup#>)
     

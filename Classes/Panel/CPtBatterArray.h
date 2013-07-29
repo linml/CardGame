@@ -42,9 +42,10 @@ public:
     static CPtDisPlayCard  *Create(CFightCard *card);
 public:
     
-    CC_SYNTHESIZE(CGamesCard*, m_pCardPBagPointer, InCardBagPointer);
-    
+    CC_SYNTHESIZE(CPtDisPlayCard*, m_pCardPBagPointer, InCardBagPointer);
+    CPtDisPlayCard *getCopy();
 };
+
 // define class of CPtBattleArray
 
 class CPtBattleArray : public CCLayer
