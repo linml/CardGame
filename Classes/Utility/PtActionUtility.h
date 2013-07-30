@@ -90,7 +90,10 @@ namespace PtActionUtility {
     
     //读取动作文件(runAction and actions)
     void readSpriteActionFile(const string& file, CCSprite* sprite,const string& key = "");
-    
+    //删除缓存中的序列帧动画
+    void clearHBActionCachWithActionFile(vector<string>&actionFile);
+    //解析skill list文件下的  anmate 调用的动画文件
+    void getAppendHBActionCachWithActionFile(const string file,vector<string>&actionFile);
     //取得脚本在的一个组合动画
     CCAction* getRunActionWithActionFile(const string& file);
     

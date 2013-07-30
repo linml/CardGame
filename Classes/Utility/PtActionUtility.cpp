@@ -265,6 +265,53 @@ namespace PtActionUtility {
         return NULL;
     }
     
+    bool appendAnimationList(vector<string> &action ,string str)
+    {
+        for (int i=0; i<action.size(); i++) {
+            if(action[i]==str.c_str())
+            {
+                return false;
+            }
+        }
+        action.push_back(str);
+    }
+    
+    void getAppendHBActionCachWithActionFile(const string file,vector<string>&actionFile)
+    {
+        std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(file.c_str());
+        CCDictionary* data =CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
+        CCArray* vKey = data->allKeys();
+        for (int i = 0; i < vKey->count(); i++)
+        {
+            CCString* key = (CCString*)vKey->objectAtIndex(i);
+            if (key->m_sString == "actions")
+            {
+                CCArray* vActionString = (CCArray*) data->objectForKey(string("actions"));
+                CCObject* pObj = NULL;
+                CCARRAY_FOREACH(vActionString,pObj)
+                {
+                    string action = ((CCString*)pObj)->m_sString;
+                    string actionType=GameTools::getSubStr_endStr(action, "(");
+                    if(actionType=="Animate")
+                    {
+                        string str=getSubStr(action, "(", ")");
+                        createAniWithFile(str);//载入animate 的 帧动画；
+                        appendAnimationList(actionFile,str); //等待场景回退的时候删除 这些粒子动画
+                    }
+                }
+
+            }
+        }
+    }
+    
+     void clearHBActionCachWithActionFile(vector<string>&actionFile)
+    {
+        for (int i=0; i<actionFile.size(); i++) {
+            HBAnimationCache::sharedAnimationCache()->removeAnimationByName(actionFile[i].c_str());
+        }
+    }
+    
+    
     //取得脚本在的一个组合动画
     CCAction* getRunActionWithActionFile(const string& file) {
         std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(file.c_str());
