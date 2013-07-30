@@ -98,5 +98,15 @@ void CSaveConfirmLayer::initConfirm()
 
 void CSaveConfirmLayer::handlerTouch()
 {
-    removeFromParentAndCleanup(true);
+    CCLog("m_nTag: %d", m_nTouchTag);
+    switch (m_nTouchTag)
+    {
+        case  2001:
+            removeFromParentAndCleanup(true);
+            break;
+            
+        default:
+            break;
+    }
+   
 }

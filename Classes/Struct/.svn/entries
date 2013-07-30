@@ -1,15 +1,15 @@
 10
 
 dir
-810
+819
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-29T04:02:24.186337Z
-810
-phileas
+2013-07-29T10:04:30.013214Z
+817
+merlin
 
 
 
@@ -233,6 +233,13 @@ phileas
 
 1490
 
+SEveryATKData.cpp
+file
+0
+
+
+add
+
 CCardBufferStatus.cpp
 file
 
@@ -307,11 +314,40 @@ file
 
 
 
+2013-07-29T04:02:41.000000Z
+8e732ab9a1dfc74a5fe75e8b93958b97
+2013-07-29T10:04:30.013214Z
+817
+merlin
 
-d119064d467eb3a446b0a347ea72bfab
-2013-07-29T04:02:24.186337Z
-810
-phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9259
+
+SEveryATKData.h
+file
+0
+
+
+add
 
 CCardBufferStatus.h
 file
@@ -415,19 +451,16 @@ merlin
 
 2365
 
-Craftsmanship
-dir
-
 CCard.h
 file
 
 
 
 
-2013-07-26T08:21:51.000000Z
-7a287e98935e5b7cf9725eefdfe94226
-2013-07-26T11:17:44.759645Z
-801
+2013-07-29T02:35:05.000000Z
+51e95e53e0ae098241afebf53f6e9bac
+2013-07-29T10:04:30.013214Z
+817
 merlin
 
 
@@ -451,6 +484,9 @@ merlin
 
 
 3202
+
+Craftsmanship
+dir
 
 gameStruct.h
 file
@@ -560,11 +596,11 @@ file
 
 
 
-2013-07-29T02:31:25.000000Z
-d0a3231fe6af770698913cfef87f82e1
-2013-07-29T02:30:38.362277Z
-804
-phileas
+2013-07-30T01:52:35.000000Z
+e24eb1221d2bf35d71469260077b1c92
+2013-07-29T10:04:30.013214Z
+817
+merlin
 
 
 
@@ -586,7 +622,7 @@ phileas
 
 
 
-17041
+17135
 
 CGameLogic.cpp
 file

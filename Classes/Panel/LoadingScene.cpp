@@ -12,10 +12,19 @@
 #include "gamePlayer.h"
 #include "Utility.h"
 #include "gamePlayer.h"
+#include "CFightingCardLayerLogic.h"
 
 LoadingScene::LoadingScene()
 {
-    
+    m_clFightLogic=NULL;
+}
+LoadingScene::~LoadingScene()
+{
+    if(m_clFightLogic)
+    {
+        delete  m_clFightLogic;
+        m_clFightLogic=NULL;
+    }
 }
 
 LoadingScene *LoadingScene::sceneWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targetScene)
@@ -70,9 +79,13 @@ void LoadingScene::doScheule()
 {
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
-        cout<<"this  will get tiem  load  server monster"<<endl;
-        //SinglePlayer::instance()->forTestMonsterCard();
+        m_clFightLogic=new CFightingCardLayerLogic();
         SinglePlayer::instance()->loadRival(194,3); //在阵容 进去的界面应该算这个值得啊
+    }
+    else if(targetScene_==EN_CURRSCENE_CARDSETTINGSCENE)
+    {
+        //调用一个 逻辑的计算开始 ，，然后 调用update 去判断结果 是否 ok了   然后再取 进入 场景。
+        //SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_CARDSETTINGSCENE);
     }
     this->scheduleUpdate();
 }
@@ -86,15 +99,36 @@ void LoadingScene::update(float delta) {
         if(SinglePlayer::instance()->isLoadFightTeam)
         {
             this->unscheduleAllSelectors();
-            // 通过TargetScenes这个枚举类型来决定加载哪个场景
-            SingleSceneManager::instance()->runTargetScene(targetScene_);
-        }
+            if(m_clFightLogic)
+            {
+                m_clFightLogic->initFightLogic(0);
+            }
+            schedule(schedule_selector(LoadingScene::fightlogic));
+      }
     }
-    else{
+    else 
+    {
     
         //终止所有的预定信息
         this->unscheduleAllSelectors();
         // 通过TargetScenes这个枚举类型来决定加载哪个场景
+        SingleSceneManager::instance()->runTargetScene(targetScene_);
+    }
+}
+
+void LoadingScene::fightlogic(float tTimes)
+{
+    
+    if(m_clFightLogic && !m_clFightLogic->logicFighting())
+    {
+        unschedule(schedule_selector(LoadingScene::fightlogic));
+        
+        
+        //把当前的 队列 放入给gameplayer，等于存储在全局的buffer上。 然后再进入场景的时候 去调用
+        //需要一个动画的序列和 一个消耗HP的序列
+        
+        //载入 plist 序列
+        
         SingleSceneManager::instance()->runTargetScene(targetScene_);
     }
 }

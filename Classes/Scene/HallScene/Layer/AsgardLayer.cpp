@@ -91,8 +91,8 @@ void CAsgardLayer::handlerTouch()
             
         case VALHALLA_TOUCH_TAG:
             // to do:
-            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_CARDSETTINGSCENE);
-//            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_CARDSETTINGSCENE);
+     //       SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_CARDSETTINGSCENE);
+            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_CARDSETTINGSCENE);
             break;
         case BIFROST_TOUCH_TAG:
             // to do:

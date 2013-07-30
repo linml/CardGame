@@ -15,14 +15,6 @@
 using namespace cocos2d;
 using namespace std;
 class CFightCard;
-class CFightingCardLayerLogic;
-
-enum EN_GAMEFIGHTSTATUS {
-    EN_GAMEFIGHTSTATUS_WIN,   //胜利
-    EN_GAMEFIGHTSTATUS_LOSE,  //失败，
-    EN_GAMEFIGHTSTATUS_NONE,  //需要继续战斗，
-};
-
 class CAnimationSpriteGameFight;
 class SEveryATKData;
 
@@ -37,7 +29,7 @@ public:
     bool init();
     CREATE_FUNC(CFightingCardLayerScene);
 public:
-    void locgicSchudel(float t);
+    void locgicSchudel(float t);   ///抽离出来 让其在这边做回调
     void appendHpAngryUpdate();
     EN_GAMEFIGHTSTATUS  getWinStatus();
     EN_ATKFIGHT_INDEX   getHuiHeIndex();
@@ -51,7 +43,7 @@ private:
     void textSkillInfo(CAnimationSpriteGameFight *fight);
 private:
     void logicFighting();
-    EN_ATKFIGHT_INDEX m_enHuiheIndex;//记录是否是拥护打斗的。
+    EN_ATKFIGHT_INDEX m_enHuiheIndex;                   //记录打斗者的索引。
     EN_GAMEFIGHTSTATUS  m_enWinStatus;
 private:
     void createFightCard();
@@ -97,17 +89,15 @@ private:
     void  animationShouShang(CCNode *node,void *tag);
     
 public:
+   
+    vector<CCSprite *>m_vFightHero;
+    vector<CCSprite *>m_vMonsterHero;
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;
     int m_iFightCardIndex;
     int m_iMonsterCardIndex;
     vector<CAnimationSpriteGameFight *>m_vAnimation;
-    vector<CCSprite *>m_vFightHero;
-    vector<CCSprite *>m_vMonsterHero;
     vector<SEveryATKData*>m_vHpAngry;
-private:
-   CFightingCardLayerLogic *m_friendFightLogic;
-   friend class CFightingCardLayerLogic ;
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerScene__) */

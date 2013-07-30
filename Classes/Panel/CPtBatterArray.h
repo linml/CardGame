@@ -76,8 +76,9 @@ public:
     int  resortFightCard();
     int  getInsertIndex();
     void updateBattleArray();
-    
     void callBack(CCObject *pSender);
+    
+    void resetBattleArray();
 public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
@@ -142,6 +143,7 @@ public:
     
     CPtBattleArray *getBattleArray(CCTouch *pTouch);
     CPtBattleArray *getCurrentArray(){return  m_pCurrentBatterArray;};
+    void resetBattleArrays();
 public:
 
     
@@ -176,6 +178,7 @@ protected:
     
     
     CGamePlayer *gamePlayer;
+    
 };
 
 #endif

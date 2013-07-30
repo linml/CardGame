@@ -20,37 +20,7 @@
 #include "Utility.h"
 #include "PtActionUtility.h"
 #include "FightResultConfirm.h"
-
-#define AAAAFOROSMACHINE
-struct  SSpriteStatus
-{
-    int m_iCurrHp;
-    int m_iCurrTotalHp;
-    int m_iEngry;
-};
-struct SEveryATKData
-{
-    SEveryATKData()
-    {
-        for(int i=0;i<2;i++)
-        {
-            data[i]=NULL;
-        }
-    }
-    ~SEveryATKData()
-    {
-        for(int i=0;i<2;i++)
-        {
-            if(data[i])
-            {
-                delete data[i];
-                data[i]=NULL;
-            }
-        }
-    }
-    SSpriteStatus *data[2];
-};
-
+#include "SEveryATKData.h"
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
     "001",
@@ -84,18 +54,12 @@ CCScene *CFightingCardLayerScene::scene()
 
 CFightingCardLayerScene::CFightingCardLayerScene()
 {
-    m_friendFightLogic=new  CFightingCardLayerLogic();
     m_vAnimation.clear();
     m_vHpAngry.clear();
 }
 
 CFightingCardLayerScene::~CFightingCardLayerScene()
 {
-    if(m_friendFightLogic)
-    {
-        delete m_friendFightLogic;
-        m_friendFightLogic=NULL;
-    }
     DELETE_POINT_VECTOR(m_vAnimation,vector<CAnimationSpriteGameFight *>);
     DELETE_POINT_VECTOR(m_vHpAngry,vector<SEveryATKData*>);
     
@@ -139,7 +103,7 @@ void  CFightingCardLayerScene::locgicSchudel(float t)
          hpUpdateIndex=0;
         isAnimationEnd=true;
         m_itotalAnimation=g_FightSkillManager::instance()->m_animationVector.size();
-        
+
         schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
     }
 }
@@ -236,17 +200,18 @@ void CFightingCardLayerScene::updateHpAndAngry()
     if(hpUpdateIndex<m_vHpAngry.size())
     {
         SEveryATKData *eveyatk=m_vHpAngry[hpUpdateIndex];
-        if (eveyatk) {
+        if (eveyatk)
+        {
             SSpriteStatus *spriteleft =eveyatk->data[0];
             SSpriteStatus *spriteRight=eveyatk->data[1];
-            if (spriteleft) {
+            if (spriteleft)
+            {
                 initSetUpdateHp(spriteleft->m_iCurrHp,spriteleft->m_iCurrTotalHp,spriteleft->m_iEngry,true);
             }
             if (spriteRight)
             {
                 initSetUpdateHp(spriteRight->m_iCurrHp,spriteRight->m_iCurrTotalHp,spriteRight->m_iEngry,false);
             }
-            
         }
         hpUpdateIndex++;
     }
@@ -282,14 +247,16 @@ void CFightingCardLayerScene::createHero()
                 addChild(sprite,1,m_vFightingCard[i]->tag+10);
                 sprite->setPosition(ccp(wndSize.width*0.5-300,wndSize.height*0.5));
                 sprite->setVisible(false);
-
                 m_vFightHero[i]=sprite;
             }
         }
     }
     if(m_vFightHero.size()>0)
     {
-        m_vFightHero[0]->setVisible(true);
+       if(m_vFightHero[0])
+       {
+           m_vFightHero[0]->setVisible(true);
+       }
     }
     for (int i=0; i<m_vMonsterCard.size(); i++) {
         if(m_vMonsterCard[i])
@@ -335,7 +302,7 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
     {
         if(pFightSprite)
         {
-#ifndef AAAAFOROSMACHINE
+#ifdef AAAAFOROSMACHINE
             CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillid);
             PtActionUtility::readSpriteActionFile(pSkilldata->effect_plist,pFightSprite,"FightCard");
             if(pMonsterSprite2)
@@ -398,11 +365,11 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
                     gamecard->runAction(CCSequence::create(CCMoveBy::create(0.2, ccp(0,100)),(CCFiniteTimeAction*)animation,nd,callback,CCMoveBy::create(0.2, ccp(0, -100)), endAnimation,NULL));
                 }
             }
-            
 #endif
         }
     }
 }
+
 void  CFightingCardLayerScene::animationShouShang(CCNode *node,void *tag)
 {
     if(getChildByTag(30001))
@@ -491,8 +458,6 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
                 CCLog("%d/%d",fightAnimation->m_iATKindex,fightAnimation->m_iDefIndex);
                 CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
                 CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
-                yinCangRenWu(m_vFightHero,sprite);
-                yinCangRenWu(m_vMonsterHero,pMonster);
                 skillAnimationSwf(fightAnimation,sprite,pMonster);
             }
             else
@@ -553,11 +518,14 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         }
             break;
         case EN_ATKFIGHT_INDEX_LEFT_MOVE:
-            //yinCangRenWu(m_vFightHero);
+            m_vFightHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
             moveCardSprite(m_vFightingCard,m_currCAnimationHP->m_iATKindex,true);//移动 card
+            if(m_currCAnimationHP->m_iATKindex+1<m_vMonsterHero.size()-1 &&m_vFightingCard[m_currCAnimationHP->m_iATKindex+1])
+            {
+                m_vFightHero[m_currCAnimationHP->m_iATKindex+1]->setVisible(true);
+            }
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_MOVE:
-            //yinCangRenWu(m_vMonsterHero);
                 m_vMonsterHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
                 moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);//移动 card
                 if(m_currCAnimationHP->m_iATKindex+1<m_vMonsterHero.size()-1 &&m_vMonsterHero[m_currCAnimationHP->m_iATKindex+1])
@@ -587,17 +555,23 @@ void CFightingCardLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goI
             vectemp.push_back(vCard[i]);
         }
         char data[20];
-        for (int i=0 ; i<vectemp.size(); i++) {
-            if(isLeft)
+        for (int i=0 ; i<vectemp.size(); i++)
+        {
+            if (vectemp[i])
             {
-                sprintf(data, "left%0.2d",i);
+                if(isLeft)
+                {
+                    sprintf(data, "left%0.2d",i);
+                }
+                else
+                {
+                    sprintf(data, "right%0.2d",i);
+                    
+                }
+                CCLog("%s,%d,0x%x",data,vectemp[i]->tag,(CCSprite *)getChildByTag(vectemp[i]->tag));
+                PtActionUtility::readSpriteActionFile(g_ActionFilePath+"movecard.plist",(CCSprite *)getChildByTag(vectemp[i]->tag),string(data));
             }
-            else{
-                sprintf(data, "right%0.2d",i);
-                
-            }
-            CCLog("%s,%d,0x%x",data,vectemp[i]->tag,(CCSprite *)getChildByTag(vectemp[i]->tag));
-            PtActionUtility::readSpriteActionFile(g_ActionFilePath+"movecard.plist",(CCSprite *)getChildByTag(vectemp[i]->tag),string(data));
+            
        }
         ((CGamesCard *)getChildByTag(vCard[goIndex]->tag))->setDead();
         runAction(CCSequence::create(CCDelayTime::create(0.3f),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd)),NULL));
@@ -728,7 +702,7 @@ void CFightingCardLayerScene::showHpAnimation(CCObject *object)
 bool CFightingCardLayerScene::checkSendZengfu()
 {
     bool result=false;
-    if(!m_vFightingCard[m_iFightCardIndex]->isSendZengfu) //判断是否触发了 增幅技能
+    if(m_vFightingCard[m_iFightCardIndex] && !m_vFightingCard[m_iFightCardIndex]->isSendZengfu) //判断是否触发了 增幅技能
     {
         m_vFightingCard[m_iFightCardIndex]->isSendZengfu=true;
         g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_LEFT_LORD);
@@ -748,6 +722,10 @@ bool CFightingCardLayerScene::checkSendZengfu()
 
 bool CFightingCardLayerScene::checkFighting()
 {
+    if(m_vFightingCard[m_iFightCardIndex]==NULL || m_vMonsterCard[m_iMonsterCardIndex]==NULL)
+    {
+        return false;
+    }
     m_enHuiheIndex++;
     appendHpAngryUpdate();
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
@@ -873,6 +851,7 @@ void CFightingCardLayerScene::initGame()
     m_iMonsterCardIndex=0;
 }
 
+
 void CFightingCardLayerScene::loadFromServerTest()
 {
     if(SinglePlayer::instance()->isLoadEndCardTeam &&SinglePlayer::instance()->m_vvBattleArray.size()>0&&SinglePlayer::instance()->m_vvBattleArray[0].size()>0)
@@ -897,6 +876,7 @@ void CFightingCardLayerScene::loadFromServerTest()
         }
     }
 }
+
 void CFightingCardLayerScene::createFightCard()
 {
     CCSize winsize=CCDirector::sharedDirector()->getWinSize();
@@ -1024,13 +1004,16 @@ void CFightingCardLayerScene::yinCangRenWu(vector<CCSprite *>vsprite,CCSprite *s
     {
         for (int i=0; i<vsprite.size(); i++)
         {
-            if(vsprite[i]==sprite)
+            if(vsprite[i])
             {
-                vsprite[i]->setVisible(true);
-            }
-            else
-            {
-                vsprite[i]->setVisible(false);
+                if(vsprite[i]==sprite)
+                {
+                    vsprite[i]->setVisible(true);
+                }
+                else
+                {
+                    vsprite[i]->setVisible(false);
+                }
             }
         }
 

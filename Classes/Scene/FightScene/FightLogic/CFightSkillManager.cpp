@@ -317,8 +317,12 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                 logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);
                 currHp-=FightCard[FightIndex]->m_iCurrHp;
                 FightCard[FightIndex]->m_iCurrEngry+=20;
-                for (int i=FightIndex+1; i<FightCard.size(); i++) {
-                    FightCard[i]->m_iCurrEngry+=10;
+                for (int i=FightIndex+1; i<FightCard.size(); i++)
+                {
+                    if(FightCard[i])
+                    {
+                        FightCard[i]->m_iCurrEngry+=10;
+                    }
                 }
                 engry -=FightCard[FightIndex]->m_iCurrEngry;
                 monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
@@ -513,7 +517,10 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
                 // 攻击可能是群体攻击 所以这个地方需要修改
                 pFunc pfuncCallBack=it->second;
                 // 调用发动技能
-                (*pfuncCallBack)(pCard,fightCard,monsterCard,FightIndex,MonstIndex,pSkilldata,enAtkFightIndex);
+                if(fightCard[FightIndex]&& monsterCard[MonstIndex])
+                {
+                    (*pfuncCallBack)(pCard,fightCard,monsterCard,FightIndex,MonstIndex,pSkilldata,enAtkFightIndex);
+                }
             }
         }
     }

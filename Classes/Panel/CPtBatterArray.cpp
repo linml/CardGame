@@ -91,14 +91,6 @@ void CPtBattleArray::initBattleArrayFromServer(vector<CFightCard *> &fightArray)
     CCLog("size: %d", fightArray.size());
     if (tmp)
     {
-        // test: change the tmp resource value:
-    
-//        tmp->m_pCard->m_icard_suit= rand()%52+1;
-//        tmp->m_pCard->m_scard_head="";  //头像
-//        tmp->m_pCard->m_scard_groud="bg1.png"; //
-//        tmp->m_pCard->m_scard_role="";
-//        tmp->m_pCard->m_scard_resources="peo.png";
-        // testEnd;
           CCLog("id, %d", tmp->m_pCard->m_icard_id);
         CPtDisPlayCard * card = CPtDisPlayCard::Create(tmp);
         card->setInCardBagPointer((CPtDisPlayCard*)cardBagPointArray->objectForKey(card->getCardData()->m_User_Card_ID));
@@ -111,14 +103,7 @@ void CPtBattleArray::initBattleArrayFromServer(vector<CFightCard *> &fightArray)
         tmp = fightArray.at(i);
         if (tmp)
         {
-            CCLog("fight: %d",i);
-            // test: change the tmp resource value:
-//            tmp->m_pCard->m_icard_suit= rand()%52+1;
-//            tmp->m_pCard->m_scard_head="";  //头像
-//            tmp->m_pCard->m_scard_groud="bg1.png"; //
-//            tmp->m_pCard->m_scard_role="";
-//            tmp->m_pCard->m_scard_resources="peo.png";
-            // testEnd;
+             CCLog("fight: %d",i);
              CCLog("position:%d,id, %d", i,tmp->m_pCard->m_icard_id);
             CPtDisPlayCard * card = CPtDisPlayCard::Create(tmp);
             card->setInCardBagPointer((CPtDisPlayCard*)cardBagPointArray->objectForKey(card->getCardData()->m_User_Card_ID));
@@ -375,7 +360,11 @@ bool CPtBattleArray::removeCard(const int& inCardType)
                 if (tmpCard)
                 {
                     tmpCard->getCardData()->setInBattleArray(false);
-                    tmpCard->getInCardBagPointer()->setLive();
+                    if (tmpCard->getInCardBagPointer())
+                    {
+                        tmpCard->getInCardBagPointer()->setLive();
+                    }
+                 
                 }
             }
 
@@ -900,6 +889,49 @@ void CPtBattleArray::save(vector<CFightCard *> & infightArray)
     }
 }
 
+
+void CPtBattleArray::resetBattleArray()
+{
+    vector<CFightCard*> fightArray = SinglePlayer::instance()->m_vvBattleArray.at(inTag-1);
+    CCDictionary* dir =     CCardSettingScene::s_pBattleArrayCards;
+    CPtDisPlayCard * tmp = NULL;
+    CFightCard * tmpFightCard = NULL;
+    for (int i = CARDCOUNT-1; i >= 0; i--)
+    {
+           tmp = dynamic_cast<CPtDisPlayCard*>(m_pCardArray[i]);
+
+            if (i == CARDCOUNT-1)
+            {
+                tmpFightCard = fightArray.at(CARDCOUNT-1);
+            }else
+            {
+                tmpFightCard = fightArray.at(CARDCOUNT-2-i);
+            }
+            
+            if (tmpFightCard && tmp)
+            {
+                if (tmpFightCard->m_User_Card_ID != tmp->getCardData()->m_User_Card_ID)
+                {
+                    tmp->getInCardBagPointer()->setLive();
+                    tmp->getCardData()->setInBattleArray(false);
+                    dynamic_cast<CPtDisPlayCard*>(dir->objectForKey(tmpFightCard->m_User_Card_ID))->setDead();
+                    dynamic_cast<CPtDisPlayCard*>(dir->objectForKey(tmpFightCard->m_User_Card_ID))->getCardData()->setInBattleArray(true);
+                }
+            }else if(tmp ==NULL && tmpFightCard)
+            {
+                dynamic_cast<CPtDisPlayCard*>(dir->objectForKey(tmpFightCard->m_User_Card_ID))->setDead();
+                dynamic_cast<CPtDisPlayCard*>(dir->objectForKey(tmpFightCard->m_User_Card_ID))->getCardData()->setInBattleArray(true);
+                
+            }else if(tmpFightCard == NULL && tmp)
+            {
+                tmp->getInCardBagPointer()->setLive();
+                tmp->getCardData()->setInBattleArray(false);
+            }
+                
+        }
+    
+
+}
 // implement class of CPtBatterArrayPanel
 
 CPtBattleArrayPanel* CPtBattleArrayPanel::create(CCSize size, CCNode* container)
@@ -970,6 +1002,16 @@ CPtBattleArray * CPtBattleArrayPanel::getBattleArray(CCTouch *pTouch)
     return NULL;
 }
 
+void CPtBattleArrayPanel::resetBattleArrays()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        m_pBatterArrays[i]->resetBattleArray();
+
+    }
+
+
+}
 
 // test:
 static CCPoint prePoint;

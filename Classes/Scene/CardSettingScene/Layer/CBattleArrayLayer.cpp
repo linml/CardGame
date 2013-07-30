@@ -413,11 +413,16 @@ void CBattleArrayLayer::addEnhance()
     m_pEnhancePanel = CCardEnhanceLayer::create();
     addChild(m_pEnhancePanel, 1, 4000);
     dynamic_cast<TableView *>(m_pCards->getTableView())->setDelayMode(false);
+
 }
 
 
 void CBattleArrayLayer::removeLeft()
 {
+    if (panel)
+    {
+        panel->resetBattleArrays();
+    }
     removeChildByTag(4000, true);
     panel = NULL;
     m_pEnhancePanel = NULL;

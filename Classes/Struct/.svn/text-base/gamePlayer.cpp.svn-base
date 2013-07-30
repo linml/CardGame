@@ -422,7 +422,10 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                     int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
                     int position=GameTools::intForKey("position", cardDirectorDetail);
                     tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
-                    tempVcard[position-1]->setInBattleArray(true);
+                    if (tempVcard[position-1])
+                    {
+                        tempVcard[position-1]->setInBattleArray(true);
+                    }
                 }
                 m_vvBattleArray.push_back(tempVcard);
             }
@@ -503,7 +506,6 @@ void CGamePlayer::loadRival(int  usid,int  troops)
 #else
     char *data=new char[5];
     parseRival((CCObject *)data);
-
 #endif
 }
 
