@@ -92,7 +92,6 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
         case BUTTON_PLAY_TAG:
             if(Utility::getNodeByTag(this, "0,2,0")->isVisible())
             {
-                SinglePlayer::instance()->forTestCard();
                 SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
             }
             break;

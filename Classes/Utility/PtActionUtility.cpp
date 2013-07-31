@@ -298,6 +298,7 @@ namespace PtActionUtility {
                         string strActFile=getSubStr(action, "(", ")");
                         //获得 animate 里面的 ACT 里面的 ani;
                         //createAniWithFile(str);//载入animate 的 帧动画；
+                        CCLog("strActFile:%s",strActFile.c_str());
                         HBActionAniCache::sharedActionAniCache()->addActionAniWithFile(CSTR_FILEPTAH(g_ActionFilePath,strActFile.c_str()));
                         appendAnimationList(actionFile,strActFile); //等待场景回退的时候删除 这些粒子动画
                     }

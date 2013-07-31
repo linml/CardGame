@@ -1,7 +1,7 @@
 10
 
 dir
-806
+835
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img
 svn://merlin@192.168.2.2/sdp
 
@@ -570,40 +570,6 @@ has-props
 
 1106467
 
-mission.png
-file
-
-
-
-
-2013-07-05T06:01:20.000000Z
-0f7a3181e7a3f7fab1066b0489cbee1a
-2013-06-18T01:15:16.799500Z
-543
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6431
-
 red_wolf_1.png
 file
 
@@ -637,6 +603,40 @@ has-props
 
 
 228202
+
+mission.png
+file
+
+
+
+
+2013-07-05T06:01:20.000000Z
+0f7a3181e7a3f7fab1066b0489cbee1a
+2013-06-18T01:15:16.799500Z
+543
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6431
 
 cardBag.png
 file
@@ -808,40 +808,6 @@ merlin
 
 8257
 
-cardsettingscene_bg.png
-file
-
-
-
-
-2013-07-23T05:47:29.000000Z
-b43ff5458c78bb14043046031673f425
-2013-07-22T06:13:26.779914Z
-725
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1494015
-
 button2.png
 file
 
@@ -875,6 +841,40 @@ has-props
 
 
 5389
+
+cardsettingscene_bg.png
+file
+
+
+
+
+2013-07-23T05:47:29.000000Z
+b43ff5458c78bb14043046031673f425
+2013-07-22T06:13:26.779914Z
+725
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1494015
 
 cubeCardSprite.png
 file
@@ -1012,40 +1012,6 @@ has-props
 
 175285
 
-memorygame.plist
-file
-
-
-
-
-2013-07-05T06:01:20.000000Z
-8a12e346a74c098ccd0f35d988979604
-2013-06-17T08:04:18.973589Z
-534
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-17690
-
 card.png
 file
 
@@ -1079,6 +1045,40 @@ has-props
 
 
 246345
+
+memorygame.plist
+file
+
+
+
+
+2013-07-05T06:01:20.000000Z
+8a12e346a74c098ccd0f35d988979604
+2013-06-17T08:04:18.973589Z
+534
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+17690
 
 button.png
 file

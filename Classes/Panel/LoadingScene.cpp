@@ -40,14 +40,7 @@ void LoadingScene::addParticle()
 {
     Utility::addPtActionScript("fire/fire.act");
     Utility::addPtActionScript("fire/fire2.act");
-   for (int i=0; i< SinglePlayer::instance()->m_hashmapFight.size() ; i++)
-    {
-        
-    }
-    for (int i=0; i< SinglePlayer::instance()->m_hashmapMonster.size() ; i++)
-    {
-        
-    }
+
     //加载例子特效
 }
 
@@ -80,6 +73,7 @@ void LoadingScene::doScheule()
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
         m_clFightLogic=new CFightingCardLayerLogic();
+        SinglePlayer::instance()->onFightInterScene();
         SinglePlayer::instance()->loadRival(194,3); //在阵容 进去的界面应该算这个值得啊
     }
     else if(targetScene_==EN_CURRSCENE_CARDSETTINGSCENE)
@@ -95,7 +89,6 @@ void LoadingScene::update(float delta) {
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
         //loading the  例子效果
-        addParticle();
         if(SinglePlayer::instance()->isLoadFightTeam)
         {
             this->unscheduleAllSelectors();

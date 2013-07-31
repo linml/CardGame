@@ -29,11 +29,8 @@ public:
     bool init();
     CREATE_FUNC(CFightingCardLayerScene);
 public:
-    void locgicSchudel(float t);   ///抽离出来 让其在这边做回调
-    void appendHpAngryUpdate();
     EN_GAMEFIGHTSTATUS  getWinStatus();
     EN_ATKFIGHT_INDEX   getHuiHeIndex();
-    int  m_iTotalHuihe;
     void animationSchudel(float t);
     int  animationAndex;
     bool isAnimationEnd;
@@ -42,12 +39,12 @@ public:
 private:
     void textSkillInfo(CAnimationSpriteGameFight *fight);
 private:
-    void logicFighting();
     EN_ATKFIGHT_INDEX m_enHuiheIndex;                   //记录打斗者的索引。
     EN_GAMEFIGHTSTATUS  m_enWinStatus;
 private:
     void createFightCard();
     void createMonsterCard();
+    void deleteBackGamePlayerFightMonsterCard();
     bool initBggroudPng();
     bool initAtkPng();
     bool initText();
@@ -75,7 +72,6 @@ private:
     void loseDialog();
 private:
     void loadFromServerTest();
-    void initGame(); 
     bool checkIsDead(); //判断对方是否死亡
     bool checkSendZengfu(); //判断是否发送增幅技能
     bool checkFighting();
@@ -94,10 +90,6 @@ public:
     vector<CCSprite *>m_vMonsterHero;
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;
-    int m_iFightCardIndex;
-    int m_iMonsterCardIndex;
-    vector<CAnimationSpriteGameFight *>m_vAnimation;
-    vector<SEveryATKData*>m_vHpAngry;
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerScene__) */

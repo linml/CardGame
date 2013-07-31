@@ -44,7 +44,13 @@ bool CFightingCardLayerLogic::loadFromCardTeamTest()
     }
     for (int i=0; i<tempSinglePlayer->m_hashmapMonsterCard.size(); i++)
     {
-        this->m_vMonsterCard.push_back(new CFightCard(*tempSinglePlayer->m_hashmapMonsterCard[i]));
+        if(tempSinglePlayer->m_hashmapMonsterCard[i])
+        {
+            this->m_vMonsterCard.push_back(new CFightCard(*tempSinglePlayer->m_hashmapMonsterCard[i]));
+        }
+        else{
+            this->m_vMonsterCard.push_back(NULL);
+        }
     }
     return true;
 }
@@ -52,6 +58,7 @@ bool CFightingCardLayerLogic::loadFromCardTeamTest()
 bool  CFightingCardLayerLogic::loadFromServerTest(int  loadTeamIndex)
 {
     CGamePlayer *tempSinglePlayer=SinglePlayer::instance();
+    tempSinglePlayer->backUpFightTeam(loadTeamIndex);
     if(tempSinglePlayer->isLoadEndCardTeam &&tempSinglePlayer->m_vvBattleArray.size()>0&&loadTeamIndex<tempSinglePlayer->m_vvBattleArray.size()&&tempSinglePlayer->m_vvBattleArray[loadTeamIndex].size()>0)
     {
         for (int i=0; i<SinglePlayer::instance()->m_vvBattleArray[loadTeamIndex].size();i++)
@@ -90,6 +97,8 @@ bool CFightingCardLayerLogic::logicFighting()
     }
     else
     {
+        m_enWinStatus=winStatus;
+        SinglePlayer::instance()->m_enWinStatus=winStatus;
         CCLog("winStatus:%d",(int)winStatus);
         return  true;
     }
@@ -107,7 +116,7 @@ void CFightingCardLayerLogic::loadAnimatePlist()
                 bool  needInsert=true;
                 for (int i=0; i<m_vSskillFile.size(); i++)
                 {
-                    if(m_vSskillFile[i]==pSkilldata->effect_plist)
+                    if(m_vSskillFile[i]==pSkilldata->effect_plist.c_str())
                     {
                         needInsert=false;
                         break;
@@ -117,7 +126,7 @@ void CFightingCardLayerLogic::loadAnimatePlist()
                 {
                     string strPlist=pSkilldata->effect_plist+"_l.plist";
                     CCLog("load plist %s",pSkilldata->effect_plist.c_str());
-                    m_vSskillFile.push_back(strPlist);
+                    m_vSskillFile.push_back(pSkilldata->effect_plist);
                     PtActionUtility::getAppendHBActionCachWithActionFile(strPlist, m_vNeedAnimate);
                 }
             }
@@ -256,7 +265,7 @@ void CFightingCardLayerLogic::appendHpAngryUpdate()
     }
     if(pEveryAtk)
     {
-        m_vHpAngry.push_back(pEveryAtk);
+        SinglePlayer::instance()->appendAtkData(pEveryAtk);
     }
     
 }

@@ -75,7 +75,6 @@ CCardFightingLayerScene::CCardFightingLayerScene()
     m_iAnimationIndex=0;
     m_vFightingCard.clear();
     m_vMonsterCard.clear();
-    SinglePlayer::instance()->forTestMonsterCard();
 }
 
 CCardFightingLayerScene::~CCardFightingLayerScene()

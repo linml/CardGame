@@ -34,24 +34,22 @@ private:
     int m_iFightCardIndex;
     int m_iMonsterCardIndex;
     int  m_iTotalHuihe;    //总的回合数字
-    vector<CAnimationSpriteGameFight *>m_vAnimation;
-    vector<SEveryATKData*>m_vHpAngry;
     vector<string> m_vSskillFile;
     vector<string> m_vNeedAnimate;
     
 public:
     void initFightLogic(int  loadTeamIndex);
 private:
-    bool loadFromServerTest(int  loadTeamIndex);//读取当前卡牌阵容，
-    bool loadFromCardTeamTest();                //获得怪物的信息
+    bool loadFromServerTest(int  loadTeamIndex);    //!<     读取当前卡牌阵容，
+    bool loadFromCardTeamTest();                    //!<     获得怪物的信息
 private:
-    bool checkIsDead(); //判断对方是否死亡
-    bool checkSendZengfu(); //判断是否发送增幅技能
+    bool checkIsDead();                             //!<     判断对方是否死亡
+    bool checkSendZengfu();                         //!<     判断是否发送增幅技能
     bool checkFighting();
     void appendHpAngryUpdate();
 public:
     bool logicFighting();
-    void loadAnimatePlist();
+    void loadAnimatePlist();                        //!<    加载animation的plist文件里面的帧动画
 public:
     EN_GAMEFIGHTSTATUS  getWinStatus();
     EN_ATKFIGHT_INDEX   getHuiHeIndex();

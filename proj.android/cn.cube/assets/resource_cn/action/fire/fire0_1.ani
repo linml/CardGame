@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>fire0_10001</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1001.png</string>
+		</dict>
+		<key>fire0_10002</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1002.png</string>
+		</dict>
+		<key>fire0_10003</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1003.png</string>
+		</dict>
+		<key>fire0_10004</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1004.png</string>
+		</dict>
+		<key>fire0_10005</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1005.png</string>
+		</dict>
+		<key>fire0_10006</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1006.png</string>
+		</dict>
+		<key>fire0_10007</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1007.png</string>
+		</dict>
+		<key>fire0_10008</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1008.png</string>
+		</dict>
+		<key>fire0_10009</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1009.png</string>
+		</dict>
+		<key>fire0_10010</key>
+		<dict>
+			<key>texturePath</key>
+			<string>fire/fire1010.png</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>0</integer>
+	</dict>
+</dict>
+</plist>

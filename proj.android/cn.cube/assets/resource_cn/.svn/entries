@@ -1,15 +1,15 @@
 10
 
 dir
-806
+835
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-29T03:08:51.338172Z
-806
-merlin
+2013-07-31T08:08:11.836931Z
+835
+wood
 
 
 
@@ -128,9 +128,6 @@ merlin
 
 36202
 
-sound
-dir
-
 card_config.plist
 file
 
@@ -165,9 +162,12 @@ merlin
 
 117586
 
+sound
+dir
+
 100004_l.plist
 file
-818
+
 
 
 
@@ -235,7 +235,7 @@ merlin
 
 skill_config.plist
 file
-818
+
 
 
 
@@ -269,7 +269,7 @@ merlin
 
 cardteam.txt
 file
-818
+
 
 
 
@@ -300,40 +300,6 @@ merlin
 
 
 2131
-
-100004_r.plist
-file
-818
-
-
-
-2013-07-29T08:50:09.000000Z
-5b75849d78248bd7f8276812f080f69f
-2013-07-30T01:41:19.829959Z
-818
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-953
 
 boss_icon_Effect_l.plist
 file
@@ -368,6 +334,40 @@ merlin
 
 
 972
+
+100004_r.plist
+file
+
+
+
+
+2013-07-29T08:50:09.000000Z
+5b75849d78248bd7f8276812f080f69f
+2013-07-30T01:41:19.829959Z
+818
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+953
 
 cardbg.txt
 file
@@ -405,30 +405,6 @@ merlin
 
 uiScript
 dir
-
-card.plist
-file
-807
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-deleted
 
 particle
 dir

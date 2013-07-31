@@ -647,10 +647,10 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
         switch ((pCardBuffer)->m_enBuffer_Field)
         {
             case EN_BUFF_FIELD_TYPE_ATTACK:   //影响攻击力 攻击力我只回复一次。不带这样多次减去的
-                if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
+                if (pCardBuffer->m_iBuff_showTimes<=0 && pCardBuffer->m_iBuff_effectTimes<=0)
                 {
                     pFightCard->m_attack+=-pCardBuffer->m_iValue*pCardBuffer->m_iBuff_effectTimes;   //恢复攻击力
-                    pFightCard->m_vBuffer.erase(it);
+                    it=pFightCard->m_vBuffer.erase(it);
                     delete pCardBuffer;
                     pCardBuffer=NULL;
                     isNeedAddIterator=false;
@@ -672,10 +672,10 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                 break;
             case EN_BUFF_FIELD_TYPE_DEFEND:   //影响防御力
             {
-                if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
+                if (pCardBuffer->m_iBuff_showTimes<=0 && pCardBuffer->m_iBuff_effectTimes<=0)
                 {
                     pFightCard->m_defend+=-pCardBuffer->m_iValue*pCardBuffer->m_iBuff_effectTimes;   //恢复攻击力
-                    pFightCard->m_vBuffer.erase(it);
+                    it=pFightCard->m_vBuffer.erase(it);
                     delete pCardBuffer;
                     pCardBuffer=NULL;
                     isNeedAddIterator=false;
@@ -699,9 +699,9 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                 break;
             case EN_BUFF_FIELD_TYPE_ANGRY:    //怒气
             {
-                if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
+                if (pCardBuffer->m_iBuff_showTimes<=0 && pCardBuffer->m_iBuff_effectTimes<=0)
                 {
-                    pFightCard->m_vBuffer.erase(it);
+                    it=pFightCard->m_vBuffer.erase(it);
                     delete pCardBuffer;
                     pCardBuffer=NULL;
                     isNeedAddIterator=false;
@@ -729,7 +729,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
             {
                 if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
                 {
-                    pFightCard->m_vBuffer.erase(it);
+                    it=pFightCard->m_vBuffer.erase(it);
                     delete pCardBuffer;
                     pCardBuffer=NULL;
                     isNeedAddIterator=false;

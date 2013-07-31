@@ -17,29 +17,26 @@
 using namespace std;
 class CImapact;
 class CSkillData;
+class SEveryATKData;
 
-class CGamePlayer : cocos2d::CCObject {
-public:
-    void forTestCard();
-    void forTestMonsterCard();
+class CGamePlayer : cocos2d::CCObject
+{
  public:
     CGamePlayer();
     ~CGamePlayer();
     void initGames();
     void loadGamesConfig();
+    void onExitGameApp();
  public:
    //开启程序需要读取下列的几个选项
    //读取卡牌表格
     void clearAllCard();
     void initAllCard(const char *cardFileName);
     map<int, CCard *>m_hashmapAllCard;
-    vector<CCard *>m_hashmapFight;
-    vector<CCard *>m_hashmapMonster;
     
     //读取玩家等级表格子
     void clearPlayerTable();
     void initPlayerTable(const char *playerFileName);
-
     vector<SLevelPlayer *>m_gvPlayerLevel;
     
     //读取技能表格
@@ -55,16 +52,16 @@ public:
     void clearAllEffectInfo();
     CImapact *findByImpactId( int tempImpactId);
     vector< CImapact * >m_vImpactInfo;
-    
-
- 
 public:
     vector<CFightCard *>m_hashmapFightingCard;
     vector<CFightCard *>m_hashmapMonsterCard;
+    //模拟战斗时候调用的 数据
+    bool isLoadServer;
     
+private:
     void initByServerDictorny(cocos2d::CCDictionary *dict);
     void initFightingCardByserverDictorny(cocos2d::CCArray *dict);
-    bool isLoadServer;
+
 private:
     int m_iCurrentExp;
     int m_iCurrentHp;
@@ -81,6 +78,8 @@ public:
     //获得服务端的数据并init下数据
     void getSeverPlayerInfo(CCObject *object);
 //以后这个通讯的会单独抽离在通讯的框架里面。
+    
+    
 public: //读取卡包的信息
     void loadServerCardBag();
     void clearServerCardBag();
@@ -102,13 +101,20 @@ public:
     void loadRival(int  usid,int troop);
     void parseRival(CCObject *object);
     bool isLoadFightTeam;
-    
+public:
+    void backUpFightTeam(int index);
+    void appendAtkData(SEveryATKData * data);
+    void onFightInterScene();
+    void onFightExitScene();
+    void deleteFightMonsterCard();
+    EN_GAMEFIGHTSTATUS  m_enWinStatus;
+    vector<SEveryATKData*>m_vHpAngry;
 public:
     //获取 卡包 内容的卡
     vector<CFightCard *>m_vCardBag;
     //获取当前阵容（0~2),01攻击  　２防御
     vector<vector<CFightCard*> >m_vvBattleArray;
-    int m_iCurrentBattle;
+    int m_iCurrentBattleTeam; //当前的选择 战斗的阵容
 
 
 };

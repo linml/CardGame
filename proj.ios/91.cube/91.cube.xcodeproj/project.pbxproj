@@ -280,7 +280,6 @@
 		9FC6F2AA17460C0A0091BE98 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FC6F2A617460C0A0091BE98 /* main.m */; };
 		9FC6F2AB17460C0A0091BE98 /* RootViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9FC6F2A817460C0A0091BE98 /* RootViewController.mm */; };
 		9FD3F91F17827BD0006C7039 /* CCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3F91B17827BD0006C7039 /* CCard.cpp */; };
-		9FD3F92317827C0A006C7039 /* CCardFightingLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3F92117827C0A006C7039 /* CCardFightingLayerScene.cpp */; };
 		9FD3F92617827DD6006C7039 /* CGamesCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FD3F92417827DD6006C7039 /* CGamesCard.cpp */; };
 		9FFE8E5B17815A9700DF7D47 /* HBLabelPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9FFE8E5917815A9600DF7D47 /* HBLabelPanel.cpp */; };
 		9FFE8E8D1781A03F00DF7D47 /* json_internalarray.inl in Resources */ = {isa = PBXBuildFile; fileRef = 9FFE8E831781A03F00DF7D47 /* json_internalarray.inl */; };
@@ -883,8 +882,6 @@
 		9FC6F2A817460C0A0091BE98 /* RootViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RootViewController.mm; sourceTree = "<group>"; };
 		9FD3F91B17827BD0006C7039 /* CCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCard.cpp; sourceTree = "<group>"; };
 		9FD3F91C17827BD0006C7039 /* CCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCard.h; sourceTree = "<group>"; };
-		9FD3F92117827C0A006C7039 /* CCardFightingLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardFightingLayerScene.cpp; sourceTree = "<group>"; };
-		9FD3F92217827C0A006C7039 /* CCardFightingLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardFightingLayerScene.h; sourceTree = "<group>"; };
 		9FD3F92417827DD6006C7039 /* CGamesCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGamesCard.cpp; sourceTree = "<group>"; };
 		9FD3F92517827DD6006C7039 /* CGamesCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGamesCard.h; sourceTree = "<group>"; };
 		9FD3FBB11782F65B006C7039 /* libPtTool.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPtTool.a; sourceTree = "<group>"; };
@@ -1141,8 +1138,6 @@
 			isa = PBXGroup;
 			children = (
 				6FAD05F0178BB10B006CFDAF /* FightLogic */,
-				9FD3F92117827C0A006C7039 /* CCardFightingLayerScene.cpp */,
-				9FD3F92217827C0A006C7039 /* CCardFightingLayerScene.h */,
 				8E6CE598176EFF9800CF5C0D /* Layer */,
 				6FB094F9178EB44B0024DDCD /* CFightingCardLayerScene.cpp */,
 				6FB094FA178EB44E0024DDCD /* CFightingCardLayerScene.h */,
@@ -2639,7 +2634,6 @@
 				9FFE8E901781A03F00DF7D47 /* json_value.cpp in Sources */,
 				9FFE8E921781A03F00DF7D47 /* json_writer.cpp in Sources */,
 				9FD3F91F17827BD0006C7039 /* CCard.cpp in Sources */,
-				9FD3F92317827C0A006C7039 /* CCardFightingLayerScene.cpp in Sources */,
 				9FD3F92617827DD6006C7039 /* CGamesCard.cpp in Sources */,
 				6F8E60F5178424A900AF5111 /* AnimationLogic.cpp in Sources */,
 				6F8E60FA178424BD00AF5111 /* CPtScrollWordsWidget.cpp in Sources */,
