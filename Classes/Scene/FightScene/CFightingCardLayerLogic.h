@@ -33,9 +33,11 @@ private:
     vector<CFightCard *>m_vMonsterCard;
     int m_iFightCardIndex;
     int m_iMonsterCardIndex;
+    int  m_iTotalHuihe;    //总的回合数字
     vector<CAnimationSpriteGameFight *>m_vAnimation;
     vector<SEveryATKData*>m_vHpAngry;
-   int  m_iTotalHuihe;    //总的回合数字
+    vector<string> m_vSskillFile;
+    vector<string> m_vNeedAnimate;
     
 public:
     void initFightLogic(int  loadTeamIndex);
@@ -49,6 +51,7 @@ private:
     void appendHpAngryUpdate();
 public:
     bool logicFighting();
+    void loadAnimatePlist();
 public:
     EN_GAMEFIGHTSTATUS  getWinStatus();
     EN_ATKFIGHT_INDEX   getHuiHeIndex();

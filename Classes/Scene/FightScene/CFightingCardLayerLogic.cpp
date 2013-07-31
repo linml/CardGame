@@ -7,11 +7,22 @@
 //
 
 #include "CFightingCardLayerLogic.h"
-#include "CFightingCardLayerScene.h"
 #include "CCard.h"
 #include "gamePlayer.h"
 #include "CFightSkillManager.h"
 #include "SEveryATKData.h"
+#include "CAnimationSpriteGameFight.h"
+#include "CSkillData.h"
+#include "PtActionUtility.h"
+
+#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
+{\
+for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+delete *it; \
+*it=NULL; \
+} \
+VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+}
 
 CFightingCardLayerLogic::CFightingCardLayerLogic()
 {
@@ -20,7 +31,8 @@ CFightingCardLayerLogic::CFightingCardLayerLogic()
 
 CFightingCardLayerLogic::~CFightingCardLayerLogic()
 {
-    
+    DELETE_POINT_VECTOR(m_vFightingCard,vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_vMonsterCard, vector<CFightCard *>);
 }
 
 bool CFightingCardLayerLogic::loadFromCardTeamTest()
@@ -32,10 +44,8 @@ bool CFightingCardLayerLogic::loadFromCardTeamTest()
     }
     for (int i=0; i<tempSinglePlayer->m_hashmapMonsterCard.size(); i++)
     {
-        this->m_vMonsterCard.push_back(tempSinglePlayer->m_hashmapMonsterCard[i]);
+        this->m_vMonsterCard.push_back(new CFightCard(*tempSinglePlayer->m_hashmapMonsterCard[i]));
     }
-//    tempSinglePlayer->m_hashmapMonsterCard.erase(tempSinglePlayer->m_hashmapMonsterCard.begin(),tempSinglePlayer->m_hashmapMonsterCard.end());
-//    tempSinglePlayer->m_hashmapMonsterCard.clear();
     return true;
 }
 
@@ -60,7 +70,7 @@ bool  CFightingCardLayerLogic::loadFromServerTest(int  loadTeamIndex)
     else
     {
         return false;
-    }    
+    }
 }
 
 bool CFightingCardLayerLogic::logicFighting()
@@ -76,15 +86,44 @@ bool CFightingCardLayerLogic::logicFighting()
                 checkFighting();
             }
         }
-        return true;
+        return false;
     }
     else
     {
-        CCLog("%d",(int)winStatus);
-        return  false;
+        CCLog("winStatus:%d",(int)winStatus);
+        return  true;
     }
 }
 
+void CFightingCardLayerLogic::loadAnimatePlist()
+{
+    CFightSkillManager *skillManager=g_FightSkillManager::instance();
+    for (int i= 0; i<skillManager->m_animationVector.size(); i++) {
+        if(skillManager->m_animationVector[i])
+        {
+            CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillManager->m_animationVector[i]->m_iSKillId);
+            if(pSkilldata)
+            {
+                bool  needInsert=true;
+                for (int i=0; i<m_vSskillFile.size(); i++)
+                {
+                    if(m_vSskillFile[i]==pSkilldata->effect_plist)
+                    {
+                        needInsert=false;
+                        break;
+                    }
+                }
+                if(needInsert)
+                {
+                    string strPlist=pSkilldata->effect_plist+"_l.plist";
+                    CCLog("load plist %s",pSkilldata->effect_plist.c_str());
+                    m_vSskillFile.push_back(strPlist);
+                    PtActionUtility::getAppendHBActionCachWithActionFile(strPlist, m_vNeedAnimate);
+                }
+            }
+        }
+    }
+}
 
 bool CFightingCardLayerLogic::checkFighting()
 {
@@ -191,7 +230,7 @@ bool CFightingCardLayerLogic::checkSendZengfu()
         appendHpAngryUpdate();
         result=true;
     }
-    return result; 
+    return result;
 }
 
 void CFightingCardLayerLogic::appendHpAngryUpdate()
@@ -266,4 +305,9 @@ void CFightingCardLayerLogic::initFightLogic(int  loadTeamIndex)
 {
     loadFromServerTest(loadTeamIndex);//读取当前卡牌阵容，
     loadFromCardTeamTest();
+    //初始化
+    m_iTotalHuihe=0;
+    m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
+    m_iFightCardIndex=0;
+    m_iMonsterCardIndex=0;
 }

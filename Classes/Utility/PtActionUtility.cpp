@@ -9,7 +9,7 @@
 #include "PtActionUtility.h"
 #include "PtMapUtility.h"
 #include "gameTools.h"
-#include "HBAnimationCache.h"
+#include "HBActionAniCache.h"
 
 //格子效果动作完成标记
 bool isActionOver = false;
@@ -274,6 +274,7 @@ namespace PtActionUtility {
             }
         }
         action.push_back(str);
+        return  true;
     }
     
     void getAppendHBActionCachWithActionFile(const string file,vector<string>&actionFile)
@@ -294,9 +295,11 @@ namespace PtActionUtility {
                     string actionType=GameTools::getSubStr_endStr(action, "(");
                     if(actionType=="Animate")
                     {
-                        string str=getSubStr(action, "(", ")");
-                        createAniWithFile(str);//载入animate 的 帧动画；
-                        appendAnimationList(actionFile,str); //等待场景回退的时候删除 这些粒子动画
+                        string strActFile=getSubStr(action, "(", ")");
+                        //获得 animate 里面的 ACT 里面的 ani;
+                        //createAniWithFile(str);//载入animate 的 帧动画；
+                        HBActionAniCache::sharedActionAniCache()->addActionAniWithFile(CSTR_FILEPTAH(g_ActionFilePath,strActFile.c_str()));
+                        appendAnimationList(actionFile,strActFile); //等待场景回退的时候删除 这些粒子动画
                     }
                 }
 
@@ -307,7 +310,7 @@ namespace PtActionUtility {
      void clearHBActionCachWithActionFile(vector<string>&actionFile)
     {
         for (int i=0; i<actionFile.size(); i++) {
-            HBAnimationCache::sharedAnimationCache()->removeAnimationByName(actionFile[i].c_str());
+            HBActionAniCache::sharedActionAniCache()->removeActionAniByName(actionFile[i].c_str());
         }
     }
     

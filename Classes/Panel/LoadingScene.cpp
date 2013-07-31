@@ -119,16 +119,14 @@ void LoadingScene::update(float delta) {
 void LoadingScene::fightlogic(float tTimes)
 {
     
-    if(m_clFightLogic && !m_clFightLogic->logicFighting())
+    if(m_clFightLogic && m_clFightLogic->logicFighting())
     {
+        if (m_clFightLogic)
+        {
+            m_clFightLogic->loadAnimatePlist();
+        }
         unschedule(schedule_selector(LoadingScene::fightlogic));
-        
-        
-        //把当前的 队列 放入给gameplayer，等于存储在全局的buffer上。 然后再进入场景的时候 去调用
-        //需要一个动画的序列和 一个消耗HP的序列
-        
-        //载入 plist 序列
-        
         SingleSceneManager::instance()->runTargetScene(targetScene_);
+        
     }
 }

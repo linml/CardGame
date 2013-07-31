@@ -54,13 +54,11 @@ CCScene *CFightingCardLayerScene::scene()
 
 CFightingCardLayerScene::CFightingCardLayerScene()
 {
-    m_vAnimation.clear();
     m_vHpAngry.clear();
 }
 
 CFightingCardLayerScene::~CFightingCardLayerScene()
 {
-    DELETE_POINT_VECTOR(m_vAnimation,vector<CAnimationSpriteGameFight *>);
     DELETE_POINT_VECTOR(m_vHpAngry,vector<SEveryATKData*>);
     
 }

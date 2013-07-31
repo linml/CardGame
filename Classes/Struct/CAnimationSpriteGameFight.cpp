@@ -11,6 +11,7 @@ CAnimationSpriteGameFight::CAnimationSpriteGameFight()
 {
     
 }
+
 CAnimationSpriteGameFight::CAnimationSpriteGameFight(
                           EN_ANIMATIONTYPE enanimationtype,
                           EN_ATKFIGHT_INDEX enAtkFight,
