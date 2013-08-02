@@ -581,7 +581,6 @@ void CCardFightingLayerScene::fightLogic(int &iHuihe)
 
 void CCardFightingLayerScene::createFightCard()
 {
-    cout<<"SinglePlayer::instance()->m_hashmapFight.size():"<<SinglePlayer::instance()->m_hashmapFight.size()<<endl;
     CCSize winsize=CCDirector::sharedDirector()->getWinSize();
     if(SinglePlayer::instance()->isLoadServer)
     {
@@ -591,13 +590,7 @@ void CCardFightingLayerScene::createFightCard()
         }
 
     }
-    else
-    {
-        for (int i=0; i<SinglePlayer::instance()->m_hashmapFight.size();i++)
-        {
-            m_vFightingCard.push_back(new CFightCard(SinglePlayer::instance()->m_hashmapFight[i]));
-        }
-    }
+
     
     for (int i=0; i<m_vFightingCard.size(); i++)
     {

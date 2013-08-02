@@ -5,17 +5,17 @@
 	<key>fire11</key>
 	<dict>
 		<key>action</key>
-		<string>(sequence:(animate:10,fire/fire0_1.ani,0.05);(hide:))</string>
+		<string>(sequence:(show:);(animate:10,fire/fire0_1.ani,0.05);(hide:))</string>
 		<key>nodeType</key>
 		<string>sprite</string>
 		<key>opacity</key>
 		<string>255</string>
 		<key>position</key>
-		<string>0,300</string>
+		<string>500,300</string>
 		<key>tag</key>
 		<string>2</string>
 		<key>visable</key>
-		<string>1</string>
+		<string>0</string>
 		<key>zOrder</key>
 		<string>10000</string>
         <key>anchorPosition</key>

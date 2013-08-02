@@ -45,7 +45,7 @@ public:
     float getStarParamter(int start);
     float getStarParamter(int start, int level);
     int getLevelExp(int level);
-    int getCurrentLevel(int exp, int beginLevel=1);
+    int getCurrentLevel(int exp, int star, int beginLevel=1);
     int getValeWithLevel(int inLevel, int inType);
     
 };

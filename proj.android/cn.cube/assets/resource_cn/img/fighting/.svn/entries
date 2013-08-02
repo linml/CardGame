@@ -1,14 +1,14 @@
 10
 
 dir
-835
+853
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/fighting
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-26T11:17:59.519580Z
-802
+2013-08-02T06:49:07.601833Z
+852
 merlin
 
 
@@ -127,6 +127,40 @@ has-props
 
 
 67153
+
+加血.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+ae74f89bc4c381354f73240c25326cce
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1210
 
 buff_3.png
 file
@@ -263,6 +297,40 @@ has-props
 
 
 46945
+
+反射.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+51d455fb099893003ff29deccafb30be
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1053
 
 peo3.png
 file
@@ -502,6 +570,40 @@ has-props
 
 382437
 
+冰冻.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+a95fe8f130fb1aeb16858d1496c70339
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1169
+
 战斗界面示意图.jpg
 file
 
@@ -638,17 +740,17 @@ has-props
 
 4145
 
-battle_bg11.png
+kuang0.png
 file
 
 
 
 
-2013-07-24T05:44:32.000000Z
-313a886e841825ea618ca2f6f66c5a15
-2013-06-17T08:04:34.430341Z
-536
-merlin
+2013-07-23T05:47:28.000000Z
+4fb60fc2217c580d760f7d4cb9e1b722
+2013-07-22T06:13:53.868860Z
+726
+phileas
 has-props
 
 
@@ -670,7 +772,7 @@ has-props
 
 
 
-883584
+37359
 
 zz2.png
 file
@@ -706,17 +808,17 @@ has-props
 
 4140
 
-kuang0.png
+battle_bg11.png
 file
 
 
 
 
-2013-07-23T05:47:28.000000Z
-4fb60fc2217c580d760f7d4cb9e1b722
-2013-07-22T06:13:53.868860Z
-726
-phileas
+2013-07-24T05:44:32.000000Z
+313a886e841825ea618ca2f6f66c5a15
+2013-06-17T08:04:34.430341Z
+536
+merlin
 has-props
 
 
@@ -738,41 +840,7 @@ has-props
 
 
 
-37359
-
-zz3.png
-file
-
-
-
-
-2013-07-23T05:47:28.000000Z
-dead65a97e0043c1bad70c335baa736f
-2013-07-22T06:13:53.868860Z
-726
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4137
+883584
 
 kuang1.png
 file
@@ -808,16 +876,16 @@ has-props
 
 3874
 
-zz4.png
+zz3.png
 file
 
 
 
 
-2013-07-26T08:29:06.000000Z
-ffbd9bdb220ee7b2acf922b63f8ce1b3
-2013-07-26T08:18:25.329843Z
-797
+2013-07-23T05:47:28.000000Z
+dead65a97e0043c1bad70c335baa736f
+2013-07-22T06:13:53.868860Z
+726
 phileas
 has-props
 
@@ -840,7 +908,7 @@ has-props
 
 
 
-4149
+4137
 
 kuang2.png
 file
@@ -876,16 +944,16 @@ has-props
 
 3889
 
-kuang3.png
+zz4.png
 file
 
 
 
 
-2013-07-23T05:47:28.000000Z
-70455e091347684ed626e3f615c14b4c
-2013-07-22T06:13:53.868860Z
-726
+2013-07-26T08:29:06.000000Z
+ffbd9bdb220ee7b2acf922b63f8ce1b3
+2013-07-26T08:18:25.329843Z
+797
 phileas
 has-props
 
@@ -908,7 +976,7 @@ has-props
 
 
 
-3888
+4149
 
 zz5.png
 file
@@ -944,17 +1012,17 @@ has-props
 
 4132
 
-test_card_2.png
+kuang3.png
 file
 
 
 
 
-2013-07-05T06:01:19.000000Z
-ac5f83b7a88141cff087077444d5ae36
-2013-06-17T08:04:34.430341Z
-536
-merlin
+2013-07-23T05:47:28.000000Z
+70455e091347684ed626e3f615c14b4c
+2013-07-22T06:13:53.868860Z
+726
+phileas
 has-props
 
 
@@ -976,7 +1044,7 @@ has-props
 
 
 
-89748
+3888
 
 kuang4.png
 file
@@ -1011,6 +1079,40 @@ has-props
 
 
 3888
+
+test_card_2.png
+file
+
+
+
+
+2013-07-05T06:01:19.000000Z
+ac5f83b7a88141cff087077444d5ae36
+2013-06-17T08:04:34.430341Z
+536
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+89748
 
 test_card_3.png
 file
@@ -1114,6 +1216,74 @@ has-props
 
 3889
 
+增益.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+96316b3b90f5ee119e0b725651c27f34
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1234
+
+加怒气.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+4d135d10dfb9f779a969a2afdd85143d
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1143
+
 touxiang.png
 file
 
@@ -1181,6 +1351,74 @@ has-props
 
 
 16848
+
+点燃.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+27874879340d99fdbfdded8b34fa1c4a
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1239
+
+Spell_Holy_BlessingOfStrength.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+0a074aa3c69e2b4844148c7c55790fcf
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1195
 
 card_res_001.png
 file
@@ -1488,6 +1726,40 @@ has-props
 
 3139
 
+锁.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+7cf164fbebd8435abde1819b4b4cfaa1
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1128
+
 head_left.png
 file
 
@@ -1521,6 +1793,74 @@ has-props
 
 
 16938
+
+易燃.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+0311aaa4907793e8d2f4b9c059e6637c
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1142
+
+降攻.jpg
+file
+
+
+
+
+2013-07-26T07:03:04.000000Z
+d71709196c70c726c506947788173c2a
+2013-08-02T06:49:07.601833Z
+852
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1243
 
 head_right2.png
 file

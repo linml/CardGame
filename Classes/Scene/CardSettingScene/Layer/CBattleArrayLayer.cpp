@@ -104,9 +104,10 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         }else if(m_pDelegateLayer->getCurrentTab() == 3)
         {
             // onevelution:
+            onEvolutionEnd(pTouch, pEvent);
             return;
         }
-    }
+
     
     
     if (m_pDelegateLayer->m_pMoveCard)
@@ -180,15 +181,16 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         battles->updateBattleArray();
         
     }else
-    {
-        (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
+        {
+            (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
 
-        m_pDelegateLayer->m_pMoveCard->release();
-        m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+            m_pDelegateLayer->m_pMoveCard->release();
+            m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
        
-    }
+        }
     
-
+    
+    }
 }
 
 void CPtBattleArrayItem::onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent)
@@ -352,6 +354,64 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
     
 }
 
+void CPtBattleArrayItem::onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent)
+{
+    
+    if (m_pDelegateLayer)
+    {
+        // onclick:
+        if (m_pDelegateLayer->m_pEvolutionPanel && m_pDelegateLayer->getTableClickEnable())
+        {
+            if (m_pDelegateLayer->getTableClickMove())
+            {
+                return;
+            }
+            
+            CPtDisPlayCard * displace =(CPtDisPlayCard *)(this->getDisplayView());
+            
+            CCLog("onTableClick");
+                       
+            if(displace)
+            {
+                if (CPtTool::isInNode(displace, pTouch))
+                {
+                    
+                    if (displace->getCardData()->getInWhichBattleArray() != 0)
+                    {
+                        CCLog("this card is in battle array should check rvc");
+                      //  return;
+                    }
+                    
+                    
+                    CPtDisPlayCard *node = displace->getCopy();
+                    if (node->getCardData()->getEnConsume() == false)
+                    {
+                        node->getCardData()->setEnConsume(true);
+                        displace->setDead();
+                        node->setInCardBagPointer(displace);
+                        node->setIndex((int)getUserData());
+                        node->setInCardBagPointer(displace);
+                                              
+                        m_pDelegateLayer->m_pEvolutionPanel->addCard(node);
+                        
+                    }else
+                    {
+                        CCLog("已经选中，不需要再选");
+                    }
+                    
+                    
+                }
+                
+            }
+            
+            
+            
+        }
+        
+    }
+    
+
+}
 
 //implement class of CBattleArrayLayer
 
@@ -360,6 +420,10 @@ CBattleArrayLayer::CBattleArrayLayer()
 
     // 1. setting 2: enhance. 3: evolution 4: sell
     m_nCurrentTab = 1;
+    m_pEvolutionPanel = NULL;
+    m_pEnhancePanel = NULL;
+    m_pSellPanel = NULL;
+    panel = NULL;
 }
 CBattleArrayLayer::~CBattleArrayLayer()
 {
@@ -522,6 +586,14 @@ void CBattleArrayLayer::addEnhance()
 
 }
 
+void CBattleArrayLayer::addEvolution()
+{
+    m_nCurrentTab = 3;
+    m_pEvolutionPanel = CCardEvolutionLayer::create();
+    addChild(m_pEvolutionPanel, 1, 4000);
+    ((TableView *)(m_pCards->getTableView()))->setDelayMode(false);
+    m_pEvolutionPanel->setCardBag(m_pCards);}
+
 void CBattleArrayLayer::addSell()
 {
     m_nCurrentTab = 4;
@@ -529,28 +601,18 @@ void CBattleArrayLayer::addSell()
     addChild(m_pSellPanel, 1, 4000);
     ((TableView *)(m_pCards->getTableView()))->setDelayMode(false);
     m_pSellPanel->setCardBag(m_pCards);
-    
 }
+
+
 
 void CBattleArrayLayer::removeLeft()
 {
     CCLog("time begin: %d, %d", clock(), time(NULL));
-    if (panel)
-    {
-        panel->resetBattleArrays();
-        CCLog("time mid: %d, %d", clock(), time(NULL ));
-        removeChild(panel, true);
-        panel = NULL;
-        CCLog("time end: %d, %d", clock(), time(NULL ));
-        return;
-    }
-    if (m_pEnhancePanel)
-    {
-      //  m_pEnhancePanel->resetMaterialCard();
-    }
+    
     removeChildByTag(4000, true);
     panel = NULL;
     m_pEnhancePanel = NULL;
+    m_pSellPanel = NULL;
     CCLog("time end: %d, %d", clock(), time(NULL ));
 }
 

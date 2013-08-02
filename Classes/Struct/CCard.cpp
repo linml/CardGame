@@ -80,23 +80,31 @@ void CFightCard::init()
 
 CFightCard::CFightCard(CCard *card,int level)
 {
+    updateFight(card, level);
+}
+
+/*
+ * @breif : use in evlution: card_user_id not change: change card_id;
+ */
+void CFightCard::updateFight(CCard *card, int level /*=1*/)
+{
     tag=-1;
-
+    
     init();
-
+    
     m_iSuit=1;
-
+    
     if(card)
     {
         m_pCard=card;
-
+        
         this->m_iCurrHp=m_pCard->m_icardhp;
         m_iHp=m_iCurrHp;
         m_attack=card->m_icard_attack;
         m_defend=card->m_icard_defend;
-
+        
         isDead=false;
-
+        
         if (level == 1)
         {
             // read card_config.plist data:
@@ -129,15 +137,16 @@ CFightCard::CFightCard(CCard *card,int level)
         
         m_iMaxExp = SingleLevleConfigData::instance()->getLevelExp(level+1);
         isDead=false;
-
+        
         m_iSuit=card->m_icard_suit;
-
+        
     }
     else
     {
         m_pCard=NULL;
     }
     initFighting();
+
 }
 
 void CFightCard::initFighting()
@@ -259,7 +268,7 @@ int  CFightCard::getCostConin()
     int result = 0;
     int value = SingleLevleConfigData::instance()->getValeWithLevel(m_iCurrLevel+1, 1);
     int star_param = SingleLevleConfigData::instance()->getStarParamter(m_pCard->m_sicard_star, m_iCurrLevel+1);
-    result = (int)((value*star_param)+0.5);
+    result = (int)(value*star_param+1.5)-1;
     return result;
 }
 

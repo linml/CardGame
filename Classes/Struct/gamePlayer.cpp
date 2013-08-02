@@ -427,7 +427,11 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                     int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
                     int position=GameTools::intForKey("position", cardDirectorDetail);
                     tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
-                    tempVcard[position-1]->setInBattleArray(i+1);//(true);
+                    if(tempVcard[position-1])
+                    {
+                        tempVcard[position-1]->setInBattleArray(i+1);//(true);
+                    }
+               
             
                 }
                 m_vvBattleArray.push_back(tempVcard);

@@ -16,6 +16,8 @@
 #include "CPtTableItem.h"
 #include "CCardEnhanceLayer.h"
 #include "CCardSellLayer.h"
+#include "CCardEvolutionLayer.h"
+
 using namespace cocos2d;
 
 
@@ -40,6 +42,7 @@ public:
     void addTeamArrayPanel();
     void addEnhance();
     void addSell();
+    void addEvolution();
     
     void removeLeft();
 protected:
@@ -58,9 +61,13 @@ public:
     
     CPtBattleArrayPanel * panel;
     CCardEnhanceLayer * m_pEnhancePanel;
+    CCardEvolutionLayer *m_pEvolutionPanel;
     CCardSellLayer * m_pSellPanel;
+
+
     CGamePlayer * m_pGamePlayer;
     CPtListViewWidget *m_pCards;
+    
     
     CC_SYNTHESIZE(bool, m_bTableClikEnable, TableClickEnable);
     CC_SYNTHESIZE(bool, m_bTableClickMove, TableClickMove);
@@ -82,6 +89,7 @@ public:
     void onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent);
     void onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent);
     void onSellEnd(CCTouch *pTouch, CCEvent *pEvent);
+    void onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent);
     
 protected:
     CBattleArrayLayer * m_pDelegateLayer;

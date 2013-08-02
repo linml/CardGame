@@ -12,6 +12,7 @@
 #include "cocos2d.h"
 using namespace cocos2d;
 
+
 namespace CPtTool
 {
     void drag(CCNode* node,CCTouch *pTouch);
@@ -32,6 +33,7 @@ namespace CPtTool
     
     int calulate(int card_base_value, int config_value, int star, int correct_value_1, int star_parameter, int correct_value_2,int correct_parameter);
     int calSupportValue(int base_value, int currentValue, float ractor);
+
 };
 
 

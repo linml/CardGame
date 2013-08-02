@@ -155,9 +155,9 @@ void CPtBarWidget::updateLabelValue()
         m_pPercentLabel->setVisible(true);
     }
     
-    float percent = 100 * m_nValue / m_nMaxValue;
-    percent = percent > 100.0f ? 100.0f : percent;
-    
+//    float percent = 100 * m_nValue / m_nMaxValue;
+//    percent = percent > 100.0f ? 100.0f : percent;
+//    
     char buffer[125];
     
     snprintf(buffer, sizeof(buffer), "%d/%d", m_nValue, m_nMaxValue);

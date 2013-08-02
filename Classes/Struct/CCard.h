@@ -23,7 +23,7 @@ public:
     CCard();
     int m_icard_id;
     string m_scard_name;
-    unsigned char  m_ccard_next;  ///背景底色
+    int  m_ccard_next;  ///next id
     unsigned short int  m_sicard_star;
     int m_icard_stirps;   //种族
     int m_icard_suit;      //随机数值
@@ -58,6 +58,7 @@ private:
     void init();
 public:
     void initFighting();
+    void updateFight(CCard *card, int level =1);
 
     void updateCard(int level);
     int  getAddValue(int level, int type);

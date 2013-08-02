@@ -473,7 +473,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         {
             if(m_vFightHero[4])
             {
-                
+           
                 CCSprite *sprite=m_vFightHero[fightAnimation->m_iATKindex];
                 CCSprite *pMonster=m_vMonsterHero[fightAnimation->m_iDefIndex];
                 skillAnimationSwf(fightAnimation,sprite,pMonster);

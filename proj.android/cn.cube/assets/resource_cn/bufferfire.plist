@@ -5,7 +5,7 @@
 	<key>actions</key>
 	<array>
 		<string>Delay(0.5)</string>
-		<string>Animate(fire/fire_2.act)</string>
+		<string>Animate(fire/firebuffer.act)</string>
 		<string>Removetag(100)</string>
 		<string>JumpBy(0.2,{0,50},50,1)</string>
 		<string>JumpBy(0.2,{0,-50},50,1)</string>

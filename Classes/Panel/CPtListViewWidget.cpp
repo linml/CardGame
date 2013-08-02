@@ -776,10 +776,14 @@ void CPtListViewWidget::setPaddingHeight(float paddingHeight)
 
 void CPtListViewWidget::reload()
 {
+    if (m_cItems == NULL)
+    {
+        m_nRows = 0;
+    }
     m_nRows = (m_cItems == NULL)? 1 : m_cItems->count() / m_nColumcount;
     m_nRows += (m_cItems->count() % m_nColumcount) == 0 ? 0 : 1;
  //   m_pTableView->reloadData();
-    dynamic_cast<TableView*>(m_pTableView)->reload();
+    ((TableView*)(m_pTableView))->reload();
     
 }
 

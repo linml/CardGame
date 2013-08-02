@@ -46,8 +46,11 @@ CGamesCard  *CGamesCard::Create(CFightCard *card)
     {
         delete cardSprite;
         cardSprite=NULL;
+    }else
+    {
+         cardSprite->autorelease();
     }
-    cardSprite->autorelease();
+   
     return cardSprite;
 }
 
@@ -63,16 +66,23 @@ CGamesCard * CGamesCard::getCopy()
  */
 void CGamesCard::setDead()
 {
-    CCArray *children = getChildren();
-    CCNode *tmp = NULL;
-    for (int i = 0; i < children->count(); i++)
+//    CCArray *children = getChildren();
+//    CCNode *tmp = NULL;
+//    for (int i = 0; i < children->count(); i++)
+//    {
+//        tmp = (CCNode*)(children->objectAtIndex(i));
+//        if(tmp)
+//        {
+//            setDead(tmp);
+//        }
+//    }
+
+    CCNode *tmp = getChildByTag(TAG_GAMECARD_HERO);
+    if (tmp)
     {
-        tmp = (CCNode*)(children->objectAtIndex(i));
-        if(tmp)
-        {
-            setDead(tmp);
-        }
+        setDead(tmp);
     }
+
 }
 
 void CGamesCard::setDead(CCNode *node)
@@ -119,17 +129,22 @@ void CGamesCard::setDead(CCNode *node)
 
 void CGamesCard::setLive()
 {
-    CCArray *children = getChildren();
-    CCNode *tmp = NULL;
-    for (int i = 0; i < children->count(); i++)
-    {
-        tmp = (CCNode *)(children->objectAtIndex(i));
-        if(tmp)
-        {
-            setLive(tmp);
-        }
-    }
+//    CCArray *children = getChildren();
+//    CCNode *tmp = NULL;
+//    for (int i = 0; i < children->count(); i++)
+//    {
+//        tmp = (CCNode *)(children->objectAtIndex(i));
+//        if(tmp)
+//        {
+//            setLive(tmp);
+//        }
+//    }
 
+    CCNode *tmp = getChildByTag(TAG_GAMECARD_HERO);
+    if (tmp)
+    {
+        setLive(tmp);
+    }
 }
 
 void CGamesCard::setLive(CCNode *node)

@@ -1031,7 +1031,7 @@ void CPtBattleArrayPanel::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 
 CPtBattleArrayPanel::~CPtBattleArrayPanel()
 {
-
+    resetBattleArrays();
 
 }
 

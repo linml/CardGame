@@ -51,6 +51,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         int index = card->m_sicard_star -1;
         index = abs(index) > 7 ? 7: abs(index);
         card->m_ileve_max = g_aMaxLevel[index];
+        CCLog("the %i card's next card id: %d", card->m_icard_id, card->m_ccard_next);
         // change end:
         hashmapAllCard[key->intValue()]=card;
     }

@@ -430,12 +430,12 @@ namespace CPtTool
      */
     int calulate(int card_base_value, int config_value, int star, int correct_value_1, int star_parameter, int correct_value_2,int correct_parameter)
     {
-        return (int)(((card_base_value+ config_value*(star+correct_value_1)*star_parameter+ correct_value_2)*correct_parameter)+0.5);
+        return (int)(((card_base_value+ config_value*(star+correct_value_1)*star_parameter+ correct_value_2)*correct_parameter)+1.5)-1;
     };
     
     int calSupportValue(int base_value,int currentValue, float ractor)
     {
-        return (int)(((base_value+ currentValue*ractor))+0.5);
+        return (int)(((base_value+ currentValue*ractor))+1.5)-1;
     }
 
    

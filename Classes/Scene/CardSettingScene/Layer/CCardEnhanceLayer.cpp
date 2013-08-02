@@ -296,7 +296,7 @@ void CCardEnhanceLayer::updateData()
         int  exp = m_pSelectCard->getCardData()->m_iCurrExp;
         exp += m_nCurrentExp;
         int currentLevel = m_pSelectCard->getCardData()->m_iCurrLevel;
-        int level = m_pLevelConfig->getCurrentLevel(exp, currentLevel);
+        int level = m_pLevelConfig->getCurrentLevel(exp,m_pSelectCard->getCardData()->m_pCard->m_sicard_star ,currentLevel);
         CCLog("current-----: %d, level: %d, currentLevel: %d", exp, level, m_nCurrentLevel);
         if (level > currentLevel && level > 1)
         {

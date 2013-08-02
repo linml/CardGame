@@ -87,7 +87,7 @@ void CCardSellLayer::initSelll()
     // init left
     CCArray * array = CCArray::create();
     m_pSellPackage = CPtListViewWidget::create(array, CCSizeMake(476, 450), kCCScrollViewDirectionVertical , CCSizeMake(5, 2) , 3);
-    m_pSellPackage->setBackGround(CCLayerColor::create(ccc4(125,125, 25, 125)));
+    //m_pSellPackage->setBackGround(CCLayerColor::create(ccc4(125,125, 25, 125)));
     ((TableView *)(m_pSellPackage->getTableView()))->setDelayMode(true);
     m_pSellPackage->setAnchorPoint(CCPointZero);
     m_pSellPackage->setPosition(ccp(40, 140));

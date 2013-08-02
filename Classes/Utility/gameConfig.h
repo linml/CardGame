@@ -154,6 +154,7 @@ const std::string g_str_optionPlist=plistPath+"optionScene.plist";
 
 
 const std::string g_str_level_up_config =  resRootPath+"card_level_up_config.plist";
+const std::string g_str_star_config = resRootPath + "card_star_level_up_config.plist";
 
 enum EN_ATKOBJECT {
     EN_ATKOBJECT_OWN,

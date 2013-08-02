@@ -143,12 +143,12 @@ void CCardSettingScene::handlerTouch()
             
             CCLog("go to enhance");
             break;
-//        case 3003:
-//            m_pCardSetting->removeLeft();
-//            CCLog("go to evolution:");
-//            break;
-//            m_pCardSetting->removeLeft();
-//             
+        case 3003:
+            CCLog("go to evolution:");
+            m_pCardSetting->removeLeft();
+            m_pCardSetting->setTableClickEnable(true);
+            m_pCardSetting->addEvolution();
+            break;
         
         case 3004:
            // CCLog("go to sell:");
