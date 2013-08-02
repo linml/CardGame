@@ -41,7 +41,8 @@ class CPtDisPlayCard : public CGamesCard
 public:
     static CPtDisPlayCard  *Create(CFightCard *card);
 public:
-    
+    CPtDisPlayCard(){m_nIndex = -1;};
+    CC_SYNTHESIZE(int , m_nIndex, Index);
     CC_SYNTHESIZE(CPtDisPlayCard*, m_pCardPBagPointer, InCardBagPointer);
     CPtDisPlayCard *getCopy();
 };
@@ -60,12 +61,12 @@ public:
 public:
     void initSize(const CCSize& size, const CCPoint & point);
     void initBattleArrayFromServer(vector<CFightCard *> &fightArray);
-	bool addCard(CCNode *inCard, const int & inCardType, const bool &inAppendEnable = false);
+	bool addCard(CPtDisPlayCard *inCard, const int & inCardType, const bool &inAppendEnable = false);
 	bool removeCard(const int& inCardType);
-    bool replaceCard(CCNode *inCard, const int & inCardType);
-    bool isAssistantCard(CCNode *inCard , bool inRemove = false);
+    bool replaceCard(CPtDisPlayCard *inCard, const int & inCardType);
+    bool isAssistantCard(CPtDisPlayCard *inCard , bool inRemove = false);
     bool isAssistantCard(CCTouch *pTouch);
-    int getReplaceCard(CCNode *inCard);
+    int getReplaceCard(CPtDisPlayCard *inCard);
 	int getFightPower();
 	int getLeaderShip();
 	int getGrowthValue();
@@ -100,7 +101,7 @@ protected:
 protected:
     
     
-	CCNode* m_pCardArray[CARDCOUNT];
+	CPtDisPlayCard* m_pCardArray[CARDCOUNT];
     int m_nCardCount;
 	int m_nGrowthValue;
 	BattleArrayType m_cType;

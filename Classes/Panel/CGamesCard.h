@@ -28,7 +28,7 @@ public:
     void setLive();
     virtual CGamesCard *getCopy();
     bool getSuit(int &outSuit, int &outSequence);
-
+    void updateToLevel(const int & inLevel);
     CFightCard *getCardData(){ return m_pCardData;};
 
 protected:
@@ -42,9 +42,15 @@ protected:
     void createSuit(int inSuit);
     void createStirps(int inStirps);
     void createData(const int &inAtk, const int &inHp, const int &inRcv, const int &inDef);
-       
+    
+    void updateData(const int &inAtk, const int &inHp, const int &inRcv, const int &inDef);
 protected:
     CCLabelTTF *label;
+    
+    CCLabelTTF* m_pAtkLabel;
+    CCLabelTTF* m_pDefLabel;
+    CCLabelTTF* m_pHpLabel;
+    CCLabelTTF* m_pRvcLabel;
 
     CFightCard *m_pCardData;
 

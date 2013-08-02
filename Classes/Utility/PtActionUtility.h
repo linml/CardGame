@@ -45,6 +45,7 @@ const std::string act_remove_self = "RemoveSelf";//删除本身
 const std::string act_reset_zorder="ResetZorder";
 const std::string act_animateplist="Animate";
 const std::string act_hidetag="Removetag";
+const std::string act_jumpby="JumpBy";
 
 
 class ActionData {

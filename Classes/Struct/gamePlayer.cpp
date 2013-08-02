@@ -55,6 +55,10 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 
 CGamePlayer::CGamePlayer()
 {
+    // test begin:
+    testPlayInfoData();
+    // test end:
+    
     isLoadServer=false;
     
     for (int i=0; i<m_vvBattleArray.size(); i++) {
@@ -416,17 +420,15 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                 vector<CFightCard *>tempVcard(5);
                 CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
                 CCArray *vKeyArraytemp=cardtemp->allKeys();
-                for (int i=0; i<vKeyArraytemp->count(); i++)
+                for (int j=0; j<vKeyArraytemp->count(); j++)
                 {
-                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
+                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(j);
                     CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
                     int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
                     int position=GameTools::intForKey("position", cardDirectorDetail);
                     tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
-                    if (tempVcard[position-1])
-                    {
-                        tempVcard[position-1]->setInBattleArray(true);
-                    }
+                    tempVcard[position-1]->setInBattleArray(i+1);//(true);
+            
                 }
                 m_vvBattleArray.push_back(tempVcard);
             }
@@ -531,6 +533,44 @@ void CGamePlayer::backUpFightTeam(int index)
     }
 }
 
+
+// player info
+int CGamePlayer::getCoin()
+{
+    return  m_nCoin;
+}
+
+int CGamePlayer::getRVC()
+{
+    return  m_nRvc;
+}
+
+void CGamePlayer::addRVC(const int &inAddValue)
+{
+    m_nRvc += inAddValue;
+}
+void CGamePlayer::addCoin(const int &inAddValue)
+{
+    m_nCoin += inAddValue;
+}
+void CGamePlayer::ReduceRVC(const int &inReduceRVC)
+{
+    m_nRvc -= inReduceRVC;
+}
+void CGamePlayer::ReduceCoin(const int &inReduceCoin)
+{
+    m_nCoin -= inReduceCoin;
+}
+
+void CGamePlayer::testPlayInfoData()
+{
+    m_nCoin = 500000;
+    m_nRvc = 100000;
+    
+}
+
+
+
 void CGamePlayer::appendAtkData(SEveryATKData * data)
 {
     m_vHpAngry.push_back(data);
@@ -555,4 +595,5 @@ void CGamePlayer::onFightExitScene()
     DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
 }
+
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

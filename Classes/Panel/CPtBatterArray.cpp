@@ -8,19 +8,7 @@
 #include "PtJsonUtility.h"
 #include "CCardSettingScene.h"
 #include "CSaveConfirmLayer.h"
-// test:
-#define ADDHTTPREQUESTPOSTDATA(URL,NOTIFICATIONTAG,HTTPREQUESTTAG,__POSTSTR__,CALLBACK)\
-{\
-stcRequestInf inf;\
-inf.m_pchURL = URL; \
-cout<<inf.m_pchURL<<endl; \
-inf.m_RequestType=CCHttpRequest::kHttpPost;\
-inf.m_pSelector = NOTIFICATIONTAG;\
-inf.m_pchTag = HTTPREQUESTTAG;\
-inf.m_pchData = __POSTSTR__;\
-CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
-CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector, NULL);\
-}
+
 
 using namespace CPtTool;
 
@@ -70,6 +58,7 @@ CPtBattleArray::CPtBattleArray()
 
 CPtBattleArray::~CPtBattleArray()
 {
+
 }
 
 void CPtBattleArray::initSize(const cocos2d::CCSize &size, const cocos2d::CCPoint &point)
@@ -139,7 +128,7 @@ void CPtBattleArray::createSuitLogo(const int& inSuit, const int &inSequence, co
  * @return ture | false 
  */
 
-bool CPtBattleArray::addCard(CCNode *inCard, const int & inCardType , const bool &inAppendEnable /*= false*/)
+bool CPtBattleArray::addCard(CPtDisPlayCard *inCard, const int & inCardType , const bool &inAppendEnable /*= false*/)
 {
     
 	bool bRet = false;
@@ -158,7 +147,7 @@ bool CPtBattleArray::addCard(CCNode *inCard, const int & inCardType , const bool
       
         if (m_pCardArray[inCardType])
 		{
-            dynamic_cast<CPtDisPlayCard*>(inCard)->getCardData()->setInBattleArray(true);
+            inCard->getCardData()->setInBattleArray(inTag); //(true);
             inCard->setAnchorPoint(CCPointZero);
             inCard->setPosition(m_cPositions[inCardType]);
             this->addChild(m_pCardArray[inCardType], 1000+inCardType, inCardType);
@@ -186,7 +175,7 @@ bool CPtBattleArray::addCard(CCNode *inCard, const int & inCardType , const bool
             inCard->setAnchorPoint(CCPointZero);
             inCard->setPosition(m_cPositions[inCardType]);
             this->addChild(m_pCardArray[inCardType], 1000+inCardType, inCardType);
-            dynamic_cast<CGamesCard*>(inCard)->getCardData()->setInBattleArray(true);
+            (inCard)->getCardData()->setInBattleArray(inTag);//(true);
 		}
 		
 	}
@@ -200,7 +189,7 @@ bool CPtBattleArray::addCard(CCNode *inCard, const int & inCardType , const bool
 	return bRet;
 }
 
-bool CPtBattleArray::replaceCard(CCNode *inCard, const int & inCardType)
+bool CPtBattleArray::replaceCard(CPtDisPlayCard *inCard, const int & inCardType)
 {
     bool bRet = false;
 
@@ -214,10 +203,10 @@ bool CPtBattleArray::replaceCard(CCNode *inCard, const int & inCardType)
         if (m_pCardArray[inCardType])
 		{
             
-            CPtDisPlayCard * tmpCard = dynamic_cast<CPtDisPlayCard*>(m_pCardArray[inCardType]);
+            CPtDisPlayCard * tmpCard = (m_pCardArray[inCardType]);
             if (tmpCard && tmpCard->getCardData())
             {
-                tmpCard->getCardData()->setInBattleArray(false);
+                tmpCard->getCardData()->setInBattleArray(0);//(false);
                 tmpCard->getInCardBagPointer()->setLive();
             }
 
@@ -231,7 +220,7 @@ bool CPtBattleArray::replaceCard(CCNode *inCard, const int & inCardType)
         
         if (m_pCardArray[inCardType])
 		{
-            dynamic_cast<CGamesCard*>(inCard)->getCardData()->setInBattleArray(true);
+            (inCard)->getCardData()->setInBattleArray(inTag);//(true);
             addChild(m_pCardArray[inCardType], 1000+inCardType, inCardType);
            
         }
@@ -244,10 +233,10 @@ bool CPtBattleArray::replaceCard(CCNode *inCard, const int & inCardType)
 		if (m_pCardArray[inCardType])
 		{
 			// remove the former card, set the former card state.
-            CPtDisPlayCard * tmpCard = dynamic_cast<CPtDisPlayCard*>(m_pCardArray[inCardType]);
+            CPtDisPlayCard * tmpCard = (m_pCardArray[inCardType]);
             if (tmpCard && tmpCard->getCardData())
             {
-                tmpCard->getCardData()->setInBattleArray(false);
+                tmpCard->getCardData()->setInBattleArray(0);//(false);
                 if (tmpCard)
                 {
                     tmpCard->getInCardBagPointer()->setLive();
@@ -265,7 +254,7 @@ bool CPtBattleArray::replaceCard(CCNode *inCard, const int & inCardType)
         
         if (m_pCardArray[inCardType])
 		{
-            dynamic_cast<CGamesCard*>(inCard)->getCardData()->setInBattleArray(true);
+            (inCard)->getCardData()->setInBattleArray(inTag);//(true);
             addChild(m_pCardArray[inCardType], 1000+inCardType, inCardType);
 		}
 		
@@ -282,7 +271,7 @@ bool CPtBattleArray::replaceCard(CCNode *inCard, const int & inCardType)
     
 }
 
-int CPtBattleArray::getReplaceCard(CCNode *inCard)
+int CPtBattleArray::getReplaceCard(CPtDisPlayCard *inCard)
 {
     CCRect rect = inCard->boundingBox();
     rect.origin = this->convertToNodeSpace(rect.origin);
@@ -303,7 +292,7 @@ int CPtBattleArray::getReplaceCard(CCNode *inCard)
     return -1;
 }
 
-bool CPtBattleArray::isAssistantCard(CCNode *inCard, bool inRemove)
+bool CPtBattleArray::isAssistantCard(CPtDisPlayCard *inCard, bool inRemove)
 {
     CCRect rect ;
     rect.origin = m_cPositions[4];
@@ -354,12 +343,12 @@ bool CPtBattleArray::removeCard(const int& inCardType)
 			// set card state:            
 			// set null
 
-            CPtDisPlayCard * tmpCard = dynamic_cast<CPtDisPlayCard*>(m_pCardArray[inCardType]);
+            CPtDisPlayCard * tmpCard = (m_pCardArray[inCardType]);
             if (tmpCard && tmpCard->getCardData())
             {
                 if (tmpCard)
                 {
-                    tmpCard->getCardData()->setInBattleArray(false);
+                    tmpCard->getCardData()->setInBattleArray(0);//(false);
                     if (tmpCard->getInCardBagPointer())
                     {
                         tmpCard->getInCardBagPointer()->setLive();
@@ -446,7 +435,7 @@ int  CPtBattleArray::resortFightCard()
 
 int CPtBattleArray::getInsertIndex()
 {
-   return insertWhichNode(m_pCardArray, this, CARDCOUNT);
+   return insertWhichNode((CCNode**)m_pCardArray, this, CARDCOUNT);
 }
 
 void CPtBattleArray::initMap()
@@ -467,14 +456,14 @@ void CPtBattleArray::initMap()
     
     if (inTag == 2)
     {
-       dynamic_cast<CCLabelTTF *>(m_cMaps->getElementByTags("2,0,0,1"))->setString("Team 2 Arrage") ;
+       ((CCLabelTTF *)(m_cMaps->getElementByTags("2,0,0,1")))->setString("Team 2 Arrage") ;
     }else if(inTag == 3)
     {
-        dynamic_cast<CCLabelTTF *>(m_cMaps->getElementByTags("2,0,0,1"))->setString("Defens Team") ;
+        ((CCLabelTTF *)(m_cMaps->getElementByTags("2,0,0,1")))->setString("Defens Team") ;
     }
     
     
-    m_pSaveBtn =dynamic_cast<CCSprite *>(m_cMaps->getElementByTags("2,0,8"));
+    m_pSaveBtn =(CCSprite*)(m_cMaps->getElementByTags("2,0,8"));
     
   
 }
@@ -509,11 +498,11 @@ void CPtBattleArray::updateData()
     
     if (m_pCardArray[CARDCOUNT-1])
     {
-        m_nLeadership = dynamic_cast<CGamesCard *>(m_pCardArray[CARDCOUNT-1])->getCardData()->m_pCard->m_icard_leadership;
-        m_nFightPower = dynamic_cast<CGamesCard *>(m_pCardArray[CARDCOUNT-1])->getCardData()->m_attack;
+        m_nLeadership = (m_pCardArray[CARDCOUNT-1])->getCardData()->m_pCard->m_icard_leadership;
+        m_nFightPower = (m_pCardArray[CARDCOUNT-1])->getCardData()->m_attack;
 
-        m_nDefense = dynamic_cast<CGamesCard *>(m_pCardArray[CARDCOUNT-1])->getCardData()->m_defend;
-        m_nHP = dynamic_cast<CGamesCard *>(m_pCardArray[CARDCOUNT-1])->getCardData()->m_iHp;
+        m_nDefense = (m_pCardArray[CARDCOUNT-1])->getCardData()->m_defend;
+        m_nHP = (m_pCardArray[CARDCOUNT-1])->getCardData()->m_iHp;
     }
     
     for (int i = 0; i < CARDCOUNT-1 ;i++ )
@@ -521,7 +510,7 @@ void CPtBattleArray::updateData()
         
         if (m_pCardArray[i])
         {
-           CFightCard *cardData = dynamic_cast<CGamesCard *>(m_pCardArray[i])->getCardData();
+           CFightCard *cardData = (m_pCardArray[i])->getCardData();
            m_nLeadership += cardData-> m_pCard->m_icard_leadership;
            m_nFightPower += cardData-> m_attack; //攻击力
            m_nDefense    += cardData-> m_defend; //防御力
@@ -559,7 +548,7 @@ void CPtBattleArray::updateCardSuitKind()
     {
         if (m_pCardArray[i])
         {
-            if (dynamic_cast<CGamesCard *>(m_pCardArray[i])->getSuit(outSuit, outSequence))
+            if ((m_pCardArray[i])->getSuit(outSuit, outSequence))
                 createSuitLogo(outSuit, outSequence, i+1);
         }else
         {
@@ -571,7 +560,7 @@ void CPtBattleArray::updateCardSuitKind()
     }
     if (m_pCardArray[CARDCOUNT-1])
     {
-        if (dynamic_cast<CGamesCard *>(m_pCardArray[CARDCOUNT-1])->getSuit(outSuit, outSequence))
+        if ((m_pCardArray[CARDCOUNT-1])->getSuit(outSuit, outSequence))
             createSuitLogo(outSuit, outSequence, 0);
     }else
     {
@@ -593,27 +582,27 @@ void CPtBattleArray::updateLabel()
     
     // atk:
     sprintf(buff, "ATK: %d (+%d)",m_nFightPower, m_nSuitAtk);
-    label = dynamic_cast<CCLabelTTF *>(m_cMaps->getElementByTags("2,0,1,3"));
+    label = (CCLabelTTF *)(m_cMaps->getElementByTags("2,0,1,3"));
     label->setString(buff);
     
     // hp
     sprintf(buff, "HP: %d",m_nHP);
-    label = dynamic_cast<CCLabelTTF *>(m_cMaps->getElementByTags("2,0,1,4"));
+    label = (CCLabelTTF *)(m_cMaps->getElementByTags("2,0,1,4"));
     label->setString(buff);
     
     // def
     sprintf(buff, "DEF: %d (-%d)",m_nDefense,m_nSuitDef);
-    label = dynamic_cast<CCLabelTTF *>(m_cMaps->getElementByTags("2,0,1,5"));
+    label = (CCLabelTTF *)(m_cMaps->getElementByTags("2,0,1,5"));
     label->setString(buff);
     
     // rvc
     sprintf(buff, "RVC: %d",m_nLeadership);
-    label = dynamic_cast<CCLabelTTF *>(m_cMaps->getElementByTags("2,0,1,6"));
+    label = (CCLabelTTF *)(m_cMaps->getElementByTags("2,0,1,6"));
     label->setString(buff);
     
     // suit
     sprintf(buff, "ATK +%d DEF -%d",m_nSuitAtk, m_nSuitDef);
-    label = dynamic_cast<CCLabelTTF *>(m_cMaps->getElementByTags("2,0,2,2"));
+    label = (CCLabelTTF *)(m_cMaps->getElementByTags("2,0,2,2"));
     label->setString(buff);
     
     
@@ -647,7 +636,7 @@ bool CPtBattleArray::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     if (this->boundingBox().containsPoint(point))
     {
        
-        selectIndex = whichNode(m_pCardArray, this, pTouch, resortFightCard());
+        selectIndex = whichNode((CCNode**)m_pCardArray, this, pTouch, resortFightCard());
         CCLog("the selectIndex: %d", selectIndex);
         if (selectIndex == -1)
         {
@@ -680,15 +669,15 @@ void CPtBattleArray::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
         if (isNeedMove(selectNode, right, 1))
         {
             moveHalfStep(right, 2);
-            m_pCardArray[selectIndex] = right;
+            m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(right);
             selectIndex++;
-            m_pCardArray[selectIndex] = selectNode;
+            m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(selectNode);
         }else if(isNeedMove(selectNode, left, 2))
         {
             moveHalfStep(left, 1);
-            m_pCardArray[selectIndex] = left;
+            m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(left);
             selectIndex--;
-            m_pCardArray[selectIndex] = selectNode;
+            m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(selectNode);
         }
     }
 
@@ -706,18 +695,12 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     
     if (selectNode)
     {
-//        CCRect rect1 = selectNode->boundingBox();
-//        rect1.origin = this->getParent()->convertToNodeSpace(rect1.origin);
-//        CCRect rect = this->boundingBox();
-        
-        //rect.origin = this->convertToNodeSpace(rect.origin);
-
         CCRect rect1 = selectNode->boundingBox();
         rect1.origin = selectNode->getParent()->convertToWorldSpace(rect1.origin);
         CCRect rect = this->boundingBox();
         rect1.origin = this->convertToNodeSpace(rect1.origin);
         rect.origin = CCPointZero;
-        if (selectIndex == 4 && !isAssistantCard(selectNode,true))
+        if (selectIndex == 4 && !isAssistantCard((CPtDisPlayCard*)selectNode,true))
         {
             removeCard(4);
         }
@@ -729,14 +712,6 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     }
     updateBattleArray();
     
-    for (int i = 0; i < CARDCOUNT-1; i++)
-    {
-        if (m_pCardArray[i])
-        {
-            CCLog("the card: %d",i);
-        }
-    }
-    
 }
 void CPtBattleArray::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -746,7 +721,7 @@ void CPtBattleArray::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 
 void CPtBattleArray::insertMoveCard(CCNode *inCard)
 {
-    insertMoveNode(m_pCardArray, this, inCard, CARDCOUNT-1);
+    insertMoveNode((CCNode**)m_pCardArray, this, inCard, CARDCOUNT-1);
 }
 
 void CPtBattleArray::save()
@@ -768,7 +743,7 @@ void CPtBattleArray::save()
     CPtDisPlayCard * tmp = NULL;
     if (m_pCardArray[4] != NULL)
     {
-        CPtDisPlayCard * tmp = dynamic_cast<CPtDisPlayCard*>(m_pCardArray[4]) ;
+        CPtDisPlayCard * tmp = (m_pCardArray[4]) ;
         array[4] =tmp->getCardData()->m_User_Card_ID;
     }
     int index = 0;
@@ -776,7 +751,7 @@ void CPtBattleArray::save()
     for (int i = 3; i >= 0 ;i--)
     {
         tmp = NULL;
-        tmp =  dynamic_cast<CPtDisPlayCard*>(m_pCardArray[i]) ;
+        tmp = (m_pCardArray[i]) ;
         if (tmp)
         {
             array[index++] = tmp->getCardData()->m_User_Card_ID;
@@ -842,7 +817,7 @@ void CPtBattleArray::callBack(CCObject *pSender)
 void CPtBattleArray::save(vector<CFightCard *> & infightArray)
 {
     CCDictionary * cardBagPointArray = CCardSettingScene::s_pBattleArrayCards;
-    CPtDisPlayCard * tmp = dynamic_cast<CPtDisPlayCard*>(m_pCardArray[4]);
+    CPtDisPlayCard * tmp = (m_pCardArray[4]);
     if (tmp)
     {
         if (infightArray.at(4))
@@ -871,7 +846,7 @@ void CPtBattleArray::save(vector<CFightCard *> & infightArray)
             {
                 cardBagPointArray->removeObjectForKey(infightArray.at(j)->m_User_Card_ID);
             }
-            tmp = dynamic_cast<CPtDisPlayCard*>(m_pCardArray[i]);
+            tmp = (m_pCardArray[i]);
             infightArray.at(j++) = tmp->getCardData();
             cardBagPointArray->setObject(tmp->getInCardBagPointer(), tmp->getCardData()->m_User_Card_ID);
         }
@@ -892,43 +867,34 @@ void CPtBattleArray::save(vector<CFightCard *> & infightArray)
 
 void CPtBattleArray::resetBattleArray()
 {
+   
     vector<CFightCard*> fightArray = SinglePlayer::instance()->m_vvBattleArray.at(inTag-1);
     CCDictionary* dir =     CCardSettingScene::s_pBattleArrayCards;
     CPtDisPlayCard * tmp = NULL;
     CFightCard * tmpFightCard = NULL;
-    for (int i = CARDCOUNT-1; i >= 0; i--)
-    {
-           tmp = dynamic_cast<CPtDisPlayCard*>(m_pCardArray[i]);
+  
+     CCLog("inTag: %d", inTag);
 
-            if (i == CARDCOUNT-1)
-            {
-                tmpFightCard = fightArray.at(CARDCOUNT-1);
-            }else
-            {
-                tmpFightCard = fightArray.at(CARDCOUNT-2-i);
-            }
-            
-            if (tmpFightCard && tmp)
-            {
-                if (tmpFightCard->m_User_Card_ID != tmp->getCardData()->m_User_Card_ID)
-                {
-                    tmp->getInCardBagPointer()->setLive();
-                    tmp->getCardData()->setInBattleArray(false);
-                    dynamic_cast<CPtDisPlayCard*>(dir->objectForKey(tmpFightCard->m_User_Card_ID))->setDead();
-                    dynamic_cast<CPtDisPlayCard*>(dir->objectForKey(tmpFightCard->m_User_Card_ID))->getCardData()->setInBattleArray(true);
-                }
-            }else if(tmp ==NULL && tmpFightCard)
-            {
-                dynamic_cast<CPtDisPlayCard*>(dir->objectForKey(tmpFightCard->m_User_Card_ID))->setDead();
-                dynamic_cast<CPtDisPlayCard*>(dir->objectForKey(tmpFightCard->m_User_Card_ID))->getCardData()->setInBattleArray(true);
-                
-            }else if(tmpFightCard == NULL && tmp)
-            {
-                tmp->getInCardBagPointer()->setLive();
-                tmp->getCardData()->setInBattleArray(false);
-            }
-                
+    for (int i = 0; i < CARDCOUNT ; i++)
+    {
+               
+        tmp = (m_pCardArray[i]);
+        if (tmp)
+        {
+            tmp->getInCardBagPointer()->setLive();
+            tmp->getCardData()->setInBattleArray(0);//(false);
         }
+    }
+    for (int i = 0; i < CARDCOUNT; i++)
+    {
+        tmpFightCard = fightArray.at(i);
+        if (tmpFightCard)
+        {
+        
+             ((CPtDisPlayCard*)(dir->objectForKey(tmpFightCard->m_User_Card_ID)))->setDead();
+             ((CPtDisPlayCard*)(dir->objectForKey(tmpFightCard->m_User_Card_ID)))->getCardData()->setInBattleArray(inTag);
+        }
+    }
     
 
 }

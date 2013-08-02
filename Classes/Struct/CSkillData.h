@@ -62,6 +62,7 @@ public:
     int m_iParameter_8;  //特效文件地址
     int m_iParameter_9;
     int m_iParameter_10;
+    string m_sEffectFile;
     
 };
 //class CFightCard;

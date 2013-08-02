@@ -15,6 +15,8 @@
 
 bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const char *cardFileName)
 {
+    
+    
     CCDictionary *directory = CCDictionary::createWithContentsOfFile(cardFileName);
     CCArray *vKeyArray=directory->allKeys();
     for (int i=0; i<vKeyArray->count(); i++) {
@@ -30,7 +32,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_icard_leadership=GameTools::intForKey("card_leadership", cardDirector);
         card->m_icard_exp=GameTools::intForKey("card_exp", cardDirector);    //吃掉该卡牌的 经验
         card->m_icard_price=GameTools::intForKey("card_price", cardDirector);  //卖掉该卡佩的 价格
-        card->m_ileve_max=GameTools::intForKey("card_leve_max", cardDirector);   //等级最高级别
+      //  card->m_ileve_max=GameTools::intForKey("card_leve_max", cardDirector);   //等级最高级别
         card->m_icard_attack=GameTools::intForKey("card_attack", cardDirector); //攻击力
         card->m_icard_defend=GameTools::intForKey("card_defend", cardDirector); //防御力
         card->m_icardhp=GameTools::intForKey("card_hp",cardDirector);// 卡牌的总的HP
@@ -44,6 +46,12 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_scard_head=GameTools::valueForKey("card_head", cardDirector);
         card->m_scard_ground=GameTools::valueForKey("card_ground", cardDirector);
         card->m_scard_role=GameTools::valueForKey("card_role", cardDirector);
+        
+        // change by phileas:
+        int index = card->m_sicard_star -1;
+        index = abs(index) > 7 ? 7: abs(index);
+        card->m_ileve_max = g_aMaxLevel[index];
+        // change end:
         hashmapAllCard[key->intValue()]=card;
     }
     cout<<"card plist size ="<<hashmapAllCard.size()<<endl;
@@ -150,8 +158,9 @@ bool CConfigResourceLoad::loadEffectLogicInfo(vector<CImapact *> &vImapactTable,
         skillEffect->m_iParameter_6=GameTools::intForKey("parameter_6", effectDirector);
         skillEffect->m_iParameter_7=GameTools::intForKey("parameter_7", effectDirector);
         skillEffect->m_iParameter_8=GameTools::intForKey("parameter_8", effectDirector);
-         skillEffect->m_iParameter_9=GameTools::intForKey("parameter_9", effectDirector);
-         skillEffect->m_iParameter_10=GameTools::intForKey("parameter_10", effectDirector);
+        skillEffect->m_iParameter_9=GameTools::intForKey("parameter_9", effectDirector);
+        skillEffect->m_iParameter_10=GameTools::intForKey("parameter_10", effectDirector);
+        skillEffect->m_sEffectFile=GameTools::valueForKey("effect_plistfile", effectDirector);
         vImapactTable.push_back(skillEffect);
     }
     return true;

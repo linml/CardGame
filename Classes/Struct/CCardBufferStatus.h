@@ -27,7 +27,7 @@ public:
                       bool isDeal,
                       int mutex,
                       int mutexlevel,
-                      float value,int effectid,EN_BUFF_FIELD_TYPE enBuffer_Field);
+                      float value,int effectid,EN_BUFF_FIELD_TYPE enBuffer_Field,string bufferfile="");
 public:
     bool m_bIsBeDeal;                    
     EN_BUFF_FIELD_TYPE m_enBuffer_Field; //  buffer类型，
@@ -38,6 +38,7 @@ public:
     int    m_mutexlevel;
     int    m_oldValue;
     int    m_ieffectid;
+    string m_sbufferFile;
     EN_BUFF_TARGET m_enBuffer_target;  //buffer目标;  //待定 看是否添加在最后里面
 };
 

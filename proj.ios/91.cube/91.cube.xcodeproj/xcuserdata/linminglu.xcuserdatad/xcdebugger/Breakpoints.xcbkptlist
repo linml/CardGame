@@ -7,19 +7,6 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/FightScene/CCardFightingLayerScene.cpp"
-         timestampString = "396361135.467234"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "591"
-         endingLineNumber = "591"
-         landmarkName = "CCardFightingLayerScene::createFightCard()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/FightLogic/CEffectInterfaceOne.cpp"
          timestampString = "396413716.396771"
          startingColumnNumber = "9223372036854775807"
@@ -33,52 +20,26 @@
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/HallScene/Layer/TaskLayer.cpp"
-         timestampString = "396417040.38596"
+         filePath = "../../Classes/Scene/FightScene/CFightingCardLayerScene.cpp"
+         timestampString = "397044795.827564"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
-         landmarkName = "CTaskLayer::handlerTouch()"
+         startingLineNumber = "437"
+         endingLineNumber = "437"
+         landmarkName = "CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/FightScene/CCardFightingLayerScene.cpp"
-         timestampString = "396846285.737029"
+         filePath = "../../Classes/Scene/FightScene/CFightingCardLayerScene.cpp"
+         timestampString = "397044795.827564"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "374"
-         endingLineNumber = "374"
-         landmarkName = "CCardFightingLayerScene::checkOwnIsDeadAndMove()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/FightScene/CCardFightingLayerScene.cpp"
-         timestampString = "396846286.49879"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "366"
-         endingLineNumber = "366"
-         landmarkName = "CCardFightingLayerScene::checkMonsterIsDeadAndMove()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-         timestampString = "396957445.481169"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "89"
-         endingLineNumber = "89"
-         landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+         startingLineNumber = "442"
+         endingLineNumber = "442"
+         landmarkName = "CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -10,7 +10,7 @@
 #include "CBattleArrayLayer.h"
 #include "gameConfig.h"
 #include "SceneManager.h"
-
+#include "Utility.h"
 CCDictionary * CCardSettingScene::s_pBattleArrayCards = NULL;
 
 CCScene* CCardSettingScene::scene()
@@ -96,7 +96,7 @@ void CCardSettingScene::initCCardSetting()
     
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
-    setTouchPriority(-1);
+    setTouchPriority(-10000);
     m_cMaps->getTouchRects(m_cTouches);
     
     // add other layer:
@@ -110,15 +110,25 @@ void CCardSettingScene::initCCardSetting()
     
     m_nCurrentTableId = 3001;
     m_pCardSetting->addTeamArrayPanel();
+    
+    // test: add close button:
+    CCSprite *btn = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "close_button.png"));
+    this->addChild(btn, 100000, 3006);
+    btn->setAnchorPoint(CCPointZero);
+    btn->setPosition(ccp(950, 700));
+    Utility::addTouchRect(3006, btn, m_cTouches);
+    
 }
 
 void CCardSettingScene::handlerTouch()
 {
+
     if (m_nTouchTag == m_nCurrentTableId)
     {
         return;
     }
-    switch (m_nTouchTag) {
+    switch (m_nTouchTag)
+    {
         case 3001:
             m_pCardSetting->removeLeft();
             m_pCardSetting->addTeamArrayPanel();
@@ -127,8 +137,8 @@ void CCardSettingScene::handlerTouch()
             CCLog("go to team array:");
             break;
         case 3002:
-            m_pCardSetting->setTableClickEnable(true);
             m_pCardSetting->removeLeft();
+            m_pCardSetting->setTableClickEnable(true);
             m_pCardSetting->addEnhance();
             
             CCLog("go to enhance");
@@ -138,9 +148,17 @@ void CCardSettingScene::handlerTouch()
 //            CCLog("go to evolution:");
 //            break;
 //            m_pCardSetting->removeLeft();
+//             
+        
         case 3004:
            // CCLog("go to sell:");
-              SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+             m_pCardSetting->removeLeft();
+             m_pCardSetting->addSell();
+             m_pCardSetting->setTableClickEnable(true);
+            break;
+            
+        case 3006:
+            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
             break;
         default:
             return;

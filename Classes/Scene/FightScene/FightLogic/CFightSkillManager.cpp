@@ -256,7 +256,6 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                 {
                     logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
                 }
-                
                 if(pSkill->parameter_4!=0)
                 {
                     logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
@@ -308,6 +307,13 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
             monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
             //用户发动了用户的技能
             appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
+            if(costfunctValue==2&&pSkill->parameter_3!=0)
+            {
+             CCLog("pSkill->parameter_3================>%d",pSkill->parameter_3);
+            CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
+            m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,pImpact->m_sEffectFile));
+             CCLog("pSkill->parameter_3================>%s",pImpact->m_sEffectFile.c_str());
+            }
         }
         else
         {
@@ -369,13 +375,13 @@ int CFightSkillManager::costFunc_1(CFightCard *pCard,CFightCard *pMonster,CSkill
 
 int CFightSkillManager::costFunc_2(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData)
 {
-    if(pCard->m_iCurrEngry>=pData->cost_parameter_1)
+    if(pData->cost_func_1!=0&&pCard->m_iCurrEngry>=pData->cost_parameter_1)
     {
         CCLog("2CurrEngry:%d",pCard->m_iCurrEngry);
         pCard->m_iCurrEngry -=pData->cost_parameter_1;
         CCLog("2CurrEngry:%d",pCard->m_iCurrEngry);
         //发动怒气技能 并影响起伤害值得
-        if(pMonster->isHaveBuffer(pData->cost_parameter_2))
+        if(pData->cost_func_2!=0&&pMonster->isHaveBuffer(pData->cost_parameter_2))
         {
             return 2;
         }
@@ -511,6 +517,7 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
         {
             char data[4];
             sprintf(data,"%d",pSkilldata->skill_logic);
+            CCLog("pSkilldata->skill_logic:data=%s,%d",data,pSkilldata->skill_id);
             IteratorMapPfunc it=m_vSkillManagerLogic.find(data);
             if(it!=m_vSkillManagerLogic.end())
             {

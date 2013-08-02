@@ -183,7 +183,12 @@ bool CFightingCardLayerLogic::checkIsDead()
     bool result=false;
     if (m_iFightCardIndex<m_vFightingCard.size()-1)
     {
-        if(m_vFightingCard[m_iFightCardIndex]->m_iCurrHp<=0)
+        if(!m_vFightingCard[m_iFightCardIndex])
+    {
+        m_iFightCardIndex++;
+        result=true;
+    }
+    else if(m_vFightingCard[m_iFightCardIndex]&&m_vFightingCard[m_iFightCardIndex]->m_iCurrHp<=0)
         {
             int backIndex=m_iFightCardIndex;
             m_vFightingCard[m_iFightCardIndex]->m_iCurrHp=0;
@@ -202,8 +207,13 @@ bool CFightingCardLayerLogic::checkIsDead()
     
     if (m_iMonsterCardIndex<m_vMonsterCard.size()-1)
     {
-        
-        if(m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp<=0)
+
+        if(!m_vMonsterCard[m_iMonsterCardIndex])
+        {
+            m_iMonsterCardIndex++;
+            result=true;
+        }
+        else if (m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp<=0)
         {
             //发动死亡技能
             int backIndex=m_iMonsterCardIndex;
@@ -319,4 +329,18 @@ void CFightingCardLayerLogic::initFightLogic(int  loadTeamIndex)
     m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
     m_iFightCardIndex=0;
     m_iMonsterCardIndex=0;
+    for (int i=0; i<m_vFightingCard.size(); i++) {
+        if(m_vFightingCard[i])
+        {
+            m_iFightCardIndex=i;
+            break;
+        }
+    }
+    for (int i=0; i<m_vMonsterCard.size(); i++) {
+        if(m_vMonsterCard[i])
+        {
+            m_iMonsterCardIndex=i;
+            break;
+        }
+    }
 }

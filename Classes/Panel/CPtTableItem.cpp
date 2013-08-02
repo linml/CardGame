@@ -25,6 +25,7 @@ CPtTableItem::~CPtTableItem()
 
 bool CPtTableItem::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+        m_bMove = false;
 
         bool bRet = false;
    
@@ -46,6 +47,7 @@ bool CPtTableItem::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 
 void CPtTableItem::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
+     m_bMove = true;
    
     if (m_pTouchDelegate)
     {
@@ -74,6 +76,7 @@ void CPtTableItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CPtTableItem::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
+      m_bMove = false;
     if (m_pTouchDelegate)
     {
         m_pTouchDelegate->ccTouchCancelled(pTouch, pEvent);

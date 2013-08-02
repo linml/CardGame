@@ -176,6 +176,8 @@ enum EN_ANIMATIONTYPE
     EN_ANIMATIONTYPE_BUFFER,   // 当发现自身带buffer 的时候要展示动画的标志
     EN_ANIMATIONTYPE_STATUS,   // 当防卫的图标消失的时候
     EN_ANIMATIONTYPE_SKILL,
+    EN_ANIMATIONTYPE_BUFFPLISTOWN,
+    EN_ANIMATIONTYPE_BUFFPLISTOTHER,
     EN_ANIMATIONTYPE_DEADMOVE,
 };
 
@@ -224,9 +226,15 @@ enum EN_BUFF_TARGET {
     EN_BUFF_TARGET_MONSTERALL
 };
 
+
+// max level values:
+const int g_aMaxLevel[7] = {30, 45, 50, 70,85, 95,100};
+
+
 enum EN_GAMEFIGHTSTATUS {
     EN_GAMEFIGHTSTATUS_WIN,   //胜利
     EN_GAMEFIGHTSTATUS_LOSE,  //失败，
     EN_GAMEFIGHTSTATUS_NONE,  //需要继续战斗，
 };
+
 #endif

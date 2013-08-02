@@ -117,6 +117,22 @@ public:
     int m_iCurrentBattleTeam; //当前的选择 战斗的阵容
 
 
+    
+    // play info:
+public:
+    int getCoin();
+    int getRVC();
+    
+    void addRVC(const int &inAddValue);
+    void addCoin(const int &inAddValue);
+    void ReduceRVC(const int &inReduceRVC);
+    void ReduceCoin(const int &inReduceCoin);
+    
+    void testPlayInfoData();
+protected:
+    int m_nCoin;
+    int m_nRvc;
+
 };
 typedef Singleton<CGamePlayer> SinglePlayer;
 

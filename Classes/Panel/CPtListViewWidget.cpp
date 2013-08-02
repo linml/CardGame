@@ -32,7 +32,12 @@ TableView* TableView::create(cocos2d::extension::CCTableViewDataSource *dataSour
     return table;
 }
 
-
+void TableView::setInitState()
+{
+    m_bTouchDragSelect = false;
+    m_bDecide = false;
+    m_bBegan = false;
+}
 
 bool TableView::ccTouchDelayBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -54,10 +59,7 @@ bool TableView::ccTouchDelayBegan(CCTouch *pTouch, CCEvent *pEvent)
         return false;
     }
 
-    m_bTouchDragSelect = false;
-    
-    m_bDecide = false;
-    m_bBegan = false;
+    setInitState();
     return true;
   
 
@@ -184,6 +186,7 @@ void TableView::ccTouchDelayEnd(CCTouch *pTouch, CCEvent *pEvent)
 }
 void TableView::ccTouchDelayCancel(CCTouch *pTouch, CCEvent *pEvent)
 {
+    setInitState();
     ccTouchEnded(pTouch, pEvent);
 }
 
@@ -200,10 +203,18 @@ bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     CCPoint location = pTouch->getLocation();
     location = this->getParent()->convertToNodeSpace(location);
     
-    if (!m_pContainer->boundingBox().containsPoint(location))
+    CCRect frame;
+    CCPoint frameOriginal = this->getParent()->convertToWorldSpace(this->getPosition());
+    frame = CCRectMake(frameOriginal.x, frameOriginal.y, m_tViewSize.width, m_tViewSize.height);
+    
+    //dispatcher does not know about clipping. reject touches outside visible bounds.
+    if (m_pTouches->count() > 2 ||
+        m_bTouchMoved          ||
+        !frame.containsPoint(m_pContainer->convertToWorldSpace(m_pContainer->convertTouchToNodeSpace(pTouch))))
     {
         return false;
     }
+    
     
     if (getDirection() == kCCScrollViewDirectionVertical)
     {
@@ -292,25 +303,9 @@ void TableView::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 
 void TableView::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
-    
-    if (getDirection() == kCCScrollViewDirectionVertical)
-    {
-        if (m_bTouchDragSelect)
-        {
-            if (m_pSelectItem)
-            {
-                CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem) ;
-                if (touchDelegate)
-                {
-                    touchDelegate->ccTouchCancelled(pTouch, pEvent);
-                }
-            }
-            
-            return;
-        }
-        
-    }
+ 
     CCTableView::ccTouchCancelled(pTouch, pEvent);
+    setInitState();
 }
 
 
@@ -467,25 +462,33 @@ CCNode * TableView::getCell(CCTouch *pTouch)
 
 }
 
+void TableView::reload()
+{
+    reloadData();
+    CCLog("CCScrollView1--- %f, %f",m_tViewSize.width - m_pContainer->getContentSize().width*m_pContainer->getScaleX(),
+          m_tViewSize.height - m_pContainer->getContentSize().height*m_pContainer->getScaleY());
+    CCLog("CCScrollView2--- %f, %f",m_tViewSize.width ,
+          m_tViewSize.height );
+    float y = (m_tViewSize.height - m_pContainer->getContentSize().height*m_pContainer->getScaleY()) ;
+    if (y >= 0)
+    {
+        setContentOffset(ccp(0,y));
+    }else
+    {
+         setContentOffset(ccp(0,y));
+    }
+   
+    
+    
+   
+}
 void TableView::addBackground(cocos2d::CCNode *node, int zorder /* = 0*/ , int tag /*= -1*/)
 {
     CCLayer::addChild(node, -100, tag);
     
 }
 
-void TableView::timer(float dt)
-{
-//    CCLog("the timer: %f", dt);
-//    static float delay =0.0f;
-//    delay += dt;
-//    if (delay > 0.2)
-//    {
-//         delay= 0.0f;
-        m_bDelay = false;
-//        unschedule(schedule_selector(TableView::timer));
-        CCLog("timer");
-//    }
-}
+
 
 // implement class CPtListViewWidget
 CPtListViewWidget * CPtListViewWidget::create(CCArray*items, CCSize containerSize,  CCScrollViewDirection direction, CCSize paddingSize, int inColumCount)
@@ -672,6 +675,7 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
                 pCell->addChild(pSprite, 0, i);
                //  CCLog("the point: %d" ,(int)tmp);
                 pSprite->setUserData((void *) (tmp));
+                tmp->setUserData((void *) (i+idx*m_nColumcount));
             }
         }
         
@@ -768,6 +772,15 @@ void CPtListViewWidget::setPaddingHeight(float paddingHeight)
 {
     m_cPaddingSize.height = paddingHeight;
      m_pTableView->reloadData();
+}
+
+void CPtListViewWidget::reload()
+{
+    m_nRows = (m_cItems == NULL)? 1 : m_cItems->count() / m_nColumcount;
+    m_nRows += (m_cItems->count() % m_nColumcount) == 0 ? 0 : 1;
+ //   m_pTableView->reloadData();
+    dynamic_cast<TableView*>(m_pTableView)->reload();
+    
 }
 
 // tool function:

@@ -25,6 +25,10 @@ static string g_testtemp[5]={
 CGamesCard::CGamesCard()
 {
     isAddTexiao=false;
+    m_pAtkLabel = NULL;
+    m_pDefLabel = NULL;
+    m_pHpLabel = NULL;
+    m_pRvcLabel = NULL;
 }
 
 CGamesCard::~CGamesCard()
@@ -63,7 +67,7 @@ void CGamesCard::setDead()
     CCNode *tmp = NULL;
     for (int i = 0; i < children->count(); i++)
     {
-        tmp = dynamic_cast<CCNode*>(children->objectAtIndex(i));
+        tmp = (CCNode*)(children->objectAtIndex(i));
         if(tmp)
         {
             setDead(tmp);
@@ -119,7 +123,7 @@ void CGamesCard::setLive()
     CCNode *tmp = NULL;
     for (int i = 0; i < children->count(); i++)
     {
-        tmp = dynamic_cast<CCNode*>(children->objectAtIndex(i));
+        tmp = (CCNode *)(children->objectAtIndex(i));
         if(tmp)
         {
             setLive(tmp);
@@ -330,6 +334,7 @@ void CGamesCard::createData(const int &inAtk, const int &inHp, const int &inRcv,
     label->setAnchorPoint(CCPointZero);
     label->setPosition(ccp(27, 23));
     addChild(label,3);
+    m_pAtkLabel = label;
     // hp:
     sprintf(buff, "HP:%d", inHp);
     label=CCLabelTTF::create(buff, "Arial", 10);
@@ -337,6 +342,7 @@ void CGamesCard::createData(const int &inAtk, const int &inHp, const int &inRcv,
     label->setAnchorPoint(CCPointZero);
     label->setPosition(ccp(75, 23));
     addChild(label,3);
+    m_pHpLabel = label;
     
     
     // rcv:
@@ -345,8 +351,8 @@ void CGamesCard::createData(const int &inAtk, const int &inHp, const int &inRcv,
     label->setColor(ccc3(255, 255, 0));
     label->setAnchorPoint(CCPointZero);
     label->setPosition(ccp(27, 10));
-     addChild(label,3);
-
+    addChild(label,3);
+    m_pRvcLabel = label;
     // def:
     sprintf(buff, "DEF:%d", inDef);
     label=CCLabelTTF::create(buff, "Arial", 10);
@@ -354,8 +360,28 @@ void CGamesCard::createData(const int &inAtk, const int &inHp, const int &inRcv,
     label->setAnchorPoint(CCPointZero);
     label->setPosition(ccp(75, 10));
      addChild(label,3);
+    m_pDefLabel = label;
 }
 
+
+void CGamesCard::updateData(const int &inAtk, const int &inHp, const int &inRcv, const int &inDef)
+{
+    char buff[50]={0};
+    
+    // atk:
+    sprintf(buff, "ATK:%d",inAtk);
+    m_pAtkLabel->setString(buff);
+    // hp:
+    sprintf(buff, "HP:%d", inHp);
+    m_pHpLabel->setString(buff);
+    // rcv:
+    sprintf(buff, "RCV:%d", inRcv);
+    m_pRvcLabel->setString(buff);
+    // def:
+    sprintf(buff, "DEF:%d", inDef);
+    m_pDefLabel->setString(buff);
+
+}
 
 void CGamesCard::createCardName(const char *str)
 {
@@ -422,4 +448,12 @@ bool CGamesCard::initCreate(CFightCard *card)
     createData(card->m_attack, card->m_iHp, card->m_pCard->m_icard_leadership, card->m_defend);
 
     return true;
+}
+
+void CGamesCard::updateToLevel(const int & inLevel)
+{
+    CFightCard *card = m_pCardData;
+    m_pCardData->updateCard(inLevel);
+    m_pCardData->m_iCurrLevel = inLevel;
+    updateData(card->m_attack, card->m_iHp, card->m_pCard->m_icard_leadership, card->m_defend);
 }

@@ -167,7 +167,16 @@ namespace PtActionUtility {
                 CCActionInterval* action = CCScaleTo::create(time, scaleX, scaleY);
                 return action;
             }
-        } else if (actionType == act_scale_by) {
+        }else if (actionType==act_jumpby)
+        {
+            vector<string> vValue = splitString(sAction, "(", ")");
+            float time = atof(vValue[0].c_str());
+            CCPoint desPos = pointFromString(vValue[1]);
+            float height=atof(vValue[2].c_str());
+            unsigned int jumps=atoi(vValue[3].c_str());
+            return CCJumpBy::create(time, desPos, height, jumps);
+            
+        }else if (actionType == act_scale_by) {
             vector<string> vValue = splitString(sAction, "(", ")");
             float time = atof(vValue[0].c_str());
             if (vValue.size() == 2) {

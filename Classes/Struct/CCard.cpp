@@ -55,7 +55,7 @@ void CFightCard::init()
 {
     m_pCard=NULL;
     m_iCurrEngry=0;
-    m_bInBattleArray = false;
+   // m_bInBattleArray = false;
     m_iCurrHp = 0;  //当前HP
     m_iHp = 0;      //当前总的HP
     m_attack = 0;   //当前按的攻击力量
@@ -73,6 +73,8 @@ void CFightCard::init()
     m_nCurrentPrice =0; // 从1升级到该级别所需要的金币
     m_nNeedExp = 0;     // 从1级升到该级别所需要的经验值
     m_nLeadShip = 0;
+    m_nWhichBattleArray = 0; // 不在阵容中
+    m_bConsume = false; // 用于强化，进化， 出售的flag
 }
 
 
@@ -172,12 +174,15 @@ void CFightCard::updateCard(int level)
     {
         CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
         levelConfig->update(level);
-        m_iHp +=  CPtTool::calulate(m_pCard->m_icardhp,levelConfig->getHp(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+        m_iHp =  CPtTool::calulate(m_pCard->m_icardhp,levelConfig->getHp(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
                                     levelConfig->getCorrectTow(), levelConfig->getStarOne());/// m_pCard->m_icardhp;
-        
-        m_attack +=CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+        if(m_pCard->m_icard_id==120002)
+        {
+            CCLog("aaaa");
+        }
+        m_attack =CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
                                    levelConfig->getCorrectTow(), levelConfig->getStarOne());
-        m_defend +=CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+        m_defend =CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
                                    levelConfig->getCorrectTow(), levelConfig->getStarOne());
         
         m_nCurrentPrice = levelConfig->getConin();
@@ -247,16 +252,29 @@ int CFightCard:: getAddValue(int level, int type)
 }
 
 /*
+ * @brief : 以该卡作为材料卡所需要消耗的金币
+ */
+int  CFightCard::getCostConin()
+{
+    int result = 0;
+    int value = SingleLevleConfigData::instance()->getValeWithLevel(m_iCurrLevel+1, 1);
+    int star_param = SingleLevleConfigData::instance()->getStarParamter(m_pCard->m_sicard_star, m_iCurrLevel+1);
+    result = (int)((value*star_param)+0.5);
+    return result;
+}
+
+/*
  * @param:  1: exp
  */
 int CFightCard::getSupportValue(int type)
 {
-    int result = 0;
-   
+    
+   int result = 0;
+   int value =    SingleLevleConfigData::instance()->getValeWithLevel(m_iCurrLevel, 2);
     switch (type)
     {
         case 1:
-            result = CPtTool::calSupportValue(m_pCard->m_icard_exp,m_iCurrExp, 0.2);
+            result = CPtTool::calSupportValue(m_pCard->m_icard_exp,value, 0.2);
             break;
         default:
             break;
@@ -288,6 +306,21 @@ int CFightCard::getNeedValue(int level, int type)
   
     return result;
     
+}
+
+/*
+ * @brief : 设置该卡牌在那个整容中
+ * @param inType: 0: 不在阵容中 1: 在进攻阵容1中 2: 在进攻阵容2中 3 在防御阵容中:
+ */
+
+void CFightCard::setInBattleArray(const int &inType)
+{
+    m_nWhichBattleArray = inType;
+    
+}
+int CFightCard::getInWhichBattleArray()
+{
+    return m_nWhichBattleArray;
 }
 
 

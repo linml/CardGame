@@ -41,7 +41,7 @@ public:
 public:
     CCNode *getCell(CCTouch *pTouch);
     void setChip(bool  bFlag){ m_bClippingToBounds = bFlag;};
-    
+    void reload();
 protected:
     CCNode * m_pSelectItem;
     bool m_bTouchDragSelect;
@@ -54,9 +54,9 @@ protected:
 protected:
     void beforeDraw();
     void afterDraw();
-    void timer(float dt);
-    
+    void setInitState();
     CC_SYNTHESIZE(bool, m_bDelayMode, DelayMode);
+    
 
 };
 
@@ -75,7 +75,8 @@ public:
     void setPaddingHeight(float paddingHeight);
     void setChipEnable(bool inChipEnable){ ((TableView*) m_pTableView)->setChip(inChipEnable);};
     CCTableView * getTableView(){ return m_pTableView;};
-    
+
+    void reload();
 public:
     virtual bool init(CCArray *items, CCSize containerSize,CCScrollViewDirection direction = kCCScrollViewDirectionVertical,  CCSize PaddingSize = CCSizeMake(5, 2.5), int inColumCount = 1);
     
@@ -92,7 +93,7 @@ public:
     virtual unsigned int numberOfCellsInTableView(cocos2d::extension::CCTableView *table);
 
 
-    
+
     
 protected:
     void initData(CCArray *items, CCSize containerSize, CCScrollViewDirection direction, CCSize itemSize, int inColumCount);
@@ -102,7 +103,6 @@ protected:
 
     CCTableView * m_pTableView;
     CCLayer *m_pBackground;
-    CCSize m_cItemSize;
     CCScrollViewDirection m_cDirection;
     CC_PROPERTY(CCSize, m_cPaddingSize, PaddingSize);
     CC_PROPERTY(int, m_nColumcount, ColumCount);
@@ -110,6 +110,7 @@ protected:
     CC_PROPERTY(float, m_fContainerHeight, ContainerHeight);
     CC_PROPERTY(CCArray*, m_cItems, Items);
     CC_SYNTHESIZE(CCTableViewDelegate*, m_pTableItemDelegate, TableItemDelegate);
+    CC_SYNTHESIZE(CCSize, m_cItemSize, ItemSize);
 };
 
 #endif 

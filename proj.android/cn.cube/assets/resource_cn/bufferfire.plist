@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>actions</key>
+	<array>
+		<string>Delay(0.5)</string>
+		<string>Animate(fire/fire_2.act)</string>
+		<string>Removetag(100)</string>
+		<string>JumpBy(0.2,{0,50},50,1)</string>
+		<string>JumpBy(0.2,{0,-50},50,1)</string>
+		<string>Sequence(Item 1,Item 0,Item 3,Item 4,Item 0,Item 2)</string>
+	</array>
+	<key>runAction</key>
+	<string>Item 5</string>
+</dict>
+</plist>

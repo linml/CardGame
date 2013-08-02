@@ -26,7 +26,7 @@ CPtEditBoxHandler::~CPtEditBoxHandler()
 
 bool CPtEditBoxHandler::registerEditBox(CCNode * node, const int pId)
 {
-    CCTextFieldTTF *tmp = dynamic_cast<CCTextFieldTTF*>(node);
+    CCTextFieldTTF *tmp = (CCTextFieldTTF*)(node);
     if (tmp)
     {
         m_pEditBoxes->setObject(tmp, pId);
@@ -45,7 +45,7 @@ void CPtEditBoxHandler::onEditBegin(CCTextFieldTTF * edit)
 void CPtEditBoxHandler::onEditEnd(CCTextFieldTTF * edit)
 {
     CCLog("CPtEditBoxHandler::onEditEnd ");
-    CPtTextFieldTTF *tmp = dynamic_cast<CPtTextFieldTTF*>(edit);
+    CPtTextFieldTTF *tmp = (CPtTextFieldTTF*)(edit);
     std::string * tmpStr = NULL;
     if (tmp)
     {
@@ -61,7 +61,7 @@ void CPtEditBoxHandler::onEditEnd(CCTextFieldTTF * edit)
     {
         CCObject * object = element->getObject();
         
-        if (object && (editTmp = dynamic_cast<CPtTextFieldTTF*>(object)))
+        if (object && (editTmp = (CPtTextFieldTTF*)(object)))
         {
             if (editTmp==edit)
             {
@@ -95,7 +95,7 @@ bool CPtEditBoxHandler::onTouchBegin(cocos2d::CCTouch *pTouch)
         CCDICT_FOREACH(m_pEditBoxes, element)
         {
             CCObject *tmp =  element->getObject();
-            if (tmp && (edit = dynamic_cast<CPtTextFieldTTF*>(tmp)))
+            if (tmp && (edit = (CPtTextFieldTTF*)(tmp)))
             {
                 tmpPoint = edit->getParent()->convertTouchToNodeSpace(pTouch);
                 if (edit->getRect().containsPoint(tmpPoint))

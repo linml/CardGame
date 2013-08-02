@@ -43,8 +43,11 @@ CC_SYNTHESIZE_READONLY(float, m_fCorrectTow, CorrectTow);
 
 public:
     float getStarParamter(int start);
+    float getStarParamter(int start, int level);
     int getLevelExp(int level);
     int getCurrentLevel(int exp, int beginLevel=1);
+    int getValeWithLevel(int inLevel, int inType);
+    
 };
 
 typedef Singleton<CPtLevelConfigData> SingleLevleConfigData;

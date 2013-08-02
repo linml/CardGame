@@ -26,7 +26,7 @@ namespace CPtTool
         CCPoint  point = parent->convertTouchToNodeSpace(pTouch);
         for(int i =  array->count() -1 ; i >= 0; i--)
         {
-            CCNode * tmp = dynamic_cast<CCNode *>((CCObject *)array->objectAtIndex(i));
+            CCNode * tmp = (CCNode *)((CCObject *)array->objectAtIndex(i));
             if (tmp)
             {
                 if (tmp->boundingBox().containsPoint(point))
@@ -38,30 +38,14 @@ namespace CPtTool
         return NULL;
     }
     
-    //CCNode *whichNode(CCNode* array[], CCNode *parent ,CCTouch *pTouch, int inCount)
-    //{
-    //    CCPoint  point = parent->convertTouchToNodeSpace(pTouch);
-    //    for(int i =  inCount -1 ; i >= 0; i--)
-    //    {
-    //        CCNode * tmp = dynamic_cast<CCNode *>(array[i]);
-    //        if (tmp)
-    //        {
-    //            if (tmp->boundingBox().containsPoint(point))
-    //            {
-    //                return tmp;
-    //            }
-    //        }
-    //    }
-    //    return NULL;
-    //
-    //}
+
     
     int whichNode(CCNode* array[], CCNode *parent ,CCTouch *pTouch, int inCount)
     {
         CCPoint  point = parent->convertTouchToNodeSpace(pTouch);
         for(int i =  inCount -1 ; i >= 0; i--)
         {
-            CCNode * tmp = dynamic_cast<CCNode *>(array[i]);
+            CCNode * tmp = (CCNode *)(array[i]);
             if (tmp)
             {
                 if (tmp->boundingBox().containsPoint(point))
@@ -440,15 +424,20 @@ namespace CPtTool
         }
     }
     
+    
+    /*
+     * @return : 向上取整
+     */
     int calulate(int card_base_value, int config_value, int star, int correct_value_1, int star_parameter, int correct_value_2,int correct_parameter)
     {
-        return (card_base_value+ config_value*(star+correct_value_1)*star_parameter+ correct_value_2)*correct_parameter;
+        return (int)(((card_base_value+ config_value*(star+correct_value_1)*star_parameter+ correct_value_2)*correct_parameter)+0.5);
     };
     
     int calSupportValue(int base_value,int currentValue, float ractor)
     {
-        return (base_value+ currentValue*ractor);
+        return (int)(((base_value+ currentValue*ractor))+0.5);
     }
 
+   
 };
 

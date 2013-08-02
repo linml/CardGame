@@ -46,6 +46,7 @@ protected:
     CCNode * parent;
     CCNode * touchNode;
     CCTouchDelegate * m_pTouchDelegate;
+    CC_SYNTHESIZE(bool, m_bMove, Move);
 };
 
 #endif /* defined(___1_cube__CPtTableItem__) */

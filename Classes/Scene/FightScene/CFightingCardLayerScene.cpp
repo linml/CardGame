@@ -161,13 +161,22 @@ void CFightingCardLayerScene::initSetUpdateHp(int iCurrHp,int TotalHp,int currEn
 
 void CFightingCardLayerScene::initHpEngry()
 {
-    if(m_vFightingCard[0])
-    {
-        initSetUpdateHp(m_vFightingCard[0]->m_iCurrHp,m_vFightingCard[0]->m_iHp,m_vFightingCard[0]->m_iCurrEngry,true);
+    int i=0;
+    for (int i=0; i<m_vFightHero.size(); i++) {
+        if(m_vFightHero[i])
+        {
+            m_vFightHero[i]->setVisible(true);
+            initSetUpdateHp(m_vFightingCard[i]->m_iCurrHp,m_vFightingCard[i]->m_iHp,m_vFightingCard[i]->m_iCurrEngry,true);
+            break;
+        }
     }
-    if(m_vMonsterCard[0])
-    {
-        initSetUpdateHp(m_vMonsterCard[0]->m_iCurrHp,m_vMonsterCard[0]->m_iHp,m_vMonsterCard[0]->m_iCurrEngry,false);
+    for (int i=0; i<m_vMonsterHero.size(); i++) {
+        if(m_vMonsterHero[i])
+        {
+            m_vMonsterHero[i]->setVisible(true);
+            initSetUpdateHp(m_vMonsterCard[i]->m_iCurrHp,m_vMonsterCard[i]->m_iHp,m_vMonsterCard[i]->m_iCurrEngry,true);
+            break;
+        }
     }
 }
 
@@ -228,13 +237,6 @@ void CFightingCardLayerScene::createHero()
             }
         }
     }
-    if(m_vFightHero.size()>0)
-    {
-       if(m_vFightHero[0])
-       {
-           m_vFightHero[0]->setVisible(true);
-       }
-    }
     for (int i=0; i<m_vMonsterCard.size(); i++) {
         if(m_vMonsterCard[i])
         {
@@ -260,15 +262,20 @@ void CFightingCardLayerScene::createHero()
             }
         }
     }
-    if(m_vMonsterHero.size()>0)
-    {
-        if( m_vMonsterHero[0])
-        {
-            m_vMonsterHero[0]->setVisible(true);
-        }
-    }
 }
-
+void CFightingCardLayerScene::showSkillBuffer(cocos2d::CCSprite *pFightSprite, cocos2d::CCSprite *pMonsterSprite2, int skillid, CAnimationSpriteGameFight *fightAnimation)
+{
+    
+    if(pMonsterSprite2)
+    {
+        string filePath=fightAnimation->m_sBufferPlist;
+        //filePath += ".plist";
+        CCAction *animation=PtActionUtility::getRunActionWithActionFile(filePath.c_str());
+        CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
+        pMonsterSprite2->runAction(CCSequence::create((CCFiniteTimeAction*)animation,endAnimation,NULL));
+    }
+    
+}
 void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation)
 {
     if(pFightSprite ==pMonsterSprite2)
@@ -323,7 +330,7 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
             {
                 if(m_vFightingCard[4])
                 {
-                    filePath += "_r.plist";
+                    filePath += "_l.plist";
                     CCAction *animation=PtActionUtility::getRunActionWithActionFile(filePath.c_str());
                     CGamesCard *gamecard=(CGamesCard *)getChildByTag(m_vFightingCard[4]->tag);
                     CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonsterSprite2);
@@ -347,6 +354,9 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
                 }
             }
 #endif
+        }
+        else{
+            AnimaitonEnd(NULL);
         }
     }
 }
@@ -403,6 +413,7 @@ void CFightingCardLayerScene::skillHelpAnimationSwf(CAnimationSpriteGameFight *f
 
 void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster)
 {
+    CCLOG("SKILL ID=  %d",fightAnimation->m_iSKillId);
     switch (fightAnimation->m_enAnimationType)
     {
         case EN_ANIMATIONTYPE_HERO:
@@ -421,6 +432,16 @@ void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fight
             break;
         case  EN_ANIMATIONTYPE_DEADMOVE:
             break;
+        case EN_ANIMATIONTYPE_BUFFPLISTOTHER:
+        {
+            showSkillBuffer(pFight,pMonster,0,fightAnimation);
+            break;
+        }
+        case EN_ANIMATIONTYPE_BUFFPLISTOWN:
+        {
+            showSkillBuffer(pMonster,pFight,0,fightAnimation);
+            break;
+        }
         default:
             break;
     }
@@ -467,7 +488,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         break;
         case EN_ATKFIGHT_INDEX_RIGHT_LORD:
         {
-            if(m_vMonsterHero[fightAnimation->m_iATKindex]&&m_vFightHero[fightAnimation->m_iDefIndex])
+            if(m_vMonsterHero[fightAnimation->m_iATKindex])
             {
                 CCSprite *sprite=m_vMonsterHero[fightAnimation->m_iATKindex];
                 CCSprite *pMonster=m_vFightHero[fightAnimation->m_iDefIndex];

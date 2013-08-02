@@ -106,7 +106,7 @@
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>resource_cn/100000</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
 		<string>对敌人造成大量伤害</string>
 	</dict>
@@ -487,7 +487,7 @@
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist11</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
 		<string>0</string>
 	</dict>

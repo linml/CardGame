@@ -29,7 +29,7 @@ public:
                               int iAddEngry,
                               int iSubEngry,
                               int skillid,
-                              int spritetag);
+                              int spritetag,string strplist="");
     
     EN_ANIMATIONTYPE m_enAnimationType;
     EN_ATKFIGHT_INDEX m_enAtkFightIndex;
@@ -41,6 +41,7 @@ public:
     int  m_iSubEngry;
     int  m_iSKillId;
     int  spritetag;
+    string m_sBufferPlist;
 public:
     
     friend inline ostream & operator << (ostream & os, CAnimationSpriteGameFight &t1)

@@ -63,11 +63,15 @@ public:
     int  getAddValue(int level, int type);
     int  getNeedValue(int level, int type);
     int  getSupportValue(int type);
-
+    int  getCostConin();
+    
+    void setInBattleArray(const int &inType);
+    int  getInWhichBattleArray();
+    
     bool appendBuffer(CCardBufferStatus *buffer);
     void needRebackAtkAndBuf(CCardBufferStatus *buffer);
     bool isHaveBuffer(int prameid);
-
+    
 public:
     int m_iCurrHp;  //当前HP
     int m_iHp;      //当前总的HP
@@ -101,11 +105,11 @@ public:
 
     // change by phileas.chen 2013.7.22
     
-    CC_SYNTHESIZE(bool, m_bInBattleArray, InBattleArray);
-   // CC_SYNTHESIZE(CGamesCard*, m_pInCardBagPointer, InCardBagPoint);
+    CC_SYNTHESIZE(bool, m_bConsume, EnConsume);
+    
     
 protected:
-    
+    int m_nWhichBattleArray;
 
 public: //for test
     friend inline ostream & operator << (ostream & os, CFightCard &t1)

@@ -100,6 +100,56 @@ float CPtLevelConfigData::getStarParamter(int star)
     
 }
 
+float CPtLevelConfigData::getStarParamter(int star, int level)
+{
+    int tmpValue = 0;
+    if (m_pConfigData)
+    {
+        int count = m_pConfigData->allKeys()->count()+1;
+        if (count < level)
+        {
+            level = count;
+        }
+        char buffer[10]={0};
+        sprintf(buffer, "%d",level);
+        CCDictionary * tmp = (CCDictionary *) m_pConfigData->objectForKey(buffer);
+        if (tmp)
+        {
+            switch(star)
+            {
+                case 1:
+                    tmpValue = GameTools::floatForKey("star_param_1", tmp);
+                    break;
+                case 2:
+                    tmpValue = GameTools::floatForKey("star_param_2", tmp);
+                    break;
+                case 3:
+                    tmpValue = GameTools::floatForKey("star_param_3", tmp);
+                    break;
+                case 4:
+                    tmpValue =GameTools::floatForKey("star_param_4", tmp);
+                    break;
+                case 5:
+                    tmpValue = GameTools::floatForKey("star_param_5", tmp);
+                    break;
+                case 6:
+                    tmpValue = GameTools::floatForKey("star_param_6", tmp);
+                    break;
+                case 7:
+                    tmpValue = GameTools::floatForKey("star_param_7", tmp);
+                    break;
+                default:
+                    break;
+            }
+            
+            
+        }
+        
+    }
+    return tmpValue;
+
+}
+
 int CPtLevelConfigData::getLevelExp(int level)
 {
     int result = 0;
@@ -160,4 +210,42 @@ int CPtLevelConfigData::getCurrentLevel(int exp, int beginLevel)
     }
 
     return  result;
+}
+
+/*
+ * @param inLevel: 从 level_up_config.plist中获取level的inType值,当level大于level_up_config.plist中的最大值时，取最大值
+ * @param inType: 1: conin, 2: exp
+ */
+int CPtLevelConfigData::getValeWithLevel(int inLevel, int inType)
+{
+    int tmpValue = 0;
+    if (m_pConfigData)
+    {
+        int count = m_pConfigData->allKeys()->count()+1;
+        if (count < inLevel)
+        {
+            inLevel = count;
+        }
+        char buffer[10]={0};
+        sprintf(buffer, "%d",inLevel);
+        CCDictionary * tmp = (CCDictionary *) m_pConfigData->objectForKey(buffer);
+        if (tmp)
+        {
+            switch(inType)
+            {
+                case 1:
+                    tmpValue = GameTools::intForKey("conin", tmp);
+                    break;
+                case 2:
+                    tmpValue = GameTools::intForKey("exp", tmp);
+                    break;
+                default:
+                    break;
+            }
+           
+           
+        }
+
+    }
+    return tmpValue;
 }

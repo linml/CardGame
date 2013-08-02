@@ -22,7 +22,7 @@ CAnimationSpriteGameFight::CAnimationSpriteGameFight(
                           int iAddEngry,
                           int iSubEngry,
                           int skillid,
-                          int ispritetag)
+                          int ispritetag,string plistfile)
 {
     this->m_iAddHp=iAddHp;
     this->m_iATKindex=iAtkindex;
@@ -34,4 +34,5 @@ CAnimationSpriteGameFight::CAnimationSpriteGameFight(
     this->m_enAnimationType=enanimationtype;
     this->m_enAtkFightIndex=enAtkFight;
     this->spritetag=ispritetag;
+    m_sBufferPlist=plistfile;
 }

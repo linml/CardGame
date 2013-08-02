@@ -15,6 +15,7 @@
 #include "PtJsonUtility.h"
 #include "CSkillData.h"
 #include "CFightSkillManager.h"
+#include "SEveryATKData.h"
 #include <fstream>
 
 //#define AAAAFOROSMACHINE 1
@@ -54,6 +55,10 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 
 CGamePlayer::CGamePlayer()
 {
+    // test begin:
+    testPlayInfoData();
+    // test end:
+    
     isLoadServer=false;
     
     for (int i=0; i<m_vvBattleArray.size(); i++) {
@@ -415,17 +420,15 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                 vector<CFightCard *>tempVcard(5);
                 CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
                 CCArray *vKeyArraytemp=cardtemp->allKeys();
-                for (int i=0; i<vKeyArraytemp->count(); i++)
+                for (int j=0; j<vKeyArraytemp->count(); j++)
                 {
-                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
+                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(j);
                     CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
                     int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
                     int position=GameTools::intForKey("position", cardDirectorDetail);
                     tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
-                    if (tempVcard[position-1])
-                    {
-                        tempVcard[position-1]->setInBattleArray(true);
-                    }
+                    tempVcard[position-1]->setInBattleArray(i+1);//(true);
+            
                 }
                 m_vvBattleArray.push_back(tempVcard);
             }
@@ -450,47 +453,6 @@ CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
         }
     }
     return NULL;
-}
-
-
-void CGamePlayer::forTestCard()
-{
-    //获取当前所有卡佩里面的5张牌面给原先的
-    srand(time(0));
-    for (int i=0;i<5;i++)
-    {
-        int index=rand()%m_hashmapAllCard.size();
-        int tempindex=0;
-        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++) {
-            if(tempindex==index)
-            {
-                cout<<"card id:"<<it->first<<endl;
-                m_hashmapFight.push_back(it->second);
-                break;
-            }
-            tempindex++;
-        }
-    }
-}
-
-void CGamePlayer::forTestMonsterCard()
-{
-    m_hashmapMonster.erase(m_hashmapMonster.begin(),m_hashmapMonster.end());
-    for (int i=0;i<5;i++)
-    {
-        int index=rand()%9;//.size();
-        int tempindex=0;
-        for (map<int, CCard *> ::iterator it=m_hashmapAllCard.begin(); it!=m_hashmapAllCard.end();it++)
-        {
-            if(tempindex==index)
-            {
-                cout<<"card Monster id:"<<it->first<<endl;
-                m_hashmapMonster.push_back(it->second);
-                break;
-            }
-            tempindex++;
-        }
-    }
 }
 
 void CGamePlayer::loadRival(int  usid,int  troops)
@@ -555,6 +517,83 @@ void CGamePlayer::parseRival(CCObject *object)
     }
     isLoadFightTeam=true;
 
+}
+void CGamePlayer::backUpFightTeam(int index)
+{
+    for (int i=0; i<m_vvBattleArray[index].size();i++)
+    {
+        if(m_vvBattleArray[index][i])
+        {
+            m_hashmapFightingCard.push_back(new CFightCard(*(m_vvBattleArray[index][i])));
+        }
+        else
+        {
+            m_hashmapFightingCard.push_back(NULL);
+        }
+    }
+}
+
+
+// player info
+int CGamePlayer::getCoin()
+{
+    return  m_nCoin;
+}
+
+int CGamePlayer::getRVC()
+{
+    return  m_nRvc;
+}
+
+void CGamePlayer::addRVC(const int &inAddValue)
+{
+    m_nRvc += inAddValue;
+}
+void CGamePlayer::addCoin(const int &inAddValue)
+{
+    m_nCoin += inAddValue;
+}
+void CGamePlayer::ReduceRVC(const int &inReduceRVC)
+{
+    m_nRvc -= inReduceRVC;
+}
+void CGamePlayer::ReduceCoin(const int &inReduceCoin)
+{
+    m_nCoin -= inReduceCoin;
+}
+
+void CGamePlayer::testPlayInfoData()
+{
+    m_nCoin = 500000;
+    m_nRvc = 100000;
+    
+}
+
+
+
+void CGamePlayer::appendAtkData(SEveryATKData * data)
+{
+    m_vHpAngry.push_back(data);
+}
+
+void CGamePlayer::onFightInterScene()
+{
+    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
+}
+
+void CGamePlayer::deleteFightMonsterCard()
+{
+    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
+
+}
+void CGamePlayer::onFightExitScene()
+{
+    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
 }
 
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

@@ -18,7 +18,6 @@
 #include "ExplorationScene.h"
 #include "LoginScene.h"
 #include "HallScene.h"
-#include "CCardFightingLayerScene.h"
 #include "CFightingCardLayerScene.h"
 #include "CCardSettingScene.h"
 

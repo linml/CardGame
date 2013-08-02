@@ -15,7 +15,7 @@
 #include "CPtListViewWidget.h"
 #include "CPtTableItem.h"
 #include "CCardEnhanceLayer.h"
-
+#include "CCardSellLayer.h"
 using namespace cocos2d;
 
 
@@ -39,6 +39,7 @@ public:
     
     void addTeamArrayPanel();
     void addEnhance();
+    void addSell();
     
     void removeLeft();
 protected:
@@ -51,34 +52,40 @@ public:
 
     bool m_bAdd;
     bool m_bReplace;
-    CCNode *m_pMoveCard;
+    CPtDisPlayCard *m_pMoveCard;
     CCNode * m_pArray[5];
     CCPoint m_cPrePoint;
     
     CPtBattleArrayPanel * panel;
     CCardEnhanceLayer * m_pEnhancePanel;
+    CCardSellLayer * m_pSellPanel;
     CGamePlayer * m_pGamePlayer;
     CPtListViewWidget *m_pCards;
     
     CC_SYNTHESIZE(bool, m_bTableClikEnable, TableClickEnable);
     CC_SYNTHESIZE(bool, m_bTableClickMove, TableClickMove);
-
+    
+    CC_SYNTHESIZE(int, m_nCurrentTab, CurrentTab);
  
 };
 
 class CPtBattleArrayItem : public CPtTableItem
 {
 public:
-    CPtBattleArrayItem(){m_pDelegateLayer = NULL;};
+    CPtBattleArrayItem(){m_pDelegateLayer = NULL;m_bSellPanel = false;};
     CREATE_FUNC(CPtBattleArrayItem);
     virtual bool init(){ return CPtTableItem::init();};
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     void setDelegateLayer(CBattleArrayLayer * inLayer){ m_pDelegateLayer = inLayer;};
     
-    void handlerEnhanceOnCliked();
+    void onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent);
+    void onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent);
+    void onSellEnd(CCTouch *pTouch, CCEvent *pEvent);
+    
 protected:
     CBattleArrayLayer * m_pDelegateLayer;
+    CC_SYNTHESIZE(bool, m_bSellPanel, SellPanel);
     
 };
 

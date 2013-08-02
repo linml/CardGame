@@ -12,6 +12,8 @@
 #include "cocos2d.h"
 #include "LayoutLayer.h"
 #include "CGamesCard.h"
+#include "CPtBatterArray.h"
+#include "CPtListViewWidget.h"
 
 #include <vector>
 
@@ -19,6 +21,8 @@ using namespace cocos2d;
 using namespace std;
 
 #define MATERIALCARDCOUNT 8
+
+
 class CCardEnhanceLayer : public CCLayer
 {
 public:
@@ -36,20 +40,29 @@ public:
     
     
     int getEmptyCardSlide();
-    void addCard(const int& inIndex, CGamesCard * inCard);
+    void addCard(const int& inIndex, CPtDisPlayCard * inCard);
     void removeCard(const int &inIndex);
+    bool canClickCard(CPtDisPlayCard * inCard);
+    void resetMaterialCard();
 protected:
     void initCCardEvolution();
     void handlerTouch(CCTouch * pTouch);
     
     // action:
-    void addCardAction(const int& inIndex, CGamesCard * inCard);
+    void addCardAction(const int& inIndex, CPtDisPlayCard * inCard);
     void removeCardAction(const int& inIndex);
     
     void updateEnhance();
     void updateData();
     void updateTexture();
     
+    void clearMaterialCard();
+    
+    bool verifyConin();
+    void save();
+    
+    void saveOnClick();
+    void receiveCallBack(CCObject *pSender);
 protected:
     int m_nTouchTag;
     
@@ -57,8 +70,8 @@ protected:
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
     
-    CGamesCard * m_pSelectCard;
-    CGamesCard* m_pMaterialCards[MATERIALCARDCOUNT];
+    CPtDisPlayCard * m_pSelectCard;
+    CPtDisPlayCard* m_pMaterialCards[MATERIALCARDCOUNT];
     
     int m_nAddAtak;
     int m_nAddDef;
@@ -73,6 +86,12 @@ protected:
     
     int m_nCurrentLevel;
     int m_nNeedMoney;
+    
+    int m_nCostConin;
+    
+    CGamePlayer *m_pPlayer ;
+   
+    CC_SYNTHESIZE(CPtListViewWidget*, m_pCardBag, CardBag);
 };
 
 

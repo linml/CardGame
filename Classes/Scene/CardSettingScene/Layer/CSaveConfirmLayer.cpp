@@ -78,10 +78,19 @@ void CSaveConfirmLayer::initConfirm()
     {
        word = "设置成功";
     }
+    else if(m_nResult == 30001)
+    {
+        word = "设置成功";
+    }
+    else if(m_nResult == 4001)
+    {
+        word = "设置成功";
+    }
     else
     {
         word = "设置失败";
     }
+    
     
     
     CCLabelTTF* pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);

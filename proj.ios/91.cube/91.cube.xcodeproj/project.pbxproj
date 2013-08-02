@@ -44,6 +44,7 @@
 		6FAD754F17A26A0000AB8D8E /* CPtBarWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD754B17A26A0000AB8D8E /* CPtBarWidget.cpp */; };
 		6FAD755317A26A3800AB8D8E /* CPtTool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD755017A26A3800AB8D8E /* CPtTool.cpp */; };
 		6FAD755617A26A6100AB8D8E /* CPtLevelConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAD755417A26A6000AB8D8E /* CPtLevelConfigData.cpp */; };
+		6FAEE80B17AA4C4B00D8FBDB /* CCardSellLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FAEE80917AA4C4B00D8FBDB /* CCardSellLayer.cpp */; };
 		6FB08A4A176EE7E700683F10 /* LayoutLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A49176EE7E700683F10 /* LayoutLayer.cpp */; };
 		6FB08A4D176EE84200683F10 /* Biforest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB08A4B176EE84200683F10 /* Biforest.cpp */; };
 		6FB094FB178EB44E0024DDCD /* CFightingCardLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB094F9178EB44B0024DDCD /* CFightingCardLayerScene.cpp */; };
@@ -367,6 +368,8 @@
 		6FAD755417A26A6000AB8D8E /* CPtLevelConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtLevelConfigData.cpp; sourceTree = "<group>"; };
 		6FAD755517A26A6000AB8D8E /* CPtLevelConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtLevelConfigData.h; sourceTree = "<group>"; };
 		6FAEDE84175C3A3E00F5FDC2 /* GameSpriteConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameSpriteConfig.h; sourceTree = "<group>"; };
+		6FAEE80917AA4C4B00D8FBDB /* CCardSellLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardSellLayer.cpp; sourceTree = "<group>"; };
+		6FAEE80A17AA4C4B00D8FBDB /* CCardSellLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardSellLayer.h; sourceTree = "<group>"; };
 		6FB08A48176EE7E700683F10 /* LayoutLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LayoutLayer.h; sourceTree = "<group>"; };
 		6FB08A49176EE7E700683F10 /* LayoutLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LayoutLayer.cpp; sourceTree = "<group>"; };
 		6FB08A4B176EE84200683F10 /* Biforest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Biforest.cpp; sourceTree = "<group>"; };
@@ -1124,6 +1127,8 @@
 		6FAD753F17A269C700AB8D8E /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				6FAEE80917AA4C4B00D8FBDB /* CCardSellLayer.cpp */,
+				6FAEE80A17AA4C4B00D8FBDB /* CCardSellLayer.h */,
 				6FABAEDA17A6225E00BB5ABD /* CSaveConfirmLayer.cpp */,
 				6FABAEDB17A6225E00BB5ABD /* CSaveConfirmLayer.h */,
 				6FAD754017A269C700AB8D8E /* CBattleArrayLayer.cpp */,
@@ -2662,6 +2667,7 @@
 				6FAD755617A26A6100AB8D8E /* CPtLevelConfigData.cpp in Sources */,
 				6FABAEDC17A6225E00BB5ABD /* CSaveConfirmLayer.cpp in Sources */,
 				6FB5F57517A7A1EB0026206F /* SEveryATKData.cpp in Sources */,
+				6FAEE80B17AA4C4B00D8FBDB /* CCardSellLayer.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
