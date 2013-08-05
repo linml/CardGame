@@ -60,6 +60,13 @@ phileas
 
 1479
 
+CGameCardBuffer.cpp
+file
+0
+
+
+add
+
 LoadingScene.h
 file
 
@@ -93,6 +100,13 @@ merlin
 
 
 900
+
+CGameCardBuffer.h
+file
+0
+
+
+add
 
 CPtEditBoxWidget.cpp
 file

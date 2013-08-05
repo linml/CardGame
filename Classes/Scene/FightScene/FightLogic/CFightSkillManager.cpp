@@ -92,15 +92,16 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
     IteratorMapPbFunc it=m_vCostFuncManager.find(data);
     if( it!=m_vCostFuncManager.end())
     {
+       
         pbFunc func=it->second;
         int currHp=FightCard[FightIndex]->m_iCurrHp;
         int engry=FightCard[FightIndex]->m_iCurrEngry;
         int monstercurrHp=MonsterCard[MonsterIndex]->m_iCurrHp;
         int monstercurrEngry=MonsterCard[MonsterIndex]->m_iCurrEngry;
         // 满足条件
-        
         if((*func)(pCard,MonsterCard[MonsterIndex],pSkill)==1)   //判断单体的条件是否满足。
         {
+             CCLog("条件满足 爆发了技能id:%d",pSkill->skill_id);
             // 发动effect的攻击效果
             if(pSkill->parameter_1!=0)
             {
@@ -129,8 +130,6 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
                         logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,i,pSkill,pSkill->parameter_5);
                     }
                 }
-                //觉得这里需要添加个特效的文件
-                //appendAnimation(FightIndex, MonsterIndex, 0, 0, pSkill->skill_id,0, 0, EN_ANIMATIONTYPE_SKILL, enatk);
             }
             if(pSkill->parameter_6!=0)
             {
@@ -168,7 +167,9 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
         }
         else
         {
+          
             CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji();
+             CCLog("条件不满足 爆发了技能id:%d",pPutongSkill->skill_id);
             if (pPutongSkill)
             {
                 logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);

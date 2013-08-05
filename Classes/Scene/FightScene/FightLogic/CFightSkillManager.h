@@ -101,11 +101,6 @@ public:
     static bool isHavaPhysicHarmMagic(CFightCard *pMonstFight);
     //怒气免疫的buffer;
     static bool isHaveMagicHarm(CFightCard *pMonstFight);
-//    static int getShangHai(CFightCard *pFight, CFightCard *pMonstFight,CImapact *pEffect);
-//    static int getEngry(CFightCard *pMonstFight,CImapact *pEffect);
-//    static int getAtk(CFightCard *pMonstFight,CImapact *pEffect);
-//    static int getDef(CFightCard *pMonstFight,CImapact *pEffect);
-    
     //普通伤害计算
     void basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight);
     void clearAnimationList();
@@ -113,7 +108,7 @@ public:
         static    vector<CAnimationSpriteGameFight *>m_animationVector;
 };
 
-typedef Singleton<CFightSkillManager> g_FightSkillManager;
+typedef Singleton<CFightSkillManager> G_FightSkillManager;
 
 
 #endif /* defined(___1_cube__CFightSkillManager__) */

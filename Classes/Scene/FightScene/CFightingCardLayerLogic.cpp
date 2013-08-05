@@ -47,6 +47,7 @@ bool CFightingCardLayerLogic::loadFromCardTeamTest()
         if(tempSinglePlayer->m_hashmapMonsterCard[i])
         {
             this->m_vMonsterCard.push_back(new CFightCard(*tempSinglePlayer->m_hashmapMonsterCard[i]));
+            m_vMonsterCard[i]->tag=1000*(i+1);
         }
         else{
             this->m_vMonsterCard.push_back(NULL);
@@ -66,6 +67,7 @@ bool  CFightingCardLayerLogic::loadFromServerTest(int  loadTeamIndex)
             if(tempSinglePlayer->m_vvBattleArray[loadTeamIndex][i])
             {
                 m_vFightingCard.push_back(new CFightCard(*(tempSinglePlayer->m_vvBattleArray[loadTeamIndex][i])));
+                m_vFightingCard[i]->tag=100*(i+1);
             }
             else
             {
@@ -106,7 +108,7 @@ bool CFightingCardLayerLogic::logicFighting()
 
 void CFightingCardLayerLogic::loadAnimatePlist()
 {
-    CFightSkillManager *skillManager=g_FightSkillManager::instance();
+    CFightSkillManager *skillManager=G_FightSkillManager::instance();
     for (int i= 0; i<skillManager->m_animationVector.size(); i++) {
         if(skillManager->m_animationVector[i])
         {
@@ -143,24 +145,33 @@ bool CFightingCardLayerLogic::checkFighting()
     }
     m_enHuiheIndex++;
     appendHpAngryUpdate();
+    CCLog("BEGIN 当前攻击顺序是%d",int(m_enHuiheIndex));
+    if(m_vFightingCard[m_iFightCardIndex])
+    {
+        CCLog("左边主将血液是:%d,%d",m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_iFightCardIndex);
+    }
+    if(m_vMonsterCard[m_iMonsterCardIndex])
+    {
+        CCLog("右边边主将血液是:%d,%d",m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp,m_iMonsterCardIndex);
+    }
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
     {
-        g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_ANGRY,m_enHuiheIndex);
+        G_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_ANGRY,m_enHuiheIndex);
         
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
     {
         //发动拥护技能
-        g_FightSkillManager::instance()->CardFighting(m_vFightingCard[4], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_HELP,m_enHuiheIndex);
+        G_FightSkillManager::instance()->CardFighting(m_vFightingCard[4], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_HELP,m_enHuiheIndex);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD)
     {
-        g_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex], m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_ANGRY,m_enHuiheIndex);
+        G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex], m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_ANGRY,m_enHuiheIndex);
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
         
-        g_FightSkillManager::instance()->CardFighting(m_vMonsterCard[4],m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_HELP,m_enHuiheIndex);
+        G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[4],m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_HELP,m_enHuiheIndex);
         
         CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
         CFightSkillManager::dealWithBuffer(m_vFightingCard[4],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_SUPPORT);
@@ -174,6 +185,15 @@ bool CFightingCardLayerLogic::checkFighting()
     if(m_enHuiheIndex>EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
+    }
+    CCLog("END:当前攻击顺序是%d",int(m_enHuiheIndex));
+    if(m_vFightingCard[m_iFightCardIndex])
+    {
+        CCLog("左边主将血液是:%d,%d",m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_iFightCardIndex);
+    }
+    if(m_vMonsterCard[m_iMonsterCardIndex])
+    {
+        CCLog("右边边主将血液是:%d,%d",m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp,m_iMonsterCardIndex);
     }
     return true;
 }
@@ -194,13 +214,14 @@ bool CFightingCardLayerLogic::checkIsDead()
             m_vFightingCard[m_iFightCardIndex]->m_iCurrHp=0;
             m_vFightingCard[m_iFightCardIndex]->isDead=true;
             //发动死亡技能
-            g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_DEAD,m_enHuiheIndex);
+            CCLog("左边第%d个 发动死亡技能",m_iFightCardIndex);
+            G_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_DEAD,m_enHuiheIndex);
             appendHpAngryUpdate();
             do
             {
                 m_iFightCardIndex++;
             } while (m_vFightingCard[m_iFightCardIndex]==NULL &&m_iFightCardIndex<m_vFightingCard.size()-1);
-            g_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE);
+            G_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE);
             result=true;
         }
     }
@@ -219,12 +240,13 @@ bool CFightingCardLayerLogic::checkIsDead()
             int backIndex=m_iMonsterCardIndex;
             m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp=0;
             m_vMonsterCard[m_iMonsterCardIndex]->isDead=true;
-            g_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex], m_vMonsterCard ,m_vFightingCard,m_iMonsterCardIndex ,m_iFightCardIndex,EN_SEND_SKILL_DEAD,m_enHuiheIndex);
+            CCLog("右边第%d个 发动死亡技能",m_iMonsterCardIndex);
+            G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex], m_vMonsterCard ,m_vFightingCard,m_iMonsterCardIndex ,m_iFightCardIndex,EN_SEND_SKILL_DEAD,m_enHuiheIndex);
             appendHpAngryUpdate();
             do {
                 m_iMonsterCardIndex++;
             } while (m_vMonsterCard[m_iMonsterCardIndex]==NULL &&m_iMonsterCardIndex<m_vMonsterCard.size()-1);
-            g_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
+            G_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
             result=true;
         }
     }
@@ -236,15 +258,17 @@ bool CFightingCardLayerLogic::checkSendZengfu()
     bool result=false;
     if(m_vFightingCard[m_iFightCardIndex] && !m_vFightingCard[m_iFightCardIndex]->isSendZengfu) //判断是否触发了 增幅技能
     {
+        CCLog("左边第%d个发动增幅技能",m_iFightCardIndex);
         m_vFightingCard[m_iFightCardIndex]->isSendZengfu=true;
-        g_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_LEFT_LORD);
+        G_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_LEFT_LORD);
         result=true;
         appendHpAngryUpdate();
     }
     if(!m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu)//判断是否触发了 增幅技能
     {
+        CCLog("右边第%d个发动增幅技能",m_iFightCardIndex);
         m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu=true;
-        g_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex],m_vMonsterCard,m_vMonsterCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_RIGHT_LORD);
+        G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex],m_vMonsterCard,m_vMonsterCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_RIGHT_LORD);
         //append增幅技能
         appendHpAngryUpdate();
         result=true;

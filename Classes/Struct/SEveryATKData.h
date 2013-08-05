@@ -15,10 +15,12 @@ struct  SSpriteStatus
     int m_iCurrTotalHp;
     int m_iEngry;
 };
+
 struct SEveryATKData
 {
     SEveryATKData();
     ~SEveryATKData();
     SSpriteStatus *data[2];
 };
+
 #endif /* defined(___1_cube__SEveryATKData__) */

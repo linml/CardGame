@@ -13,7 +13,7 @@
 //定义一个计算effect的 抽象类
 class CFightCard;
 class CImapact;
-class CEffectInterface
+class CEffectInterface   //效果影响表格的抽象类
 {
 public:
     CEffectInterface();

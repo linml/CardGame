@@ -80,7 +80,7 @@ void CGamePlayer::loadGamesConfig()
     initPlayerTable((resRootPath +"level_config.plist").c_str());
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
-    g_FightSkillManager::instance()->initSkill();//加载列表
+    G_FightSkillManager::instance()->initSkill();//加载列表
 }
 
 void CGamePlayer::initGames()

@@ -610,6 +610,13 @@ phileas
 Craftsmanship
 dir
 
+CFightCardBufferData.cpp
+file
+0
+
+
+add
+
 gameStruct.h
 file
 
@@ -745,6 +752,13 @@ phileas
 
 
 17785
+
+CFightCardBufferData.h
+file
+0
+
+
+add
 
 CGameLogic.cpp
 file

@@ -7,19 +7,28 @@
 #include "PtActionUtility.h"
 #include "Utility.h"
 #include "HBActionScript.h"
-#include "HBActionAni.h"
+#include "HBActionAni.h" 
+#include "CGameCardBuffer.h"
 
 
 using namespace cocos2d;
 using namespace CocosDenshion;
 
-
+void testBufferPng( CCLayer *layer)
+{
+    CGameCardBuffer *gameCardBuffer=CGameCardBuffer::CreateBuffer("resource_cn/img/fighting/suo.png", 2);
+    layer->addChild(gameCardBuffer,2);
+    CCSize  size=CCDirector::sharedDirector()->getWinSize();
+    gameCardBuffer->setPosition(ccp(size.width*0.5 ,size.height*0.5));
+    
+    
+}
 
 static void test(CCNode *pSender);
 static bool compareScores(const void* p1, const void* p2)
 {
-    HBActionScript* score1 = (HBActionScript*)p1;
-    HBActionScript* score2 = (HBActionScript*)p2;
+    //HBActionScript* score1 = (HBActionScript*)p1;
+   // HBActionScript* score2 = (HBActionScript*)p2;
     //bool result = score1->getd < score2->raceTime();
     return true;
 }
@@ -82,7 +91,7 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
 
-    test(this);
+   // test(this);
     // add "HelloWorld" splash screen"
 
  //   CCSprite* pSprite = CCSprite::create("resource_cn/img/HelloWorld.png");
@@ -115,8 +124,9 @@ bool HelloWorld::init()
 //    //让演员演示这个动画。
 //     Utility::runPtActionScript(sprite,"xuanfeng/xuanfeng.act",100);
 //    sprite->runAction(CCRepeatForever::create(action));
-    //removeChildByTag(<#int tag#>, <#bool cleanup#>)
-    
+//    removeChildByTag(<#int tag#>, <#bool cleanup#>)
+//    testBufferPng(this);
+//    this->getCamera()->setEyeXYZ(-60, 0,100);
     return true;
 }
 
@@ -137,3 +147,5 @@ void test(CCNode *pSender)
     CCardSettingScene *layer = CCardSettingScene::create();
     pSender->addChild(layer);
 }
+
+

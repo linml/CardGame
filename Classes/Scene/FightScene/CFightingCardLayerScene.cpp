@@ -7,7 +7,6 @@
 //
 
 #include "CFightingCardLayerScene.h"
-#include "CSkillManager.h"
 #include "gameConfig.h"
 #include "PtMapUtility.h"
 #include "gamePlayer.h"
@@ -42,7 +41,6 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 
 CCScene *CFightingCardLayerScene::scene()
 {
-    G_SkillManager::instance()->clearAnimationList();
     CCScene *pScene=CCScene::create();
     CFightingCardLayerScene *fightScene = new CFightingCardLayerScene();
     fightScene->init();
@@ -60,7 +58,7 @@ CFightingCardLayerScene::CFightingCardLayerScene()
 CFightingCardLayerScene::~CFightingCardLayerScene()
 {
     SinglePlayer::instance()->onFightExitScene();
-    g_FightSkillManager::instance()->clearAnimationList();
+    G_FightSkillManager::instance()->clearAnimationList();
     //释放特效文件 
 }
 
@@ -82,7 +80,7 @@ bool CFightingCardLayerScene::init()
     animationAndex=0;
     hpUpdateIndex=0;
     isAnimationEnd=true;
-    m_itotalAnimation=g_FightSkillManager::instance()->m_animationVector.size();
+    m_itotalAnimation=G_FightSkillManager::instance()->m_animationVector.size();
     schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
     return true;
 }
@@ -92,7 +90,7 @@ void CFightingCardLayerScene::animationSchudel(float t)
     if (isAnimationEnd && animationAndex<m_itotalAnimation) {
         CCLog("animationAndex:%d,%d",animationAndex,m_itotalAnimation);
         isAnimationEnd=false;
-        CAnimationSpriteGameFight *fightAnimation=g_FightSkillManager::instance()->m_animationVector[animationAndex];
+        CAnimationSpriteGameFight *fightAnimation=G_FightSkillManager::instance()->m_animationVector[animationAndex];
         this->m_currCAnimationHP=fightAnimation;
         animationSwf(fightAnimation);
     }
@@ -702,7 +700,7 @@ void CFightingCardLayerScene::createFightCard()
         else if(m_vFightingCard[i])
         {
             CGamesCard *gameCard=CGamesCard::Create(m_vFightingCard[i]);
-            m_vFightingCard[i]->tag=100+i;
+            m_vFightingCard[i]->tag=100*(i+1);
             gameCard->setTag(m_vFightingCard[i]->tag);
             gameCard->setPosition(ccp(20,20));
             gameCard->setAnchorPoint(CCPointZero);
@@ -732,14 +730,13 @@ void CFightingCardLayerScene::createMonsterCard()
         if(i!=m_vMonsterCard.size()-1 && m_vMonsterCard[i]!=NULL)
         {
             CGamesCard *gameCard=CGamesCard::Create(m_vMonsterCard[i]);
-            m_vMonsterCard[i]->tag=1000+i;
+            m_vMonsterCard[i]->tag=1000*(i+1);
             gameCard->setTag(m_vMonsterCard[i]->tag);
             addChild(gameCard,9-i, m_vMonsterCard[i]->tag);
             gameCard->setPosition(getCardPoint(i, false));
             gameCard->setFlipX(true);
             if(i!=0)
             {
-                
                 gameCard->setScale(0.6);
             }
             CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);

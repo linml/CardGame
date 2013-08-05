@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerScene.cpp"
-         timestampString = "397118405.83451"
+         timestampString = "397361605.299148"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "442"
-         endingLineNumber = "442"
+         startingLineNumber = "440"
+         endingLineNumber = "440"
          landmarkName = "CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster)"
          landmarkType = "5">
       </FileBreakpoint>
