@@ -168,6 +168,8 @@
 		<string>元素类型标记</string>
 		<key>parameter_10</key>
 		<string>0</string>
+		<key>effect_plistfile</key>
+		<string>resource_cn/img/fighting/suo.png</string>
 	</dict>
 	<key>100012</key>
 	<dict>
@@ -280,6 +282,8 @@
 		<string>元素类型标记</string>
 		<key>parameter_10</key>
 		<string>0</string>
+		<key>effect_plistfile</key>
+		<string>resource_cn/img/fighting/zengyi.png</string>
 	</dict>
 	<key>100022</key>
 	<dict>
@@ -390,6 +394,8 @@
 		<string>效果类型标记</string>
 		<key>parameter_10</key>
 		<string>1</string>
+		<key>effect_plistfile</key>
+		<string>resource_cn/img/finghting/suo.png</string>
 	</dict>
 	<key>100031</key>
 	<dict>

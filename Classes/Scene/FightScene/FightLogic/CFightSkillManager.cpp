@@ -15,6 +15,7 @@
 #include "CEffectInterface.h"
 #include "CEffectInterfaceOne.h"
 #include "CEffectInterfaceEleven.h"
+#include "CFightCardBufferData.h"
 #include <vector>
 using namespace std;
 
@@ -34,6 +35,7 @@ static    map <string,pFunc>m_vSkillManagerLogic;
 static    map <string,pbFunc>m_vCostFuncManager;
 static    map<string, pbEffFunc>m_vEffictManager;
 vector<CAnimationSpriteGameFight *>CFightSkillManager::m_animationVector;
+vector<CFightCardBufferDataEveryFight *>CFightSkillManager::m_animationBufferVector;
 
 void CFightSkillManager::logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid)
 {
@@ -164,6 +166,7 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
             monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
             //用户发动了用户的技能
             appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
+            
         }
         else
         {
@@ -306,14 +309,14 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
             engry -=FightCard[FightIndex]->m_iCurrEngry;
             monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
             monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
-            //用户发动了用户的技能
+            //用户发动了拥护的技能
             appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
             if(costfunctValue==2&&pSkill->parameter_3!=0)
             {
-             CCLog("pSkill->parameter_3================>%d",pSkill->parameter_3);
-            CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
-            m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,pImpact->m_sEffectFile));
-             CCLog("pSkill->parameter_3================>%s",pImpact->m_sEffectFile.c_str());
+                CCLog("pSkill->parameter_3================>%d",pSkill->parameter_3);
+                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
+                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,pImpact->m_sEffectFile));
+                CCLog("pSkill->parameter_3================>%s",pImpact->m_sEffectFile.c_str());
             }
         }
         else
@@ -538,8 +541,32 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
 void CFightSkillManager::appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex)
 {
     m_animationVector.push_back(new CAnimationSpriteGameFight(enAnimationType,enatkindex,AtkIndex,DefIndex,AddHp,SubHp,AddEngry,subAngry,skillid,0                                                      ));
-    
-    
+}
+
+void CFightSkillManager::appendBuffIcon(CFightCard *fightCard,CFightCard *monster,EN_ATKFIGHT_INDEX enAtkFightIndex)
+{
+    switch (enAtkFightIndex) {
+        case EN_ATKFIGHT_INDEX_LEFT_LORD:
+        {
+            CFightCardBufferDataEveryFight *fightVectorItem=new CFightCardBufferDataEveryFight;
+            for (list<CCardBufferStatus *>::iterator it=fightCard->m_vBuffer.begin(); it!=fightCard->m_vBuffer.end(); it++) {
+                fightVectorItem->m_arrayFight[0]->appendBufferPngList((*it)->m_ieffectid,(*it)->m_iBuff_showTimes);
+            }
+            for (list<CCardBufferStatus *>::iterator it=monster->m_vBuffer.begin(); it!=monster->m_vBuffer.end(); it++) {
+                fightVectorItem->m_arrayFight[1]->appendBufferPngList((*it)->m_ieffectid,(*it)->m_iBuff_showTimes);
+            }
+
+            m_animationBufferVector.push_back(fightVectorItem);
+        }
+        case EN_ATKFIGHT_INDEX_LEFT_SUPPORT:
+            break;
+        case EN_ATKFIGHT_INDEX_RIGHT_LORD:
+            break;
+        case EN_ATKFIGHT_INDEX_RIGHT_SUPPORT:
+            break;
+        default:
+            break;
+    }
 }
 
 void CFightSkillManager::clearAnimationList()

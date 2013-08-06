@@ -20,6 +20,9 @@
 #include "PtActionUtility.h"
 #include "FightResultConfirm.h"
 #include "SEveryATKData.h"
+#include "CFightCardBufferData.h"
+#include "CGameCardBuffer.h"
+#include "CPtTool.h"
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
     "001",
@@ -76,15 +79,60 @@ bool CFightingCardLayerScene::init()
     deleteBackGamePlayerFightMonsterCard();
     createHero();
     initHpEngry();
+    createKuaiJin();
     isAnimationEnd=0;
     animationAndex=0;
     hpUpdateIndex=0;
+    bufferIndex=0;
     isAnimationEnd=true;
+    setTouchEnabled(true);
+    setTouchMode(kCCTouchesOneByOne);
+    setTouchPriority(1);
     m_itotalAnimation=G_FightSkillManager::instance()->m_animationVector.size();
     schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
     return true;
 }
 
+bool CFightingCardLayerScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+    return true;
+}
+void CFightingCardLayerScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
+{
+    
+}
+void CFightingCardLayerScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
+{
+    if (CPtTool::isInNode(getChildByTag(911), pTouch))
+    {
+        if((int)(CCDirector::sharedDirector()->getScheduler()->getTimeScale()+0.0005)==1)
+        {
+            CCDirector::sharedDirector()->getScheduler()->setTimeScale(2.0);
+        }
+        else
+        {
+            CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0);
+        }
+    }
+}
+void CFightingCardLayerScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
+{
+    
+}
+CCPoint CFightingCardLayerScene::getBufferIconPostion(int index,bool isLeft)
+{
+    CCPoint point=CCPointZero;
+    if(isLeft)
+    {
+        point.y=750;
+        point.x=100+50*index;
+    }
+    else{
+        point.y=750;
+        point.x=800-50*index;
+    }
+    return point;
+}
 void CFightingCardLayerScene::animationSchudel(float t)
 {
     if (isAnimationEnd && animationAndex<m_itotalAnimation) {
@@ -99,6 +147,7 @@ void CFightingCardLayerScene::animationSchudel(float t)
         unschedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
         CCLog("end animation");
         m_enWinStatus=SinglePlayer::instance()->m_enWinStatus;
+        CPtTool::logMemoryInfo();
         if(m_enWinStatus==EN_GAMEFIGHTSTATUS_WIN)
         {
             winDialog();
@@ -128,8 +177,7 @@ void CFightingCardLayerScene::loseDialog()
     resultConfirm->setUserData((void*)tmp);
     resultConfirm->init();
     resultConfirm->autorelease();
-    addChild(resultConfirm, 100000);
-    
+    addChild(resultConfirm, 100000); 
     cout<<"lose"<<endl;
 }
 
@@ -159,7 +207,6 @@ void CFightingCardLayerScene::initSetUpdateHp(int iCurrHp,int TotalHp,int currEn
 
 void CFightingCardLayerScene::initHpEngry()
 {
-    int i=0;
     for (int i=0; i<m_vFightHero.size(); i++) {
         if(m_vFightHero[i])
         {
@@ -177,7 +224,77 @@ void CFightingCardLayerScene::initHpEngry()
         }
     }
 }
+void CFightingCardLayerScene::showVectorBuffer()
+{
+    CCLog("png count %d, %d",m_leftBuffer.size(),m_rightBuffer.size());
+    for (int i=0; i<m_leftBuffer.size(); i++) {
+        m_leftBuffer[i]->setPosition(getBufferIconPostion(i, true));
+        addChild(m_leftBuffer[i],100);
+    }
+    for (int i=0; i<m_rightBuffer.size(); i++) {
+        m_rightBuffer[i]->setPosition(getBufferIconPostion(i, false));
+        addChild(m_rightBuffer[i],100);
+    }
+    
+}
+void CFightingCardLayerScene::clearUpVectorBuffer()
+{
+    for (int i; i<m_leftBuffer.size(); i++) {
+        m_leftBuffer[i]->removeFromParentAndCleanup(true);
+    }
+    for (int i; i<m_rightBuffer.size(); i++) {
+        m_rightBuffer[i]->removeFromParentAndCleanup(true);
+    }
+    m_leftBuffer.erase(m_leftBuffer.begin(), m_leftBuffer.end());
+    m_rightBuffer.erase(m_rightBuffer.begin(), m_rightBuffer.end());
+}
 
+void CFightingCardLayerScene::updateBuffer()
+{
+    clearUpVectorBuffer();
+     cout<<"bufferIndex====="<<bufferIndex<<endl;
+    if(bufferIndex<SinglePlayer::instance()->m_vCFightCardFightingBuffer.size())
+    {
+        CFightCardFightingBuffer *eveyatk=SinglePlayer::instance()->m_vCFightCardFightingBuffer[bufferIndex];
+       if(eveyatk)
+       {
+           CGamePlayer *player=SinglePlayer::instance();
+           for (int i=0; i<eveyatk->m_vbufferList.size(); i++)
+           {
+               if(eveyatk->m_vbufferList[i]->isLeft)
+               {
+                   
+                   const char *pngIcon=player->getBufferPngByEffectId(eveyatk->m_vbufferList[i]->m_iEffectid).c_str();
+                   if(strlen(pngIcon)>0)
+                   {
+                       CGameCardBuffer *gameBuffer=CGameCardBuffer::CreateBuffer(pngIcon, eveyatk->m_vbufferList[i]->m_iValue);
+                       this->m_leftBuffer.push_back(gameBuffer);
+                   }
+                   else{
+                       CCLog("eveyatk->m_vbufferList[i]->m_iEffectid:%d",eveyatk->m_vbufferList[i]->m_iEffectid);
+                   }
+               }
+               else{
+                   const char *pngIcon=player->getBufferPngByEffectId(eveyatk->m_vbufferList[i]->m_iEffectid).c_str();
+                   if(strlen(pngIcon)>0)
+                   {
+                       CGameCardBuffer *gameBuffer=CGameCardBuffer::CreateBuffer(pngIcon, eveyatk->m_vbufferList[i]->m_iValue);
+                       this->m_rightBuffer.push_back(gameBuffer);
+                   }
+               }
+           }
+       }
+        showVectorBuffer();
+        bufferIndex++;
+       
+    }
+    else
+    {
+        cout<<"aaaaaaaaaaaaaaa"<<endl;
+    }
+
+    
+}
 void CFightingCardLayerScene::updateHpAndAngry()
 {
     cout<<"update====="<<hpUpdateIndex<<"/"<<SinglePlayer::instance()->m_vHpAngry.size()<<endl;
@@ -417,6 +534,7 @@ void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fight
         case EN_ANIMATIONTYPE_HERO:
             updateHpAndAngry();
             showSkill(pFight,pMonster,fightAnimation->m_iSKillId, fightAnimation);
+            updateBuffer();
             //显示扣血的函数
             break;
         case EN_ANIMATIONTYPE_BUFFER:
@@ -838,6 +956,14 @@ bool CFightingCardLayerScene::initHitText()
     return true;
 }
 
+//
+void CFightingCardLayerScene::createKuaiJin()
+{
+    CCSprite *sprite=CCSprite::create("Icon-Small@2x.png");
+    addChild(sprite,100,911);
+    sprite->setPosition(ccp(512,700));
+}
+
 // 创建显示文本比如，怒气，Hp信息;
 void CFightingCardLayerScene::createEngryText()
 {
@@ -848,6 +974,7 @@ void CFightingCardLayerScene::createEngryText()
     addChild(labelttf,10,87778);
     labelttf->setPosition(ccp(874,600));
 }
+
 
 //创建HPtext
 void CFightingCardLayerScene::createHpText()

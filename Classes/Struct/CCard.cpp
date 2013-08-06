@@ -350,6 +350,7 @@ void CFightCard::needRebackAtkAndBuf(CCardBufferStatus *buffer)
 
 bool CFightCard::appendBuffer(CCardBufferStatus *buffer)
 {
+    CCLog("CURR m_vBuffer.size():%d",m_vBuffer.size());
     if(m_vBuffer.size()==0)
     {
         m_vBuffer.push_back(buffer);
@@ -362,10 +363,13 @@ bool CFightCard::appendBuffer(CCardBufferStatus *buffer)
             //如果mutex的需要 一样的话， 并且字段的类型都是一样的话。
             if((*it)->m_mutex==buffer->m_mutex && (*it)->m_enBuffer_Field==buffer->m_enBuffer_Field)
             {
-                if ((*it)->m_mutexlevel > buffer->m_mutexlevel) {
-                    delete buffer;
-                    buffer=NULL;
-                    
+                if ((*it)->m_mutexlevel > buffer->m_mutexlevel)
+                {
+                    if(buffer)
+                    {
+                        delete buffer;
+                        buffer=NULL;
+                    }
                 }
                 else
                 {

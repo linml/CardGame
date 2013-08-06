@@ -17,12 +17,15 @@
 #include <vector>
 #include "cocos2d.h"
 #include "gameConfig.h"
+#include <list>
+
 using namespace cocos2d;
 using namespace std;
 class CFightCard;
 class SEveryATKData;
 class CAnimationSpriteGameFight;
-
+class CCardBufferStatus;
+class CFightCardFightingBuffer;
 class CFightingCardLayerLogic :public CCObject
 {
 public:
@@ -46,7 +49,11 @@ private:
     bool checkIsDead();                             //!<     判断对方是否死亡
     bool checkSendZengfu();                         //!<     判断是否发送增幅技能
     bool checkFighting();
+    bool backBeforeBuffer();
+    bool backAfterBuffer();
     void appendHpAngryUpdate();
+    void appendUpdateBuffer();
+    bool appendBuffPng( list<CCardBufferStatus *> fightBefore, list<CCardBufferStatus *> fightAfter,bool isLeft,CFightCardFightingBuffer *fightBuffer);
 public:
     bool logicFighting();
     void loadAnimatePlist();                        //!<    加载animation的plist文件里面的帧动画
@@ -56,6 +63,9 @@ public:
 private:
     EN_ATKFIGHT_INDEX m_enHuiheIndex;                   //记录打斗者的索引。
     EN_GAMEFIGHTSTATUS  m_enWinStatus;
+private:
+    list<CCardBufferStatus *> m_lpFightBuffer;
+    list<CCardBufferStatus *> m_lpMonsterBuffer;
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerLogic__) */

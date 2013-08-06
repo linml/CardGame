@@ -17,6 +17,7 @@ using namespace std;
 class CFightCard;
 class CAnimationSpriteGameFight;
 class SEveryATKData;
+class CGameCardBuffer;
 
 class CFightingCardLayerScene :public CCLayer
 {
@@ -35,12 +36,17 @@ public:
     int  animationAndex;
     bool isAnimationEnd;
     int  hpUpdateIndex;
+    int bufferIndex;
     int m_itotalAnimation;
 private:
     void textSkillInfo(CAnimationSpriteGameFight *fight);
 private:
     EN_ATKFIGHT_INDEX m_enHuiheIndex;                   //记录打斗者的索引。
     EN_GAMEFIGHTSTATUS  m_enWinStatus;
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
 private:
     void createFightCard();
     void createMonsterCard();
@@ -59,6 +65,10 @@ private:
     void createHpText();
     void updateHpAndAngry();
     void initHpEngry();
+    void updateBuffer();
+    void clearUpVectorBuffer();
+    void showVectorBuffer();
+    void createKuaiJin();
 
     
     //
@@ -68,6 +78,7 @@ private:
     void skillHelpAnimationSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster);
     void showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation);
     void showSkillBuffer(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation);
+    CCPoint getBufferIconPostion(int index,bool isLeft);
 private:
    void  winDialog();
     void loseDialog();
@@ -91,6 +102,8 @@ public:
     vector<CCSprite *>m_vMonsterHero;
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;
+    vector<CGameCardBuffer *>m_leftBuffer;
+    vector<CGameCardBuffer *>m_rightBuffer;
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerScene__) */

@@ -14,6 +14,7 @@
 #include "CAnimationSpriteGameFight.h"
 #include "CSkillData.h"
 #include "PtActionUtility.h"
+#include "CFightCardBufferData.h"
 
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
@@ -26,7 +27,7 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 
 CFightingCardLayerLogic::CFightingCardLayerLogic()
 {
-    
+   
 }
 
 CFightingCardLayerLogic::~CFightingCardLayerLogic()
@@ -136,6 +137,97 @@ void CFightingCardLayerLogic::loadAnimatePlist()
     }
 }
 
+bool CFightingCardLayerLogic::appendBuffPng( list<CCardBufferStatus *> fightBefore, list<CCardBufferStatus *> fightAfter,bool isLeft,CFightCardFightingBuffer *fightBuffer)
+{
+    for (list<CCardBufferStatus *>::iterator itAfter=fightAfter.begin(); itAfter!=fightAfter.end(); itAfter++)
+    {
+        fightBuffer->append((*itAfter)->m_ieffectid, (*itAfter)->m_iBuff_showTimes, isLeft);
+    }
+        return true;
+        
+        
+//    if(fightBefore.size()==0)
+//    {
+//        for (list<CCardBufferStatus *>::iterator it=fightAfter.begin(); it!=fightAfter.end(); it++) {
+//            fightBuffer->append((*it)->m_ieffectid, (*it)->m_iBuff_showTimes, isLeft);
+//        }
+//    }
+//    else{
+//        //删除 无用的buffer 添加新的buffer 修改buffer 显示的次数
+//        for (list<CCardBufferStatus *>::iterator itAfter=fightAfter.begin(); itAfter!=fightAfter.end(); itAfter++) {
+//            fightBuffer->append((*itAfter)->m_ieffectid, (*itAfter)->m_iBuff_showTimes, isLeft);
+//            bool isNeedAdd =true;
+//            for (list<CCardBufferStatus *>::iterator itBefore=fightBefore.begin(); itBefore!=fightBefore.end(); itBefore++) {
+//                if(itBefore==itAfter)
+//                {
+//                    //修改buffer 数据
+//                }
+//            }
+//            if( isNeedAdd)
+//            {
+//                fightBuffer->append((*itAfter)->m_ieffectid, (*itAfter)->m_iBuff_showTimes, isLeft);
+//            }
+//        }
+//    }
+//    
+    return true;
+}
+
+bool CFightingCardLayerLogic::backAfterBuffer()
+{
+    list<CCardBufferStatus *> m_templpFightBuffer;
+    list<CCardBufferStatus *> m_templpMonsterBuffer;
+    
+    if(m_vFightingCard[m_iFightCardIndex])
+    {
+    for (list<CCardBufferStatus *>::iterator it=m_vFightingCard[m_iFightCardIndex]->m_vBuffer.begin(); it!=m_vFightingCard[m_iFightCardIndex]->m_vBuffer.end(); it++) {
+        if(*it)
+        {
+            m_templpFightBuffer.push_back(*it);
+        }
+    }
+    }
+    if(m_vMonsterCard[m_iMonsterCardIndex])
+    {
+        for (list<CCardBufferStatus *>::iterator it=m_vMonsterCard[m_iMonsterCardIndex]->m_vBuffer.begin(); it!=m_vMonsterCard[m_iMonsterCardIndex] ->m_vBuffer.end(); it++) {
+            if(*it)
+            {
+                m_templpMonsterBuffer.push_back(*it);
+            }
+        }
+    }
+    CFightCardFightingBuffer *bufferPlist=new CFightCardFightingBuffer;
+    bufferPlist->m_index=m_iTotalHuihe;
+    appendBuffPng(m_lpFightBuffer,m_templpFightBuffer,true,bufferPlist);
+    appendBuffPng(m_lpMonsterBuffer,m_templpMonsterBuffer,false,bufferPlist);
+    SinglePlayer::instance()->appendCFightCardFightingBuffer(bufferPlist);
+    m_lpFightBuffer.erase(m_lpFightBuffer.begin(),m_lpFightBuffer.end());
+    m_lpMonsterBuffer.erase(m_lpMonsterBuffer.begin(),m_lpMonsterBuffer.end());
+    return true;
+}
+bool CFightingCardLayerLogic::backBeforeBuffer()
+{
+    if(m_vFightingCard[m_iFightCardIndex])
+    {
+        for (list<CCardBufferStatus *>::iterator it=m_vFightingCard[m_iFightCardIndex]->m_vBuffer.begin(); it!=m_vFightingCard[m_iFightCardIndex]->m_vBuffer.end(); it++) {
+            if(*it)
+            {
+                m_lpFightBuffer.push_back(*it);
+            }
+        }
+    }
+    if(m_vMonsterCard[m_iMonsterCardIndex])
+    {
+        for (list<CCardBufferStatus *>::iterator it=m_vMonsterCard[m_iMonsterCardIndex]->m_vBuffer.begin(); it!=m_vMonsterCard[m_iMonsterCardIndex] ->m_vBuffer.end(); it++) {
+            if(*it)
+            {
+                m_lpMonsterBuffer.push_back(*it);
+            }
+        }
+    }
+    return true;
+}
+
 bool CFightingCardLayerLogic::checkFighting()
 {
     
@@ -145,6 +237,7 @@ bool CFightingCardLayerLogic::checkFighting()
     }
     m_enHuiheIndex++;
     appendHpAngryUpdate();
+    appendUpdateBuffer();
     CCLog("BEGIN 当前攻击顺序是%d",int(m_enHuiheIndex));
     if(m_vFightingCard[m_iFightCardIndex])
     {
@@ -217,6 +310,7 @@ bool CFightingCardLayerLogic::checkIsDead()
             CCLog("左边第%d个 发动死亡技能",m_iFightCardIndex);
             G_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_DEAD,m_enHuiheIndex);
             appendHpAngryUpdate();
+            appendUpdateBuffer();
             do
             {
                 m_iFightCardIndex++;
@@ -243,6 +337,7 @@ bool CFightingCardLayerLogic::checkIsDead()
             CCLog("右边第%d个 发动死亡技能",m_iMonsterCardIndex);
             G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex], m_vMonsterCard ,m_vFightingCard,m_iMonsterCardIndex ,m_iFightCardIndex,EN_SEND_SKILL_DEAD,m_enHuiheIndex);
             appendHpAngryUpdate();
+            appendUpdateBuffer();
             do {
                 m_iMonsterCardIndex++;
             } while (m_vMonsterCard[m_iMonsterCardIndex]==NULL &&m_iMonsterCardIndex<m_vMonsterCard.size()-1);
@@ -261,21 +356,47 @@ bool CFightingCardLayerLogic::checkSendZengfu()
         CCLog("左边第%d个发动增幅技能",m_iFightCardIndex);
         m_vFightingCard[m_iFightCardIndex]->isSendZengfu=true;
         G_FightSkillManager::instance()->CardFighting(m_vFightingCard[m_iFightCardIndex], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_LEFT_LORD);
+        //获得当前的buffer列表
         result=true;
         appendHpAngryUpdate();
+        appendUpdateBuffer();
     }
     if(!m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu)//判断是否触发了 增幅技能
     {
         CCLog("右边第%d个发动增幅技能",m_iFightCardIndex);
         m_vMonsterCard[m_iMonsterCardIndex]->isSendZengfu=true;
         G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex],m_vMonsterCard,m_vMonsterCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_BUFF,EN_ATKFIGHT_INDEX_RIGHT_LORD);
-        //append增幅技能
+       //获得当前的buffer列表
+        
+       //append增幅技能
         appendHpAngryUpdate();
+        appendUpdateBuffer();
         result=true;
     }
     return result;
 }
 
+void CFightingCardLayerLogic::appendUpdateBuffer()
+{
+    if(m_vFightingCard[m_iFightCardIndex]->m_vBuffer.size()==0&& m_vMonsterCard[m_iMonsterCardIndex]->m_vBuffer.size()==0)
+    {
+        SinglePlayer::instance()->appendCFightCardFightingBuffer(NULL);
+        return;
+    }
+
+    CFightCardFightingBuffer *fightBuffer=new CFightCardFightingBuffer;
+    fightBuffer->m_index=m_iTotalHuihe;
+    for (list<CCardBufferStatus *>::iterator itAfter=m_vFightingCard[m_iFightCardIndex]->m_vBuffer.begin(); itAfter!=m_vFightingCard[m_iFightCardIndex]->m_vBuffer.end(); itAfter++)
+    {
+        fightBuffer->append((*itAfter)->m_ieffectid, (*itAfter)->m_iBuff_showTimes, true);
+    }
+    for (list<CCardBufferStatus *>::iterator itAfter=m_vMonsterCard[m_iMonsterCardIndex]->m_vBuffer.begin(); itAfter!=m_vMonsterCard[m_iMonsterCardIndex]->m_vBuffer.end(); itAfter++)
+    {
+        fightBuffer->append((*itAfter)->m_ieffectid, (*itAfter)->m_iBuff_showTimes, false);
+    }
+    SinglePlayer::instance()->appendCFightCardFightingBuffer(fightBuffer);
+
+}
 void CFightingCardLayerLogic::appendHpAngryUpdate()
 {
     SEveryATKData *pEveryAtk=NULL;;

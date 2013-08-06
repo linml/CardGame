@@ -138,7 +138,17 @@ void CGamePlayer::clearAllSkillInfo()
     DELETE_POINT_VECTOR(m_vSkillInfo, vector<CSkillData *>);
 
 }
-
+string CGamePlayer::getBufferPngByEffectId(int effectID)
+{
+    for (int i=0; i<m_vImpactInfo.size(); i++) {
+        if(m_vImpactInfo[i]->m_ieffect_id==effectID)
+        {
+            return m_vImpactInfo[i]->m_sEffectFile;
+        }
+    }
+    return "";
+    
+}
 CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
 {
     for (int i=0; i<m_vSkillInfo.size(); i++) {
@@ -573,7 +583,10 @@ void CGamePlayer::testPlayInfoData()
     
 }
 
-
+void CGamePlayer::appendCFightCardFightingBuffer(CFightCardFightingBuffer *data)
+{
+    this->m_vCFightCardFightingBuffer.push_back(data);
+}
 
 void CGamePlayer::appendAtkData(SEveryATKData * data)
 {
@@ -585,6 +598,7 @@ void CGamePlayer::onFightInterScene()
     DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
+    DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer *>);
 }
 
 void CGamePlayer::deleteFightMonsterCard()
@@ -598,6 +612,7 @@ void CGamePlayer::onFightExitScene()
     DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
+    DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer *>);
 }
 
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

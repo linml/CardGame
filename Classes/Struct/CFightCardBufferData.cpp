@@ -7,7 +7,7 @@
 //
 
 #include "CFightCardBufferData.h"
-void CFightCardBufferData::appendBuffer(int iBufferEffectId,int Ivalue)
+void CFightCardBufferData::appendBufferPngList(int iBufferEffectId,int Ivalue)
 {
     for (vector <BufferList *>::iterator it=m_vBufferList.begin();it !=m_vBufferList.end(); it++)
     {
@@ -29,11 +29,11 @@ void CFightCardBufferData::destory()
 
 CFightCardBufferDataEveryFight::CFightCardBufferDataEveryFight()
 {
-    m_arrayFight[0]=NULL;
-    m_arrayFight[1]=NULL;
+    m_arrayFight[0]=new CFightCardBufferData ;
+    m_arrayFight[1]=new CFightCardBufferData;
     
 }
-void CFightCardBufferDataEveryFight::appendBuffer(CFightCard *pFightCard, CFightCard *pCardMonster)
+void CFightCardBufferDataEveryFight::appendBufferPngList(CFightCard *pFightCard, CFightCard *pCardMonster)
 {
     if(pFightCard)
     {
@@ -58,4 +58,33 @@ CFightCardBufferDataEveryFight::~CFightCardBufferDataEveryFight()
 {
     destoryBufferData(m_arrayFight[0]);
     destoryBufferData(m_arrayFight[1]);
+}
+
+CFightCardFightingBuffer::CFightCardFightingBuffer()
+{
+    m_index=0;
+    this->m_vbufferList.clear();
+}
+void CFightCardFightingBuffer::append(int EffectId, int Value, bool isLeft)
+{
+    CBufferIcon *bufferIcon=new CBufferIcon;
+    bufferIcon->m_iEffectid=EffectId;
+    bufferIcon->m_iValue=Value;
+    bufferIcon->isLeft=isLeft;
+    this->m_vbufferList.push_back(bufferIcon);
+}
+
+#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
+{\
+for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+delete *it; \
+*it=NULL; \
+} \
+VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+}
+
+CFightCardFightingBuffer::~CFightCardFightingBuffer()
+{
+
+    DELETE_POINT_VECTOR(m_vbufferList,vector<CBufferIcon *>);
 }

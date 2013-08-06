@@ -11,7 +11,7 @@
 
 #include "cocos2d.h"
 using namespace cocos2d;
-
+#include <mach/mach.h>
 
 namespace CPtTool
 {
@@ -33,7 +33,9 @@ namespace CPtTool
     
     int calulate(int card_base_value, int config_value, int star, int correct_value_1, int star_parameter, int correct_value_2,int correct_parameter);
     int calSupportValue(int base_value, int currentValue, float ractor);
-
+    bool memoryInfo(vm_statistics_data_t *vmStats) ;
+    
+    void logMemoryInfo() ;
 };
 
 

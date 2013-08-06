@@ -18,6 +18,7 @@ using namespace std;
 class CImapact;
 class CSkillData;
 class SEveryATKData;
+class CFightCardFightingBuffer;
 
 class CGamePlayer : cocos2d::CCObject
 {
@@ -46,6 +47,7 @@ class CGamePlayer : cocos2d::CCObject
     bool isHaveSkillBySkillId(int skillID);
     CSkillData *getSkillBySkillId(int skillId);
     vector<CSkillData *>m_vSkillInfo;
+    string getBufferPngByEffectId(int effectID);
     
     //读取效果表格
     void loadAllEffectInfo(const char *effectFileName);
@@ -104,11 +106,13 @@ public:
 public:
     void backUpFightTeam(int index);
     void appendAtkData(SEveryATKData * data);
+    void appendCFightCardFightingBuffer(CFightCardFightingBuffer *data);
     void onFightInterScene();
     void onFightExitScene();
     void deleteFightMonsterCard();
     EN_GAMEFIGHTSTATUS  m_enWinStatus;
     vector<SEveryATKData*>m_vHpAngry;
+    vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
 public:
     //获取 卡包 内容的卡
     vector<CFightCard *>m_vCardBag;

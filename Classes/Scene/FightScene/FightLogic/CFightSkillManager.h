@@ -22,6 +22,7 @@ class CSkillData;
 class CImapact;
 class CAnimationSpriteGameFight;
 class CCardBufferStatus;
+class CFightCardBufferDataEveryFight;
 
 #define STATICCOSTTFUNCTION(FUNCTIONNAME) \
 static int FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData);
@@ -84,6 +85,7 @@ public:
     
 public:
   static  void appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex);
+    static  void appendBuffIcon(CFightCard *fightCard,CFightCard *monster,EN_ATKFIGHT_INDEX enAtkFightIndex);
     static  void addSkillBuffer(CFightCard *pMonster,CCardBufferStatus *buffer);
     static  void dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex );//处理自身的buffer
     
@@ -105,7 +107,8 @@ public:
     void basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight);
     void clearAnimationList();
 public:
-        static    vector<CAnimationSpriteGameFight *>m_animationVector;
+   static vector<CAnimationSpriteGameFight *>m_animationVector;
+   static vector<CFightCardBufferDataEveryFight *>m_animationBufferVector;
 };
 
 typedef Singleton<CFightSkillManager> G_FightSkillManager;
