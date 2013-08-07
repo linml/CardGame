@@ -402,15 +402,12 @@ void CGamesCard::createCardName(const char *str)
 {
     CCLabelTTF *label=CCLabelTTF::create(str, "Arial", 10);
     label->setColor(ccc3(255, 255, 0));
-    addChild(label,3, 20);
-
+    addChild(label,3, 8001);
     label->setPosition(ccp(55,180));
 }
 void CGamesCard::createHero(const char *str)
 {
- //   CCSprite *sprite=CCSprite::create(CSTR_FILEPTAH(g_strresource, str));
-//    addChild(sprite,1,TAG_GAMECARD_HERO);
-//    sprite->setAnchorPoint(CCPointZero);
+
     CCLog("the %s", (g_strresource+str).c_str());
        CCLog("1the %s", CSTR_FILEPTAH(g_strresource, str));
 
@@ -471,4 +468,20 @@ void CGamesCard::updateToLevel(const int & inLevel)
     m_pCardData->updateCard(inLevel);
     m_pCardData->m_iCurrLevel = inLevel;
     updateData(card->m_attack, card->m_iHp, card->m_pCard->m_icard_leadership, card->m_defend);
+}
+
+void CGamesCard:: updateCard(CFightCard *card)
+{
+    removeAllChildrenWithCleanup(true);
+
+    m_pCardData->updateFight(card->m_pCard, card->m_iCurrLevel);
+    initBg(card);
+    createBackground(card->m_pCard->m_scard_ground.c_str());
+    createHero(card->m_pCard->m_scard_resources.c_str());
+    createStart(card->m_pCard->m_sicard_star);
+    createSuit(card->m_iSuit);
+    createStirps(card->m_pCard->m_icard_stirps);
+    createCardName(card->m_pCard->m_scard_name.c_str());
+    createData(card->m_attack, card->m_iHp, card->m_pCard->m_icard_leadership, card->m_defend);
+
 }

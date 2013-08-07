@@ -163,7 +163,13 @@ namespace CPtTool
     
     bool isNeedMove(CCNode *moveNode, CCNode * aroundNode, int inType )
     {
+        if (moveNode == NULL || aroundNode == NULL)
+        {
+            return false;
+        }
         CCPoint point = moveNode->getPosition();
+        point = moveNode->getParent()->convertToWorldSpace(point);
+        point = aroundNode->getParent()->convertToNodeSpace(point);
         bool flag = false;
         if (inType == 1 && aroundNode && (point.x-aroundNode->getPositionX()) < 30.0f && (point.x-aroundNode->getPositionX()) >15.0f)
         {
@@ -324,7 +330,7 @@ namespace CPtTool
         }
         
        
-        if ((sum == len*(sequence[0]+sequence[len-1])/2) && ((sequence[1] - sequence[0]) == 1) && len == 5)
+        if ((len == 5) &&((sequence[1]- sequence[0])==1) && ((sequence[len-1] - sequence[0]) == 4)&&((sequence[len-1]-sequence[len-2])==1))
         {
             /* code */
             return 5;
@@ -426,11 +432,13 @@ namespace CPtTool
     
     
     /*
-     * @return : 向上取整
+     * @return : 向下取整
      */
-    int calulate(int card_base_value, int config_value, int star, int correct_value_1, int star_parameter, int correct_value_2,int correct_parameter)
+    int calulate(int card_base_value, int config_value, int star, float correct_value_1, float star_parameter, float correct_value_2,float correct_parameter)
     {
-        return (int)(((card_base_value+ config_value*(star+correct_value_1)*star_parameter+ correct_value_2)*correct_parameter)+1.5)-1;
+        int result = (int)(((card_base_value+ config_value*(star+correct_value_1)*star_parameter+ correct_value_2)*correct_parameter));
+        CCLog("result: %d", result);
+        return result;
     };
     
     int calSupportValue(int base_value,int currentValue, float ractor)

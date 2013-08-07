@@ -102,7 +102,7 @@ float CPtLevelConfigData::getStarParamter(int star)
 
 float CPtLevelConfigData::getStarParamter(int star, int level)
 {
-    int tmpValue = 0;
+    float tmpValue = 0;
     if (m_pConfigData)
     {
         int count = m_pConfigData->allKeys()->count()+1;

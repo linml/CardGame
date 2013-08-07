@@ -53,7 +53,13 @@ void CAsgardLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CAsgardLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    handlerTouch();
+    CCPoint touchPoint = pTouch->getLocation();
+    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
+    if (m_nTouchTag != -1)
+    {
+        handlerTouch();
+    }
+
 }
 void CAsgardLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {

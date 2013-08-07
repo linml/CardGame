@@ -199,16 +199,97 @@ void CCardEvolutionLayer:: updateTexture()
 }
 void CCardEvolutionLayer:: save()
 {
+    // change the finght
+    if (m_pSrcCard && m_pDesCard && m_pFightCard)
+    {
+    
+        int index = m_pSrcCard->getCardData()->getInWhichBattleArray()-1;
+        if (index >= 0)
+        {
+            //save card in BattleArray:
+        int t = m_pSrcCard->getCardData()->m_User_Card_ID;
+        vector<CFightCard *> &tmpVect = m_pPlayer->m_vvBattleArray.at(index);
+             for (int i = 0; i< tmpVect.size(); i++)
+             {
+                 CCLog("user id: %d",tmpVect.at(i)->m_User_Card_ID );
+                 if (tmpVect.at(i) && tmpVect.at(i)->m_User_Card_ID == t)
+                 {
+                     tmpVect.at(i)->updateFight(m_pFightCard->m_pCard, m_pFightCard->m_iCurrLevel);
+                     break;
+                 }
+            }
+      
+        }
+      
+        //
+        m_pSrcCard->updateCard(m_pFightCard);
+        m_pSrcCard->getInCardBagPointer()->updateCard(m_pFightCard);
+        if (m_pSrcCard->getCardData()->getInWhichBattleArray() != 0 || m_pFightCard->getEnConsume())
+        {
+            m_pSrcCard->getInCardBagPointer()->setDead();
+        }
+       
+        //removeCard();
+    }
     
 }
 void  CCardEvolutionLayer::saveOnClick()
 {
-    // send message to server:
+  
+    int cardItemId = 0;
+    int cardGroup = 0;
+    if (m_pSrcCard)
+    {
+        
+        
+        // 条件判定：
+        /*
+         * 1. 金币
+         * 2. 道具
+         * 3. 领导力
+         * 4. 顶级
+         */
+        
+        if (m_pPlayer->getCoin() < m_nCostConin)
+        {
+            // 金币不足
+            return;
+        }
+        else if(m_pSrcCard->getCardData()->m_pCard->m_ccard_next == 0)
+        {
+            //顶级
+            return;
+        }
+
+        // send message to server:
+        //    api.php?m=Card&a=cardUpGrade&uid=194(用户ID)
+        //    参数 ：
+        //	sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)&& tpye= 1(进化)&info="{"card_id"(当前进化卡牌id跟阵容ID(cardItemId_troop)，例1001_1):"","other":""}"(进化信息)
+        
+        cardItemId = m_pSrcCard->getCardData()->m_User_Card_ID;
+        cardGroup = m_pSrcCard->getCardData()->getInWhichBattleArray();
+
+    
+        char buff[500]={0};
+        sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&&tpye=1&info=\"{\"card_id\":\"%d_%d\"",cardItemId, cardGroup);
+    
+        CCLog("%s",buff);
+    
+        //  ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Card&a=cardUpGrade&uid=194", "cardEvolution","evolution", buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
+        
+        // test:
+        save();
+    }
+
 }
 void  CCardEvolutionLayer::receiveCallBack(CCObject *pSender)
 {
     // get replay from server: error or success:
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "cardEvolution");
+    char *buff = (char*) pSender;
     
+    
+    delete buff;
 }
 
 /*
@@ -239,12 +320,17 @@ void CCardEvolutionLayer::addCard(CPtDisPlayCard *inCard)
         {
             // if not evloution should delete fightCard:!!!
             m_pFightCard = new CFightCard(nextCardData,level);
+            m_pFightCard->setInBattleArray(m_pSrcCard->getCardData()->getInWhichBattleArray());
+            m_pFightCard->setEnConsume(true);
+            m_pFightCard->m_iSuit = m_pSrcCard->getCardData()->m_iSuit;
+            
             CPtDisPlayCard * card = CPtDisPlayCard::Create(m_pFightCard);
             card->setAnchorPoint(CCPointZero);
             card->setPosition(m_aPoint[1]);
             m_pMapLayer[1]->addChild(card);
             m_pDesCard = card;
-        
+            
+           
         }else
         {
             CCLog("error.. cardevolution not has next card id");

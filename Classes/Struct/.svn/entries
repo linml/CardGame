@@ -1,14 +1,14 @@
 10
 
 dir
-855
+870
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-08-02T08:54:15.280686Z
-855
+2013-08-07T01:20:15.174535Z
+870
 phileas
 
 
@@ -26,39 +26,8 @@ phileas
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
-CPtLevelConfigData.cpp
-file
-
-
-
-
-2013-08-02T09:26:49.000000Z
-ecd15734da72152abdaa7f7f8cf4da46
-2013-08-02T08:54:15.280686Z
-855
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6925
+CardKind
+dir
 
 CGamePlayerStruct.cpp
 file
@@ -94,8 +63,39 @@ merlin
 
 118
 
-CardKind
-dir
+CPtLevelConfigData.cpp
+file
+
+
+
+
+2013-08-07T01:20:24.000000Z
+4edca7dabed9b86603c9e6dd4de0d61f
+2013-08-07T01:20:15.174535Z
+870
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6927
 
 CGameLogic.h
 file
@@ -199,40 +199,6 @@ merlin
 
 680
 
-CPtLevelConfigData.h
-file
-
-
-
-
-2013-08-02T09:26:49.000000Z
-dd688aa51ed600c23a18b394bb2a9c02
-2013-08-02T08:54:15.280686Z
-855
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1605
-
 CGamePlayerStruct.h
 file
 
@@ -266,6 +232,40 @@ merlin
 
 
 420
+
+CPtLevelConfigData.h
+file
+
+
+
+
+2013-08-02T09:26:49.000000Z
+dd688aa51ed600c23a18b394bb2a9c02
+2013-08-02T08:54:15.280686Z
+855
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1605
 
 CPtStarConfigData.h
 file
@@ -403,50 +403,16 @@ merlin
 
 803
 
-SEveryATKData.h
-file
-
-
-
-
-2013-07-30T07:29:39.000000Z
-dd63381d5adb1ec209c8883bbc75335d
-2013-07-30T10:10:56.535535Z
-830
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-405
-
 CCard.cpp
 file
 
 
 
 
-2013-08-02T09:26:49.000000Z
-e2889b98a90cc88903e42d62f352b61d
-2013-08-02T08:54:15.280686Z
-855
+2013-08-07T01:20:24.000000Z
+1f54b22edf01f4f9b0ed9196712b778d
+2013-08-07T01:20:15.174535Z
+870
 phileas
 
 
@@ -469,7 +435,41 @@ phileas
 
 
 
-10479
+10555
+
+SEveryATKData.h
+file
+
+
+
+
+2013-08-05T09:32:07.000000Z
+37741ac3b573eefec3d36e8783a370af
+2013-08-06T10:24:23.641146Z
+867
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+407
 
 CCardBufferStatus.h
 file
@@ -545,11 +545,11 @@ file
 
 
 
-2013-08-02T09:26:49.000000Z
-e242c9e1d4798838501ef404b822954a
-2013-08-02T08:54:15.280686Z
-855
-phileas
+2013-08-06T10:11:32.000000Z
+e7ca1737dd7ad62e05925e87dd2f3f51
+2013-08-06T10:24:23.641146Z
+867
+merlin
 
 
 
@@ -571,7 +571,7 @@ phileas
 
 
 
-8597
+8603
 
 CCard.h
 file
@@ -579,10 +579,10 @@ file
 
 
 
-2013-08-02T09:26:49.000000Z
-23dcf514ad12aac006b3396ea8cd391a
-2013-08-02T08:54:15.280686Z
-855
+2013-08-07T01:20:24.000000Z
+0d60a893a75ec3a354aa9a4e112c0b9c
+2013-08-07T01:20:15.174535Z
+870
 phileas
 
 
@@ -605,17 +605,44 @@ phileas
 
 
 
-3302
+3306
 
 Craftsmanship
 dir
 
 CFightCardBufferData.cpp
 file
-0
 
 
-add
+
+
+2013-08-06T04:59:59.000000Z
+910c0235783f60e444d6706c170fa68f
+2013-08-06T10:24:23.641146Z
+867
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2110
 
 gameStruct.h
 file
@@ -725,10 +752,10 @@ file
 
 
 
-2013-08-02T09:26:49.000000Z
-7eb23153bd3a1558ad616454d9a07316
-2013-08-02T08:54:15.280686Z
-855
+2013-08-07T01:20:24.000000Z
+b8b9af3c4592de24cae223d17ed0f668
+2013-08-07T01:20:15.174535Z
+870
 phileas
 
 
@@ -751,14 +778,41 @@ phileas
 
 
 
-17785
+18619
 
 CFightCardBufferData.h
 file
-0
 
 
-add
+
+
+2013-08-06T05:07:24.000000Z
+762e8e4bd0364e729553d0dc6e9bfe5e
+2013-08-06T10:24:23.641146Z
+867
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1388
 
 CGameLogic.cpp
 file
@@ -834,10 +888,10 @@ file
 
 
 
-2013-08-01T07:55:57.000000Z
-2f974e3557e9b9397a0c5aa55df5acb7
-2013-08-01T07:55:46.562658Z
-843
+2013-08-07T01:20:24.000000Z
+40cec6ed5569976b7f8d90fc15d34ba6
+2013-08-07T01:20:15.174535Z
+870
 phileas
 
 
@@ -860,7 +914,7 @@ phileas
 
 
 
-3838
+4208
 
 GameSpriteConfig.h
 file

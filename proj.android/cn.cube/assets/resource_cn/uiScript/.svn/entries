@@ -1,14 +1,14 @@
 10
 
 dir
-853
+877
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/uiScript
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-26T08:18:25.329843Z
-797
+2013-08-06T10:04:40.217598Z
+863
 phileas
 
 
@@ -128,16 +128,16 @@ has-props
 
 11980
 
-qianghua.plist
+zhenxingfudong.plist
 file
 
 
 
 
-2013-07-26T08:29:06.000000Z
-058392bba65d9a7d876b7494cf673aaf
-2013-07-26T08:18:25.329843Z
-797
+2013-07-23T05:47:25.000000Z
+fa3cd462118066abf0cdf2a5364ceb00
+2013-07-22T06:13:26.779914Z
+725
 phileas
 
 
@@ -160,7 +160,7 @@ phileas
 
 
 
-5577
+5546
 
 confirm.plist
 file
@@ -196,16 +196,16 @@ phileas
 
 1163
 
-zhenxingfudong.plist
+qianghua.plist
 file
 
 
 
 
-2013-07-23T05:47:25.000000Z
-fa3cd462118066abf0cdf2a5364ceb00
-2013-07-22T06:13:26.779914Z
-725
+2013-07-26T08:29:06.000000Z
+058392bba65d9a7d876b7494cf673aaf
+2013-07-26T08:18:25.329843Z
+797
 phileas
 
 
@@ -228,7 +228,7 @@ phileas
 
 
 
-5546
+5577
 
 cubeCardSprite.plist
 file
@@ -338,10 +338,10 @@ file
 
 
 
-2013-07-05T06:01:23.000000Z
-8b7ad5ee411eef516d8d6bfd3534d3d7
-2013-06-18T01:13:03.446453Z
-542
+2013-08-06T10:04:47.000000Z
+099c24dff506c34378a45504ed703eff
+2013-08-06T10:04:40.217598Z
+863
 phileas
 
 
@@ -364,7 +364,7 @@ phileas
 
 
 
-2257
+1373
 
 kk.plist
 file
@@ -400,40 +400,6 @@ merlin
 
 9323
 
-demo_task.plist
-file
-
-
-
-
-2013-07-05T06:01:23.000000Z
-6fc708320d9f21a0a4b9620dbca1c38e
-2013-06-20T06:24:55.151265Z
-568
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1556
-
 zhandouui.plist
 file
 
@@ -467,6 +433,40 @@ merlin
 
 
 492
+
+demo_task.plist
+file
+
+
+
+
+2013-07-05T06:01:23.000000Z
+6fc708320d9f21a0a4b9620dbca1c38e
+2013-06-20T06:24:55.151265Z
+568
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1556
 
 login.plist
 file
@@ -570,6 +570,40 @@ has-props
 
 4274
 
+chushoujiemian.plist
+file
+
+
+
+
+2013-08-06T09:58:51.000000Z
+16c86a551e8339a89efa12666a204049
+2013-08-02T08:54:15.280686Z
+855
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2684
+
 room.plist
 file
 
@@ -637,6 +671,40 @@ phileas
 
 
 1376
+
+jinhua.plist
+file
+
+
+
+
+2013-08-06T09:58:51.000000Z
+a90d6324c1d51e951995b67f96b080df
+2013-08-02T08:54:15.280686Z
+855
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4881
 
 hall.plist
 file

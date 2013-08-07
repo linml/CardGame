@@ -46,6 +46,7 @@ protected:
     vector<TouchRect> m_cTouches;
     int m_nCurrentTableId;
     CBattleArrayLayer *m_pCardSetting;
+    CCSprite * m_pBackBtn;
     
     
 // test: network;

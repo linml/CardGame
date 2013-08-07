@@ -76,7 +76,15 @@ void CCardSettingScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CCardSettingScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    handlerTouch();
+    CCPoint touchPoint = pTouch->getLocation();
+    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
+    if (m_nTouchTag != -1)
+    {
+         handlerTouch();
+    }
+
+
+  
 }
 void CCardSettingScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -112,10 +120,11 @@ void CCardSettingScene::initCCardSetting()
     m_pCardSetting->addTeamArrayPanel();
     
     // test: add close button:
-    CCSprite *btn = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "close_button.png"));
+    CCSprite *btn = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "back_normal.png"));
     this->addChild(btn, 100000, 3006);
     btn->setAnchorPoint(CCPointZero);
     btn->setPosition(ccp(950, 700));
+    m_pBackBtn = btn;
     Utility::addTouchRect(3006, btn, m_cTouches);
     
 }
@@ -158,6 +167,10 @@ void CCardSettingScene::handlerTouch()
             break;
             
         case 3006:
+            // level:
+            m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_active.png"));
+            m_pBackBtn->setAnchorPoint(CCPointZero);
+            m_pBackBtn->setPosition(ccp(950, 700));
             SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
             break;
         default:

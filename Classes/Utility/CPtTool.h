@@ -31,7 +31,7 @@ namespace CPtTool
     int getSuit(const int sequence[], const int len);
     int getSuitResult(const int suit[], const int sequence[], const int len);
     
-    int calulate(int card_base_value, int config_value, int star, int correct_value_1, int star_parameter, int correct_value_2,int correct_parameter);
+    int calulate(int card_base_value, int config_value, int star, float correct_value_1, float star_parameter, float correct_value_2,float correct_parameter);
     int calSupportValue(int base_value, int currentValue, float ractor);
     bool memoryInfo(vm_statistics_data_t *vmStats) ;
     

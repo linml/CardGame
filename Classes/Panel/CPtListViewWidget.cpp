@@ -179,7 +179,26 @@ void TableView::ccTouchDelayEnd(CCTouch *pTouch, CCEvent *pEvent)
         
     }else
     {
+       // CCLog("click...");
         
+        m_pSelectItem = getCell(pTouch);
+        if (m_pSelectItem)
+        {
+            CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem) ;
+            if (touchDelegate)
+            {
+                m_bTouchDragSelect = touchDelegate->ccTouchBegan(pTouch, pEvent);
+                if (m_bTouchDragSelect)
+                {
+                    touchDelegate->ccTouchEnded(pTouch, pEvent);
+                }
+                
+            }
+           
+            
+            
+        }
+
     }
 
     
@@ -295,7 +314,7 @@ void TableView::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
         }
         CCTableView::ccTouchEnded(pTouch, pEvent);
         return;
-
+        
     }
     CCTableView::ccTouchEnded(pTouch, pEvent);
 }
@@ -304,6 +323,22 @@ void TableView::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 void TableView::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
  
+    if (getDirection() == kCCScrollViewDirectionVertical)
+    {
+        if (m_bTouchDragSelect)
+        {
+            if (m_pSelectItem)
+            {
+                CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem) ;
+                if (touchDelegate)
+                {
+                    touchDelegate->ccTouchCancelled(pTouch, pEvent);
+                }
+            }
+        }
+        
+    }
+
     CCTableView::ccTouchCancelled(pTouch, pEvent);
     setInitState();
 }

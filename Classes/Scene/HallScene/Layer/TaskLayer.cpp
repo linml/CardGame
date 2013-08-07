@@ -49,7 +49,13 @@ void CTaskLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CTaskLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    handlerTouch();
+    CCPoint touchPoint = pTouch->getLocation();
+    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
+    if (m_nTouchTag != -1)
+    {
+        handlerTouch();
+    }
+
 }
 
 void CTaskLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)

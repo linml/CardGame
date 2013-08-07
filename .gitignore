@@ -1,1 +1,11 @@
+*.o
+*.swp
+*.bak
+*.tmp
+Thumbs.db
+.buildpath
+.settings
+.metadata
+RemoteSystemsTempFiles
+nbproject
 .svn

@@ -80,7 +80,12 @@ void CFightCard::init()
 
 CFightCard::CFightCard(CCard *card,int level)
 {
+    tag=-1;
+    
+    init();
     updateFight(card, level);
+    isDead=false;
+    initFighting();
 }
 
 /*
@@ -88,12 +93,6 @@ CFightCard::CFightCard(CCard *card,int level)
  */
 void CFightCard::updateFight(CCard *card, int level /*=1*/)
 {
-    tag=-1;
-    
-    init();
-    
-    m_iSuit=1;
-    
     if(card)
     {
         m_pCard=card;
@@ -103,7 +102,6 @@ void CFightCard::updateFight(CCard *card, int level /*=1*/)
         m_attack=card->m_icard_attack;
         m_defend=card->m_icard_defend;
         
-        isDead=false;
         
         if (level == 1)
         {
@@ -122,11 +120,9 @@ void CFightCard::updateFight(CCard *card, int level /*=1*/)
             CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
             levelConfig->update(level);
             
-            for (int i= 2; i <= level; i++)
-            {
-                updateCard(level);
-                CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
-            }
+           
+            updateCard(level);
+            CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
             m_nCurrentPrice = levelConfig->getConin();
             m_nNeedExp = levelConfig->getExp();
             // test:
@@ -136,16 +132,15 @@ void CFightCard::updateFight(CCard *card, int level /*=1*/)
         CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
         
         m_iMaxExp = SingleLevleConfigData::instance()->getLevelExp(level+1);
-        isDead=false;
+      
         
-        m_iSuit=card->m_icard_suit;
+    
         
     }
     else
     {
         m_pCard=NULL;
     }
-    initFighting();
 
 }
 
@@ -184,15 +179,12 @@ void CFightCard::updateCard(int level)
         CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
         levelConfig->update(level);
         m_iHp =  CPtTool::calulate(m_pCard->m_icardhp,levelConfig->getHp(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
-                                    levelConfig->getCorrectTow(), levelConfig->getStarOne());/// m_pCard->m_icardhp;
-        if(m_pCard->m_icard_id==120002)
-        {
-            CCLog("aaaa");
-        }
+                                    levelConfig->getCorrectTow(), levelConfig->getCorrect());/// m_pCard->m_icardhp;
+       
         m_attack =CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
-                                   levelConfig->getCorrectTow(), levelConfig->getStarOne());
+                                   levelConfig->getCorrectTow(), levelConfig->getCorrect());
         m_defend =CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
-                                   levelConfig->getCorrectTow(), levelConfig->getStarOne());
+                                   levelConfig->getCorrectTow(), levelConfig->getCorrect());
         
         m_nCurrentPrice = levelConfig->getConin();
         m_nNeedExp = levelConfig->getExp();
@@ -201,6 +193,8 @@ void CFightCard::updateCard(int level)
     m_iCurrHp=m_iHp;
 
 }
+
+
 CFightCard::~CFightCard()
 {
     
@@ -238,20 +232,21 @@ int CFightCard:: getAddValue(int level, int type)
     levelConfig->update(level);
     int result = 0;
    
+     // int calulate(int card_base_value, int config_value, int star, float correct_value_1, float star_parameter, float correct_value_2,float correct_parameter)
     switch (type)
     {
         case 3:
             result = CPtTool::calulate(m_pCard->m_icardhp, levelConfig->getHp(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
-                                     levelConfig->getCorrectTow(), levelConfig->getStarOne());
+                                     levelConfig->getCorrectTow(), levelConfig->getCorrect());
             break;
             
         case 1:
             result =  CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
-                                      levelConfig->getCorrectTow(), levelConfig->getStarOne());
+                                      levelConfig->getCorrectTow(), levelConfig->getCorrect());
             break;
         case 2:
             result = CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
-                                       levelConfig->getCorrectTow(), levelConfig->getStarOne());
+                                       levelConfig->getCorrectTow(), levelConfig->getCorrect());
             break;
         default:
             break;

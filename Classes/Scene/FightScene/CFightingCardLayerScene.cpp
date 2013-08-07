@@ -265,6 +265,7 @@ void CFightingCardLayerScene::updateBuffer()
                {
                    
                    const char *pngIcon=player->getBufferPngByEffectId(eveyatk->m_vbufferList[i]->m_iEffectid).c_str();
+                   CCLog("png path:%s,%d",pngIcon,eveyatk->m_vbufferList[i]->m_iEffectid);
                    if(strlen(pngIcon)>0)
                    {
                        CGameCardBuffer *gameBuffer=CGameCardBuffer::CreateBuffer(pngIcon, eveyatk->m_vbufferList[i]->m_iValue);
@@ -276,6 +277,7 @@ void CFightingCardLayerScene::updateBuffer()
                }
                else{
                    const char *pngIcon=player->getBufferPngByEffectId(eveyatk->m_vbufferList[i]->m_iEffectid).c_str();
+                    CCLog("png path:%s,%d",pngIcon,eveyatk->m_vbufferList[i]->m_iEffectid);
                    if(strlen(pngIcon)>0)
                    {
                        CGameCardBuffer *gameBuffer=CGameCardBuffer::CreateBuffer(pngIcon, eveyatk->m_vbufferList[i]->m_iValue);

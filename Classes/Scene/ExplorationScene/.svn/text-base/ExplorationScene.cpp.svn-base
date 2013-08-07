@@ -11,6 +11,7 @@
 #include "HallScene.h"
 #include "CConfirmLayer.h"
 #include "SceneManager.h"
+#include "Utility.h"
 
 int g_nLevle = 0;
 int g_array[3]={0};
@@ -29,7 +30,10 @@ CCScene* CExploration::scene()
 
 CExploration::CExploration()
 {
-    
+    for (int i = 0; i < 3; i++)
+    {
+        m_pBtn[i] = NULL;
+    }
 }
 
 CExploration::~CExploration()
@@ -75,7 +79,13 @@ void CExploration::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CExploration::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCLog("CExploration::ccTouchEnded");
-     handlerTouch();
+    CCPoint touchPoint = pTouch->getLocation();
+    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
+    if (m_nTouchTag == -1)
+    {
+        return;
+    }
+    handlerTouch();
 }
 
 void CExploration::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
@@ -234,12 +244,25 @@ bool CExploration::initExploration()
         }
 
         
+        // add CPtButton:
+        CCLayer * outLayer = CCLayer::create();
+        addChild(outLayer, 10, 100);
+        
+        for (int i = 0; i < 3; i++)
+        {
+            m_pBtn[i] = CPtButtonWidget::create("");
+            m_pBtn[i]->setAnchorPoint(CCPointZero);
+            m_pBtn[i]->setPosition(ccp(180+290*i, 380));
+            outLayer->addChild(m_pBtn[i], 3001+i, 200);
+            Utility::addTouchRect(3001+i, m_pBtn[i], m_cTouches);
+        }
+       
         
         
         setTouchEnabled(true);
         setTouchMode(kCCTouchesOneByOne);
         setTouchPriority(-1);
-        m_cMaps->getTouchRects(m_cTouches);
+
         
         // init arrows:
         
@@ -253,6 +276,7 @@ bool CExploration::initExploration()
 
 void CExploration::handlerTouch()
 {
+    
     CCLog("CExploration:%d, %d", m_nTouchTag, g_nLevle
           );
     
@@ -276,19 +300,21 @@ void CExploration::handlerTouch()
     switch (m_nTouchTag) {
         case LEFT_TOUCH_TAG:
             CCLog("CExploration:: left");
-            g_index = 2;
-            // to do:
+            g_index = 2;            // to do:
+            m_pBtn[m_nTouchTag-3001]->setPress();
             attachConfirm();
             break;
         case CENTER_TOUCH_TAG:
              g_index = 0;
              CCLog("CExploration:: center");
             // to do:
+             m_pBtn[m_nTouchTag-3001]->setPress();
             attachConfirm();
             break;
             
         case RIGHT_TOUCH_TAG:
              CCLog("CExploration:: right");
+            m_pBtn[m_nTouchTag-3001]->setPress();
             g_index = 1;
             attachConfirm();
             // to do:
@@ -306,6 +332,7 @@ void CExploration::handlerTouch()
 
 void CExploration::randonArrows(const int inLevle)
 {
+    
     char buffer[50] = {};
    
     srand(time(0));
@@ -314,79 +341,21 @@ void CExploration::randonArrows(const int inLevle)
     {
         for (int i = 0; i < 3; i++)
         {
-                g_array[i] = rand()%4;
+            m_pBtn[i]->setType(rand()%4);
+            sprintf(buffer, "%d", m_pBtn[i]->getType());
+            g_array[i] = m_pBtn[i]->getType();
+            m_pBtn[i]->setText(buffer);
         }
-        CCNode *node = NULL;
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                memset(buffer, 0, sizeof(char)*50);
-                sprintf(buffer, "1,%d,%d", j,i);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                node = NULL;
-                node = m_cMaps->getElementByTags(buffer);
-           
-                if (node)
-                {
-              
-                    if (j == g_array[i])
-                    {
-                        node->setVisible(true);
-                        node->setScale(0.5f);
-                    }else
-                    {
-                        node->setVisible(false);   
-                    }
-
-                
-                }
-                else
-                {
-                    CCLog("error: %d, %d", i,j);
-                }
-           
-                
-            }
         
-        }
+       
     }else if(g_nLevle == 9)
     {
-        CCNode *node ;
-        for (int i = 0; i < 3; i++)
-        {
-            for (int j = 0; j < 4; j++)
-            {
-                memset(buffer, 0, sizeof(char)*50);
-                sprintf(buffer, "1,%d,%d", j,i);
-                node = NULL;
-                node = m_cMaps->getElementByTags(buffer);
-                
-                if (node)
-                {
-                    
-                    
-                    if (i == 0 && j ==1)
-                    {
-                        CCLog("true: %d, %d", j,i);
-                        node->setVisible(true);
-                        node->setScale(0.5f);
-                    }else
-                    {
-                        node->setVisible(false);
-                    }
-                    
-                    
-                }
-                else
-                {
-                    CCLog("error: %d, %d", i,j);
-                }
-                
-                
-            }
-            
-        }
-
+        m_pBtn[0]->setVisible(false);
+        m_pBtn[2]->setVisible(false);
+        m_pBtn[1]->setType(1);
+        sprintf(buffer, "%d", m_pBtn[1]->getType());
+        g_array[1] = m_pBtn[1]->getType();
+        m_pBtn[1]->setText(buffer);
     }
 
     
@@ -395,12 +364,12 @@ void CExploration::randonArrows(const int inLevle)
 void CExploration::attachConfirm()
 {
     CCNode *node = NULL;
-    node = m_cMaps->getElementByTags("1");
+    node = getChildByTag(100);
     if(node)
     {
         CCLog("the ...");
-        removeChild(node, true);
-         // node->setVisible(false);
+      //  removeChild(node, true);
+        node->setVisible(false);
         CConfirmLayer *layer = CConfirmLayer::create();
         this->addChild(layer, 5, 10);
     }

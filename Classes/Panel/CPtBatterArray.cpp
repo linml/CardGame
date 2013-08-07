@@ -486,6 +486,7 @@ void CPtBattleArray::initData()
         m_aSuitArray[i] = -1;
         m_aSequenceArray[i] = -1;
     }
+    
 }
 
 
@@ -628,6 +629,15 @@ bool CPtBattleArray::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     {
         selectIndex = 4;
         selectNode = m_pCardArray[4];
+        CCPoint point = selectNode->getPosition();
+        point = selectNode->getParent()->convertToWorldSpace(point);
+        point = m_pMoveLayer->convertToNodeSpace(point);
+        selectNode->setPosition(point);
+        selectNode->retain();
+        selectNode->removeFromParentAndCleanup(true);
+        m_pMoveLayer->addChild(selectNode);
+        selectNode->release();
+
         m_bTouchEnable = true;
         return true;
     }
@@ -643,7 +653,23 @@ bool CPtBattleArray::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
             return false;
         }
         selectNode = m_pCardArray[selectIndex];
-        this->reorderChild(selectNode, 1020);
+     
+        if (m_pMoveLayer)
+        {
+            CCPoint point = selectNode->getPosition();
+            point = selectNode->getParent()->convertToWorldSpace(point);
+            point = m_pMoveLayer->convertToNodeSpace(point);
+            selectNode->setPosition(point);
+            selectNode->retain();
+            selectNode->removeFromParentAndCleanup(true);
+            m_pMoveLayer->addChild(selectNode);
+            selectNode->release();
+        }
+        else
+        {
+            this->reorderChild(selectNode, 1020);
+        }
+     
         m_bTouchEnable = true;
         return true;
         
@@ -660,8 +686,34 @@ void CPtBattleArray::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
         return;
     }
     
+    
+    
     if (selectNode)
     {
+        //
+        if (m_pMoveLayer)
+        {
+            CCLog("move in CPtBattleArrayLayer");
+            drag(selectNode, pTouch);
+            CCNode *right = selectIndex+1 < 4? m_pCardArray[selectIndex+1] : NULL;
+            CCNode *left = selectIndex -1 >= 0? m_pCardArray[selectIndex-1]:NULL;
+            if (isNeedMove(selectNode, right, 1))
+            {
+                moveHalfStep(right, 2);
+                m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(right);
+                selectIndex++;
+                m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(selectNode);
+            }else if(isNeedMove(selectNode, left, 2))
+            {
+                moveHalfStep(left, 1);
+                m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(left);
+                selectIndex--;
+                m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(selectNode);
+            }
+
+            return;
+        }
+        
         drag(selectNode, pTouch);
        
         CCNode *right = selectIndex+1 < 4? m_pCardArray[selectIndex+1] : NULL;
@@ -689,12 +741,43 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
  
     if (m_bOnClick)
     {
-        save();
+        if (m_pPanelCntainer->getPanelMove())
+        {
+            return;
+        }
+        saveOnClick();
         return;
     }
     
     if (selectNode)
     {
+        if (m_pMoveLayer)
+        {
+            CCRect rect1 = selectNode->boundingBox();
+            rect1.origin = selectNode->getParent()->convertToWorldSpace(rect1.origin);
+            CCRect rect = this->boundingBox();
+            rect1.origin = this->convertToNodeSpace(rect1.origin);
+            rect.origin = CCPointZero;
+            
+            selectNode->retain();
+            selectNode->removeFromParentAndCleanup(true);
+            selectNode->setPosition(m_cPositions[selectIndex]);
+            addChild(selectNode, 1000+selectIndex);
+            selectNode->release();
+            if (selectIndex == 4 && !isAssistantCard((CPtDisPlayCard*)selectNode,true))
+            {
+                
+                removeCard(4);
+            }
+            else if(!rect.intersectsRect(rect1))
+            {
+                removeCard(selectIndex);
+            }
+
+            updateBattleArray();
+            return;
+        }
+        
         CCRect rect1 = selectNode->boundingBox();
         rect1.origin = selectNode->getParent()->convertToWorldSpace(rect1.origin);
         CCRect rect = this->boundingBox();
@@ -785,9 +868,35 @@ void CPtBattleArray::save()
     }
     std = std+"}";
     
-    CCLog("%s", std.c_str());
+
     ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Card&a=saveCardTeam&uid=194", "helloworld1","ehll", std.c_str(), callfuncO_selector(CPtBattleArray::callBack));
    CCLog("suit: %d, %s, %s", suit, buffer, std.c_str());
+}
+
+/*
+ * 阵容设置的条件:
+ * 1.领导力足够
+ * 2.第一阵容必须有主将牌
+ */
+void CPtBattleArray::saveOnClick()
+{
+    if (inTag == 1 && hasMainAttacker() == false)
+    {
+        // 第一阵容没有主将牌
+        return;
+    }
+    if (isAssistantCard() == false)
+    {
+        // 有援护牌且没有援护功能
+        return ;
+    }
+    if (isOverRVC())
+    {
+        // 领导力不够
+        return;
+    }
+    save();
+    
 }
 void CPtBattleArray::callBack(CCObject *pSender)
 {
@@ -873,6 +982,10 @@ void CPtBattleArray::resetBattleArray()
     CPtDisPlayCard * tmp = NULL;
     CFightCard * tmpFightCard = NULL;
   
+    if (dir == NULL)
+    {
+        return;
+    }
      CCLog("inTag: %d", inTag);
 
     for (int i = 0; i < CARDCOUNT ; i++)
@@ -881,8 +994,12 @@ void CPtBattleArray::resetBattleArray()
         tmp = (m_pCardArray[i]);
         if (tmp)
         {
-            tmp->getInCardBagPointer()->setLive();
+            if (tmp->getInCardBagPointer())
+            {
+                tmp->getInCardBagPointer()->setLive();
+            }
             tmp->getCardData()->setInBattleArray(0);//(false);
+            m_pCardArray[i] = NULL;
         }
     }
     for (int i = 0; i < CARDCOUNT; i++)
@@ -890,22 +1007,56 @@ void CPtBattleArray::resetBattleArray()
         tmpFightCard = fightArray.at(i);
         if (tmpFightCard)
         {
-        
-             ((CPtDisPlayCard*)(dir->objectForKey(tmpFightCard->m_User_Card_ID)))->setDead();
-             ((CPtDisPlayCard*)(dir->objectForKey(tmpFightCard->m_User_Card_ID)))->getCardData()->setInBattleArray(inTag);
+            tmp =  ((CPtDisPlayCard*)(dir->objectForKey(tmpFightCard->m_User_Card_ID)));
+            if (tmp)
+            {
+                tmp ->setDead();
+                tmp->getCardData()->setInBattleArray(inTag);
+                tmp = NULL;
+            }
+
         }
     }
     
 
 }
+
+/*
+ * @brief : 判断当前阵容是否超过领导力
+ */
+bool CPtBattleArray::isOverRVC()
+{
+    bool bRet = false;
+   
+    if (m_pPanelCntainer->getGamePlayer()->getRVC() < m_nLeadership)
+    {
+        bRet = true;
+    }
+    
+    return bRet;
+    
+}
+/*
+ * @breif:判别是否有援护技能
+ */
+bool CPtBattleArray:: isAssistantCard()
+{
+    bool bRet = true;
+    if (m_pCardArray[4] && m_pCardArray[4]->getCardData()->m_pCard->m_iskillHelp <= 0)
+    {
+        bRet = false;
+    }
+    return bRet;
+}
 // implement class of CPtBatterArrayPanel
 
-CPtBattleArrayPanel* CPtBattleArrayPanel::create(CCSize size, CCNode* container)
+CPtBattleArrayPanel* CPtBattleArrayPanel::create(CCSize size, CCNode* container ,CCLayer* moveLayer)
 {
     
     CPtBattleArrayPanel* pRet = new CPtBattleArrayPanel();
     if (pRet && pRet->initWithViewSize(size, container))
     {
+        pRet->setMoveLayer(moveLayer);
         pRet->init();
         pRet->autorelease();
        
@@ -938,9 +1089,11 @@ bool CPtBattleArrayPanel::init()
     for (int i = 2; i >= 0; i--)
     {
         CPtBattleArray * battleArray = CPtBattleArray::create (gamePlayer->m_vvBattleArray.at(i) ,CCSizeMake(139, 200), ccp(175, 150) ,i+1);
+        battleArray->setMoveLayer(m_pMoveLayer);
         layer->addChild(battleArray);
         battleArray->setPosition(ccp(0, (2-i) * 520 + 85));
         m_pBatterArrays[i] = battleArray;
+        battleArray->setPanelContainer(this);
        // battleArray->initSize(CCSizeMake(139, 200), ccp(175, 150));
     }
     setContainer(layer);
@@ -983,6 +1136,7 @@ void CPtBattleArrayPanel::resetBattleArrays()
 static CCPoint prePoint;
 bool CPtBattleArrayPanel::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    m_bMove = false;
     prePoint = m_pContainer->getPosition();
     CCLog("logo");
     for (int i = 0; i < BATTERARRAYCOUNT ; i++)
@@ -1004,6 +1158,7 @@ bool CPtBattleArrayPanel::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CPtBattleArrayPanel::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
+    m_bMove = true;
     CCScrollView::ccTouchMoved(pTouch, pEvent);
 }
 void CPtBattleArrayPanel::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
@@ -1026,7 +1181,9 @@ void CPtBattleArrayPanel::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CPtBattleArrayPanel::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
+    m_bMove = false;
     CCScrollView::ccTouchCancelled(pTouch, pEvent);
+    m_pMoveLayer = NULL;
 }
 
 CPtBattleArrayPanel::~CPtBattleArrayPanel()

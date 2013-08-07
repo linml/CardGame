@@ -59,8 +59,8 @@ private:
 public:
     void initFighting();
     void updateFight(CCard *card, int level =1);
-
     void updateCard(int level);
+    
     int  getAddValue(int level, int type);
     int  getNeedValue(int level, int type);
     int  getSupportValue(int type);

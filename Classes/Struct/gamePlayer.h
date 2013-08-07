@@ -113,6 +113,10 @@ public:
     EN_GAMEFIGHTSTATUS  m_enWinStatus;
     vector<SEveryATKData*>m_vHpAngry;
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
+
+    //读取道具背包信息
+    void loadPropsInfo();
+    void parsePropsInfo(CCObject *pObject);
 public:
     //获取 卡包 内容的卡
     vector<CFightCard *>m_vCardBag;
@@ -120,6 +124,8 @@ public:
     vector<vector<CFightCard*> >m_vvBattleArray;
     int m_iCurrentBattleTeam; //当前的选择 战斗的阵容
 
+    // 道具背包:
+    vector<int> m_vProps;
 
     
     // play info:

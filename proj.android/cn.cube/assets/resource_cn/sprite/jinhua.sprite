@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict>
+    <key>spriteFileName</key>
+    <string>jinhua</string>
+    <key>imagePath</key>
+    <string>../Library/Application Support/iPhone Simulator/6.1/Applications/33C246C2-32ED-4F91-A782-D9073F17BAC8/MapView.app/resource/image/jinhua.png</string>
+    <key>clipData</key>
+    <dict>
+        <key>jian.png</key>
+        <string>{2,67,37,47}</string>
+        <key>kk.png</key>
+        <string>{2,2,63,63}</string>
+    </dict>
+    <key>mapSpriteData</key>
+    <dict>
+        <key>jian.png</key>
+        <dict>
+            <key>jian.png</key>
+            <dict>
+                <key>pos</key>
+                <string>{0,0}</string>
+                <key>filp</key>
+                <integer>0</integer>
+                <key>scale</key>
+                <string>1</string>
+                <key>rotate</key>
+                <string>0</string>
+                <key>anchor</key>
+                <string>{0,1}</string>
+            </dict>
+        </dict>
+        <key>kk.png</key>
+        <dict>
+            <key>kk.png</key>
+            <dict>
+                <key>pos</key>
+                <string>{0,0}</string>
+                <key>filp</key>
+                <integer>0</integer>
+                <key>scale</key>
+                <string>1</string>
+                <key>rotate</key>
+                <string>0</string>
+                <key>anchor</key>
+                <string>{0,1}</string>
+            </dict>
+        </dict>
+    </dict>
+</dict>

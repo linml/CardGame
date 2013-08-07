@@ -35,7 +35,7 @@
 		<key>parameter_tips_2</key>
 		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
-		<string>0</string>
+		<string>100002</string>
 		<key>parameter_tips_3</key>
 		<string>给敌方主卡的效果</string>
 		<key>parameter_3</key>
@@ -275,16 +275,16 @@
 		<key>skill_tips</key>
 		<string>上场怒气增加30点</string>
 	</dict>
-	<key>100010</key>
+	<key>205201</key>
 	<dict>
 		<key>skill_id</key>
-		<string>100010</string>
+		<string>205201</string>
 		<key>skill_name</key>
-		<string>普通攻击</string>
+		<string>花色测试1</string>
 		<key>skill_type</key>
-		<string>0</string>
+		<string>5</string>
 		<key>skill_logic</key>
-		<string>1</string>
+		<string>3</string>
 		<key>cost_tips_1</key>
 		<string>无</string>
 		<key>cost_func_1</key>
@@ -302,27 +302,27 @@
 		<key>cost_parameter_p_2</key>
 		<string>0</string>
 		<key>parameter_tips_1</key>
-		<string>给敌方主卡的效果</string>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
 		<key>parameter_1</key>
-		<string>100001</string>
+		<string>205201</string>
 		<key>parameter_tips_2</key>
-		<string>给我方主卡的效果</string>
+		<string>给我方此阵容的卡牌的金钱收益</string>
 		<key>parameter_2</key>
 		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给敌方主卡的效果</string>
+		<string>给我方此阵容的卡牌的血量效果</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方主卡的效果</string>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
 		<key>parameter_4</key>
 		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给敌方上场卡的效果</string>
+		<string>给我方此阵容的卡牌的防御力效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方上场卡的效果</string>
+		<string>给我方此阵容的卡牌的怒气效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
@@ -330,71 +330,18 @@
 		<key>skill_tips</key>
 		<string>0</string>
 	</dict>
-	<key>100011</key>
+	<key>205202</key>
 	<dict>
 		<key>skill_id</key>
-		<string>100011</string>
+		<string>205202</string>
 		<key>skill_name</key>
-		<string>破冰射击</string>
+		<string>花色测试2</string>
 		<key>skill_type</key>
-		<string>1</string>
+		<string>5</string>
 		<key>skill_logic</key>
 		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>怒气</string>
-		<key>cost_func_1</key>
-		<string>1</string>
-		<key>cost_parameter_1</key>
-		<string>200</string>
-		<key>cost_parameter_p_1</key>
-		<string>0</string>
-		<key>cost_func_2</key>
-		<string>2</string>
-		<key>cost_parameter_2</key>
-		<string>100034</string>
-		<key>cost_parameter_p_2</key>
-		<string>0</string>
-		<key>parameter_tips_1</key>
-		<string>给敌方主卡的效果</string>
-		<key>parameter_1</key>
-		<string>0</string>
-		<key>parameter_tips_2</key>
-		<string>给我方主卡的效果</string>
-		<key>parameter_2</key>
-		<string>0</string>
-		<key>parameter_tips_3</key>
-		<string>在条件1情况下给敌方主卡的替换效果</string>
-		<key>parameter_3</key>
-		<string>100031</string>
-		<key>parameter_tips_4</key>
-		<string>在条件1情况下给我方主卡的效果</string>
-		<key>parameter_4</key>
-		<string>0</string>
-		<key>parameter_tips_5</key>
-		<string>给敌方上场卡的效果</string>
-		<key>parameter_5</key>
-		<string>0</string>
-		<key>parameter_tips_6</key>
-		<string>给我方上场卡的效果</string>
-		<key>parameter_6</key>
-		<string>0</string>
-		<key>effect_plist</key>
-		<string>plist6</string>
-		<key>skill_tips</key>
-		<string>0</string>
-	</dict>
-	<key>100012</key>
-	<dict>
-		<key>skill_id</key>
-		<string>100012</string>
-		<key>skill_name</key>
-		<string>爆破酒桶</string>
-		<key>skill_type</key>
-		<string>2</string>
-		<key>skill_logic</key>
-		<string>1</string>
-		<key>cost_tips_1</key>
-		<string>0</string>
+		<string>无</string>
 		<key>cost_func_1</key>
 		<string>0</string>
 		<key>cost_parameter_1</key>
@@ -410,80 +357,27 @@
 		<key>cost_parameter_p_2</key>
 		<string>0</string>
 		<key>parameter_tips_1</key>
-		<string>给敌方主卡的效果</string>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
 		<key>parameter_1</key>
-		<string>100030</string>
-		<key>parameter_tips_2</key>
-		<string>给我方主卡的效果</string>
-		<key>parameter_2</key>
 		<string>0</string>
+		<key>parameter_tips_2</key>
+		<string>给我方此阵容的卡牌的金钱收益</string>
+		<key>parameter_2</key>
+		<string>205202</string>
 		<key>parameter_tips_3</key>
-		<string>给敌方主卡的效果</string>
+		<string>给我方此阵容的卡牌的血量效果</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方主卡的效果</string>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
 		<key>parameter_4</key>
 		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给敌方上场卡的效果</string>
+		<string>给我方此阵容的卡牌的防御力效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方上场卡的效果</string>
-		<key>parameter_6</key>
-		<string>0</string>
-		<key>effect_plist</key>
-		<string>plist7</string>
-		<key>skill_tips</key>
-		<string>0</string>
-	</dict>
-	<key>100016</key>
-	<dict>
-		<key>skill_id</key>
-		<string>100016</string>
-		<key>skill_name</key>
-		<string>碎裂之火</string>
-		<key>skill_type</key>
-		<string>1</string>
-		<key>skill_logic</key>
-		<string>2</string>
-		<key>cost_tips_1</key>
-		<string>怒气</string>
-		<key>cost_func_1</key>
-		<string>1</string>
-		<key>cost_parameter_1</key>
-		<string>200</string>
-		<key>cost_parameter_p_1</key>
-		<string>0</string>
-		<key>cost_func_2</key>
-		<string>2</string>
-		<key>cost_parameter_2</key>
-		<string>100030</string>
-		<key>cost_parameter_p_2</key>
-		<string>0</string>
-		<key>parameter_tips_1</key>
-		<string>给敌方主卡的效果</string>
-		<key>parameter_1</key>
-		<string>100032</string>
-		<key>parameter_tips_2</key>
-		<string>给我方主卡的效果</string>
-		<key>parameter_2</key>
-		<string>0</string>
-		<key>parameter_tips_3</key>
-		<string>在条件1情况下给敌方主卡的附加效果</string>
-		<key>parameter_3</key>
-		<string>100033</string>
-		<key>parameter_tips_4</key>
-		<string>在条件1情况下给我方主卡的效果</string>
-		<key>parameter_4</key>
-		<string>0</string>
-		<key>parameter_tips_5</key>
-		<string>给敌方上场卡的效果</string>
-		<key>parameter_5</key>
-		<string>0</string>
-		<key>parameter_tips_6</key>
-		<string>给我方上场卡的效果</string>
+		<string>给我方此阵容的卡牌的怒气效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
@@ -491,22 +385,22 @@
 		<key>skill_tips</key>
 		<string>0</string>
 	</dict>
-	<key>100017</key>
+	<key>205203</key>
 	<dict>
 		<key>skill_id</key>
-		<string>100017</string>
+		<string>205203</string>
 		<key>skill_name</key>
-		<string>冰霜易伤</string>
+		<string>花色测试3</string>
 		<key>skill_type</key>
-		<string>2</string>
+		<string>5</string>
 		<key>skill_logic</key>
-		<string>1</string>
+		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>回合触发</string>
+		<string>无</string>
 		<key>cost_func_1</key>
-		<string>3</string>
+		<string>0</string>
 		<key>cost_parameter_1</key>
-		<string>3</string>
+		<string>0</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
@@ -518,31 +412,361 @@
 		<key>cost_parameter_p_2</key>
 		<string>0</string>
 		<key>parameter_tips_1</key>
-		<string>给敌方主卡的效果</string>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
 		<key>parameter_1</key>
-		<string>100034</string>
+		<string>0</string>
 		<key>parameter_tips_2</key>
-		<string>给我方主卡的效果</string>
+		<string>给我方此阵容的卡牌的金钱收益</string>
 		<key>parameter_2</key>
 		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给敌方主卡的效果</string>
+		<string>给我方此阵容的卡牌的血量效果</string>
 		<key>parameter_3</key>
-		<string>0</string>
+		<string>205203</string>
 		<key>parameter_tips_4</key>
-		<string>给我方主卡的效果</string>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
 		<key>parameter_4</key>
 		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给敌方上场卡的效果</string>
+		<string>给我方此阵容的卡牌的防御力效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方上场卡的效果</string>
+		<string>给我方此阵容的卡牌的怒气效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
 		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>0</string>
+	</dict>
+	<key>205204</key>
+	<dict>
+		<key>skill_id</key>
+		<string>205204</string>
+		<key>skill_name</key>
+		<string>花色测试4</string>
+		<key>skill_type</key>
+		<string>5</string>
+		<key>skill_logic</key>
+		<string>3</string>
+		<key>cost_tips_1</key>
+		<string>无</string>
+		<key>cost_func_1</key>
+		<string>0</string>
+		<key>cost_parameter_1</key>
+		<string>0</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>0</string>
+		<key>cost_func_2</key>
+		<string>0</string>
+		<key>cost_parameter_2</key>
+		<string>0</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<key>parameter_1</key>
+		<string>0</string>
+		<key>parameter_tips_2</key>
+		<string>给我方此阵容的卡牌的金钱收益</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>给我方此阵容的卡牌的血量效果</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<key>parameter_4</key>
+		<string>205204</string>
+		<key>parameter_tips_5</key>
+		<string>给我方此阵容的卡牌的防御力效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方此阵容的卡牌的怒气效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>plist11</string>
+		<key>skill_tips</key>
+		<string>0</string>
+	</dict>
+	<key>205205</key>
+	<dict>
+		<key>skill_id</key>
+		<string>205205</string>
+		<key>skill_name</key>
+		<string>花色测试5</string>
+		<key>skill_type</key>
+		<string>5</string>
+		<key>skill_logic</key>
+		<string>3</string>
+		<key>cost_tips_1</key>
+		<string>无</string>
+		<key>cost_func_1</key>
+		<string>0</string>
+		<key>cost_parameter_1</key>
+		<string>0</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>0</string>
+		<key>cost_func_2</key>
+		<string>0</string>
+		<key>cost_parameter_2</key>
+		<string>0</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<key>parameter_1</key>
+		<string>0</string>
+		<key>parameter_tips_2</key>
+		<string>给我方此阵容的卡牌的金钱收益</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>给我方此阵容的卡牌的血量效果</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给我方此阵容的卡牌的防御力效果</string>
+		<key>parameter_5</key>
+		<string>205205</string>
+		<key>parameter_tips_6</key>
+		<string>给我方此阵容的卡牌的怒气效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>plist12</string>
+		<key>skill_tips</key>
+		<string>0</string>
+	</dict>
+	<key>205206</key>
+	<dict>
+		<key>skill_id</key>
+		<string>205206</string>
+		<key>skill_name</key>
+		<string>花色测试6</string>
+		<key>skill_type</key>
+		<string>5</string>
+		<key>skill_logic</key>
+		<string>3</string>
+		<key>cost_tips_1</key>
+		<string>无</string>
+		<key>cost_func_1</key>
+		<string>0</string>
+		<key>cost_parameter_1</key>
+		<string>0</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>0</string>
+		<key>cost_func_2</key>
+		<string>0</string>
+		<key>cost_parameter_2</key>
+		<string>0</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<key>parameter_1</key>
+		<string>205206</string>
+		<key>parameter_tips_2</key>
+		<string>给我方此阵容的卡牌的金钱收益</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>给我方此阵容的卡牌的血量效果</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给我方此阵容的卡牌的防御力效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方此阵容的卡牌的怒气效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>plist13</string>
+		<key>skill_tips</key>
+		<string>0</string>
+	</dict>
+	<key>205207</key>
+	<dict>
+		<key>skill_id</key>
+		<string>205207</string>
+		<key>skill_name</key>
+		<string>花色测试7</string>
+		<key>skill_type</key>
+		<string>5</string>
+		<key>skill_logic</key>
+		<string>3</string>
+		<key>cost_tips_1</key>
+		<string>无</string>
+		<key>cost_func_1</key>
+		<string>0</string>
+		<key>cost_parameter_1</key>
+		<string>0</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>0</string>
+		<key>cost_func_2</key>
+		<string>0</string>
+		<key>cost_parameter_2</key>
+		<string>0</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<key>parameter_1</key>
+		<string>0</string>
+		<key>parameter_tips_2</key>
+		<string>给我方此阵容的卡牌的金钱收益</string>
+		<key>parameter_2</key>
+		<string>205207</string>
+		<key>parameter_tips_3</key>
+		<string>给我方此阵容的卡牌的血量效果</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给我方此阵容的卡牌的防御力效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方此阵容的卡牌的怒气效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>plist14</string>
+		<key>skill_tips</key>
+		<string>0</string>
+	</dict>
+	<key>205208</key>
+	<dict>
+		<key>skill_id</key>
+		<string>205208</string>
+		<key>skill_name</key>
+		<string>花色测试8</string>
+		<key>skill_type</key>
+		<string>5</string>
+		<key>skill_logic</key>
+		<string>3</string>
+		<key>cost_tips_1</key>
+		<string>无</string>
+		<key>cost_func_1</key>
+		<string>0</string>
+		<key>cost_parameter_1</key>
+		<string>0</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>0</string>
+		<key>cost_func_2</key>
+		<string>0</string>
+		<key>cost_parameter_2</key>
+		<string>0</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<key>parameter_1</key>
+		<string>0</string>
+		<key>parameter_tips_2</key>
+		<string>给我方此阵容的卡牌的金钱收益</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>给我方此阵容的卡牌的血量效果</string>
+		<key>parameter_3</key>
+		<string>205208</string>
+		<key>parameter_tips_4</key>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给我方此阵容的卡牌的防御力效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方此阵容的卡牌的怒气效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>plist15</string>
+		<key>skill_tips</key>
+		<string>0</string>
+	</dict>
+	<key>205209</key>
+	<dict>
+		<key>skill_id</key>
+		<string>205209</string>
+		<key>skill_name</key>
+		<string>花色测试9</string>
+		<key>skill_type</key>
+		<string>5</string>
+		<key>skill_logic</key>
+		<string>3</string>
+		<key>cost_tips_1</key>
+		<string>无</string>
+		<key>cost_func_1</key>
+		<string>0</string>
+		<key>cost_parameter_1</key>
+		<string>0</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>0</string>
+		<key>cost_func_2</key>
+		<string>0</string>
+		<key>cost_parameter_2</key>
+		<string>0</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<key>parameter_1</key>
+		<string>0</string>
+		<key>parameter_tips_2</key>
+		<string>给我方此阵容的卡牌的金钱收益</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>给我方此阵容的卡牌的血量效果</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<key>parameter_4</key>
+		<string>205209</string>
+		<key>parameter_tips_5</key>
+		<string>给我方此阵容的卡牌的防御力效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方此阵容的卡牌的怒气效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>plist16</string>
 		<key>skill_tips</key>
 		<string>0</string>
 	</dict>

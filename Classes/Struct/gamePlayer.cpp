@@ -489,6 +489,7 @@ void CGamePlayer::parseRival(CCObject *object)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetFightTeam");
     char *datat=(char *)object;
+    CCLog("%s",datat);
 #ifndef AAAAFOROSMACHINE
    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
 #else
@@ -615,4 +616,23 @@ void CGamePlayer::onFightExitScene()
     DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer *>);
 }
 
+
+/*
+ * @breif: 获取道具背包信息：
+ */
+
+void CGamePlayer::loadPropsInfo()
+{
+ 
+    
+    
+}
+void CGamePlayer:: parsePropsInfo(CCObject *pObject)
+{
+    // reset props package
+    m_vProps.clear();
+    
+    // test code:
+    
+}
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

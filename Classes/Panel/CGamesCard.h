@@ -30,6 +30,7 @@ public:
     bool getSuit(int &outSuit, int &outSequence);
     void updateToLevel(const int & inLevel);
     CFightCard *getCardData(){ return m_pCardData;};
+    void updateCard(CFightCard *card);
 
 protected:
     void setLive(CCNode *node);
@@ -44,6 +45,9 @@ protected:
     void createData(const int &inAtk, const int &inHp, const int &inRcv, const int &inDef);
     
     void updateData(const int &inAtk, const int &inHp, const int &inRcv, const int &inDef);
+    
+
+
 protected:
     CCLabelTTF *label;
     

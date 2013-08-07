@@ -62,7 +62,14 @@ bool CLoginScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     if (m_bLogoOver==false) {
         return false;
     }
-    return handleTouchSpritePool(pTouch->getLocation());
+    int tag = -1;
+    CCPoint point = pTouch->getLocation();
+    tag = TouchRect::SearchTouchTag(point, touchRect);
+    if (tag != -1)
+    {
+        return true;
+    }
+    return  false;
 }
 void CLoginScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -72,6 +79,7 @@ void CLoginScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CLoginScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCLog("LoginLayer::ccTouchEnded");
+    handleTouchSpritePool(pTouch->getLocation());
 }
 
 void CLoginScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)

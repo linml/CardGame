@@ -80,7 +80,7 @@ void CGamePlayer::loadGamesConfig()
     initPlayerTable((resRootPath +"level_config.plist").c_str());
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
-    g_FightSkillManager::instance()->initSkill();//加载列表
+    G_FightSkillManager::instance()->initSkill();//加载列表
 }
 
 void CGamePlayer::initGames()
@@ -138,7 +138,17 @@ void CGamePlayer::clearAllSkillInfo()
     DELETE_POINT_VECTOR(m_vSkillInfo, vector<CSkillData *>);
 
 }
-
+string CGamePlayer::getBufferPngByEffectId(int effectID)
+{
+    for (int i=0; i<m_vImpactInfo.size(); i++) {
+        if(m_vImpactInfo[i]->m_ieffect_id==effectID)
+        {
+            return m_vImpactInfo[i]->m_sEffectFile;
+        }
+    }
+    return "";
+    
+}
 CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
 {
     for (int i=0; i<m_vSkillInfo.size(); i++) {
@@ -479,6 +489,7 @@ void CGamePlayer::parseRival(CCObject *object)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetFightTeam");
     char *datat=(char *)object;
+    CCLog("%s",datat);
 #ifndef AAAAFOROSMACHINE
    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
 #else
@@ -573,7 +584,10 @@ void CGamePlayer::testPlayInfoData()
     
 }
 
-
+void CGamePlayer::appendCFightCardFightingBuffer(CFightCardFightingBuffer *data)
+{
+    this->m_vCFightCardFightingBuffer.push_back(data);
+}
 
 void CGamePlayer::appendAtkData(SEveryATKData * data)
 {
@@ -585,6 +599,7 @@ void CGamePlayer::onFightInterScene()
     DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
+    DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer *>);
 }
 
 void CGamePlayer::deleteFightMonsterCard()
@@ -598,6 +613,26 @@ void CGamePlayer::onFightExitScene()
     DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
     DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
+    DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer *>);
 }
 
+
+/*
+ * @breif: 获取道具背包信息：
+ */
+
+void CGamePlayer::loadPropsInfo()
+{
+ 
+    
+    
+}
+void CGamePlayer:: parsePropsInfo(CCObject *pObject)
+{
+    // reset props package
+    m_vProps.clear();
+    
+    // test code:
+    
+}
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

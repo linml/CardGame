@@ -84,6 +84,10 @@ void CCardSellLayer::initSelll()
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(-1);
     
+    
+    // ajust panel position:
+    m_cMaps->getElementByTags("2001,0")->setPosition(ccp(0, -20));
+    
     // init left
     CCArray * array = CCArray::create();
     m_pSellPackage = CPtListViewWidget::create(array, CCSizeMake(476, 450), kCCScrollViewDirectionVertical , CCSizeMake(5, 2) , 3);

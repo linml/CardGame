@@ -35,6 +35,7 @@ enum CardSuitKind
 	kTongHua = 1
 };
 
+
 // define class of CPtDisPlayCard
 class CPtDisPlayCard : public CGamesCard
 {
@@ -49,6 +50,7 @@ public:
 
 // define class of CPtBattleArray
 
+class CPtBattleArrayPanel;
 class CPtBattleArray : public CCLayer
 {
 
@@ -74,6 +76,7 @@ public:
     void insertMoveCard(CCNode *inCard);
 	CCArray *getCardArray();
     void save();
+    void saveOnClick();
     int  resortFightCard();
     int  getInsertIndex();
     void updateBattleArray();
@@ -98,6 +101,9 @@ protected:
     void updateLabel();
     bool hasInterveneCard(){ return m_pCardArray[4] == NULL ? false: true;};
     void createSuitLogo(const int& inSuit, const int &inSequence, const int &inPositionIndex);
+    bool isOverRVC();
+    bool hasMainAttacker(){return m_pCardArray[0]==NULL? false: true;};
+    bool isAssistantCard();
 protected:
     
     
@@ -113,6 +119,8 @@ protected:
     int m_aSuitArray[CARDCOUNT];
     int m_aSequenceArray[CARDCOUNT];
     
+ 
+    
 //test:
 public:
     int inTag ;
@@ -127,6 +135,8 @@ public:
     CC_SYNTHESIZE_READONLY(int, m_nHP, Hp);
     CC_SYNTHESIZE_READONLY(int, m_nSuitAtk, SuitAtk);
     CC_SYNTHESIZE_READONLY(int, m_nSuitDef, SuitDef);
+    CC_SYNTHESIZE(CPtBattleArrayPanel* , m_pPanelCntainer, PanelContainer)
+    CC_SYNTHESIZE(CCLayer*, m_pMoveLayer, MoveLayer);
     
     
 };
@@ -136,7 +146,7 @@ class  CPtBattleArrayPanel : public CCScrollView
 
 public:
     CREATE_FUNC(CPtBattleArrayPanel);
-    static CPtBattleArrayPanel* create(CCSize size, CCNode* container = NULL);
+    static CPtBattleArrayPanel* create(CCSize size, CCNode* container = NULL, CCLayer* moveLayer = NULL);
 public:
     CPtBattleArrayPanel();
     virtual ~CPtBattleArrayPanel();
@@ -146,7 +156,7 @@ public:
     CPtBattleArray *getCurrentArray(){return  m_pCurrentBatterArray;};
     void resetBattleArrays();
 public:
-
+    CGamePlayer * getGamePlayer(){return  gamePlayer;};
     
 public:
     void registerWithTouchDispatcher()
@@ -164,6 +174,7 @@ protected:
 	void updatePanel();
     void adjustScrollView(const CCPoint& begin, const CCPoint &end);
     void scrollToPage(int nPage );
+   
 
 protected:
 	int m_nCurrentPage;
@@ -180,6 +191,8 @@ protected:
     
     CGamePlayer *gamePlayer;
     
+    CC_SYNTHESIZE_READONLY(bool, m_bMove, PanelMove);
+    CC_SYNTHESIZE(CCLayer *, m_pMoveLayer, MoveLayer);
 };
 
 #endif

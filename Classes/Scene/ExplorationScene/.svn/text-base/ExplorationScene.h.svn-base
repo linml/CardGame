@@ -12,10 +12,12 @@
 #include "cocos2d.h"
 #include "LayoutLayer.h"
 
+#include "CPtButtonWidget.h"
+
 using namespace cocos2d;
 
-#define LEFT_TOUCH_TAG (3003)
-#define CENTER_TOUCH_TAG (LEFT_TOUCH_TAG-2)
+#define LEFT_TOUCH_TAG (3001)
+#define CENTER_TOUCH_TAG (LEFT_TOUCH_TAG+1)
 #define RIGHT_TOUCH_TAG (CENTER_TOUCH_TAG+1)
 
 // demo:
@@ -46,10 +48,9 @@ protected:
     void randonArrows(const int inLevle);
     void attachConfirm();
 
-
 protected:
     int m_nTouchTag;
-    
+    CPtButtonWidget* m_pBtn[3];
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
     

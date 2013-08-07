@@ -171,17 +171,20 @@ void CCardEnhanceLayer::addCard(const int& inIndex, CPtDisPlayCard * inCard)
         {
             if (inIndex == -2)
             {
+                inCard->getInCardBagPointer()->setDead();
                 addCardAction(inIndex, inCard);
                 m_pSelectCard = inCard;
                 m_nCurrentLevel = inCard->getCardData()->m_iCurrLevel;
-
+             
             }else if(m_pMaterialCards[inIndex] == NULL)
             {
+                inCard->getInCardBagPointer()->setDead();
                 // data change:
                 m_pMaterialCards[inIndex] = inCard;
                 inCard->getCardData()->setEnConsume(true);
                 // action:
                 addCardAction(inIndex, inCard);
+                
             }
             updateEnhance();
         }
@@ -193,13 +196,24 @@ void CCardEnhanceLayer::removeCard(const int &inIndex)
 {
     if (inIndex == -2)
     {
+        if (m_pSelectCard && m_pSelectCard->getCardData()->getInWhichBattleArray() == 0)
+        {
+            m_pSelectCard->getInCardBagPointer()->setLive();
+        }
+    
         removeCardAction(inIndex);
         m_pSelectCard = NULL;
         m_nCurrentLevel = -1;
+    
     }
     else if(inIndex >= 0 && inIndex < MATERIALCARDCOUNT && m_pMaterialCards[inIndex])
     {
+        if (m_pMaterialCards[inIndex]->getCardData()->getInWhichBattleArray() == 0)
+        {
+            m_pMaterialCards[inIndex]->getInCardBagPointer()->setLive();
+        }
         m_pMaterialCards[inIndex]->getCardData()->setEnConsume(false);
+
         removeCardAction(inIndex);
         m_pMaterialCards[inIndex] = NULL;
     }
@@ -298,7 +312,7 @@ void CCardEnhanceLayer::updateData()
         int currentLevel = m_pSelectCard->getCardData()->m_iCurrLevel;
         int level = m_pLevelConfig->getCurrentLevel(exp,m_pSelectCard->getCardData()->m_pCard->m_sicard_star ,currentLevel);
         CCLog("current-----: %d, level: %d, currentLevel: %d", exp, level, m_nCurrentLevel);
-        if (level > currentLevel && level > 1)
+        if (level >= currentLevel )
         {
             CCLog("can qianghua");
             CFightCard * tmp = m_pSelectCard->getCardData();
@@ -307,7 +321,11 @@ void CCardEnhanceLayer::updateData()
             m_nAddHp  = tmp->getAddValue(level, 3) - tmp->m_iHp;
             m_nAddRvc = tmp->getAddValue(level, 4) - 0;
             m_nCurrentLevel = level;
+            
+            // cclog
+            CCLog("%d %d", tmp->getAddValue(level, 1), tmp->m_attack);
         }
+       
        
     }else
     {
@@ -423,13 +441,15 @@ void CCardEnhanceLayer::clearMaterialCard()
     {
         if (m_pMaterialCards[i])
         {
+    
+          
             m_pMaterialCards[i]->removeFromParentAndCleanup(true);
             m_pMaterialCards[i] = NULL;
         }
     }
     if (m_pSelectCard)
     {
-        
+          
     }
     updateEnhance();
     
@@ -441,8 +461,15 @@ void CCardEnhanceLayer::resetMaterialCard()
         if (m_pMaterialCards[i])
         {
             m_pMaterialCards[i]->getCardData()->setEnConsume(false);
+            m_pMaterialCards[i]->getInCardBagPointer()->setLive();
         }
     }
+    if (m_pSelectCard)
+    {
+        m_pSelectCard->getCardData()->setEnConsume(false);
+        m_pSelectCard->getInCardBagPointer()->setLive();
+    }
+
 
 }
 bool CCardEnhanceLayer::verifyConin()

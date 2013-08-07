@@ -1,14 +1,14 @@
 10
 
 dir
-853
+877
 svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/sprite
 svn://merlin@192.168.2.2/sdp
 
 
 
-2013-07-26T08:18:25.329843Z
-797
+2013-08-02T08:54:15.280686Z
+855
 phileas
 
 
@@ -59,6 +59,40 @@ phileas
 
 
 804
+
+chushoujiemian.sprite
+file
+
+
+
+
+2013-08-06T09:58:51.000000Z
+53209d357f588c8a8b0430e6ce03db84
+2013-08-02T08:54:15.280686Z
+855
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1441
 
 room.sprite
 file
@@ -128,6 +162,40 @@ phileas
 
 4710
 
+fight_confirm.sprite
+file
+
+
+
+
+2013-07-05T06:01:22.000000Z
+3ae8ada2b8462954dc8b7012e0ec41a8
+2013-06-18T01:15:16.799500Z
+543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1559
+
 logon.sprite
 file
 
@@ -162,17 +230,18 @@ merlin
 
 5980
 
-fight_confirm.sprite
+jinhua.sprite
 file
 
 
 
 
-2013-07-05T06:01:22.000000Z
-3ae8ada2b8462954dc8b7012e0ec41a8
-2013-06-18T01:15:16.799500Z
-543
+2013-08-06T09:58:51.000000Z
+69fcd7298c7cf9dbd89baa73cf8a7d75
+2013-08-02T08:54:15.280686Z
+855
 phileas
+has-props
 
 
 
@@ -193,8 +262,7 @@ phileas
 
 
 
-
-1559
+1480
 
 main.sprite
 file
@@ -298,40 +366,6 @@ phileas
 
 948
 
-arrow.sprite
-file
-
-
-
-
-2013-07-05T06:01:22.000000Z
-949731b6b519765d310ff4784455cf53
-2013-06-18T01:15:16.799500Z
-543
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6904
-
 zhenxing.sprite
 file
 
@@ -366,18 +400,17 @@ phileas
 
 2470
 
-qianghua.sprite
+arrow.sprite
 file
 
 
 
 
-2013-07-26T08:29:06.000000Z
-b8c9b27408ad6ef1d0967ba51320d1c2
-2013-07-26T08:18:25.329843Z
-797
+2013-07-05T06:01:22.000000Z
+949731b6b519765d310ff4784455cf53
+2013-06-18T01:15:16.799500Z
+543
 phileas
-has-props
 
 
 
@@ -398,7 +431,42 @@ has-props
 
 
 
-9878
+
+6904
+
+zhenxingfudong.sprite
+file
+
+
+
+
+2013-07-23T05:47:26.000000Z
+3402cb513a3831cbe2b68c86693e0988
+2013-07-22T06:13:26.779914Z
+725
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10133
 
 confirm.sprite
 file
@@ -434,17 +502,18 @@ phileas
 
 3501
 
-zhenxingfudong.sprite
+qianghua.sprite
 file
 
 
 
 
-2013-07-23T05:47:26.000000Z
-3402cb513a3831cbe2b68c86693e0988
-2013-07-22T06:13:26.779914Z
-725
+2013-07-26T08:29:06.000000Z
+b8c9b27408ad6ef1d0967ba51320d1c2
+2013-07-26T08:18:25.329843Z
+797
 phileas
+has-props
 
 
 
@@ -465,8 +534,7 @@ phileas
 
 
 
-
-10133
+9878
 
 cubeCardSprite.sprite
 file

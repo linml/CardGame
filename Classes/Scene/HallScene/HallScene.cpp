@@ -69,7 +69,13 @@ void CHallScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CHallScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    handlerTouch();
+    CCPoint touchPoint = pTouch->getLocation();
+    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
+    if (m_nTouchTag != -1)
+    {
+        handlerTouch();
+    }
+
 }
 void CHallScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
