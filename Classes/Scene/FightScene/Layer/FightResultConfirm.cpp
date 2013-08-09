@@ -34,6 +34,13 @@ bool FightResultConfirm::init()
     {
         CC_BREAK_IF(!CCLayerColor::initWithColor(ccc4(125, 125, 125, 125)));
         initFightResultConfirm();
+        CCSprite *sprite=CCSprite::create("Icon-Small@2x.png");
+        if(getChildByTag(2))
+        {
+            getChildByTag(2)->addChild(sprite,1000,911);
+        }
+        sprite->setPosition(ccp(500,650));
+        //添加一个战斗回放的效果
         bRet = true;
     } while (0);
     return bRet;
@@ -50,6 +57,12 @@ void FightResultConfirm::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void FightResultConfirm::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (getChildByTag(2)&&getChildByTag(2)->getChildByTag(911)&&((CCSprite *)(getChildByTag(2)->getChildByTag(911)))->boundingBox().containsPoint(pTouch->getPreviousLocation()))
+    {
+        CCNotificationCenter::sharedNotificationCenter()->postNotification("CONGTOUBOFANG");
+        removeFromParentAndCleanup(true);
+        return;
+    }
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag = TouchRect::SearchTouchTag(touchPoint, m_cTouches);
     handlerTouch();
@@ -67,6 +80,7 @@ void FightResultConfirm::initFightResultConfirm()
     
     m_cMaps = LayoutLayer::create();
     m_cMaps->retain();
+    CCLog("m_cMaps:%d", m_cMaps->retainCount());
     m_cMaps->initWithFile(this, CSTR_FILEPTAH(plistPath, "confirm.plist"));
     m_cMaps->getTouchRects(m_cTouches);
     
@@ -102,7 +116,6 @@ void FightResultConfirm::initFightResultConfirm()
         CCLog("exist,%s", word.c_str());
         node->addChild(pLabel);
     }
-
     
 }
 
@@ -126,7 +139,6 @@ void FightResultConfirm::handlerTouch()
               SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
         }
         CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-
     }
   }
 

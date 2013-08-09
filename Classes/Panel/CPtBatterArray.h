@@ -66,9 +66,10 @@ public:
 	bool addCard(CPtDisPlayCard *inCard, const int & inCardType, const bool &inAppendEnable = false);
 	bool removeCard(const int& inCardType);
     bool replaceCard(CPtDisPlayCard *inCard, const int & inCardType);
-    bool isAssistantCard(CPtDisPlayCard *inCard , bool inRemove = false);
+    bool isAssistantCard(CPtDisPlayCard *inCard , bool inRemove = false, bool inSamePanel = false);
     bool isAssistantCard(CCTouch *pTouch);
-    int getReplaceCard(CPtDisPlayCard *inCard);
+    int getReplaceCard(CPtDisPlayCard *inCard, bool inSamePanel = false);
+    int getReplaceCard(CPtDisPlayCard *inCard, const int &inSelfIndex , bool inSamePanel = false);
 	int getFightPower();
 	int getLeaderShip();
 	int getGrowthValue();
@@ -81,8 +82,9 @@ public:
     int  getInsertIndex();
     void updateBattleArray();
     void callBack(CCObject *pSender);
-    
     void resetBattleArray();
+    void getSuitArray(int array[], int &len);
+    CPtDisPlayCard** getBattleArray(){return m_pCardArray;};
 public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
@@ -104,11 +106,12 @@ protected:
     bool isOverRVC();
     bool hasMainAttacker(){return m_pCardArray[0]==NULL? false: true;};
     bool isAssistantCard();
+    void swapCard(const int & inSrc, const int &inDes);
 protected:
     
     
 	CPtDisPlayCard* m_pCardArray[CARDCOUNT];
-    int m_nCardCount;
+    int m_nCardCount; // 主将卡牌的个数
 	int m_nGrowthValue;
 	BattleArrayType m_cType;
 	CardSuitKind   m_SuitKind;
@@ -119,8 +122,9 @@ protected:
     int m_aSuitArray[CARDCOUNT];
     int m_aSequenceArray[CARDCOUNT];
     
- 
-    
+    CPtDisPlayCard * selectNode;
+    int selectIndex;
+    bool selectAssistant;
 //test:
 public:
     int inTag ;

@@ -54,6 +54,7 @@ protected:
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
     
+    
 };
 
 

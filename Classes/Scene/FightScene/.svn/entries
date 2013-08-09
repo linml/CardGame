@@ -1,14 +1,14 @@
 10
 
 dir
-870
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Scene/FightScene
-svn://merlin@192.168.2.2/sdp
+900
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/FightScene
+svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-06T10:24:23.641146Z
-867
+2013-08-08T09:44:02.587983Z
+899
 merlin
 
 
@@ -29,50 +29,16 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 FightLogic
 dir
 
-CCardFightingLayerScene.cpp
-file
-
-
-
-
-2013-08-02T09:26:49.000000Z
-9cc0de1b5cbc923d5fb4f8d5a023f6c3
-2013-08-02T08:54:15.280686Z
-855
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-23961
-
 CFightingCardLayerScene.cpp
 file
 
 
 
 
-2013-08-06T08:14:03.000000Z
-9be3e54129a7b5658a4fc1aad1020f36
-2013-08-06T10:24:23.641146Z
-867
+2013-08-08T09:10:52.000000Z
+b8a56fb8c6be74104e6209e09e7ce218
+2013-08-08T09:42:31.247282Z
+898
 merlin
 
 
@@ -95,7 +61,7 @@ merlin
 
 
 
-35792
+39069
 
 CFightingCardLayerLogic.cpp
 file
@@ -134,50 +100,16 @@ merlin
 Layer
 dir
 
-CCardFightingLayerScene.h
-file
-
-
-
-
-2013-07-31T07:17:21.000000Z
-a99b08c1e31f312e73fc4bcca4a77520
-2013-07-08T10:54:52.974043Z
-677
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2267
-
 CFightingCardLayerScene.h
 file
 
 
 
 
-2013-08-06T07:22:14.000000Z
-af6addb3bf946231e1fce24722f8eb58
-2013-08-06T10:24:23.641146Z
-867
+2013-08-08T09:25:54.000000Z
+1fb6426f4f8e71ea447e0a687e137ad8
+2013-08-08T09:42:31.247282Z
+898
 merlin
 
 
@@ -200,7 +132,7 @@ merlin
 
 
 
-3660
+3894
 
 CFightingCardLayerLogic.h
 file

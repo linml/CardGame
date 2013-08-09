@@ -73,7 +73,7 @@ bool CPtBattleArrayItem::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent
             CCPoint worldPostion = displace->getPosition();
             worldPostion = displace->getParent()->convertToWorldSpace(worldPostion);
             m_pDelegateLayer->m_pMoveCard = displace->getCopy();
-            displace->setDead();
+         //   displace->setDead();
             m_pDelegateLayer->m_pMoveCard->setAnchorPoint(CCPointZero);
             m_pDelegateLayer->m_pMoveCard->setPosition(worldPostion);
             m_pDelegateLayer->addChild(m_pDelegateLayer->m_pMoveCard, 6000, 100);
@@ -129,7 +129,7 @@ void CPtBattleArrayItem::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
         if (m_pDelegateLayer->getCurrentTab() == 1 &&m_pDelegateLayer->m_pMoveCard)
         {
                  
-                (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
+               // (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
                 m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 battles->updateBattleArray();
         
@@ -368,7 +368,6 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
     {
         if (m_pDelegateLayer->m_pMoveCard)
         {
-            (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
             m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
             
             // onclick
@@ -377,6 +376,7 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
         }
         
     }
+    
     
     if (m_pDelegateLayer->m_pMoveCard)
     {
@@ -392,7 +392,6 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
         
         
         // remove:
-        
         if (m_pDelegateLayer->m_pMoveCard)
         {
             CCRect rect1 = m_pDelegateLayer->m_pMoveCard->boundingBox();
@@ -402,13 +401,14 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
             
             if (!rect.intersectsRect(rect1))
             {
-                (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
+                
                 m_pDelegateLayer->m_pMoveCard->release();
                 m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 
                 battles->updateBattleArray();
                 return;
             }
+            
             m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
             
             
@@ -416,41 +416,58 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
         
         
         
+        
         //replace and add:
         
         int replace = battles->getReplaceCard(m_pDelegateLayer->m_pMoveCard);
         int index = battles->getInsertIndex();
-        if (replace != -1)
-        {
-            CCLog("the replace: %d", replace);
-            
-            battles->replaceCard(m_pDelegateLayer->m_pMoveCard, replace);
-            m_pDelegateLayer->m_pMoveCard->release();
-            battles->updateBattleArray();
-            
-        }else if (battles->isAssistantCard(m_pDelegateLayer->m_pMoveCard, false))
-        {
-            battles->addCard(m_pDelegateLayer->m_pMoveCard, 4);
-            m_pDelegateLayer->m_pMoveCard->release();
-            battles->updateBattleArray();
-            
-        }
-        else if (index != -1 )
-        {
-            
-            battles->addCard(m_pDelegateLayer->m_pMoveCard, index);
-            m_pDelegateLayer->m_pMoveCard->release();
-        }else
-        {
-            (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
-            m_pDelegateLayer->m_pMoveCard->release();
-        }
         
+        if (isSameCardId(battles->getBattleArray(), m_pDelegateLayer->m_pMoveCard->getCardData()->m_pCard->m_icard_id, replace))
+        {
+            // can't replace has same id:
+            m_pDelegateLayer->m_pMoveCard->release();
+            // tip:
+            CCLog("tip:.....");
+            addCardFail();
+        }
+        else
+        {
+            if (replace != -1)
+            {
+                CCLog("the replace: %d", replace);
+                //
+                battles->replaceCard(m_pDelegateLayer->m_pMoveCard, replace);
+                m_pDelegateLayer->m_pMoveCard->release();
+             //   battles->updateBattleArray();
+                m_pDelegateLayer->m_pMoveCard->getInCardBagPointer()->setLogo(battles->inTag);
+                
+            }else if (battles->isAssistantCard(m_pDelegateLayer->m_pMoveCard, false))
+            {
+                
+                battles->addCard(m_pDelegateLayer->m_pMoveCard, 4);
+                m_pDelegateLayer->m_pMoveCard->getInCardBagPointer()->setLogo(battles->inTag);
+                m_pDelegateLayer->m_pMoveCard->release();
+               // battles->updateBattleArray();
+                
+            }
+            else if (index != -1 )
+            {
+                
+                battles->addCard(m_pDelegateLayer->m_pMoveCard, index);
+                m_pDelegateLayer->m_pMoveCard->getInCardBagPointer()->setLogo(battles->inTag);
+                m_pDelegateLayer->m_pMoveCard->release();
+            }else
+            {
+                m_pDelegateLayer->m_pMoveCard->release();
+            }
+
+        }
+               
         battles->updateBattleArray();
         
     }else
     {
-        (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
+      //  (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
         
         m_pDelegateLayer->m_pMoveCard->release();
         m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
@@ -458,6 +475,42 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
     }
     
 
+}
+
+bool CPtBattleArrayItem::isSameCardId(CPtDisPlayCard ** battleArray, const int &cardId, const int replaceIndex)
+{
+    bool bRet= false;
+    if (battleArray)
+    {
+        for (int i = 0; i < CARDCOUNT; i++)
+        {
+            if (battleArray[i] && battleArray[i]->getCardData()->m_pCard->m_icard_id == cardId)
+            {
+                if (replaceIndex != i)
+                {
+                    bRet = true;
+                    break;
+                }
+             
+           
+            }
+        }
+    }
+    return bRet;
+}
+
+void CPtBattleArrayItem::addCardFail()
+{
+    // tip:
+    CCLabelTTF* label = CCLabelTTF::create("同CARDID的卡不能再一个阵容中出现", "Arial", 30);
+    label->addChild(CCDirector::sharedDirector()->getRunningScene(), 1000);
+    label->setPosition(ccp(512, 384));
+    label->runAction(CCSequence::create(CCDelayTime::create(0.8f), CCCallFuncN::create(label, callfuncN_selector(CPtBattleArrayItem::removeCallBack))));
+}
+
+void CPtBattleArrayItem::removeCallBack(CCNode *pNode)
+{
+    pNode->removeFromParentAndCleanup(true);
 }
 
 //implement class of CBattleArrayLayer
@@ -507,9 +560,11 @@ void CBattleArrayLayer::initCards()
         card->setAnchorPoint(CCPointZero);
         if (card)//(card)
         {
-            if(cardData->getInWhichBattleArray() != 0) //(cardData->getInBattleArray())
+            int groupId = cardData->getInWhichBattleArray();
+            if( groupId != 0) //(cardData->getInBattleArray())
             {
-                card->setDead();
+//                card->setDead();
+                card->setLogo(groupId);
                 if (CCardSettingScene::s_pBattleArrayCards)
                 {
                     CCLog("user Id: %d", cardData->m_User_Card_ID);

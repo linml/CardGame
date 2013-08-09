@@ -468,6 +468,16 @@ void ActionCallFun::btnActOver()
     isButtonActing = false;
 }
 
+void ActionCallFun::setBtnActBegin()
+{
+    isButtonActing = true;
+}
+
+bool ActionCallFun::getBtnStatus()
+{
+    return isButtonActing;
+}
+
 //重置 zorder
 void ActionCallFun::resetZorder(CCNode *node,void *data)
 {

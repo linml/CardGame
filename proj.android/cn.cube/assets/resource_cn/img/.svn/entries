@@ -1,15 +1,15 @@
 10
 
 dir
-877
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img
-svn://merlin@192.168.2.2/sdp
+900
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img
+svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-06T10:10:36.375682Z
-865
-merlin
+2013-08-08T08:36:11.036616Z
+896
+phileas
 
 
 
@@ -536,6 +536,40 @@ has-props
 
 8406
 
+attack2_logo.png
+file
+
+
+
+
+2013-08-08T09:49:46.000000Z
+84c2d47f04f3151fa41011eb0328dd03
+2013-08-08T08:36:11.036616Z
+896
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12564
+
 chushoujiemian.png
 file
 
@@ -671,6 +705,40 @@ has-props
 
 
 120516
+
+def_logo.png
+file
+
+
+
+
+2013-08-08T09:49:46.000000Z
+4667e1b17ab9757d499943bb8ee9ce48
+2013-08-08T08:36:11.036616Z
+896
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13925
 
 hall.png
 file
@@ -1215,6 +1283,40 @@ has-props
 
 
 175285
+
+attack1_logo.png
+file
+
+
+
+
+2013-08-08T09:49:46.000000Z
+f1b771561663ec98bad30c4f014eac69
+2013-08-08T08:36:11.036616Z
+896
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12506
 
 memorygame.plist
 file

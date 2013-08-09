@@ -1,15 +1,15 @@
 10
 
 dir
-870
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Scene/HallScene
-svn://merlin@192.168.2.2/sdp
+900
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/HallScene
+svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-07T01:20:15.174535Z
-870
-phileas
+2013-08-08T07:57:17.781065Z
+893
+wood
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-08-07T01:20:27.000000Z
-d8e9bbec39d45cc6cb9099f094793f1c
-2013-08-07T01:20:15.174535Z
-870
-phileas
+2013-08-08T08:14:47.000000Z
+6edfcf01c3c65e257d3b8d24c2979d50
+2013-08-08T07:57:17.781065Z
+893
+wood
 
 
 
@@ -58,7 +58,7 @@ phileas
 
 
 
-9447
+9572
 
 HallScene.h
 file
@@ -66,11 +66,11 @@ file
 
 
 
-2013-07-08T10:54:19.000000Z
-5a4d6aa3f48b25894ac032c89ecd490f
-2013-06-14T10:27:20.354499Z
-509
-phileas
+2013-08-08T08:14:47.000000Z
+18c59ba5318d6bd56c2cdeba84843cdf
+2013-08-08T07:57:17.781065Z
+893
+wood
 
 
 
@@ -92,7 +92,7 @@ phileas
 
 
 
-946
+970
 
 Layer
 dir

@@ -56,8 +56,7 @@ void CBiforestLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CBiforestLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCPoint touchPoint = pTouch->getLocation();
-    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    if (m_nTouchTag != -1)
+    if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches))
     {
         handlerTouch();
     }

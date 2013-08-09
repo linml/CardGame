@@ -148,7 +148,7 @@ bool CConfigResourceLoad::loadEffectLogicInfo(vector<CImapact *> &vImapactTable,
         skillEffect->m_ieffect_id=GameTools::intForKey("effect_id", effectDirector);
         skillEffect->m_ieffect_logic=GameTools::intForKey("effect_logic", effectDirector);
         skillEffect->m_ibuff=GameTools::intForKey("effect_times", effectDirector);
-        skillEffect->m_ishowtime=GameTools::intForKey("show_times", effectDirector);
+        skillEffect->m_ishowtime=GameTools::intForKey("keep_times", effectDirector);
         skillEffect->m_iMutex=GameTools::intForKey("mutex", effectDirector);
         skillEffect->m_iMutex_level=GameTools::intForKey("mutex_level", effectDirector);
         skillEffect->m_iParameter_1=GameTools::intForKey("parameter_1", effectDirector);

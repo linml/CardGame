@@ -50,12 +50,10 @@ void CTaskLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CTaskLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCPoint touchPoint = pTouch->getLocation();
-    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    if (m_nTouchTag != -1)
+    if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_touchSprite))
     {
         handlerTouch();
     }
-
 }
 
 void CTaskLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
@@ -70,6 +68,8 @@ void CTaskLayer::initTask()
     
     // init data:
     m_nTouchTag = -1;
+    m_touchSprite = NULL;
+    
     m_bGoEnable = false;
     m_cMaps = NULL;
     
@@ -114,6 +114,9 @@ void CTaskLayer::initTask()
 void CTaskLayer::handlerTouch()
 {
     CCLog("CTaskLayer::handlerTouch: %d", m_nTouchTag);
+    if (m_nTouchTag != -1) {
+        Utility::handleBtnCallBack(m_touchSprite, this, NULL);
+    }
     
     if (m_nTouchTag == 7003 || m_nTouchTag == 7004 || m_nTouchTag == 7005)
     {

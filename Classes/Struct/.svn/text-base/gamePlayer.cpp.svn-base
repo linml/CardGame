@@ -138,12 +138,40 @@ void CGamePlayer::clearAllSkillInfo()
     DELETE_POINT_VECTOR(m_vSkillInfo, vector<CSkillData *>);
 
 }
+string CGamePlayer::getBufferPlistByEffectId(int effectID)
+{
+    for (int i=0; i<m_vImpactInfo.size(); i++) {
+        if(m_vImpactInfo[i]->m_ieffect_id==effectID)
+        {
+            vector<string>tempstr=GameTools::splitString(m_vImpactInfo[i]->m_sEffectFile.c_str(), ",");
+            if(tempstr.size()>1)
+            {
+                return tempstr[0];
+            }
+            else{
+                return "";
+            }
+            
+        
+        }
+    }
+    return "";
+}
 string CGamePlayer::getBufferPngByEffectId(int effectID)
 {
     for (int i=0; i<m_vImpactInfo.size(); i++) {
         if(m_vImpactInfo[i]->m_ieffect_id==effectID)
         {
-            return m_vImpactInfo[i]->m_sEffectFile;
+            vector<string>tempstr=GameTools::splitString(m_vImpactInfo[i]->m_sEffectFile.c_str(), ",");
+            if(tempstr.size()>1)
+            {
+                return tempstr[1];
+            }
+            else{
+                return "";
+            }
+            
+            
         }
     }
     return "";

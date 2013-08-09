@@ -31,7 +31,7 @@ public:
     void updateToLevel(const int & inLevel);
     CFightCard *getCardData(){ return m_pCardData;};
     void updateCard(CFightCard *card);
-
+    void setLogo(const int &inType);
 protected:
     void setLive(CCNode *node);
     void setDead(CCNode *node);
@@ -46,7 +46,7 @@ protected:
     
     void updateData(const int &inAtk, const int &inHp, const int &inRcv, const int &inDef);
     
-
+    void createLogo();
 
 protected:
     CCLabelTTF *label;
@@ -56,6 +56,7 @@ protected:
     CCLabelTTF* m_pHpLabel;
     CCLabelTTF* m_pRvcLabel;
 
+    CCSprite * m_pLogo;
     CFightCard *m_pCardData;
 
 public:

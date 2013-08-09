@@ -1,15 +1,15 @@
 10
 
 dir
-870
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Scene/LoginScene
-svn://merlin@192.168.2.2/sdp
+900
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/LoginScene
+svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-07T01:20:15.174535Z
-870
-phileas
+2013-08-08T07:57:17.781065Z
+893
+wood
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2013-08-07T01:20:26.000000Z
-6c3e6c395dbaef7a4b4bb3f0908f5dde
-2013-08-07T01:20:15.174535Z
-870
-phileas
+2013-08-08T08:14:47.000000Z
+7785675db21dc2b15f305414757c039b
+2013-08-08T07:57:17.781065Z
+893
+wood
 
 
 
@@ -58,7 +58,7 @@ phileas
 
 
 
-7362
+7513
 
 Layer
 dir
@@ -69,11 +69,11 @@ file
 
 
 
-2013-07-10T02:13:24.000000Z
-6e0e6a21c635a9083348ca6bc4c4f791
-2013-07-11T01:57:40.675294Z
-696
-merlin
+2013-08-08T08:14:47.000000Z
+ff09c9e22ae970cdde696b58d1af6a4b
+2013-08-08T07:57:17.781065Z
+893
+wood
 
 
 
@@ -95,5 +95,5 @@ merlin
 
 
 
-1595
+1621
 

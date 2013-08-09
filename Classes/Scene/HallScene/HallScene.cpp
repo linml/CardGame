@@ -70,8 +70,7 @@ void CHallScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CHallScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCPoint touchPoint = pTouch->getLocation();
-    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    if (m_nTouchTag != -1)
+    if (m_nTouchTag ==TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_touchSprite))
     {
         handlerTouch();
     }
@@ -87,6 +86,9 @@ void CHallScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 bool CHallScene::initHall()
 {
     bool bRet = false;
+    
+    m_touchSprite = NULL;
+    
     do {
         CCSize size =  CCDirector::sharedDirector()->getWinSize();
         CCLayer *layer = CCLayer::create();
@@ -261,12 +263,14 @@ bool CHallScene::initHall()
 void CHallScene::handlerTouch()
 {
     CCLog("touch tag : %d", m_nTouchTag);
+    if (m_nTouchTag != -1) {
+        Utility::handleBtnCallBack(m_touchSprite, this, NULL);
+    }
     switch (m_nTouchTag)
     {
         case 2001:
             
-            break;
-            
+            break;            
         case 2002:
             
             break;

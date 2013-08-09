@@ -7,6 +7,9 @@
 #include "HBActionAni.h"
 #include "HBActionAniCache.h"
 
+//按钮的动作TAG
+const int TAG_BUTTON_ACT = 123456789;
+
 namespace Utility {    
     
     void addTouchRect(CCRect rect,int touch_tag,CCNode* node,vector<TouchRect>& vTouchRect)
@@ -224,7 +227,129 @@ namespace Utility {
         HBActionAniCache::sharedActionAniCache()->addActionAniWithFile(CSTR_FILEPTAH(g_ActionFilePath,filePtah));
         return 0;
     }
-
+    
+    //设置已在layer中精灵的锚点
+    void setExistSpriteAnchorPoint(CCSprite* sprite, CCPoint anchorPoint) {
+        CCRect rect = sprite->getTextureRect();
+        //    rect.origin = sprite->conv
+        rect.size = sprite->getContentSize();
+        CCPoint old_anchorPoint = sprite->getAnchorPoint();
+        CCPoint old_pos = sprite->getPosition();
+        float scale = sprite->getScale();
+        CCPoint pos = ccp(old_pos.x - rect.size.width * old_anchorPoint.x * scale
+                          ,old_pos.y - rect.size.height * old_anchorPoint.y * scale);
+        pos = ccp(pos.x + rect.size.width * anchorPoint.x * scale,pos.y + rect.size.height * anchorPoint.y * scale);
+        sprite->setPosition(pos);
+        sprite->setAnchorPoint(anchorPoint);
+    }
+    
+    //统一按钮处理
+    int handleBtnCallBack(CCSprite* sprite, CCObject* target, SEL_CallFunc selector, CCPoint anchorPoint,const string& soundFile)
+    {
+        CCLOG("isButtonActing = %d",ActionCallFun::getBtnStatus());
+        if (!sprite) {
+            (target->*selector)();
+            if(soundFile != "")
+                PtSoundTool::playSysSoundEffect(soundFile);
+            //            isButtonActing = true;
+            return 0;
+        }
+        if (sprite->getActionByTag(TAG_BUTTON_ACT) || ActionCallFun::getBtnStatus()) {
+            return -1;
+        }
+        
+        if ( anchorPoint.equals(ccp(-1,-1)) ) {
+            setExistSpriteAnchorPoint(sprite, anchorPoint);
+        }
+//        ActionCallFun::setBtnActBegin();
+        CCActionInterval* tint = CCTintTo::create(0, 128, 128, 128);
+        CCActionInterval* tint_back = CCTintTo::create(0, 255, 255, 255);
+        CCActionInterval* delay = CCDelayTime::create(0.1);
+        CCCallFunc* action = CCCallFunc::create(target, selector);
+        CCCallFunc* actionOver = CCCallFunc::create(target, callfunc_selector(ActionCallFun::btnActOver));
+        CCAction* seq = CCSequence::create(tint, delay, action, tint_back, actionOver,NULL);
+        seq->setTag(TAG_BUTTON_ACT);
+        sprite->runAction(seq);
+        if(soundFile != "")
+            PtSoundTool::playSysSoundEffect(soundFile);
+        return 0;
+    }
+    int handleBtnCallBack(CCSprite* sprite,CCObject* target,SEL_CallFuncND selector, void* d,CCPoint anchorPoint,const string& soundFile)
+    {
+        if (sprite->getActionByTag(TAG_BUTTON_ACT) || ActionCallFun::getBtnStatus()) {
+            return -1;
+        }
+        if (!sprite) {
+            (target->*selector)(NULL,d);
+            if(soundFile != "")
+                PtSoundTool::playSysSoundEffect(soundFile);
+            return 0;
+        }
+        if( anchorPoint.equals(ccp(-1,-1)) ) {
+            setExistSpriteAnchorPoint(sprite,anchorPoint);
+        }
+        CCActionInterval* tint = CCTintTo::create(0, 128, 128, 128);
+        CCActionInterval* tint_back = CCTintTo::create(0, 255, 255, 255);
+        CCActionInterval* delay = CCDelayTime::create(0.1);
+        CCCallFuncND* action = CCCallFuncND::create(target, selector, d);
+        CCCallFunc* actionOver = CCCallFunc::create(target, callfunc_selector(ActionCallFun::btnActOver));
+        CCAction* seq = CCSequence::create(tint,delay,action,tint_back,actionOver,NULL);
+        seq->setTag(TAG_BUTTON_ACT);
+        sprite->runAction(seq);
+        if(soundFile != "")
+            PtSoundTool::playSysSoundEffect(soundFile);
+        return 0;
+    }
+    int handleBtnCallBack(const string& actionFile,CCSprite* sprite,CCObject* target,SEL_CallFunc selector,CCPoint anchorPoint,const string& soundFile)
+    {
+        if (sprite->getActionByTag(TAG_BUTTON_ACT) || ActionCallFun::getBtnStatus()) {
+            return -1;
+        }
+        if (!sprite) {
+            (target->*selector)();
+            if(soundFile != "")
+                PtSoundTool::playSysSoundEffect(soundFile);
+            return 0;
+        }
+        if( anchorPoint.equals(ccp(-1,-1)) ) {
+            setExistSpriteAnchorPoint(sprite,anchorPoint);
+        }
+        CCAction* action = PtActionUtility::getRunActionWithActionFile(actionFile);
+        CCCallFunc* actionOver = CCCallFunc::create(target, selector);
+        CCCallFunc* action_Over = CCCallFunc::create(target, callfunc_selector(ActionCallFun::btnActOver));
+        CCAction* seq = CCSequence::create((CCFiniteTimeAction*)action,actionOver,action_Over,NULL);
+        seq->setTag(TAG_BUTTON_ACT);
+        sprite->runAction(seq);
+        if(soundFile != "")
+            PtSoundTool::playSysSoundEffect(soundFile);
+        return 0;
+    }
+    int handleBtnCallBack(const string& actionFile,CCSprite* sprite,CCObject* target,SEL_CallFuncND selector, void* d,CCPoint anchorPoint,const string& soundFile)
+    {
+        if (sprite->getActionByTag(TAG_BUTTON_ACT) || ActionCallFun::getBtnStatus()) {
+            return -1;
+        }
+        if (!sprite) {
+            (target->*selector)(NULL,d);
+            if(soundFile != "")
+                PtSoundTool::playSysSoundEffect(soundFile);
+            return 0;
+        }
+        if( anchorPoint.equals(ccp(-1,-1)) ) {
+            setExistSpriteAnchorPoint(sprite,anchorPoint);
+        }
+        CCAction* action = PtActionUtility::getRunActionWithActionFile(actionFile);
+        CCCallFuncND* actionOver = CCCallFuncND::create(target, selector, d);
+        CCActionInterval* delay = CCDelayTime::create(1.0);
+        CCCallFunc* action_Over = CCCallFunc::create(target, callfunc_selector(ActionCallFun::btnActOver));
+        CCAction* seq = CCSequence::create((CCFiniteTimeAction*)action,actionOver,delay,action_Over,NULL);
+        seq->setTag(TAG_BUTTON_ACT);
+        sprite->runAction(seq);
+        if(soundFile != "")
+            PtSoundTool::playSysSoundEffect(soundFile);
+        return 0;
+    }
+    
     
 }
 

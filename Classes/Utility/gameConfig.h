@@ -2,6 +2,9 @@
 #define _GAME_CONFIG_H_
 #include <string>
 #include "cocos2d.h"
+#include "PtSoundTool.h"
+#include "Utility.h"
+#include "PtActionUtility.h"
 using namespace std;
 using namespace cocos2d;
 

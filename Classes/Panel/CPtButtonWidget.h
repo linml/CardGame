@@ -16,13 +16,15 @@ class CPtButtonWidget : public CCSprite
 {
 public:
     static CPtButtonWidget *create(const char * inText);
+    CPtButtonWidget();
+    virtual ~CPtButtonWidget();
     virtual bool init(const char * inText);
     void setText(const char * inText);
     void setNormal();
     void setPress();
 protected:
-    CCSprite * m_pNoraml= NULL;
-    CCSprite * m_pPress = NULL;
+    CCSprite * m_pNoraml;
+    CCSprite * m_pPress ;
     CCLabelTTF * m_pText;
     
     // test:

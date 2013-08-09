@@ -66,6 +66,13 @@ bool CCardSettingScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
     if (m_nTouchTag != -1)
     {
+        if (m_nTouchTag == 3006)
+        {
+            m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_active.png"));
+            m_pBackBtn->setAnchorPoint(CCPointZero);
+            m_pBackBtn->setPosition(ccp(950, 700));
+
+        }
         return true;
     }
     return false;
@@ -77,10 +84,18 @@ void CCardSettingScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CCardSettingScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCPoint touchPoint = pTouch->getLocation();
-    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    if (m_nTouchTag != -1)
+    if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches))
     {
          handlerTouch();
+    }else
+    {
+        if (m_nTouchTag == 3006)
+        {
+            m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_normal.png"));
+            m_pBackBtn->setAnchorPoint(CCPointZero);
+            m_pBackBtn->setPosition(ccp(950, 700));
+            
+        }
     }
 
 
@@ -168,9 +183,9 @@ void CCardSettingScene::handlerTouch()
             
         case 3006:
             // level:
-            m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_active.png"));
-            m_pBackBtn->setAnchorPoint(CCPointZero);
-            m_pBackBtn->setPosition(ccp(950, 700));
+//            m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_active.png"));
+//            m_pBackBtn->setAnchorPoint(CCPointZero);
+//            m_pBackBtn->setPosition(ccp(950, 700));
             SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
             break;
         default:

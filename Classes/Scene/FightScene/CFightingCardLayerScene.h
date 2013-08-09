@@ -48,6 +48,10 @@ private:
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
 private:
+    void onEnter();
+    void onExit();
+    void rePlayerRecode();
+private:
     void createFightCard();
     void createMonsterCard();
     void deleteBackGamePlayerFightMonsterCard();
@@ -64,11 +68,13 @@ private:
     void createEngryText();
     void createHpText();
     void updateHpAndAngry();
+    void hideAllHero();
     void initHpEngry();
     void updateBuffer();
     void clearUpVectorBuffer();
     void showVectorBuffer();
     void createKuaiJin();
+    void resetCardPosition();
 
     
     //
@@ -97,9 +103,11 @@ private:
     void  animationShouShang(CCNode *node,void *tag);
     
 public:
-   
     vector<CCSprite *>m_vFightHero;
     vector<CCSprite *>m_vMonsterHero;
+    CCSprite *HeroFightCard[2];  //准备做一个方式调用的精灵图片只有一张的方式
+    
+    
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;
     vector<CGameCardBuffer *>m_leftBuffer;

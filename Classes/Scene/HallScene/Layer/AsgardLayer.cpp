@@ -54,8 +54,7 @@ void CAsgardLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CAsgardLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCPoint touchPoint = pTouch->getLocation();
-    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    if (m_nTouchTag != -1)
+    if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_touchSprite))
     {
         handlerTouch();
     }
@@ -71,6 +70,7 @@ void CAsgardLayer::initArsgard()
 {
     // init data:
     m_nTouchTag  = -1;
+    m_touchSprite = NULL;
     
     // init map
     m_cMaps = LayoutLayer::create();
@@ -88,6 +88,10 @@ void CAsgardLayer::handlerTouch()
 {
     CCLayer * layer = NULL;
     CCLog("CAsgardLayer m_nTag : %d ", m_nTouchTag);
+    if(m_nTouchTag != -1)
+    {
+        Utility::handleBtnCallBack(m_touchSprite, this, NULL);
+    }
     switch (m_nTouchTag) {
         case GLADSHEIM_TOUCH_TAG:
             // to do:

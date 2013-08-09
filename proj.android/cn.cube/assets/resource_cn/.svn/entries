@@ -1,15 +1,15 @@
 10
 
 dir
-877
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
-svn://merlin@192.168.2.2/sdp
+900
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
+svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-07T02:44:09.830206Z
-877
-merlin
+2013-08-08T08:36:11.036616Z
+896
+phileas
 
 
 
@@ -523,10 +523,10 @@ file
 
 
 
-2013-08-07T02:31:05.000000Z
-7b773431f2dda716d8663f9c5b96631f
-2013-08-07T02:44:09.830206Z
-877
+2013-08-07T10:11:52.000000Z
+3a191e77a106f8585af8f7869442089f
+2013-08-07T10:13:48.121058Z
+889
 merlin
 
 
@@ -549,7 +549,7 @@ merlin
 
 
 
-25337
+25382
 
 bufferfire.plist
 file

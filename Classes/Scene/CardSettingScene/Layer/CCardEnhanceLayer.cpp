@@ -171,16 +171,20 @@ void CCardEnhanceLayer::addCard(const int& inIndex, CPtDisPlayCard * inCard)
         {
             if (inIndex == -2)
             {
-                inCard->getInCardBagPointer()->setDead();
+                if (inCard->getCardData()->getInWhichBattleArray() == 0)
+                {
+                    inCard->getInCardBagPointer()->setDead();
+                }
                 addCardAction(inIndex, inCard);
                 m_pSelectCard = inCard;
                 m_nCurrentLevel = inCard->getCardData()->m_iCurrLevel;
              
             }else if(m_pMaterialCards[inIndex] == NULL)
             {
-                inCard->getInCardBagPointer()->setDead();
+                               
                 // data change:
                 m_pMaterialCards[inIndex] = inCard;
+                inCard->getInCardBagPointer()->setDead();
                 inCard->getCardData()->setEnConsume(true);
                 // action:
                 addCardAction(inIndex, inCard);

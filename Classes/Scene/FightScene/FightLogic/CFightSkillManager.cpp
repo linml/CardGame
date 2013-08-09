@@ -61,28 +61,45 @@ void CFightSkillManager::logicSkillFight(CFightCard *pCard,vector< CFightCard *>
 void CFightSkillManager::logicSkill_Putong(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill)
 {
     //普通攻击
-    int value=pSkill->parameter_1;
-    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(value);
-    if (pImpact)
+    if(pSkill->parameter_1!=0)
     {
-        char data[20];
-        sprintf(data, "%d",pImpact->m_ieffect_logic);
-        IteratorEffMapPfunc pt=m_vEffictManager.find(data);
-        if(pt!=m_vEffictManager.end())
-        {
-            pbEffFunc ptfunction=pt->second;
-            for (int i=0; i<pMonterCard.size()-1; i++)
-            {
-                if(pMonterCard[i]&&pMonterCard[i]->m_iCurrHp>0)
-                {
-                    (*ptfunction)(pCard,pMonterCard[i],pSkill,pImpact,EN_ATKOBJECT_MONSTER);//攻击对象对方当个
-                    break;
-                }
-            }
-            
-        }
+        logicSkillFight(pCard,pFightCard,pMonterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+    }
+    if(pSkill->parameter_2!=0)
+    {
+        logicSkillFight(pCard,pFightCard,pFightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+    }
+    if(pSkill->parameter_3!=0)
+    {
+        logicSkillFight(pCard,pFightCard,pMonterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
     }
     
+    if(pSkill->parameter_4!=0)
+    {
+        logicSkillFight(pCard,pFightCard,pFightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
+    }
+    if(pSkill->parameter_5!=0)
+    {
+        //发动增幅技能的特效plist
+        for (int i=MonsterIndex; i<pMonterCard.size(); i++)
+        {
+            if(pMonterCard[i]&&pMonterCard[i]->m_iCurrHp>=0)
+            {
+                logicSkillFight(pCard,pFightCard,pMonterCard,FightIndex,i,pSkill,pSkill->parameter_5);
+            }
+        }
+    }
+    if(pSkill->parameter_6!=0)
+    {
+        //觉得这里需要添加个特效的文件
+        for (int i=FightIndex; i<pFightCard.size(); i++)
+        {
+            if(pFightCard[i]&&pFightCard[i]->m_iCurrHp>=0)
+            {
+                logicSkillFight(pCard,pFightCard,pFightCard,FightIndex,i,pSkill,pSkill->parameter_6);
+            }
+        }
+    }
 }
 
 void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
@@ -146,13 +163,14 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
             }
             switch (pSkill->skill_type) {
                 case 1:
-                    MonsterCard[MonsterIndex]->m_iCurrEngry+=30;
+                    MonsterCard[MonsterIndex]->appendEngry(30);
                     break;
                 case 3:
-                    for (int i=FightIndex+1; i<FightCard.size(); i++) {
+                    for (int i=FightIndex+1; i<FightCard.size(); i++)
+                    {
                         if(FightCard[i])
                         {
-                            FightCard[i]->m_iCurrEngry+=10;
+                            FightCard[i]->appendEngry(10);
                         }
                     }
                     break;
@@ -178,7 +196,8 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
                 logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);
                 currHp-=FightCard[FightIndex]->m_iCurrHp;
                 FightCard[FightIndex]->m_iCurrEngry+=20;
-                for (int i=FightIndex+1; i<FightCard.size(); i++) {
+                for (int i=FightIndex+1; i<FightCard.size(); i++)
+                {
                     FightCard[i]->m_iCurrEngry+=10;
                 }
                 engry -=FightCard[FightIndex]->m_iCurrEngry;
@@ -315,7 +334,7 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
             {
                 CCLog("pSkill->parameter_3================>%d",pSkill->parameter_3);
                 CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
-                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,pImpact->m_sEffectFile));
+                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,SinglePlayer::instance()->getBufferPlistByEffectId(pImpact->m_ieffect_id)));
                 CCLog("pSkill->parameter_3================>%s",pImpact->m_sEffectFile.c_str());
             }
         }
@@ -326,17 +345,17 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
             {
                 logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);
                 currHp-=FightCard[FightIndex]->m_iCurrHp;
-                FightCard[FightIndex]->m_iCurrEngry+=20;
+                FightCard[FightIndex]->appendEngry(20);
                 for (int i=FightIndex+1; i<FightCard.size(); i++)
                 {
                     if(FightCard[i])
                     {
-                        FightCard[i]->m_iCurrEngry+=10;
+                        FightCard[i]->appendEngry(10);
                     }
                 }
                 engry -=FightCard[FightIndex]->m_iCurrEngry;
                 monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
-                MonsterCard[MonsterIndex]->m_iCurrEngry+=30;
+                MonsterCard[MonsterIndex]->appendEngry(30);
                 monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
                 appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pPutongSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
             }
@@ -774,7 +793,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                     if (pCardBuffer->m_iBuff_effectTimes>0)
                     {
                         pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
-                        pFightCard->m_iCurrHp+=pCardBuffer->m_iValue;
+                        pFightCard->appendHp(pCardBuffer->m_iValue);
                         appendAnimation(AtkIndex, DefIndex, 0, pCardBuffer->m_iValue, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
                     }
                     if (pCardBuffer->m_iBuff_showTimes>0)

@@ -63,6 +63,8 @@ public:
     void removeSelf(CCNode* node,void* data);
     //按钮执行动作结束
     void btnActOver();
+    static void setBtnActBegin();
+    static bool getBtnStatus();
     void resetZorder(CCNode *node,void *data);
     void callTexiaoFile(CCNode *node,void *data);
     void removeChildBytag(CCNode *node,void *data);

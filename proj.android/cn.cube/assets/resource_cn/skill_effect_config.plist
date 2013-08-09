@@ -59,7 +59,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/img/fighting/suo.png</string>
+		<string>,resource_cn/img/fighting/suo.png</string>
 	</dict>
 	<key>100001</key>
 	<dict>
@@ -118,7 +118,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/img/fighting/suo.png</string>
+		<string>,resource_cn/img/fighting/suo.png</string>
 	</dict>
 	<key>100011</key>
 	<dict>
@@ -177,7 +177,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/img/fighting/suo.png</string>
+		<string>,resource_cn/img/fighting/suo.png</string>
 	</dict>
 	<key>100002</key>
 	<dict>
@@ -236,7 +236,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/bufferfire.plist</string>
+		<string>,resource_cn/img/fighting/jiaxue.png</string>
 	</dict>
 	<key>205201</key>
 	<dict>
@@ -295,7 +295,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/img/fighting/suo.png</string>
+		<string>,resource_cn/img/fighting/suo.png</string>
 	</dict>
 	<key>100012</key>
 	<dict>
@@ -354,7 +354,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/img/fighting/suo.png</string>
+		<string>resource_cn/bufferfire.plist,resource_cn/img/fighting/yiran.png</string>
 	</dict>
 	<key>100021</key>
 	<dict>
@@ -413,7 +413,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/img/fighting/suo.png</string>
+		<string>,resource_cn/img/fighting/suo.png</string>
 	</dict>
 	<key>100022</key>
 	<dict>
@@ -472,7 +472,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/img/fighting/suo.png</string>
+		<string>,resource_cn/img/fighting/suo.png</string>
 	</dict>
 	<key>205202</key>
 	<dict>

@@ -445,6 +445,22 @@ namespace CPtTool
     {
         return (int)(((base_value+ currentValue*ractor))+1.5)-1;
     }
+    bool getSuit(const int &number, int &outSuit, int &outSequence)
+    {
+        int inSuit = number;
+        if (inSuit <= 0 || inSuit > 52)
+        {
+            CCLog("suit: error");
+            return false;
+        }
+        
+        
+        outSuit = inSuit/13 + (inSuit%13 == 0 ? 0 : 1);
+        outSequence = inSuit- (13* (outSuit-1));
+        return  true;
+        
+    }
+
     bool memoryInfo(vm_statistics_data_t *vmStats)
     {
             mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;

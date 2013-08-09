@@ -13,9 +13,12 @@
 #include "SceneManager.h"
 #include "Utility.h"
 
+// test:
 int g_nLevle = 0;
 int g_array[3]={0};
 int g_index = -1;
+
+
 
 CCScene* CExploration::scene()
 {
@@ -66,9 +69,21 @@ bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
     if (m_nTouchTag != -1)
     {
+        switch (m_nTouchTag)
+        {
+            case 3001:
+            case 3002:
+            case 3003:
+                m_pBtn[m_nTouchTag-3001]->setPress();
+                break;
+            default:
+                break;
+        }
+        
         return true;
     }
     return false;
+
 }
 
 void CExploration::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
@@ -80,12 +95,26 @@ void CExploration::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCLog("CExploration::ccTouchEnded");
     CCPoint touchPoint = pTouch->getLocation();
-    m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    if (m_nTouchTag == -1)
+    
+    if (m_nTouchTag == TouchRect::SearchTouchTag(touchPoint, m_cTouches))
     {
-        return;
+        handlerTouch();
+    }else
+    {
+        switch (m_nTouchTag)
+        {
+            case 3001:
+            case 3002:
+            case 3003:
+                m_pBtn[m_nTouchTag-3001]->setNormal();
+                break;
+            default:
+                break;
+        }
+        
     }
-    handlerTouch();
+    
+    
 }
 
 void CExploration::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
@@ -300,29 +329,29 @@ void CExploration::handlerTouch()
     switch (m_nTouchTag) {
         case LEFT_TOUCH_TAG:
             CCLog("CExploration:: left");
-            g_index = 2;            // to do:
+            g_index = 0;            // to do:
             m_pBtn[m_nTouchTag-3001]->setPress();
             attachConfirm();
             break;
         case CENTER_TOUCH_TAG:
-             g_index = 0;
-             CCLog("CExploration:: center");
+            g_index = 1;
+            CCLog("CExploration:: center");
             // to do:
-             m_pBtn[m_nTouchTag-3001]->setPress();
+            m_pBtn[m_nTouchTag-3001]->setPress();
             attachConfirm();
             break;
             
         case RIGHT_TOUCH_TAG:
-             CCLog("CExploration:: right");
+            CCLog("CExploration:: right");
             m_pBtn[m_nTouchTag-3001]->setPress();
-            g_index = 1;
+            g_index = 2;
             attachConfirm();
             // to do:
             break;
             
         case 2008:
             //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
-             SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
             
             break;
         default:
@@ -334,7 +363,8 @@ void CExploration::randonArrows(const int inLevle)
 {
     
     char buffer[50] = {};
-   
+    
+    int wordInex = 0;
     srand(time(0));
     
     if (inLevle >= 0 && inLevle < 9)
@@ -342,22 +372,25 @@ void CExploration::randonArrows(const int inLevle)
         for (int i = 0; i < 3; i++)
         {
             m_pBtn[i]->setType(rand()%4);
-            sprintf(buffer, "%d", m_pBtn[i]->getType());
+            wordInex = (rand()%30)+1;
+            sprintf(buffer, "%d", wordInex);
             g_array[i] = m_pBtn[i]->getType();
-            m_pBtn[i]->setText(buffer);
+            m_pBtn[i]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
         }
         
-       
+        
     }else if(g_nLevle == 9)
     {
         m_pBtn[0]->setVisible(false);
         m_pBtn[2]->setVisible(false);
         m_pBtn[1]->setType(1);
-        sprintf(buffer, "%d", m_pBtn[1]->getType());
         g_array[1] = m_pBtn[1]->getType();
-        m_pBtn[1]->setText(buffer);
+        
+        wordInex = (rand()%30)+1;
+        sprintf(buffer, "%d", wordInex);
+        m_pBtn[1]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
     }
-
+    
     
 }
 

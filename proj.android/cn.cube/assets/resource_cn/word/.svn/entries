@@ -1,14 +1,14 @@
 10
 
 dir
-877
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/word
-svn://merlin@192.168.2.2/sdp
+900
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/word
+svn://merlin@192.168.2.3/sdp
 
 
 
-2013-07-22T06:13:26.779914Z
-725
+2013-08-08T08:36:11.036616Z
+896
 phileas
 
 
@@ -93,6 +93,40 @@ phileas
 
 
 2848
+
+tips.plist
+file
+
+
+
+
+2013-08-08T09:49:46.000000Z
+bec9e88e9f0cd70ba059007e5d898c85
+2013-08-08T08:36:11.036616Z
+896
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1691
 
 story.plist
 file

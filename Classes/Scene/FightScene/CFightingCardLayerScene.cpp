@@ -92,11 +92,44 @@ bool CFightingCardLayerScene::init()
     schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
     return true;
 }
+void CFightingCardLayerScene::onEnter()
+{
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(
+                                                                  this,
+                                                                  callfuncO_selector(CFightingCardLayerScene::rePlayerRecode), // 处理的消息的回调函数
+                                                                  "CONGTOUBOFANG", // 感兴趣的消息名称
+                                                                  NULL); // 保存消息中传递的数据
+    CCLayer::onEnter();
+}
+void CFightingCardLayerScene::onExit()
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(
+                                                                  this,
+                                                                  "CONGTOUBOFANG" // 感兴趣的消息名称
+                                                                  ); // 保存消息中传递的数据
+    CCLayer::onExit();
+
+}
+void CFightingCardLayerScene::rePlayerRecode()
+{
+    isAnimationEnd=0;
+    animationAndex=0;
+    hpUpdateIndex=0;
+    bufferIndex=0;
+    resetCardPosition();
+    hideAllHero();
+    initHpEngry();
+    clearUpVectorBuffer();
+    isAnimationEnd=true;
+    schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
+
+}
 
 bool CFightingCardLayerScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     return true;
 }
+
 void CFightingCardLayerScene::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
     
@@ -139,7 +172,7 @@ void CFightingCardLayerScene::animationSchudel(float t)
         CCLog("animationAndex:%d,%d",animationAndex,m_itotalAnimation);
         isAnimationEnd=false;
         CAnimationSpriteGameFight *fightAnimation=G_FightSkillManager::instance()->m_animationVector[animationAndex];
-        this->m_currCAnimationHP=fightAnimation;
+        m_currCAnimationHP=fightAnimation;
         animationSwf(fightAnimation);
     }
     else  if(animationAndex==m_itotalAnimation)
@@ -205,6 +238,23 @@ void CFightingCardLayerScene::initSetUpdateHp(int iCurrHp,int TotalHp,int currEn
     }
 }
 
+void CFightingCardLayerScene::hideAllHero()
+{
+    for (int i=0; i<m_vFightHero.size(); i++) {
+        if(m_vFightHero[i])
+        {
+            m_vFightHero[i]->setVisible(false);
+        }
+    }
+    for (int i=0; i<m_vMonsterHero.size(); i++)
+    {
+        if(m_vMonsterHero[i])
+        {
+            m_vMonsterHero[i]->setVisible(false);
+        }
+    }
+}
+
 void CFightingCardLayerScene::initHpEngry()
 {
     for (int i=0; i<m_vFightHero.size(); i++) {
@@ -239,20 +289,33 @@ void CFightingCardLayerScene::showVectorBuffer()
 }
 void CFightingCardLayerScene::clearUpVectorBuffer()
 {
-    for (int i; i<m_leftBuffer.size(); i++) {
-        m_leftBuffer[i]->removeFromParentAndCleanup(true);
+    for (int i=0; i<m_leftBuffer.size(); i++)
+    {
+        if(m_leftBuffer[i])
+        {
+            //m_leftBuffer[i]->removeAllChildrenWithCleanup(true);
+            removeChild(m_leftBuffer[i],true);
+        }
+        
     }
-    for (int i; i<m_rightBuffer.size(); i++) {
-        m_rightBuffer[i]->removeFromParentAndCleanup(true);
+    for (int i=0; i<m_rightBuffer.size(); i++)
+    {
+        if (m_rightBuffer[i])
+        {
+           //             m_rightBuffer[i]->removeAllChildrenWithCleanup(true);
+            removeChild(m_rightBuffer[i],true)  ;
+        }
     }
     m_leftBuffer.erase(m_leftBuffer.begin(), m_leftBuffer.end());
+    m_leftBuffer.clear();
     m_rightBuffer.erase(m_rightBuffer.begin(), m_rightBuffer.end());
+    m_rightBuffer.clear();
 }
 
 void CFightingCardLayerScene::updateBuffer()
 {
     clearUpVectorBuffer();
-     cout<<"bufferIndex====="<<bufferIndex<<endl;
+    cout<<"bufferIndex====="<<bufferIndex<<" "<<SinglePlayer::instance()->m_vCFightCardFightingBuffer.size()<<endl;
     if(bufferIndex<SinglePlayer::instance()->m_vCFightCardFightingBuffer.size())
     {
         CFightCardFightingBuffer *eveyatk=SinglePlayer::instance()->m_vCFightCardFightingBuffer[bufferIndex];
@@ -956,6 +1019,44 @@ bool CFightingCardLayerScene::initHitText()
     labelTTf2->setVisible(false);
     labelTTf2->setColor(ccc3(255, 0, 0));
     return true;
+}
+void CFightingCardLayerScene::resetCardPosition()
+{
+    for (int i=0; i<m_vFightingCard.size(); i++)
+    {
+        if(i!=m_vFightingCard.size()-1 &&m_vFightingCard[i])
+        {
+            CGamesCard *gameCard=(CGamesCard*)getChildByTag(m_vFightingCard[i]->tag);
+            gameCard->setPosition(getCardPoint(i,true));
+            gameCard->setLive();
+            if(i!=0)
+            {
+                gameCard->setScale(0.6);
+            }
+            else
+            {
+                gameCard->setScale(1.0f);
+            }
+        }
+    }
+    for (int i=0; i<m_vMonsterCard.size(); i++)
+    {
+        if(i!=m_vMonsterCard.size()-1 &&m_vMonsterCard[i])
+        {
+            CGamesCard *gameCard=(CGamesCard*)getChildByTag(m_vMonsterCard[i]->tag);
+            gameCard->setPosition(getCardPoint(i,false));
+            gameCard->setLive();
+            if(i!=0)
+            {
+                gameCard->setScale(0.6);
+            }
+            else
+            {
+                gameCard->setScale(1.0f);
+            }
+
+        }
+    }
 }
 
 //

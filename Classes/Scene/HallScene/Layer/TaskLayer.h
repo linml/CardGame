@@ -40,6 +40,7 @@ protected:
 protected:
     
     int m_nTouchTag;
+    CCSprite* m_touchSprite;
     bool m_bGoEnable;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;

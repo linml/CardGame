@@ -92,22 +92,28 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
 {
     bool bRet = false;
     int tag = -1;
-    tag = TouchRect::SearchTouchTag(point, touchRect);
+    CCSprite* touchSprite = NULL;
+    tag = TouchRect::SearchTouchTag(point, touchRect, &touchSprite);
     switch (tag) {
         case -1:
             
             break;
         case BUTTON_PLAY_TAG:
-            if(Utility::getNodeByTag(this, "0,2,0")->isVisible())
-            {
-                SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
-            }
+            Utility::handleBtnCallBack(touchSprite, this, callfunc_selector(CLoginScene::playGame));
             break;
         default:
             break;
     }
     
     return bRet;
+}
+
+void CLoginScene::playGame()
+{
+    if(Utility::getNodeByTag(this, "0,2,0")->isVisible())
+    {
+        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+    }
 }
 
 

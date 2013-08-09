@@ -47,6 +47,7 @@ class CGamePlayer : cocos2d::CCObject
     bool isHaveSkillBySkillId(int skillID);
     CSkillData *getSkillBySkillId(int skillId);
     vector<CSkillData *>m_vSkillInfo;
+    string getBufferPlistByEffectId(int effectID);
     string getBufferPngByEffectId(int effectID);
     
     //读取效果表格

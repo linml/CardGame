@@ -57,6 +57,8 @@ public:
     bool addLabelToShowPrecessInfo();
     void setText(const char *str);
     
+    void playGame();
+    
 protected:
     bool initLogin();
     bool handleTouchSpritePool(CCPoint point);

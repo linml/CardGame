@@ -62,6 +62,21 @@ namespace Utility {
     int runPtActionScript(CCNode* node, const char* filePtah,int tag);
     int stopPtActionScript(CCNode* node,int tag);
     int addPtActionScript(const char* filePtah);
+    
+    //统一按钮处理
+    //sprite---按钮精灵即touchRect内的精灵，
+    //target --- 后面回调的指针 selector -- 回调
+    //anchorPoint -- 锚点
+    //soundFile -- 音效文件  不需要播放传入“”
+    //actionFile -- 针对图标按钮 传入动作文件“btnAction”
+    int handleBtnCallBack(CCSprite* sprite,CCObject* target,SEL_CallFunc selector,CCPoint anchorPoint = ccp(-1,-1),const string& soundFile = "UI_click.wav");
+    int handleBtnCallBack(CCSprite* sprite,CCObject* target,SEL_CallFuncND selector, void* d,CCPoint anchorPoint = ccp(0.5,0.5),const string& soundFile = "UI_click.wav");
+    int handleBtnCallBack(const string& actionFile,CCSprite* sprite,CCObject* target,SEL_CallFunc selector,CCPoint anchorPoint = ccp(-1,-1),const string& soundFile = "UI_click.wav");
+    int handleBtnCallBack(const string& actionFile,CCSprite* sprite,CCObject* target,SEL_CallFuncND selector, void* d,CCPoint anchorPoint = ccp(-1,-1),const string& soundFile = "UI_click.wav");
+    
+    //设置已在layer中精灵的锚点
+    void setExistSpriteAnchorPoint(CCSprite* sprite,CCPoint anchorPoint);
+
 
 }
 

@@ -78,9 +78,11 @@ void CPtBattleArray::initBattleArrayFromServer(vector<CFightCard *> &fightArray)
     CCDictionary * cardBagPointArray = CCardSettingScene::s_pBattleArrayCards;
     CFightCard * tmp = fightArray.at(fightArray.size()-1);
     CCLog("size: %d", fightArray.size());
+    m_nCardCount = 0;
     if (tmp)
     {
-          CCLog("id, %d", tmp->m_pCard->m_icard_id);
+
+        CCLog("id, %d", tmp->m_pCard->m_icard_id);
         CPtDisPlayCard * card = CPtDisPlayCard::Create(tmp);
         card->setInCardBagPointer((CPtDisPlayCard*)cardBagPointArray->objectForKey(card->getCardData()->m_User_Card_ID));
         addCard(card, 4);
@@ -116,6 +118,41 @@ void CPtBattleArray::createSuitLogo(const int& inSuit, const int &inSequence, co
     m_pSuitLogo[inPositionIndex]->cocos2d::CCNode::removeAllChildrenWithCleanup(true);
     m_pSuitLogo[inPositionIndex]->addChild(suitSprite,300);
    
+    CCLabelTTF * label = NULL;
+    if (inSequence >1 && inSequence < 11)
+    {
+        memset(buff, 0, sizeof(buff));
+        sprintf(buff, "%2d", inSequence);
+        label=CCLabelTTF::create(buff, "Arial", 6 );
+    }else
+    {
+        char c[2]={'\n'};
+        switch (inSequence)
+        {
+            case 1:
+                c[0]='A';
+                break;
+            case 11:
+                c[0]='J';
+                break;
+            case 12:
+                c[0]='Q';
+                break;
+            case 13:
+                c[0]='K';
+                break;
+            default:
+                break;
+        }
+        label=CCLabelTTF::create(c, "Arial", 6);
+    }
+    if (label)
+    {
+        label->setPosition(ccp(4,4));
+        suitSprite->addChild(label);
+    }
+
+    
     m_aSuitArray[inPositionIndex] = inSuit;
     m_aSequenceArray[inPositionIndex] = inSequence;
 }
@@ -176,7 +213,7 @@ bool CPtBattleArray::addCard(CPtDisPlayCard *inCard, const int & inCardType , co
             inCard->setPosition(m_cPositions[inCardType]);
             this->addChild(m_pCardArray[inCardType], 1000+inCardType, inCardType);
             (inCard)->getCardData()->setInBattleArray(inTag);//(true);
-		}
+        }
 		
 	}
 	else
@@ -207,7 +244,8 @@ bool CPtBattleArray::replaceCard(CPtDisPlayCard *inCard, const int & inCardType)
             if (tmpCard && tmpCard->getCardData())
             {
                 tmpCard->getCardData()->setInBattleArray(0);//(false);
-                tmpCard->getInCardBagPointer()->setLive();
+               // tmpCard->getInCardBagPointer()->setLive();
+                tmpCard->getInCardBagPointer()->setLogo(0);
             }
 
             removeChild(m_pCardArray[inCardType], true);
@@ -239,7 +277,8 @@ bool CPtBattleArray::replaceCard(CPtDisPlayCard *inCard, const int & inCardType)
                 tmpCard->getCardData()->setInBattleArray(0);//(false);
                 if (tmpCard)
                 {
-                    tmpCard->getInCardBagPointer()->setLive();
+                   // tmpCard->getInCardBagPointer()->setLive();
+                    tmpCard->getInCardBagPointer()->setLogo(0);
                 }
             }
             
@@ -271,11 +310,14 @@ bool CPtBattleArray::replaceCard(CPtDisPlayCard *inCard, const int & inCardType)
     
 }
 
-int CPtBattleArray::getReplaceCard(CPtDisPlayCard *inCard)
+int CPtBattleArray::getReplaceCard(CPtDisPlayCard *inCard,bool inSamePanel)
 {
     CCRect rect = inCard->boundingBox();
-    rect.origin = this->convertToNodeSpace(rect.origin);
-    
+    if (inSamePanel == false)
+    {
+         rect.origin = this->convertToNodeSpace(rect.origin);
+    }
+   
 
     for (int i = 0; i < CARDCOUNT; i++)
     {
@@ -292,13 +334,42 @@ int CPtBattleArray::getReplaceCard(CPtDisPlayCard *inCard)
     return -1;
 }
 
-bool CPtBattleArray::isAssistantCard(CPtDisPlayCard *inCard, bool inRemove)
+int CPtBattleArray::getReplaceCard(CPtDisPlayCard *inCard, const int &inSelfIndex , bool inSamePanel)
+{
+    CCRect rect = inCard->boundingBox();
+    if (inSamePanel == false)
+    {
+        rect.origin = this->convertToNodeSpace(rect.origin);
+    }
+    
+    
+    for (int i = 0; i < CARDCOUNT; i++)
+    {
+        CCNode *tmp = m_pCardArray[i];
+        if (i != inSelfIndex && tmp)
+        {
+            float dt = abs(ccpDistance(ccp(rect.getMidX(), rect.getMidY()), ccp(tmp->boundingBox().getMidX(), tmp->boundingBox().getMidY())));
+            if (dt < 8.0f)
+            {
+                return i;
+            }
+        }
+    }
+    return -1;
+    
+}
+
+bool CPtBattleArray::isAssistantCard(CPtDisPlayCard *inCard, bool inRemove, bool inSamePanel)
 {
     CCRect rect ;
     rect.origin = m_cPositions[4];
     rect.size = CCSizeMake(139, 200);
-    CCPoint point = inCard->getPosition();
-    point = this->convertToNodeSpace(point);
+    CCPoint point = inCard->boundingBox().origin;
+    if (inSamePanel == false)
+    {
+        point = this->convertToNodeSpace(point);
+    }
+  
     if (rect.intersectsRect (CCRectMake(point.x, point.y, 139, 200)))
     {
         if (inRemove)
@@ -351,7 +422,8 @@ bool CPtBattleArray::removeCard(const int& inCardType)
                     tmpCard->getCardData()->setInBattleArray(0);//(false);
                     if (tmpCard->getInCardBagPointer())
                     {
-                        tmpCard->getInCardBagPointer()->setLive();
+                       // tmpCard->getInCardBagPointer()->setLive();
+                        tmpCard->getInCardBagPointer()->setLogo(0);
                     }
                  
                 }
@@ -363,6 +435,7 @@ bool CPtBattleArray::removeCard(const int& inCardType)
             m_aSequenceArray[inCardType] = -1;
             m_aSuitArray[inCardType] = -1;
 			updateBattleArray();
+            
 		}
 		
 	}
@@ -425,10 +498,15 @@ int  CPtBattleArray::resortFightCard()
             next++;
             CCLog("the card:%d", i);
         }
+        m_nCardCount = next;
     }
     if (m_pCardArray[4])
     {
         m_pCardArray[4]->setPosition(m_cPositions[4]);
+        if (m_pCardArray[4]->getCardData()->hasAssistantSkill() == false)
+        {
+            m_pCardArray[4]->setDead();
+        }
     }
     return next;
 }
@@ -486,6 +564,8 @@ void CPtBattleArray::initData()
         m_aSuitArray[i] = -1;
         m_aSequenceArray[i] = -1;
     }
+    selectNode  = NULL;
+    selectIndex = -1;
     
 }
 
@@ -544,36 +624,85 @@ void CPtBattleArray::updateCardSuitKind()
     m_nSuitAtk = 0;
     m_nSuitDef = 0;
     
+    int array[5]={0};
+    int len = 0;
+    getSuitArray(array, len);
     int outSuit, outSequence;
-    for (int i = 0; i < CARDCOUNT-1; i++)
+    for (int i = 0; i < 5; i++)
     {
-        if (m_pCardArray[i])
+        if (i >= len && m_pSuitLogo[i])
         {
-            if ((m_pCardArray[i])->getSuit(outSuit, outSequence))
-                createSuitLogo(outSuit, outSequence, i+1);
-        }else
-        {
-             m_pSuitLogo[i+1]->removeAllChildrenWithCleanup(true);
-             m_aSuitArray[i+1] = -1;
-             m_aSequenceArray[i+1] = -1;
+            m_aSuitArray[i] = -1;
+            m_aSequenceArray[i] = -1;
+            m_pSuitLogo[i]->removeAllChildrenWithCleanup(true);
+            return;
         }
-       
+        if(CPtTool::getSuit(array[i], outSuit, outSequence))
+        {
+            m_aSuitArray[i] = outSuit;
+            m_aSequenceArray[i] = outSequence;
+           createSuitLogo(outSuit, outSequence, i);
+        }
     }
-    if (m_pCardArray[CARDCOUNT-1])
-    {
-        if ((m_pCardArray[CARDCOUNT-1])->getSuit(outSuit, outSequence))
-            createSuitLogo(outSuit, outSequence, 0);
-    }else
-    {
-        m_pSuitLogo[0]->removeAllChildrenWithCleanup(true);
-        m_aSuitArray[0] = -1;
-        m_aSequenceArray[0] = -1;
-    }
+  
+//    for (int i = 0; i < CARDCOUNT-1; i++)
+//    {
+//        if (m_pCardArray[i])
+//        {
+//            if ((m_pCardArray[i])->getSuit(outSuit, outSequence))
+//                createSuitLogo(outSuit, outSequence, i+1);
+//        }else
+//        {
+//             m_pSuitLogo[i+1]->removeAllChildrenWithCleanup(true);
+//             m_aSuitArray[i+1] = -1;
+//             m_aSequenceArray[i+1] = -1;
+//        }
+//       
+//    }
+//    if (m_pCardArray[CARDCOUNT-1])
+//    {
+//        if ((m_pCardArray[CARDCOUNT-1])->getSuit(outSuit, outSequence))
+//            createSuitLogo(outSuit, outSequence, 0);
+//    }else
+//    {
+//        m_pSuitLogo[0]->removeAllChildrenWithCleanup(true);
+//        m_aSuitArray[0] = -1;
+//        m_aSequenceArray[0] = -1;
+//    }
     
     // test
     
     m_nSuitAtk = 10;
     m_nSuitDef = 5;
+}
+
+void CPtBattleArray::getSuitArray(int array[], int &len)
+{
+    len = 0;
+    for (int i = 0; i < CARDCOUNT; i++)
+    {
+        if (m_pCardArray[i])
+        {
+            array[len++]= m_pCardArray[i]->getCardData()->m_iSuit;
+        }
+    }
+    int tmpValue;
+    int minValue = 0;
+    for (int i = 0; i < len; i++)
+    {
+        minValue = i;
+        for (int j = i+1; j < len; j++)
+        {
+            if (array[minValue] > array[j])
+            {
+                minValue = j;
+            }
+        }
+        tmpValue = array[minValue];
+        array[minValue] = array[i];
+        array[i] = tmpValue;
+    }
+
 }
 
 void CPtBattleArray::updateLabel()
@@ -600,6 +729,13 @@ void CPtBattleArray::updateLabel()
     sprintf(buff, "RVC: %d",m_nLeadership);
     label = (CCLabelTTF *)(m_cMaps->getElementByTags("2,0,1,6"));
     label->setString(buff);
+//    if (m_nLeadership > m_pPanelCntainer->getGamePlayer()->getRVC())
+//    {
+//        label->setColor(ccRED);
+//    }else
+//    {
+//        label->setColor(ccWHITE);
+//    }
     
     // suit
     sprintf(buff, "ATK +%d DEF -%d",m_nSuitAtk, m_nSuitDef);
@@ -609,13 +745,15 @@ void CPtBattleArray::updateLabel()
     
 }
 
-static CCNode * selectNode  = NULL;
-static int selectIndex = -1;
+//static CCNode * selectNode  = NULL;
+//static int selectIndex = -1;
+
 
 bool CPtBattleArray::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     m_bOnClick = false;
     m_bTouchEnable = false;
+    selectAssistant = false;
     CCLog("CPtBattleArray %d ::ccTouchBegan",inTag+1);
    
     if (CPtTool::isInNode(m_pSaveBtn, pTouch))
@@ -637,7 +775,22 @@ bool CPtBattleArray::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         selectNode->removeFromParentAndCleanup(true);
         m_pMoveLayer->addChild(selectNode);
         selectNode->release();
+        if (selectNode->getCardData()->hasAssistantSkill() == false)
+        {
+            selectNode->setLive();
+        }
+        
+        CCLog("%d", m_nCardCount);
+        if (m_nCardCount < 4)
+        {
+           
+            selectIndex = m_nCardCount;
+            m_pCardArray[4] = NULL;
+            m_pCardArray[m_nCardCount] = (CPtDisPlayCard *)selectNode;
+            selectAssistant = true;
+        }
 
+        
         m_bTouchEnable = true;
         return true;
     }
@@ -695,6 +848,14 @@ void CPtBattleArray::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
         {
             CCLog("move in CPtBattleArrayLayer");
             drag(selectNode, pTouch);
+            
+            // 移动援护牌, 满四张不跳动卡牌
+            if (selectIndex ==4 && m_nCardCount == 4)
+            {
+                return;
+            }
+            
+            
             CCNode *right = selectIndex+1 < 4? m_pCardArray[selectIndex+1] : NULL;
             CCNode *left = selectIndex -1 >= 0? m_pCardArray[selectIndex-1]:NULL;
             if (isNeedMove(selectNode, right, 1))
@@ -714,23 +875,6 @@ void CPtBattleArray::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
             return;
         }
         
-        drag(selectNode, pTouch);
-       
-        CCNode *right = selectIndex+1 < 4? m_pCardArray[selectIndex+1] : NULL;
-        CCNode *left = selectIndex -1 >= 0? m_pCardArray[selectIndex-1]:NULL;
-        if (isNeedMove(selectNode, right, 1))
-        {
-            moveHalfStep(right, 2);
-            m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(right);
-            selectIndex++;
-            m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(selectNode);
-        }else if(isNeedMove(selectNode, left, 2))
-        {
-            moveHalfStep(left, 1);
-            m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(left);
-            selectIndex--;
-            m_pCardArray[selectIndex] = static_cast<CPtDisPlayCard*>(selectNode);
-        }
     }
 
 }
@@ -759,41 +903,59 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             rect1.origin = this->convertToNodeSpace(rect1.origin);
             rect.origin = CCPointZero;
             
+            CCPoint point = selectNode->getPosition();
+            point = selectNode->getParent()->convertToWorldSpace(point);
+            point = convertToNodeSpace(point);
             selectNode->retain();
             selectNode->removeFromParentAndCleanup(true);
-            selectNode->setPosition(m_cPositions[selectIndex]);
+           // selectNode->setPosition(m_cPositions[selectIndex]);
+            selectNode->setPosition(point);
             addChild(selectNode, 1000+selectIndex);
             selectNode->release();
-            if (selectIndex == 4 && !isAssistantCard((CPtDisPlayCard*)selectNode,true))
+            
+            int replace = getReplaceCard((CPtDisPlayCard *)selectNode, selectIndex, true);
+            if (replace != -1 && replace != selectIndex)
             {
+                if (selectAssistant && m_pCardArray[4] == NULL)
+                {
+                    m_pCardArray[4] = selectNode;
+                    m_pCardArray[selectIndex] = NULL;
+                    swapCard(4, replace);
+                }
+                else if (selectIndex == 4 || replace == 4)
+                {
+                     swapCard(selectIndex, replace);
+                }
+               
+                // replace card: selectIndex & replace!
                 
-                removeCard(4);
             }
-            else if(!rect.intersectsRect(rect1))
+            else
             {
-                removeCard(selectIndex);
-            }
+                if (m_pCardArray[4] == NULL &&  isAssistantCard((CPtDisPlayCard*)selectNode, false, true))
+                {
+                    // add card to assistant:
+                    swapCard(4, selectIndex);
+                }
+                else if (selectIndex == 4 && !isAssistantCard((CPtDisPlayCard*)selectNode,true, true))
+                {
+                    
+                    removeCard(4);
+                    
+                }
+                else if(!rect.intersectsRect(rect1))
+                {
+                    removeCard(selectIndex);
+                }
 
+            }
+            
+            
             updateBattleArray();
-            return;
         }
         
-        CCRect rect1 = selectNode->boundingBox();
-        rect1.origin = selectNode->getParent()->convertToWorldSpace(rect1.origin);
-        CCRect rect = this->boundingBox();
-        rect1.origin = this->convertToNodeSpace(rect1.origin);
-        rect.origin = CCPointZero;
-        if (selectIndex == 4 && !isAssistantCard((CPtDisPlayCard*)selectNode,true))
-        {
-            removeCard(4);
-        }
-        else if(!rect.intersectsRect(rect1))
-        {
-            removeCard(selectIndex);
-        }
-     
     }
-    updateBattleArray();
+   // updateBattleArray();
     
 }
 void CPtBattleArray::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
@@ -996,7 +1158,8 @@ void CPtBattleArray::resetBattleArray()
         {
             if (tmp->getInCardBagPointer())
             {
-                tmp->getInCardBagPointer()->setLive();
+                //tmp->getInCardBagPointer()->setLive();
+                tmp->getInCardBagPointer()->setLogo(0);
             }
             tmp->getCardData()->setInBattleArray(0);//(false);
             m_pCardArray[i] = NULL;
@@ -1010,8 +1173,9 @@ void CPtBattleArray::resetBattleArray()
             tmp =  ((CPtDisPlayCard*)(dir->objectForKey(tmpFightCard->m_User_Card_ID)));
             if (tmp)
             {
-                tmp ->setDead();
+                //tmp ->setDead();
                 tmp->getCardData()->setInBattleArray(inTag);
+                tmp->setLogo(inTag);
                 tmp = NULL;
             }
 
@@ -1019,6 +1183,22 @@ void CPtBattleArray::resetBattleArray()
     }
     
 
+}
+
+/*
+ * @brief: 对调卡牌
+ *
+ */
+void CPtBattleArray::swapCard(const int & inSrc, const int &inDes)
+{
+    CPtDisPlayCard * tmp = NULL;
+    
+    if (inSrc < 5 && inDes < 5 && inSrc >= 0 && inDes >= 0)
+    {
+        tmp = m_pCardArray[inSrc];
+        m_pCardArray[inSrc] =  m_pCardArray[inDes];
+        m_pCardArray[inDes] = tmp;
+    }
 }
 
 /*

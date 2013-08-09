@@ -31,13 +31,13 @@ void CEffectInterfaceOne::logicFightingCardByFightAndMonster(CFightCard *pCard,C
         if (pImapact->m_ibuff > 0)
         {
             //当前算一次
-            pMonster->m_iCurrHp += iShanghaiHp;
+            pMonster->appendHp(iShanghaiHp);
             CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,iShanghaiHp,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_HP);
             pMonster->appendBuffer(buffer);
         }
         else
         {
-            pMonster->m_iCurrHp += iShanghaiHp;
+            pMonster->appendHp(iShanghaiHp);
         }
         
     }

@@ -9,6 +9,7 @@
 #include "CGamesCard.h"
 #include "CCard.h"
 #include "gameConfig.h"
+#include "CPtTool.h"
 #define  TAG_GAMECARD_HERO 100
 
 
@@ -29,6 +30,7 @@ CGamesCard::CGamesCard()
     m_pDefLabel = NULL;
     m_pHpLabel = NULL;
     m_pRvcLabel = NULL;
+    m_pLogo = NULL;
 }
 
 CGamesCard::~CGamesCard()
@@ -243,18 +245,8 @@ void CGamesCard::createSuit(int inSuit)
 
 bool CGamesCard::getSuit(int &outSuit, int &outSequence)
 {
-    int inSuit = m_pCardData->m_iSuit;
-    if (inSuit <= 0 || inSuit > 52)
-    {
-        CCLog("suit: error");
-        return false;
-    }
-
+    return  CPtTool::getSuit(m_pCardData->m_iSuit, outSuit, outSequence);
     
-    outSuit = inSuit/13 + (inSuit%13 == 0 ? 0 : 1);
-    outSequence = inSuit- (13* (outSuit-1));
-    return  true;
-
 }
 
 /*
@@ -458,7 +450,7 @@ bool CGamesCard::initCreate(CFightCard *card)
     createStirps(card->m_pCard->m_icard_stirps);
     createCardName(card->m_pCard->m_scard_name.c_str());
     createData(card->m_attack, card->m_iHp, card->m_pCard->m_icard_leadership, card->m_defend);
-
+    createLogo();
     return true;
 }
 
@@ -485,3 +477,40 @@ void CGamesCard:: updateCard(CFightCard *card)
     createData(card->m_attack, card->m_iHp, card->m_pCard->m_icard_leadership, card->m_defend);
 
 }
+void CGamesCard::createLogo()
+{
+    
+    m_pLogo = CCSprite::create();
+    m_pLogo->setPosition(ccp(70, 100 ));
+    addChild(m_pLogo, 20);
+}
+
+/*
+ * @param: inType: 0:普通卡牌 1:攻击阵容1 2: 攻击阵容2 3: 防御阵容
+ */
+
+void CGamesCard::setLogo(const int &inType)
+{
+    CCPoint point = m_pLogo->getPosition();
+    switch (inType)
+    {
+        case 0:
+            m_pLogo->init();
+            break;
+        case 1:
+            m_pLogo->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "attack1_logo.png"));
+            break;
+        case 2:
+            m_pLogo->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "attack2_logo.png"));
+            break;
+        case 3:
+            m_pLogo->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "def_logo.png"));
+            break;
+        default:
+            break;
+    }
+    m_pLogo->setPosition(point);
+    
+    
+}
+

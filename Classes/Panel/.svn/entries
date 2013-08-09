@@ -1,14 +1,14 @@
 10
 
 dir
-870
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/Classes/Panel
-svn://merlin@192.168.2.2/sdp
+900
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Panel
+svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-07T01:20:15.174535Z
-870
+2013-08-08T09:31:11.054839Z
+897
 phileas
 
 
@@ -32,10 +32,10 @@ file
 
 
 
-2013-08-07T01:20:24.000000Z
-f45fdfc3109633daecd40185736af2d0
-2013-08-07T01:20:15.174535Z
-870
+2013-08-08T09:49:38.000000Z
+1c0d4522f178407cf94943ac3b715ec6
+2013-08-08T09:31:11.054839Z
+897
 phileas
 
 
@@ -58,7 +58,41 @@ phileas
 
 
 
-1525
+1607
+
+CGameCardBuffer.cpp
+file
+
+
+
+
+2013-08-07T09:01:33.000000Z
+a0d5e7350b3301a78c8eb1041f948b64
+2013-08-06T10:24:23.641146Z
+867
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1173
 
 LoadingScene.h
 file
@@ -93,40 +127,6 @@ merlin
 
 
 900
-
-CGameCardBuffer.cpp
-file
-
-
-
-
-2013-08-05T03:43:33.000000Z
-a0d5e7350b3301a78c8eb1041f948b64
-2013-08-06T10:24:23.641146Z
-867
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1173
 
 CGameCardBuffer.h
 file
@@ -400,6 +400,40 @@ phileas
 
 1222
 
+CPtButtonWidget.cpp
+file
+
+
+
+
+2013-08-08T09:49:38.000000Z
+235c475036c8f8d472bfcf1645c50590
+2013-08-08T09:31:11.054839Z
+897
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2019
+
 CPtListViewWidget.h
 file
 
@@ -434,50 +468,16 @@ phileas
 
 3974
 
-CPtButtonWidget.cpp
-file
-
-
-
-
-2013-08-07T01:20:24.000000Z
-a53111da828e954ecd160b86f200e01f
-2013-08-07T01:20:15.174535Z
-870
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1770
-
 CPtBatterArray.cpp
 file
 
 
 
 
-2013-08-07T01:20:24.000000Z
-fbbb046278b5ea5dcc9f05629f281031
-2013-08-07T01:20:15.174535Z
-870
+2013-08-08T09:49:38.000000Z
+3b923a6c361a3278db03c4842502a7fa
+2013-08-08T09:31:11.054839Z
+897
 phileas
 
 
@@ -500,7 +500,7 @@ phileas
 
 
 
-32007
+36486
 
 CPtScrollWordsWidget.cpp
 file
@@ -542,10 +542,10 @@ file
 
 
 
-2013-08-07T01:20:24.000000Z
-108a6fbdc57005a1d5b33f0591adb7b8
-2013-08-07T01:20:15.174535Z
-870
+2013-08-08T09:49:38.000000Z
+b32f2a837c3e6950cece1612b3907fe8
+2013-08-08T09:31:11.054839Z
+897
 phileas
 
 
@@ -568,7 +568,7 @@ phileas
 
 
 
-12660
+13399
 
 LoadingScene.cpp
 file
@@ -610,10 +610,10 @@ file
 
 
 
-2013-08-07T01:20:24.000000Z
-9a46a6ba7156bd5dddc211883d599f4c
-2013-08-07T01:20:15.174535Z
-870
+2013-08-08T09:49:38.000000Z
+cf39a356bffede23e3b776169e420ea6
+2013-08-08T09:31:11.054839Z
+897
 phileas
 
 
@@ -636,7 +636,7 @@ phileas
 
 
 
-650
+693
 
 CPtBatterArray.h
 file
@@ -644,10 +644,10 @@ file
 
 
 
-2013-08-07T01:20:24.000000Z
-f07b1615290dce415931085e7f155bce
-2013-08-07T01:20:15.174535Z
-870
+2013-08-08T09:49:38.000000Z
+cc682d8a7edd3486219198abee9f015a
+2013-08-08T09:31:11.054839Z
+897
 phileas
 
 
@@ -670,7 +670,7 @@ phileas
 
 
 
-5443
+5850
 
 CPtScrollWordsWidget.h
 file

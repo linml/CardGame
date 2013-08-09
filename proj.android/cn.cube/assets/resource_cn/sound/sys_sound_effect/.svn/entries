@@ -1,15 +1,15 @@
 10
 
 dir
-877
-svn://merlin@192.168.2.2/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/sound/sys_sound_effect
-svn://merlin@192.168.2.2/sdp
+900
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/sound/sys_sound_effect
+svn://merlin@192.168.2.3/sdp
 
 
 
-2013-06-17T08:03:30.708472Z
-529
-merlin
+2013-08-08T07:57:17.781065Z
+893
+wood
 
 
 
@@ -25,4 +25,38 @@ merlin
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+UI_click.wav
+file
+
+
+
+
+2013-08-08T09:49:46.000000Z
+0b8c08f0e215a5f6fca6a707bf6bfba4
+2013-08-08T07:57:17.781065Z
+893
+wood
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6984
 

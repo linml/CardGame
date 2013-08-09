@@ -93,10 +93,17 @@ public:
     void onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent);
     void onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent);
     
+    // handlerror
+    void addCardFail();
+    void removeCallBack(CCNode *pNode);
+
+protected:
+    bool isSameCardId(CPtDisPlayCard ** battleArray, const int &cardId,const int replaceIndex=-1);
 protected:
     CBattleArrayLayer * m_pDelegateLayer;
     CC_SYNTHESIZE(bool, m_bSellPanel, SellPanel);
     
+
 };
 
 #endif /* defined(___1_cube__CBattleArrayLayer__) */
