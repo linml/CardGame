@@ -41,6 +41,11 @@
 			<string>Team Arrange</string>
 			<key>wordFile</key>
 			<string>word.plist</string>
+			<key>initProperty</key>
+			<dict>
+				<key>tag</key>
+				<string>0</string>
+			</dict>
 		</dict>
 		<key>enhance</key>
 		<dict>
@@ -67,6 +72,11 @@
 			<string>word.plist</string>
 			<key>wordString</key>
 			<string>Enhance</string>
+			<key>initProperty</key>
+			<dict>
+				<key>tag</key>
+				<string>1</string>
+			</dict>
 		</dict>
 		<key>evolution</key>
 		<dict>
@@ -95,6 +105,11 @@
 			<string>Evolution</string>
 			<key>z</key>
 			<string>1</string>
+			<key>initProperty</key>
+			<dict>
+				<key>tag</key>
+				<string>2</string>
+			</dict>
 		</dict>
 		<key>sell</key>
 		<dict>
@@ -123,6 +138,11 @@
 			<string>Sell</string>
 			<key>z</key>
 			<string>1</string>
+			<key>initProperty</key>
+			<dict>
+				<key>tag</key>
+				<string>3</string>
+			</dict>
 		</dict>
 		<key>teamArray</key>
 		<dict>

@@ -227,25 +227,18 @@ CFightCard::~CFightCard()
 int CFightCard:: getAddValue(int level, int type)
 {
     if (level == 1)
-    {
-        //return 0;
-        
+    {        
         switch (type)
         {
             case 1:
                 return  m_pCard->m_icard_attack;
-                break;
             case 2:
-                break;
                 return  m_pCard->m_icard_defend;
             case 3:
                 return  m_pCard->m_icardhp;
-                break;
             default:
-                break;
+               return 0;
         }
-        
-        return 0;
     }
     
     CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();

@@ -11,7 +11,7 @@
 		<key>opacity</key>
 		<string>255</string>
 		<key>position</key>
-		<string>0,300</string>
+		<string>-300,300</string>
 		<key>bolFlipX</key>
 		<string>1</string>
 		<key>scaleX</key>

@@ -61,6 +61,10 @@ bool CCardEvolutionLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     if (CPtTool::isInNode(m_pSaveButton, pTouch))
     {
         m_nTouchTag = 2;
+        CCPoint point = m_pSaveButton->getAnchorPoint();
+        CCTexture2D * pressed = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_pressed.png"));
+        m_pSaveButton->initWithTexture(pressed);
+        m_pSaveButton->setAnchorPoint(point);
         return true;
     }
     m_nTouchTag = -1;
@@ -72,6 +76,13 @@ void CCardEvolutionLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CCardEvolutionLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if(m_nTouchTag == 2)
+    {
+        CCPoint point = m_pSaveButton->getAnchorPoint();
+        CCTexture2D * noraml = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_normal.png"));
+        m_pSaveButton->initWithTexture(noraml);
+        m_pSaveButton->setAnchorPoint(point);
+    }
     handlerTouch(pTouch);
 }
 void CCardEvolutionLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)

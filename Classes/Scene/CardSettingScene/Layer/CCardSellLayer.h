@@ -31,6 +31,9 @@ public:
     
 public:
     void resetData();
+    void addCoin(int conin);
+    void subCoin(int conin);
+    void clearCoin();
 protected:
     void initSelll();
     void handlerTouch(CCTouch * pTouch);
@@ -54,11 +57,13 @@ protected:
     int m_nMoney;
     LayoutLayer *m_cMaps;
     CGamePlayer *m_pPlayer;
-    CCNode *m_pSaveButton;
+    CCSprite *m_pSaveButton;
     CC_SYNTHESIZE(CPtListViewWidget*, m_pCardBag, CardBag);
     CC_SYNTHESIZE_READONLY(CPtListViewWidget*, m_pSellPackage, SellPackage);
 
-
+    int m_nConin;
+    CCLabelTTF *m_pConinlabel;
+    
 
 };
 

@@ -542,8 +542,13 @@ void CPtBattleArray::initMap()
     
     
     m_pSaveBtn =(CCSprite*)(m_cMaps->getElementByTags("2,0,8"));
+//    m_pSaveBtn->setTexture();
     
-  
+   CCPoint point = m_pSaveBtn->getAnchorPoint();
+    CCTexture2D * normal =   CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_normal.png"));
+    m_pSaveBtn->initWithTexture(normal);
+    m_pSaveBtn->setAnchorPoint(point);
+   
 }
 void CPtBattleArray::initData()
 {
@@ -760,6 +765,11 @@ bool CPtBattleArray::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     {
         m_bOnClick = true;
        // m_bTouchEnable = true;
+        CCPoint point = m_pSaveBtn->getAnchorPoint();
+        CCTexture2D * press = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_pressed.png"));
+        m_pSaveBtn->setTexture(press);
+        m_pSaveBtn->setAnchorPoint(point);
+        
         return true;
     }
     
@@ -885,8 +895,13 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
  
     if (m_bOnClick)
     {
+        CCPoint point = m_pSaveBtn->getAnchorPoint();
+        CCTexture2D *noraml = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_normal.png"));
+        m_pSaveBtn->initWithTexture(noraml);
+        m_pSaveBtn->setAnchorPoint(point);
         if (m_pPanelCntainer->getPanelMove())
         {
+           
             return;
         }
         saveOnClick();
@@ -1042,23 +1057,36 @@ void CPtBattleArray::save()
  */
 void CPtBattleArray::saveOnClick()
 {
-    if (inTag == 1 && hasMainAttacker() == false)
+    CSaveConfirmLayer * layer = CSaveConfirmLayer::create();
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
+    if (hasMainAttacker() == false)
     {
         // 第一阵容没有主将牌
-        return;
+        layer->setResultCode(1);
+        if (inTag == 1)
+        {
+            return;
+        }
     }
-    if (isAssistantCard() == false)
+    else if(m_pCardArray[4] == NULL)
+    {
+        layer->setResultCode(2);
+    }
+    else if (isAssistantCard() == false)
     {
         // 有援护牌且没有援护功能
-        return ;
+        layer->setResultCode(3);
+       // return ;
     }
-    if (isOverRVC())
+    else if (isOverRVC())
     {
+        layer->setResultCode(4);
         // 领导力不够
         return;
     }
     save();
     
+
 }
 void CPtBattleArray::callBack(CCObject *pSender)
 {
@@ -1066,11 +1094,9 @@ void CPtBattleArray::callBack(CCObject *pSender)
  
     char * buffer = (char *)pSender;
     CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
-    CSaveConfirmLayer * layer = new CSaveConfirmLayer();
+    CSaveConfirmLayer * layer = (CSaveConfirmLayer*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(2000);
     int result = GameTools::intForKey("code", dic);
-    layer->setUserData((void *) result);
-    layer->init();
-    layer->autorelease();
+    layer->setResultCode(result, true);
     if (result == 0)
     {
         save(SinglePlayer::instance()->m_vvBattleArray.at(inTag-1));
@@ -1082,7 +1108,7 @@ void CPtBattleArray::callBack(CCObject *pSender)
     
     delete [] buffer;
     CCLog("callback: %s", buffer);
-    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000);
+   
 }
 
 void CPtBattleArray::save(vector<CFightCard *> & infightArray)

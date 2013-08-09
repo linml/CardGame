@@ -42,6 +42,14 @@ bool FightResultConfirm::init()
         sprite->setPosition(ccp(500,650));
         //添加一个战斗回放的效果
         bRet = true;
+        int  value=(int)getUserData();
+        if(value==1)
+        {
+             PtSoundTool::playSysSoundEffect("fight_win.mp3");
+        }
+        else{
+             PtSoundTool::playSysSoundEffect("fight_failed.mp3");
+        }
     } while (0);
     return bRet;
 }
@@ -67,6 +75,7 @@ void FightResultConfirm::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     m_nTouchTag = TouchRect::SearchTouchTag(touchPoint, m_cTouches);
     handlerTouch();
 }
+
 void FightResultConfirm::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
     

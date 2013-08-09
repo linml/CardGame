@@ -31,6 +31,10 @@ CCardSettingScene::CCardSettingScene()
         s_pBattleArrayCards = CCDictionary::create();
         s_pBattleArrayCards->retain();
     }
+    for (int i = 0;  i< 4; i++)
+    {
+        m_pTabButton[i] = NULL;
+    }
    
 }
 
@@ -62,16 +66,35 @@ bool CCardSettingScene::init()
 
 bool CCardSettingScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
+    if (m_nTouchTag == m_nCurrentTableId)
+    {
+        return false;
+    }
+    
+    CCPoint point ;
+    CCTexture2D *pressed =NULL;
     if (m_nTouchTag != -1)
     {
-        if (m_nTouchTag == 3006)
+        switch (m_nTouchTag)
         {
-            m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_active.png"));
-            m_pBackBtn->setAnchorPoint(CCPointZero);
-            m_pBackBtn->setPosition(ccp(950, 700));
-
+            case 3001:
+            case 3002:
+            case 3003:
+            case 3004:
+                point = m_pTabButton[m_nTouchTag-3001]->getAnchorPoint();
+                pressed = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "tabButton_pressed.png"));
+                m_pTabButton[m_nTouchTag-3001]->initWithTexture(pressed);
+                m_pTabButton[m_nTouchTag-3001]->setAnchorPoint(point);
+                break;
+            case 3006:
+                m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_active.png"));
+                m_pBackBtn->setAnchorPoint(CCPointZero);
+                break;
+            default:
+                break;
         }
         return true;
     }
@@ -89,13 +112,27 @@ void CCardSettingScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
          handlerTouch();
     }else
     {
-        if (m_nTouchTag == 3006)
+        CCTexture2D * noraml = NULL;
+        switch (m_nTouchTag)
         {
-            m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_normal.png"));
-            m_pBackBtn->setAnchorPoint(CCPointZero);
-            m_pBackBtn->setPosition(ccp(950, 700));
-            
+            case 3001:
+            case 3002:
+            case 3003:
+            case 3004:
+                touchPoint = m_pTabButton[m_nTouchTag-3001]->getAnchorPoint();
+                noraml = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "tabButton_normal.png"));
+                m_pTabButton[m_nTouchTag-3001]->initWithTexture(noraml);
+                m_pTabButton[m_nTouchTag-3001]->setAnchorPoint(touchPoint);
+                break;
+            case 3006:
+                noraml = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "back_normal.png"));
+                m_pBackBtn->initWithTexture(noraml);
+                m_pBackBtn->setAnchorPoint(CCPointZero);
+                break;
+            default:
+                break;
         }
+
     }
 
 
@@ -142,6 +179,43 @@ void CCardSettingScene::initCCardSetting()
     m_pBackBtn = btn;
     Utility::addTouchRect(3006, btn, m_cTouches);
     
+    //tab button:
+    
+    CCNode *parent = m_cMaps->getElementByTags("1,1");
+    CCNode *tmp = parent->getChildByTag(2);
+    CCPoint an = tmp->getAnchorPoint();
+    CCPoint pos = tmp->getPosition();
+    CCLabelTTF * label = NULL;
+    int array[4]={1,1,2,0};
+    label =(CCLabelTTF*) m_cMaps->getElementByTags(array, 4);
+    CCPoint wordPos = label->getPosition();
+    for (int i = 0;  i< 4; i++)
+    {
+        if (i == 0)
+        {
+            CCTexture2D * selected = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "tabButton_selected.png"));
+            m_pTabButton[i] = CCSprite::createWithTexture(selected);
+            array[2]=1;
+            
+        }
+        else
+        {
+            array[3]=i;
+            label =(CCLabelTTF*) m_cMaps->getElementByTags(array, 4);
+            
+            CCTexture2D * normal = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "tabButton_normal.png"));
+            m_pTabButton[i] = CCSprite::createWithTexture(normal);
+            pos.x += (normal->getContentSize().width);
+
+        }
+          m_pTabButton[i]->setAnchorPoint(an);
+          m_pTabButton[i]->setPosition(pos);
+         parent->addChild(m_pTabButton[i],200);
+         label->removeFromParentAndCleanup(true);
+         label->setPosition(wordPos);
+        m_pTabButton[i]->addChild(label);
+    }
+    
 }
 
 void CCardSettingScene::handlerTouch()
@@ -182,16 +256,30 @@ void CCardSettingScene::handlerTouch()
             break;
             
         case 3006:
-            // level:
-//            m_pBackBtn->initWithFile(CSTR_FILEPTAH(g_mapImagesPath, "back_active.png"));
-//            m_pBackBtn->setAnchorPoint(CCPointZero);
-//            m_pBackBtn->setPosition(ccp(950, 700));
             SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
             break;
         default:
             return;
     }
-    m_nCurrentTableId = m_nTouchTag;
+ 
+    if (m_nTouchTag != 3006)
+    {
+        CCTexture2D * texture = NULL;
+        CCPoint  anPos = m_pTabButton[m_nTouchTag-3001]->getAnchorPoint();
+        texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "tabButton_normal.png"));
+        m_pTabButton[m_nCurrentTableId-3001]->initWithTexture(texture);
+        m_pTabButton[m_nCurrentTableId-3001]->setAnchorPoint(anPos);
+        
+        texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "tabButton_selected.png"));
+        m_pTabButton[m_nTouchTag-3001]->initWithTexture(texture);
+        m_pTabButton[m_nTouchTag-3001]->setAnchorPoint(anPos);
+        m_nCurrentTableId = m_nTouchTag;
+
+    }
+
+
+    
+ 
 }
 
 

@@ -1,14 +1,14 @@
 10
 
 dir
-900
+915
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/uiScript
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-06T10:04:40.217598Z
-863
+2013-08-09T07:48:04.156346Z
+908
 phileas
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2013-07-26T08:29:06.000000Z
-7b322cb686234f61cc147cfb3d4e3fc4
-2013-07-26T08:18:25.329843Z
-797
+2013-08-09T08:45:49.000000Z
+04886ccf3682d189c67e2bd340b5ab08
+2013-08-09T07:48:04.156346Z
+908
 phileas
 
 
@@ -92,7 +92,7 @@ phileas
 
 
 
-3721
+4081
 
 mall_upgrade.plist
 file
@@ -128,16 +128,16 @@ has-props
 
 11980
 
-zhenxingfudong.plist
+qianghua.plist
 file
 
 
 
 
-2013-07-23T05:47:25.000000Z
-fa3cd462118066abf0cdf2a5364ceb00
-2013-07-22T06:13:26.779914Z
-725
+2013-07-26T08:29:06.000000Z
+058392bba65d9a7d876b7494cf673aaf
+2013-07-26T08:18:25.329843Z
+797
 phileas
 
 
@@ -160,7 +160,7 @@ phileas
 
 
 
-5546
+5577
 
 confirm.plist
 file
@@ -196,16 +196,16 @@ phileas
 
 1163
 
-qianghua.plist
+zhenxingfudong.plist
 file
 
 
 
 
-2013-07-26T08:29:06.000000Z
-058392bba65d9a7d876b7494cf673aaf
-2013-07-26T08:18:25.329843Z
-797
+2013-07-23T05:47:25.000000Z
+fa3cd462118066abf0cdf2a5364ceb00
+2013-07-22T06:13:26.779914Z
+725
 phileas
 
 
@@ -228,7 +228,7 @@ phileas
 
 
 
-5577
+5546
 
 cubeCardSprite.plist
 file
@@ -400,40 +400,6 @@ merlin
 
 9323
 
-zhandouui.plist
-file
-
-
-
-
-2013-07-05T06:50:24.000000Z
-d48c8e77d9a07ee46ee118cd9d7aeb98
-2013-07-08T08:34:03.847443Z
-673
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-492
-
 demo_task.plist
 file
 
@@ -467,6 +433,40 @@ phileas
 
 
 1556
+
+zhandouui.plist
+file
+
+
+
+
+2013-07-05T06:50:24.000000Z
+d48c8e77d9a07ee46ee118cd9d7aeb98
+2013-07-08T08:34:03.847443Z
+673
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+492
 
 login.plist
 file

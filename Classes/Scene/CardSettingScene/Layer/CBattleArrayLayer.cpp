@@ -110,8 +110,6 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         {
             onTeamArrayEnd(pTouch, pEvent);
         }
-
-    
       
     }
 }
@@ -234,9 +232,10 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
                 // remove from sell package:
                 int sindex =(int)getUserData();
                 CCLog("index: %d", sindex);
-              
+               
                 m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->removeObjectAtIndex(sindex);
                 m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
+                m_pDelegateLayer->m_pSellPanel->subCoin(displace->getCardData()->m_pCard->m_icard_price);
                
                 return;
             }
@@ -269,6 +268,7 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
                         item->setDelegateLayer(m_pDelegateLayer);
                         m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->addObject(item);
                         m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
+                         m_pDelegateLayer->m_pSellPanel->addCoin(displace->getCardData()->m_pCard->m_icard_price);
                         if (m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->count() <= 3)
                         {
                          //   m_pDelegateLayer->m_pSellPanel->getSellPackage()->getTableView()->setContentOffset(ccp(0,244));
@@ -360,6 +360,52 @@ void CPtBattleArrayItem::onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent)
     }
     
 
+}
+
+bool CPtBattleArrayItem::onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent)
+{
+    
+    CCLog("CPtBattleArrayItem::onTeamArrayBegin");
+    if(m_pDelegateLayer ==  NULL)
+    {
+        return false;
+        
+    }
+    
+    m_pDelegateLayer->m_bReplace = false;
+    s_currentBattleArray = m_pDelegateLayer->panel->getBattleArray(pTouch);
+
+    
+    // new add  or replace:
+    
+    CPtDisPlayCard * displace =(CPtDisPlayCard*)(this->getDisplayView());
+    m_pDelegateLayer->m_pMoveCard = displace;
+    
+    if(displace)
+    {
+        if (CPtTool::isInNode(displace, pTouch))
+        {
+            if(displace->getCardData()->getInWhichBattleArray()!=0)// (displace->getCardData()->getInBattleArray())
+            {
+                //
+                CCLog("it's in battleArray");
+                return false;
+            }
+            // ondrag mode:
+            // create new sprite:
+            CCPoint worldPostion = displace->getPosition();
+            worldPostion = displace->getParent()->convertToWorldSpace(worldPostion);
+            m_pDelegateLayer->m_pMoveCard = displace->getCopy();
+            m_pDelegateLayer->m_pMoveCard->setAnchorPoint(CCPointZero);
+            m_pDelegateLayer->m_pMoveCard->setPosition(worldPostion);
+            m_pDelegateLayer->addChild(m_pDelegateLayer->m_pMoveCard, 6000, 100);
+            m_pDelegateLayer->m_cPrePoint = m_pDelegateLayer->m_pMoveCard->getPosition();
+            (m_pDelegateLayer->m_pMoveCard)->setInCardBagPointer(displace);
+            return true;
+        }
+        
+    }
+    return false;
 }
 
 void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)

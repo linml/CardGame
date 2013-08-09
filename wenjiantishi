@@ -1,0 +1,2167 @@
+2013-08-09 17:58:29.962 91.cube[23252:907] cocos2d: surface size: 2048x1536
+Cocos2d: cocos2d: cocos2d-2.0-x-2.0.4
+Cocos2d: cocos2d: GL_VENDOR:     Imagination Technologies
+Cocos2d: cocos2d: GL_RENDERER:   PowerVR SGX 543
+Cocos2d: cocos2d: GL_VERSION:    OpenGL ES 2.0 IMGSGX543-73.16.1
+Cocos2d: cocos2d: GL_MAX_TEXTURE_SIZE: 4096
+Cocos2d: cocos2d: GL_MAX_TEXTURE_UNITS: 8
+Cocos2d: cocos2d: GL supports PVRTC: YES
+Cocos2d: cocos2d: GL supports BGRA8888 textures: NO
+Cocos2d: cocos2d: GL supports NPOT textures: YES
+Cocos2d: cocos2d: GL supports discard_framebuffer: YES
+Cocos2d: cocos2d: GL supports shareable VAO: YES
+Cocos2d: cocos2d: compiled with Profiling Support: NO
+Cocos2d: file:resource_cn/uiScript/login.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/login.plist
+Cocos2d: dict:key playerButton
+Cocos2d: dict:key login
+Cocos2d: dict:key player
+Cocos2d: file:resource_cn/map/logon.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/login.plist
+Cocos2d: the 160004 card's next card id: 0
+Cocos2d: the 150005 card's next card id: 0
+Cocos2d: the 160007 card's next card id: 0
+Cocos2d: the 120000 card's next card id: 110007
+Cocos2d: the 150008 card's next card id: 0
+Cocos2d: the 120003 card's next card id: 0
+Cocos2d: the 120006 card's next card id: 0
+Cocos2d: the 170001 card's next card id: 0
+Cocos2d: the 120009 card's next card id: 0
+Cocos2d: the 170004 card's next card id: 0
+Cocos2d: the 170007 card's next card id: 0
+Cocos2d: the 130000 card's next card id: 0
+Cocos2d: the 130003 card's next card id: 0
+Cocos2d: the 130006 card's next card id: 0
+Cocos2d: the 180001 card's next card id: 0
+Cocos2d: the 100001 card's next card id: 0
+Cocos2d: the 130009 card's next card id: 0
+Cocos2d: the 180004 card's next card id: 0
+Cocos2d: the 100004 card's next card id: 100005
+Cocos2d: the 180007 card's next card id: 0
+Cocos2d: the 140000 card's next card id: 0
+Cocos2d: the 100007 card's next card id: 0
+Cocos2d: the 140003 card's next card id: 0
+Cocos2d: the 140006 card's next card id: 0
+Cocos2d: the 190001 card's next card id: 0
+Cocos2d: the 110001 card's next card id: 0
+Cocos2d: the 140009 card's next card id: 0
+Cocos2d: the 190004 card's next card id: 0
+Cocos2d: the 110004 card's next card id: 0
+Cocos2d: the 190007 card's next card id: 0
+Cocos2d: the 150000 card's next card id: 0
+Cocos2d: the 110007 card's next card id: 110008
+Cocos2d: the 160002 card's next card id: 0
+Cocos2d: the 150003 card's next card id: 0
+Cocos2d: the 160005 card's next card id: 0
+Cocos2d: the 150006 card's next card id: 0
+Cocos2d: the 160008 card's next card id: 0
+Cocos2d: the 120001 card's next card id: 0
+Cocos2d: the 150009 card's next card id: 0
+Cocos2d: the 120004 card's next card id: 0
+Cocos2d: the 120007 card's next card id: 0
+Cocos2d: the 170002 card's next card id: 0
+Cocos2d: the 170005 card's next card id: 0
+Cocos2d: the 170008 card's next card id: 0
+Cocos2d: the 130001 card's next card id: 0
+Cocos2d: the 130004 card's next card id: 0
+Cocos2d: the 130007 card's next card id: 0
+Cocos2d: the 180002 card's next card id: 0
+Cocos2d: the 100002 card's next card id: 0
+Cocos2d: the 180005 card's next card id: 0
+Cocos2d: the 100005 card's next card id: 100006
+Cocos2d: the 180008 card's next card id: 0
+Cocos2d: the 140001 card's next card id: 0
+Cocos2d: the 100008 card's next card id: 100009
+Cocos2d: the 140004 card's next card id: 0
+Cocos2d: the 140007 card's next card id: 0
+Cocos2d: the 190002 card's next card id: 0
+Cocos2d: the 110002 card's next card id: 0
+Cocos2d: the 190005 card's next card id: 0
+Cocos2d: the 110005 card's next card id: 0
+Cocos2d: the 160000 card's next card id: 0
+Cocos2d: the 190008 card's next card id: 0
+Cocos2d: the 150001 card's next card id: 0
+Cocos2d: the 110008 card's next card id: 0
+Cocos2d: the 160003 card's next card id: 0
+Cocos2d: the 150004 card's next card id: 0
+Cocos2d: the 160006 card's next card id: 0
+Cocos2d: the 150007 card's next card id: 0
+Cocos2d: the 160009 card's next card id: 0
+Cocos2d: the 120002 card's next card id: 0
+Cocos2d: the 170000 card's next card id: 0
+Cocos2d: the 120005 card's next card id: 0
+Cocos2d: the 120008 card's next card id: 0
+Cocos2d: the 170003 card's next card id: 0
+Cocos2d: the 170006 card's next card id: 0
+Cocos2d: the 170009 card's next card id: 0
+Cocos2d: the 130002 card's next card id: 0
+Cocos2d: the 130005 card's next card id: 0
+Cocos2d: the 180000 card's next card id: 0
+Cocos2d: the 100000 card's next card id: 0
+Cocos2d: the 130008 card's next card id: 0
+Cocos2d: the 180003 card's next card id: 0
+Cocos2d: the 100003 card's next card id: 0
+Cocos2d: the 180006 card's next card id: 0
+Cocos2d: the 100006 card's next card id: 0
+Cocos2d: the 180009 card's next card id: 0
+Cocos2d: the 140002 card's next card id: 0
+Cocos2d: the 100009 card's next card id: 110000
+Cocos2d: the 140005 card's next card id: 0
+Cocos2d: the 190000 card's next card id: 0
+Cocos2d: the 110000 card's next card id: 0
+Cocos2d: the 140008 card's next card id: 0
+Cocos2d: the 190003 card's next card id: 0
+Cocos2d: the 110003 card's next card id: 110004
+Cocos2d: the 190006 card's next card id: 0
+Cocos2d: the 110006 card's next card id: 0
+Cocos2d: the 160001 card's next card id: 0
+Cocos2d: the 190009 card's next card id: 0
+Cocos2d: the 150002 card's next card id: 0
+Cocos2d: the 110009 card's next card id: 0
+card plist size =100
+http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+addRequest merlinaskplayerinfo
+send http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+addRequest send
+Cocos2d: merlinaskplayerinfo completed
+Cocos2d: {"code":0,"result":{"card_item":{"1003":{"card_item_id":"1003","card_id":"100002","level":"1","exp":"50","leadership":"11","attack":"632","defend":"266","hp":"2194","card_energy":"0","suit":"1"},"1004":{"card_item_id":"1004","card_id":"100003","level":"2","exp":"200","leadership":"14","attack":"733","defend":"295","hp":"1925","card_energy":"0","suit":"51"},"1005":{"card_item_id":"1005","card_id":"100004","level":"3","exp":"231","leadership":"4","attack":"315","defend":"173","hp":"1092","card_energy":"0","suit":"3"},"1006":{"card_item_id":"1006","card_id":"100005","level":"3","exp":"384","leadership":"6","attack":"495","defend":"210","hp":"1403","card_energy":"0","suit":"4"},"1007":{"card_item_id":"1007","card_id":"100006","level":"3","exp":"576","leadership":"11","attack":"731","defend":"301","hp":"1640","card_energy":"0","suit":"5"},"1008":{"card_item_id":"1008","card_id":"100007","level":"3","exp":"576","leadership":"14","attack":"591","defend":"228","hp":"1967","card_energy":"0","suit":"6"},"1009":{"card_item_id":"1009","card_id":"100008","level":"3","exp":"231","leadership":"4","attack":"339","defend":"179","hp":"1015","card_energy":"0","suit":"7"},"1010":{"card_item_id":"1010","card_id":"100009","level":"3","exp":"284","leadership":"6","attack":"534","defend":"217","hp":"1281","card_energy":"0","suit":"8"},"1011":{"card_item_id":"1011","card_id":"110000","level":"3","exp":"576","leadership":"11","attack":"695","defend":"315","hp":"2065","card_energy":"0","suit":"9"},"1012":{"card_item_id":"1012","card_id":"110001","level":"3","exp":"576","leadership":"14","attack":"790","defend":"357","hp":"1686","card_energy":"0","suit":"10"},"1013":{"card_item_id":"1013","card_id":"110002","level":"3","exp":"231","leadership":"4","attack":"339","defend":"179","hp":"1015","card_energy":"0","suit":"11"},"1014":{"card_item_id":"1014","card_id":"110003","level":"3","exp":"384","leadership":"6","attack":"534","defend":"217","hp":"1281","card_energy":"0","suit":"12"},"1015":{"card_item_id":"1015","card_id":"110004","level":"1","exp":"50","leadership":"11","attack":"731","defend":"286","hp":"1379","card_energy":"0","suit":"13"},"3001":{"card_item_id":"3001","card_id":"110005","level":"1","exp":"50","leadership":"14","attack":"718","defend":"324","hp":"1655","card_energy":"0","suit":"14"},"4255":{"card_item_id":"4255","card_id":"110006","level":"1","exp":"50","leadership":"4","attack":"220","defend":"144","hp":"704","card_energy":"0","suit":"15"},"4256":{"card_item_id":"4256","card_id":"110007","level":"1","exp":"50","leadership":"6","attack":"346","defend":"169","hp":"1108","card_energy":"0","suit":"16"},"4257":{"card_item_id":"4257","card_id":"110008","level":"1","exp":"50","leadership":"11","attack":"665","defend":"233","hp":"2129","card_energy":"0","suit":"17"},"4258":{"card_item_id":"4258","card_id":"110009","level":"1","exp":"50","leadership":"14","attack":"698","defend":"260","hp":"1555","card_energy":"0","suit":"18"},"4259":{"card_item_id":"4259","card_id":"120000","level":"1","exp":"50","leadership":"4","attack":"316","defend":"163","hp":"893","card_energy":"0","suit":"19"},"4260":{"card_item_id":"4260","card_id":"120001","level":"1","exp":"50","leadership":"6","attack":"498","defend":"200","hp":"1120","card_energy":"0","suit":"20"},"4261":{"card_item_id":"4261","card_id":"120002","level":"1","exp":"50","leadership":"11","attack":"758","defend":"292","hp":"1692","card_energy":"0","suit":"21"},"4262":{"card_item_id":"4262","card_id":"120003","level":"1","exp":"50","leadership":"14","attack":"749","defend":"330","hp":"1430","card_energy":"0","suit":"22"},"4263":{"card_item_id":"4263","card_id":"120004","level":"1","exp":"50","leadership":"4","attack":"308","defend":"162","hp":"922","card_energy":"0","suit":"23"},"4264":{"card_item_id":"4264","card_id":"120005","level":"1","exp":"50","leadership":"6","attack":"485","defend":"197","hp":"1164","card_energy":"0","suit":"24"},"4265":{"card_item_id":"4265","card_id":"120006","level":"1","exp":"50","leadership":"11","attack":"731","defend":"286","hp":"1877","card_energy":"0","suit":"25"},"4266":{"card_item_id":"4266","card_id":"120007","level":"1","exp":"50","leadership":"14","attack":"718","defend":"324","hp":"1532","card_energy":"0","suit":"26"},"4267":{"card_item_id":"4267","card_id":"120006","level":"1","exp":"50","leadership":"11","attack":"731","defend":"286","hp":"1877","card_energy":"0","suit":"27"},"4268":{"card_item_id":"4268","card_id":"120006","level":"1","exp":"50","leadership":"11","attack":"731","defend":"286","hp":"1877","card_energy":"0","suit":"28"},"4269":{"card_item_id":"4269","card_id":"120006","level":"1","exp":"50","leadership":"11","attack":"731","defend":"286","hp":"1877","card_energy":"0","suit":"29"},"4270":{"card_item_id":"4270","card_id":"120007","level":"1","exp":"50","leadership":"14","attack":"718","defend":"324","hp":"1532","card_energy":"0","suit":"30"}}}}
+	0    key code                 value :0                   
+	0    key attack               value :632                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :100002              
+	3    key card_item_id         value :1003                
+	4    key defend               value :266                 
+	5    key exp                  value :50                  
+	6    key hp                   value :2194                
+	7    key leadership           value :11                  
+	8    key level                value :1                   
+	9    key suit                 value :1                   
+	0    key attack               value :733                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :100003              
+	3    key card_item_id         value :1004                
+	4    key defend               value :295                 
+	5    key exp                  value :200                 
+	6    key hp                   value :1925                
+	7    key leadership           value :14                  
+	8    key level                value :2                   
+	9    key suit                 value :51                  
+	0    key attack               value :315                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :100004              
+	3    key card_item_id         value :1005                
+	4    key defend               value :173                 
+	5    key exp                  value :231                 
+	6    key hp                   value :1092                
+	7    key leadership           value :4                   
+	8    key level                value :3                   
+	9    key suit                 value :3                   
+	0    key attack               value :495                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :100005              
+	3    key card_item_id         value :1006                
+	4    key defend               value :210                 
+	5    key exp                  value :384                 
+	6    key hp                   value :1403                
+	7    key leadership           value :6                   
+	8    key level                value :3                   
+	9    key suit                 value :4                   
+	0    key attack               value :731                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :100006              
+	3    key card_item_id         value :1007                
+	4    key defend               value :301                 
+	5    key exp                  value :576                 
+	6    key hp                   value :1640                
+	7    key leadership           value :11                  
+	8    key level                value :3                   
+	9    key suit                 value :5                   
+	0    key attack               value :591                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :100007              
+	3    key card_item_id         value :1008                
+	4    key defend               value :228                 
+	5    key exp                  value :576                 
+	6    key hp                   value :1967                
+	7    key leadership           value :14                  
+	8    key level                value :3                   
+	9    key suit                 value :6                   
+	0    key attack               value :339                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :100008              
+	3    key card_item_id         value :1009                
+	4    key defend               value :179                 
+	5    key exp                  value :231                 
+	6    key hp                   value :1015                
+	7    key leadership           value :4                   
+	8    key level                value :3                   
+	9    key suit                 value :7                   
+	0    key attack               value :534                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :100009              
+	3    key card_item_id         value :1010                
+	4    key defend               value :217                 
+	5    key exp                  value :284                 
+	6    key hp                   value :1281                
+	7    key leadership           value :6                   
+	8    key level                value :3                   
+	9    key suit                 value :8                   
+	0    key attack               value :695                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110000              
+	3    key card_item_id         value :1011                
+	4    key defend               value :315                 
+	5    key exp                  value :576                 
+	6    key hp                   value :2065                
+	7    key leadership           value :11                  
+	8    key level                value :3                   
+	9    key suit                 value :9                   
+	0    key attack               value :790                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110001              
+	3    key card_item_id         value :1012                
+	4    key defend               value :357                 
+	5    key exp                  value :576                 
+	6    key hp                   value :1686                
+	7    key leadership           value :14                  
+	8    key level                value :3                   
+	9    key suit                 value :10                  
+	0    key attack               value :339                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110002              
+	3    key card_item_id         value :1013                
+	4    key defend               value :179                 
+	5    key exp                  value :231                 
+	6    key hp                   value :1015                
+	7    key leadership           value :4                   
+	8    key level                value :3                   
+	9    key suit                 value :11                  
+	0    key attack               value :534                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110003              
+	3    key card_item_id         value :1014                
+	4    key defend               value :217                 
+	5    key exp                  value :384                 
+	6    key hp                   value :1281                
+	7    key leadership           value :6                   
+	8    key level                value :3                   
+	9    key suit                 value :12                  
+	0    key attack               value :731                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110004              
+	3    key card_item_id         value :1015                
+	4    key defend               value :286                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1379                
+	7    key leadership           value :11                  
+	8    key level                value :1                   
+	9    key suit                 value :13                  
+	0    key attack               value :718                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110005              
+	3    key card_item_id         value :3001                
+	4    key defend               value :324                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1655                
+	7    key leadership           value :14                  
+	8    key level                value :1                   
+	9    key suit                 value :14                  
+	0    key attack               value :220                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110006              
+	3    key card_item_id         value :4255                
+	4    key defend               value :144                 
+	5    key exp                  value :50                  
+	6    key hp                   value :704                 
+	7    key leadership           value :4                   
+	8    key level                value :1                   
+	9    key suit                 value :15                  
+	0    key attack               value :346                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110007              
+	3    key card_item_id         value :4256                
+	4    key defend               value :169                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1108                
+	7    key leadership           value :6                   
+	8    key level                value :1                   
+	9    key suit                 value :16                  
+	0    key attack               value :665                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110008              
+	3    key card_item_id         value :4257                
+	4    key defend               value :233                 
+	5    key exp                  value :50                  
+	6    key hp                   value :2129                
+	7    key leadership           value :11                  
+	8    key level                value :1                   
+	9    key suit                 value :17                  
+	0    key attack               value :698                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :110009              
+	3    key card_item_id         value :4258                
+	4    key defend               value :260                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1555                
+	7    key leadership           value :14                  
+	8    key level                value :1                   
+	9    key suit                 value :18                  
+	0    key attack               value :316                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120000              
+	3    key card_item_id         value :4259                
+	4    key defend               value :163                 
+	5    key exp                  value :50                  
+	6    key hp                   value :893                 
+	7    key leadership           value :4                   
+	8    key level                value :1                   
+	9    key suit                 value :19                  
+	0    key attack               value :498                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120001              
+	3    key card_item_id         value :4260                
+	4    key defend               value :200                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1120                
+	7    key leadership           value :6                   
+	8    key level                value :1                   
+	9    key suit                 value :20                  
+	0    key attack               value :758                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120002              
+	3    key card_item_id         value :4261                
+	4    key defend               value :292                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1692                
+	7    key leadership           value :11                  
+	8    key level                value :1                   
+	9    key suit                 value :21                  
+	0    key attack               value :749                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120003              
+	3    key card_item_id         value :4262                
+	4    key defend               value :330                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1430                
+	7    key leadership           value :14                  
+	8    key level                value :1                   
+	9    key suit                 value :22                  
+	0    key attack               value :308                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120004              
+	3    key card_item_id         value :4263                
+	4    key defend               value :162                 
+	5    key exp                  value :50                  
+	6    key hp                   value :922                 
+	7    key leadership           value :4                   
+	8    key level                value :1                   
+	9    key suit                 value :23                  
+	0    key attack               value :485                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120005              
+	3    key card_item_id         value :4264                
+	4    key defend               value :197                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1164                
+	7    key leadership           value :6                   
+	8    key level                value :1                   
+	9    key suit                 value :24                  
+	0    key attack               value :731                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120006              
+	3    key card_item_id         value :4265                
+	4    key defend               value :286                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1877                
+	7    key leadership           value :11                  
+	8    key level                value :1                   
+	9    key suit                 value :25                  
+	0    key attack               value :718                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120007              
+	3    key card_item_id         value :4266                
+	4    key defend               value :324                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1532                
+	7    key leadership           value :14                  
+	8    key level                value :1                   
+	9    key suit                 value :26                  
+	0    key attack               value :731                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120006              
+	3    key card_item_id         value :4267                
+	4    key defend               value :286                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1877                
+	7    key leadership           value :11                  
+	8    key level                value :1                   
+	9    key suit                 value :27                  
+	0    key attack               value :731                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120006              
+	3    key card_item_id         value :4268                
+	4    key defend               value :286                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1877                
+	7    key leadership           value :11                  
+	8    key level                value :1                   
+	9    key suit                 value :28                  
+	0    key attack               value :731                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120006              
+	3    key card_item_id         value :4269                
+	4    key defend               value :286                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1877                
+	7    key leadership           value :11                  
+	8    key level                value :1                   
+	9    key suit                 value :29                  
+	0    key attack               value :718                 
+	1    key card_energy          value :0                   
+	2    key card_id              value :120007              
+	3    key card_item_id         value :4270                
+	4    key defend               value :324                 
+	5    key exp                  value :50                  
+	6    key hp                   value :1532                
+	7    key leadership           value :14                  
+	8    key level                value :1                   
+	9    key suit                 value :30                  
+Cocos2d: local: 2194, 632, 266
+Cocos2d: don't need update : 2
+Cocos2d: result: 1925
+Cocos2d: result: 733
+Cocos2d: result: 295
+Cocos2d: local: 1925, 733, 295
+Cocos2d: local: 1925, 733, 295
+Cocos2d: don't need update : 3
+Cocos2d: result: 1092
+Cocos2d: result: 315
+Cocos2d: result: 173
+Cocos2d: local: 1092, 315, 173
+Cocos2d: local: 1092, 315, 173
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1403
+Cocos2d: result: 495
+Cocos2d: result: 210
+Cocos2d: local: 1403, 495, 210
+Cocos2d: local: 1403, 495, 210
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1640
+Cocos2d: result: 731
+Cocos2d: result: 301
+Cocos2d: local: 1640, 731, 301
+Cocos2d: local: 1640, 731, 301
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1967
+Cocos2d: result: 591
+Cocos2d: result: 228
+Cocos2d: local: 1967, 591, 228
+Cocos2d: local: 1967, 591, 228
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1015
+Cocos2d: result: 339
+Cocos2d: result: 179
+Cocos2d: local: 1015, 339, 179
+Cocos2d: local: 1015, 339, 179
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1281
+Cocos2d: result: 534
+Cocos2d: result: 217
+Cocos2d: local: 1281, 534, 217
+Cocos2d: local: 1281, 534, 217
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 2065
+Cocos2d: result: 695
+Cocos2d: result: 315
+Cocos2d: local: 2065, 695, 315
+Cocos2d: local: 2065, 695, 315
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1686
+Cocos2d: result: 790
+Cocos2d: result: 357
+Cocos2d: local: 1686, 790, 357
+Cocos2d: local: 1686, 790, 357
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1015
+Cocos2d: result: 339
+Cocos2d: result: 179
+Cocos2d: local: 1015, 339, 179
+Cocos2d: local: 1015, 339, 179
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1281
+Cocos2d: result: 534
+Cocos2d: result: 217
+Cocos2d: local: 1281, 534, 217
+Cocos2d: local: 1281, 534, 217
+Cocos2d: local: 1379, 731, 286
+Cocos2d: local: 1655, 718, 324
+Cocos2d: local: 704, 220, 144
+Cocos2d: local: 1108, 346, 169
+Cocos2d: local: 2129, 665, 233
+Cocos2d: local: 1555, 698, 260
+Cocos2d: local: 893, 316, 163
+Cocos2d: local: 1120, 498, 200
+Cocos2d: local: 1692, 758, 292
+Cocos2d: local: 1430, 749, 330
+Cocos2d: local: 922, 308, 162
+Cocos2d: local: 1164, 485, 197
+Cocos2d: local: 1877, 731, 286
+Cocos2d: local: 1532, 718, 324
+Cocos2d: local: 1877, 731, 286
+Cocos2d: local: 1877, 731, 286
+Cocos2d: local: 1877, 731, 286
+Cocos2d: local: 1532, 718, 324
+http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+addRequest merlinaskplayerinfo1
+send http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+addRequest send
+Cocos2d: merlinaskplayerinfo1 completed
+	0    key code                 value :0                   
+	0    key card_color_id        value :0                   
+	0    key card_item_id         value :1003                
+	1    key position             value :1                   
+	0    key card_color_id        value :0                   
+	0    key card_item_id         value :1015                
+	1    key position             value :5                   
+	0    key card_color_id        value :1                   
+	0    key card_item_id         value :1009                
+	1    key position             value :1                   
+	0    key card_item_id         value :1013                
+	1    key position             value :5                   
+	0    key card_item_id         value :4262                
+	1    key position             value :2                   
+	0    key card_item_id         value :4264                
+	1    key position             value :3                   
+Cocos2d: {"code":0,"result":{"card_team":{"2":{"card_color_id":"0","team":{"1015":{"position":"5","card_item_id":"1015"}}},"3":{"card_color_id":"1","team":{"1009":{"position":"1","card_item_id":"1009"},"4262":{"position":"2","card_item_id":"4262"},"4264":{"position":"3","card_item_id":"4264"},"1013":{"position":"5","card_item_id":"1013"}}},"1":{"card_color_id":"0","team":{"1003":{"position":"1","card_item_id":"1003"}}}}}}
+Cocos2d: LoginLayer::ccTouchEnded
+Cocos2d: isButtonActing = 0
+AudioStreamBasicDescription:  2 ch,  44100 Hz, 'lpcm' (0x00000029) 32-bit little-endian float, deinterleaved
+Cocos2d: file:resource_cn/uiScript/hall.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/hall.plist
+Cocos2d: dict:key main
+Cocos2d: dict:key s_level
+Cocos2d: dict:key s_title
+Cocos2d: file:resource_cn/map/main.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: word path = /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/word/word.plist
+Cocos2d: 新文字
+Cocos2d: .....
+Cocos2d: word :选项
+Cocos2d: word :邮件
+Cocos2d: word :活动
+Cocos2d: word :英灵
+Cocos2d: word :背包
+Cocos2d: word :无用
+Cocos2d: word :回城
+Cocos2d: file:resource_cn/uiScript/asgard.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/asgard.plist
+Cocos2d: dict:key s_bifrost
+Cocos2d: dict:key t_valkyries
+Cocos2d: dict:key s_valkyries
+Cocos2d: dict:key asgard
+Cocos2d: dict:key t_duplicate
+Cocos2d: dict:key t_gladsheim
+Cocos2d: dict:key s_gladsheim
+Cocos2d: dict:key t_bifrost
+Cocos2d: dict:key s_duplicate
+Cocos2d: file:resource_cn/map/asgard.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/asgard.plist
+Cocos2d: CAsgardLayer m_nTag : 2004 
+Cocos2d: isButtonActing = 0
+Cocos2d: file:resource_cn/uiScript/biforest.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/biforest.plist
+Cocos2d: dict:key biforest
+Cocos2d: dict:key t_ch_1_1
+Cocos2d: dict:key t_go
+Cocos2d: dict:key t_close
+Cocos2d: dict:key t_ch_1
+Cocos2d: dict:key t_ch_2
+Cocos2d: file:resource_cn/map/biforest.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/biforest.plist
+Cocos2d: CBiforestLayer: 2001
+Cocos2d: CBiforestLayer: 2003
+Cocos2d: CBiforestLayer: 2005
+Cocos2d: file:resource_cn/uiScript/exploration.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/exploration.plist
+Cocos2d: dict:key main
+Cocos2d: dict:key s_level
+Cocos2d: dict:key s_title
+Cocos2d: file:resource_cn/map/main.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: word :选项
+Cocos2d: word :邮件
+Cocos2d: word :活动
+Cocos2d: word :英灵
+Cocos2d: word :背包
+Cocos2d: word :无用
+Cocos2d: word :回城
+Cocos2d: CPtButtonWidget::init
+Cocos2d: CPtButtonWidget::init
+Cocos2d: CPtButtonWidget::init
+Cocos2d: word path = /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/word/tips.plist
+Cocos2d: 新文字
+Cocos2d: CExploration::ccTouchEnded
+Cocos2d: CExploration:3003, 0
+Cocos2d: CExploration:: right
+Cocos2d: the ...
+Cocos2d: file:resource_cn/uiScript/confirm.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: dict:key t_fight_confirm
+Cocos2d: dict:key fight_confirm
+Cocos2d: dict:key confirm
+Cocos2d: dict:key t_confirm
+Cocos2d: file:resource_cn/map/fight_confirm.map
+Cocos2d: file:resource_cn/map/confirm.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: CConfirmLayer::ccTouchBegan
+Cocos2d: file:resource_cn/uiScript/exploration.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/exploration.plist
+Cocos2d: dict:key main
+Cocos2d: dict:key s_level
+Cocos2d: dict:key s_title
+Cocos2d: file:resource_cn/map/main.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: word :选项
+Cocos2d: word :邮件
+Cocos2d: word :活动
+Cocos2d: word :英灵
+Cocos2d: word :背包
+Cocos2d: word :无用
+Cocos2d: word :回城
+Cocos2d: CPtButtonWidget::init
+Cocos2d: CPtButtonWidget::init
+Cocos2d: CPtButtonWidget::init
+Cocos2d: CExploration::ccTouchEnded
+Cocos2d: CExploration:3003, 1
+Cocos2d: CExploration:: right
+Cocos2d: the ...
+Cocos2d: file:resource_cn/uiScript/confirm.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: dict:key t_fight_confirm
+Cocos2d: dict:key fight_confirm
+Cocos2d: dict:key confirm
+Cocos2d: dict:key t_confirm
+Cocos2d: file:resource_cn/map/fight_confirm.map
+Cocos2d: file:resource_cn/map/confirm.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: CConfirmLayer::ccTouchBegan
+Cocos2d: file:resource_cn/uiScript/exploration.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/exploration.plist
+Cocos2d: dict:key main
+Cocos2d: dict:key s_level
+Cocos2d: dict:key s_title
+Cocos2d: file:resource_cn/map/main.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: word :选项
+Cocos2d: word :邮件
+Cocos2d: word :活动
+Cocos2d: word :英灵
+Cocos2d: word :背包
+Cocos2d: word :无用
+Cocos2d: word :回城
+Cocos2d: CPtButtonWidget::init
+Cocos2d: CPtButtonWidget::init
+Cocos2d: CPtButtonWidget::init
+Cocos2d: CExploration::ccTouchEnded
+Cocos2d: CExploration:3003, 2
+Cocos2d: CExploration:: right
+Cocos2d: the ...
+Cocos2d: file:resource_cn/uiScript/confirm.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: dict:key t_fight_confirm
+Cocos2d: dict:key fight_confirm
+Cocos2d: dict:key confirm
+Cocos2d: dict:key t_confirm
+Cocos2d: file:resource_cn/map/fight_confirm.map
+Cocos2d: file:resource_cn/map/confirm.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: CConfirmLayer::ccTouchBegan
+http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+addRequest merlinaskplayerinfo1
+send http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+post data:info={"uid":194,"troops":3}
+addRequest send
+Cocos2d: merlinaskplayerinfo1 completed
+Cocos2d: {"code":0,"result":{"card_team":{"3":{"card_color_id":"1","team":{"1009":{"position":"1","card_item_id":"1009","card_id":"100008","level":"3","suit":"7"},"4262":{"position":"2","card_item_id":"4262","card_id":"120003","level":"1","suit":"22"},"4264":{"position":"3","card_item_id":"4264","card_id":"120005","level":"1","suit":"24"},"1013":{"position":"5","card_item_id":"1013","card_id":"110002","level":"3","suit":"11"}}}}}}
+	0    key code                 value :0                   
+	0    key card_color_id        value :1                   
+	0    key card_id              value :100008              
+	1    key card_item_id         value :1009                
+	2    key level                value :3                   
+	3    key position             value :1                   
+	4    key suit                 value :7                   
+	0    key card_id              value :110002              
+	1    key card_item_id         value :1013                
+	2    key level                value :3                   
+	3    key position             value :5                   
+	4    key suit                 value :11                  
+	0    key card_id              value :120003              
+	1    key card_item_id         value :4262                
+	2    key level                value :1                   
+	3    key position             value :2                   
+	4    key suit                 value :22                  
+	0    key card_id              value :120005              
+	1    key card_item_id         value :4264                
+	2    key level                value :1                   
+	3    key position             value :3                   
+	4    key suit                 value :24                  
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1015
+Cocos2d: result: 339
+Cocos2d: result: 179
+Cocos2d: local: 1015, 339, 179
+Cocos2d: local: 1015, 339, 179
+Cocos2d: don't need update : 3
+Cocos2d: don't need update : 3
+Cocos2d: result: 1015
+Cocos2d: result: 339
+Cocos2d: result: 179
+Cocos2d: local: 1015, 339, 179
+Cocos2d: local: 1015, 339, 179
+Cocos2d: local: 1430, 749, 330
+Cocos2d: local: 1164, 485, 197
+Cocos2d: 左边第0个发动增幅技能
+Cocos2d: pSkilldata->skill_logic:data=1,100004
+Cocos2d: CurrEngry:0
+Cocos2d: CurrEngry:0
+Cocos2d: 条件满足 爆发了技能id:100004
+Cocos2d: 右边第0个发动增幅技能
+Cocos2d: pSkilldata->skill_logic:data=1,100004
+Cocos2d: CurrEngry:0
+Cocos2d: CurrEngry:0
+Cocos2d: 条件满足 爆发了技能id:100004
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:30
+pMonterCard->m_iCurrHp1015
+Cocos2d: CURR m_vBuffer.size():0
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1001,0
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1001,0
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1001,0
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1001,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:60
+pMonterCard->m_iCurrHp2194
+Cocos2d: CURR m_vBuffer.size():0
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:40
+Cocos2d: CurrEngry:40
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp2180
+Cocos2d: CURR m_vBuffer.size():1
+Cocos2d: def - 26
+Cocos2d: ========>1
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:80
+pMonterCard->m_iCurrHp1015
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1001,0
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1001,0
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1001,0
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:1001,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:110
+pMonterCard->m_iCurrHp2194
+Cocos2d: CURR m_vBuffer.size():1
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:50
+Cocos2d: CurrEngry:50
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp2180
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 26
+Cocos2d: ========>2
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:1015,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:130
+Cocos2d: 2CurrEngry:10
+pMonterCard->m_iCurrHp1015
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:436,0
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:436,0
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:436,0
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:2180,0
+Cocos2d: 右边边主将血液是:436,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:160
+Cocos2d: 2CurrEngry:40
+pMonterCard->m_iCurrHp2180
+Cocos2d: pSkill->parameter_3================>100012
+Cocos2d: pSkill->parameter_3================>resource_cn/bufferfire.plist,resource_cn/img/fighting/yiran.png
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:2014,0
+Cocos2d: 右边边主将血液是:436,0
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:2014,0
+Cocos2d: 右边边主将血液是:436,0
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:50
+Cocos2d: CurrEngry:50
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp2014
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: ========>3
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:2014,0
+Cocos2d: 右边边主将血液是:436,0
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:2014,0
+Cocos2d: 右边边主将血液是:436,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:40
+pMonterCard->m_iCurrHp436
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:2123,0
+Cocos2d: 右边边主将血液是:422,0
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:2123,0
+Cocos2d: 右边边主将血液是:422,0
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:2123,0
+Cocos2d: 右边边主将血液是:422,0
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:2123,0
+Cocos2d: 右边边主将血液是:422,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:70
+pMonterCard->m_iCurrHp2123
+Cocos2d: CURR m_vBuffer.size():1
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:2109,0
+Cocos2d: 右边边主将血液是:472,0
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:2109,0
+Cocos2d: 右边边主将血液是:472,0
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:60
+Cocos2d: CurrEngry:60
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp2109
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: ========>4
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:2109,0
+Cocos2d: 右边边主将血液是:472,0
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:2109,0
+Cocos2d: 右边边主将血液是:472,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:90
+pMonterCard->m_iCurrHp472
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:458,0
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:458,0
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:458,0
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:2194,0
+Cocos2d: 右边边主将血液是:458,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:120
+Cocos2d: 2CurrEngry:0
+pMonterCard->m_iCurrHp2194
+Cocos2d: pSkill->parameter_3================>100012
+Cocos2d: pSkill->parameter_3================>resource_cn/bufferfire.plist,resource_cn/img/fighting/yiran.png
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:2030,0
+Cocos2d: 右边边主将血液是:458,0
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:2030,0
+Cocos2d: 右边边主将血液是:458,0
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:60
+Cocos2d: CurrEngry:60
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp2030
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: ========>5
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:2030,0
+Cocos2d: 右边边主将血液是:458,0
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:2030,0
+Cocos2d: 右边边主将血液是:458,0
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:140
+Cocos2d: 2CurrEngry:20
+pMonterCard->m_iCurrHp458
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:2030,0
+Cocos2d: 右边边主将血液是:-121,0
+Cocos2d: 右边第0个 发动死亡技能
+Cocos2d: pSkilldata->skill_logic:data=1,100003
+Cocos2d: CurrEngry:30
+Cocos2d: CurrEngry:30
+Cocos2d: 条件满足 爆发了技能id:100003
+pMonterCard->m_iCurrHp2030
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: 右边第0个发动增幅技能
+Cocos2d: pSkilldata->skill_logic:data=1,100004
+Cocos2d: CurrEngry:70
+Cocos2d: CurrEngry:70
+Cocos2d: 条件满足 爆发了技能id:100004
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:2030,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:2030,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:2030,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:100
+pMonterCard->m_iCurrHp2030
+Cocos2d: CURR m_vBuffer.size():0
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:2016,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:2016,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:110
+Cocos2d: CurrEngry:110
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp2016
+Cocos2d: CURR m_vBuffer.size():3
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>6
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:2016,0
+Cocos2d: \345\217\263边边主将血液是:1430,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:2016,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:30
+pMonterCard->m_iCurrHp1430
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:2125,0
+Cocos2d: 右边边主将血液是:1416,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:2125,0
+Cocos2d: 右边边主将血液是:1416,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:2125,0
+Cocos2d: 右边边主将血液是:1416,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:2125,0
+Cocos2d: 右边边主将血液是:1416,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:150
+Cocos2d: 2CurrEngry:30
+pMonterCard->m_iCurrHp2125
+Cocos2d: pSkill->parameter_3================>100012
+Cocos2d: pSkill->parameter_3================>resource_cn/bufferfire.plist,resource_cn/img/fighting/yiran.png
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:1469,0
+Cocos2d: 右边边主将血\346\266\262是:1416,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:1469,0
+Cocos2d: 右边边主将血液是:1416,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:110
+Cocos2d: CurrEngry:110
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp1469
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>7
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:1469,0
+Cocos2d: \345\217\263边边主将血液是:1416,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:1469,0
+Cocos2d: 右边边主将血液是:1416,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:80
+pMonterCard->m_iCurrHp1416
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:1578,0
+Cocos2d: 右边边主将血液是:1402,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:1578,0
+Cocos2d: 右边边主将血液是:1402,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:1578,0
+Cocos2d: 右边边主将血液是:1402,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:1578,0
+Cocos2d: 右边边主将血液是:1402,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:60
+pMonterCard->m_iCurrHp1578
+Cocos2d: CURR m_vBuffer.size():1
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:1564,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:1564,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:120
+Cocos2d: CurrEngry:120
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp1564
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>8
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:1564,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:1564,0
+Cocos2d: 右边边主将血液是:1430,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:130
+Cocos2d: 2CurrEngry:10
+pMonterCard->m_iCurrHp1430
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:1564,0
+Cocos2d: 右边边主将血液是:1002,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:1564,0
+Cocos2d: 右边边主将血液是:1002,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:1564,0
+Cocos2d: 右边边主将血液是:1002,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:1564,0
+Cocos2d: 右边边主将血液是:1002,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:110
+pMonterCard->m_iCurrHp1564
+Cocos2d: CURR m_vBuffer.size():1
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:1550,0
+Cocos2d: 右边边主将血液是:1073,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:1550,0
+Cocos2d: 右边边主将血液是:1073,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:130
+Cocos2d: CurrEngry:130
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp1550
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>9
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:1550,0
+Cocos2d: 右边边主将血液是:1073,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:1550,0
+Cocos2d: 右边边主将血液是:1073,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:40
+pMonterCard->m_iCurrHp1073
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:1659,0
+Cocos2d: 右边边主将血液是:1059,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:1659,0
+Cocos2d: 右边边主将血液是:1059,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:1659,0
+Cocos2d: 右边边主将血液是:1059,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:1659,0
+Cocos2d: 右边边主将血液是:1059,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:160
+Cocos2d: 2CurrEngry:40
+pMonterCard->m_iCurrHp1659
+Cocos2d: pSkill->parameter_3================>100012
+Cocos2d: AAAAA
+Cocos2d: pSkill->parameter_3================>resource_cn/bufferfire.plist,resource_cn/img/fighting/yiran.png
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:1003,0
+Cocos2d: 右边边主将血液是:1059,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:1003,0
+Cocos2d: 右边边主将血液是:1059,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:130
+Cocos2d: CurrEngry:130
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp1003
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>10
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:1003,0
+Cocos2d: 右边边主将血液是:1059,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:1003,0
+Cocos2d: 右边边主将血液是:1059,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:90
+pMonterCard->m_iCurrHp1059
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:1112,0
+Cocos2d: 右边边主将血液是:1045,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:1112,0
+Cocos2d: 右边边主将血液是:1045,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:1112,0
+Cocos2d: 右边边主将血液是:1045,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:1112,0
+Cocos2d: 右边边主将血液是:1045,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:70
+pMonterCard->m_iCurrHp1112
+Cocos2d: CURR m_vBuffer.size():1
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:1098,0
+Cocos2d: 右边边主将血液是:1116,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:1098,0
+Cocos2d: 右边边主将血液是:1116,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:140
+Cocos2d: CurrEngry:140
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp1098
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>11
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:1098,0
+Cocos2d: 右边边主将血液是:1116,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:1098,0
+Cocos2d: 右边边主将血液是:1116,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:140
+Cocos2d: 2CurrEngry:20
+pMonterCard->m_iCurrHp1116
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:1098,0
+Cocos2d: 右边边主将血液是:688,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:1098,0
+Cocos2d: 右边边主将血液是:688,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:1098,0
+Cocos2d: 右边边主将血液是:688,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:1098,0
+Cocos2d: 右边边主将血液是:688,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:120
+Cocos2d: 2CurrEngry:0
+pMonterCard->m_iCurrHp1098
+Cocos2d: pSkill->parameter_3================>100012
+Cocos2d: pSkill->parameter_3================>resource_cn/bufferfire.plist,resource_cn/img/fighting/yiran.png
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:442,0
+Cocos2d: 右边边主将血液是:688,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:442,0
+Cocos2d: 右边边主将血液是:688,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:140
+Cocos2d: CurrEngry:140
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp442
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>12
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:442,0
+Cocos2d: 右边边\344\270\273将血液是:688,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:442,0
+Cocos2d: 右边边主将血液是:688,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:50
+pMonterCard->m_iCurrHp688
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:551,0
+Cocos2d: 右边边主将血液是:674,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:551,0
+Cocos2d: 右边边主将血液是:674,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:551,0
+Cocos2d: 右边边主将血液是:674,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:551,0
+Cocos2d: 右边边主将血液是:674,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:30
+pMonterCard->m_iCurrHp551
+Cocos2d: CURR m_vBuffer.size():1
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:537,0
+Cocos2d: 右边边主将血液是:745,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:537,0
+Cocos2d: 右边边主将血液是:745,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:150
+Cocos2d: CurrEngry:150
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp537
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>13
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:537,0
+Cocos2d: 右边边主将血液是:745,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:537,0
+Cocos2d: 右边边主将血液是:745,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:100
+pMonterCard->m_iCurrHp745
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:646,0
+Cocos2d: 右边边主将血液是:731,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:646,0
+Cocos2d: 右边边主将血液是:731,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:646,0
+Cocos2d: 右边边主将血液是:731,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:646,0
+Cocos2d: 右边边主将血液是:731,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: =>CurrEngry:80
+pMonterCard->m_iCurrHp646
+Cocos2d: CURR m_vBuffer.size():1
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左边主将血液是:632,0
+Cocos2d: 右边边主将血液是:802,1
+Cocos2d: BEGIN 当前攻击顺序是4
+Cocos2d: 左边主将血液是:632,0
+Cocos2d: 右边边主将血液是:802,1
+Cocos2d: pSkilldata->skill_logic:data=1,100002
+Cocos2d: CurrEngry:160
+Cocos2d: CurrEngry:160
+Cocos2d: 条件满足 爆发了技能id:100002
+pMonterCard->m_iCurrHp632
+Cocos2d: CURR m_vBuffer.size():2
+Cocos2d: def - 24
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: aaaa
+Cocos2d: ========>14
+Cocos2d: END:当前攻击顺序是0
+Cocos2d: 左边主将血液是:632,0
+Cocos2d: 右边边主将血液是:802,1
+Cocos2d: BEGIN 当前攻击顺序是1
+Cocos2d: 左边主将血液是:632,0
+Cocos2d: 右边边主将血液是:802,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:150
+Cocos2d: 2CurrEngry:30
+pMonterCard->m_iCurrHp802
+Cocos2d: END:当前攻击顺序是1
+Cocos2d: 左边主将血液是:632,0
+Cocos2d: 右边边主将血液是:374,1
+Cocos2d: BEGIN 当前攻击顺序是2
+Cocos2d: 左边主将血液是:632,0
+Cocos2d: 右边边主将血液是:374,1
+Cocos2d: END:当前攻击顺序是2
+Cocos2d: 左边主将血液是:632,0
+Cocos2d: 右边边主将血液是:374,1
+Cocos2d: BEGIN 当前攻击顺序是3
+Cocos2d: 左边主将血液是:632,0
+Cocos2d: 右边边主将血液是:374,1
+Cocos2d: pSkilldata->skill_logic:data=2,100001
+Cocos2d: 2CurrEngry:130
+Cocos2d: 2CurrEngry:10
+pMonterCard->m_iCurrHp632
+Cocos2d: pSkill->parameter_3================>100012
+Cocos2d: pSkill->parameter_3================>resource_cn/bufferfire.plist,resource_cn/img/fighting/yiran.png
+Cocos2d: END:当前攻击顺序是3
+Cocos2d: 左\350\276\271主将血液是:-24,0
+Cocos2d: 右边边主将血液是:374,1
+Cocos2d: 左边第0个 发动死亡技能
+Cocos2d: pSkilldata->skill_logic:data=1,100003
+Cocos2d: CurrEngry:60
+Cocos2d: CurrEngry:60
+Cocos2d: 条件满足 爆发了技能id:100003
+pMonterCard->m_iCurrHp374
+Cocos2d: CURR m_vBuffer.size():1
+pMonterCard->m_iCurrHp1164
+Cocos2d: CURR m_vBuffer.size():0
+pMonterCard->m_iCurrHp1015
+Cocos2d: CURR m_vBuffer.size():0
+Cocos2d: winStatus:1
+Cocos2d: load plist resource_cn/boss_icon_Effect
+Cocos2d: strActFile:fire/fire_1.act
+Cocos2d: HBActionAniCache::addActionAniWithFile /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/action/fire/fire_1.act
+Cocos2d: HBActionAniCache::addActionAniWithDictionary path = fire_1_fire11,fire11
+Cocos2d: xianbei 1
+Cocos2d: strActFile:fire/fire.act
+Cocos2d: HBActionAniCache::addActionAniWithFile /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/action/fire/fire.act
+Cocos2d: HBActionAniCache::addActionAniWithDictionary path = fire_fire1,fire1
+Cocos2d: xianbei 1
+Cocos2d: load plist resource_cn/100000
+Cocos2d: strActFile:attack/attack.act
+Cocos2d: HBActionAniCache::addActionAniWithFile /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/action/attack/attack.act
+Cocos2d: HBActionAniCache::addActionAniWithDictionary path = attack_attack1,attack1
+Cocos2d: xianbei 1
+Cocos2d: load plist resource_cn/100004
+Cocos2d: strActFile:wine/wine.act
+Cocos2d: HBActionAniCache::addActionAniWithFile /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/action/wine/wine.act
+Cocos2d: HBActionAniCache::addActionAniWithDictionary path = wine_wine10,wine10
+Cocos2d: xianbei 1
+Cocos2d: CCardFightingLayerScene::init
+Cocos2d: file:resource_cn/uiScript/zhandouui.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/zhandouui.plist
+Cocos2d: dict:key zhandouui
+Cocos2d: file:resource_cn/map/zhandouui.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: the resource_cn/img/fighting/peo2.png
+Cocos2d: 1the resource_cn/img/fighting/peo2.png
+Cocos2d: 412.000000,140.000000
+Cocos2d: the resource_cn/img/fighting/peo3.png
+Cocos2d: 1the resource_cn/img/fighting/peo3.png
+Cocos2d: 612.000000,140.000000
+Cocos2d: the resource_cn/img/fighting/peo3.png
+Cocos2d: 1the resource_cn/img/fighting/peo3.png
+Cocos2d: 712.000000,100.000000
+Cocos2d: the resource_cn/img/fighting/peo0.png
+Cocos2d: 1the resource_cn/img/fighting/peo0.png
+Cocos2d: 742.000000,100.000000
+Cocos2d: the resource_cn/img/fighting/peo2.png
+Cocos2d: 1the resource_cn/img/fighting/peo2.png
+Cocos2d: 824.000000,20.000000
+Cocos2d: animationAndex:0,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100004
+Cocos2d: animationAndex:1,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100004
+update=====0/64
+Cocos2d: ===============>100004,resource_cn/boss_icon_Effect
+Cocos2d: LEFT LORD
+bufferIndex=====0 64
+Cocos2d: png count 0, 0
+left hp:0Right hp:0
+Cocos2d: animationAndex:2,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100004
+Cocos2d: animationAndex:3,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100004
+update=====1/64
+Cocos2d: ===============>100004,resource_cn/boss_icon_Effect
+Cocos2d: RIGHT LORD
+bufferIndex=====1 64
+Cocos2d: png count 0, 0
+Cocos2d: HBActionAniCache::addActionAniWithFile /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/action/fire/fire2.act
+Cocos2d: HBActionAniCache::addActionAniWithDictionary path = fire2_fire2,fire2
+Cocos2d: xianbei 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:4,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100000
+update=====2/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====2 64
+Cocos2d: png count 0, 0
+left hp:0Right hp:-14
+Cocos2d: animationAndex:5,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====3/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====3 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 1, 0
+Cocos2d: HBActionAniCache::addActionAniWithFile /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/action/attack/attack2.act
+Cocos2d: HBActionAniCache::addActionAniWithDictionary path = attack2_attack2,attack2
+Cocos2d: xianbei 1
+left hp:-14Right hp:14
+Cocos2d: animationAndex:6,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====4/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====4 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 1, 0
+Cocos2d: HBActionAniCache::addActionAniWithFile /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/action/wine/wine2.act
+Cocos2d: HBActionAniCache::addActionAniWithDictionary path = wine2_wine10,wine10
+Cocos2d: xianbei 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:7,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:8,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100000
+update=====5/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====5 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 1, 1
+left hp:14Right hp:-14
+Cocos2d: animationAndex:9,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====6/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====6 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-14Right hp:14
+Cocos2d: animationAndex:10,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====7/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====7 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:11,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:12,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100001
+update=====8/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: LEFT LORD
+bufferIndex=====8 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:-579
+Cocos2d: animationAndex:13,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100001
+update=====9/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: RIGHT LORD
+bufferIndex=====9 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-166Right hp:0
+Cocos2d: animationAndex:14,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  0
+Cocos2d: HBActionAniCache::addActionAniWithFile /var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/action/fire/firebuffer.act
+Cocos2d: HBActionAniCache::addActionAniWithDictionary path = firebuffer_fire11,fire11
+Cocos2d: xianbei 1
+Cocos2d: animationAndex:15,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====10/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====10 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:16,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:17,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100000
+update=====11/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====11 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:109Right hp:-14
+Cocos2d: animationAndex:18,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====12/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====12 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-14Right hp:50
+Cocos2d: animationAndex:19,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====13/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====13 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:20,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:21,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100000
+update=====14/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====14 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:85Right hp:-14
+Cocos2d: animationAndex:22,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100001
+update=====15/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: RIGHT LORD
+bufferIndex=====15 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-164Right hp:0
+Cocos2d: animationAndex:23,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:24,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====16/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====16 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:25,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:26,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100001
+update=====17/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: LEFT LORD
+bufferIndex=====17 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:-579
+Cocos2d: animationAndex:27,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/0
+Cocos2d: SKILL ID=  100003
+update=====18/64
+Cocos2d: ===============>100003,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====18 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:28,74
+Cocos2d: animationSwf,6
+Cocos2d: right00,1000,0x20baa200
+Cocos2d: right01,2000,0x20473a00
+Cocos2d: right02,3000,0x20468800
+Cocos2d: animationAndex:29,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100004
+Cocos2d: animationAndex:30,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100004
+update=====19/64
+Cocos2d: ===============>100004,resource_cn/boss_icon_Effect
+Cocos2d: RIGHT LORD
+bufferIndex=====19 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:31,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====20/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====20 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-14Right hp:0
+Cocos2d: animationAndex:32,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====21/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====21 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:33,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:34,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100000
+update=====22/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====22 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:109Right hp:-14
+Cocos2d: animationAndex:35,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100001
+update=====23/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: RIGHT LORD
+bufferIndex=====23 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100022
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 3, 1
+left hp:-656Right hp:0
+Cocos2d: animationAndex:36,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:37,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====24/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====24 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100022
+Cocos2d: png count 3, 0
+left hp:0Right hp:0
+Cocos2d: animationAndex:38,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:39,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100000
+update=====25/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====25 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100022
+Cocos2d: png count 3, 0
+left hp:109Right hp:-14
+Cocos2d: animationAndex:40,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====26/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====26 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100022
+Cocos2d: png count 3, 0
+left hp:-14Right hp:28
+Cocos2d: animationAndex:41,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====27/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====27 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100022
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 3, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:42,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:43,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100001
+update=====28/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: LEFT LORD
+bufferIndex=====28 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:-428
+Cocos2d: animationAndex:44,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====29/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====29 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-14Right hp:71
+Cocos2d: animationAndex:45,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====30/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====30 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:46,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:47,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100000
+update=====31/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====31 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:109Right hp:-14
+Cocos2d: animationAndex:48,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100001
+update=====32/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: RIGHT LORD
+bufferIndex=====32 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-656Right hp:0
+Cocos2d: animationAndex:49,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:50,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====33/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====33 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:51,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:52,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100000
+update=====34/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====34 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:109Right hp:-14
+Cocos2d: animationAndex:53,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====35/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====35 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-14Right hp:71
+Cocos2d: animationAndex:54,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====36/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====36 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:55,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:56,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100001
+update=====37/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: LEFT LORD
+bufferIndex=====37 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:-428
+Cocos2d: animationAndex:57,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100001
+update=====38/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: RIGHT LORD
+bufferIndex=====38 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-656Right hp:0
+Cocos2d: animationAndex:58,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:59,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====39/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====39 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:60,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:61,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100000
+update=====40/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====40 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:109Right hp:-14
+Cocos2d: animationAndex:62,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====41/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====41 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-14Right hp:71
+Cocos2d: animationAndex:63,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====42/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====42 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:64,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:65,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100000
+update=====43/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: LEFT LORD
+bufferIndex=====43 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:109Right hp:-14
+Cocos2d: animationAndex:66,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100000
+update=====44/64
+Cocos2d: ===============>100000,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====44 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-14Right hp:71
+Cocos2d: animationAndex:67,74
+Cocos2d: animationSwf,4
+Cocos2d: SKILL ID=  100002
+update=====45/64
+Cocos2d: ===============>100002,resource_cn/100004
+bufferIndex=====45 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:68,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:69,74
+Cocos2d: animationSwf,1
+Cocos2d: 0/1
+Cocos2d: SKILL ID=  100001
+update=====46/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: LEFT LORD
+bufferIndex=====46 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:-428
+Cocos2d: animationAndex:70,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100001
+update=====47/64
+Cocos2d: ===============>100001,resource_cn/boss_icon_Effect
+Cocos2d: RIGHT LORD
+bufferIndex=====47 64
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:-656Right hp:0
+Cocos2d: animationAndex:71,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  0
+Cocos2d: animationAndex:72,74
+Cocos2d: animationSwf,3
+Cocos2d: SKILL ID=  100003
+update=====48/64
+Cocos2d: ===============>100003,resource_cn/100000
+Cocos2d: RIGHT LORD
+bufferIndex=====48 64
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png path:resource_cn/img/fighting/suo.png,100011
+Cocos2d: png path:resource_cn/img/fighting/jiaxue.png,100002
+Cocos2d: png count 2, 1
+left hp:0Right hp:0
+Cocos2d: animationAndex:73,74
+Cocos2d: animationSwf,5
+Cocos2d: left00,100,0x20431600
+Cocos2d: end animation
+Cocos2d: free: 119853056
+active: 78118912
+inactive: 28975104
+wire: 197976064
+zero fill: 1931137024
+reactivations: 2722594816
+pageins: 1207369728
+pageouts: 26447872
+faults: 138774178
+cow_faults: 2292855
+lookups: 3425216
+hits: 84
+Cocos2d: m_cMaps:2
+Cocos2d: file:resource_cn/uiScript/confirm.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: dict:key t_fight_confirm
+Cocos2d: dict:key fight_confirm
+Cocos2d: dict:key confirm
+Cocos2d: dict:key t_confirm
+Cocos2d: file:resource_cn/map/fight_confirm.map
+Cocos2d: file:resource_cn/map/confirm.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/8D093C44-EA14-402C-A2DD-11C1B29CAE24/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: exist,下次继续！
+lose

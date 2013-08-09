@@ -212,6 +212,9 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
 
 void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
 {
+    if (m_animationVector.size()==49) {
+        CCLog("AAAAA");
+    }
     //通过找到logc
     int i=pSkill->skill_logic;
     char data[20];
@@ -334,6 +337,9 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
             {
                 CCLog("pSkill->parameter_3================>%d",pSkill->parameter_3);
                 CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
+                if (m_animationVector.size()==49) {
+                    CCLog("AAAAA");
+                }
                 m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,SinglePlayer::instance()->getBufferPlistByEffectId(pImpact->m_ieffect_id)));
                 CCLog("pSkill->parameter_3================>%s",pImpact->m_sEffectFile.c_str());
             }
@@ -559,6 +565,9 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
 
 void CFightSkillManager::appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex)
 {
+    if (m_animationVector.size()==49) {
+        CCLog("AAAAA");
+    }
     m_animationVector.push_back(new CAnimationSpriteGameFight(enAnimationType,enatkindex,AtkIndex,DefIndex,AddHp,SubHp,AddEngry,subAngry,skillid,0                                                      ));
 }
 

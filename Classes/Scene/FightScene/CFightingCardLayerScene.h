@@ -63,6 +63,8 @@ private:
     void yinCangRenWu(vector<CCSprite *>vsprite,CCSprite *sprite=NULL);
     void skillByHeloSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster);
     void initSetUpdateHp(int iCurrHp,int TotalHp,int currEngry,bool isLeft);
+    void actionReorderZorder(CCObject *object);
+   
     
     // 创建显示文本比如，怒气，Hp信息;
     void createEngryText();
@@ -85,6 +87,8 @@ private:
     void showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation);
     void showSkillBuffer(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation);
     CCPoint getBufferIconPostion(int index,bool isLeft);
+    void actionPFightSkill(const char *fightName,CCSprite *pFight,CCSprite *pMonster);
+    void actionHelpSprite(const char *fightName,CCSprite *pFight,CCSprite *pMonster);
 private:
    void  winDialog();
     void loseDialog();
@@ -105,8 +109,8 @@ private:
 public:
     vector<CCSprite *>m_vFightHero;
     vector<CCSprite *>m_vMonsterHero;
+
     CCSprite *HeroFightCard[2];  //准备做一个方式调用的精灵图片只有一张的方式
-    
     
     vector<CFightCard *>m_vFightingCard;
     vector<CFightCard *>m_vMonsterCard;

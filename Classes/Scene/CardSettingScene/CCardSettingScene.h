@@ -48,7 +48,7 @@ protected:
     CBattleArrayLayer *m_pCardSetting;
     CCSprite * m_pBackBtn;
     
-    
+    CCSprite * m_pTabButton[4];
 // test: network;
     
     void load();

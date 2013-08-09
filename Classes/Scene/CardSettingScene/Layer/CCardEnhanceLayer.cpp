@@ -57,9 +57,11 @@ bool CCardEnhanceLayer::init()
 
 bool CCardEnhanceLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    m_nTouchTag = -1;
     CCLog("CCardEnhanceLayer::ccTouchBegan");
     if(m_pSelectCard && CPtTool::isInNode(m_pSelectCard, pTouch))
     {
+        m_nTouchTag = 2;
         return true;
     }
     
@@ -68,12 +70,20 @@ bool CCardEnhanceLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         CCNode * tmp = m_pMaterialCards[i];
         if (tmp && CPtTool::isInNode(tmp, pTouch))
         {
+            m_nTouchTag = 3;
             return true;
         }
     }
     CCNode * node = m_cMaps->getElementByTags("1,0,0");
+   
     if (node&& CPtTool::isInNode(node, pTouch))
     {
+        m_nTouchTag = 1;
+        CCSprite *m_pSaveButton = (CCSprite*)node;
+        CCPoint point = m_pSaveButton->getAnchorPoint();
+        CCTexture2D * pressed = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_pressed.png"));
+        m_pSaveButton->initWithTexture(pressed);
+        m_pSaveButton->setAnchorPoint(point);
         return true;
     }
 
@@ -85,6 +95,15 @@ void CCardEnhanceLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CCardEnhanceLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (m_nTouchTag == 1)
+    {
+        CCNode * node = m_cMaps->getElementByTags("1,0,0");
+        CCSprite *m_pSaveButton = (CCSprite*)node;
+        CCPoint point = m_pSaveButton->getAnchorPoint();
+        CCTexture2D * pressed = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_normal.png"));
+        m_pSaveButton->initWithTexture(pressed);
+        m_pSaveButton->setAnchorPoint(point);
+    }
     handlerTouch(pTouch);
     
 }
@@ -532,15 +551,21 @@ void CCardEnhanceLayer:: save()
 
 void CCardEnhanceLayer::saveOnClick()
 {
+    CSaveConfirmLayer * layer =  CSaveConfirmLayer::create();
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
+
     if (m_pSelectCard == 0 && m_nCostConin == 0)
     {
-        CCLog("没有材料卡或被强化的卡");
+      //  CCLog("没有材料卡或被强化的卡");
+        layer->setResultCode(5);
+        CCLog("22333");
         return;
     }
     bool bRet =verifyConin();
     if (bRet == false)
     {
         CCLog("金币不足");
+        layer->setResultCode(6);
         return ;
     }
     char buff[200]={0};
@@ -569,26 +594,18 @@ void CCardEnhanceLayer::receiveCallBack(CCObject *pSender)
     char *buffer = (char *) pSender;
     CCLog("callback: %s", buffer);
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "cardenhance");
-
+    
     CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
-    CSaveConfirmLayer * layer = new CSaveConfirmLayer();
+    CSaveConfirmLayer * layer = (CSaveConfirmLayer * ) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(2000);
     int result = GameTools::intForKey("code", dic);
-   
-  
+    layer->setResultCode(result,true);
     if (result == 0)
     {
         save();
-        layer->setUserData((void *) 30001);
     }else
     {
-        layer->setUserData((void *) 30002);
         CCLog("error");
     }
-    
     delete [] buffer;
-  
-    layer->init();
-    layer->autorelease();
-    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000);
 
 }

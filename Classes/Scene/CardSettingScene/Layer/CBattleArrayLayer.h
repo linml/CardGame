@@ -87,10 +87,13 @@ public:
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     void setDelegateLayer(CBattleArrayLayer * inLayer){ m_pDelegateLayer = inLayer;};
     
+    
     void onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent);
     void onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent);
     void onSellEnd(CCTouch *pTouch, CCEvent *pEvent);
     void onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent);
+    
+    bool onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent);
     void onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent);
     
     // handlerror

@@ -19,6 +19,8 @@ CCardSellLayer::CCardSellLayer()
     m_nTouchTag = -1;
     m_pPlayer = SinglePlayer::instance();
     m_cMaps = NULL;
+    m_nConin = 0;
+    m_pConinlabel = NULL;
 }
 
 CCardSellLayer::~CCardSellLayer()
@@ -45,6 +47,10 @@ bool CCardSellLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     if (CPtTool::isInNode(m_pSaveButton, pTouch))
     {
+        CCPoint point = m_pSaveButton->getAnchorPoint();
+        CCTexture2D * pressed = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_pressed.png"));
+        m_pSaveButton->initWithTexture(pressed);
+        m_pSaveButton->setAnchorPoint(point);
         return  true;
     }
     return false;
@@ -55,6 +61,10 @@ void CCardSellLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CCardSellLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    CCPoint point = m_pSaveButton->getAnchorPoint();
+    CCTexture2D * noraml = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_normal.png"));
+    m_pSaveButton->initWithTexture(noraml);
+    m_pSaveButton->setAnchorPoint(point);
     if (CPtTool::isInNode(m_pSaveButton, pTouch))
     {
         handlerTouch(pTouch);
@@ -79,12 +89,14 @@ void CCardSellLayer::initSelll()
     m_cMaps = LayoutLayer::create();
     m_cMaps->retain();
     m_cMaps->initWithFile(this, CSTR_FILEPTAH(plistPath, "chushoujiemian.plist"));
-    m_pSaveButton = m_cMaps->getElementByTags("2001,1,25");
+    m_pSaveButton = (CCSprite*) m_cMaps->getElementByTags("2001,1,25");
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(-1);
     
-    
+    m_pConinlabel = (CCLabelTTF*) m_cMaps->getElementByTags("2001,1,19,4003");
+    CCNode *parent = m_pConinlabel->getParent();
+    parent->getParent()->reorderChild(parent, 3000);
     // ajust panel position:
     m_cMaps->getElementByTags("2001,0")->setPosition(ccp(0, -20));
     
@@ -108,6 +120,9 @@ void CCardSellLayer::handlerTouch(cocos2d::CCTouch *pTouch)
 
 void CCardSellLayer::saveOnClick()
 {
+    CSaveConfirmLayer * layer = CSaveConfirmLayer::create();
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
+    layer->setResultCode(0);
     // send message to server:
     char buff[500]={0};
     sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
@@ -143,25 +158,20 @@ void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "cardsell");
     
     CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
-    CSaveConfirmLayer * layer = new CSaveConfirmLayer();
+    CSaveConfirmLayer * layer = (CSaveConfirmLayer*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(2000);
     int result = GameTools::intForKey("code", dic);
     
-    
+    layer->setResultCode(result);
     if (result == 0)
     {
         save();
-        layer->setUserData((void *) 40001);
     }else
     {
-        layer->setUserData((void *) 40002);
         CCLog("error");
     }
     
     delete [] buffer;
-    
-    layer->init();
-    layer->autorelease();
-    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000);
+   
     
 
 }
@@ -169,6 +179,7 @@ void CCardSellLayer::save()
 {
     // save data:
     removeCardInCardBag();
+    clearCoin();
 }
 
 void CCardSellLayer::resetData()
@@ -183,14 +194,33 @@ void CCardSellLayer::updateSell()
 
 void CCardSellLayer::updateData()
 {
-    
+   
 }
 
 void CCardSellLayer::updateTexture()
 {
-    
+    char buff[50] = {0};
+    sprintf(buff, "%d", m_nConin);
+    m_pConinlabel->setString(buff);
 }
 
+void CCardSellLayer::addCoin(int conin)
+{
+    m_nConin += conin;
+    m_nConin = m_nConin >=0 ? m_nConin:0;
+    updateTexture();
+}
+void CCardSellLayer::subCoin(int conin)
+{
+    m_nConin -= conin;
+    m_nConin = m_nConin >=0 ? m_nConin:0;
+    updateTexture();
+}
+void CCardSellLayer::clearCoin()
+{
+    m_nConin = 0;
+    updateTexture();
+}
 void CCardSellLayer::restCardFlag()
 {
     if (m_pSellPackage)

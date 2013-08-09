@@ -275,6 +275,7 @@ bool CFightingCardLayerLogic::checkFighting()
         m_iTotalHuihe++;
         CCLog("========>%d",m_iTotalHuihe);
     }
+    
     if(m_enHuiheIndex>EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;

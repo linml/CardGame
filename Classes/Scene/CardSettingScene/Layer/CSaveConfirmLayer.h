@@ -28,6 +28,7 @@ public:
     CSaveConfirmLayer();
     virtual ~CSaveConfirmLayer();
     
+    void setResultCode(const int &inCode, bool delay = false);
 public:
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -38,13 +39,15 @@ public:
 protected:
     void initConfirm();
     void handlerTouch();
+    void updateText();
     
 protected:
     bool m_bFight;
     int m_nTouchTag;
-    int m_nResult;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;
+    CCLabelTTF* pLabelTip;
+    int m_nResult;
 };
 
 

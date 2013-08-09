@@ -45,13 +45,14 @@ void CEffectInterfaceEleven::logicFightingCardByFightAndMonster(CFightCard *pCar
     int atk=0;
     if(pImapact->m_iParameter_8!=0||pImapact->m_iParameter_9!=0)
     {
-        atk= +pImapact->m_iParameter_8 + pMonster->m_attack*pImapact->m_iParameter_9/100;
+        // pMonster->m_attack  = pMonster->m_attack +pImapact->m_iParameter_8 + (pMonster->m_attack*pImapact->m_iParameter_9/100-1)
+        atk= pImapact->m_iParameter_8 + (pMonster->m_attack*(pImapact->m_iParameter_9/100))-pMonster->m_attack;
         if (atk!=0)
         {
             CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,atk,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ATTACK);
             if(pMonster->appendBuffer(buffer))
             {
-                pMonster->m_attack = pMonster->getAddValue(pMonster->m_iCurrLevel, 1) + (atk);
+                pMonster->m_attack +=(atk);
             }
         }
     }

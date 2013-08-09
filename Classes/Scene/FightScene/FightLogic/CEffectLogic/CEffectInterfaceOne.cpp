@@ -59,7 +59,7 @@ void CEffectInterfaceOne::logicFightingCardByFightAndMonster(CFightCard *pCard,C
         CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_DEFEND);
         if(pMonster->appendBuffer(buffer))
         {
-            pMonster->m_defend= pMonster->getAddValue(pMonster->m_iCurrLevel, 2) + (-def);
+           pMonster->m_defend = pMonster->getAddValue(pMonster->m_iCurrLevel, 2) + (-def);
         }
         CCLog("def - %d",def);
     }

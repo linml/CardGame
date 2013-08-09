@@ -11,7 +11,7 @@
 
 CSaveConfirmLayer::CSaveConfirmLayer()
 {
-    
+    pLabelTip = NULL;
 }
 
 CSaveConfirmLayer::~CSaveConfirmLayer()
@@ -56,7 +56,7 @@ void CSaveConfirmLayer::initConfirm()
 {
     // init data:
     m_nTouchTag = -1;
-    m_nResult = (int)getUserData();
+
     
     m_cMaps = LayoutLayer::create();
     m_cMaps->retain();
@@ -73,36 +73,41 @@ void CSaveConfirmLayer::initConfirm()
     m_cMaps->getElementByTags("2,2")->setVisible(false);
     m_cMaps->getElementByTags("3")->setVisible(false);
     
-    string word ;
-    if (m_nResult == 0)
-    {
-       word = "设置成功";
-    }
-    else if(m_nResult == 30001)
-    {
-        word = "设置成功";
-    }
-    else if(m_nResult == 4001)
-    {
-        word = "设置成功";
-    }
-    else
-    {
-        word = "设置失败";
-    }
+       
     
     
-    
-    CCLabelTTF* pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
-    pLabel->setPosition(ccp(240,140));
+    pLabelTip = CCLabelTTF::create("loading...","Scissor Cuts", 20);
+    pLabelTip->setPosition(ccp(240,140));
     
     CCNode * node = m_cMaps->getElementByTags("2,0,0");
     if(node)
     {
-        CCLog("exist,%s", word.c_str());
-        node->addChild(pLabel);
+        node->addChild(pLabelTip);
     }
     
+}
+/*
+ * @param inCode: 
+ *        1. 0: success
+ *        2. 1: 没有主将
+ *        3. 2: 没有援护
+ *        4. 3: 领导力不够
+ *        5. 4: 没有材料卡或被强化的卡
+ *        6. 5: 金币不够
+ */
+
+void CSaveConfirmLayer::setResultCode(const int &inCode, bool delay)
+{
+    m_nResult = inCode;
+
+    if (delay)
+    {
+        runAction(CCSequence::create(CCDelayTime::create(0.8f), CCCallFunc::create(this, callfunc_selector(CSaveConfirmLayer::updateText)), NULL));
+    }else
+    {
+        updateText();
+    }
+    CCLog("2233");
 }
 
 void CSaveConfirmLayer::handlerTouch()
@@ -118,4 +123,44 @@ void CSaveConfirmLayer::handlerTouch()
             break;
     }
    
+}
+
+void CSaveConfirmLayer::updateText()
+{
+    int inCode = m_nResult;
+    if (pLabelTip == NULL)
+    {
+        return;
+    }
+    char buff[50] = {0};
+    switch (inCode)
+    {
+        case 0:
+            sprintf(buff, "%s","设置成功");
+            break;
+            
+        case 1:
+            sprintf(buff, "%s","没有主将");
+            break;
+        case 2:
+            sprintf(buff, "%s","没有援护卡牌");
+            break;
+        case 3:
+            sprintf(buff, "%s","援护位卡牌没有援护技能");
+            break;
+        case 4:
+            sprintf(buff, "%s","领导力不够");
+            break;
+        case 5:
+            sprintf(buff, "%s","没有材料卡或被强化的卡");
+            break;
+        case 6:
+            sprintf(buff, "%s","金币不够");
+            break;
+        default:
+            sprintf(buff, "%s", "设置失败");
+            break;
+    }
+    CCLog("%s", buff);
+    pLabelTip->setString(buff);
 }

@@ -1,14 +1,14 @@
 10
 
 dir
-900
+908
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-08T09:31:11.054839Z
-897
+2013-08-09T07:48:04.156346Z
+908
 phileas
 
 
@@ -409,33 +409,19 @@ file
 
 
 
-2013-08-08T09:49:38.000000Z
-1f2d6451a2653857a356279c61bd5564
-2013-08-08T09:31:11.054839Z
-897
+
+e311c026f31d0d54fd42861097aaba91
+2013-08-09T07:48:04.156346Z
+908
 phileas
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-10995
+CCard.cpp.r905
+CCard.cpp.r908
+CCard.cpp.mine
 
 CCardBufferStatus.h
 file

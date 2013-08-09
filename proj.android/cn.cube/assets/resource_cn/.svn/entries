@@ -1,15 +1,15 @@
 10
 
 dir
-900
+915
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-08T08:36:11.036616Z
-896
-phileas
+2013-08-09T08:45:29.193405Z
+915
+wood
 
 
 
@@ -128,9 +128,6 @@ merlin
 
 36202
 
-sound
-dir
-
 card_config.plist
 file
 
@@ -164,6 +161,9 @@ card_config.plist.mine
 
 
 117687
+
+sound
+dir
 
 100004_l.plist
 file
@@ -301,40 +301,6 @@ merlin
 
 732
 
-100004_r.plist
-file
-
-
-
-
-2013-08-01T09:52:27.000000Z
-1e4d9b24dcbf70aba0b9c3ed3ce22aad
-2013-08-02T06:48:35.298541Z
-851
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-954
-
 boss_icon_Effect_l.plist
 file
 
@@ -368,6 +334,40 @@ merlin
 
 
 942
+
+100004_r.plist
+file
+
+
+
+
+2013-08-01T09:52:27.000000Z
+1e4d9b24dcbf70aba0b9c3ed3ce22aad
+2013-08-02T06:48:35.298541Z
+851
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+954
 
 cardbg.txt
 file

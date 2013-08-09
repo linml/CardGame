@@ -11,7 +11,11 @@
 		<key>opacity</key>
 		<string>255</string>
 		<key>position</key>
-		<string>0,300</string>
+		<string>240,300</string>
+        <key>scaleX</key>
+        <string>1.5</string>
+        <key>scaleY</key>
+        <string>1.5</string>
 		<key>tag</key>
 		<string>2</string>
 		<key>visable</key>

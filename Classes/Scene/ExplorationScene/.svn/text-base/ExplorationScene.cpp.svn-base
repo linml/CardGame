@@ -281,7 +281,7 @@ bool CExploration::initExploration()
         {
             m_pBtn[i] = CPtButtonWidget::create("");
             m_pBtn[i]->setAnchorPoint(CCPointZero);
-            m_pBtn[i]->setPosition(ccp(180+290*i, 380));
+            m_pBtn[i]->setPosition(ccp(150+290*i, 380));
             outLayer->addChild(m_pBtn[i], 3001+i, 200);
             Utility::addTouchRect(3001+i, m_pBtn[i], m_cTouches);
         }
