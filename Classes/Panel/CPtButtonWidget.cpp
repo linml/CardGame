@@ -8,10 +8,10 @@
 
 #include "CPtButtonWidget.h"
 #include "gameConfig.h"
-CPtButtonWidget * CPtButtonWidget::create(const char * inText)
+CPtButtonWidget * CPtButtonWidget::create(const char * inText,const string& soundFile)
 {
     CPtButtonWidget *button  = new CPtButtonWidget();
-    if (button && button->init(inText))
+    if (button && button->init(inText,soundFile))
     {
         button->autorelease();
         return button;
@@ -24,6 +24,7 @@ CPtButtonWidget::CPtButtonWidget()
 {
     m_pNoraml = NULL;
     m_pPress = NULL;
+    m_pSelect = NULL;
     m_pText = NULL;
 }
 CPtButtonWidget::~CPtButtonWidget()
@@ -31,13 +32,15 @@ CPtButtonWidget::~CPtButtonWidget()
     
 }
 
-bool CPtButtonWidget::init(const char * inText)
+bool CPtButtonWidget::init(const char * inText, const string& soundFile)
 {
     CCLog("CPtButtonWidget::init");
     bool bRet = false;
     do {
         
         CC_BREAK_IF(!CCSprite::init());
+        
+        m_strSoundFile = soundFile;
         
         m_pNoraml = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button_normal_bg.png"));
         m_pNoraml->setAnchorPoint(CCPointZero);
@@ -82,4 +85,9 @@ void CPtButtonWidget::setPress()
 void CPtButtonWidget:: setText(const char * inText)
 {
     m_pText->setString(inText);
+}
+
+void CPtButtonWidget::setEnd()
+{
+    PtSoundTool::playSysSoundEffect(m_strSoundFile);
 }

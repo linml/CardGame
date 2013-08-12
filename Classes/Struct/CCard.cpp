@@ -173,6 +173,14 @@ bool CFightCard::hasAssistantSkill()
     
 }
 
+void CFightCard::setNegativeToZero()
+{
+    if(m_iCurrHp<0)
+    {
+        m_iCurrHp=0;
+    }
+}
+
 void CFightCard::appendEngry(int iEngry)
 {
     this->m_iCurrEngry+=iEngry;

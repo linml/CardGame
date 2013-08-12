@@ -327,7 +327,7 @@ void CFightingCardLayerScene::updateBuffer()
                 {
                     
                     const char *pngIcon=player->getBufferPngByEffectId(eveyatk->m_vbufferList[i]->m_iEffectid).c_str();
-                    CCLog("png path:%s,%d",pngIcon,eveyatk->m_vbufferList[i]->m_iEffectid);
+                    //CCLog("png path:%s,%d",pngIcon,eveyatk->m_vbufferList[i]->m_iEffectid);
                     if(strlen(pngIcon)>0)
                     {
                         CGameCardBuffer *gameBuffer=CGameCardBuffer::CreateBuffer(pngIcon, eveyatk->m_vbufferList[i]->m_iValue);
@@ -339,7 +339,7 @@ void CFightingCardLayerScene::updateBuffer()
                 }
                 else{
                     const char *pngIcon=player->getBufferPngByEffectId(eveyatk->m_vbufferList[i]->m_iEffectid).c_str();
-                    CCLog("png path:%s,%d",pngIcon,eveyatk->m_vbufferList[i]->m_iEffectid);
+                    //CCLog("png path:%s,%d",pngIcon,eveyatk->m_vbufferList[i]->m_iEffectid);
                     if(strlen(pngIcon)>0)
                     {
                         CGameCardBuffer *gameBuffer=CGameCardBuffer::CreateBuffer(pngIcon, eveyatk->m_vbufferList[i]->m_iValue);
@@ -698,6 +698,9 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
         }
             break;
         case EN_ATKFIGHT_INDEX_LEFT_MOVE:
+            CCLog("animationAndex====%d",animationAndex);
+            updateHpAndAngry();
+            updateBuffer();
             m_vFightHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
             moveCardSprite(m_vFightingCard,m_currCAnimationHP->m_iATKindex,true);//移动 card
             if(m_currCAnimationHP->m_iATKindex+1<m_vMonsterHero.size()-1 &&m_vFightingCard[m_currCAnimationHP->m_iATKindex+1])
@@ -706,6 +709,8 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
             }
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_MOVE:
+            updateHpAndAngry();
+            updateBuffer();
             m_vMonsterHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
             moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);//移动 card
             if(m_currCAnimationHP->m_iATKindex+1<m_vMonsterHero.size()-1 &&m_vMonsterHero[m_currCAnimationHP->m_iATKindex+1])
@@ -759,8 +764,9 @@ void CFightingCardLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goI
 }
 void CFightingCardLayerScene::showHp(int leftHp,int RightHp)
 {
-    cout<<"left hp:"<<leftHp<<"Right hp:"<<RightHp<<endl;
-    if (leftHp==0 &&RightHp==0) {
+    cout<<"left hp:"<<leftHp<<"   Right hp:"<<RightHp<<endl;
+    if (leftHp==0 &&RightHp==0)
+    {
         return;
     }
     CCPoint point;

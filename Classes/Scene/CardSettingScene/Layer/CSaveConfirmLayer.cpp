@@ -47,6 +47,7 @@ void CSaveConfirmLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag = TouchRect::SearchTouchTag(touchPoint, m_cTouches);
     handlerTouch();
+    
 }
 void CSaveConfirmLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -116,7 +117,9 @@ void CSaveConfirmLayer::handlerTouch()
     switch (m_nTouchTag)
     {
         case  2001:
+            PtSoundTool::playSysSoundEffect("UI_click.wav");
             removeFromParentAndCleanup(true);
+        
             break;
             
         default:

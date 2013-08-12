@@ -82,8 +82,10 @@ void CCardEvolutionLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         CCTexture2D * noraml = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_normal.png"));
         m_pSaveButton->initWithTexture(noraml);
         m_pSaveButton->setAnchorPoint(point);
+       
     }
     handlerTouch(pTouch);
+    
 }
 void CCardEvolutionLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -140,8 +142,10 @@ void CCardEvolutionLayer::handlerTouch(CCTouch * pTouch)
     }
     if (CPtTool::isInNode(m_pSaveButton, pTouch) && m_nTouchTag == 2)
     {
+        PtSoundTool::playSysSoundEffect("UI_click.wav");
         saveOnClick();
     }
+    
 }
 
 void CCardEvolutionLayer::updateEvolution()

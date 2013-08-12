@@ -54,6 +54,7 @@ private:
     void appendHpAngryUpdate();
     void appendUpdateBuffer();
     bool appendBuffPng( list<CCardBufferStatus *> fightBefore, list<CCardBufferStatus *> fightAfter,bool isLeft,CFightCardFightingBuffer *fightBuffer);
+    int getNextFightCard(int index,bool isLeftFightTeam);
 public:
     bool logicFighting();
     void loadAnimatePlist();                        //!<    加载animation的plist文件里面的帧动画

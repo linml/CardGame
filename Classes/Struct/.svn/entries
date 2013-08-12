@@ -1,7 +1,7 @@
 10
 
 dir
-908
+921
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
@@ -405,23 +405,37 @@ merlin
 
 CCard.cpp
 file
+923
+
+
+
+2013-08-12T01:35:22.000000Z
+a3435b7332a7e45bed6de48d3cbc50cd
+2013-08-12T03:32:49.909864Z
+923
+merlin
 
 
 
 
 
-e311c026f31d0d54fd42861097aaba91
-2013-08-09T07:48:04.156346Z
-908
-phileas
 
 
 
 
 
-CCard.cpp.r905
-CCard.cpp.r908
-CCard.cpp.mine
+
+
+
+
+
+
+
+
+
+
+
+10975
 
 CCardBufferStatus.h
 file
@@ -527,20 +541,15 @@ merlin
 
 CCard.h
 file
+923
 
 
 
-
-2013-08-08T09:49:38.000000Z
-1e92d8ead07a2879bfbd80d878482119
-2013-08-08T09:31:11.054839Z
-897
-phileas
-
-
-
-
-
+2013-08-12T01:34:51.000000Z
+c9754553d21d36bdbad6de6f36a60c24
+2013-08-12T03:32:49.909864Z
+923
+merlin
 
 
 
@@ -557,7 +566,12 @@ phileas
 
 
 
-3398
+
+
+
+
+
+3423
 
 Craftsmanship
 dir

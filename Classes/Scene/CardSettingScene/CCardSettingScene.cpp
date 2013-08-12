@@ -276,6 +276,7 @@ void CCardSettingScene::handlerTouch()
         m_nCurrentTableId = m_nTouchTag;
 
     }
+    PtSoundTool::playSysSoundEffect("UI_click.wav");
 
 
     

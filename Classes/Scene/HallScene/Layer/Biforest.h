@@ -43,6 +43,7 @@ protected:
     bool m_bSectionTouchEnable;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;
+    CCSprite * m_pTouchSprite;
     
 };
 

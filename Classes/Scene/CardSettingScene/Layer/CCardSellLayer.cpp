@@ -67,8 +67,10 @@ void CCardSellLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     m_pSaveButton->setAnchorPoint(point);
     if (CPtTool::isInNode(m_pSaveButton, pTouch))
     {
+        PtSoundTool::playSysSoundEffect("UI_click.wav");
         handlerTouch(pTouch);
     }
+   
     
 }
 void CCardSellLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)

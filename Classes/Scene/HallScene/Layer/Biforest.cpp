@@ -16,7 +16,7 @@ static CCPoint p;
 
 CBiforestLayer::CBiforestLayer()
 {
-    
+    m_pTouchSprite = NULL;
 }
 
 CBiforestLayer::~CBiforestLayer()
@@ -56,8 +56,9 @@ void CBiforestLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 void CBiforestLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCPoint touchPoint = pTouch->getLocation();
-    if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches))
+    if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_pTouchSprite))
     {
+        Utility::handleBtnCallBack(m_pTouchSprite, this, NULL);
         handlerTouch();
     }
 
@@ -118,7 +119,7 @@ void CBiforestLayer::handlerTouch()
                 m_bSectionTouchEnable = true;
                 m_cMaps->getElementByTags("2,0,2")->setPosition(p);
             }
-
+            
             break;
             
         case 2002:

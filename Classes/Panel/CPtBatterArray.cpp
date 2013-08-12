@@ -904,6 +904,7 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
            
             return;
         }
+        PtSoundTool::playSysSoundEffect("UI_click.wav");
         saveOnClick();
         return;
     }

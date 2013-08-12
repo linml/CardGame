@@ -37,6 +37,7 @@ CExploration::CExploration()
     {
         m_pBtn[i] = NULL;
     }
+    m_pTouchSprite = NULL;
 }
 
 CExploration::~CExploration()
@@ -96,8 +97,19 @@ void CExploration::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     CCLog("CExploration::ccTouchEnded");
     CCPoint touchPoint = pTouch->getLocation();
     
-    if (m_nTouchTag == TouchRect::SearchTouchTag(touchPoint, m_cTouches))
+    if (m_nTouchTag == TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_pTouchSprite))
     {
+        
+        switch (m_nTouchTag)
+        {
+            case 3001:
+            case 3002:
+            case 3003:
+                break;
+            default:
+                Utility::handleBtnCallBack(m_pTouchSprite, this, NULL);
+                break;
+        }
         handlerTouch();
     }else
     {
@@ -281,7 +293,7 @@ bool CExploration::initExploration()
         {
             m_pBtn[i] = CPtButtonWidget::create("");
             m_pBtn[i]->setAnchorPoint(CCPointZero);
-            m_pBtn[i]->setPosition(ccp(150+290*i, 380));
+            m_pBtn[i]->setPosition(ccp(120+290*i, 370));
             outLayer->addChild(m_pBtn[i], 3001+i, 200);
             Utility::addTouchRect(3001+i, m_pBtn[i], m_cTouches);
         }
@@ -325,7 +337,9 @@ void CExploration::handlerTouch()
         return;
         
     }
-    
+    if (m_nTouchTag > 3000) {
+        m_pBtn[m_nTouchTag-3001]->setEnd();
+    }
     switch (m_nTouchTag) {
         case LEFT_TOUCH_TAG:
             CCLog("CExploration:: left");

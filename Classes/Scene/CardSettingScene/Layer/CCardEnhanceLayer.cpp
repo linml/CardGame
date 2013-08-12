@@ -103,6 +103,7 @@ void CCardEnhanceLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         CCTexture2D * pressed = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "save_normal.png"));
         m_pSaveButton->initWithTexture(pressed);
         m_pSaveButton->setAnchorPoint(point);
+        
     }
     handlerTouch(pTouch);
     
@@ -159,6 +160,7 @@ void CCardEnhanceLayer::handlerTouch(CCTouch * pTouch)
     {
         CCLog("save");
        // save();
+        PtSoundTool::playSysSoundEffect("UI_click.wav");
         saveOnClick();
     }
 

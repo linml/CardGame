@@ -98,7 +98,6 @@ namespace CPtTool
                     {
                         if (isNeedMove(inCard, array[i],  parent, 2))
                         {
-                            CCLog("right");
                             // move(array, 1, i, 4);
                             if (i-1 >= 0 && array[i-1] == NULL)
                             {
@@ -115,7 +114,6 @@ namespace CPtTool
                         
                         if (isNeedMove(inCard, array[i], parent,1))
                         {
-                            CCLog("left");
                             move(array, 2, i, 4);
                         }
                         

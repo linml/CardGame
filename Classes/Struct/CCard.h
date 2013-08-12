@@ -74,8 +74,8 @@ public:
     bool isHaveBuffer(int prameid);
     void appendEngry(int iEngry);
     void appendHp(int iHp);
-    
     bool hasAssistantSkill();
+    void setNegativeToZero();
 public:
     int m_iCurrHp;  //当前HP
     int m_iHp;      //当前总的HP

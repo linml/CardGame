@@ -53,6 +53,7 @@ protected:
     CPtButtonWidget* m_pBtn[3];
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
+    CCSprite * m_pTouchSprite;
     
     
 };
