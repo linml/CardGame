@@ -542,8 +542,8 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
             case EN_SEND_SKILL_BUFF:
                 pSkilldata=SinglePlayer::instance()->getSkillBySkillId(pCard->m_pCard->m_iskillBuff);
                 CCLog("用户发动了用户的技能5");
-                appendAnimation(FightIndex, FightIndex, 0, 0,pSkilldata->skill_id, 0, 0, EN_ANIMATIONTYPE_SKILL, enAtkFightIndex
-                                ); //添加一个增幅技能
+//                appendAnimation(FightIndex, FightIndex, 0, 0,pSkilldata->skill_id, 0, 0, EN_ANIMATIONTYPE_SKILL, enAtkFightIndex
+//                                ); //添加一个增幅技能
                 break;
             default:
                 break;

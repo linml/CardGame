@@ -41,6 +41,7 @@ public:
     int  m_iSubEngry;
     int  m_iSKillId;
     int  spritetag;
+    bool isToOwn; //如果死亡技能是给自己的话 那么
     string m_sBufferPlist;
 public:
     

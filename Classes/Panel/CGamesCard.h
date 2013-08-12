@@ -32,7 +32,9 @@ public:
     CFightCard *getCardData(){ return m_pCardData;};
     void updateCard(CFightCard *card);
     void setLogo(const int &inType);
+    void setGameStatus();
 protected:
+    void hideNodeByTag(int tag);
     void setLive(CCNode *node);
     void setDead(CCNode *node);
     bool initBg(CFightCard *card);

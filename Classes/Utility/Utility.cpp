@@ -248,7 +248,10 @@ namespace Utility {
     {
         CCLOG("isButtonActing = %d",ActionCallFun::getBtnStatus());
         if (!sprite) {
-            (target->*selector)();
+            if (selector!=NULL)
+            {
+                (target->*selector)();
+            }
             if(soundFile != "")
                 PtSoundTool::playSysSoundEffect(soundFile);
             //            isButtonActing = true;

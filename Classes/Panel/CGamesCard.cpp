@@ -11,7 +11,10 @@
 #include "gameConfig.h"
 #include "CPtTool.h"
 #define  TAG_GAMECARD_HERO 100
-
+#define CARDHPTAG 10
+#define CARDATKTAG 11
+#define CARDRVCTAG 12
+#define CARDDEFTAG 13
 
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
@@ -336,11 +339,11 @@ void CGamesCard::createData(const int &inAtk, const int &inHp, const int &inRcv,
     
     // atk:
     sprintf(buff, "ATK:%d",inAtk);
-    label=CCLabelTTF::create(buff, "Arial", 10);
+    label=CCLabelTTF::create(buff, "Arial", CARDATKTAG);
     label->setColor(ccc3(255, 255, 0));
     label->setAnchorPoint(CCPointZero);
     label->setPosition(ccp(27, 23));
-    addChild(label,3);
+    addChild(label,3,CARDATKTAG);
     m_pAtkLabel = label;
     // hp:
     sprintf(buff, "HP:%d", inHp);
@@ -348,7 +351,7 @@ void CGamesCard::createData(const int &inAtk, const int &inHp, const int &inRcv,
     label->setColor(ccc3(255, 255, 0));
     label->setAnchorPoint(CCPointZero);
     label->setPosition(ccp(75, 23));
-    addChild(label,3);
+    addChild(label,3,CARDHPTAG);
     m_pHpLabel = label;
     
     
@@ -358,7 +361,7 @@ void CGamesCard::createData(const int &inAtk, const int &inHp, const int &inRcv,
     label->setColor(ccc3(255, 255, 0));
     label->setAnchorPoint(CCPointZero);
     label->setPosition(ccp(27, 10));
-    addChild(label,3);
+    addChild(label,3,CARDRVCTAG);
     m_pRvcLabel = label;
     // def:
     sprintf(buff, "DEF:%d", inDef);
@@ -366,7 +369,7 @@ void CGamesCard::createData(const int &inAtk, const int &inHp, const int &inRcv,
     label->setColor(ccc3(255, 255, 0));
     label->setAnchorPoint(CCPointZero);
     label->setPosition(ccp(75, 10));
-     addChild(label,3);
+     addChild(label,3,CARDDEFTAG);
     m_pDefLabel = label;
 }
 
@@ -483,6 +486,23 @@ void CGamesCard::createLogo()
     m_pLogo = CCSprite::create();
     m_pLogo->setPosition(ccp(70, 100 ));
     addChild(m_pLogo, 20);
+}
+
+void  CGamesCard::hideNodeByTag(int tag)
+{
+    if (getChildByTag(tag)) {
+        getChildByTag(tag)->setVisible(false);
+    }
+    
+}
+
+void CGamesCard::setGameStatus()
+{
+        hideNodeByTag(CARDRVCTAG);
+        hideNodeByTag(CARDATKTAG);
+        hideNodeByTag(CARDDEFTAG);
+        hideNodeByTag(CARDHPTAG);
+    
 }
 
 /*
