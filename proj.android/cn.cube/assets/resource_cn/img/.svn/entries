@@ -1,14 +1,14 @@
 10
 
 dir
-915
+939
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-09T07:48:04.156346Z
-908
+2013-08-12T07:43:58.370431Z
+931
 phileas
 
 
@@ -1215,6 +1215,9 @@ has-props
 
 
 1494015
+
+prop
+dir
 
 cubeCardSprite.png
 file

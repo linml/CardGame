@@ -336,7 +336,11 @@ void CPtBattleArrayItem::onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent)
                     if (node->getCardData()->getEnConsume() == false)
                     {
                         node->getCardData()->setEnConsume(true);
-                        displace->setDead();
+                        if (node->getCardData()->getInWhichBattleArray() == 0)
+                        {
+                            displace->setDead();
+                        }
+                      
                         node->setInCardBagPointer(displace);
                         node->setIndex((int)getUserData());
                         node->setInCardBagPointer(displace);

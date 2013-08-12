@@ -63,6 +63,8 @@ const string g_sFont_title = "Georgia-BoldItalic";
 const string g_sFont_btn = "Helvetica-Bold";
 const std::string g_str_skillPathPlist=resRootPath +"particle/skill-texiao/";
 
+const std::string g_propImagesPath = resRootPath+"img/prop/";
+
 //注意 编辑器中使用大小 -1--就代表 T形按钮 100%
 const int g_custom_font_size[] = {
     10,             //0  空值,不能使用这个参数
@@ -158,6 +160,7 @@ const std::string g_str_optionPlist=plistPath+"optionScene.plist";
 
 const std::string g_str_level_up_config =  resRootPath+"card_level_up_config.plist";
 const std::string g_str_star_config = resRootPath + "card_star_level_up_config.plist";
+const std::string g_str_prop_config = resRootPath+"item_config.plist";
 
 enum EN_ATKOBJECT {
     EN_ATKOBJECT_OWN,

@@ -13,6 +13,15 @@
 #include "CSingleton.h"
 using namespace cocos2d;
 
+class PropItem : public CCObject
+{
+public:
+    int propId;
+    int propCount;
+};
+
+    
+
 class CPtStarConfigData :public CCObject
 {
 
@@ -20,8 +29,17 @@ class CPtStarConfigData :public CCObject
 public:
     CPtStarConfigData();
     virtual ~CPtStarConfigData();
-
     int getConstConin(const int &inCardId);
+    CCArray *getPropArrays(const int&inCardId);
+    
+protected:
+    bool updateWithCardId(const int &inCardId);
+    
+protected:
+    int m_nCurrentCardId;
+
+    int m_nCoin;
+    CCArray *m_pProps;
 
 };
 

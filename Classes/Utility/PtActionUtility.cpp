@@ -271,6 +271,14 @@ namespace PtActionUtility {
         else if (actionType == act_remove_self) {
             
         }
+        else if(actionType == act_effectSound)
+        {
+            string str=getSubStr(sAction, "(", ")");
+            char *data =new char [str.length()+1];
+            sprintf(data, "%s",str.c_str());
+            CCCallFunc* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::callPlayEffect),(void*)data);
+            return action;
+        }
         return NULL;
     }
     
@@ -511,3 +519,15 @@ void ActionCallFun::callTexiaoFile(CCNode *node,void *data)
     delete [](char *)data;
     data=NULL;
 }
+
+void ActionCallFun::callPlayEffect(CCNode *node,void *data)
+{
+    char *filename= (char *)data;
+    if(node)
+    {
+        PtSoundTool::playSysSoundEffect(filename);
+    }
+    delete [](char *)data;
+    data=NULL;
+}
+

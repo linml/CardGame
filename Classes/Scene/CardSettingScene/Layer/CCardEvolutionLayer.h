@@ -13,6 +13,8 @@
 #include "CPtBatterArray.h"
 #include "CPtListViewWidget.h"
 #include "CPtStarConfigData.h"
+#include "CPtPropConfigData.h"
+
 using namespace cocos2d;
 
 class CCardEvolutionLayer : public CCLayer
@@ -45,7 +47,7 @@ protected:
     void saveOnClick();
     void receiveCallBack(CCObject *pSender);
     
-    void clearPanel();
+    void clearProps();
 protected:
 
     LayoutLayer *m_cMaps;
@@ -58,8 +60,12 @@ protected:
     CCPoint m_aPoint[2];
     
     CCLabelTTF *label[5];
+    CCSprite *m_pPropBg[5];
+    
     CC_SYNTHESIZE(CPtListViewWidget*, m_pCardBag, CardBag);
     CFightCard * m_pFightCard;
+    CPtPropConfigData * m_pPropConfigData;
+    
     
     int m_nTouchTag;
     int m_nCostConin;
@@ -67,6 +73,7 @@ protected:
     int m_nAddRvc;
     int m_nAddDef;
     int m_nAddHp;
+    
     
 };
 

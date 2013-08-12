@@ -46,7 +46,7 @@ const std::string act_reset_zorder="ResetZorder";
 const std::string act_animateplist="Animate";
 const std::string act_hidetag="Removetag";
 const std::string act_jumpby="JumpBy";
-
+const std::string act_effectSound="PlayEffectSound";
 
 class ActionData {
 public:
@@ -67,6 +67,7 @@ public:
     static bool getBtnStatus();
     void resetZorder(CCNode *node,void *data);
     void callTexiaoFile(CCNode *node,void *data);
+    void callPlayEffect(CCNode *node,void *data);
     void removeChildBytag(CCNode *node,void *data);
 };
 

@@ -20,6 +20,7 @@ CCardEvolutionLayer::CCardEvolutionLayer()
     m_pMapLayer[1] = NULL;
     m_pPlayer = SinglePlayer::instance();
     m_pStarData = SingleStarConfigData::instance();
+    m_pPropConfigData = SinglePropConfigData::instance();
     m_nTouchTag = -1;
     m_nCostConin = 0;
     m_nAddAtk = 0;
@@ -29,7 +30,9 @@ CCardEvolutionLayer::CCardEvolutionLayer()
     for (int i = 0; i < 5; i++)
     {
         label[i] = NULL;
+        m_pPropBg[i] = NULL;
     }
+
 }
 CCardEvolutionLayer::~CCardEvolutionLayer()
 {
@@ -110,12 +113,19 @@ void CCardEvolutionLayer:: initEvolution()
     setTouchPriority(-1);
     
     int array[4]={1,0,1,4002};
-    
+    // 1,0, 164;
     for (int i = 0; i < 4; i++)
     {
+        array[2] = 1;
         array[3] = 4002+i;
         label[i] = ((CCLabelTTF*)(m_cMaps->getElementByTags(array, 4)));
+        array[2] = 164+i;
+        m_pPropBg[i] = ((CCSprite*)m_cMaps->getElementByTags(array, 3));
     }
+    
+    array[2] = 168;
+    m_pPropBg[4] = ((CCSprite*)m_cMaps->getElementByTags(array, 3));
+
     array[3]= 4006;
     array[2]=162;
     label[4] = ((CCLabelTTF*)(m_cMaps->getElementByTags(array, 4)));
@@ -177,6 +187,7 @@ void CCardEvolutionLayer:: updateData()
 }
 void CCardEvolutionLayer:: updateTexture()
 {
+    clearProps();
     if (m_pSrcCard == NULL || m_pDesCard == NULL)
     {
         for (int i = 0; i < 5; i++)
@@ -210,6 +221,38 @@ void CCardEvolutionLayer:: updateTexture()
     // rvc:
     sprintf(buff, "RVC : %d (+%d)", m_pSrcCard->getCardData()->m_pCard->m_icard_leadership, m_nAddRvc);
     label[3]->setString(buff);
+    
+    // update prop icon:
+    
+    CCArray * array = SingleStarConfigData::instance()->getPropArrays(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
+    for (int i = 0; i < array->count(); i++)
+    {
+        PropItem * item = (PropItem*)array->objectAtIndex(i);
+        if(m_pPropConfigData->getPropDataById(item->propId))
+        {
+            CCLog("%s", m_pPropConfigData->getIconName().c_str());
+            CCSprite * sprite = CCSprite::create(CSTR_FILEPTAH(g_propImagesPath, m_pPropConfigData->getIconName().c_str()));
+            if (sprite)
+            {
+                sprite->setAnchorPoint(CCPointZero);
+                m_pPropBg[i]->addChild(sprite);
+            }
+          
+        }
+    
+    }
+    
+}
+
+void CCardEvolutionLayer::clearProps()
+{
+    for (int i = 0 ; i < 5; i++)
+    {
+        if (m_pPropBg[i])
+        {
+            m_pPropBg[i]->removeAllChildrenWithCleanup(true);
+        }
+    }
     
 }
 void CCardEvolutionLayer:: save()

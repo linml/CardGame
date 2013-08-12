@@ -1171,10 +1171,6 @@ void CPtBattleArray::resetBattleArray()
     CPtDisPlayCard * tmp = NULL;
     CFightCard * tmpFightCard = NULL;
   
-    if (dir == NULL)
-    {
-        return;
-    }
      CCLog("inTag: %d", inTag);
 
     for (int i = 0; i < CARDCOUNT ; i++)
@@ -1197,15 +1193,19 @@ void CPtBattleArray::resetBattleArray()
         tmpFightCard = fightArray.at(i);
         if (tmpFightCard)
         {
-            tmp =  ((CPtDisPlayCard*)(dir->objectForKey(tmpFightCard->m_User_Card_ID)));
-            if (tmp)
+            if (dir)
             {
-                //tmp ->setDead();
-                tmp->getCardData()->setInBattleArray(inTag);
-                tmp->setLogo(inTag);
-                tmp = NULL;
+                tmp =  ((CPtDisPlayCard*)(dir->objectForKey(tmpFightCard->m_User_Card_ID)));
+                if (tmp)
+                {
+                    //tmp ->setDead();
+                   // tmp->getCardData()->setInBattleArray(inTag);
+                    tmp->setLogo(inTag);
+                    tmp = NULL;
+                }
             }
-
+            tmpFightCard->setInBattleArray(inTag);
+           
         }
     }
     

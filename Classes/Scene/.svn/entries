@@ -1,14 +1,14 @@
 10
 
 dir
-921
+939
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-09T10:17:34.153859Z
-920
+2013-08-12T10:16:10.240174Z
+935
 merlin
 
 
@@ -29,40 +29,6 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 FightScene
 dir
 
-CBattleArrayLayer.h
-file
-
-
-
-
-2013-07-24T05:45:11.000000Z
-f1ce39aff465dd34c7585223b31de8dc
-2013-07-22T06:12:21.275485Z
-724
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1785
-
 ExplorationScene
 dir
 
@@ -72,108 +38,6 @@ dir
 LoginScene
 dir
 
-CCardSettingScene.cpp
-file
-
-
-
-
-2013-07-24T05:45:11.000000Z
-278db8c4e26936efa1df794c323e5ddf
-2013-07-22T06:12:21.275485Z
-724
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2206
-
-CBattleArrayLayer.cpp
-file
-
-
-
-
-2013-07-24T05:45:11.000000Z
-f02677f9e71ee85453a4cfdd28f4e9d8
-2013-07-22T06:12:21.275485Z
-724
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9676
-
 HallScene
 dir
-
-CCardSettingScene.h
-file
-
-
-
-
-2013-07-24T05:45:11.000000Z
-c2c8d9dd9e92fccc90672334c50f1fe2
-2013-07-22T06:12:21.275485Z
-724
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1003
 
