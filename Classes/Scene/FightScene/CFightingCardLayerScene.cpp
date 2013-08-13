@@ -89,9 +89,14 @@ bool CFightingCardLayerScene::init()
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(1);
     m_itotalAnimation=G_FightSkillManager::instance()->m_animationVector.size();
-    schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
+    runAction(CCSequence::create(CCDelayTime::create(1.0f),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::delayToSchude)),NULL));
     return true;
 }
+void CFightingCardLayerScene::delayToSchude(CCObject *object)
+{
+    schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
+}
+  
 void CFightingCardLayerScene::onEnter()
 {
     CCNotificationCenter::sharedNotificationCenter()->addObserver(
@@ -157,11 +162,11 @@ CCPoint CFightingCardLayerScene::getBufferIconPostion(int index,bool isLeft)
     CCPoint point=CCPointZero;
     if(isLeft)
     {
-        point.y=750;
+        point.y=700;
         point.x=100+50*index;
     }
     else{
-        point.y=750;
+        point.y=700;
         point.x=800-50*index;
     }
     return point;
@@ -458,21 +463,24 @@ void CFightingCardLayerScene::showSkillBuffer(cocos2d::CCSprite *pFightSprite, c
 void CFightingCardLayerScene::actionPFightSkill(const char *fightName,CCSprite *pFight,CCSprite *pMonster)
 {
     CCAction *animation=PtActionUtility::getRunActionWithActionFile(fightName);
-    CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonster);
+//    CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonster);
     CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
     CCCallFunc *reorderAction=CCCallFunc::create(this,callfunc_selector(CFightingCardLayerScene::actionReorderZorder));
     CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
     reorderChild(pFight,2);
-    pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,nd,callback,reorderAction,CCDelayTime::create(0.6f),endAnimation,NULL));
+    pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,reorderAction,CCDelayTime::create(0.6f),endAnimation,NULL));
+    pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
 }
 
 void CFightingCardLayerScene::actionHelpSprite(const char *fightName,CCSprite *pFight,CCSprite *pMonster)
 {
+    
     CCAction *animation=PtActionUtility::getRunActionWithActionFile(fightName);
-    CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonster);
+//    CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonster);
     CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
     CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
-    pFight->runAction(CCSequence::create(CCMoveBy::create(0.5, ccp(0,100)),(CCFiniteTimeAction*)animation,nd,callback,CCDelayTime::create(0.6), CCMoveBy::create(0.2, ccp(0, -100)), endAnimation,NULL));
+    pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,CCDelayTime::create(0.6),endAnimation,NULL));
+    pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
 }
 
 void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation)
@@ -937,10 +945,11 @@ void CFightingCardLayerScene::createMonsterCard()
         }
         else if(m_vMonsterCard[i])
         {
+            
             gameCard=CGamesCard::Create(m_vMonsterCard[i]);
             m_vMonsterCard[i]->tag=1000+i;
             gameCard->setTag(m_vMonsterCard[i]->tag);
-            gameCard->setPosition(ccp(wndsize.width-200,20));
+            gameCard->setPosition(ccp(wndsize.width-150,20));
             gameCard->setFlipX(true);
             gameCard->setAnchorPoint(CCPointZero);
             gameCard->setScale(0.8);
@@ -1083,11 +1092,11 @@ void CFightingCardLayerScene::createKuaiJin()
 void CFightingCardLayerScene::createEngryText()
 {
     CCLabelTTF *labelttf=CCLabelTTF::create("1", "Arail", 25);
-    addChild(labelttf,10,87777);
-    labelttf->setPosition(ccp(300,600));
+    addChild(labelttf,99999,87777);
+    labelttf->setPosition(ccp(300,750));
     labelttf=CCLabelTTF::create("2", "Arail", 25);
-    addChild(labelttf,10,87778);
-    labelttf->setPosition(ccp(874,600));
+    addChild(labelttf,99999,87778);
+    labelttf->setPosition(ccp(874,750));
 }
 
 
@@ -1095,11 +1104,11 @@ void CFightingCardLayerScene::createEngryText()
 void CFightingCardLayerScene::createHpText()
 {
     CCLabelTTF *labelttf=CCLabelTTF::create("1", "Arail", 25);
-    addChild(labelttf,10,77777);
-    labelttf->setPosition(ccp(150,600));
+    addChild(labelttf,99999,77777);
+    labelttf->setPosition(ccp(150,750));
     labelttf=CCLabelTTF::create("2", "Arail", 25);
-    addChild(labelttf,10,77778);
-    labelttf->setPosition(ccp(724,600));
+    addChild(labelttf,99999,77778);
+    labelttf->setPosition(ccp(724,750));
 }
 
 bool CFightingCardLayerScene::initText()

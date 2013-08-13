@@ -1,15 +1,15 @@
 10
 
 dir
-939
+961
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Panel
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-12T07:43:58.370431Z
-931
-phileas
+2013-08-12T10:27:29.337965Z
+940
+merlin
 
 
 
@@ -28,7 +28,7 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 CGamesCard.h
 file
-940
+
 
 
 
@@ -470,20 +470,15 @@ phileas
 
 CPtBatterArray.cpp
 file
+963
 
 
 
-
-2013-08-12T10:24:37.000000Z
-86633eb13811b781faf1987fd97ca72c
-2013-08-12T07:43:58.370431Z
-931
-phileas
-
-
-
-
-
+2013-08-13T08:22:41.000000Z
+0440853071d3041dc422016c39274e15
+2013-08-13T09:32:56.330270Z
+963
+merlin
 
 
 
@@ -500,7 +495,12 @@ phileas
 
 
 
-37806
+
+
+
+
+
+37864
 
 CPtScrollWordsWidget.cpp
 file
@@ -538,7 +538,7 @@ phileas
 
 CGamesCard.cpp
 file
-940
+
 
 
 

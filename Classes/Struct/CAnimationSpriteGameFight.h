@@ -41,7 +41,8 @@ public:
     int  m_iSubEngry;
     int  m_iSKillId;
     int  spritetag;
-    bool isToOwn; //如果死亡技能是给自己的话 那么
+    bool isToOwn; //如果死亡技能是给自己的话 那么攻击的对方不需要动哦。 
+
     string m_sBufferPlist;
 public:
     

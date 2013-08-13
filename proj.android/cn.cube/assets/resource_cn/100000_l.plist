@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+    <key>gongji</key>
+	<dict>
 	<key>actions</key>
 	<array>
 		<string>RotateBy(0.5,45)</string>
@@ -16,8 +18,8 @@
 		<string>RotateBy(0.5,360)</string>
 		<string>Repeat(Item 10,1)</string>
 		<string>Blink(1.0,1.0);</string>
-		<string>MoveBy(0.2,{10,10})</string>
-		<string>MoveBy(0.2,{-10,-10})</string>
+		<string>MoveBy(0.1,{-40,-40})</string>
+		<string>MoveBy(0.1,{40,40})</string>
 		<string>Sequence(Item 13,Item 12,Item 15,Item 17,Item 2,Item 16)</string>
 		<string>Animate(attack/attack.act)</string>
 		<string>Removetag(100)</string>
@@ -25,5 +27,22 @@
 	</array>
 	<key>runAction</key>
 	<string>Item 14</string>
+    </dict>
+    <key>shoushang</key>
+	<dict>
+        <key>actions</key>
+        <array>
+            <string>Delay(0.2)</string>
+            <string>TintTo(0.2,255,255,255)</string>
+            <string>TintTo(0.2,255,0,0)</string>
+            <string>MoveBy(0.1,{-40,40})</string>
+            <string>MoveBy(0.1,{40,-40})</string>
+            <string>Sequence(Item 0,Item 6,Item 7)</string>
+            <string>Spawn(Item 4,Item 2)</string>
+            <string>Spawn(Item 3,Item 1)</string>
+        </array>
+        <key>runAction</key>
+        <string>Item 5</string>
+    </dict>
 </dict>
 </plist>

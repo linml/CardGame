@@ -64,6 +64,7 @@ private:
     void skillByHeloSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster);
     void initSetUpdateHp(int iCurrHp,int TotalHp,int currEngry,bool isLeft);
     void actionReorderZorder(CCObject *object);
+    void delayToSchude(CCObject *object);
    
     
     // 创建显示文本比如，怒气，Hp信息;

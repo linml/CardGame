@@ -30,6 +30,8 @@
 //公告
 #define STR_URL_NOTICE(UID)         URL_FACTORY("api.php?m=Resource&a=notice",UID)
 
+//卡包
+#define STR_URL_GET_ITEM(UID)       URL_FACTORY("api.php?m=Card&a=getCardItem&uid=",UID)
 //获取阵容
 #define STR_URL_GET_TEAM(UID)       URL_FACTORY("api.php?m=Card&a=getCardTeam&uid=",UID)
 //更新阵容
@@ -45,11 +47,14 @@
 #define STR_URL_UPGRADE_CARD(UID)   URL_FACTORY("api.php?m=Card&a=cardUpGrade&uid=",UID)
 
 //卡牌出售
+#define STR_URL_SELL_CARD(UID)      URL_FACTORY("api.php?m=CardItem&a=sellCardItems&uid=",UID)
 
 //战斗前选择阵容
 #define STR_URL_CHOOSE_TEAM(UID)    URL_FACTORY("api.php?m=Fight&a=getTeamInfo&uid=",UID)
 //战斗结束校验
 #define STR_URL_FIGHT(UID)          URL_FACTORY("api.php?m=Fight&a=fight&uid=",UID)
 
+//获取道具背包
+#define STR_URL_BAG_PROP(UID)       URL_FACTORY("api.php?m=Item&a=getItem&uid=",UID)
 
 #endif

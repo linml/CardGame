@@ -26,65 +26,37 @@ static CPtBattleArray * s_currentBattleArray = NULL;
 
 bool CPtBattleArrayItem::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
- 
-    m_bMove = false;
- 
     CCLog("CPtBattleArrayItem::ccTouchBegan");
-    if(m_pDelegateLayer ==  NULL)
+    m_bMove = false;
+    if (m_pDelegateLayer)
     {
-        return false;
-        
-    }
-    
-
-    
-    if (m_pDelegateLayer->getTableClickEnable() == false)
-    {
-        m_pDelegateLayer->m_bReplace = false;
-        s_currentBattleArray = m_pDelegateLayer->panel->getBattleArray(pTouch);
-    }
-      
-    // new add  or replace:
-    
-    CPtDisPlayCard * displace =(CPtDisPlayCard*)(this->getDisplayView());
-    m_pDelegateLayer->m_pMoveCard = displace;
-
-    if(displace)
-    {
-        if (CPtTool::isInNode(displace, pTouch))
+        m_pDelegateLayer->m_pMoveCard = NULL;
+        m_pDelegateLayer->setTableClickMove(false);
+        if (m_pDelegateLayer->getCurrentTab() == 2)
         {
-           
-            // onclik mode:
-            if (m_pDelegateLayer->getTableClickEnable())
-            {
-                m_pDelegateLayer->setTableClickMove(false);
-                return true;
-            }
+            return onEnhanceBegin(pTouch, pEvent);
             
+        }else if(m_pDelegateLayer->getCurrentTab() == 4)
+        {
             
-            if(displace->getCardData()->getInWhichBattleArray()!=0)// (displace->getCardData()->getInBattleArray())
-            {
-                //
-                CCLog("it's in battleArray");
-                return false;
-            }
-            // ondrag mode:
-            // create new sprite:
-            CCPoint worldPostion = displace->getPosition();
-            worldPostion = displace->getParent()->convertToWorldSpace(worldPostion);
-            m_pDelegateLayer->m_pMoveCard = displace->getCopy();
-         //   displace->setDead();
-            m_pDelegateLayer->m_pMoveCard->setAnchorPoint(CCPointZero);
-            m_pDelegateLayer->m_pMoveCard->setPosition(worldPostion);
-            m_pDelegateLayer->addChild(m_pDelegateLayer->m_pMoveCard, 6000, 100);
-            m_pDelegateLayer->m_cPrePoint = m_pDelegateLayer->m_pMoveCard->getPosition();
-            (m_pDelegateLayer->m_pMoveCard)->setInCardBagPointer(displace);
-            return true;
+            return  onSellBegin(pTouch, pEvent);
+            
+        }else if(m_pDelegateLayer->getCurrentTab() == 3)
+        {
+            // onevelution:
+      
+            return onEvolutionBegin(pTouch, pEvent);
+
+        }else if(m_pDelegateLayer->getCurrentTab() == 1)
+        {
+          return  onTeamArrayBegin(pTouch, pEvent);
+        }else
+        {
+            return false;
         }
         
     }
-    return false;
-
+    return  false;
 }
 
 
@@ -132,15 +104,18 @@ void CPtBattleArrayItem::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
                 battles->updateBattleArray();
         
         }
-            
+        
             
 
     }
 
 }
 
-void CPtBattleArrayItem::onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent)
+bool CPtBattleArrayItem::onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent)
 {
+    bool bRet = false;
+    bRet = getCopyCard(true);
+    return bRet;
     
 }
 void CPtBattleArrayItem::onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent)
@@ -148,61 +123,85 @@ void CPtBattleArrayItem::onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent)
     CCLog("---------%d",(int) getUserData());
     if (m_pDelegateLayer)
     {
-        CCLog("onTableClick");
         // onclick:
-        if (m_pDelegateLayer->m_pEnhancePanel && m_pDelegateLayer->getTableClickEnable())
+        if (m_pDelegateLayer->m_pEnhancePanel)
         {
             if (m_pDelegateLayer->getTableClickMove())
             {
-                return;
-            }
-            int i = m_pDelegateLayer->m_pEnhancePanel->getEmptyCardSlide();
-            if (i != -1)
-            {
-                CPtDisPlayCard * displace =(CPtDisPlayCard *)(this->getDisplayView());
-                
-                
-                if(displace)
+               // on move:
+
+                int i = m_pDelegateLayer->m_pEnhancePanel->getEmptyCardSlide();
+                if (i != -1)
                 {
-                    if (CPtTool::isInNode(displace, pTouch))
+                    CPtDisPlayCard * displace = m_pDelegateLayer->m_pMoveCard; //(CPtDisPlayCard *)(this->getDisplayView());
+                    
+                    if(displace)
                     {
-                        
-                        
-                        
+                    
                         if (displace->getCardData()->getInWhichBattleArray() != 0) // (displace->getCardData()->getInBattleArray())
                         {
-                            //
-                            CCLog("it's in battleArray");
-                            
+                                //
+                                CCLog("it's in battleArray");
+                                m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+                                m_pDelegateLayer->m_pMoveCard = NULL;
+                                return;
+                                
                         }
-                        // ondrag mode:
-                        // create new sprite:
-                        
-                        CPtDisPlayCard *node = displace->getCopy();
+                            // ondrag mode:
+                            // create new sprite:
+                            
+                        CPtDisPlayCard *node = m_pDelegateLayer->m_pMoveCard;
                         if ( m_pDelegateLayer->m_pEnhancePanel->canClickCard(node) && node->getCardData()->getEnConsume() == false)
                         {
-                            node->setIndex((int)getUserData());
-                            node->setInCardBagPointer(displace);
-                            m_pDelegateLayer->m_pEnhancePanel->addCard(i, node);
-                         
+                                node->setIndex((int)getUserData());
+                                m_pDelegateLayer->m_pEnhancePanel->addCard(i, node);
+                                
                         }else
                         {
-                            CCLog("该为阵容中的卡，不能用作材料卡");
+                                CCLog("该为阵容中的卡，不能用作材料卡");
+                                m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+                                m_pDelegateLayer->m_pMoveCard = NULL;
+                                
                         }
+                            
                         
                         
                     }
-                    
+                }else
+                {
+                    m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+                    m_pDelegateLayer->m_pMoveCard = NULL;
                 }
-                
-                
+
+            
+            }else
+            {
+              // on click:
+                CCLog("onclick");
+                m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+                m_pDelegateLayer->m_pMoveCard = NULL;
             }
+        
         }
         
     }
     
 
     
+}
+
+bool CPtBattleArrayItem::onSellBegin(CCTouch * pTouch, CCEvent *pEvent)
+{
+    bool bRet = false;
+    if (m_bSellPanel)
+    {
+        return true;
+    }else
+    {
+         bRet = getCopyCard(true);
+    }
+   
+    return bRet;
 }
 
 void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
@@ -211,88 +210,112 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
     if (m_pDelegateLayer)
     {
                 // onclick:
-        if (m_pDelegateLayer->m_pSellPanel && m_pDelegateLayer->getTableClickEnable())
+        if (m_pDelegateLayer->m_pSellPanel)
         {
+            CPtDisPlayCard * displace =(CPtDisPlayCard *)(this->getDisplayView());
             if (m_pDelegateLayer->getTableClickMove())
             {
-                return;
-            }
-            
-            CPtDisPlayCard * displace =(CPtDisPlayCard *)(this->getDisplayView());
-            
-            CCLog("onTableClick");
-            if (m_bSellPanel && displace)
-            {
-                if (m_bMove)
+                // move:
+                if (m_bSellPanel)
                 {
                     return;
                 }
-                displace->getCardData()->setEnConsume(false);
-                displace->getInCardBagPointer()->setLive();
-                // remove from sell package:
-                int sindex =(int)getUserData();
-                CCLog("index: %d", sindex);
-               
-                m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->removeObjectAtIndex(sindex);
-                m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
-                m_pDelegateLayer->m_pSellPanel->subCoin(displace->getCardData()->m_pCard->m_icard_price);
-               
-                return;
-            }
+                m_pDelegateLayer->m_pMoveCard->retain();
+                m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+                if(displace)
+                {
+                        
+                        if (displace->getCardData()->getInWhichBattleArray() != 0)
+                        {
+                            CCLog("this card is in battle array can't be sell");
+                            m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+                            m_pDelegateLayer->m_pMoveCard = NULL;
+                            return;
+                        }
+                        
+                        
+                        CPtDisPlayCard *node = m_pDelegateLayer->m_pMoveCard;
+                       
+                 
+                        if (node->getCardData()->getEnConsume() == false)
+                        {
+                            node->getCardData()->setEnConsume(true);
+                            displace->setDead();
+                            node->setInCardBagPointer(displace);
+                            node->setIndex((int)getUserData());
+                            node->setInCardBagPointer(displace);
+                            CPtBattleArrayItem * item = CPtBattleArrayItem::create();
+                            item->setSellPanel(true);
+                            item->setDisplayView(node);
+                            item->setTouchNode(node);
+                            item->setDelegateLayer(m_pDelegateLayer);
+                            m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->addObject(item);
+                            m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
+                            m_pDelegateLayer->m_pSellPanel->addCoin(displace->getCardData()->m_pCard->m_icard_price);
+                            if (m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->count() <= 3)
+                            {
+                              
+                            }else if(m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->count() <= 6)
+                            {
+                                
+                            }
+                            else
+                            {
+                                m_pDelegateLayer->m_pSellPanel->getSellPackage()->getTableView()->setContentOffset(ccp(0,0));
+                            }
+                            
+                            
+                            
+                        }else
+                        {
+                            CCLog("已经出售，不能再出售");
+                           
+                        }
+                    
+                                      
+                }
+                m_pDelegateLayer->m_pMoveCard->release();
+                m_pDelegateLayer->m_pMoveCard = NULL;
 
                 
-            if(displace)
+                
+            }else
             {
-                if (CPtTool::isInNode(displace, pTouch))
+                // onclick:
+                
+                
+                CCLog("onTableClick");
+                if (m_bSellPanel && displace)
                 {
-                   
-                    if (displace->getCardData()->getInWhichBattleArray() != 0)
+                    if (m_bMove)
                     {
-                        CCLog("this card is in battle array can't be sell");
                         return;
                     }
-                   
+                    displace->getCardData()->setEnConsume(false);
+                    displace->getInCardBagPointer()->setLive();
+                    // remove from sell package:
+                    int sindex =(int)getUserData();
+                    CCLog("index: %d", sindex);
                     
-                    CPtDisPlayCard *node = displace->getCopy();
-                    if (node->getCardData()->getEnConsume() == false)
-                    {
-                        node->getCardData()->setEnConsume(true);
-                        displace->setDead();
-                        node->setInCardBagPointer(displace);
-                        node->setIndex((int)getUserData());
-                        node->setInCardBagPointer(displace);
-                        CPtBattleArrayItem * item = CPtBattleArrayItem::create();
-                        item->setSellPanel(true);
-                        item->setDisplayView(node);
-                        item->setTouchNode(node);
-                        item->setDelegateLayer(m_pDelegateLayer);
-                        m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->addObject(item);
-                        m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
-                         m_pDelegateLayer->m_pSellPanel->addCoin(displace->getCardData()->m_pCard->m_icard_price);
-                        if (m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->count() <= 3)
-                        {
-                         //   m_pDelegateLayer->m_pSellPanel->getSellPackage()->getTableView()->setContentOffset(ccp(0,244));
-                        }else if(m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->count() <= 6)
-                        {
-                         //   m_pDelegateLayer->m_pSellPanel->getSellPackage()->getTableView()->setContentOffset(ccp(0,38));
-
-                        }
-                        else
-                        {
-                            m_pDelegateLayer->m_pSellPanel->getSellPackage()->getTableView()->setContentOffset(ccp(0,0));
-                        }
+                    m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->removeObjectAtIndex(sindex);
+                    m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
+                    m_pDelegateLayer->m_pSellPanel->subCoin(displace->getCardData()->m_pCard->m_icard_price);
                     
-
-                       
-                    }else
-                    {
-                        CCLog("已经出售，不能再出售");
-                    }
-
-                    
+                    return;
                 }
-                    
+                
+                if (m_bSellPanel == false)
+                {
+                    // onclick:
+                    m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+                    m_pDelegateLayer->m_pMoveCard = NULL;
+                }
+                
             }
+            
+           
+                
+     
                 
        
 
@@ -300,6 +323,14 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
         
     }
 
+    
+}
+
+bool CPtBattleArrayItem::onEvolutionBegin(CCTouch *pTouch, CCEvent *pEvent)
+{
+    bool bRet = false;
+    bRet = true; //getCopyCard();
+    return bRet;
     
 }
 
@@ -370,11 +401,6 @@ bool CPtBattleArrayItem::onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent)
 {
     
     CCLog("CPtBattleArrayItem::onTeamArrayBegin");
-    if(m_pDelegateLayer ==  NULL)
-    {
-        return false;
-        
-    }
     
     m_pDelegateLayer->m_bReplace = false;
     s_currentBattleArray = m_pDelegateLayer->panel->getBattleArray(pTouch);
@@ -527,6 +553,44 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
 
 }
 
+bool CPtBattleArrayItem::getCopyCard(bool inEnsumeAble)
+{
+    CPtDisPlayCard * displace =(CPtDisPlayCard*)(this->getDisplayView());
+    m_pDelegateLayer->m_pMoveCard = NULL;
+    if(displace)
+    {
+     
+        {
+            if(displace->getCardData()->getInWhichBattleArray()!=0)
+            {
+                CCLog("it's in battleArray");
+                return false;
+            }
+            if (inEnsumeAble)
+            {
+                if (displace->getCardData()->getEnConsume())
+                {
+                    return false;
+                }
+
+            }
+            // ondrag mode:
+            // create new sprite:
+            CCPoint worldPostion = displace->getPosition();
+            worldPostion = displace->getParent()->convertToWorldSpace(worldPostion);
+            m_pDelegateLayer->m_pMoveCard = displace->getCopy();
+            m_pDelegateLayer->m_pMoveCard->setAnchorPoint(CCPointZero);
+            m_pDelegateLayer->m_pMoveCard->setPosition(worldPostion);
+            m_pDelegateLayer->addChild(m_pDelegateLayer->m_pMoveCard, 6000, 100);
+            m_pDelegateLayer->m_cPrePoint = m_pDelegateLayer->m_pMoveCard->getPosition();
+            (m_pDelegateLayer->m_pMoveCard)->setInCardBagPointer(displace);
+            return true;
+        }
+        
+    }
+    return false;
+}
+
 bool CPtBattleArrayItem::isSameCardId(CPtDisPlayCard ** battleArray, const int &cardId, const int replaceIndex)
 {
     bool bRet= false;
@@ -645,6 +709,7 @@ void CBattleArrayLayer::initCards()
     
     //
     vector<vector<CFightCard *> > &tmpFightArray = m_pGamePlayer->m_vvBattleArray;
+    CCLog("%d",tmpFightArray.size());
     for (int i = 0; i < tmpFightArray.size(); i++)
     {
         vector<CFightCard * > &tmpFights = tmpFightArray.at(i);
@@ -670,37 +735,54 @@ bool CBattleArrayLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 void CBattleArrayLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
     // onclik mode:
-    if (m_bTableClikEnable)
-    {
-        setTableClickMove(true);
-        return;
-    }
-    
+//    if (m_bTableClikEnable)
+//    {
+//        setTableClickMove(true);
+//        return;
+//    }
+
+    setTableClickMove(true);
+   
     // ondrag mode:
     // move the copy Card:
     CPtTool::drag(m_pMoveCard, pTouch);
-    CPtBattleArray * battles = NULL;
-    if (s_currentBattleArray)
+    if (getCurrentTab() == 1)
     {
-        battles =  s_currentBattleArray;
-    }else
+        // onTeamArray:
+        CPtBattleArray * battles = NULL;
+        if (s_currentBattleArray)
+        {
+            battles =  s_currentBattleArray;
+        }else
+        {
+            battles = panel->getCurrentArray();
+        }
+        
+        if (m_pMoveCard)
+        {
+            if (battles)
+            {
+                if (s_currentBattleArray== NULL)
+                {
+                    s_currentBattleArray = battles;
+                }
+                
+                battles->insertMoveCard(m_pMoveCard);
+            }
+        }
+
+    }else if(getCurrentTab() == 2)
     {
-        battles = panel->getCurrentArray();
+        // onEnhance:
+        
+    }else if(getCurrentTab() == 3)
+    {
+        
+    }else if(getCurrentTab() == 4)
+    {
+        
     }
    
-    if (m_pMoveCard)
-    {
-        if (battles)
-        {
-            if (s_currentBattleArray== NULL)
-            {
-                s_currentBattleArray = battles;
-            }
-            
-            battles->insertMoveCard(m_pMoveCard);
-        }
-    }
-
 }
 void CBattleArrayLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -733,7 +815,7 @@ void CBattleArrayLayer::addEnhance()
     m_nCurrentTab = 2;
     m_pEnhancePanel = CCardEnhanceLayer::create();
     addChild(m_pEnhancePanel, 1, 4000);
-    ((TableView *)(m_pCards->getTableView()))->setDelayMode(false);
+    ((TableView *)(m_pCards->getTableView()))->setDelayMode(true);
     m_pEnhancePanel->setCardBag(m_pCards);
 
 }
@@ -751,7 +833,7 @@ void CBattleArrayLayer::addSell()
     m_nCurrentTab = 4;
     m_pSellPanel = CCardSellLayer::create();
     addChild(m_pSellPanel, 1, 4000);
-    ((TableView *)(m_pCards->getTableView()))->setDelayMode(false);
+    ((TableView *)(m_pCards->getTableView()))->setDelayMode(true);
     m_pSellPanel->setCardBag(m_pCards);
 }
 

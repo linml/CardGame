@@ -1,15 +1,15 @@
 10
 
 dir
-939
+961
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-12T07:43:58.370431Z
-931
-phileas
+2013-08-13T09:06:46.795886Z
+959
+merlin
 
 
 
@@ -26,39 +26,8 @@ phileas
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
-CPtLevelConfigData.cpp
-file
-
-
-
-
-2013-08-07T01:20:24.000000Z
-4edca7dabed9b86603c9e6dd4de0d61f
-2013-08-07T01:20:15.174535Z
-870
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6927
+CardKind
+dir
 
 CGamePlayerStruct.cpp
 file
@@ -94,8 +63,39 @@ merlin
 
 118
 
-CardKind
-dir
+CPtLevelConfigData.cpp
+file
+
+
+
+
+2013-08-07T01:20:24.000000Z
+4edca7dabed9b86603c9e6dd4de0d61f
+2013-08-07T01:20:15.174535Z
+870
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6927
 
 CPtStarConfigData.cpp
 file
@@ -165,40 +165,6 @@ merlin
 
 680
 
-CPtLevelConfigData.h
-file
-
-
-
-
-2013-08-02T09:26:49.000000Z
-dd688aa51ed600c23a18b394bb2a9c02
-2013-08-02T08:54:15.280686Z
-855
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1605
-
 CGamePlayerStruct.h
 file
 
@@ -232,6 +198,40 @@ merlin
 
 
 420
+
+CPtLevelConfigData.h
+file
+
+
+
+
+2013-08-02T09:26:49.000000Z
+dd688aa51ed600c23a18b394bb2a9c02
+2013-08-02T08:54:15.280686Z
+855
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1605
 
 CPtStarConfigData.h
 file
@@ -267,40 +267,6 @@ phileas
 
 823
 
-CPtPropConfigData.cpp
-file
-
-
-
-
-2013-08-12T10:24:37.000000Z
-0e40af6ac8ef306708fa9f1926ddbb56
-2013-08-12T07:43:58.370431Z
-931
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1836
-
 SEveryATKData.cpp
 file
 
@@ -334,6 +300,40 @@ merlin
 
 
 400
+
+CPtPropConfigData.cpp
+file
+
+
+
+
+2013-08-12T10:24:37.000000Z
+0e40af6ac8ef306708fa9f1926ddbb56
+2013-08-12T07:43:58.370431Z
+931
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1836
 
 CCardBufferStatus.cpp
 file
@@ -403,17 +403,17 @@ merlin
 
 803
 
-CPtPropConfigData.h
+CCard.cpp
 file
 
 
 
 
-2013-08-12T10:24:37.000000Z
-4ec9ab867c10e438acb385074bd39d30
-2013-08-12T07:43:58.370431Z
-931
-phileas
+2013-08-12T01:35:22.000000Z
+a3435b7332a7e45bed6de48d3cbc50cd
+2013-08-12T03:32:49.909864Z
+923
+merlin
 
 
 
@@ -435,7 +435,7 @@ phileas
 
 
 
-1337
+10975
 
 SEveryATKData.h
 file
@@ -471,17 +471,17 @@ merlin
 
 407
 
-CCard.cpp
+CPtPropConfigData.h
 file
 
 
 
 
-2013-08-12T01:35:22.000000Z
-a3435b7332a7e45bed6de48d3cbc50cd
-2013-08-12T03:32:49.909864Z
-923
-merlin
+2013-08-12T10:24:37.000000Z
+4ec9ab867c10e438acb385074bd39d30
+2013-08-12T07:43:58.370431Z
+931
+phileas
 
 
 
@@ -503,7 +503,7 @@ merlin
 
 
 
-10975
+1337
 
 CCardBufferStatus.h
 file
@@ -786,10 +786,10 @@ file
 
 
 
-2013-08-07T10:05:52.000000Z
-f7691192989675d6de0cc22475a3ac26
-2013-08-07T10:13:14.087743Z
-888
+2013-08-13T09:01:23.000000Z
+0bd4b78f884a8102e785b8bf0c389319
+2013-08-13T09:06:46.795886Z
+959
 merlin
 
 
@@ -812,7 +812,7 @@ merlin
 
 
 
-19339
+19685
 
 CFightCardBufferData.h
 file
@@ -850,14 +850,14 @@ merlin
 
 CAnimationSpriteGameFight.h
 file
-940
+964
 
 
 
-2013-08-12T07:31:11.000000Z
-bd2c8dc46e99901d38810e40391334e3
-2013-08-12T10:27:29.337965Z
-940
+2013-08-13T06:07:53.000000Z
+af5eb0c332217d01e7a64cebd3be4a1f
+2013-08-13T09:33:17.959975Z
+964
 merlin
 
 
@@ -880,7 +880,7 @@ merlin
 
 
 
-1736
+1771
 
 gamePlayer.h
 file

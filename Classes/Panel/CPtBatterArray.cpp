@@ -76,6 +76,10 @@ void CPtBattleArray::initSize(const cocos2d::CCSize &size, const cocos2d::CCPoin
 void CPtBattleArray::initBattleArrayFromServer(vector<CFightCard *> &fightArray)
 {
     CCDictionary * cardBagPointArray = CCardSettingScene::s_pBattleArrayCards;
+    if(fightArray.size()==0)
+    {
+        return ;
+    }
     CFightCard * tmp = fightArray.at(fightArray.size()-1);
     CCLog("size: %d", fightArray.size());
     m_nCardCount = 0;

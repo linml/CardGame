@@ -123,33 +123,36 @@ void CCardSellLayer::handlerTouch(cocos2d::CCTouch *pTouch)
 void CCardSellLayer::saveOnClick()
 {
     CSaveConfirmLayer * layer = CSaveConfirmLayer::create();
-    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
-    layer->setResultCode(0);
+    
+ //   layer->setResultCode(0);
     // send message to server:
     char buff[500]={0};
-    sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
-    char tmpBuff [200]={0};
-    char cBuff[20]={0};;
-    CPtBattleArrayItem * tmp = NULL;
-    CCArray * array = m_pSellPackage->getItems();
+    char param[200]={0};
+    char p[20]={0};
     int index = 0;
+    sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
+   
+
+    CCArray * array = m_pSellPackage->getItems();
+    CPtBattleArrayItem * tmp = NULL;
+
     for (int i = 0; i < array->count(); i++)
     {
         tmp = (CPtBattleArrayItem*)(array->objectAtIndex(i));
         if (tmp && tmp->getDisplayView())
         {
-           index =  ((CPtDisPlayCard*)(tmp->getDisplayView()))->getCardData()->m_User_Card_ID;
-           sprintf(cBuff, "\"%d\",",index);
-           strcat(tmpBuff, cBuff);
+            index =  ((CPtDisPlayCard*)(tmp->getDisplayView()))->getCardData()->m_User_Card_ID;
+            sprintf(p, "%d,",index);
+            strcat(param, p);
         }
     }
-    strncat(buff, tmpBuff, strlen(tmpBuff)-1);
+
+    CCLog("%s", param);
+    strncat(buff, param, strlen(param)-1);
     strcat(buff, "]");
-    CCLog("%s",buff);
     
-    save();
-  //  ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=CardItem&a=sellCardItems&uid=194", "cardsell","sell", buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
-    
+    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=CardItem&a=sellCardItems&uid=194","cardsell","sell",buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
 }
 
 void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)

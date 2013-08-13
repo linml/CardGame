@@ -17,6 +17,7 @@
 #include "CFightSkillManager.h"
 #include "SEveryATKData.h"
 #include <fstream>
+#include "PtHttpURL.h"
 
 //#define AAAAFOROSMACHINE 1
 
@@ -291,7 +292,8 @@ void CGamePlayer::loadServerCardBag()
 {
     isLoadCardBagEnd=false;
 #ifndef AAAAFOROSMACHINE
-    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "merlin", "merlinaskplayerinfo", callfuncO_selector(CGamePlayer::parseCardBagJson));
+    //http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parseCardBagJson));
 #else
     char *data=new char [5];
     parseCardBagJson((CCObject *)data);
@@ -400,7 +402,7 @@ void CGamePlayer::deleteFromCardBag(vector<int>user_CardId)
 void CGamePlayer::loadServerPlayerInfo()
 {
     isLoadPlayerInfoEnd=false;
-    ADDHTTPREQUEST("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "GetServerPlayerInfo", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::loadServerPlayerInfoCallBack));
+    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "GetServerPlayerInfo", "merlinaskplayerinfo1", "sig=2ac2b1e302c46976beaab20a68ef95",callfuncO_selector(CGamePlayer::loadServerPlayerInfoCallBack));
     
 }
 
@@ -424,7 +426,7 @@ void CGamePlayer::loadCardTeamInfo()
 {
     isLoadEndCardTeam=false;
  #ifndef AAAAFOROSMACHINE
-    ADDHTTPREQUEST("http://cube.games.com/api.php?m=Card&a=getCardTeam&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetLoadCardItem", "merlinaskplayerinfo1", callfuncO_selector(CGamePlayer::loadCardTeamInfoCallBack));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_TEAM(194), "GetLoadCardItem", "merlinaskplayerinfo1","sig=2ac2b1e302c46976beaab20a68ef95", callfuncO_selector(CGamePlayer::loadCardTeamInfoCallBack));
 #else
     char *data=new char [5];
     loadCardTeamInfoCallBack((CCObject *)data);
@@ -433,6 +435,7 @@ void CGamePlayer::loadCardTeamInfo()
 
 void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
 {
+    m_vvBattleArray.resize(3);
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
     char *datat=(char *)obj;
 #ifndef  AAAAFOROSMACHINE
@@ -472,7 +475,9 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                
             
                 }
-                m_vvBattleArray.push_back(tempVcard);
+                int index=atoi(key->m_sString.c_str())-1;
+                CCLog("index=========%d",index);
+                m_vvBattleArray[index]=tempVcard;
             }
         }
         
@@ -501,12 +506,14 @@ void CGamePlayer::loadRival(int  usid,int  troops)
 {
     isLoadFightTeam=false;
 #ifndef AAAAFOROSMACHINE
-    char data[20];
+    char data[50];
     sprintf(data, "%d",usid);
     string str=string("info={\"uid\":")+ data;
     sprintf(data, "%d",troops);
     str +=string(",\"troops\":")+data+"}";
-    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95", "GetFightTeam", "merlinaskplayerinfo1",str.c_str(),callfuncO_selector(CGamePlayer::parseRival));
+    string connectData="194&sig=2ac2b1e302c46976beaab20a68ef95";
+    //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+    ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",str.c_str(),callfuncO_selector(CGamePlayer::parseRival));
 #else
     char *data=new char[5];
     parseRival((CCObject *)data);

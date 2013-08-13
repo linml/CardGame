@@ -99,7 +99,7 @@ namespace PtActionUtility {
     //解析skill list文件下的  anmate 调用的动画文件
     void getAppendHBActionCachWithActionFile(const string file,vector<string>&actionFile);
     //取得脚本在的一个组合动画
-    CCAction* getRunActionWithActionFile(const string& file);
+    CCAction* getRunActionWithActionFile(const string& file,const string& key = "");
     
 }
 

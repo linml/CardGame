@@ -4,11 +4,11 @@
 <dict>
 	<key>actions</key>
 	<array>
-		<string>Delay(0.1)</string>
+		<string>Delay(0.2)</string>
 		<string>TintTo(0.2,255,255,255)</string>
 		<string>TintTo(0.2,255,0,0)</string>
-		<string>MoveBy(0.2,{40,40})</string>
-		<string>MoveBy(0.2,{-40,-40})</string>
+		<string>MoveBy(0.1,{40,40})</string>
+		<string>MoveBy(0.1,{-40,-40})</string>
 		<string>Sequence(Item 0,Item 6,Item 7)</string>
 		<string>Spawn(Item 4,Item 2)</string>
 		<string>Spawn(Item 3,Item 1)</string>

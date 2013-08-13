@@ -297,7 +297,12 @@ namespace PtActionUtility {
     void getAppendHBActionCachWithActionFile(const string file,vector<string>&actionFile)
     {
         std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(file.c_str());
-        CCDictionary* data =CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
+        CCDictionary* dataFile =CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
+        CCDictionary *data=(CCDictionary *)dataFile->objectForKey("gongji");
+        if(!data)
+        {
+            CCLog("plist 不存在一个gongjide key  麻烦修改");
+        }
         CCArray* vKey = data->allKeys();
         for (int i = 0; i < vKey->count(); i++)
         {
@@ -334,9 +339,18 @@ namespace PtActionUtility {
     
     
     //取得脚本在的一个组合动画
-    CCAction* getRunActionWithActionFile(const string& file) {
+    CCAction* getRunActionWithActionFile(const string& file ,const string &key) {
         std::string m_sPlistFile = CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(file.c_str());
-        CCDictionary* data =CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
+        CCDictionary* datatotal =CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
+        CCDictionary* data=NULL;
+        if (key.empty()) {
+            data=(CCDictionary *)datatotal->objectForKey("gongji");
+        }
+        else
+        {
+            data=(CCDictionary *)datatotal->objectForKey(key.c_str());
+
+        }
         
         CCAction* action = NULL;
         CCArray* vKey = data->allKeys();
@@ -432,9 +446,7 @@ namespace PtActionUtility {
                     CCSpriteFrame* frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(vAniFrames[j].c_str());
                     aniFrames->addObject(frame);
                 }
-                CCAnimation* ani = CCAnimation::create(aniFrames, delay);
-//                aniFrames->release();
-                
+                CCAnimation* ani = CCAnimation::create(aniFrames, delay);                
                 return ani;
             }
         }

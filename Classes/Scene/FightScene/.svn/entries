@@ -1,14 +1,14 @@
 10
 
 dir
-939
+961
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/FightScene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-12T10:16:10.240174Z
-935
+2013-08-13T03:07:03.816765Z
+944
 merlin
 
 
@@ -31,14 +31,14 @@ dir
 
 CFightingCardLayerScene.cpp
 file
+966
 
 
 
-
-2013-08-12T10:14:15.000000Z
-dce1923a0a28596e1653525400cb67ec
-2013-08-12T10:16:10.240174Z
-935
+2013-08-13T10:06:01.000000Z
+f506620118d21ce6551134428809c8d4
+2013-08-13T10:23:32.706717Z
+966
 merlin
 
 
@@ -61,7 +61,7 @@ merlin
 
 
 
-38449
+38811
 
 CFightingCardLayerLogic.cpp
 file
@@ -102,14 +102,14 @@ dir
 
 CFightingCardLayerScene.h
 file
+966
 
 
 
-
-2013-08-12T06:54:05.000000Z
-d5ae5c61606663d1df799a0875e101a0
-2013-08-09T08:03:41.626883Z
-910
+2013-08-13T10:05:36.000000Z
+4d11b7278a0662d0fe42cae441f5c1ab
+2013-08-13T10:23:32.706717Z
+966
 merlin
 
 
@@ -132,7 +132,7 @@ merlin
 
 
 
-4115
+4157
 
 CFightingCardLayerLogic.h
 file

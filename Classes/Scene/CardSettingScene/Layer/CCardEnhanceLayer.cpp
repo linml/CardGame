@@ -268,9 +268,12 @@ void CCardEnhanceLayer::addCardAction(const int& inIndex, CPtDisPlayCard * inCar
 {
     if (inIndex == -2)
     {
+        inCard->retain();
+        inCard->removeFromParentAndCleanup(true);
         inCard->setPosition(ccp(10, 10));
         inCard->setAnchorPoint(CCPointZero);
         m_cMaps->getElementByTags("1,0, 137")-> addChild(inCard);
+        inCard->release();
         return;
     }
     
@@ -280,6 +283,8 @@ void CCardEnhanceLayer::addCardAction(const int& inIndex, CPtDisPlayCard * inCar
     CCNode * node = m_cMaps->getElementByTags(array,3);
     if (node)
     {
+        inCard->retain();
+        inCard->removeFromParentAndCleanup(true);
         CCPoint point = node->boundingBox().origin;
         point.x += 3;
         point.y += 4;
@@ -287,6 +292,7 @@ void CCardEnhanceLayer::addCardAction(const int& inIndex, CPtDisPlayCard * inCar
         inCard->setAnchorPoint(CCPointZero);
         inCard->setScale(0.71f);
         addChild(inCard, 22, 8000+inIndex);
+        inCard->release();
     }
     
 }
@@ -584,7 +590,8 @@ void CCardEnhanceLayer::saveOnClick()
     }
     CCLog("%s", param);
     strncat(buff, param, strlen(param)-1);
-    strncat(buff, "]}", strlen(param)-1);
+   // strncat(buff, "]}", strlen(param)-1);
+    strcat(buff, "]}");
     CCLog("%s",buff);
    
     ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Card&a=cardUpGrade&uid=194", "cardenhance","enhancel", buff, callfuncO_selector(CCardEnhanceLayer::receiveCallBack));

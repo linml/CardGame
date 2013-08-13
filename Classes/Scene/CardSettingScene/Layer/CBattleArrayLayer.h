@@ -88,9 +88,13 @@ public:
     void setDelegateLayer(CBattleArrayLayer * inLayer){ m_pDelegateLayer = inLayer;};
     
     
-    void onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent);
+    bool onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent);
     void onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent);
+    
+    bool onSellBegin(CCTouch * pTouch, CCEvent *pEvent);
     void onSellEnd(CCTouch *pTouch, CCEvent *pEvent);
+    
+    bool onEvolutionBegin(CCTouch *pTouch, CCEvent *pEvent);
     void onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent);
     
     bool onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent);
@@ -102,10 +106,12 @@ public:
 
 protected:
     bool isSameCardId(CPtDisPlayCard ** battleArray, const int &cardId,const int replaceIndex=-1);
+    bool getCopyCard(bool inEnsumeAble = false);
 protected:
     CBattleArrayLayer * m_pDelegateLayer;
     CC_SYNTHESIZE(bool, m_bSellPanel, SellPanel);
     
+   
 
 };
 

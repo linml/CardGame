@@ -236,7 +236,7 @@ void CCardSettingScene::handlerTouch()
             break;
         case 3002:
             m_pCardSetting->removeLeft();
-            m_pCardSetting->setTableClickEnable(true);
+            m_pCardSetting->setTableClickEnable(false);
             m_pCardSetting->addEnhance();
             
             CCLog("go to enhance");
@@ -252,7 +252,7 @@ void CCardSettingScene::handlerTouch()
            // CCLog("go to sell:");
              m_pCardSetting->removeLeft();
              m_pCardSetting->addSell();
-             m_pCardSetting->setTableClickEnable(true);
+             m_pCardSetting->setTableClickEnable(false);
             break;
             
         case 3006:

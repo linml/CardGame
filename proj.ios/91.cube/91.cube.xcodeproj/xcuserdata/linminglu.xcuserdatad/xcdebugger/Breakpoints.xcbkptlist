@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerScene.cpp"
-         timestampString = "397642044.846579"
+         timestampString = "398081209.962139"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
          landmarkName = "CFightingCardLayerScene::rePlayerRecode()"
          landmarkType = "5">
       </FileBreakpoint>
