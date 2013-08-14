@@ -145,7 +145,10 @@ HBActionAni* HBActionAniCache::addActionAniWithDictionary(CCDictionary* dict,con
             CCLOG("HBActionAniCache::addActionAniWithDictionary path = %s,%s",path.c_str(),actDictKey->m_sString.c_str());
 			HBActionScriptCache::sharedActionScriptCache()->addActionScript(script, path.c_str());
 //            actionScripts->addObject(CCString::create("xianbei"));
-			actionScripts->addObject(script);
+            if(actionScripts)
+            {
+                actionScripts->addObject(script);
+            }
         }
     }
    	HBActionAni* ani = new HBActionAni(name,actionScripts,duration);

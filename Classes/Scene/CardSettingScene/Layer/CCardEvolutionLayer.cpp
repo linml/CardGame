@@ -9,7 +9,10 @@
 #include "CCardEvolutionLayer.h"
 #include "gamePlayer.h"
 #include "CPtTool.h"
-
+#include "PtHttpClient.h"
+#include "CSaveConfirmLayer.h"
+#include "PtJsonUtility.h"
+#include "PtHttpURL.h"
 CCardEvolutionLayer::CCardEvolutionLayer()
 {
     m_cMaps = NULL;
@@ -293,7 +296,8 @@ void CCardEvolutionLayer:: save()
 }
 void  CCardEvolutionLayer::saveOnClick()
 {
-  
+    CSaveConfirmLayer * layer = CSaveConfirmLayer::create();
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
     int cardItemId = 0;
     int cardGroup = 0;
     if (m_pSrcCard)
@@ -311,11 +315,20 @@ void  CCardEvolutionLayer::saveOnClick()
         if (m_pPlayer->getCoin() < m_nCostConin)
         {
             // 金币不足
+            layer->setResultCode(6);
             return;
         }
         else if(m_pSrcCard->getCardData()->m_pCard->m_ccard_next == 0)
         {
+            
             //顶级
+            layer->setResultCode(7);
+            return;
+        }
+        else if(m_pSrcCard->getCardData()->m_iCurrLevel != g_aMaxLevel[m_pSrcCard->getCardData()->m_pCard->m_sicard_star])
+        {
+            layer->setResultCode(8);
+            //级别不够
             return;
         }
 
@@ -329,14 +342,14 @@ void  CCardEvolutionLayer::saveOnClick()
 
     
         char buff[500]={0};
-        sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&&tpye=1&info=\"{\"card_id\":\"%d_%d\"",cardItemId, cardGroup);
+        sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&&type=1&info=\"{\"card_id\":\"%d_%d\",\"other\":\"\"}",cardItemId, cardGroup);
     
         CCLog("%s",buff);
     
-        //  ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Card&a=cardUpGrade&uid=194", "cardEvolution","evolution", buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
-        
+        ADDHTTPREQUESTPOSTDATA(STR_URL_UPGRADE_CARD(194),"cardEvolution","evolution", buff, callfuncO_selector(CCardEvolutionLayer::receiveCallBack));
+      //  #define STR_URL_UPGRADE_CARD(UID)   URL_FACTORY("api.php?m=Card&a=cardUpGrade&uid=",UID)
         // test:
-        save();
+       // save();
     }
 
 }
@@ -345,9 +358,27 @@ void  CCardEvolutionLayer::receiveCallBack(CCObject *pSender)
     // get replay from server: error or success:
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "cardEvolution");
     char *buff = (char*) pSender;
+    CSaveConfirmLayer * layer = (CSaveConfirmLayer*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(2000);
+    if (!buff)
+    {
+        layer->setResultCode(200);
+        return;
+    }
+    CCDictionary* dic = PtJsonUtility::JsonStringParse(buff);
+    
+    int result = GameTools::intForKey("code", dic);
+    
+    layer->setResultCode(result);
+    if (result == 0)
+    {
+        save();
+    }else
+    {
+        CCLog("error");
+    }
     
     
-    delete buff;
+    delete[] buff;
 }
 
 /*

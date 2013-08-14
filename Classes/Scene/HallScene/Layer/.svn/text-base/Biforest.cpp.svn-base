@@ -118,6 +118,7 @@ void CBiforestLayer::handlerTouch()
             {
                 node->setVisible(true);
                 m_bSectionTouchEnable = true;
+                m_cMaps->getElementByTags("2,0,2")->setPosition(p);
                 CCLog("poing : %f, %f", p.x, p.y);
             }
             

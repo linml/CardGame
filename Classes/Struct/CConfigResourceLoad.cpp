@@ -122,6 +122,8 @@ bool CConfigResourceLoad::loadSkillLogicInfo(vector<CSkillData *> &vSkillTable,c
         skill->parameter_5=GameTools::intForKey("parameter_5", skillDirector);
         skill->parameter_6=GameTools::intForKey("parameter_6", skillDirector);
         skill->effect_plist=GameTools::valueForKey("effect_plist", skillDirector);
+        skill->m_skillName=GameTools::valueForKey("skill_name", skillDirector);
+        skill->m_skillTrip=GameTools::valueForKey("skill_tips", skillDirector);
 
         vSkillTable.push_back(skill);
     }
@@ -147,8 +149,8 @@ bool CConfigResourceLoad::loadEffectLogicInfo(vector<CImapact *> &vImapactTable,
         CImapact *skillEffect=new CImapact;
         skillEffect->m_ieffect_id=GameTools::intForKey("effect_id", effectDirector);
         skillEffect->m_ieffect_logic=GameTools::intForKey("effect_logic", effectDirector);
-        skillEffect->m_ibuff=GameTools::intForKey("effect_times", effectDirector);
-        skillEffect->m_ishowtime=GameTools::intForKey("keep_times", effectDirector);
+        skillEffect->m_ibuff=GameTools::intForKey("effect_time", effectDirector);
+        skillEffect->m_ishowtime=GameTools::intForKey("keep_time", effectDirector);
         skillEffect->m_iMutex=GameTools::intForKey("mutex", effectDirector);
         skillEffect->m_iMutex_level=GameTools::intForKey("mutex_level", effectDirector);
         skillEffect->m_iParameter_1=GameTools::intForKey("parameter_1", effectDirector);

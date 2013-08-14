@@ -18,6 +18,8 @@
 #include "CCardEnhanceLayer.h"
 #include "CCardSettingScene.h"
 #include "CCardSellLayer.h"
+#include "CCardInfoLayer.h"
+
 static CPtBattleArray * s_currentBattleArray = NULL;
 
 // implement class of CPtBattleArrayItem:
@@ -114,7 +116,7 @@ void CPtBattleArrayItem::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 bool CPtBattleArrayItem::onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent)
 {
     bool bRet = false;
-    bRet = getCopyCard(true);
+    bRet = getCopyCard(true, false);
     return bRet;
     
 }
@@ -123,7 +125,7 @@ void CPtBattleArrayItem::onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent)
     CCLog("---------%d",(int) getUserData());
     if (m_pDelegateLayer)
     {
-        // onclick:
+        
         if (m_pDelegateLayer->m_pEnhancePanel)
         {
             if (m_pDelegateLayer->getTableClickMove())
@@ -141,10 +143,14 @@ void CPtBattleArrayItem::onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent)
                         if (displace->getCardData()->getInWhichBattleArray() != 0) // (displace->getCardData()->getInBattleArray())
                         {
                                 //
+                            if (i != -2)
+                            {
                                 CCLog("it's in battleArray");
                                 m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                                 m_pDelegateLayer->m_pMoveCard = NULL;
                                 return;
+                            }
+                               
                                 
                         }
                             // ondrag mode:
@@ -180,6 +186,7 @@ void CPtBattleArrayItem::onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent)
                 CCLog("onclick");
                 m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 m_pDelegateLayer->m_pMoveCard = NULL;
+                createInfoLayer();
             }
         
         }
@@ -309,6 +316,7 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
                     // onclick:
                     m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                     m_pDelegateLayer->m_pMoveCard = NULL;
+                    createInfoLayer();
                 }
                 
             }
@@ -405,7 +413,7 @@ bool CPtBattleArrayItem::onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent)
     m_pDelegateLayer->m_bReplace = false;
     s_currentBattleArray = m_pDelegateLayer->panel->getBattleArray(pTouch);
 
-    
+    vector<vector<CFightCard *> > &fights = SinglePlayer::instance()->m_vvBattleArray;
     // new add  or replace:
     
     CPtDisPlayCard * displace =(CPtDisPlayCard*)(this->getDisplayView());
@@ -419,7 +427,28 @@ bool CPtBattleArrayItem::onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent)
             {
                 //
                 CCLog("it's in battleArray");
+                createInfoLayer();
                 return false;
+            }
+            int j =  m_pDelegateLayer->panel->getCurrentArray()->inTag-1;
+            for (int i = 0; i < fights.size(); i++ )
+            {
+                if( j != i)
+                {
+                    vector<CFightCard*> &fight = fights.at(i);
+                    for (int k = 0; k < fight.size(); k++)
+                    {
+                        if (fight.at(k))
+                        {
+                            if (fight.at(k)->m_User_Card_ID == displace->getCardData()->m_User_Card_ID)
+                            {
+                                
+                                return false;
+                            }
+                        }
+                    }
+                }
+
             }
             // ondrag mode:
             // create new sprite:
@@ -447,7 +476,7 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
             m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
             
             // onclick
-            
+            createInfoLayer();
             return;
         }
         
@@ -553,7 +582,15 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
 
 }
 
-bool CPtBattleArrayItem::getCopyCard(bool inEnsumeAble)
+void CPtBattleArrayItem::createInfoLayer()
+{
+//    ((CPtDisPlayCard *)getDisplayView())->displayManifier();
+//    CFightCard * data = ((CPtDisPlayCard *)getDisplayView())->getCardData();
+//    CCardInfoLayer *layer = CCardInfoLayer::create(data);
+//    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000);
+}
+
+bool CPtBattleArrayItem::getCopyCard(bool inEnsumeAble, bool inBattleArray)
 {
     CPtDisPlayCard * displace =(CPtDisPlayCard*)(this->getDisplayView());
     m_pDelegateLayer->m_pMoveCard = NULL;
@@ -563,8 +600,12 @@ bool CPtBattleArrayItem::getCopyCard(bool inEnsumeAble)
         {
             if(displace->getCardData()->getInWhichBattleArray()!=0)
             {
+                if (inBattleArray)
+                {
+                    return false;
+                }
                 CCLog("it's in battleArray");
-                return false;
+                
             }
             if (inEnsumeAble)
             {
@@ -600,6 +641,7 @@ bool CPtBattleArrayItem::isSameCardId(CPtDisPlayCard ** battleArray, const int &
         {
             if (battleArray[i] && battleArray[i]->getCardData()->m_pCard->m_icard_id == cardId)
             {
+                CCLog("the cardId:%d",battleArray[i]->getCardData()->m_pCard->m_icard_id  );
                 if (replaceIndex != i)
                 {
                     bRet = true;
@@ -617,9 +659,9 @@ void CPtBattleArrayItem::addCardFail()
 {
     // tip:
     CCLabelTTF* label = CCLabelTTF::create("同CARDID的卡不能再一个阵容中出现", "Arial", 30);
-    label->addChild(CCDirector::sharedDirector()->getRunningScene(), 1000);
+    CCDirector::sharedDirector()->getRunningScene()->addChild(label, 1000);
     label->setPosition(ccp(512, 384));
-    label->runAction(CCSequence::create(CCDelayTime::create(0.8f), CCCallFuncN::create(label, callfuncN_selector(CPtBattleArrayItem::removeCallBack))));
+    label->runAction(CCSequence::create(CCDelayTime::create(0.5f),CCCallFuncN::create(label, callfuncN_selector(CPtBattleArrayItem::removeCallBack)),NULL));
 }
 
 void CPtBattleArrayItem::removeCallBack(CCNode *pNode)
@@ -638,6 +680,8 @@ CBattleArrayLayer::CBattleArrayLayer()
     m_pEnhancePanel = NULL;
     m_pSellPanel = NULL;
     panel = NULL;
+    
+    m_pPreCardManifier = NULL;
 }
 CBattleArrayLayer::~CBattleArrayLayer()
 {

@@ -175,7 +175,7 @@ int CPtLevelConfigData::getLevelExp(int level)
 int CPtLevelConfigData::getCurrentLevel(int exp, int star,  int beginLevel)
 {
     int result = beginLevel;
-    int start_param = 0;
+    float start_param = 0;
     int tmpValue = 0;
     if (m_pConfigData)
     {
@@ -183,7 +183,7 @@ int CPtLevelConfigData::getCurrentLevel(int exp, int star,  int beginLevel)
         int count = m_pConfigData->allKeys()->count()+1;
         if (beginLevel < count)
         {
-            for (int i = beginLevel; i <= count+1; i++)
+            for (int i = beginLevel; i <= count; i++)
             {
                 sprintf(buffer, "%d",i);
                 CCDictionary * tmp = (CCDictionary *) m_pConfigData->objectForKey(buffer);
@@ -191,13 +191,14 @@ int CPtLevelConfigData::getCurrentLevel(int exp, int star,  int beginLevel)
                 {
                 
                     sprintf(buffer, "star_param_%d", star);
-                    start_param = GameTools::intForKey(buffer, tmp);
+                    start_param = GameTools::floatForKey(buffer, tmp);
                     if (start_param == 0)
                     {
                         CCLog("star_param : error");
                         return  -1;
                     }
                     tmpValue = GameTools::intForKey("exp", tmp);
+                    CCLog("%d", start_param);
                     if (exp < tmpValue*start_param)
                     {
                         result = i-1;

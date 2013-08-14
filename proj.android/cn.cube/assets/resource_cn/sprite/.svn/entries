@@ -1,14 +1,14 @@
 10
 
 dir
-939
+995
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/sprite
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-02T08:54:15.280686Z
-855
+2013-08-14T02:35:55.102602Z
+969
 phileas
 
 
@@ -25,6 +25,40 @@ phileas
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+xialatiao.sprite
+file
+
+
+
+
+2013-08-14T06:48:41.000000Z
+036b503c329cdf5ff1016654bceb3ab2
+2013-08-14T02:35:55.102602Z
+969
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4374
 
 chushoujiemian.sprite
 file
@@ -434,40 +468,6 @@ phileas
 
 2470
 
-qianghua.sprite
-file
-
-
-
-
-2013-07-26T08:29:06.000000Z
-b8c9b27408ad6ef1d0967ba51320d1c2
-2013-07-26T08:18:25.329843Z
-797
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9878
-
 confirm.sprite
 file
 
@@ -535,6 +535,74 @@ phileas
 
 
 10133
+
+qianghua.sprite
+file
+
+
+
+
+2013-07-26T08:29:06.000000Z
+b8c9b27408ad6ef1d0967ba51320d1c2
+2013-07-26T08:18:25.329843Z
+797
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9878
+
+hengtiao.sprite
+file
+
+
+
+
+2013-08-14T06:48:41.000000Z
+a503f69e5dfb22848b37a78b1a9acb89
+2013-08-14T02:35:55.102602Z
+969
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2609
 
 cubeCardSprite.sprite
 file
@@ -637,6 +705,40 @@ phileas
 
 
 2014
+
+KaPaiGround.sprite
+file
+
+
+
+
+2013-08-14T06:48:41.000000Z
+b45ad94ea4847e89dc082a9a26962cb6
+2013-08-14T02:35:55.102602Z
+969
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+974
 
 kk.sprite
 file

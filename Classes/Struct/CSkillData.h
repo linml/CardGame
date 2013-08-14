@@ -37,6 +37,8 @@ public:
     int parameter_5;
     int parameter_6;
     string effect_plist;  //特效文件地址
+    string m_skillTrip ;
+    string m_skillName;
 
 };
 

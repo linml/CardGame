@@ -13,7 +13,11 @@
 //服务器地址
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #if defined CUBE_91
+#if defined DEBUG
 #define STR_URL_ADRESS "http://cube.games.com/"
+#else
+#define STR_URL_ADRESS "http://cube.test.games.com/"
+#endif
 #endif
 #endif
 
@@ -47,7 +51,10 @@
 #define STR_URL_UPGRADE_CARD(UID)   URL_FACTORY("api.php?m=Card&a=cardUpGrade&uid=",UID)
 
 //卡牌出售
-#define STR_URL_SELL_CARD(UID)      URL_FACTORY("api.php?m=CardItem&a=sellCardItems&uid=",UID)
+
+#define STR_URL_SELL_CARD(UID)  URL_FACTORY("api.php?m=CardItem&a=sellCardItems&uid=",UID)
+
+
 
 //战斗前选择阵容
 #define STR_URL_CHOOSE_TEAM(UID)    URL_FACTORY("api.php?m=Fight&a=getTeamInfo&uid=",UID)

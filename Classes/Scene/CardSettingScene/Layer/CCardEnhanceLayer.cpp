@@ -16,6 +16,7 @@
 #include "PtJsonUtility.h"
 #include "PtHttpClient.h"
 #include "CSaveConfirmLayer.h"
+#include "PtHttpURL.h"
 CCardEnhanceLayer::CCardEnhanceLayer()
 {
     m_pSelectCard = NULL;
@@ -342,6 +343,7 @@ void CCardEnhanceLayer::updateData()
         exp += m_nCurrentExp;
         int currentLevel = m_pSelectCard->getCardData()->m_iCurrLevel;
         int level = m_pLevelConfig->getCurrentLevel(exp,m_pSelectCard->getCardData()->m_pCard->m_sicard_star ,currentLevel);
+        level = level >= m_pSelectCard->getCardData()->m_pCard->m_ileve_max ? m_pSelectCard->getCardData()->m_pCard->m_ileve_max:level;
         CCLog("current-----: %d, level: %d, currentLevel: %d", exp, level, m_nCurrentLevel);
         if (level >= currentLevel )
         {
@@ -594,7 +596,8 @@ void CCardEnhanceLayer::saveOnClick()
     strcat(buff, "]}");
     CCLog("%s",buff);
    
-    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Card&a=cardUpGrade&uid=194", "cardenhance","enhancel", buff, callfuncO_selector(CCardEnhanceLayer::receiveCallBack));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_ADVANCE_CARD(194) , "cardenhance","enhancel", buff, callfuncO_selector(CCardEnhanceLayer::receiveCallBack));
+   // #define STR_URL_ADVANCE_CARD(UID)   URL_FACTORY("api.php?m=Card&a=cardUpGrade&uid=",UID)
     
 }
 void CCardEnhanceLayer::receiveCallBack(CCObject *pSender)
@@ -603,9 +606,14 @@ void CCardEnhanceLayer::receiveCallBack(CCObject *pSender)
     char *buffer = (char *) pSender;
     CCLog("callback: %s", buffer);
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "cardenhance");
-    
-    CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
     CSaveConfirmLayer * layer = (CSaveConfirmLayer * ) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(2000);
+    if(!buffer)
+    {
+        layer->setResultCode(200);
+        return;
+    }
+    CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
+ 
     int result = GameTools::intForKey("code", dic);
     layer->setResultCode(result,true);
     if (result == 0)

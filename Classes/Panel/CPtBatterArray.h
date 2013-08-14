@@ -42,10 +42,18 @@ class CPtDisPlayCard : public CGamesCard
 public:
     static CPtDisPlayCard  *Create(CFightCard *card);
 public:
-    CPtDisPlayCard(){m_nIndex = -1;};
+    CPtDisPlayCard(){m_nIndex = -1,m_pMagnifier = NULL;};
     CC_SYNTHESIZE(int , m_nIndex, Index);
     CC_SYNTHESIZE(CPtDisPlayCard*, m_pCardPBagPointer, InCardBagPointer);
     CPtDisPlayCard *getCopy();
+    void displayManifier();
+    void hideManifier();
+    bool isClickManifier(CCTouch *pTouch);
+    void setManifierNormal();
+    void setManifierPress();
+    void createManifier();
+protected:
+    CCSprite * m_pMagnifier;
 };
 
 // define class of CPtBattleArray

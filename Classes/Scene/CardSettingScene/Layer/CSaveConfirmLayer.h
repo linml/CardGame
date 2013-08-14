@@ -18,7 +18,7 @@
 
 using namespace cocos2d;
 using namespace std;
-
+//保存的对话框。 准备做过滤触控事件的问题。 
 class CSaveConfirmLayer : public CCLayerColor {
     
 public:
@@ -28,7 +28,7 @@ public:
     CSaveConfirmLayer();
     virtual ~CSaveConfirmLayer();
     
-    void setResultCode(const int &inCode, bool delay = false);
+    void setResultCode(int inCode, bool delay = false);
 public:
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -47,7 +47,8 @@ protected:
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;
     CCLabelTTF* pLabelTip;
-    int m_nResult;
+    static int m_nResult;
+    bool isDelayToTouch;
 };
 
 

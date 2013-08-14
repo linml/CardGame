@@ -1,14 +1,14 @@
 10
 
 dir
-939
+995
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/map
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-02T08:54:15.280686Z
-855
+2013-08-14T02:35:26.476882Z
+968
 phileas
 
 
@@ -773,4 +773,38 @@ merlin
 
 
 6917
+
+kapaixinxijiemian.map
+file
+
+
+
+
+2013-08-14T06:48:41.000000Z
+bf822d4a357a4647fd5d1c3253abd55b
+2013-08-14T02:35:26.476882Z
+968
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+20186
 

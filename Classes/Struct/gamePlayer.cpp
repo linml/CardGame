@@ -480,7 +480,13 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                 m_vvBattleArray[index]=tempVcard;
             }
         }
-        
+        for (int i=0; i<m_vvBattleArray.size(); i++) {
+            if(m_vvBattleArray[i].size()==0)
+            {
+                vector<CFightCard *>tempVectory(5);
+                m_vvBattleArray[i]=tempVectory;
+            }
+        }
     }
     isLoadEndCardTeam=true;
     
@@ -545,23 +551,45 @@ void CGamePlayer::parseRival(CCObject *object)
             {
                 DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*>);
                 m_hashmapMonsterCard.resize(5);
-                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
-                CCArray *vKeyArraytemp=cardtemp->allKeys();
-                for (int i=0; i<vKeyArraytemp->count(); i++)
+                string teamStrType=typeid(*cardDirector->objectForKey("team")).name();
+                if(teamStrType.find("CCDictionary")!=std::string::npos)
                 {
-                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
-                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
-                    int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
-                    int position=GameTools::intForKey("position", cardDirectorDetail);
-                    position=(position-1<0?0:position-1); //后台的数据的postion 是1开始的。 
-                    int level=GameTools::intForKey("level", cardDirectorDetail);
-                    //需要显示一个花色的问题。 
-                    int suit=GameTools::intForKey("suit", cardDirectorDetail); //花色
-                    CFightCard *pFightCard=new CFightCard(m_hashmapAllCard[card_id],level);
-                    pFightCard->m_iSuit=suit;
-                    m_hashmapMonsterCard[position]=pFightCard;
+                    CCDictionary *cardtemp=((CCDictionary *)cardDirector->objectForKey("team"));
+                    CCArray *vKeyArraytemp=cardtemp->allKeys();
+                    for (int i=0; i<vKeyArraytemp->count(); i++)
+                    {
+                        CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
+                        CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
+                        int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
+                        int position=GameTools::intForKey("position", cardDirectorDetail);
+                        position=(position-1<0?0:position-1); //后台的数据的postion 是1开始的。
+                        int level=GameTools::intForKey("level", cardDirectorDetail);
+                        //需要显示一个花色的问题。
+                        int suit=GameTools::intForKey("suit", cardDirectorDetail); //花色
+                        CFightCard *pFightCard=new CFightCard(m_hashmapAllCard[card_id],level);
+                        pFightCard->m_iSuit=suit;
+                        m_hashmapMonsterCard[position]=pFightCard;
+                    }
                 }
-           }
+                else if(teamStrType.find("CCArray")!=std::string::npos)
+                {
+                    CCArray *vKeyArraytemp=(CCArray *)(cardDirector->objectForKey("team"));
+                    for (int i=0; i<vKeyArraytemp->count(); i++)
+                    {
+                        CCDictionary *cardDirectorDetail=(CCDictionary *)vKeyArraytemp->objectAtIndex(i);
+                        int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
+                        int position=GameTools::intForKey("position", cardDirectorDetail);
+                        position=(position-1<0?0:position-1); //后台的数据的postion 是1开始的。
+                        int level=GameTools::intForKey("level", cardDirectorDetail);
+                        //需要显示一个花色的问题。
+                        int suit=GameTools::intForKey("suit", cardDirectorDetail); //花色
+                        CFightCard *pFightCard=new CFightCard(m_hashmapAllCard[card_id],level);
+                        pFightCard->m_iSuit=suit;
+                        m_hashmapMonsterCard[position]=pFightCard;
+                    }
+
+                }
+            }
        }
         
     }

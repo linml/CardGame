@@ -297,7 +297,7 @@ namespace CPtTool
         int tmpIndex;
         int sum = 0;
         int suit = 0;
-        int sequence[5]= {-1};
+        int sequence[5]= {-1,-1,-1,-1,-1};
         if (len <= 1)
         {
             return suit;
@@ -324,6 +324,7 @@ namespace CPtTool
             }
             int tmp = sequence[i];
             sequence[i] = sequence[tmpIndex];
+            
             sequence[tmpIndex] = tmp;
         }
         
@@ -334,25 +335,29 @@ namespace CPtTool
             return 5;
         }
         
-        int count[2]={1,1};
+        std::vector<int> v;
+        int count[]={1,1};
         int index = 0;
         for (int i = 1; i < len; i++)
         {
             if (sequence[i-1] == sequence[i])
             {
                 count[index]++;
+                
             }else
             {
                 if (count[index] != 1)
                 {
                     index++;
                 }
+                if (sequence[i]==-1)
+                {
+                    break;
+                }
             }
         }
-        if (sequence[0]==sequence[len-1])
-        {
-            count[0]++;
-        }
+       
+       
         
         int allcount = count[0] + count[1];
         switch (allcount)
@@ -377,7 +382,8 @@ namespace CPtTool
                 {
                     suit = 7;
                     //葫芦
-                }else
+                }
+                else
                 {
                     suit =6;
                     //四条

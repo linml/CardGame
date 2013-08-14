@@ -51,6 +51,8 @@ protected:
     bool m_bScroll;
     // variable:
     CCPoint m_cPointBegin;
+    
+    bool m_bCanScroll;
 protected:
     void beforeDraw();
     void afterDraw();

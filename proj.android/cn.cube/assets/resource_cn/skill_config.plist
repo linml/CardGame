@@ -35,7 +35,7 @@
 		<key>parameter_tips_2</key>
 		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
-		<string>100002</string>
+		<string>0</string>
 		<key>parameter_tips_3</key>
 		<string>给敌方主卡的效果</string>
 		<key>parameter_3</key>
@@ -108,7 +108,7 @@
 		<key>effect_plist</key>
 		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>对敌人造成大量伤害</string>
+		<string>化身为一道剑刃飓风，以无与伦比的速度向敌方主卡投掷三把匕首</string>
 	</dict>
 	<key>100002</key>
 	<dict>
@@ -163,7 +163,7 @@
 		<key>effect_plist</key>
 		<string>resource_cn/100004</string>
 		<key>skill_tips</key>
-		<string>对敌人造成减防效果，对我方主卡回复血量</string>
+		<string>吹响战斗的号角，发出震耳的咆哮，使我方主卡进入获得鼓舞，增加15点怒气</string>
 	</dict>
 	<key>100003</key>
 	<dict>
@@ -218,7 +218,7 @@
 		<key>effect_plist</key>
 		<string>resource_cn/100000</string>
 		<key>skill_tips</key>
-		<string>去除敌方主卡全部怒气</string>
+		<string>对目标投掷石块，若敌方因此技能而死亡，则回复25点怒气</string>
 	</dict>
 	<key>100004</key>
 	<dict>
@@ -273,7 +273,7 @@
 		<key>effect_plist</key>
 		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>上场怒气增加30点</string>
+		<string>以战神之名，向对方挑战，使敌方主卡无心迎战，减少20点怒气</string>
 	</dict>
 	<key>205201</key>
 	<dict>
@@ -326,7 +326,7 @@
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>resource_cn/boss_icon_Effect</string>
+		<string>plist5</string>
 		<key>skill_tips</key>
 		<string>0</string>
 	</dict>
@@ -381,7 +381,7 @@
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>resource_cn/boss_icon_Effect</string>
+		<string>plist6</string>
 		<key>skill_tips</key>
 		<string>0</string>
 	</dict>
@@ -436,7 +436,7 @@
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>resource_cn/boss_icon_Effect</string>
+		<string>plist7</string>
 		<key>skill_tips</key>
 		<string>0</string>
 	</dict>

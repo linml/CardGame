@@ -13,6 +13,7 @@
 #include "PtHttpClient.h"
 #include "PtJsonUtility.h"
 #include "CSaveConfirmLayer.h"
+#include "PtHttpURL.h"
 
 CCardSellLayer::CCardSellLayer()
 {
@@ -151,7 +152,7 @@ void CCardSellLayer::saveOnClick()
     strncat(buff, param, strlen(param)-1);
     strcat(buff, "]");
     
-    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=CardItem&a=sellCardItems&uid=194","cardsell","sell",buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SELL_CARD(194),"cardsell","sell",buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
 }
 
@@ -161,17 +162,52 @@ void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)
     char *buffer = (char *) pSender;
     CCLog("callback: %s", buffer);
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "cardsell");
-    
-    CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
     CSaveConfirmLayer * layer = (CSaveConfirmLayer*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(2000);
+    if(!buffer)
+    {
+        
+        CCLog("---");
+        char buff[500]={0};
+        char param[200]={0};
+        char p[20]={0};
+        int index = 0;
+        sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
+        
+        
+        CCArray * array = m_pSellPackage->getItems();
+        CPtBattleArrayItem * tmp = NULL;
+        
+        for (int i = 0; i < array->count(); i++)
+        {
+            tmp = (CPtBattleArrayItem*)(array->objectAtIndex(i));
+            if (tmp && tmp->getDisplayView())
+            {
+                index =  ((CPtDisPlayCard*)(tmp->getDisplayView()))->getCardData()->m_User_Card_ID;
+                sprintf(p, "%d,",index);
+                strcat(param, p);
+            }
+        }
+        
+        CCLog("%s", param);
+        strncat(buff, param, strlen(param)-1);
+        strcat(buff, "]");
+        
+        ADDHTTPREQUESTPOSTDATA(STR_URL_SELL_CARD(194),"cardsell","sell",buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
+        return;
+    }
+    CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
+    
     int result = GameTools::intForKey("code", dic);
     
     layer->setResultCode(result);
     if (result == 0)
     {
+       
         save();
     }else
     {
+        
+      
         CCLog("error");
     }
     

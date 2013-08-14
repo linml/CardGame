@@ -35,7 +35,7 @@ public:
     int m_icard_defend; //防御力
     int m_icardhp;    //卡牌的总的HP
     int m_iusually_attack;
-    int m_iskillLine;
+    int m_iskillLine; //怒气
     int m_iskillHelp; //拥护技能
     int m_iskillDead; //死亡技能
     int m_iskillBuff; //增幅技能

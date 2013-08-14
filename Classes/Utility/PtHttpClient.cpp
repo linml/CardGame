@@ -93,11 +93,12 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
 //    char statusString[64] = {};
 //    sprintf(statusString, "HTTP Status Code: %d, tag = %s", statusCode, response->getHttpRequest()->getTag());
 //    CCLog("response code: %d", statusCode);
-    
+
     if (!response->isSucceed())
     {
         CCLog("response failed");
         CCLog("error buffer: %s", response->getErrorBuffer());
+        CCNotificationCenter::sharedNotificationCenter()->postNotification(MSG_HTTPCLIENT,NULL);
         return;
     }
     

@@ -11,6 +11,7 @@ TableView::TableView()
     m_bBegan = false;
     m_bDecide = false;
     m_bScroll = false;
+    m_bCanScroll = true;
 }
 TableView::~TableView()
 {
@@ -58,6 +59,7 @@ bool TableView::ccTouchDelayBegan(CCTouch *pTouch, CCEvent *pEvent)
     {
         return false;
     }
+    
 
     setInitState();
     return true;
@@ -73,7 +75,11 @@ void TableView::ccTouchDelayMove(CCTouch *pTouch, CCEvent *pEvent)
         {
             if (m_bBegan)
             {
-                CCTableView::ccTouchMoved(pTouch, pEvent);
+                if (m_bCanScroll)
+                {
+                     CCTableView::ccTouchMoved(pTouch, pEvent);
+                }
+               
             }
             else
             {
@@ -212,6 +218,13 @@ void TableView::ccTouchDelayCancel(CCTouch *pTouch, CCEvent *pEvent)
 
 bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+   // m_bCanScroll
+    CCSize size=  getViewSize();
+    CCSize size2 = getContentSize();
+    CCLog("size :%f, %f", size.width, size.height);
+    CCLog("size2: %f, %f", size2.width, size2.height);
+    m_bCanScroll = size2.height > size.height ;
+    
     
     if (m_bDelayMode)
     {
@@ -279,7 +292,11 @@ void TableView::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
             }
             
         }
-        CCScrollView::ccTouchMoved(pTouch, pEvent);
+        if (m_bCanScroll)
+        {
+            CCScrollView::ccTouchMoved(pTouch, pEvent);
+        }
+        
         return;
     }
     

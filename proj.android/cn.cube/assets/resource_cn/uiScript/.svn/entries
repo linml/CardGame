@@ -1,14 +1,14 @@
 10
 
 dir
-939
+995
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/uiScript
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-09T07:48:04.156346Z
-908
+2013-08-14T06:29:17.857243Z
+980
 phileas
 
 
@@ -297,6 +297,40 @@ phileas
 
 
 3087
+
+kapaixinxijiemian.plist
+file
+
+
+
+
+2013-08-14T06:48:41.000000Z
+6a15c04c9e428f642fd273c034565ba1
+2013-08-14T06:29:17.857243Z
+980
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3562
 
 task.plist
 file

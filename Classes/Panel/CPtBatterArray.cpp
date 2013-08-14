@@ -8,7 +8,7 @@
 #include "PtJsonUtility.h"
 #include "CCardSettingScene.h"
 #include "CSaveConfirmLayer.h"
-
+#include "PtHttpURL.h"
 
 using namespace CPtTool;
 
@@ -31,6 +31,58 @@ CPtDisPlayCard * CPtDisPlayCard::getCopy()
    return  Create(m_pCardData);
 }
 
+void CPtDisPlayCard::createManifier()
+{
+    CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "fangdajing_normal.png"));
+    m_pMagnifier = CCSprite::createWithTexture(texture);
+    m_pMagnifier->setScale(0.75f);
+    m_pMagnifier->setPosition(ccp(100, 40));
+    addChild(m_pMagnifier, 200);
+}
+
+void CPtDisPlayCard::displayManifier()
+{
+    if (m_pMagnifier)
+    {
+        m_pMagnifier->setVisible(true);
+    }else
+    {
+        createManifier();
+    }
+}
+void CPtDisPlayCard::hideManifier()
+{
+        
+    if (m_pMagnifier)
+    {
+        m_pMagnifier->setVisible(false);
+    }
+}
+
+void CPtDisPlayCard::setManifierNormal()
+{
+    if (m_pMagnifier)
+    {
+        CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "fangdajing_normal.png"));
+        m_pMagnifier->initWithTexture(texture);
+    }
+
+    
+}
+void CPtDisPlayCard::setManifierPress()
+{
+    if (m_pMagnifier)
+    {
+        CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "fangdajing_actived.png"));
+        m_pMagnifier->initWithTexture(texture);
+    }
+
+}
+bool CPtDisPlayCard::isClickManifier(CCTouch *pTouch)
+{
+    bool bRet = false;
+    return false;
+}
 
 // implement CPtBattleArray:
 CPtBattleArray* CPtBattleArray::create(vector<CFightCard *> &fightArray, const cocos2d::CCSize &size, const cocos2d::CCPoint &point, int Tag /*= 1*/)
@@ -76,10 +128,12 @@ void CPtBattleArray::initSize(const cocos2d::CCSize &size, const cocos2d::CCPoin
 void CPtBattleArray::initBattleArrayFromServer(vector<CFightCard *> &fightArray)
 {
     CCDictionary * cardBagPointArray = CCardSettingScene::s_pBattleArrayCards;
-    if(fightArray.size()==0)
+
+    if (fightArray.size() == 0)
     {
-        return ;
+        return;
     }
+
     CFightCard * tmp = fightArray.at(fightArray.size()-1);
     CCLog("size: %d", fightArray.size());
     m_nCardCount = 0;
@@ -1051,8 +1105,9 @@ void CPtBattleArray::save()
     std = std+"}";
     
 
-    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=Card&a=saveCardTeam&uid=194", "helloworld1","ehll", std.c_str(), callfuncO_selector(CPtBattleArray::callBack));
-   CCLog("suit: %d, %s, %s", suit, buffer, std.c_str());
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SAVE_TEAM(194), "helloworld1","ehll", std.c_str(), callfuncO_selector(CPtBattleArray::callBack));
+    CCLog("suit: %d, %s, %s", suit, buffer, std.c_str());
+   // define STR_URL_SAVE_TEAM(UID)      URL_FACTORY("api.php?m=Card&a=saveCardTeam&uid=",UID)
 }
 
 /*
@@ -1098,8 +1153,16 @@ void CPtBattleArray::callBack(CCObject *pSender)
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "helloworld1");
  
     char * buffer = (char *)pSender;
-    CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
+   
     CSaveConfirmLayer * layer = (CSaveConfirmLayer*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(2000);
+    if (!buffer)
+    {
+        static int badResualt=200;
+        layer->setResultCode(badResualt);
+        return;
+    }
+    CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
+   
     int result = GameTools::intForKey("code", dic);
     layer->setResultCode(result, true);
     if (result == 0)
@@ -1120,6 +1183,7 @@ void CPtBattleArray::save(vector<CFightCard *> & infightArray)
 {
     CCDictionary * cardBagPointArray = CCardSettingScene::s_pBattleArrayCards;
     CPtDisPlayCard * tmp = (m_pCardArray[4]);
+    
     if (tmp)
     {
         if (infightArray.at(4))
@@ -1127,8 +1191,7 @@ void CPtBattleArray::save(vector<CFightCard *> & infightArray)
             cardBagPointArray->removeObjectForKey(infightArray.at(4)->m_User_Card_ID);
         }
          
-         infightArray.at(4) = tmp->getCardData() ;
-         cardBagPointArray->setObject(tmp->getInCardBagPointer(), tmp->getCardData()->m_User_Card_ID);
+         infightArray.at(4) = tmp->getCardData() ;        
     }
     else
     {
@@ -1148,9 +1211,10 @@ void CPtBattleArray::save(vector<CFightCard *> & infightArray)
             {
                 cardBagPointArray->removeObjectForKey(infightArray.at(j)->m_User_Card_ID);
             }
+            
             tmp = (m_pCardArray[i]);
             infightArray.at(j++) = tmp->getCardData();
-            cardBagPointArray->setObject(tmp->getInCardBagPointer(), tmp->getCardData()->m_User_Card_ID);
+            
         }
         else
         {
@@ -1164,6 +1228,37 @@ void CPtBattleArray::save(vector<CFightCard *> & infightArray)
         }
 
     }
+    
+    for (int i =  0; i < CARDCOUNT; i++)
+    {
+        if (m_pCardArray[i])
+        {
+            if (m_pCardArray[i]->getInCardBagPointer())
+            {
+                cardBagPointArray->setObject(m_pCardArray[i]->getInCardBagPointer(), m_pCardArray[i]->getCardData()->m_User_Card_ID);
+            }
+            
+        }
+    }
+    
+    // test:
+    for (int i = 0; i < infightArray.size(); i++)
+    {
+        if (infightArray.at(i))
+        {
+            CCLog("infight: %d, %d", inTag-1, infightArray.at(i)->m_User_Card_ID);
+        }else
+        {
+            CCLog("%d null",i);
+        }
+    }
+    
+    CCDictElement * element;
+    CCDICT_FOREACH(cardBagPointArray, element)
+    {
+        CCLog("%d",element->getIntKey()) ;
+    }
+    
 }
 
 

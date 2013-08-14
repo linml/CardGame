@@ -8,10 +8,11 @@
 
 #include "CSaveConfirmLayer.h"
 #include "gameConfig.h"
-
+int CSaveConfirmLayer::m_nResult;
 CSaveConfirmLayer::CSaveConfirmLayer()
 {
     pLabelTip = NULL;
+    isDelayToTouch=false;
 }
 
 CSaveConfirmLayer::~CSaveConfirmLayer()
@@ -44,9 +45,12 @@ void CSaveConfirmLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CSaveConfirmLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    CCPoint touchPoint = pTouch->getLocation();
-    m_nTouchTag = TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    handlerTouch();
+    if(isDelayToTouch)
+    {
+        CCPoint touchPoint = pTouch->getLocation();
+        m_nTouchTag = TouchRect::SearchTouchTag(touchPoint, m_cTouches);
+        handlerTouch();
+    }
     
 }
 void CSaveConfirmLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
@@ -97,13 +101,16 @@ void CSaveConfirmLayer::initConfirm()
  *        6. 5: 金币不够
  */
 
-void CSaveConfirmLayer::setResultCode(const int &inCode, bool delay)
+void CSaveConfirmLayer::setResultCode(int inCode, bool delay)
 {
     m_nResult = inCode;
 
     if (delay)
     {
-        runAction(CCSequence::create(CCDelayTime::create(0.8f), CCCallFunc::create(this, callfunc_selector(CSaveConfirmLayer::updateText)), NULL));
+        if(this)
+        {
+            this->runAction(CCSequence::create(CCDelayTime::create(0.8f), CCCallFunc::create(this, callfunc_selector(CSaveConfirmLayer::updateText)), NULL));
+        }
     }else
     {
         updateText();
@@ -130,6 +137,7 @@ void CSaveConfirmLayer::handlerTouch()
 
 void CSaveConfirmLayer::updateText()
 {
+
     int inCode = m_nResult;
     if (pLabelTip == NULL)
     {
@@ -160,10 +168,21 @@ void CSaveConfirmLayer::updateText()
         case 6:
             sprintf(buff, "%s","金币不够");
             break;
+            
+        case 7:
+            sprintf(buff, "%s","该卡已经顶级");
+            break;
+        case 8:
+            sprintf(buff, "%s", "该卡级别不够，请强化");
+            break;
+        case 200:
+            sprintf(buff, "服务器响应失败");
+            break;
         default:
-            sprintf(buff, "%s", "设置失败");
+            sprintf(buff, "%s --- error code: %d", "设置失败", m_nResult);
             break;
     }
     CCLog("%s", buff);
     pLabelTip->setString(buff);
+        isDelayToTouch=true;
 }

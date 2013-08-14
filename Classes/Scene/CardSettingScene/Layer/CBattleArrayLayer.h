@@ -73,6 +73,7 @@ public:
     CC_SYNTHESIZE(bool, m_bTableClickMove, TableClickMove);
     
     CC_SYNTHESIZE(int, m_nCurrentTab, CurrentTab);
+    CC_SYNTHESIZE(CPtDisPlayCard*, m_pPreCardManifier, PreCardManifier);
  
 };
 
@@ -100,18 +101,18 @@ public:
     bool onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent);
     void onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent);
     
+    void createInfoLayer();
     // handlerror
     void addCardFail();
     void removeCallBack(CCNode *pNode);
-
+   
 protected:
     bool isSameCardId(CPtDisPlayCard ** battleArray, const int &cardId,const int replaceIndex=-1);
-    bool getCopyCard(bool inEnsumeAble = false);
+    bool getCopyCard(bool inEnsumeAble = false, bool inBattleArray= true);
 protected:
     CBattleArrayLayer * m_pDelegateLayer;
     CC_SYNTHESIZE(bool, m_bSellPanel, SellPanel);
-    
-   
+
 
 };
 
