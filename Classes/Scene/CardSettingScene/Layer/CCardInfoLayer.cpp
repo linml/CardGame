@@ -10,6 +10,7 @@
 #include "gameConfig.h"
 #include "gamePlayer.h"
 #include "CSkillData.h"
+#include "CPtTool.h"
 
 CCardInfoLayer* CCardInfoLayer::create(CFightCard *card)
 {
@@ -218,7 +219,17 @@ void CCardInfoLayer::initCCardInfo(CFightCard * card)
             }
         }
     }
+    
+    //card info:
+    const char * text = "哈伦比出生于遥远的东方，少年时偷偷爬上商船出海，中途遇到海难，抓住一块木板得以生存，一直漂流到姆伦特港。到达姆伦特港后奄奄一息的哈伦比被一对老夫妇收养，度过了一段还算快乐的时光。一天夜里老夫妇被强盗袭击双双死亡，哈伦比流落街头，靠小偷小摸为生。十一岁那年，哈伦比在平民窟偷到一个钱包，却引来一个庞大盗贼团的袭击，最终死不屈服的哈伦比被盗贼团首领看中，收其为徒，传授各种本领。在之后的盗贼团叛乱中哈伦比被杀，享年17岁";
+    CCScrollView * scrollword = CPtTool::getScrollWord(text, CCSizeMake(400, 250), ccc3(125, 0, 0), "arial", 15);
 
+   // scrollword->ignoreAnchorPointForPosition(false);
+  //  scrollword->setAnchorPoint(ccp(0,1));
+    scrollword->setPosition(ccp(530,80));
+   // m_cMaps->getElementByTags("0,1,2")->addChild(scrollword);
+    addChild(scrollword);
+    scrollword->setTouchPriority(-20001);
     
     
 }

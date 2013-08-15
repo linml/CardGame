@@ -14,6 +14,7 @@
 #include "PtJsonUtility.h"
 #include "CSaveConfirmLayer.h"
 #include "PtHttpURL.h"
+#include "CBattleArrayLayer.h"
 
 CCardSellLayer::CCardSellLayer()
 {
@@ -22,6 +23,7 @@ CCardSellLayer::CCardSellLayer()
     m_cMaps = NULL;
     m_nConin = 0;
     m_pConinlabel = NULL;
+ 
 }
 
 CCardSellLayer::~CCardSellLayer()
@@ -291,16 +293,21 @@ void CCardSellLayer::removeCardInCardBag()
     CCArray * array = m_pSellPackage->getItems();
     if (m_pSellPackage)
     {
-        
-       
+        CBattleArrayLayer *parent = (CBattleArrayLayer*)getParent();
+        CPtDisPlayCard *preManifier = parent->getPreCardManifier();
         int index = -1;
         for (int i = 0; i < array->count(); i++)
         {
             tmp = (CPtBattleArrayItem*)(array->objectAtIndex(i));
             if (tmp && tmp->getDisplayView())
             {
-               index = ((CPtDisPlayCard*)(tmp->getDisplayView()))->getIndex();
-                ids.push_back(index);
+                CPtDisPlayCard * tmpCard = ((CPtDisPlayCard*)(tmp->getDisplayView()));
+               index = tmpCard->getIndex();
+               ids.push_back(index);
+                if (preManifier && preManifier->getCardData() == tmpCard->getCardData())
+                {
+                    parent->setPreCardManifier(NULL);
+                }
             }
         }
 

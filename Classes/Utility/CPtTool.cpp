@@ -493,5 +493,31 @@ namespace CPtTool
         }
     }
    
+    
+    CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize)
+    {
+        CCScrollView* scrollView  = CCScrollView::create(viewSize);
+        scrollView->setTouchEnabled(true);
+        scrollView->setDirection( kCCScrollViewDirectionVertical);
+        CCLabelTTF* pLabel = CCLabelTTF::create("", fontName, fontSize);
+        pLabel->cocos2d::CCNode::setAnchorPoint(CCPointZero);
+        pLabel->setColor(wordColor);
+        pLabel->setDimensions(CCSizeMake(viewSize.width, 0));
+        pLabel->setHorizontalAlignment(kCCTextAlignmentLeft);
+        pLabel->setString(inText);
+        scrollView->setContentSize(pLabel->getContentSize());
+        CCSize pSize = pLabel->getContentSize();
+        if (viewSize.height > pSize.height)
+        {
+            scrollView->setTouchEnabled(false);
+        }
+        CCLog("pSize: %f,%f", pSize.width, pSize.height);
+        
+        scrollView->addChild(pLabel);
+        scrollView->setAnchorPoint(ccp(0,1));
+        scrollView->setContentOffset(ccp(0, scrollView->getViewSize().height-pSize.height));
+        return scrollView;
+    }
+
 };
 

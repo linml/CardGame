@@ -30,10 +30,21 @@ bool CPtBattleArrayItem::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent
 {
     CCLog("CPtBattleArrayItem::ccTouchBegan");
     m_bMove = false;
+    
     if (m_pDelegateLayer)
     {
         m_pDelegateLayer->m_pMoveCard = NULL;
         m_pDelegateLayer->setTableClickMove(false);
+        m_bClickManifier = false;
+        // click fangdajing
+        CPtDisPlayCard* tmp=  ((CPtDisPlayCard *)getDisplayView());
+        if (tmp && tmp->isDisplay()&& tmp->isClickManifier(pTouch))
+        {
+            m_bClickManifier = true;
+            tmp->setManifierPress();
+            return true;
+        }
+        
         if (m_pDelegateLayer->getCurrentTab() == 2)
         {
             return onEnhanceBegin(pTouch, pEvent);
@@ -67,6 +78,18 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     
     if (m_pDelegateLayer)
     {
+        if (m_bClickManifier)
+        {
+            CPtDisPlayCard* tmp=  ((CPtDisPlayCard *)getDisplayView());
+            if (tmp->isClickManifier(pTouch))
+            {
+                createInfoLayer();
+               
+            }
+            tmp->setManifierNormal();
+            return;
+        }
+        
         if (m_pDelegateLayer->getCurrentTab() == 2)
         {
             onEnhanceEnd(pTouch, pEvent);
@@ -117,6 +140,10 @@ bool CPtBattleArrayItem::onEnhanceBegin(CCTouch *pTouch, CCEvent *pEvent)
 {
     bool bRet = false;
     bRet = getCopyCard(true, false);
+    if (bRet == false)
+    {
+        displayManifier();
+    }
     return bRet;
     
 }
@@ -186,7 +213,7 @@ void CPtBattleArrayItem::onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent)
                 CCLog("onclick");
                 m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 m_pDelegateLayer->m_pMoveCard = NULL;
-                createInfoLayer();
+                displayManifier();
             }
         
         }
@@ -206,6 +233,11 @@ bool CPtBattleArrayItem::onSellBegin(CCTouch * pTouch, CCEvent *pEvent)
     }else
     {
          bRet = getCopyCard(true);
+        if (bRet == false)
+        {
+            displayManifier();
+        }
+
     }
    
     return bRet;
@@ -316,7 +348,7 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
                     // onclick:
                     m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                     m_pDelegateLayer->m_pMoveCard = NULL;
-                    createInfoLayer();
+                    displayManifier();
                 }
                 
             }
@@ -427,7 +459,7 @@ bool CPtBattleArrayItem::onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent)
             {
                 //
                 CCLog("it's in battleArray");
-                createInfoLayer();
+                displayManifier();
                 return false;
             }
             int j =  m_pDelegateLayer->panel->getCurrentArray()->inTag-1;
@@ -476,7 +508,7 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
             m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
             
             // onclick
-            createInfoLayer();
+            displayManifier();
             return;
         }
         
@@ -585,9 +617,35 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
 void CPtBattleArrayItem::createInfoLayer()
 {
 //    ((CPtDisPlayCard *)getDisplayView())->displayManifier();
-//    CFightCard * data = ((CPtDisPlayCard *)getDisplayView())->getCardData();
-//    CCardInfoLayer *layer = CCardInfoLayer::create(data);
-//    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000);
+    
+    
+    CFightCard * data = ((CPtDisPlayCard *)getDisplayView())->getCardData();
+    CCardInfoLayer *layer = CCardInfoLayer::create(data);
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000);
+}
+void CPtBattleArrayItem::displayManifier()
+{
+   CPtDisPlayCard* current = ((CPtDisPlayCard *)getDisplayView());
+    if (m_pDelegateLayer)
+    {
+        if (m_pDelegateLayer->getPreCardManifier())
+        {
+            if (m_pDelegateLayer->getPreCardManifier() != current)
+            {
+                m_pDelegateLayer->getPreCardManifier()->hideManifier();
+                m_pDelegateLayer->setPreCardManifier(current);
+                current->displayManifier();
+            }
+            
+        }else
+        {
+            m_pDelegateLayer->setPreCardManifier(current);
+            current->displayManifier();
+        }
+       
+        
+    }
+  
 }
 
 bool CPtBattleArrayItem::getCopyCard(bool inEnsumeAble, bool inBattleArray)
@@ -861,6 +919,7 @@ void CBattleArrayLayer::addEnhance()
     addChild(m_pEnhancePanel, 1, 4000);
     ((TableView *)(m_pCards->getTableView()))->setDelayMode(true);
     m_pEnhancePanel->setCardBag(m_pCards);
+   
 
 }
 
@@ -870,7 +929,9 @@ void CBattleArrayLayer::addEvolution()
     m_pEvolutionPanel = CCardEvolutionLayer::create();
     addChild(m_pEvolutionPanel, 1, 4000);
     ((TableView *)(m_pCards->getTableView()))->setDelayMode(false);
-    m_pEvolutionPanel->setCardBag(m_pCards);}
+    m_pEvolutionPanel->setCardBag(m_pCards);
+ 
+}
 
 void CBattleArrayLayer::addSell()
 {
@@ -879,6 +940,7 @@ void CBattleArrayLayer::addSell()
     addChild(m_pSellPanel, 1, 4000);
     ((TableView *)(m_pCards->getTableView()))->setDelayMode(true);
     m_pSellPanel->setCardBag(m_pCards);
+
 }
 
 

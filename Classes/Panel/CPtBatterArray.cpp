@@ -39,7 +39,14 @@ void CPtDisPlayCard::createManifier()
     m_pMagnifier->setPosition(ccp(100, 40));
     addChild(m_pMagnifier, 200);
 }
-
+bool CPtDisPlayCard::isDisplay()
+{
+    if (m_pMagnifier&& m_pMagnifier->isVisible())
+    {
+        return true;
+    }
+    return false;
+}
 void CPtDisPlayCard::displayManifier()
 {
     if (m_pMagnifier)
@@ -80,8 +87,8 @@ void CPtDisPlayCard::setManifierPress()
 }
 bool CPtDisPlayCard::isClickManifier(CCTouch *pTouch)
 {
-    bool bRet = false;
-    return false;
+    bool bRet = CPtTool::isInNode(m_pMagnifier, pTouch);
+    return bRet;
 }
 
 // implement CPtBattleArray:

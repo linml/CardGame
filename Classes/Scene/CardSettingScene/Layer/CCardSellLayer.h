@@ -13,6 +13,7 @@
 #include "CPtListViewWidget.h"
 #include "CPtBatterArray.h"
 
+
 class CCardSellLayer : public CCLayer
 {
 public:
@@ -60,6 +61,7 @@ protected:
     CCSprite *m_pSaveButton;
     CC_SYNTHESIZE(CPtListViewWidget*, m_pCardBag, CardBag);
     CC_SYNTHESIZE_READONLY(CPtListViewWidget*, m_pSellPackage, SellPackage);
+
 
     int m_nConin;
     CCLabelTTF *m_pConinlabel;

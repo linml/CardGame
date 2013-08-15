@@ -52,6 +52,7 @@ public:
     void setManifierNormal();
     void setManifierPress();
     void createManifier();
+    bool isDisplay();
 protected:
     CCSprite * m_pMagnifier;
 };

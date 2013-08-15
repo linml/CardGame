@@ -80,7 +80,7 @@ public:
 class CPtBattleArrayItem : public CPtTableItem
 {
 public:
-    CPtBattleArrayItem(){m_pDelegateLayer = NULL;m_bSellPanel = false;};
+    CPtBattleArrayItem(){m_pDelegateLayer = NULL;m_bSellPanel = false,m_bClickManifier =false;};
     CREATE_FUNC(CPtBattleArrayItem);
     virtual bool init(){ return CPtTableItem::init();};
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -102,6 +102,7 @@ public:
     void onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent);
     
     void createInfoLayer();
+    void displayManifier(); 
     // handlerror
     void addCardFail();
     void removeCallBack(CCNode *pNode);
@@ -111,7 +112,9 @@ protected:
     bool getCopyCard(bool inEnsumeAble = false, bool inBattleArray= true);
 protected:
     CBattleArrayLayer * m_pDelegateLayer;
+    bool m_bClickManifier;
     CC_SYNTHESIZE(bool, m_bSellPanel, SellPanel);
+
 
 
 };

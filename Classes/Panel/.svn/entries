@@ -1,16 +1,16 @@
 10
 
 dir
-995
+997
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Panel
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-14T06:29:17.857243Z
-980
+2013-08-15T03:53:13.229488Z
+997
 phileas
-
+has-props
 
 
 
@@ -60,40 +60,6 @@ merlin
 
 1666
 
-LoadingScene.h
-file
-
-
-
-
-2013-07-30T08:24:15.000000Z
-1766647937b9d67bdc734b7ed30b3533
-2013-07-30T10:10:56.535535Z
-830
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-900
-
 CGameCardBuffer.cpp
 file
 
@@ -127,6 +93,40 @@ merlin
 
 
 1173
+
+LoadingScene.h
+file
+
+
+
+
+2013-07-30T08:24:15.000000Z
+1766647937b9d67bdc734b7ed30b3533
+2013-07-30T10:10:56.535535Z
+830
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+900
 
 CGameCardBuffer.h
 file
@@ -400,40 +400,6 @@ phileas
 
 1222
 
-CPtListViewWidget.h
-file
-
-
-
-
-2013-08-14T02:50:08.000000Z
-9aab8b60c2180a7d211e5728a4b28a5f
-2013-08-14T02:35:26.476882Z
-968
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4002
-
 CPtButtonWidget.cpp
 file
 
@@ -468,6 +434,40 @@ phileas
 
 2235
 
+CPtListViewWidget.h
+file
+
+
+
+
+2013-08-14T02:50:08.000000Z
+9aab8b60c2180a7d211e5728a4b28a5f
+2013-08-14T02:35:26.476882Z
+968
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4002
+
 CPtBatterArray.cpp
 file
 
@@ -475,9 +475,9 @@ file
 
 
 
-821b996705bb819c5bb16a5471dcbc7e
-2013-08-14T06:29:17.857243Z
-980
+cb8eeb1912eb1dac155a2d7606e39b0c
+2013-08-15T03:53:13.229488Z
+997
 phileas
 
 CPtScrollWordsWidget.cpp
@@ -622,10 +622,10 @@ file
 
 
 
-2013-08-14T07:46:30.000000Z
-e8b658170402311e8f8b00124ff04b5a
-2013-08-14T06:29:17.857243Z
-980
+2013-08-15T05:58:27.000000Z
+c611dd75a0b49cac3521453fe323e503
+2013-08-15T03:53:13.229488Z
+997
 phileas
 
 
@@ -648,7 +648,7 @@ phileas
 
 
 
-6092
+6114
 
 CPtScrollWordsWidget.h
 file

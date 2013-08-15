@@ -9,14 +9,14 @@
 #ifndef _1_cube_PtHttpURL_h
 #define _1_cube_PtHttpURL_h
 
-
+#define STR_URL_ADRESS "http://cube.test.games.com/"
 //服务器地址
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #if defined CUBE_91
 #if defined DEBUG
-#define STR_URL_ADRESS "http://cube.games.com/"
+//#define STR_URL_ADRESS "http://cube.games.com/"
 #else
-#define STR_URL_ADRESS "http://cube.test.games.com/"
+//#define STR_URL_ADRESS "http://cube.test.games.com/"
 #endif
 #endif
 #endif

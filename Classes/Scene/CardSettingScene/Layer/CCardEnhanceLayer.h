@@ -15,6 +15,7 @@
 #include "CPtBatterArray.h"
 #include "CPtListViewWidget.h"
 
+
 #include <vector>
 
 using namespace cocos2d;

@@ -15,6 +15,7 @@
 #include "CPtStarConfigData.h"
 #include "CPtPropConfigData.h"
 
+
 using namespace cocos2d;
 
 class CCardEvolutionLayer : public CCLayer
@@ -74,6 +75,7 @@ protected:
     int m_nAddDef;
     int m_nAddHp;
     
+  
     
 };
 

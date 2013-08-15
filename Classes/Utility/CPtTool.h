@@ -10,7 +10,9 @@
 #define ___1_cube__CPtTool__
 
 #include "cocos2d.h"
+#include "cocos-ext.h"
 using namespace cocos2d;
+using namespace cocos2d::extension;
 #include <mach/mach.h>
 
 namespace CPtTool
@@ -37,6 +39,8 @@ namespace CPtTool
     bool memoryInfo(vm_statistics_data_t *vmStats) ;
     
     void logMemoryInfo() ;
+    
+    CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize);
 };
 
 

@@ -15,6 +15,7 @@
 #include "PtHttpURL.h"
 CCardEvolutionLayer::CCardEvolutionLayer()
 {
+    
     m_cMaps = NULL;
     m_pSaveButton = NULL;
     m_pSrcCard = NULL;

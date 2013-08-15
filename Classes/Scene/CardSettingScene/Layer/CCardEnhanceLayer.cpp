@@ -17,6 +17,7 @@
 #include "PtHttpClient.h"
 #include "CSaveConfirmLayer.h"
 #include "PtHttpURL.h"
+#include "CBattleArrayLayer.h"
 CCardEnhanceLayer::CCardEnhanceLayer()
 {
     m_pSelectCard = NULL;
@@ -34,6 +35,7 @@ CCardEnhanceLayer::CCardEnhanceLayer()
     m_nCostConin = 0;
     m_pPlayer = SinglePlayer::instance();
     m_pCardBag = NULL;
+   
 }
 
 CCardEnhanceLayer::~CCardEnhanceLayer()
@@ -528,6 +530,9 @@ void CCardEnhanceLayer:: save()
     CCArray * array = m_pCardBag->getItems();
     list<int> ids;
 
+    
+    CBattleArrayLayer *parent =(CBattleArrayLayer*) getParent();
+    CPtDisPlayCard *preCardManifier = parent->getPreCardManifier();
     int index = -1;
     for (int i = 0; i < MATERIALCARDCOUNT; i ++)
     {
@@ -535,6 +540,11 @@ void CCardEnhanceLayer:: save()
         {
             index = m_pMaterialCards[i]->getIndex();
             ids.push_back(index);
+            
+            if(preCardManifier &&preCardManifier->getCardData() == m_pMaterialCards[i]->getCardData())
+            {
+                parent->setPreCardManifier(NULL);
+            }
         }
     }
     ids.sort();
