@@ -248,7 +248,7 @@ namespace PtActionUtility {
             int *zorder=new int;
             *zorder=atoi(getSubStr(sAction, "(", ")").c_str());
             //该地方 的Null会被自动替换成action的使用者
-            CCCallFunc* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::resetZorder), (void*)zorder);
+            CCCallFuncND* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::resetZorder), (void*)zorder);
             return action;
         }
         else if(actionType==act_animateplist)
@@ -256,7 +256,7 @@ namespace PtActionUtility {
             string str=getSubStr(sAction, "(", ")");
             char *data =new char [str.length()+1];
             sprintf(data, "%s",str.c_str());
-            CCCallFunc* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::callTexiaoFile),(void*)data);
+            CCCallFuncND* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::callTexiaoFile),(void*)data);
             return action;
 
         }

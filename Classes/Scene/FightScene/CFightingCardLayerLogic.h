@@ -49,10 +49,13 @@ private:
     bool checkIsDead();                             //!<     判断对方是否死亡
     bool checkSendZengfu();                         //!<     判断是否发送增幅技能
     bool checkFighting();
+    bool checklogicBuffAndDead();
+    bool checklogicCheckIsCanSendAtk();
     void appendUpdateAction();
     void appendHpAngryUpdate();
     void appendUpdateBuffer();
     int  getNextFightCard(int index,bool isLeftFightTeam);
+   
 public:
     bool logicFighting();
     void loadAnimatePlist();                        //!<    加载animation的plist文件里面的帧动画

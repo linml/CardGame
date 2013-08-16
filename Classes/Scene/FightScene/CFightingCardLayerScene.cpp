@@ -465,10 +465,15 @@ void CFightingCardLayerScene::actionPFightSkill(const char *fightName,CCSprite *
     CCAction *animation=PtActionUtility::getRunActionWithActionFile(fightName);
 //    CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonster);
     CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
-    CCCallFunc *reorderAction=CCCallFunc::create(this,callfunc_selector(CFightingCardLayerScene::actionReorderZorder));
+   // CCCallFuncN::create(this, <#SEL_CallFuncN selector#>)
+    CCCallFuncND *reorderAction=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::actionReorderZorder),(void *)pFight);
+    
+    CCCallFuncN *rebb=CCCallFuncN::create(this, callfuncN_selector(CFightingCardLayerScene::actionReorderZorderNode));
+    
     CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
     reorderChild(pFight,2);
-    pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,reorderAction,CCDelayTime::create(0.6f),endAnimation,NULL));
+      pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,rebb,CCDelayTime::create(0.6f),endAnimation,NULL));
+  //  pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,reorderAction,CCDelayTime::create(0.6f),endAnimation,NULL));
     pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
 }
 
@@ -497,7 +502,7 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
             string filePath="";
             CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillid);
             if (!pSkilldata) {
-                AnimaitonEnd(NULL);
+                AnimaitonEnd();
                 return;
             }
             CCLog("===============>%d,%s",pSkilldata->skill_id,pSkilldata->effect_plist.c_str());
@@ -529,7 +534,7 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
                 }
                 else
                 {
-                    AnimaitonEnd(NULL);
+                    AnimaitonEnd();
                 }
                 
             }
@@ -544,7 +549,7 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
             }
         }
         else{
-            AnimaitonEnd(NULL);
+            AnimaitonEnd();
         }
     }
 }
@@ -646,7 +651,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
             }
             else
             {
-                AnimaitonEnd(NULL);
+                AnimaitonEnd();
                 return;
             }
         }
@@ -662,7 +667,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
             }
             else
             {
-                AnimaitonEnd(NULL);
+                AnimaitonEnd();
                 return;
             }
             
@@ -677,7 +682,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
                 skillAnimationSwf(fightAnimation,sprite,pMonster);
             }
             else{
-                AnimaitonEnd(NULL);
+                AnimaitonEnd();
                 return;
             }
             
@@ -695,7 +700,7 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
             }
             else
             {
-                AnimaitonEnd(NULL);
+                AnimaitonEnd();
                 return;
             }
             
@@ -817,22 +822,33 @@ void CFightingCardLayerScene::showHp(int leftHp,int RightHp)
         }
     }
 }
-void CFightingCardLayerScene::actionReorderZorder(CCObject *object)
+void CFightingCardLayerScene::actionReorderZorderNode(CCObject *object)
 {
-    if(object)
+    if(object &&this)
     {
-        reorderChild((CCNode *)object, 1);
+     
+        this->reorderChild((CCSprite *)object, 1);
+    }
+}
+void CFightingCardLayerScene::actionReorderZorder(CCNode *object,void *tag)
+{
+    CCLog("this->%x",this);
+    CCLog("object:%x",object);
+    if(object &&this)
+    {
+        CCSprite *sprite=(CCSprite *)tag;
+        this->reorderChild(sprite, 1);
     }
 }
 
-void CFightingCardLayerScene::AnimaitonEnd(CCObject *object)
+void CFightingCardLayerScene::AnimaitonEnd()
 {
     animationAndex++;
     isAnimationEnd=true;
 }
 
 
-void CFightingCardLayerScene::showHpAnimation(CCObject *object)
+void CFightingCardLayerScene::showHpAnimation()
 {
     if (m_currCAnimationHP)
     {

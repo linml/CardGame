@@ -178,6 +178,7 @@ string CGamePlayer::getBufferPngByEffectId(int effectID)
     return "";
     
 }
+
 CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
 {
     for (int i=0; i<m_vSkillInfo.size(); i++) {
@@ -290,7 +291,7 @@ void CGamePlayer::getSeverPlayerInfo(cocos2d::CCObject *object)
 
 void CGamePlayer::loadServerCardBag()
 {
-    isLoadCardBagEnd=false;
+    isLoadCardBagEnd=0;
 #ifndef AAAAFOROSMACHINE
     //http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
     ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parseCardBagJson));
@@ -307,11 +308,16 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
     //添加card  字符串
     char *tempdatat=(char *)obj;
     CCLog("%s",tempdatat);
+    if(tempdatat==NULL)
+    {
+        isLoadCardBagEnd=ERROR_MSG_CONNECTSERVERERROR;
+        return;
+    }
 #ifndef AAAAFOROSMACHINE
 
     CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdatat);
 #else
-        const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
+    const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
      CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
 #endif
     delete []tempdatat;
@@ -339,17 +345,10 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
         fightCard->m_User_Card_ID=card_item_id;
         fightCard->m_iSuit = card_suit;
         fightCard->m_iCurrLevel = level;
-        //get attak, defense, hp value from sever:
-        
-     
-//        fightCard->m_iHp = GameTools::intForKey("hp", detail);
-//        fightCard->m_attack = GameTools::intForKey("attack", detail);
-//        fightCard->m_defend = GameTools::intForKey("defend", detail);
-//        fightCard->m_iCurrHp = fightCard->m_iHp;
         m_vCardBag.push_back(fightCard);
     }
     
-    isLoadCardBagEnd=true;
+    isLoadCardBagEnd=ERROR_MSG_NONE;
 
 }
 
@@ -697,5 +696,16 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
     
     // test code:
     
+}
+
+
+/*
+ * 获取玩家基本信息
+ */
+
+//获取Uid
+int CGamePlayer::getUserId()
+{
+    return CCUserDefault::sharedUserDefault()->getIntegerForKey("uid");
 }
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

@@ -698,4 +698,15 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
     // test code:
     
 }
+
+
+/*
+ * 获取玩家基本信息
+ */
+
+//获取Uid
+int CGamePlayer::getUserId()
+{
+    return CCUserDefault::sharedUserDefault()->getIntegerForKey("uid");
+}
 //#undef DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE)

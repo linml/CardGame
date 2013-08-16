@@ -67,12 +67,5 @@ public:
     string m_sEffectFile;
     
 };
-//class CFightCard;
-//class CGamePlayer;
-//class CCubeSkillManager
-//{
-//    static void logicSkill_Putong(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact);
-//    static void logicSkill_Two(CFightCard *pCard,CGamePlayer *pGamePlayer,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact);
-//};
 
 #endif /* defined(___1_cube__CSkillData__) */

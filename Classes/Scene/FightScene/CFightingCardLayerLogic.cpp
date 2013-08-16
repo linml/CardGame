@@ -93,7 +93,10 @@ bool CFightingCardLayerLogic::logicFighting()
         {
             if(!checkIsDead())
             {
-                checkFighting();
+                if(checklogicBuffAndDead()&&checklogicCheckIsCanSendAtk())
+                {
+                    checkFighting();
+                }
             }
         }
         return false;
@@ -137,7 +140,47 @@ void CFightingCardLayerLogic::loadAnimatePlist()
     }
 }
 
-
+bool CFightingCardLayerLogic::checklogicBuffAndDead()
+{
+    m_enHuiheIndex++;
+    if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD&&m_vFightingCard[m_iFightCardIndex])
+    {
+        CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
+        if(m_vFightingCard[m_iFightCardIndex]->m_iCurrHp<=0)
+        {
+            return false;
+        }
+    }
+    else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT && m_vFightingCard[4])
+    {
+        CFightSkillManager::dealWithBuffer(m_vFightingCard[4],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_SUPPORT);
+        if(m_vFightingCard[m_iFightCardIndex]->m_iCurrHp<=0)
+        {
+            return false;
+        }
+    }
+    else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD && m_vMonsterCard[m_iMonsterCardIndex])
+    {
+        CFightSkillManager::dealWithBuffer(m_vMonsterCard[m_iMonsterCardIndex],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_LORD);
+        if(m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp<=0)
+        {
+            return false;
+        }
+    }
+    else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT && m_vMonsterCard[4])
+    {
+        CFightSkillManager::dealWithBuffer(m_vMonsterCard[4],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_SUPPORT);
+        if(m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp<=0)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+bool CFightingCardLayerLogic::checklogicCheckIsCanSendAtk()
+{
+    return true;
+}
 bool CFightingCardLayerLogic::checkFighting()
 {
     
@@ -145,8 +188,6 @@ bool CFightingCardLayerLogic::checkFighting()
     {
         return false;
     }
-    m_enHuiheIndex++;
-  
     CCLog("BEGIN 当前攻击顺序是%d",int(m_enHuiheIndex));
     if(m_vFightingCard[m_iFightCardIndex])
     {

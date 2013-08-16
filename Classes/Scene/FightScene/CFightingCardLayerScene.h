@@ -63,7 +63,8 @@ private:
     void yinCangRenWu(vector<CCSprite *>vsprite,CCSprite *sprite=NULL);
     void skillByHeloSwf(CAnimationSpriteGameFight *fightAnimation,CCSprite *pFight,CCSprite *pMonster);
     void initSetUpdateHp(int iCurrHp,int TotalHp,int currEngry,bool isLeft);
-    void actionReorderZorder(CCObject *object);
+    void actionReorderZorder(CCNode  *object,void *tag);
+    void actionReorderZorderNode(CCObject *object);
     void delayToSchude(CCObject *object);
    
     
@@ -95,12 +96,9 @@ private:
     void loseDialog();
 private:
     void loadFromServerTest();
-    bool checkIsDead(); //判断对方是否死亡
-    bool checkSendZengfu(); //判断是否发送增幅技能
-    bool checkFighting();
     CAnimationSpriteGameFight *m_currCAnimationHP;
-    void showHpAnimation(CCObject *object);
-    void AnimaitonEnd(CCObject *object);
+    void showHpAnimation();
+    void AnimaitonEnd();
     void showHp(int leftHp,int RightHp); //回调该方法显示血液
     void moveCardSprite(vector<CFightCard *> &vCard,int goIndex,bool isLeft);
     

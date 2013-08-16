@@ -74,7 +74,11 @@ void LoadingScene::doScheule()
     {
         m_clFightLogic=new CFightingCardLayerLogic();
         SinglePlayer::instance()->onFightInterScene();
-        SinglePlayer::instance()->loadRival(194,3); //在阵容 进去的界面应该算这个值得啊
+        int Uid=0;
+        do {
+            Uid=rand()%4+194;
+        } while (Uid==SinglePlayer::instance()->getUserId());
+        SinglePlayer::instance()->loadRival(Uid,3); //在阵容 进去的界面应该算这个值得啊
     }
     else if(targetScene_==EN_CURRSCENE_CARDSETTINGSCENE)
     {

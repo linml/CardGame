@@ -9,7 +9,6 @@
 #ifndef _1_cube_PtHttpURL_h
 #define _1_cube_PtHttpURL_h
 
-#include "gamePlayer.h"
 
 //服务器地址
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -22,7 +21,7 @@
 #endif
 #endif
 
-#define URL_FACTORY(ADR,UID) (string(STR_URL_ADRESS)+string(ADR)+ConvertToString(SinglePlayer::instance()->getUserId())).c_str()
+#define URL_FACTORY(ADR,UID) (string(STR_URL_ADRESS)+string(ADR)+ConvertToString(UID)).c_str()
 
 //登录
 #define STR_URL_LOGIN               STR_URL_ADRESS"gateway.php?m=Platform&a=login"

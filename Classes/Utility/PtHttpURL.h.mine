@@ -9,20 +9,19 @@
 #ifndef _1_cube_PtHttpURL_h
 #define _1_cube_PtHttpURL_h
 
-#include "gamePlayer.h"
-
+#define STR_URL_ADRESS "http://cube.test.games.com/"
 //服务器地址
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #if defined CUBE_91
 #if defined DEBUG
-#define STR_URL_ADRESS "http://cube.games.com/"
+//#define STR_URL_ADRESS "http://cube.games.com/"
 #else
-#define STR_URL_ADRESS "http://cube.test.games.com/"
+//#define STR_URL_ADRESS "http://cube.test.games.com/"
 #endif
 #endif
 #endif
 
-#define URL_FACTORY(ADR,UID) (string(STR_URL_ADRESS)+string(ADR)+ConvertToString(SinglePlayer::instance()->getUserId())).c_str()
+#define URL_FACTORY(ADR,UID) (string(STR_URL_ADRESS)+string(ADR)+ConvertToString(UID)).c_str()
 
 //登录
 #define STR_URL_LOGIN               STR_URL_ADRESS"gateway.php?m=Platform&a=login"

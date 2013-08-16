@@ -273,7 +273,7 @@ void CLoginScene::addFunctionInitGames(float t)
             isLoadCardBag=true;
         }
         else{
-            if(SinglePlayer::instance()->isLoadCardBagEnd)
+            if(SinglePlayer::instance()->isLoadCardBagEnd==ERROR_MSG_NONE)
             {
                 if(!isLoadPlayerInfo)
                 {
@@ -287,6 +287,10 @@ void CLoginScene::addFunctionInitGames(float t)
                     unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
                     Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
                 }
+            }
+            else{
+                
+                //unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
             }
         }
         

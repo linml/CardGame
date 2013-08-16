@@ -89,7 +89,7 @@ public: //读取卡包的信息
     void parseCardBagJson(CCObject *obj);
     void deleteFromCardBag(vector<int>user_CardId);
     bool isCardBagContainUserCardList(vector<int>User_CardId);
-    bool isLoadCardBagEnd;
+    int isLoadCardBagEnd;
 public: //读取英雄的信息
     void loadServerPlayerInfo();
     void loadServerPlayerInfoCallBack(CCObject *obj);
@@ -98,12 +98,12 @@ public: //读取英雄的信息
 public: //读取 卡队列的信息
     void loadCardTeamInfo();
     void loadCardTeamInfoCallBack(CCObject *obj);
-    bool isLoadEndCardTeam;
+    int isLoadEndCardTeam;
 public:
     //读取对战别的英雄对战的阵容
     void loadRival(int  usid,int troop);
     void parseRival(CCObject *object);
-    bool isLoadFightTeam;
+    int isLoadFightTeam;
 public:
     void backUpFightTeam(int index);
     void appendAtkData(SEveryATKData * data);
@@ -118,6 +118,10 @@ public:
     //读取道具背包信息
     void loadPropsInfo();
     void parsePropsInfo(CCObject *pObject);
+    
+//获取玩家基本信息
+public:
+    int getUserId();
 public:
     //获取 卡包 内容的卡
     vector<CFightCard *>m_vCardBag;
@@ -143,6 +147,9 @@ public:
 protected:
     int m_nCoin;
     int m_nRvc;
+    
+private:
+    int m_nUid;
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;
