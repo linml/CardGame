@@ -66,6 +66,7 @@ private:
     void actionReorderZorder(CCNode  *object,void *tag);
     void actionReorderZorderNode(CCObject *object);
     void delayToSchude(CCObject *object);
+    void createShowFightUid();
    
     
     // 创建显示文本比如，怒气，Hp信息;

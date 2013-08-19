@@ -51,6 +51,7 @@ private:
     bool checkFighting();
     bool checklogicBuffAndDead();
     bool checklogicCheckIsCanSendAtk();
+    bool whenDeadSendDeadSkillAndMove();
     void appendUpdateAction();
     void appendHpAngryUpdate();
     void appendUpdateBuffer();

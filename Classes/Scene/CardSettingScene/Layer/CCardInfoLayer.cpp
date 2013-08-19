@@ -101,58 +101,57 @@ void CCardInfoLayer::initCCardInfo(CFightCard * card)
     
     CGamePlayer * player = SinglePlayer::instance();
     // skill name:
-    vector<CSkillData *> &skillData = player->m_vSkillInfo;
-    int size = skillData.size();
+    CSkillData * tmp = NULL;
     int skillId = card->m_pCard->m_iskillBuff;
     int array[3] = {0,1,4};
     int j = 0;
     if (skillId != 0)
     {
-        for (int i = 0;  i < size; i++)
+        tmp = player->getSkillBySkillId(skillId);
+        
+        if (tmp)
         {
-            if (skillData[i]->skill_id == skillId)
-            {
-                CCLabelTTF * label = CCLabelTTF::create(skillData[i]->m_skillName.c_str(), "Arial", 20);
-                label->setAnchorPoint(CCPointZero);
-                label->setPosition(ccp(80,40));
-                label->setColor(ccGREEN);
-                m_cMaps->getElementByTags(array,3)->addChild(label);
-                
-                label = CCLabelTTF::create(skillData[i]->m_skillTrip.c_str(), "Arial", 15);
-                label->setAnchorPoint(ccp(0,1));
-                label->setHorizontalAlignment(kCCTextAlignmentLeft);
-                label->setPosition(ccp(80,40));
-                label->setDimensions(CCSizeMake(320, 0));
-                m_cMaps->getElementByTags(array,3)->addChild(label);
-                j++;
-                break;
-            }
+            CCLabelTTF * label = CCLabelTTF::create(tmp->m_skillName.c_str(), "Arial", 20);
+            label->setAnchorPoint(CCPointZero);
+            label->setPosition(ccp(80,40));
+            label->setColor(ccGREEN);
+            m_cMaps->getElementByTags(array,3)->addChild(label);
+            
+            label = CCLabelTTF::create(tmp->m_skillTrip.c_str(), "Arial", 15);
+            label->setAnchorPoint(ccp(0,1));
+            label->setHorizontalAlignment(kCCTextAlignmentLeft);
+            label->setPosition(ccp(80,40));
+            label->setDimensions(CCSizeMake(320, 0));
+            m_cMaps->getElementByTags(array,3)->addChild(label);
+            j++;
+            
         }
+        
     }
     
     skillId = card->m_pCard->m_iskillDead;
     if (skillId != 0)
     {
-        for (int i = 0;  i < size; i++)
+        
+        tmp = player->getSkillBySkillId(skillId);
+        
+        if (tmp)
         {
-            if (skillData[i]->skill_id == skillId)
-            {
-                array[2] = 4+j;
-                j++;
-                CCLabelTTF * label = CCLabelTTF::create(skillData[i]->m_skillName.c_str(), "Arial", 20);
-                label->setAnchorPoint(CCPointZero);
-                label->setPosition(ccp(80,40));
-                label->setColor(ccGREEN);
-                m_cMaps->getElementByTags(array,3)->addChild(label);
-                
-                label = CCLabelTTF::create(skillData[i]->m_skillTrip.c_str(), "Arial", 15);
-                label->setAnchorPoint(ccp(0,1));
-                label->setHorizontalAlignment(kCCTextAlignmentLeft);
-                label->setPosition(ccp(80,40));
-                label->setDimensions(CCSizeMake(320, 0));
-                m_cMaps->getElementByTags(array,3)->addChild(label);
-                break;
-            }
+            array[2] = 4+j;
+            CCLabelTTF * label = CCLabelTTF::create(tmp->m_skillName.c_str(), "Arial", 20);
+            label->setAnchorPoint(CCPointZero);
+            label->setPosition(ccp(80,40));
+            label->setColor(ccGREEN);
+            m_cMaps->getElementByTags(array,3)->addChild(label);
+            
+            label = CCLabelTTF::create(tmp->m_skillTrip.c_str(), "Arial", 15);
+            label->setAnchorPoint(ccp(0,1));
+            label->setHorizontalAlignment(kCCTextAlignmentLeft);
+            label->setPosition(ccp(80,40));
+            label->setDimensions(CCSizeMake(320, 0));
+            m_cMaps->getElementByTags(array,3)->addChild(label);
+            j++;
+            
         }
     }
 
@@ -160,27 +159,25 @@ void CCardInfoLayer::initCCardInfo(CFightCard * card)
 
     if (skillId != 0)
     {
-        for (int i = 0;  i < size; i++)
+        tmp = player->getSkillBySkillId(skillId);
+        
+        if (tmp)
         {
-            if (skillData[i]->skill_id == skillId)
-            {
-               
-                array[2] = 4+j;
-                j++;
-                CCLabelTTF * label = CCLabelTTF::create(skillData[i]->m_skillName.c_str(), "Arial", 20);
-                label->setAnchorPoint(CCPointZero);
-                label->setPosition(ccp(80,40));
-                label->setColor(ccGREEN);
-                m_cMaps->getElementByTags(array,3)->addChild(label);
-                
-                label = CCLabelTTF::create(skillData[i]->m_skillTrip.c_str(), "Arial", 15);
-                label->setAnchorPoint(ccp(0,1));
-                label->setHorizontalAlignment(kCCTextAlignmentLeft);
-                label->setPosition(ccp(80,40));
-                label->setDimensions(CCSizeMake(320, 0));
-                m_cMaps->getElementByTags(array,3)->addChild(label);
-                break;
-            }
+            array[2] = 4+j;
+            CCLabelTTF * label = CCLabelTTF::create(tmp->m_skillName.c_str(), "Arial", 20);
+            label->setAnchorPoint(CCPointZero);
+            label->setPosition(ccp(80,40));
+            label->setColor(ccGREEN);
+            m_cMaps->getElementByTags(array,3)->addChild(label);
+            
+            label = CCLabelTTF::create(tmp->m_skillTrip.c_str(), "Arial", 15);
+            label->setAnchorPoint(ccp(0,1));
+            label->setHorizontalAlignment(kCCTextAlignmentLeft);
+            label->setPosition(ccp(80,40));
+            label->setDimensions(CCSizeMake(320, 0));
+            m_cMaps->getElementByTags(array,3)->addChild(label);
+            j++;
+            
         }
     }
 
@@ -189,39 +186,30 @@ void CCardInfoLayer::initCCardInfo(CFightCard * card)
     
     if (skillId != 0)
     {
-        for (int i = 0;  i < size; i++)
+        tmp = player->getSkillBySkillId(skillId);
+        if (tmp)
         {
-            if (skillData[i]->skill_id == skillId)
-            {
-                
-                if (j == 3)
-                {
-                    array[1] = 0;
-                    array[2] = 1;
-                }else
-                {
-                    array[2] = 4+j;
-                }
-                
-                CCLabelTTF * label = CCLabelTTF::create(skillData[i]->m_skillName.c_str(), "Arial", 20);
-                label->setAnchorPoint(CCPointZero);
-                label->setPosition(ccp(80,40));
-                label->setColor(ccGREEN);
-                m_cMaps->getElementByTags(array,3)->addChild(label);
-                
-                label = CCLabelTTF::create(skillData[i]->m_skillTrip.c_str(), "Arial", 15);
-                label->setAnchorPoint(ccp(0,1));
-                label->setHorizontalAlignment(kCCTextAlignmentLeft);
-                label->setPosition(ccp(80,40));
-                label->setDimensions(CCSizeMake(320, 0));
-                m_cMaps->getElementByTags(array,3)->addChild(label);
-                break;
-            }
+            array[2] = 1;
+            array[1] = 0;
+            CCLabelTTF * label = CCLabelTTF::create(tmp->m_skillName.c_str(), "Arial", 20);
+            label->setAnchorPoint(CCPointZero);
+            label->setPosition(ccp(80,40));
+            label->setColor(ccGREEN);
+            m_cMaps->getElementByTags(array,3)->addChild(label);
+            
+            label = CCLabelTTF::create(tmp->m_skillTrip.c_str(), "Arial", 15);
+            label->setAnchorPoint(ccp(0,1));
+            label->setHorizontalAlignment(kCCTextAlignmentLeft);
+            label->setPosition(ccp(80,40));
+            label->setDimensions(CCSizeMake(320, 0));
+            m_cMaps->getElementByTags(array,3)->addChild(label);
+            j++;
+            
         }
     }
     
     //card info:
-    const char * text = "哈伦比出生于遥远的东方，少年时偷偷爬上商船出海，中途遇到海难，抓住一块木板得以生存，一直漂流到姆伦特港。到达姆伦特港后奄奄一息的哈伦比被一对老夫妇收养，度过了一段还算快乐的时光。一天夜里老夫妇被强盗袭击双双死亡，哈伦比流落街头，靠小偷小摸为生。十一岁那年，哈伦比在平民窟偷到一个钱包，却引来一个庞大盗贼团的袭击，最终死不屈服的哈伦比被盗贼团首领看中，收其为徒，传授各种本领。在之后的盗贼团叛乱中哈伦比被杀，享年17岁";
+    const char * text = "哈伦比出生于遥远的东方，少年时偷偷爬上商船出海，中途遇到海难，抓住一块木板得以生存，一直漂流到姆伦特港。到达姆伦特港后奄奄一息的哈伦比被一对老夫妇收养，度过了一段还算快乐的时光。一天夜里老夫妇被强盗袭击双双死亡，哈伦比流落街头，靠小偷小摸为生。十一岁那年，哈伦比在平民窟偷到一个钱包，却引来一个庞大盗贼团的袭击，最终死不屈服的哈伦比被盗贼团首领看中，收其为徒，传授各种本领。在之后的盗贼团叛乱中哈伦比被杀，享年17岁--哈伦比出生于遥远的东方，少年时偷偷爬上商船出海，中途遇到海难，抓住一块木板得以生存，一直漂流到姆伦特港。到达姆伦特港后奄奄一息的哈伦比被一对老夫妇收养，度过了一段还算快乐的时光。一天夜里老夫妇被强盗袭击双双死亡，哈伦比流落街头，靠小偷小摸为生。十一岁那年，哈伦比在平民窟偷到一个钱包，却引来一个庞大盗贼团的袭击，最终死不屈服的哈伦比被盗贼团首领看中，收其为徒，传授各种本领。在之后的盗贼团叛乱中哈伦比被杀，享年17岁";
     CCScrollView * scrollword = CPtTool::getScrollWord(text, CCSizeMake(400, 250), ccc3(125, 0, 0), "arial", 15);
 
    // scrollword->ignoreAnchorPointForPosition(false);

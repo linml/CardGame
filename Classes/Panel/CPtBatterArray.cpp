@@ -487,14 +487,13 @@ bool CPtBattleArray::removeCard(const int& inCardType)
                     tmpCard->getCardData()->setInBattleArray(0);//(false);
                     if (tmpCard->getInCardBagPointer())
                     {
-                       // tmpCard->getInCardBagPointer()->setLive();
                         tmpCard->getInCardBagPointer()->setLogo(0);
                     }
                  
                 }
             }
 
-            removeChild(m_pCardArray[inCardType], true);
+          //  removeChild(m_pCardArray[inCardType], true);
 			m_pCardArray[inCardType] = NULL;
             m_pSuitLogo[inCardType]->removeAllChildrenWithCleanup(true);
             m_aSequenceArray[inCardType] = -1;
@@ -506,6 +505,44 @@ bool CPtBattleArray::removeCard(const int& inCardType)
 	}
 
 	return bRet;
+}
+
+/*
+ * @brief 删除卡牌时的action：
+ */
+
+void CPtBattleArray::removeAction(CCNode *pNode)
+{
+    CCLog("%d, removeAction:", inTag);
+    if (pNode)
+    {
+        m_bActionEnable = true;
+        CPtDisPlayCard * tmp = ((CPtDisPlayCard*)pNode)->getInCardBagPointer();
+        if(tmp && tmp->getParent())
+        {
+            CCPoint point = tmp->getPosition();
+            point = tmp->getParent()->convertToWorldSpace(point);
+            CCLog("point: %f, %f",point.x, point.y);
+            pNode->runAction(CCSequence::create(CCMoveTo::create(0.1f, point), CCCallFunc::create(this, callfunc_selector(CPtBattleArray::deletNode)),NULL));
+        }else
+        {
+            deletNode();
+        }
+        
+        
+    
+      
+    }
+    
+}
+void CPtBattleArray::deletNode()
+{
+     m_bActionEnable = false;
+    if (selectNode)
+    {
+        selectNode->removeFromParentAndCleanup(true);
+        selectNode = NULL;
+    }
 }
 
 int CPtBattleArray::getFightPower()
@@ -617,6 +654,7 @@ void CPtBattleArray::initMap()
 }
 void CPtBattleArray::initData()
 {
+    m_bActionEnable = false;
     m_bTouchEnable = false;
 	m_nLeadership = 0;
 	m_nFightPower = 0;
@@ -821,6 +859,13 @@ void CPtBattleArray::updateLabel()
 
 bool CPtBattleArray::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (m_bActionEnable)
+    {
+        // is action
+        CCLog("is action");
+        return false;
+    }
+    
     m_bOnClick = false;
     m_bTouchEnable = false;
     selectAssistant = false;
@@ -973,6 +1018,7 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         saveOnClick();
         return;
     }
+    CCPoint orignPoint;
     
     if (selectNode)
     {
@@ -983,8 +1029,9 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             CCRect rect = this->boundingBox();
             rect1.origin = this->convertToNodeSpace(rect1.origin);
             rect.origin = CCPointZero;
-            
+        
             CCPoint point = selectNode->getPosition();
+            orignPoint = point;
             point = selectNode->getParent()->convertToWorldSpace(point);
             point = convertToNodeSpace(point);
             selectNode->retain();
@@ -1020,13 +1067,23 @@ void CPtBattleArray::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
                 }
                 else if (selectIndex == 4 && !isAssistantCard((CPtDisPlayCard*)selectNode,true, true))
                 {
-                    
+                    selectNode->retain();
+                    selectNode->removeFromParentAndCleanup(true);
+                    m_pMoveLayer->addChild(selectNode,200);
+                    selectNode->release();
                     removeCard(4);
+                    removeAction(selectNode);
                     
                 }
                 else if(!rect.intersectsRect(rect1))
                 {
+                    
+                    selectNode->retain();
+                    selectNode->removeFromParentAndCleanup(true);
+                    m_pMoveLayer->addChild(selectNode,200);
+                    selectNode->release();
                     removeCard(selectIndex);
+                    removeAction(selectNode);
                 }
 
             }

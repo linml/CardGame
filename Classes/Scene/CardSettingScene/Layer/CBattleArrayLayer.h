@@ -47,7 +47,7 @@ public:
     void removeLeft();
 protected:
     void initCards();
-    
+    void resetState();
 
 //protected:
 public:
@@ -74,6 +74,7 @@ public:
     
     CC_SYNTHESIZE(int, m_nCurrentTab, CurrentTab);
     CC_SYNTHESIZE(CPtDisPlayCard*, m_pPreCardManifier, PreCardManifier);
+    CC_SYNTHESIZE(bool, m_bActionEnable, ActionEnable);
  
 };
 
@@ -106,10 +107,13 @@ public:
     // handlerror
     void addCardFail();
     void removeCallBack(CCNode *pNode);
+    void removeCallBack();
+    void removeAction();
    
 protected:
     bool isSameCardId(CPtDisPlayCard ** battleArray, const int &cardId,const int replaceIndex=-1);
     bool getCopyCard(bool inEnsumeAble = false, bool inBattleArray= true);
+    
 protected:
     CBattleArrayLayer * m_pDelegateLayer;
     bool m_bClickManifier;

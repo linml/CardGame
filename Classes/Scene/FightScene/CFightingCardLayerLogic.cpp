@@ -50,7 +50,8 @@ bool CFightingCardLayerLogic::loadFromCardTeamTest()
             this->m_vMonsterCard.push_back(new CFightCard(*tempSinglePlayer->m_hashmapMonsterCard[i]));
             m_vMonsterCard[i]->tag=1000*(i+1);
         }
-        else{
+        else
+        {
             this->m_vMonsterCard.push_back(NULL);
         }
     }
@@ -91,12 +92,15 @@ bool CFightingCardLayerLogic::logicFighting()
     {
         if(!checkSendZengfu())
         {
-            if(!checkIsDead())
+            if(!checkIsDead() && checklogicBuffAndDead())
             {
-                if(checklogicBuffAndDead()&&checklogicCheckIsCanSendAtk())
+                if(checklogicCheckIsCanSendAtk())
                 {
                     checkFighting();
                 }
+            }
+            else{
+                whenDeadSendDeadSkillAndMove();
             }
         }
         return false;
@@ -265,17 +269,18 @@ int CFightingCardLayerLogic::getNextFightCard(int index,bool isLeftFightTeam)
         return index;
     }
 }
-bool CFightingCardLayerLogic::checkIsDead()
+
+bool CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()
 {
     bool result=false;
     if (m_iFightCardIndex<m_vFightingCard.size()-1)
     {
         if(!m_vFightingCard[m_iFightCardIndex])
-    {
-        m_iFightCardIndex++;
-        result=true;
-    }
-    else if(m_vFightingCard[m_iFightCardIndex]&&m_vFightingCard[m_iFightCardIndex]->m_iCurrHp<=0)
+        {
+            m_iFightCardIndex++;
+            result=true;
+        }
+        else if(m_vFightingCard[m_iFightCardIndex]&&m_vFightingCard[m_iFightCardIndex]->m_iCurrHp<=0)
         {
             int backIndex=m_iFightCardIndex;
             m_vFightingCard[m_iFightCardIndex]->m_iCurrHp=0;
@@ -288,7 +293,7 @@ bool CFightingCardLayerLogic::checkIsDead()
                 G_FightSkillManager::instance()->CardFighting(m_vFightingCard[backIndex], m_vFightingCard,m_vMonsterCard,backIndex, m_iMonsterCardIndex,EN_SEND_SKILL_DEAD,EN_ATKFIGHT_INDEX_LEFT_LORD);
                 appendUpdateAction();
                 m_iFightCardIndex=indexNext;
-           
+                
             }
             CCLog("用户移动位置");
             G_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE);
@@ -311,16 +316,16 @@ bool CFightingCardLayerLogic::checkIsDead()
             m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp=0;
             m_vMonsterCard[m_iMonsterCardIndex]->isDead=true;
             CCLog("右边第%d个 发动死亡技能",m_iMonsterCardIndex);
-           
+            
             int indexNext= getNextFightCard(m_iMonsterCardIndex,false);
             if(indexNext<m_vFightingCard.size()-1)
             {
-               G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[backIndex], m_vMonsterCard ,m_vFightingCard,backIndex ,m_iFightCardIndex,EN_SEND_SKILL_DEAD,EN_ATKFIGHT_INDEX_RIGHT_LORD);           
+                G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[backIndex], m_vMonsterCard ,m_vFightingCard,backIndex ,m_iFightCardIndex,EN_SEND_SKILL_DEAD,EN_ATKFIGHT_INDEX_RIGHT_LORD);
                 appendUpdateAction();
                 m_iMonsterCardIndex=indexNext;
-
+                
             }
-          
+            
             CCLog("对方移动位置");
             G_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
             appendUpdateAction();
@@ -328,6 +333,19 @@ bool CFightingCardLayerLogic::checkIsDead()
         }
     }
     return result;
+}
+
+bool CFightingCardLayerLogic::checkIsDead()
+{
+    if(m_vFightingCard[m_iFightCardIndex]&&m_vFightingCard[m_iFightCardIndex]->m_iCurrHp<=0)
+    {
+        return true;
+    }
+    if(m_vMonsterCard[m_iMonsterCardIndex]&&m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrHp<=0)
+    {
+        return true;
+    }
+    return false;
 }
 
 bool CFightingCardLayerLogic::checkSendZengfu()

@@ -516,9 +516,10 @@ void CGamePlayer::loadRival(int  usid,int  troops)
     string str=string("info={\"uid\":")+ data;
     sprintf(data, "%d",troops);
     str +=string(",\"troops\":")+data+"}";
-    string connectData="194&sig=2ac2b1e302c46976beaab20a68ef95";
+    string connectData="sig=2ac2b1e302c46976beaab20a68ef95";
+    connectData+="&"+str;
     //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
-    ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",str.c_str(),callfuncO_selector(CGamePlayer::parseRival));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
 #else
     char *data=new char[5];
     parseRival((CCObject *)data);

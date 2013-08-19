@@ -33,6 +33,13 @@ bool CPtBattleArrayItem::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent
     
     if (m_pDelegateLayer)
     {
+        if (m_pDelegateLayer->getActionEnable())
+        {
+            CCLog("is action");
+            return false;
+           
+
+        }
         m_pDelegateLayer->m_pMoveCard = NULL;
         m_pDelegateLayer->setTableClickMove(false);
         m_bClickManifier = false;
@@ -540,13 +547,14 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
             {
                 
                 m_pDelegateLayer->m_pMoveCard->release();
-                m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 
+                //m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+                removeAction();
                 battles->updateBattleArray();
                 return;
             }
             
-            m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+          // 
             
             
         }
@@ -563,6 +571,7 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
         {
             // can't replace has same id:
             m_pDelegateLayer->m_pMoveCard->release();
+            m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
             // tip:
             CCLog("tip:.....");
             addCardFail();
@@ -571,6 +580,7 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
         {
             if (replace != -1)
             {
+                 m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 CCLog("the replace: %d", replace);
                 //
                 battles->replaceCard(m_pDelegateLayer->m_pMoveCard, replace);
@@ -580,7 +590,7 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
                 
             }else if (battles->isAssistantCard(m_pDelegateLayer->m_pMoveCard, false))
             {
-                
+                m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 battles->addCard(m_pDelegateLayer->m_pMoveCard, 4);
                 m_pDelegateLayer->m_pMoveCard->getInCardBagPointer()->setLogo(battles->inTag);
                 m_pDelegateLayer->m_pMoveCard->release();
@@ -589,13 +599,14 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
             }
             else if (index != -1 )
             {
-                
+                m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
                 battles->addCard(m_pDelegateLayer->m_pMoveCard, index);
                 m_pDelegateLayer->m_pMoveCard->getInCardBagPointer()->setLogo(battles->inTag);
                 m_pDelegateLayer->m_pMoveCard->release();
             }else
             {
-                m_pDelegateLayer->m_pMoveCard->release();
+                removeAction();
+                //m_pDelegateLayer->m_pMoveCard->release();
             }
 
         }
@@ -607,8 +618,8 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
       //  (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
         
         m_pDelegateLayer->m_pMoveCard->release();
-        m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
-        
+      //  m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+        removeAction();
     }
     
 
@@ -726,7 +737,27 @@ void CPtBattleArrayItem::removeCallBack(CCNode *pNode)
 {
     pNode->removeFromParentAndCleanup(true);
 }
-
+void CPtBattleArrayItem::removeCallBack()
+{
+    if (m_pDelegateLayer && m_pDelegateLayer->m_pMoveCard)
+    {
+        m_pDelegateLayer->setActionEnable(false);
+        m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+        m_pDelegateLayer->m_pMoveCard = NULL;
+    }
+    
+}
+void CPtBattleArrayItem::removeAction()
+{
+    if (m_pDelegateLayer && m_pDelegateLayer->m_pMoveCard)
+    {
+        m_pDelegateLayer->setActionEnable(true);
+        CCPoint point = getDisplayView()->getPosition();
+        point = getDisplayView()->getParent()->convertToWorldSpace(point);
+        point = m_pDelegateLayer->m_pMoveCard->getParent()->convertToNodeSpace(point);
+        m_pDelegateLayer->m_pMoveCard->runAction(CCSequence::create(CCMoveTo::create(0.1f, point),CCCallFunc::create(this, callfunc_selector(CPtBattleArrayItem::removeCallBack)),NULL));
+    }
+}
 //implement class of CBattleArrayLayer
 
 CBattleArrayLayer::CBattleArrayLayer()
@@ -738,8 +769,9 @@ CBattleArrayLayer::CBattleArrayLayer()
     m_pEnhancePanel = NULL;
     m_pSellPanel = NULL;
     panel = NULL;
-    
+    m_pMoveCard = NULL;
     m_pPreCardManifier = NULL;
+    m_bActionEnable = false;
 }
 CBattleArrayLayer::~CBattleArrayLayer()
 {
@@ -827,7 +859,10 @@ void CBattleArrayLayer::initCards()
     }
 }
 
-
+void CBattleArrayLayer::resetState()
+{
+    m_bActionEnable = false;
+}
 
 bool CBattleArrayLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -905,6 +940,7 @@ void CBattleArrayLayer::removeCallBack(CCNode *pNode)
 
 void CBattleArrayLayer::addTeamArrayPanel()
 {
+    resetState();
     m_nCurrentTab = 1;
     panel = CPtBattleArrayPanel::create(CCSizeMake(534, 640),NULL, this);
     panel->setPosition(ccp(10,10));
@@ -914,6 +950,7 @@ void CBattleArrayLayer::addTeamArrayPanel()
 
 void CBattleArrayLayer::addEnhance()
 {
+    resetState();
     m_nCurrentTab = 2;
     m_pEnhancePanel = CCardEnhanceLayer::create();
     addChild(m_pEnhancePanel, 1, 4000);
@@ -925,6 +962,7 @@ void CBattleArrayLayer::addEnhance()
 
 void CBattleArrayLayer::addEvolution()
 {
+    resetState();
     m_nCurrentTab = 3;
     m_pEvolutionPanel = CCardEvolutionLayer::create();
     addChild(m_pEvolutionPanel, 1, 4000);
@@ -935,6 +973,7 @@ void CBattleArrayLayer::addEvolution()
 
 void CBattleArrayLayer::addSell()
 {
+    resetState();
     m_nCurrentTab = 4;
     m_pSellPanel = CCardSellLayer::create();
     addChild(m_pSellPanel, 1, 4000);

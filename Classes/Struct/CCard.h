@@ -94,27 +94,17 @@ public:
     int m_nCurrentPrice;
     int m_nNeedExp;
     int m_nLeadShip;
-    
-
     int addAtk;      //绿色属性攻击 暂定，基本没用
     int addDef;      //绿色属性防御暂定， 基本没用
     bool isSendZengfu;
     int m_iSuit;
-    
-
 public:
     CCard *m_pCard;    
     list<CCardBufferStatus *>m_vBuffer; //卡牌拥有的buffer;
-
-
     // change by phileas.chen 2013.7.22
-    
     CC_SYNTHESIZE(bool, m_bConsume, EnConsume);
-    
-    
 protected:
     int m_nWhichBattleArray;
-
 public: //for test
     friend inline ostream & operator << (ostream & os, CFightCard &t1)
     {

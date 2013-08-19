@@ -116,6 +116,10 @@ protected:
     bool hasMainAttacker(){return m_pCardArray[0]==NULL? false: true;};
     bool isAssistantCard();
     void swapCard(const int & inSrc, const int &inDes);
+    
+    void removeAction(CCNode *pNode);
+    void deletNode();
+    
 protected:
     
     
@@ -134,6 +138,8 @@ protected:
     CPtDisPlayCard * selectNode;
     int selectIndex;
     bool selectAssistant;
+    
+    bool m_bActionEnable;
 //test:
 public:
     int inTag ;

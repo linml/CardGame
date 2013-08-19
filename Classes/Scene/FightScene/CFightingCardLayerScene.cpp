@@ -80,6 +80,7 @@ bool CFightingCardLayerScene::init()
     createHero();
     initHpEngry();
     createKuaiJin();
+    createShowFightUid();
     isAnimationEnd=0;
     animationAndex=0;
     hpUpdateIndex=0;
@@ -92,6 +93,17 @@ bool CFightingCardLayerScene::init()
     runAction(CCSequence::create(CCDelayTime::create(1.0f),CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::delayToSchude)),NULL));
     return true;
 }
+void CFightingCardLayerScene::createShowFightUid()
+{
+    char data[20];
+    sprintf(data, "FIHGTUID:%d",SinglePlayer::instance()->m_FightUid);
+    CCLabelTTF *labelttf=CCLabelTTF::create(data, "Arial", 20);
+    labelttf->setPosition(ccp(800, 700));
+    addChild(labelttf,2,100);
+    CCFadeIn *fadein = CCFadeIn::create(1.0f);//(1.2f,ccp(0,10));
+    labelttf->runAction(CCRepeatForever::create(static_cast<CCSequence *>(CCSequence::create(fadein,fadein->reverse(),NULL))));
+}
+
 void CFightingCardLayerScene::delayToSchude(CCObject *object)
 {
     schedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
