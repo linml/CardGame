@@ -589,6 +589,12 @@ void CGamePlayer::parseRival(CCObject *object)
                     }
 
                 }
+                CCArray *vKeyArraytempBBB=(CCArray *)(cardDirector->objectForKey("random_data"));
+                for (int i=0; i<vKeyArraytempBBB->count(); i++) {
+                    CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
+                    CCLog("AAAAA=====%d",strtemp->intValue()); //转化到 全局里面的数组
+                }
+                
             }
        }
         

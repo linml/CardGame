@@ -13,6 +13,7 @@
 #include "HelloWorldScene.h"
 #include "SceneManager.h"
 #include "MemoryGameCollabLayer.h"
+#include "CGameErrorConfigLayer.h"
 
 
 USING_NS_CC;
@@ -47,9 +48,9 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 
     SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
-  //  pDirector->runWithScene(HelloWorld::scene());
+   //  pDirector->runWithScene(CErrorDialog::scene());
 
-    
+  //  CCScene *scene=CCScene::create();
   // SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
 
     return true;
