@@ -44,7 +44,7 @@ enum EN_FIGHTBUFFER {
     EN_FIGHTBUFFER_ADD,
     EN_FIGHTBUFFER_SUB,
     };
-struct  CBufferIcon {
+    struct  CBufferIcon {
     int m_iEffectid; //icon id
     int m_iValue;
     bool isLeft;

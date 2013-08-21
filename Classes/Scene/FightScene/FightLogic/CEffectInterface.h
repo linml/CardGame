@@ -10,6 +10,8 @@
 #define ___1_cube__CEffectInterface__
 
 #include <iostream>
+#include <string>
+using namespace std;
 //定义一个计算effect的 抽象类
 class CFightCard;
 class CImapact;
@@ -19,7 +21,12 @@ public:
     CEffectInterface();
     virtual ~CEffectInterface();
     virtual void logicFightingCardByFightAndMonster(CFightCard *pCard,CFightCard *pMonster,CImapact *pImapact)=0;
-    
+protected:
+    void dealWithBufferAndImmediately(CFightCard *pCard,CFightCard *pMonster,CImapact *pImapact,std::string bufferfile="");
+    int iChangeShanghaiHp;
+    int iChangeatk;
+    int iChangedef;
+    int iChangeengry;
 };
 
 #endif /* defined(___1_cube__CEffectInterface__) */

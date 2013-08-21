@@ -8,21 +8,29 @@
 //
 
 #include "CCardBufferStatus.h"
+#include "gamePlayer.h"
+#include "CSkillData.h"
 
-CCardBufferStatus::CCardBufferStatus(int buff_effectTimes,
-                  int buff_showTimes,
-                  bool isDeal,
-                  int mutex,
-                  int mutexlevel,
-                  float value,int effectid,EN_BUFF_FIELD_TYPE enBuffer_Field,string skillBufferfile)
+CCardBufferStatusRefactor::CCardBufferStatusRefactor(int iHp,int iAtk,int iDef,int iEngry,int EffectId,string skillBufferFile)
 {
-    m_enBuffer_Field=enBuffer_Field;
-    m_bIsBeDeal=isDeal;
-    m_iBuff_effectTimes=buff_effectTimes;
-    m_iBuff_showTimes=buff_showTimes;
-    m_iValue=value;
-    m_mutex=mutex;
-    m_mutexlevel=mutexlevel;
-    m_ieffectid=effectid;
-    m_sbufferFile=skillBufferfile;
+    this->m_iHp=iHp;
+    this->m_iEffectid=EffectId;
+    this->m_iEngry=iEngry;
+    this->m_iDef=iDef;
+    this->m_iAtk=iAtk;
+    this->m_sbfferFile=skillBufferFile;
+    this->m_iMutex=-1;
+    this->m_iMutexLevel=-1;
+    this->m_iNeedAddBack=0;
+    this->m_iKeepTime=0;
+    this->m_iEffect_time=0;
+    CImapact *pImapactEffect =SinglePlayer::instance()->getEffectTableByEffectId(EffectId);
+    if (pImapactEffect) {
+        this->m_iMutex=pImapactEffect->m_iMutex;
+        this->m_iMutexLevel=pImapactEffect->m_iMutex_level;
+        this->m_iNeedAddBack=pImapactEffect->m_process;
+        this->m_iKeepTime=pImapactEffect->m_ishowtime;
+        this->m_iEffect_time=pImapactEffect->m_ibuff;
+
+    }    
 }

@@ -17,29 +17,27 @@
 #include <iostream>
 #include "gameConfig.h"
 using namespace std;
-class CCardBufferStatus
+class CCardBufferStatusRefactor
 {
 public:
-    CCardBufferStatus(){};
-    ~CCardBufferStatus(){};
-    CCardBufferStatus(int buff_effectTimes,
-                      int buff_showTimes,
-                      bool isDeal,
-                      int mutex,
-                      int mutexlevel,
-                      float value,int effectid,EN_BUFF_FIELD_TYPE enBuffer_Field,string bufferfile="");
+    CCardBufferStatusRefactor(){};
+    ~CCardBufferStatusRefactor(){};
+    CCardBufferStatusRefactor(
+                      int Hp,int Atk,int Def,int Engry,
+                      int effectid,string bufferfile="");
 public:
-    bool m_bIsBeDeal;                    
-    EN_BUFF_FIELD_TYPE m_enBuffer_Field; //  buffer类型，
-    int    m_iBuff_effectTimes;          //效果的累计次数
-    int    m_iBuff_showTimes;           //显示的次数
-    float  m_iValue;                     //设置浮点数字  百分比 或者是整数的的模式。
-    int    m_mutex;
-    int    m_mutexlevel;
-    int    m_oldValue;
-    int    m_ieffectid;
-    string m_sbufferFile;
-    EN_BUFF_TARGET m_enBuffer_target;  //buffer目标;  //待定 看是否添加在最后里面
+    int m_iHp;
+    int m_iEngry;
+    int m_iAtk;
+    int m_iDef;
+    int m_iEffectid;
+    int m_iMutex;
+    int m_iMutexLevel;
+    int m_iNeedAddBack;
+    int m_iKeepTime;
+    int m_iEffect_time;
+    
+    string m_sbfferFile;
+    
 };
-
 #endif /* defined(___1_cube__CCardBufferStatus__) */

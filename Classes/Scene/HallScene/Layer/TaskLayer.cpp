@@ -38,6 +38,7 @@ bool CTaskLayer::init()
 
 bool CTaskLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    m_nTouchTag = -1;
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag = TouchRect::SearchTouchTag(touchPoint, m_cTouches);
     return true;
@@ -49,6 +50,7 @@ void CTaskLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CTaskLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+
     CCPoint touchPoint = pTouch->getLocation();
     if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_touchSprite))
     {

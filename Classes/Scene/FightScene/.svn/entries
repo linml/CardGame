@@ -1,14 +1,14 @@
 10
 
 dir
-1010
+1018
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/FightScene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-19T07:54:27.523422Z
-1010
+2013-08-19T08:16:42.999811Z
+1011
 merlin
 has-props
 
@@ -31,11 +31,11 @@ dir
 
 CFightingCardLayerScene.cpp
 file
-1011
 
 
 
-2013-08-19T08:14:56.000000Z
+
+2013-08-20T06:08:55.000000Z
 62d6d3e0c50d05af0ef9f2ae3c2d470e
 2013-08-19T08:16:42.999811Z
 1011
@@ -102,7 +102,7 @@ dir
 
 CFightingCardLayerScene.h
 file
-1011
+
 
 
 

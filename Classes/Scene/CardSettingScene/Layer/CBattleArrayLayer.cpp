@@ -90,6 +90,7 @@ void CPtBattleArrayItem::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             CPtDisPlayCard* tmp=  ((CPtDisPlayCard *)getDisplayView());
             if (tmp->isClickManifier(pTouch))
             {
+                PtSoundTool::playSysSoundEffect("UI_click.wav");
                 createInfoLayer();
                
             }
@@ -124,22 +125,42 @@ void CPtBattleArrayItem::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
     CPtBattleArray * battles =  s_currentBattleArray;
     m_bMove = false;
     s_currentBattleArray = NULL;
-    if (battles)
+    
+    if (m_pDelegateLayer)
     {
-        // remove:
-        
-        if (m_pDelegateLayer->getCurrentTab() == 1 &&m_pDelegateLayer->m_pMoveCard)
+        if (m_bClickManifier)
         {
-                 
-               // (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
-                m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
-                battles->updateBattleArray();
-        
+            CPtDisPlayCard* tmp=  ((CPtDisPlayCard *)getDisplayView());
+            tmp->setManifierNormal();
+            return;
         }
         
-            
+        if (m_pDelegateLayer && m_pDelegateLayer->m_pMoveCard)
+        {
+             m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
+            m_pDelegateLayer->m_pMoveCard = NULL;
+        }
+        if (m_pDelegateLayer->getCurrentTab() == 2)
+        {
 
+        }else if(m_pDelegateLayer->getCurrentTab() == 4)
+        {
+
+           
+        }else if(m_pDelegateLayer->getCurrentTab() == 3)
+        {
+         
+        }else if(m_pDelegateLayer->getCurrentTab() == 1)
+        {
+            if (battles)
+            {
+               
+                battles->updateBattleArray();
+            }
+        }
+        
     }
+
 
 }
 
@@ -376,7 +397,7 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
 bool CPtBattleArrayItem::onEvolutionBegin(CCTouch *pTouch, CCEvent *pEvent)
 {
     bool bRet = false;
-    bRet = true; //getCopyCard();
+    bRet = getCopyCard(true, false); //getCopyCard();
     return bRet;
     
 }
@@ -386,31 +407,30 @@ void CPtBattleArrayItem::onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent)
     
     if (m_pDelegateLayer)
     {
+        m_pDelegateLayer->m_pMoveCard->retain();
+        m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
         // onclick:
-        if (m_pDelegateLayer->m_pEvolutionPanel && m_pDelegateLayer->getTableClickEnable())
+        if (m_pDelegateLayer->m_pEvolutionPanel)
         {
             if (m_pDelegateLayer->getTableClickMove())
             {
-                return;
-            }
-            
-            CPtDisPlayCard * displace =(CPtDisPlayCard *)(this->getDisplayView());
-            
-            CCLog("onTableClick");
-                       
-            if(displace)
-            {
-                if (CPtTool::isInNode(displace, pTouch))
+                // on move:
+                CPtDisPlayCard * displace =(CPtDisPlayCard *)(this->getDisplayView());
+                
+                CCLog("onTableMove");
+                
+                if(displace)
                 {
-                    
+                   
                     if (displace->getCardData()->getInWhichBattleArray() != 0)
                     {
-                        CCLog("this card is in battle array should check rvc");
-                      //  return;
+                            CCLog("this card is in battle array should check rvc");
+                            
+                            //  return;
                     }
-                    
-                    
-                    CPtDisPlayCard *node = displace->getCopy();
+                        
+                        
+                    CPtDisPlayCard *node = m_pDelegateLayer->m_pMoveCard;
                     if (node->getCardData()->getEnConsume() == false)
                     {
                         node->getCardData()->setEnConsume(true);
@@ -418,22 +438,37 @@ void CPtBattleArrayItem::onEvolutionEnd(CCTouch *pTouch, CCEvent *pEvent)
                         {
                             displace->setDead();
                         }
-                      
+                            
                         node->setInCardBagPointer(displace);
                         node->setIndex((int)getUserData());
                         node->setInCardBagPointer(displace);
-                                              
+                            
                         m_pDelegateLayer->m_pEvolutionPanel->addCard(node);
                         
+                        m_pDelegateLayer->m_pMoveCard->release();
+                        m_pDelegateLayer->m_pMoveCard = NULL;
+                        return;
+                            
                     }else
                     {
-                        CCLog("已经选中，不需要再选");
+                            CCLog("已经选中，不需要再选");
                     }
+                        
+                   
+                    
                     
                     
                 }
+
+            }else
+            {
+                // onclick:
+                 displayManifier();
+                
                 
             }
+            m_pDelegateLayer->m_pMoveCard->release();
+            m_pDelegateLayer->m_pMoveCard = NULL;
             
             
             
@@ -456,7 +491,7 @@ bool CPtBattleArrayItem::onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent)
     // new add  or replace:
     
     CPtDisPlayCard * displace =(CPtDisPlayCard*)(this->getDisplayView());
-    m_pDelegateLayer->m_pMoveCard = displace;
+    m_pDelegateLayer->m_pMoveCard = NULL; //displace;
     
     if(displace)
     {
@@ -466,8 +501,8 @@ bool CPtBattleArrayItem::onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent)
             {
                 //
                 CCLog("it's in battleArray");
-                displayManifier();
-                return false;
+               // displayManifier();
+                return true;
             }
             int j =  m_pDelegateLayer->panel->getCurrentArray()->inTag-1;
             for (int i = 0; i < fights.size(); i++ )
@@ -510,14 +545,15 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
 {
     if (m_bMove== false)
     {
+        // onclick
         if (m_pDelegateLayer->m_pMoveCard)
         {
             m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
             
-            // onclick
-            displayManifier();
-            return;
         }
+        displayManifier();
+        return;
+
         
     }
     
@@ -616,8 +652,12 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
     }else
     {
       //  (m_pDelegateLayer->m_pMoveCard)->getInCardBagPointer()->setLive();
-        
-        m_pDelegateLayer->m_pMoveCard->release();
+        if (m_pDelegateLayer->m_pMoveCard)
+        {
+             m_pDelegateLayer->m_pMoveCard->release();
+            
+        }
+       
       //  m_pDelegateLayer->m_pMoveCard->removeFromParentAndCleanup(true);
         removeAction();
     }
@@ -654,7 +694,7 @@ void CPtBattleArrayItem::displayManifier()
             current->displayManifier();
         }
        
-        
+         PtSoundTool::playSysSoundEffect("UI_click.wav");
     }
   
 }
@@ -880,6 +920,10 @@ void CBattleArrayLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
     setTableClickMove(true);
    
+    if (m_pMoveCard == NULL)
+    {
+        return;
+    }
     // ondrag mode:
     // move the copy Card:
     CPtTool::drag(m_pMoveCard, pTouch);
@@ -966,7 +1010,7 @@ void CBattleArrayLayer::addEvolution()
     m_nCurrentTab = 3;
     m_pEvolutionPanel = CCardEvolutionLayer::create();
     addChild(m_pEvolutionPanel, 1, 4000);
-    ((TableView *)(m_pCards->getTableView()))->setDelayMode(false);
+    ((TableView *)(m_pCards->getTableView()))->setDelayMode(true);
     m_pEvolutionPanel->setCardBag(m_pCards);
  
 }

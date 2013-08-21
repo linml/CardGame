@@ -589,12 +589,32 @@ void CGamePlayer::parseRival(CCObject *object)
                     }
 
                 }
+                CCArray *vKeyArraytempBBB=(CCArray *)(cardDirector->objectForKey("random_data"));
+                m_getRandom_data.clear();
+                m_currRandRomIndex=0;
+                for (int i=0; i<vKeyArraytempBBB->count(); i++) {
+                    CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
+                    m_getRandom_data.push_back(strtemp->intValue());
+                }
+                
             }
        }
         
     }
     isLoadFightTeam=true;
 
+}
+void CGamePlayer::logicRandValue(int &value,bool needAdd)
+{
+    if(m_currRandRomIndex<0|| m_currRandRomIndex>=m_getRandom_data.size())
+        m_currRandRomIndex=0;
+    value =value+ value*0.1*m_getRandom_data[m_currRandRomIndex]/100;
+    CCLog("Value====:%d",value);
+    if(needAdd)
+    {
+        m_currRandRomIndex++;
+    }
+    
 }
 void CGamePlayer::backUpFightTeam(int index)
 {

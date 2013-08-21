@@ -99,7 +99,7 @@ void CFightingCardLayerScene::createShowFightUid()
     sprintf(data, "FIHGTUID:%d",SinglePlayer::instance()->m_FightUid);
     CCLabelTTF *labelttf=CCLabelTTF::create(data, "Arial", 20);
     labelttf->setPosition(ccp(800, 700));
-    addChild(labelttf,2,100);
+    addChild(labelttf,2,1000000);
     CCFadeIn *fadein = CCFadeIn::create(1.0f);//(1.2f,ccp(0,10));
     labelttf->runAction(CCRepeatForever::create(static_cast<CCSequence *>(CCSequence::create(fadein,fadein->reverse(),NULL))));
 }

@@ -149,17 +149,17 @@ void CFightCard::initFighting()
     isSendZengfu=false;
     isDead=false;
     m_iCurrEngry=0;
-    DELETE_POINT_VECTOR(m_vBuffer,list<CCardBufferStatus*>);
+    DELETE_POINT_VECTOR(m_vlistBuffer, list<CCardBufferStatusRefactor*>);
 }
 
-bool CFightCard::isHaveBuffer(int prameid)
+bool CFightCard::isHaveBufferRefactor(int prameid)
 {
-    if(m_vBuffer.size()==0)
+    if(m_vlistBuffer.size()==0)
     {
         return false;
     }
-    for (list<CCardBufferStatus *>::iterator it=m_vBuffer.begin() ;it!=m_vBuffer.end();it++) {
-        if((*it)->m_ieffectid==prameid)
+    for (list<CCardBufferStatusRefactor *>::iterator it=m_vlistBuffer.begin() ;it!=m_vlistBuffer.end();it++) {
+        if((*it)->m_iEffectid==prameid)
         {
             return true;
         }
@@ -349,62 +349,45 @@ int CFightCard::getInWhichBattleArray()
 }
 
 
-void CFightCard::needRebackAtkAndBuf(CCardBufferStatus *buffer)
+bool CFightCard::appendBufferData(CCardBufferStatusRefactor *pBuffer)
 {
-    
-    switch (buffer->m_enBuffer_Field) {
-        case  EN_BUFF_FIELD_TYPE_ATTACK:   //影响攻击力
-            this->m_attack+=-buffer->m_iValue;
-            break;
-        case  EN_BUFF_FIELD_TYPE_DEFEND:   //影响防御力:
-            this->m_defend +=-buffer->m_iValue;
-            break;
-        default:
-            break;
-    }
-}
-
-bool CFightCard::appendBuffer(CCardBufferStatus *buffer)
-{
-    CCLog("CURR m_vBuffer.size():%d",m_vBuffer.size());
-    if(m_vBuffer.size()==0)
+    if(m_vlistBuffer.size()==0)
     {
-        m_vBuffer.push_back(buffer);
+        m_vlistBuffer.push_back(pBuffer);
         return true;
     }
-    else{
-        list<CCardBufferStatus *>::iterator it;
-        bool isAdd=true;
-        for (it=m_vBuffer.begin(); it!=m_vBuffer.end(); it++)
+    bool isDeleItetor=false;
+    for (list<CCardBufferStatusRefactor *>::iterator it=m_vlistBuffer.begin(); it!=m_vlistBuffer.end();)
+    {
+        if(pBuffer->m_iEffectid==(*it)->m_iEffectid ||(pBuffer->m_iMutex==(*it)->m_iMutex && pBuffer->m_iMutexLevel>(*it)->m_iMutexLevel))
         {
-            //如果mutex的需要 一样的话， 并且字段的类型都是一样的话。
-            if((*it)->m_mutex==buffer->m_mutex && (*it)->m_enBuffer_Field==buffer->m_enBuffer_Field)
+            //删除旧数据， 添加新数据
+            if((*it)->m_iNeedAddBack)
             {
-                isAdd=false;
-                if ((*it)->m_mutexlevel > buffer->m_mutexlevel)
-                {
-                    if(buffer)
-                    {
-                        delete buffer;
-                        buffer=NULL;
-                    }
-                }
-                else
-                {
-                    needRebackAtkAndBuf(*it);
-                    m_vBuffer.erase(it);
-                    delete *it;
-                    *it=NULL;
-                    m_vBuffer.push_back(buffer);
-                    return true;
-                }
+                appendHp(-(*it)->m_iHp);
+                m_attack +=-(*it)->m_iAtk;
+                m_defend +=(*it)->m_iDef;
+                appendEngry(-(*it)->m_iEngry);
+            }
+            isDeleItetor=true;
+            CCardBufferStatusRefactor *tempData=(*it);
+            it=m_vlistBuffer.erase(it);
+            delete  tempData;
+            tempData=NULL;
+            m_vlistBuffer.push_back(pBuffer);
+            return true;
+        }
+        else
+        {
+            if( pBuffer->m_iEffectid!=(*it)->m_iEffectid )
+            {
+                delete pBuffer;
+                pBuffer=NULL;
+                return  false;
             }
         }
-        if(isAdd)
-        {
-            m_vBuffer.push_back(buffer);
-        }
     }
-    return false;
+    m_vlistBuffer.push_back(pBuffer);
+    return true;
 }
 

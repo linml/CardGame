@@ -13,8 +13,8 @@
 #include "gamePlayer.h"
 #include "CFightingCardLayerScene.h"
 #include "CEffectInterface.h"
-#include "CEffectInterfaceOne.h"
-#include "CEffectInterfaceEleven.h"
+#include "CEffectInterFaceOneRefactor.h"
+#include "CEffectInterFaceElevenRefactor.h"
 #include "CFightCardBufferData.h"
 #include <vector>
 using namespace std;
@@ -201,7 +201,10 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
                 FightCard[FightIndex]->m_iCurrEngry+=20;
                 for (int i=FightIndex+1; i<FightCard.size(); i++)
                 {
-                    FightCard[i]->m_iCurrEngry+=10;
+                    if(FightCard[i])
+                    {
+                        FightCard[i]->m_iCurrEngry+=10;
+                    }
                 }
                 engry -=FightCard[FightIndex]->m_iCurrEngry;
                 monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
@@ -417,7 +420,7 @@ int CFightSkillManager::costFunc_2(CFightCard *pCard,CFightCard *pMonster,CSkill
         pCard->m_iCurrEngry -=pData->cost_parameter_1;
         CCLog("2CurrEngry:%d",pCard->m_iCurrEngry);
         //发动怒气技能 并影响起伤害值得
-        if(pData->cost_func_2!=0&&pMonster->isHaveBuffer(pData->cost_parameter_2))
+        if(pData->cost_func_2!=0&&pMonster->isHaveBufferRefactor(pData->cost_parameter_2))
         {
             return 2;
         }
@@ -472,7 +475,7 @@ void CFightSkillManager::effect_0(CFightCard *pCard,CFightCard *pMonterCard,CSki
 void CFightSkillManager::effect_1(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
     //伤害值=（parameter_1+自身卡牌当前攻击力*（parameter_2/100)+目标总血量*parameter_3/100-目标卡牌当前的防御力
-    CEffectInterface *effect=new CEffectInterfaceOne();
+    CEffectInterface *effect=new CEffectInterfaceOneRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     delete effect;
     effect=NULL;
@@ -517,7 +520,7 @@ void CFightSkillManager::effect_10(CFightCard *pCard,CFightCard *pMonterCard,CSk
 }
 void CFightSkillManager::effect_11(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
-    CEffectInterface *effect=new CEffectInterfaceEleven();
+    CEffectInterface *effect=new CEffectInterFaceElevenRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     delete effect;
     effect=NULL;
@@ -583,11 +586,11 @@ void CFightSkillManager::appendBuffIcon(CFightCard *fightCard,CFightCard *monste
         case EN_ATKFIGHT_INDEX_LEFT_LORD:
         {
             CFightCardBufferDataEveryFight *fightVectorItem=new CFightCardBufferDataEveryFight;
-            for (list<CCardBufferStatus *>::iterator it=fightCard->m_vBuffer.begin(); it!=fightCard->m_vBuffer.end(); it++) {
-                fightVectorItem->m_arrayFight[0]->appendBufferPngList((*it)->m_ieffectid,(*it)->m_iBuff_showTimes);
+            for (list<CCardBufferStatusRefactor *>::iterator it=fightCard->m_vlistBuffer.begin(); it!=fightCard->m_vlistBuffer.end(); it++) {
+                fightVectorItem->m_arrayFight[0]->appendBufferPngList((*it)->m_iEffectid,(*it)->m_iKeepTime);
             }
-            for (list<CCardBufferStatus *>::iterator it=monster->m_vBuffer.begin(); it!=monster->m_vBuffer.end(); it++) {
-                fightVectorItem->m_arrayFight[1]->appendBufferPngList((*it)->m_ieffectid,(*it)->m_iBuff_showTimes);
+            for (list<CCardBufferStatusRefactor *>::iterator it=monster->m_vlistBuffer.begin(); it!=monster->m_vlistBuffer.end(); it++) {
+                fightVectorItem->m_arrayFight[1]->appendBufferPngList((*it)->m_iEffectid,(*it)->m_iKeepTime);
             }
 
             m_animationBufferVector.push_back(fightVectorItem);
@@ -665,10 +668,6 @@ bool CFightSkillManager::isCanSpendAngrySkill(CFightCard *pFight)
 //当前是否可以攻击
 bool CFightSkillManager::isCanSpendAtkToMonster(CFightCard *pFight)
 {
-    if(pFight->m_vBuffer.size()>0)
-    {
-        return false;
-    }
     return true;
 }
 
@@ -676,10 +675,7 @@ bool CFightSkillManager::isCanSpendAtkToMonster(CFightCard *pFight)
 void CFightSkillManager::addOrSubBuffer(CFightCard *pFight)
 {
     
-    for (int i=0; i<pFight->m_vBuffer.size(); i++) {
-        
-    }
-    return ;
+        return ;
 }
 
 bool CFightSkillManager::isHavaPhysicHarmMagic(CFightCard *pMonstFight)
@@ -701,133 +697,50 @@ void CFightSkillManager::basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight
 
 void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex)//处理自身的buffer
 {
-    if (pFightCard==NULL ||pFightCard->m_iCurrHp<=0 || pFightCard->m_vBuffer.size()==0)
+    if (pFightCard==NULL ||pFightCard->m_iCurrHp<=0 || pFightCard->m_vlistBuffer.size()==0)
     {
         return;
     }
-    for (list<CCardBufferStatus *>::iterator it=pFightCard->m_vBuffer.begin(); it!=pFightCard->m_vBuffer.end();)
+    for (list<CCardBufferStatusRefactor *>::iterator it=pFightCard->m_vlistBuffer.begin(); it!=pFightCard->m_vlistBuffer.end();)
     {
         
-        CCardBufferStatus *pCardBuffer=(*it);
+        CCardBufferStatusRefactor *pCardBufferRefactor=(*it);
         bool isNeedAddIterator=true;
-        switch ((pCardBuffer)->m_enBuffer_Field)
+        if (pCardBufferRefactor)
         {
-            case EN_BUFF_FIELD_TYPE_ATTACK:   //影响攻击力 攻击力我只回复一次。不带这样多次减去的
-                if (pCardBuffer->m_iBuff_showTimes<=0 && pCardBuffer->m_iBuff_effectTimes<=0)
-                {
-                    pFightCard->m_attack+=-pCardBuffer->m_iValue*pCardBuffer->m_iBuff_effectTimes;   //恢复攻击力
-                    it=pFightCard->m_vBuffer.erase(it);
-                    delete pCardBuffer;
-                    pCardBuffer=NULL;
-                    isNeedAddIterator=false;
-                }
-                else
-                {
-                    if (pCardBuffer->m_iBuff_effectTimes>0)
-                    {
-                        pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
-                        pFightCard->m_attack+=pCardBuffer->m_iValue;
-                        
-                    }
-                    if (pCardBuffer->m_iBuff_showTimes>0)
-                    {
-                        pCardBuffer->m_iBuff_showTimes--;
-                         CCLog("EN_BUFF_FIELD_TYPE_ATTACK BUFFER");
-                        appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
-                    }
-                }
-                break;
-            case EN_BUFF_FIELD_TYPE_DEFEND:   //影响防御力
+            if(pCardBufferRefactor->m_iEffect_time<=0 &&pCardBufferRefactor ->m_iKeepTime<=0)
             {
-                if (pCardBuffer->m_iBuff_showTimes<=0 && pCardBuffer->m_iBuff_effectTimes<=0)
+                if(pCardBufferRefactor->m_iNeedAddBack)
                 {
-                    pFightCard->m_defend+=-pCardBuffer->m_iValue*pCardBuffer->m_iBuff_effectTimes;   //恢复攻击力
-                    it=pFightCard->m_vBuffer.erase(it);
-                    delete pCardBuffer;
-                    pCardBuffer=NULL;
-                    isNeedAddIterator=false;
+                    pFightCard->appendHp(-pCardBufferRefactor->m_iHp);
+                    pFightCard->m_attack+=-pCardBufferRefactor->m_iAtk;
+                    pFightCard->m_defend+=(-pCardBufferRefactor->m_iDef);
+                    pFightCard->appendEngry(-pCardBufferRefactor->m_iEngry);
                 }
-                else
-                {
-                    if (pCardBuffer->m_iBuff_effectTimes>0)
-                    {
-                        pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
-                        pFightCard->m_defend+=pCardBuffer->m_iValue;
-                        
-                    }
-                    if (pCardBuffer->m_iBuff_showTimes>0)
-                    {
-                        pCardBuffer->m_iBuff_showTimes--;
-                        CCLog("EN_BUFF_FIELD_TYPE_DEFEND BUFFER");
-                        appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
-                    }
-                }
-                
+                delete pCardBufferRefactor;
+                pCardBufferRefactor=NULL;
+                it=pFightCard->m_vlistBuffer.erase(it);
+                isNeedAddIterator=false;
             }
-                break;
-            case EN_BUFF_FIELD_TYPE_ANGRY:    //怒气
-            {
-                if (pCardBuffer->m_iBuff_showTimes<=0 && pCardBuffer->m_iBuff_effectTimes<=0)
-                {
-                    it=pFightCard->m_vBuffer.erase(it);
-                    delete pCardBuffer;
-                    pCardBuffer=NULL;
-                    isNeedAddIterator=false;
-                }
-                else
-                {
-                    if (pCardBuffer->m_iBuff_effectTimes>0)
-                    {
-                        pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
-                        pFightCard->m_iCurrEngry += pCardBuffer->m_iValue;
-                         CCLog("EN_BUFF_FIELD_TYPE_ANGRY BUFFER");
-                        appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
-                        
-                        
-                    }
-                    if (pCardBuffer->m_iBuff_showTimes>0)
-                    {
-                        pCardBuffer->m_iBuff_showTimes--;
-                    }
-                }
+            else{
                 
+                if(pCardBufferRefactor->m_iEffect_time>0)
+                {
+                    pCardBufferRefactor->m_iEffect_time--;
+                    pCardBufferRefactor->m_iKeepTime--;
+                    pFightCard->appendHp(pCardBufferRefactor->m_iHp);
+                    pFightCard->m_attack+=pCardBufferRefactor->m_iAtk;
+                    pFightCard->m_defend+=(pCardBufferRefactor->m_iDef);
+                    pFightCard->appendEngry(pCardBufferRefactor->m_iEngry);
+                }
+                else if(pCardBufferRefactor->m_iKeepTime>0)
+                {
+                    pCardBufferRefactor->m_iKeepTime--;
+                    appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
+
+                }
             }
-                break;
-            case EN_BUFF_FIELD_TYPE_HP:       //影响HP，
-            {
-                if (pCardBuffer->m_iBuff_showTimes==0 && pCardBuffer->m_iBuff_effectTimes==0)
-                {
-                    it=pFightCard->m_vBuffer.erase(it);
-                    delete pCardBuffer;
-                    pCardBuffer=NULL;
-                    isNeedAddIterator=false;
-                }
-                else
-                {
-                    if (pCardBuffer->m_iBuff_effectTimes>0)
-                    {
-                        pCardBuffer->m_iBuff_effectTimes--; //扣除减去的次数
-                        pFightCard->appendHp(pCardBuffer->m_iValue);
-                        CCLog("EN_BUFF_FIELD_TYPE_HP BUFFER");
-                        appendAnimation(AtkIndex, DefIndex, 0, pCardBuffer->m_iValue, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
-                    }
-                    if (pCardBuffer->m_iBuff_showTimes>0)
-                    {
-                        pCardBuffer->m_iBuff_showTimes--;
-                    }
-                }
-                
-            }
-                break;
-            case EN_BUFF_FIELD_TYPE_BINGFENG: //被冰封
-                break;
-            case EN_BUFF_FIELD_TYPE_XUANYUN:  //眩晕
-                break;
-            case EN_BUFF_FIELD_TYPE_DUYAO:    //毒药:
-                break;
-                
-            default:
-                break;
+      
         }
         if(isNeedAddIterator)
         {

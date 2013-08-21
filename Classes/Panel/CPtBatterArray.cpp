@@ -514,25 +514,24 @@ bool CPtBattleArray::removeCard(const int& inCardType)
 void CPtBattleArray::removeAction(CCNode *pNode)
 {
     CCLog("%d, removeAction:", inTag);
-    if (pNode)
-    {
-        m_bActionEnable = true;
-        CPtDisPlayCard * tmp = ((CPtDisPlayCard*)pNode)->getInCardBagPointer();
-        if(tmp && tmp->getParent())
-        {
-            CCPoint point = tmp->getPosition();
-            point = tmp->getParent()->convertToWorldSpace(point);
-            CCLog("point: %f, %f",point.x, point.y);
-            pNode->runAction(CCSequence::create(CCMoveTo::create(0.1f, point), CCCallFunc::create(this, callfunc_selector(CPtBattleArray::deletNode)),NULL));
-        }else
-        {
-            deletNode();
-        }
-        
-        
-    
-      
-    }
+//    if (pNode)
+//    {
+//        m_bActionEnable = true;
+//        CPtDisPlayCard * tmp = ((CPtDisPlayCard*)pNode)->getInCardBagPointer();
+//        if(tmp && tmp->getParent())
+//        {
+//            CCPoint point = tmp->getPosition();
+//            point = tmp->getParent()->convertToWorldSpace(point);
+//            CCLog("point: %f, %f",point.x, point.y);
+//            pNode->runAction(CCSequence::create(CCMoveTo::create(0.1f, point), CCCallFunc::create(this, callfunc_selector(CPtBattleArray::deletNode)),NULL));
+//        }else
+//        {
+//            deletNode();
+//        }
+//
+//      
+//    }
+    deletNode();
     
 }
 void CPtBattleArray::deletNode()

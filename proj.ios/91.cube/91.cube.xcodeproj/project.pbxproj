@@ -26,8 +26,6 @@
 		6FA6AFDA174F6A3200608A73 /* ExplorationLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFCA174F6A3200608A73 /* ExplorationLayer.cpp */; };
 		6FA6AFDB174F6A3200608A73 /* MapScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFCC174F6A3200608A73 /* MapScene.cpp */; };
 		6FA6AFDC174F6A3200608A73 /* TaskSceneLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFCF174F6A3200608A73 /* TaskSceneLayer.cpp */; };
-		6FA9A06C17A0CDAE005E14FA /* CEffectInterfaceOne.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9A06A17A0CDAE005E14FA /* CEffectInterfaceOne.cpp */; };
-		6FA9A06F17A0CDDC005E14FA /* CEffectInterfaceEleven.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9A06D17A0CDDC005E14FA /* CEffectInterfaceEleven.cpp */; };
 		6FA9B47E175456F2001472E7 /* MemoryGameCollabLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */; };
 		6FABA40F17BCBAF300B1A449 /* CCardInfoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA40E17BCBAF300B1A449 /* CCardInfoLayer.cpp */; };
 		6FABAEDC17A6225E00BB5ABD /* CSaveConfirmLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FABAEDA17A6225E00BB5ABD /* CSaveConfirmLayer.cpp */; };
@@ -50,6 +48,8 @@
 		6FB15F0F178FE83500CDD79F /* CSkillData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB15F0D178FE83400CDD79F /* CSkillData.cpp */; };
 		6FB4F4BF17ABB31900DF3278 /* CPtStarConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4F4BD17ABB31900DF3278 /* CPtStarConfigData.cpp */; };
 		6FB4F4C217ABB89C00DF3278 /* CCardEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4F4C117ABB89C00DF3278 /* CCardEvolutionLayer.cpp */; };
+		6FB568EB17C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB568E917C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp */; };
+		6FB568EE17C491E500B038F8 /* CEffectInterFaceOneRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB568EC17C491E400B038F8 /* CEffectInterFaceOneRefactor.cpp */; };
 		6FB5F57517A7A1EB0026206F /* SEveryATKData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB5F57317A7A1EB0026206F /* SEveryATKData.cpp */; };
 		6FB7013C17C33EB8006B0C60 /* CGameErrorConfigLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7013A17C33EB7006B0C60 /* CGameErrorConfigLayer.cpp */; };
 		6FB7FAF517C302F2006B0C60 /* errormsg.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FB7FAF417C302F2006B0C60 /* errormsg.plist */; };
@@ -336,10 +336,6 @@
 		6FA6AFCD174F6A3200608A73 /* MapScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapScene.h; sourceTree = "<group>"; };
 		6FA6AFCF174F6A3200608A73 /* TaskSceneLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskSceneLayer.cpp; sourceTree = "<group>"; };
 		6FA6AFD0174F6A3200608A73 /* TaskSceneLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskSceneLayer.h; sourceTree = "<group>"; };
-		6FA9A06A17A0CDAE005E14FA /* CEffectInterfaceOne.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterfaceOne.cpp; sourceTree = "<group>"; };
-		6FA9A06B17A0CDAE005E14FA /* CEffectInterfaceOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterfaceOne.h; sourceTree = "<group>"; };
-		6FA9A06D17A0CDDC005E14FA /* CEffectInterfaceEleven.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterfaceEleven.cpp; sourceTree = "<group>"; };
-		6FA9A06E17A0CDDC005E14FA /* CEffectInterfaceEleven.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterfaceEleven.h; sourceTree = "<group>"; };
 		6FA9B47C175456F2001472E7 /* MemoryGameCollabLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryGameCollabLayer.cpp; sourceTree = "<group>"; };
 		6FA9B47D175456F2001472E7 /* MemoryGameCollabLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MemoryGameCollabLayer.h; sourceTree = "<group>"; };
 		6FABA40D17BCBAF300B1A449 /* CCardInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardInfoLayer.h; sourceTree = "<group>"; };
@@ -388,6 +384,10 @@
 		6FB4F4BE17ABB31900DF3278 /* CPtStarConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtStarConfigData.h; sourceTree = "<group>"; };
 		6FB4F4C017ABB89C00DF3278 /* CCardEvolutionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardEvolutionLayer.h; sourceTree = "<group>"; };
 		6FB4F4C117ABB89C00DF3278 /* CCardEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardEvolutionLayer.cpp; sourceTree = "<group>"; };
+		6FB568E917C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceElevenRefactor.cpp; sourceTree = "<group>"; };
+		6FB568EA17C4806200B038F8 /* CEffectInterFaceElevenRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceElevenRefactor.h; sourceTree = "<group>"; };
+		6FB568EC17C491E400B038F8 /* CEffectInterFaceOneRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceOneRefactor.cpp; sourceTree = "<group>"; };
+		6FB568ED17C491E500B038F8 /* CEffectInterFaceOneRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceOneRefactor.h; sourceTree = "<group>"; };
 		6FB5F57317A7A1EB0026206F /* SEveryATKData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SEveryATKData.cpp; sourceTree = "<group>"; };
 		6FB5F57417A7A1EB0026206F /* SEveryATKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEveryATKData.h; sourceTree = "<group>"; };
 		6FB7013A17C33EB7006B0C60 /* CGameErrorConfigLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameErrorConfigLayer.cpp; sourceTree = "<group>"; };
@@ -1097,10 +1097,10 @@
 		6FA9A06917A0CDAE005E14FA /* CEffectLogic */ = {
 			isa = PBXGroup;
 			children = (
-				6FA9A06A17A0CDAE005E14FA /* CEffectInterfaceOne.cpp */,
-				6FA9A06B17A0CDAE005E14FA /* CEffectInterfaceOne.h */,
-				6FA9A06D17A0CDDC005E14FA /* CEffectInterfaceEleven.cpp */,
-				6FA9A06E17A0CDDC005E14FA /* CEffectInterfaceEleven.h */,
+				6FB568E917C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp */,
+				6FB568EA17C4806200B038F8 /* CEffectInterFaceElevenRefactor.h */,
+				6FB568EC17C491E400B038F8 /* CEffectInterFaceOneRefactor.cpp */,
+				6FB568ED17C491E500B038F8 /* CEffectInterFaceOneRefactor.h */,
 			);
 			path = CEffectLogic;
 			sourceTree = "<group>";
@@ -2669,8 +2669,6 @@
 				6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */,
 				6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */,
 				6F98CD2C179E154B00E77257 /* CEffectInterface.cpp in Sources */,
-				6FA9A06C17A0CDAE005E14FA /* CEffectInterfaceOne.cpp in Sources */,
-				6FA9A06F17A0CDDC005E14FA /* CEffectInterfaceEleven.cpp in Sources */,
 				6FAD754417A269C700AB8D8E /* CCardSettingScene.cpp in Sources */,
 				6FAD754517A269C700AB8D8E /* CBattleArrayLayer.cpp in Sources */,
 				6FAD754617A269C700AB8D8E /* CCardEnhanceLayer.cpp in Sources */,
@@ -2690,6 +2688,8 @@
 				6FAC988A17B9C3CE00B9612E /* CPtPropConfigData.cpp in Sources */,
 				6FABA40F17BCBAF300B1A449 /* CCardInfoLayer.cpp in Sources */,
 				6FB7013C17C33EB8006B0C60 /* CGameErrorConfigLayer.cpp in Sources */,
+				6FB568EB17C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp in Sources */,
+				6FB568EE17C491E500B038F8 /* CEffectInterFaceOneRefactor.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2760,6 +2760,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2797,6 +2798,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -2807,6 +2809,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = 91.cube/Prefix.pch;
@@ -2842,6 +2845,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;

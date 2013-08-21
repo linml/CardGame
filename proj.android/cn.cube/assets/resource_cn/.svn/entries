@@ -26,6 +26,40 @@ merlin
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
+meiyouyongskill_config.plist
+file
+1022
+
+
+
+2013-08-07T02:25:08.000000Z
+6a5ace709eb691d5b2e9494fcec134b7
+2013-08-21T03:56:08.259789Z
+1022
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+21860
+
 card_level_up_config.plist
 file
 
@@ -303,14 +337,14 @@ merlin
 
 boss_icon_Effect_l.plist
 file
+1022
 
 
 
-
-2013-08-13T09:16:41.000000Z
-c38a9a55ddb0c1354457b7eed6484365
-2013-08-13T09:32:24.972476Z
-962
+2013-08-15T08:18:50.000000Z
+227d0cb6359fc5de325c8fa9cfef9cc0
+2013-08-21T03:56:08.259789Z
+1022
 merlin
 
 
@@ -333,7 +367,7 @@ merlin
 
 
 
-1570
+1474
 
 100004_r.plist
 file
@@ -479,14 +513,14 @@ merlin
 
 boss_icon_Effect_r.plist
 file
+1022
 
 
 
-
-2013-08-13T09:16:48.000000Z
-5d14eaf298b8c9ae557c590172525ce3
-2013-08-13T09:32:24.972476Z
-962
+2013-08-15T08:18:48.000000Z
+df7141aae8b90d6da8a6878829d8fee3
+2013-08-21T03:56:08.259789Z
+1022
 merlin
 
 
@@ -509,7 +543,7 @@ merlin
 
 
 
-1553
+1546
 
 sprite
 dir
@@ -553,14 +587,14 @@ merlin
 
 skill_effect_config.plist
 file
+1022
 
 
 
-
-2013-08-14T06:38:39.000000Z
-16f688c1911d25aa402353d0e6054bbe
-2013-08-14T06:49:53.695622Z
-985
+2013-08-21T03:12:23.000000Z
+9e103c454267e59ed652e5bf13eb7629
+2013-08-21T03:56:08.259789Z
+1022
 merlin
 
 
@@ -583,7 +617,7 @@ merlin
 
 
 
-26707
+25760
 
 bufferfire.plist
 file

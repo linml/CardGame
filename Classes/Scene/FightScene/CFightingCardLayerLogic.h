@@ -24,8 +24,8 @@ using namespace std;
 class CFightCard;
 class SEveryATKData;
 class CAnimationSpriteGameFight;
-class CCardBufferStatus;
 class CFightCardFightingBuffer;
+class CCardBufferStatusRefactor;
 class CFightingCardLayerLogic :public CCObject
 {
 public:
@@ -67,8 +67,8 @@ private:
     EN_ATKFIGHT_INDEX m_enHuiheIndex;                   //记录打斗者的索引。
     EN_GAMEFIGHTSTATUS  m_enWinStatus;
 private:
-    list<CCardBufferStatus *> m_lpFightBuffer;
-    list<CCardBufferStatus *> m_lpMonsterBuffer;
+    list<CCardBufferStatusRefactor *> m_lpFightBuffer;
+    list<CCardBufferStatusRefactor *> m_lpMonsterBuffer;
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerLogic__) */

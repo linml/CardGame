@@ -11,6 +11,7 @@ using namespace std;
 #include "CCard.h"
 #include "CSkillData.h"
 #include "gameConfig.h"
+#include "gamePlayer.h"
 CEffectInterfaceOne::CEffectInterfaceOne()
 {
     
@@ -27,51 +28,85 @@ void CEffectInterfaceOne::logicFightingCardByFightAndMonster(CFightCard *pCard,C
         int tempdata=pImapact->m_iParameter_1 +
         pCard->m_attack*pImapact->m_iParameter_2/100+pMonster->m_iHp*pImapact->m_iParameter_3/100;
         iShanghaiHp=(tempdata-pMonster->m_defend >=0?tempdata-pMonster->m_defend :tempdata*0.2) ;
+        CCLog("伤害值");
+        SinglePlayer::instance()->logicRandValue(iShanghaiHp);
         iShanghaiHp*=-1;
-        if (pImapact->m_ibuff > 0)
+        
+        if (pImapact->m_ibuff == 0)
         {
-            //当前算一次
             pMonster->appendHp(iShanghaiHp);
+        }
+        if (pImapact->m_ishowtime>0)
+        {
             CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,iShanghaiHp,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_HP);
             pMonster->appendBuffer(buffer);
-        }
-        else
-        {
-            pMonster->appendHp(iShanghaiHp);
         }
         
     }
     int atk=0;
     if(pImapact->m_iParameter_8!=0||pImapact->m_iParameter_9!=0)
     {
-         atk= +pImapact->m_iParameter_8 + pMonster->m_attack*pImapact->m_iParameter_9/100;
-         if (atk!=0)
-         {
-             CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-atk,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ATTACK);
-             pMonster->appendBuffer(buffer);
-             pMonster->m_attack += -atk;
-         }
+        atk= +pImapact->m_iParameter_8 + pMonster->m_attack*pImapact->m_iParameter_9/100;
+        CCLog("攻击值");
+        SinglePlayer::instance()->logicRandValue(atk);
+        if (atk!=0)
+        {
+            if(pImapact->m_ibuff==0)
+            {
+                pMonster->m_attack += -atk;
+            }
+            if(pImapact->m_ishowtime>0)
+            {
+                CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-atk,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ATTACK);
+                pMonster->appendBuffer(buffer);
+            }
+        }
+        
     }
     int def=0;
     if(pImapact->m_iParameter_4 ||pImapact->m_iParameter_5)
     {
         def =  pImapact->m_iParameter_4  + pMonster->m_defend*pImapact->m_iParameter_5/100;
-        CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_DEFEND);
-        if(pMonster->appendBuffer(buffer))
+        CCLog("防御值");
+        SinglePlayer::instance()->logicRandValue(def);
+        
+        
+        if (pImapact->m_ibuff==0)
         {
-           pMonster->m_defend = pMonster->getAddValue(pMonster->m_iCurrLevel, 2) + (-def);
+            pMonster->m_defend = pMonster->getAddValue(pMonster->m_iCurrLevel, 2) + (-def);
+            if (pImapact->m_ishowtime>0) {
+                CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_DEFEND);
+                if(!pMonster->appendBuffer(buffer))
+                {
+                    pMonster->m_defend+=def;
+                }
+                CCLog("def - %d",def);
+            }
+            else{
+                if (pImapact->m_ishowtime>0) {
+                    CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-def,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_DEFEND);
+                    pMonster->appendBuffer(buffer);
+                }
+            }
+            
         }
-        CCLog("def - %d",def);
     }
     int engry=0;
     if(pImapact->m_iParameter_6!=0 ||pImapact->m_iParameter_7!=0)
     {
         engry= +pImapact->m_iParameter_6 +
         pMonster->m_iCurrEngry  * pImapact->m_iParameter_7/100;
+        SinglePlayer::instance()->logicRandValue(engry);
         if (engry) {
-            pMonster->m_iCurrEngry += -engry;
-            CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-engry,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ANGRY);
-            pMonster->appendBuffer(buffer); 
+            if(pImapact->m_ibuff==0)
+            {
+                pMonster->m_iCurrEngry += -engry;
+            }
+            if(pImapact->m_ishowtime>=0)
+            {
+                CCardBufferStatus *buffer=new CCardBufferStatus(pImapact->m_ibuff-1,pImapact->m_ishowtime-1,false,pImapact->m_iMutex,pImapact->m_iMutex_level,-engry,pImapact->m_ieffect_id,EN_BUFF_FIELD_TYPE_ANGRY);
+                pMonster->appendBuffer(buffer);
+            }
         }
     }
 }

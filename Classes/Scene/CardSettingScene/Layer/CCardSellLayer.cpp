@@ -126,7 +126,14 @@ void CCardSellLayer::handlerTouch(cocos2d::CCTouch *pTouch)
 void CCardSellLayer::saveOnClick()
 {
     CSaveConfirmLayer * layer = CSaveConfirmLayer::create();
-    
+    CCArray * array = m_pSellPackage->getItems();
+    CPtBattleArrayItem * tmp = NULL;
+    if (array&& array->count()== 0)
+    {
+        layer->setResultCode(9);
+        CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
+        return;
+    }
  //   layer->setResultCode(0);
     // send message to server:
     char buff[500]={0};
@@ -136,8 +143,7 @@ void CCardSellLayer::saveOnClick()
     sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
    
 
-    CCArray * array = m_pSellPackage->getItems();
-    CPtBattleArrayItem * tmp = NULL;
+    
 
     for (int i = 0; i < array->count(); i++)
     {
@@ -168,8 +174,8 @@ void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)
     if(!buffer)
     {
         
-        CCLog("---");
-        char buff[500]={0};
+        CCLog("send again sell request");
+        char buff[1000]={0};
         char param[200]={0};
         char p[20]={0};
         int index = 0;
@@ -195,6 +201,7 @@ void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)
         strcat(buff, "]");
         
         ADDHTTPREQUESTPOSTDATA(STR_URL_SELL_CARD(194),"cardsell","sell",buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
+        delete [] buffer;
         return;
     }
     CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);

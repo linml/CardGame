@@ -244,7 +244,7 @@ void CCardSettingScene::handlerTouch()
         case 3003:
             CCLog("go to evolution:");
             m_pCardSetting->removeLeft();
-            m_pCardSetting->setTableClickEnable(true);
+            m_pCardSetting->setTableClickEnable(false);
             m_pCardSetting->addEvolution();
             break;
         

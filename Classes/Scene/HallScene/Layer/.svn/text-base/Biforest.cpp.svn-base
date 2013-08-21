@@ -58,7 +58,11 @@ void CBiforestLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     CCPoint touchPoint = pTouch->getLocation();
     if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_pTouchSprite))
     {
-        Utility::handleBtnCallBack(m_pTouchSprite, this, NULL);
+        if (m_nTouchTag != -1)
+        {
+            Utility::handleBtnCallBack(m_pTouchSprite, this, NULL);
+        }
+     
         handlerTouch();
     }
 

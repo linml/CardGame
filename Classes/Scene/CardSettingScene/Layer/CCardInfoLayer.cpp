@@ -12,6 +12,7 @@
 #include "CSkillData.h"
 #include "CPtTool.h"
 
+
 CCardInfoLayer* CCardInfoLayer::create(CFightCard *card)
 {
     CCardInfoLayer * layer = new CCardInfoLayer();
@@ -51,8 +52,12 @@ bool CCardInfoLayer::init(CFightCard * card)
     } while (0);
     return bRet;
 }
+
+static long t;
 bool CCardInfoLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    t = clock();
+    CCLog("begin: %d",t);
     CCPoint point = pTouch->getLocation();
     m_nTouchTag = TouchRect::SearchTouchTag(point, m_cTouches);
     return true;
@@ -64,13 +69,18 @@ void CCardInfoLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CCardInfoLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    CCLog("end:");
     CCPoint point = pTouch->getLocation();
-
+    int touchTag = TouchRect::SearchTouchTag(point, m_cTouches) ;
+    CCLog("end %d:", touchTag);
     if (m_nTouchTag == TouchRect::SearchTouchTag(point, m_cTouches) )
     {
         if (m_nTouchTag != -1)
         {
+
+            CCLog("end: %d",clock());
             handlerTouch();
+            CCLog("end: %d",clock()-t);
         }
         
     }
@@ -227,6 +237,7 @@ void CCardInfoLayer:: handlerTouch()
     switch (m_nTouchTag)
     {
         case 3001:
+            PtSoundTool::playSysSoundEffect("UI_click.wav");
             removeFromParentAndCleanup(true);
             break;
             

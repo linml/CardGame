@@ -46,11 +46,11 @@ string  readFileName(const char *filename)
 #define SKILLPUTONGGONGJIID 100000
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
-for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
-delete *it; \
-*it=NULL; \
-} \
-VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+    for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+    delete *it; \
+    *it=NULL; \
+    } \
+    VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
 
 
@@ -177,6 +177,17 @@ string CGamePlayer::getBufferPngByEffectId(int effectID)
     }
     return "";
     
+}
+
+CImapact *CGamePlayer::getEffectTableByEffectId(int effectId)
+{
+    for (int i=0; i<m_vImpactInfo.size(); i++) {
+        if(m_vImpactInfo[i]->m_ieffect_id==effectId)
+        {
+            return m_vImpactInfo[i];
+        }
+    }
+    return  NULL;
 }
 
 CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
@@ -590,9 +601,11 @@ void CGamePlayer::parseRival(CCObject *object)
 
                 }
                 CCArray *vKeyArraytempBBB=(CCArray *)(cardDirector->objectForKey("random_data"));
+                m_getRandom_data.clear();
+                m_currRandRomIndex=0;
                 for (int i=0; i<vKeyArraytempBBB->count(); i++) {
                     CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
-                    CCLog("AAAAA=====%d",strtemp->intValue()); //转化到 全局里面的数组
+                    m_getRandom_data.push_back(strtemp->intValue());
                 }
                 
             }
@@ -601,6 +614,30 @@ void CGamePlayer::parseRival(CCObject *object)
     }
     isLoadFightTeam=true;
 
+}
+
+void CGamePlayer::randRomIndexAdd()
+{
+        m_currRandRomIndex++;
+}
+
+void CGamePlayer::logicRandValue(int &value,bool needAdd)
+{
+    if(value==0)
+    {
+        return;
+    }
+    if(m_currRandRomIndex<0|| m_currRandRomIndex>=m_getRandom_data.size())
+        m_currRandRomIndex=0;
+    // value =value+ value*0.1*m_getRandom_data[m_currRandRomIndex]/100;
+    if(value>0)
+    {
+        value =value + m_getRandom_data[m_currRandRomIndex];
+    }
+    else{
+        value =value - m_getRandom_data[m_currRandRomIndex];
+    }
+    CCLog("Value====:%d",value);
 }
 void CGamePlayer::backUpFightTeam(int index)
 {

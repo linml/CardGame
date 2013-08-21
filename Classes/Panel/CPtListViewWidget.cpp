@@ -42,7 +42,7 @@ void TableView::setInitState()
 
 bool TableView::ccTouchDelayBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-    
+    unscheduleAllSelectors();
     m_cPointBegin = pTouch->getLocation();
     if (!this->isVisible())
     {
@@ -137,7 +137,7 @@ void TableView::ccTouchDelayMove(CCTouch *pTouch, CCEvent *pEvent)
     {
         CCPoint pointEnd = pTouch->getLocation();
         CCPoint p = pTouch->getDelta();
-        if (ccpDistance(m_cPointBegin, pointEnd) < 1)
+        if (ccpDistance(m_cPointBegin, pointEnd) < 2 )
         {
             return;
         }else
@@ -145,16 +145,18 @@ void TableView::ccTouchDelayMove(CCTouch *pTouch, CCEvent *pEvent)
             m_bDecide = true;
             float x = fabs(m_cPointBegin.x-pointEnd.x);
             float y = fabs(m_cPointBegin.y-pointEnd.y);
-            if (y*0.75 > x)
+            if (y*0.70 > x)
             {
                 m_bScroll = true;
             }else
             {
                 m_bScroll = false;
             }
+            CCLog(" x, y: %f, %f, %d", x, y,m_bScroll);
            
         }
         CCLog("p: x, y: %f, %f", p.x, p.y);
+        
     }
        
 }
@@ -218,6 +220,7 @@ void TableView::ccTouchDelayCancel(CCTouch *pTouch, CCEvent *pEvent)
 
 bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+ 
    // m_bCanScroll
     CCSize size=  getViewSize();
     CCSize size2 = getContentSize();

@@ -574,7 +574,7 @@ void CCardEnhanceLayer::saveOnClick()
     CSaveConfirmLayer * layer =  CSaveConfirmLayer::create();
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
 
-    if (m_pSelectCard == 0 && m_nCostConin == 0)
+    if (m_pSelectCard == 0 || m_nCostConin == 0)
     {
       //  CCLog("没有材料卡或被强化的卡");
         layer->setResultCode(5);

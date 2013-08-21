@@ -374,7 +374,7 @@ bool CFightingCardLayerLogic::checkSendZengfu()
 
 void CFightingCardLayerLogic::appendUpdateBuffer()
 {
-    if(m_vFightingCard[m_iFightCardIndex]->m_vBuffer.size()==0&& m_vMonsterCard[m_iMonsterCardIndex]->m_vBuffer.size()==0)
+    if(m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.size()==0&& m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.size()==0)
     {
         SinglePlayer::instance()->appendCFightCardFightingBuffer(NULL);
         return;
@@ -382,13 +382,13 @@ void CFightingCardLayerLogic::appendUpdateBuffer()
 
     CFightCardFightingBuffer *fightBuffer=new CFightCardFightingBuffer;
     fightBuffer->m_index=m_iTotalHuihe;
-    for (list<CCardBufferStatus *>::iterator itAfter=m_vFightingCard[m_iFightCardIndex]->m_vBuffer.begin(); itAfter!=m_vFightingCard[m_iFightCardIndex]->m_vBuffer.end(); itAfter++)
+    for (list<CCardBufferStatusRefactor *>::iterator itAfter=m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.begin(); itAfter!=m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.end(); itAfter++)
     {
-        fightBuffer->append((*itAfter)->m_ieffectid, (*itAfter)->m_iBuff_showTimes, true);
+        fightBuffer->append((*itAfter)->m_iEffectid, (*itAfter)->m_iKeepTime, true);
     }
-    for (list<CCardBufferStatus *>::iterator itAfter=m_vMonsterCard[m_iMonsterCardIndex]->m_vBuffer.begin(); itAfter!=m_vMonsterCard[m_iMonsterCardIndex]->m_vBuffer.end(); itAfter++)
+    for (list<CCardBufferStatusRefactor *>::iterator itAfter=m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.begin(); itAfter!=m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.end(); itAfter++)
     {
-        fightBuffer->append((*itAfter)->m_ieffectid, (*itAfter)->m_iBuff_showTimes, false);
+        fightBuffer->append((*itAfter)->m_iEffectid, (*itAfter)->m_iKeepTime, false);
     }
     SinglePlayer::instance()->appendCFightCardFightingBuffer(fightBuffer);
 

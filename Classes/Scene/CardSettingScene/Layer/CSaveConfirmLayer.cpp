@@ -175,6 +175,13 @@ void CSaveConfirmLayer::updateText()
         case 8:
             sprintf(buff, "%s", "该卡级别不够，请强化");
             break;
+            
+        case 9:
+            sprintf(buff, "%s", "没有卡牌出售");
+            break;
+        case 10:
+            sprintf(buff, "%s", "没有卡片被进化");
+            break;
         case 200:
             sprintf(buff, "服务器响应失败");
             break;

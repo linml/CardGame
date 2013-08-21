@@ -16,8 +16,9 @@ struct  SSpriteStatus
     int m_iEngry;
 };
 
-struct SEveryATKData
+class SEveryATKData
 {
+public:
     SEveryATKData();
     ~SEveryATKData();
     SSpriteStatus *data[2];

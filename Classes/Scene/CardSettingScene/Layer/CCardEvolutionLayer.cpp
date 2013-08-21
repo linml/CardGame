@@ -351,6 +351,9 @@ void  CCardEvolutionLayer::saveOnClick()
       //  #define STR_URL_UPGRADE_CARD(UID)   URL_FACTORY("api.php?m=Card&a=cardUpGrade&uid=",UID)
         // test:
        // save();
+    }else
+    {
+        layer->setResultCode(10);
     }
 
 }

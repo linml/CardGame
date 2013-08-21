@@ -69,11 +69,10 @@ public:
     void setInBattleArray(const int &inType);
     int  getInWhichBattleArray();
     
-    bool appendBuffer(CCardBufferStatus *buffer);
-    void needRebackAtkAndBuf(CCardBufferStatus *buffer);
-    bool isHaveBuffer(int prameid);
+    bool isHaveBufferRefactor(int prameid);
     void appendEngry(int iEngry);
     void appendHp(int iHp);
+    bool appendBufferData(CCardBufferStatusRefactor *buffer);
     bool hasAssistantSkill();
     void setNegativeToZero();
 public:
@@ -100,7 +99,7 @@ public:
     int m_iSuit;
 public:
     CCard *m_pCard;    
-    list<CCardBufferStatus *>m_vBuffer; //卡牌拥有的buffer;
+    std::list<CCardBufferStatusRefactor *>m_vlistBuffer;
     // change by phileas.chen 2013.7.22
     CC_SYNTHESIZE(bool, m_bConsume, EnConsume);
 protected:

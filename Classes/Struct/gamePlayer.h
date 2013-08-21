@@ -46,6 +46,7 @@ class CGamePlayer : cocos2d::CCObject
     CSkillData *getPutongGongji();
     bool isHaveSkillBySkillId(int skillID);
     CSkillData *getSkillBySkillId(int skillId);
+    CImapact *getEffectTableByEffectId(int effectId);
     vector<CSkillData *>m_vSkillInfo;
     string getBufferPlistByEffectId(int effectID);
     string getBufferPngByEffectId(int effectID);
@@ -106,6 +107,10 @@ public:
     void loadRival(int  usid,int troop);
     void parseRival(CCObject *object);
     int isLoadFightTeam;
+    void randRomIndexAdd();
+    void logicRandValue(int &value,bool needAdd=true);
+    std::vector<int >m_getRandom_data;
+    int m_currRandRomIndex;
 public:
     void backUpFightTeam(int index);
     void appendAtkData(SEveryATKData * data);

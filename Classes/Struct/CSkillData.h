@@ -47,7 +47,10 @@ class CImapact
 public:
     int m_ieffect_id;        //技能ID
     int m_ieffect_logic;      //技能类型
-    int m_ibuff;      
+    int m_ibuff;
+    int m_process; //是否返还
+    int m_ifdelay; //是否需要延迟
+    int m_irandom; //是否需要随机值
     
     int  m_ishowtime;       //条件和消耗逻辑
     int  m_iMutex; //条件或消耗参数值
