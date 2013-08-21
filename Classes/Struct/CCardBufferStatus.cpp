@@ -31,6 +31,10 @@ CCardBufferStatusRefactor::CCardBufferStatusRefactor(int iHp,int iAtk,int iDef,i
         this->m_iNeedAddBack=pImapactEffect->m_process;
         this->m_iKeepTime=pImapactEffect->m_ishowtime;
         this->m_iEffect_time=pImapactEffect->m_ibuff;
+        if (pImapactEffect->m_process) {
+            this->m_iKeepTime -=1;
+            this->m_iEffect_time -=1;
+        }
 
     }    
 }

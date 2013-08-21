@@ -26,6 +26,7 @@ void CEffectInterfaceOneRefactor::logicFightingCardByFightAndMonster(CFightCard 
         int tempdata=pImapact->m_iParameter_1 +
         pCard->m_attack*pImapact->m_iParameter_2/100+pMonster->m_iHp*pImapact->m_iParameter_3/100;
         iChangeShanghaiHp=(tempdata-pMonster->m_defend >=0?tempdata-pMonster->m_defend :tempdata*0.2) ;
+        iChangeShanghaiHp =-iChangeShanghaiHp;
     }
     if(pImapact->m_iParameter_8!=0||pImapact->m_iParameter_9!=0)
     {

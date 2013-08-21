@@ -31,14 +31,14 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
         gamePlayer->logicRandValue(iChangeatk);
         gamePlayer->logicRandValue(iChangedef);
         gamePlayer->logicRandValue(iChangeengry);
-        gamePlayer->randRomIndexAdd();
     }
     if(pImapact->m_ifdelay==0)
     {
         bool needDealWithHpAtkDefImmideala=true;
-        if (pImapact->m_ishowtime>0) {
+        if (pImapact->m_ishowtime>1)
+        {
             CCardBufferStatusRefactor *bufferRefactor=new CCardBufferStatusRefactor(iChangeShanghaiHp,iChangeatk,iChangedef,iChangeengry,pImapact->m_ieffect_id,bufferfile);
-            if(!pCard->appendBufferData(bufferRefactor))
+            if(!pMonster->appendBufferData(bufferRefactor))
             {
                 needDealWithHpAtkDefImmideala=false;
             }
@@ -54,7 +54,7 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
     else
     {
         CCardBufferStatusRefactor *bufferRefactor=new CCardBufferStatusRefactor(iChangeShanghaiHp,iChangeatk,iChangedef,iChangeengry,pImapact->m_ieffect_id,bufferfile);
-        pCard->appendBufferData(bufferRefactor);
+        pMonster->appendBufferData(bufferRefactor);
     }
        
 }

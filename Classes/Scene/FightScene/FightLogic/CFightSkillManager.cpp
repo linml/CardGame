@@ -65,19 +65,39 @@ void CFightSkillManager::logicSkill_Putong(CFightCard *pCard,vector< CFightCard 
     if(pSkill->parameter_1!=0)
     {
         logicSkillFight(pCard,pFightCard,pMonterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+        CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_1);
+        if (pImpact&&pImpact->m_irandom)
+        {
+            SinglePlayer::instance()->randRomIndexAdd();
+        }
     }
     if(pSkill->parameter_2!=0)
     {
         logicSkillFight(pCard,pFightCard,pFightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+        CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_2);
+        if (pImpact&&pImpact->m_irandom)
+        {
+            SinglePlayer::instance()->randRomIndexAdd();
+        }
     }
     if(pSkill->parameter_3!=0)
     {
         logicSkillFight(pCard,pFightCard,pMonterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
+        CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
+        if (pImpact&&pImpact->m_irandom)
+        {
+            SinglePlayer::instance()->randRomIndexAdd();
+        }
     }
     
     if(pSkill->parameter_4!=0)
     {
         logicSkillFight(pCard,pFightCard,pFightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
+        CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_4);
+        if (pImpact&&pImpact->m_irandom)
+        {
+            SinglePlayer::instance()->randRomIndexAdd();
+        }
     }
     if(pSkill->parameter_5!=0)
     {
@@ -89,9 +109,15 @@ void CFightSkillManager::logicSkill_Putong(CFightCard *pCard,vector< CFightCard 
                 logicSkillFight(pCard,pFightCard,pMonterCard,FightIndex,i,pSkill,pSkill->parameter_5);
             }
         }
+        CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_5);
+        if (pImpact&&pImpact->m_irandom)
+        {
+            SinglePlayer::instance()->randRomIndexAdd();
+        }
     }
     if(pSkill->parameter_6!=0)
     {
+        
         //觉得这里需要添加个特效的文件
         for (int i=FightIndex; i<pFightCard.size(); i++)
         {
@@ -99,6 +125,11 @@ void CFightSkillManager::logicSkill_Putong(CFightCard *pCard,vector< CFightCard 
             {
                 logicSkillFight(pCard,pFightCard,pFightCard,FightIndex,i,pSkill,pSkill->parameter_6);
             }
+        }
+        CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_6);
+        if (pImpact&&pImpact->m_irandom)
+        {
+            SinglePlayer::instance()->randRomIndexAdd();
         }
     }
 }
@@ -126,19 +157,39 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
             if(pSkill->parameter_1!=0)
             {
                 logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_1);
+                if (pImpact&&pImpact->m_irandom)
+                {
+                    SinglePlayer::instance()->randRomIndexAdd();
+                }
             }
             if(pSkill->parameter_2!=0)
             {
                 logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_2);
+                if (pImpact&&pImpact->m_irandom)
+                {
+                    SinglePlayer::instance()->randRomIndexAdd();
+                }
             }
             if(pSkill->parameter_3!=0)
             {
                 logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
+                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
+                if (pImpact&&pImpact->m_irandom)
+                {
+                    SinglePlayer::instance()->randRomIndexAdd();
+                }
             }
             
             if(pSkill->parameter_4!=0)
             {
                 logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
+                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_4);
+                if (pImpact&&pImpact->m_irandom)
+                {
+                    SinglePlayer::instance()->randRomIndexAdd();
+                }
             }
             if(pSkill->parameter_5!=0)
             {
@@ -150,6 +201,11 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
                         logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,i,pSkill,pSkill->parameter_5);
                     }
                 }
+                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_5);
+                if (pImpact&&pImpact->m_irandom)
+                {
+                    SinglePlayer::instance()->randRomIndexAdd();
+                }
             }
             if(pSkill->parameter_6!=0)
             {
@@ -160,6 +216,11 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
                     {
                         logicSkillFight(pCard,FightCard,FightCard,FightIndex,i,pSkill,pSkill->parameter_6);
                     }
+                }
+                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_6);
+                if (pImpact&&pImpact->m_irandom)
+                {
+                    SinglePlayer::instance()->randRomIndexAdd();
                 }
             }
             switch (pSkill->skill_type) {
@@ -242,10 +303,20 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                 if(pSkill->parameter_1!=0)
                 {
                     logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_1);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
+                    }
                 }
                 if(pSkill->parameter_2!=0)
                 {
                     logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_2);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
+                    }
                 }
                 if(pSkill->parameter_5!=0)
                 {
@@ -259,6 +330,11 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                     }
                     //觉得这里需要添加个特效的文件
                     //appendAnimation(FightIndex, MonsterIndex, 0, 0, pSkill->skill_id,0, 0, EN_ANIMATIONTYPE_SKILL, enatk);
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_5);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
+                    }
                 }
                 if(pSkill->parameter_6!=0)
                 {
@@ -269,6 +345,11 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                         {
                             logicSkillFight(pCard,FightCard,FightCard,FightIndex,i,pSkill,pSkill->parameter_6);
                         }
+                    }
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_6);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
                     }
                 }
                 
@@ -279,18 +360,38 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                 if(pSkill->parameter_1!=0)
                 {
                     logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_1);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
+                    }
                 }
                 if(pSkill->parameter_2!=0)
                 {
                     logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_2);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
+                    }
                 }
                 if(pSkill->parameter_3!=0)
                 {
                     logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
+                    }
                 }
                 if(pSkill->parameter_4!=0)
                 {
                     logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_4);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
+                    }
                 }
                 if(pSkill->parameter_5!=0)
                 {
@@ -300,10 +401,16 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                         if(MonsterCard[i]&&MonsterCard[i]->m_iCurrHp>=0)
                         {
                             logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,i,pSkill,pSkill->parameter_5);
+                            
                         }
                     }
                     //觉得这里需要添加个特效的文件
                     //appendAnimation(FightIndex, MonsterIndex, 0, 0, pSkill->skill_id,0, 0, EN_ANIMATIONTYPE_SKILL, enatk);
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_5);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
+                    }
                 }
                 if(pSkill->parameter_6!=0)
                 {
@@ -314,6 +421,11 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                         {
                             logicSkillFight(pCard,FightCard,FightCard,FightIndex,i,pSkill,pSkill->parameter_6);
                         }
+                    }
+                    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_6);
+                    if (pImpact&&pImpact->m_irandom)
+                    {
+                        SinglePlayer::instance()->randRomIndexAdd();
                     }
                 }
             }
@@ -545,8 +657,6 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
             case EN_SEND_SKILL_BUFF:
                 pSkilldata=SinglePlayer::instance()->getSkillBySkillId(pCard->m_pCard->m_iskillBuff);
                 CCLog("用户发动了用户的技能5");
-//                appendAnimation(FightIndex, FightIndex, 0, 0,pSkilldata->skill_id, 0, 0, EN_ANIMATIONTYPE_SKILL, enAtkFightIndex
-//                                ); //添加一个增幅技能
                 break;
             default:
                 break;

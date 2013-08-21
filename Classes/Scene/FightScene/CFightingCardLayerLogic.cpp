@@ -99,7 +99,8 @@ bool CFightingCardLayerLogic::logicFighting()
                     checkFighting();
                 }
             }
-            else{
+            else
+            {
                 whenDeadSendDeadSkillAndMove();
             }
         }
