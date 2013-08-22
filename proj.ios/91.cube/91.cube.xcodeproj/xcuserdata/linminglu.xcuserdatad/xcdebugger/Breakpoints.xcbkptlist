@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerLogic.cpp"
-         timestampString = "398839853.183303"
+         timestampString = "398859953.326482"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "344"
-         endingLineNumber = "344"
+         startingLineNumber = "356"
+         endingLineNumber = "356"
          landmarkName = "CFightingCardLayerLogic::checkSendZengfu()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -73,7 +73,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerLogic.cpp"
-         timestampString = "398772875.090171"
+         timestampString = "398859953.326482"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "207"
@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerLogic.cpp"
-         timestampString = "398772875.090171"
+         timestampString = "398859953.326482"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "219"
-         endingLineNumber = "219"
+         startingLineNumber = "223"
+         endingLineNumber = "223"
          landmarkName = "CFightingCardLayerLogic::checkFighting()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -242,11 +242,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerLogic.cpp"
-         timestampString = "398772875.090171"
+         timestampString = "398859953.326482"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "213"
-         endingLineNumber = "213"
+         startingLineNumber = "215"
+         endingLineNumber = "215"
          landmarkName = "CFightingCardLayerLogic::checkFighting()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -268,11 +268,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerLogic.cpp"
-         timestampString = "398772993.296548"
+         timestampString = "398859953.326482"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "225"
-         endingLineNumber = "225"
+         startingLineNumber = "231"
+         endingLineNumber = "231"
          landmarkName = "CFightingCardLayerLogic::checkFighting()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -359,11 +359,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerLogic.cpp"
-         timestampString = "398848622.56629"
+         timestampString = "398859953.326482"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "280"
-         endingLineNumber = "280"
+         startingLineNumber = "288"
+         endingLineNumber = "288"
          landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -372,11 +372,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerLogic.cpp"
-         timestampString = "398848795.89455"
+         timestampString = "398859953.326482"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "276"
-         endingLineNumber = "276"
+         startingLineNumber = "284"
+         endingLineNumber = "284"
          landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -385,11 +385,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/FightScene/CFightingCardLayerLogic.cpp"
-         timestampString = "398850546.40604"
+         timestampString = "398859953.326482"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "292"
-         endingLineNumber = "292"
+         startingLineNumber = "302"
+         endingLineNumber = "302"
          landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
          landmarkType = "5">
       </FileBreakpoint>

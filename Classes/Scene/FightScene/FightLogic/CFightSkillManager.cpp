@@ -638,7 +638,7 @@ void CFightSkillManager::effect_11(CFightCard *pCard,CFightCard *pMonterCard,CSk
     effect=NULL;
 }
 
-void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>fightCard,vector<CFightCard *>monsterCard,int FightIndex,int MonstIndex,EN_SEND_SKILL enskill,EN_ATKFIGHT_INDEX enAtkFightIndex)
+bool CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>fightCard,vector<CFightCard *>monsterCard,int FightIndex,int MonstIndex,EN_SEND_SKILL enskill,EN_ATKFIGHT_INDEX enAtkFightIndex)
 {
     if(pCard)
     {
@@ -676,11 +676,16 @@ void CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
                 if(fightCard[FightIndex]&& monsterCard[MonstIndex])
                 {
                     (*pfuncCallBack)(pCard,fightCard,monsterCard,FightIndex,MonstIndex,pSkilldata,enAtkFightIndex);
+                                    return true;
                 }
+                return false;
+
             }
+            return false;
         }
+        return false;
     }
-    
+    return false;
 }
 
 void CFightSkillManager::appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex)

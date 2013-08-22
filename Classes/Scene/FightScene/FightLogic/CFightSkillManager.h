@@ -92,7 +92,7 @@ public:
     //进入程序初始化，加载函数map表格
     void initSkill();
     //根据card的 技能找寻到逻辑id
-    void CardFighting(CFightCard *pCard,vector<CFightCard *>fightCard,vector<CFightCard *>monsterCard,int FightIndex,int MonstIndex,EN_SEND_SKILL enskill,EN_ATKFIGHT_INDEX enAtkFightIndex);
+    bool CardFighting(CFightCard *pCard,vector<CFightCard *>fightCard,vector<CFightCard *>monsterCard,int FightIndex,int MonstIndex,EN_SEND_SKILL enskill,EN_ATKFIGHT_INDEX enAtkFightIndex);
     //当前是否可以发动怒气技能
     bool isCanSpendAngrySkill(CFightCard *pFight);
     //当前是否可以攻击
