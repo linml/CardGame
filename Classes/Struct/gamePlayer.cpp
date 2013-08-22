@@ -637,7 +637,7 @@ void CGamePlayer::logicRandValue(int &value,bool needAdd)
     else{
         value =value - m_getRandom_data[m_currRandRomIndex];
     }
-    CCLog("Value====:%d",value);
+    CCLog("Value====:%d,random=%d",value,m_getRandom_data[m_currRandRomIndex]);
 }
 void CGamePlayer::backUpFightTeam(int index)
 {

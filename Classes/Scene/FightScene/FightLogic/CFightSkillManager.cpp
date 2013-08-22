@@ -823,8 +823,8 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                 if(pCardBufferRefactor->m_iNeedAddBack)
                 {
                     pFightCard->appendHp(-pCardBufferRefactor->m_iHp);
-                    pFightCard->m_attack+=-pCardBufferRefactor->m_iAtk;
-                    pFightCard->m_defend+=(-pCardBufferRefactor->m_iDef);
+                    pFightCard->subAtk(-pCardBufferRefactor->m_iAtk);
+                    pFightCard->subDef(-pCardBufferRefactor->m_iDef);
                     pFightCard->appendEngry(-pCardBufferRefactor->m_iEngry);
                 }
                 delete pCardBufferRefactor;
@@ -839,8 +839,8 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                     pCardBufferRefactor->m_iEffect_time--;
                     pCardBufferRefactor->m_iKeepTime--;
                     pFightCard->appendHp(pCardBufferRefactor->m_iHp);
-                    pFightCard->m_attack+=pCardBufferRefactor->m_iAtk;
-                    pFightCard->m_defend+=(pCardBufferRefactor->m_iDef);
+                    pFightCard->subAtk(pCardBufferRefactor->m_iAtk);
+                    pFightCard->subDef(pCardBufferRefactor->m_iDef);
                     pFightCard->appendEngry(pCardBufferRefactor->m_iEngry);
                 }
                 else if(pCardBufferRefactor->m_iKeepTime>0)

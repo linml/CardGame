@@ -325,7 +325,7 @@
 		<key>parameter_10</key>
 		<string>0</string>
 		<key>effect_plistfile</key>
-		<string>resource_cn/img/fighting/suo.png</string>
+		<string>resource_cn/bufferfire.plist,resource_cn/img/fighting/suo.png</string>
 	</dict>
 	<key>100021</key>
 	<dict>

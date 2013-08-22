@@ -33,11 +33,11 @@ void CEffectInterFaceElevenRefactor::logicFightingCardByFightAndMonster(CFightCa
     }
     if(pImapact->m_iParameter_8!=0||pImapact->m_iParameter_9!=0)
     {
-        iChangeatk= pImapact->m_iParameter_8 + (pMonster->m_attack*(pImapact->m_iParameter_9/100))-pMonster->m_attack;
+        iChangeatk= pImapact->m_iParameter_8 + (pMonster->getAddValue(pMonster->m_iCurrLevel, 1)*(pImapact->m_iParameter_9/100))-pMonster->m_attack;
     }
     if(pImapact->m_iParameter_4 || pImapact->m_iParameter_5)
     {
-        iChangedef =  pImapact->m_iParameter_4  + pMonster->m_defend*pImapact->m_iParameter_5/100;
+        iChangedef =  pImapact->m_iParameter_4  + pMonster->getAddValue(pMonster->m_iCurrLevel, 2)*pImapact->m_iParameter_5/100;
         CCLog("防御值");
     }
     if(pImapact->m_iParameter_6!=0 ||pImapact->m_iParameter_7!=0)

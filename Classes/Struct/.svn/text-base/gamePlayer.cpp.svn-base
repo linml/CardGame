@@ -46,11 +46,11 @@ string  readFileName(const char *filename)
 #define SKILLPUTONGGONGJIID 100000
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
-for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
-delete *it; \
-*it=NULL; \
-} \
-VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+    for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+    delete *it; \
+    *it=NULL; \
+    } \
+    VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
 
 
@@ -177,6 +177,17 @@ string CGamePlayer::getBufferPngByEffectId(int effectID)
     }
     return "";
     
+}
+
+CImapact *CGamePlayer::getEffectTableByEffectId(int effectId)
+{
+    for (int i=0; i<m_vImpactInfo.size(); i++) {
+        if(m_vImpactInfo[i]->m_ieffect_id==effectId)
+        {
+            return m_vImpactInfo[i];
+        }
+    }
+    return  NULL;
 }
 
 CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
@@ -604,17 +615,29 @@ void CGamePlayer::parseRival(CCObject *object)
     isLoadFightTeam=true;
 
 }
+
+void CGamePlayer::randRomIndexAdd()
+{
+        m_currRandRomIndex++;
+}
+
 void CGamePlayer::logicRandValue(int &value,bool needAdd)
 {
+    if(value==0)
+    {
+        return;
+    }
     if(m_currRandRomIndex<0|| m_currRandRomIndex>=m_getRandom_data.size())
         m_currRandRomIndex=0;
-    value =value+ value*0.1*m_getRandom_data[m_currRandRomIndex]/100;
-    CCLog("Value====:%d",value);
-    if(needAdd)
+    // value =value+ value*0.1*m_getRandom_data[m_currRandRomIndex]/100;
+    if(value>0)
     {
-        m_currRandRomIndex++;
+        value =value + m_getRandom_data[m_currRandRomIndex];
     }
-    
+    else{
+        value =value - m_getRandom_data[m_currRandRomIndex];
+    }
+    CCLog("Value====:%d",value);
 }
 void CGamePlayer::backUpFightTeam(int index)
 {

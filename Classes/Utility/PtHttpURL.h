@@ -58,7 +58,8 @@
 
 
 //战斗前选择阵容
-#define STR_URL_CHOOSE_TEAM(UID)    URL_FACTORY("oliver/CubeSERVER/trunk/web/api.php?m=Fight&a=getTeamInfo&uid=",UID)
+//调试的时候需要在api 勤勉添加oliver/CubeSERVER/trunk/web/
+#define STR_URL_CHOOSE_TEAM(UID)    URL_FACTORY("api.php?m=Fight&a=getTeamInfo&uid=",UID)
 //战斗结束校验
 #define STR_URL_FIGHT(UID)          URL_FACTORY("api.php?m=Fight&a=fight&uid=",UID)
 

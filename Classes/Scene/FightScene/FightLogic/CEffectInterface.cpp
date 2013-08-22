@@ -35,7 +35,7 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
     if(pImapact->m_ifdelay==0)
     {
         bool needDealWithHpAtkDefImmideala=true;
-        if (pImapact->m_ishowtime>1)
+        if ((pImapact->m_ishowtime==1 && pImapact->m_process)||(pImapact->m_ishowtime>1))
         {
             CCardBufferStatusRefactor *bufferRefactor=new CCardBufferStatusRefactor(iChangeShanghaiHp,iChangeatk,iChangedef,iChangeengry,pImapact->m_ieffect_id,bufferfile);
             if(!pMonster->appendBufferData(bufferRefactor))
@@ -46,8 +46,8 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
         if (needDealWithHpAtkDefImmideala)
         {
             pMonster->appendHp(iChangeShanghaiHp);
-            pMonster->m_attack += -iChangeatk;
-            pMonster->m_defend += -iChangedef;
+            pMonster->subAtk(-iChangeatk);
+            pMonster->subDef(-iChangedef);
             pMonster->appendEngry(iChangeengry);
         }
     }

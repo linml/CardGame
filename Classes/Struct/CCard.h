@@ -75,6 +75,8 @@ public:
     bool appendBufferData(CCardBufferStatusRefactor *buffer);
     bool hasAssistantSkill();
     void setNegativeToZero();
+    void subAtk(int value);
+    void subDef(int value);
 public:
     int m_iCurrHp;  //当前HP
     int m_iHp;      //当前总的HP

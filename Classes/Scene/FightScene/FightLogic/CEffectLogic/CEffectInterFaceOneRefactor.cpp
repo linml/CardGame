@@ -25,21 +25,22 @@ void CEffectInterfaceOneRefactor::logicFightingCardByFightAndMonster(CFightCard 
     {
         int tempdata=pImapact->m_iParameter_1 +
         pCard->m_attack*pImapact->m_iParameter_2/100+pMonster->m_iHp*pImapact->m_iParameter_3/100;
-        iChangeShanghaiHp=(tempdata-pMonster->m_defend >=0?tempdata-pMonster->m_defend :tempdata*0.2) ;
+        iChangeShanghaiHp=((tempdata-pMonster->m_defend)>=tempdata*0.2?tempdata-pMonster->m_defend :tempdata*0.2) ;
         iChangeShanghaiHp =-iChangeShanghaiHp;
     }
     if(pImapact->m_iParameter_8!=0||pImapact->m_iParameter_9!=0)
     {
-        iChangeatk= +pImapact->m_iParameter_8 + pMonster->m_attack*pImapact->m_iParameter_9/100;
+        iChangeatk= +pImapact->m_iParameter_8 + pMonster->getAddValue(pMonster->m_iCurrLevel, 1)*pImapact->m_iParameter_9/100;
     }
     if(pImapact->m_iParameter_4 ||pImapact->m_iParameter_5)
     {
-        iChangedef =  pImapact->m_iParameter_4  + pMonster->m_defend*pImapact->m_iParameter_5/100;
+        iChangedef =  pImapact->m_iParameter_4  + pMonster->getAddValue(pMonster->m_iCurrLevel, 2)*pImapact->m_iParameter_5/100;
     }
     if(pImapact->m_iParameter_6!=0 ||pImapact->m_iParameter_7!=0)
     {
         iChangeengry= +pImapact->m_iParameter_6 +
         pMonster->m_iCurrEngry  * pImapact->m_iParameter_7/100;
+        iChangeengry =-iChangeengry;
     }
     dealWithBufferAndImmediately(pCard, pMonster, pImapact);
 }

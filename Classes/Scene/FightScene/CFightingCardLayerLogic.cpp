@@ -225,22 +225,12 @@ bool CFightingCardLayerLogic::checkFighting()
         G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[4],m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_HELP,m_enHuiheIndex);
         appendUpdateAction();
     }
+
+    CCLog("END:当前攻击顺序是%d",int(m_enHuiheIndex));
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
-        CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
-        CFightSkillManager::dealWithBuffer(m_vFightingCard[4],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_SUPPORT);
-        CFightSkillManager::dealWithBuffer(m_vMonsterCard[m_iMonsterCardIndex],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_LORD);
-        CFightSkillManager::dealWithBuffer(m_vMonsterCard[4],m_iMonsterCardIndex,m_iFightCardIndex, EN_ATKFIGHT_INDEX_RIGHT_SUPPORT);
-        m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
-        m_iTotalHuihe++;
-        CCLog("========>%d",m_iTotalHuihe);
-    }
-    
-    if(m_enHuiheIndex>EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
-    {
         m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
     }
-    CCLog("END:当前攻击顺序是%d",int(m_enHuiheIndex));
     if(m_vFightingCard[m_iFightCardIndex])
     {
         CCLog("左边主将血液是:%d,%d",m_vFightingCard[m_iFightCardIndex]->m_iCurrHp,m_iFightCardIndex);

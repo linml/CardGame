@@ -181,15 +181,39 @@ void CFightCard::setNegativeToZero()
     }
 }
 
+void CFightCard::subAtk(int value)
+{
+    m_attack+=value;
+    if(m_attack<0)
+    {
+        m_attack=0;
+    }
+}
+void CFightCard::subDef(int value)
+{
+    m_defend+=value;
+    if(m_defend<0)
+    {
+        m_defend=0;
+    }
+}
 void CFightCard::appendEngry(int iEngry)
 {
     this->m_iCurrEngry+=iEngry;
+    if(this->m_iCurrEngry<0)
+    {
+        m_iCurrEngry=0;
+    }
 }
 
 void CFightCard::appendHp(int iAddHp)
 {
     this->m_iCurrHp+=iAddHp;
-    if (m_iCurrHp>=m_iHp)
+    if(m_iCurrHp<0)
+    {
+        m_iCurrHp=0;
+    }
+    else if (m_iCurrHp>=m_iHp)
     {
         m_iCurrHp=m_iHp;
     }
@@ -359,7 +383,7 @@ bool CFightCard::appendBufferData(CCardBufferStatusRefactor *pBuffer)
     bool isDeleItetor=false;
     for (list<CCardBufferStatusRefactor *>::iterator it=m_vlistBuffer.begin(); it!=m_vlistBuffer.end();)
     {
-        if(pBuffer->m_iEffectid==(*it)->m_iEffectid ||(pBuffer->m_iMutex==(*it)->m_iMutex && pBuffer->m_iMutexLevel>(*it)->m_iMutexLevel))
+        if(pBuffer->m_iEffectid==(*it)->m_iEffectid ||(pBuffer->m_iMutex==(*it)->m_iMutex && pBuffer->m_iMutexLevel>=(*it)->m_iMutexLevel)) //其实 只需要后面的那个就可以
         {
             //删除旧数据， 添加新数据
             if((*it)->m_iNeedAddBack)
