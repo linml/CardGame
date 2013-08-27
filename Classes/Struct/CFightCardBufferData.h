@@ -58,8 +58,8 @@ class CFightCardFightingBuffer
 public:
     CFightCardFightingBuffer();
     ~CFightCardFightingBuffer();
-    void append(int EffectId,int  Value,bool isLeft);
 public:
+    void append(int EffectId,int  Value,bool isLeft);
     int m_index;
     vector<CBufferIcon *>m_vbufferList;
 };

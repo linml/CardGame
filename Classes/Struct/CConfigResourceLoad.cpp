@@ -51,7 +51,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         int index = card->m_sicard_star -1;
         index = abs(index) > 7 ? 7: abs(index);
         card->m_ileve_max = g_aMaxLevel[index];
-        CCLog("the %i card's next card id: %d", card->m_icard_id, card->m_ccard_next);
+        //CCLog("the %i card's next card id: %d", card->m_icard_id, card->m_ccard_next);
         // change end:
         hashmapAllCard[key->intValue()]=card;
     }
@@ -88,7 +88,7 @@ bool CConfigResourceLoad::loadPlayerLevelInfo(vector<SLevelPlayer *> *vPlayerLev
     return false;
 }
 
-bool CConfigResourceLoad::loadSkillLogicInfo(vector<CSkillData *> &vSkillTable,const char *fileName)
+bool CConfigResourceLoad::loadSkillLogicInfo(map<int,CSkillData *> &vSkillTable,const char *fileName)
 {
     
     CCDictionary *directory = CCDictionary::createWithContentsOfFile(fileName);
@@ -125,7 +125,7 @@ bool CConfigResourceLoad::loadSkillLogicInfo(vector<CSkillData *> &vSkillTable,c
         skill->m_skillName=GameTools::valueForKey("skill_name", skillDirector);
         skill->m_skillTrip=GameTools::valueForKey("skill_tips", skillDirector);
 
-        vSkillTable.push_back(skill);
+        vSkillTable[skill->skill_id]=skill;
     }
     return true;
 }

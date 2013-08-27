@@ -289,12 +289,13 @@ CCAnimation* HBAnimationCache::reverseAnimationByAni(CCAnimation* ani,const char
 	}
 	CCArray* oFrameArray = new CCArray();
 
-	for (int i = ani->getFrames()->count()-1; i>=0; i--) {
+	for (int i = ani->getFrames()->count()-1; i>=0; i--)
+    {
 		oFrameArray->addObject(ani->getFrames()->objectAtIndex(i));
 	}
     
 	CCAnimation *reverseAni = CCAnimation::animationWithAnimationFrames(oFrameArray,ani->getDelayPerUnit(),false);
-//	reverseAni->setName(reverseAniName.c_str());
+    //reverseAni->setName(reverseAniName.c_str());
     //bq modify
     oFrameArray->release();
     

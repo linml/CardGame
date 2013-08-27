@@ -64,6 +64,7 @@ const string g_sFont_btn = "Helvetica-Bold";
 const std::string g_str_skillPathPlist=resRootPath +"particle/skill-texiao/";
 
 const std::string g_propImagesPath = resRootPath+"img/prop/";
+const std::string g_plistPath = resRootPath+"plist/";
 
 //注意 编辑器中使用大小 -1--就代表 T形按钮 100%
 const int g_custom_font_size[] = {
@@ -245,7 +246,10 @@ enum EN_GAMEFIGHTSTATUS {
 };
 enum ERROR_MSG {
     ERROR_MSG_NONE=1,
-    ERROR_MSG_CONNECTSERVERERROR = 10000,
-    };
+    ERROR_MSG_CONNECTSERVERERROR = 10000, //服务端链接失败
+    ERROR_MSG_SERVERERROR =10001,
+    ERROR_MSG_SERVERDATA=5035
+};
+
 
 #endif

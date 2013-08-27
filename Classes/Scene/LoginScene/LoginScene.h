@@ -69,7 +69,8 @@ protected:
     vector<stcServerInf> vSerInf;
     bool isLoadCardBag;
     bool isLoadEndConfig;
-    bool isLoadPlayerInfo;
+    bool isLoadTeam;
+    bool isGameInit;
     
 };
 

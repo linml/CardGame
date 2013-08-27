@@ -7,6 +7,7 @@
 //
 #include <vector>
 #include "CPtTool.h"
+#include <fstream>
 namespace CPtTool
 {
     void drag(CCNode* node,CCTouch *pTouch)
@@ -258,7 +259,7 @@ namespace CPtTool
     bool isInNode(CCNode *node,CCTouch *pTouch)
     {
         bool bRet = false;
-        if (node)
+        if (node && node->isVisible())
         {
             CCNode *parent = node->getParent();
             if (parent)
@@ -492,7 +493,53 @@ namespace CPtTool
                   );
         }
     }
-   
+    
+    
+    time_t strtotime(char* const date,std::string format)
+    {
+        struct tm tm;
+        strptime(date,format.c_str(), &tm) ;
+        time_t ft=mktime(&tm);
+        return ft;
+    }
+
+    std::string   timetodate(time_t const timer)
+    {
+        struct tm *l=localtime(&timer);
+        
+        char buf[128];
+        snprintf(buf,sizeof(buf),"%04d-%02d-%02d %02d:%02d:%02d",l->tm_year+1900,l->tm_mon+1,l->tm_mday,l->tm_hour,l->tm_min,l->tm_sec);
+            std::string s(buf);
+        return s;
+        
+        
+    }
+    
+    
+    double getDateIntermissionRebackMSC(time_t beforeTime,time_t afterTime)
+    {
+        return difftime(afterTime,beforeTime);
+    }
+    std::string  readFileName(const char *filename)
+    {
+        std::string filpat=CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(filename);
+        std::ifstream out;
+        out.open(filpat.c_str(), std::ios::in);
+        static std::string result;
+        result.clear();
+        std::string line;
+        if(!out)
+        {
+            std::cout<<"aaaa";
+        }
+        while(!out.eof())
+        {
+            std::getline(out,line);
+            result+=line;
+        }
+        out.close();
+        return result;
+    }
     
     CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize)
     {

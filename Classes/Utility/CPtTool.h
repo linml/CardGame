@@ -39,8 +39,12 @@ namespace CPtTool
     bool memoryInfo(vm_statistics_data_t *vmStats) ;
     
     void logMemoryInfo() ;
-    
+    time_t strtotime(char* const date,  std::string str="%Y%m%d%H%M%S");
+    std::string   timetodate(time_t const timer);
+    double getDateIntermissionRebackMSC(time_t beforeTime,time_t afterTime);
+    std::string  readFileName(const char *filename);
     CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize);
+    
 };
 
 

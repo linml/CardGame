@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F280A7B17CC38ED00D3CF97 /* CGameEmailManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F280A7917CC38ED00D3CF97 /* CGameEmailManager.cpp */; };
+		6F280A7E17CC464400D3CF97 /* CFileReadWrite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F280A7C17CC464400D3CF97 /* CFileReadWrite.cpp */; };
+		6F280A8117CC53A900D3CF97 /* CMyDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F280A7F17CC53A900D3CF97 /* CMyDictionary.cpp */; };
+		6F280A8417CC975300D3CF97 /* CGlobalSchedule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F280A8217CC975300D3CF97 /* CGlobalSchedule.cpp */; };
+		6F280A8717CC9DC300D3CF97 /* SGamePlayerData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F280A8517CC9DC100D3CF97 /* SGamePlayerData.cpp */; };
 		6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F34AE8E1760945F00A6433C /* LoadingScene.cpp */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
 		6F7353B4178D34190009D548 /* CCardBufferStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7353B2178D34190009D548 /* CCardBufferStatus.cpp */; };
@@ -57,6 +62,7 @@
 		6FB983B117AF84A400DCB630 /* CFightCardBufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB983AF17AF84A300DCB630 /* CFightCardBufferData.cpp */; };
 		6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24817964AF800E16CDE /* CFightSkillManager.cpp */; };
 		6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */; };
+		6FD24A5F17CAE474007F87B8 /* CGameEmailData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FD24A5D17CAE474007F87B8 /* CGameEmailData.cpp */; };
 		8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E13F18A17700F5F0050812F /* TaskLayer.cpp */; };
 		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
 		8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */; };
@@ -298,6 +304,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F280A7917CC38ED00D3CF97 /* CGameEmailManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameEmailManager.cpp; sourceTree = "<group>"; };
+		6F280A7A17CC38ED00D3CF97 /* CGameEmailManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameEmailManager.h; sourceTree = "<group>"; };
+		6F280A7C17CC464400D3CF97 /* CFileReadWrite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFileReadWrite.cpp; sourceTree = "<group>"; };
+		6F280A7D17CC464400D3CF97 /* CFileReadWrite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFileReadWrite.h; sourceTree = "<group>"; };
+		6F280A7F17CC53A900D3CF97 /* CMyDictionary.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMyDictionary.cpp; sourceTree = "<group>"; };
+		6F280A8017CC53A900D3CF97 /* CMyDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMyDictionary.h; sourceTree = "<group>"; };
+		6F280A8217CC975300D3CF97 /* CGlobalSchedule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGlobalSchedule.cpp; sourceTree = "<group>"; };
+		6F280A8317CC975300D3CF97 /* CGlobalSchedule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGlobalSchedule.h; sourceTree = "<group>"; };
+		6F280A8517CC9DC100D3CF97 /* SGamePlayerData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SGamePlayerData.cpp; sourceTree = "<group>"; };
+		6F280A8617CC9DC200D3CF97 /* SGamePlayerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGamePlayerData.h; sourceTree = "<group>"; };
 		6F34AE8E1760945F00A6433C /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
 		6F34AE8F1760945F00A6433C /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
@@ -401,6 +417,8 @@
 		6FBBC24917964AF800E16CDE /* CFightSkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightSkillManager.h; sourceTree = "<group>"; };
 		6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAnimationSpriteGameFight.cpp; sourceTree = "<group>"; };
 		6FBBC24C17966FA400E16CDE /* CAnimationSpriteGameFight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAnimationSpriteGameFight.h; sourceTree = "<group>"; };
+		6FD24A5D17CAE474007F87B8 /* CGameEmailData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameEmailData.cpp; sourceTree = "<group>"; };
+		6FD24A5E17CAE474007F87B8 /* CGameEmailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameEmailData.h; sourceTree = "<group>"; };
 		8E13F18A17700F5F0050812F /* TaskLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskLayer.cpp; sourceTree = "<group>"; };
 		8E13F18B17700F5F0050812F /* TaskLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskLayer.h; sourceTree = "<group>"; };
 		8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExplorationScene.cpp; sourceTree = "<group>"; };
@@ -1278,6 +1296,12 @@
 				6FB5F57417A7A1EB0026206F /* SEveryATKData.h */,
 				6FB983AF17AF84A300DCB630 /* CFightCardBufferData.cpp */,
 				6FB983B017AF84A400DCB630 /* CFightCardBufferData.h */,
+				6FD24A5D17CAE474007F87B8 /* CGameEmailData.cpp */,
+				6FD24A5E17CAE474007F87B8 /* CGameEmailData.h */,
+				6F280A7917CC38ED00D3CF97 /* CGameEmailManager.cpp */,
+				6F280A7A17CC38ED00D3CF97 /* CGameEmailManager.h */,
+				6F280A8517CC9DC100D3CF97 /* SGamePlayerData.cpp */,
+				6F280A8617CC9DC200D3CF97 /* SGamePlayerData.h */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1323,6 +1347,12 @@
 				6FB379E6177D1E9F00C2DB35 /* CGamesCard.h */,
 				6FB983AC17AF510200DCB630 /* CGameCardBuffer.cpp */,
 				6FB983AD17AF510200DCB630 /* CGameCardBuffer.h */,
+				6F280A7C17CC464400D3CF97 /* CFileReadWrite.cpp */,
+				6F280A7D17CC464400D3CF97 /* CFileReadWrite.h */,
+				6F280A7F17CC53A900D3CF97 /* CMyDictionary.cpp */,
+				6F280A8017CC53A900D3CF97 /* CMyDictionary.h */,
+				6F280A8217CC975300D3CF97 /* CGlobalSchedule.cpp */,
+				6F280A8317CC975300D3CF97 /* CGlobalSchedule.h */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -2690,6 +2720,12 @@
 				6FB7013C17C33EB8006B0C60 /* CGameErrorConfigLayer.cpp in Sources */,
 				6FB568EB17C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp in Sources */,
 				6FB568EE17C491E500B038F8 /* CEffectInterFaceOneRefactor.cpp in Sources */,
+				6FD24A5F17CAE474007F87B8 /* CGameEmailData.cpp in Sources */,
+				6F280A7B17CC38ED00D3CF97 /* CGameEmailManager.cpp in Sources */,
+				6F280A7E17CC464400D3CF97 /* CFileReadWrite.cpp in Sources */,
+				6F280A8117CC53A900D3CF97 /* CMyDictionary.cpp in Sources */,
+				6F280A8417CC975300D3CF97 /* CGlobalSchedule.cpp in Sources */,
+				6F280A8717CC9DC300D3CF97 /* SGamePlayerData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

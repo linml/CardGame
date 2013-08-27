@@ -171,7 +171,8 @@ bool CLoginScene::initLogin()
         bRet = true;
         isLoadCardBag=false;
         isLoadEndConfig=false;
-        isLoadPlayerInfo=false;
+        isLoadTeam=false;
+        isGameInit=false;
         scheudoLoadGameConfig(); //by merlin
     } while (0);
     return bRet;
@@ -257,43 +258,45 @@ void CLoginScene::scheudoLoadGameConfig()
 }
 
 void CLoginScene::addFunctionInitGames(float t)
-{
+{   
     if(!isLoadEndConfig)
     {
         setText("loading  config");
-        SinglePlayer::instance()->loadGamesConfig();
+        SinglePlayer::instance();
         isLoadEndConfig=true;
     }
     else
     {
-        if(!isLoadCardBag)
-        {
-            setText("loading card bag");
-            SinglePlayer::instance()->loadServerCardBag();
-            isLoadCardBag=true;
+        if (!isGameInit) {
+            setText("onGameInit");
+            SinglePlayer::instance()->onGameBegin();
+            isGameInit=true;
         }
         else{
-            if(SinglePlayer::instance()->isLoadCardBagEnd==ERROR_MSG_NONE)
+            if(SinglePlayer::instance()->gameInitStatus!=0)
             {
-                if(!isLoadPlayerInfo)
-                {
-                    setText("CARD TEM info");
-                    SinglePlayer::instance()->loadCardTeamInfo();
-                    isLoadPlayerInfo=true;
-                }
-                else if(SinglePlayer::instance()->isLoadEndCardTeam)
-                {
-                    setText("welcome");
-                    unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
-                    Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
-                }
-            }
-            else{
                 
-                //unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
+                if(SinglePlayer::instance()->gameInitStatus==1)
+                {
+
+                    setText("CARD TEM info");
+                    if(!isLoadTeam)
+                    {
+                        SinglePlayer::instance()->loadCardTeamInfo();
+                        isLoadTeam=true;
+                    }
+                    else if (SinglePlayer::instance()->isLoadEndCardTeam)
+                    {
+                        setText("welcome");
+                        unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
+                        Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
+                    }
+                }
+                else{
+                    
+                }
             }
         }
-        
     }
 }
 

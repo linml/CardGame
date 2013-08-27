@@ -18,6 +18,7 @@
 #include "SEveryATKData.h"
 #include <fstream>
 #include "PtHttpURL.h"
+#include "CFightCardBufferData.h"
 
 //#define AAAAFOROSMACHINE 1
 
@@ -44,17 +45,19 @@ string  readFileName(const char *filename)
 }
 
 #define SKILLPUTONGGONGJIID 100000
-#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
+#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE,__TYPECLASSNAME__) \
 {\
     for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
-    delete *it; \
-    *it=NULL; \
+        __TYPECLASSNAME__ *temp=*it; \
+        delete temp; \
+        temp=NULL; \
     } \
     VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
 
 
-CGamePlayer::CGamePlayer()
+
+CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getProps())
 {
     // test begin:
     testPlayInfoData();
@@ -63,7 +66,7 @@ CGamePlayer::CGamePlayer()
     isLoadServer=false;
     
     for (int i=0; i<m_vvBattleArray.size(); i++) {
-        DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> );
+        DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> ,CFightCard );
     }
     m_vvBattleArray.clear();
     
@@ -121,7 +124,7 @@ void CGamePlayer::initAllCard(const char *cardFileName)
 
 void CGamePlayer::clearPlayerTable()
 {
-    DELETE_POINT_VECTOR(m_gvPlayerLevel, vector<SLevelPlayer *>)
+    DELETE_POINT_VECTOR(m_gvPlayerLevel, vector<SLevelPlayer *> ,SLevelPlayer)
 }
 
 void CGamePlayer::initPlayerTable(const char *playerFileName)
@@ -136,8 +139,14 @@ void CGamePlayer::loadAllSkillInfo(const char *skillFileName)
 
 void CGamePlayer::clearAllSkillInfo()
 {
-    DELETE_POINT_VECTOR(m_vSkillInfo, vector<CSkillData *>);
 
+    for (map<int , CSkillData *>::iterator it=m_vSkillInfo.begin(); it!= m_vSkillInfo.end(); it++)
+    {
+            delete it->second; 
+            it->second=NULL;
+                m_vSkillInfo.erase(it);
+    }
+        m_vSkillInfo.erase(m_vSkillInfo.begin(),m_vSkillInfo.end());
 }
 string CGamePlayer::getBufferPlistByEffectId(int effectID)
 {
@@ -192,25 +201,25 @@ CImapact *CGamePlayer::getEffectTableByEffectId(int effectId)
 
 CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
 {
-    for (int i=0; i<m_vSkillInfo.size(); i++) {
-        if(m_vSkillInfo[i]->skill_id==skillId)
-        {
-            return m_vSkillInfo[i];
-        }
-    }
-    return NULL;
-    
+//    for (int i=0; i<m_vSkillInfo.size(); i++) {
+//        if(m_vSkillInfo[i]->skill_id==skillId)
+//        {
+//            return m_vSkillInfo[i];
+//        }
+//    }
+//    return NULL;
+    return m_vSkillInfo[skillId];
 }
 
 CSkillData *CGamePlayer::getPutongGongji()
 {
-    for (int i=0; i<m_vSkillInfo.size(); i++) {
-        if(m_vSkillInfo[i]->skill_id ==SKILLPUTONGGONGJIID)
-        {
-            return m_vSkillInfo[i];
-        }
-    }
-    return NULL;
+//    for (int i=0; i<m_vSkillInfo.size(); i++) {
+//        if(m_vSkillInfo[i]->skill_id ==SKILLPUTONGGONGJIID)
+//        {
+//            return m_vSkillInfo[i];
+//        }
+//    }
+    return m_vSkillInfo[SKILLPUTONGGONGJIID];
 }
 
 
@@ -222,7 +231,7 @@ void CGamePlayer::loadAllEffectInfo(const char *effectFileName)
 
 void CGamePlayer::clearAllEffectInfo()
 {
-    DELETE_POINT_VECTOR(m_vImpactInfo, vector<CImapact *>);
+    DELETE_POINT_VECTOR(m_vImpactInfo, vector<CImapact *> ,CImapact);
 }
 
 CImapact *CGamePlayer::findByImpactId(int tempImpactId)
@@ -365,7 +374,7 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
 
 void CGamePlayer::clearServerCardBag()
 {
-    DELETE_POINT_VECTOR(m_vCardBag, vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_vCardBag, vector<CFightCard *> ,CFightCard);
 }
 
 bool CGamePlayer::isCardBagContainUserCardList(vector<int>User_CardId)
@@ -560,7 +569,7 @@ void CGamePlayer::parseRival(CCObject *object)
             CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
             if(cardDirector)
             {
-                DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*>);
+                DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
                 m_hashmapMonsterCard.resize(5);
                 string teamStrType=typeid(*cardDirector->objectForKey("team")).name();
                 if(teamStrType.find("CCDictionary")!=std::string::npos)
@@ -637,7 +646,7 @@ void CGamePlayer::logicRandValue(int &value,bool needAdd)
     else{
         value =value - m_getRandom_data[m_currRandRomIndex];
     }
-    CCLog("Value====:%d",value);
+    CCLog("Value====:%d,random=%d",value,m_getRandom_data[m_currRandRomIndex]);
 }
 void CGamePlayer::backUpFightTeam(int index)
 {
@@ -687,6 +696,7 @@ void CGamePlayer::testPlayInfoData()
 {
     m_nCoin = 500000;
     m_nRvc = 100000;
+    m_nOpenGridCount = 9;
     
 }
 
@@ -702,24 +712,24 @@ void CGamePlayer::appendAtkData(SEveryATKData * data)
 
 void CGamePlayer::onFightInterScene()
 {
-    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
-    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
-    DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
-    DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer *>);
+    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *> ,CFightCard);
+    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *> ,CFightCard);
+    DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *> ,SEveryATKData);
+    DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer * > ,CFightCardFightingBuffer);
 }
 
 void CGamePlayer::deleteFightMonsterCard()
 {
-    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
-    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
+    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *> ,CFightCard);
+    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>,CFightCard);
 
 }
 void CGamePlayer::onFightExitScene()
 {
-    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *>);
-    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>);
-    DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *>);
-    DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer *>);
+    DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *> ,CFightCard);
+    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *> ,CFightCard);
+    DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *> ,SEveryATKData);
+    DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer * > ,CFightCardFightingBuffer);
 }
 
 
@@ -741,7 +751,162 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
     // test code:
     
 }
+/*
+ * @breif: 获取可以添加到背包的邮件队列
+ * @param: inEmailDatas: 要判断的邮件队列
+ * @return: 可以添加的背包的邮件ID队列
+ */
 
+vector<int>CGamePlayer::getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas)
+{
+    int useGridCount = getUseGridCount();
+    vector<int> emailIds;
+    map<int, int> allProps = m_vProps;
+    int tmpAddCount = 0;
+    
+    for (int i = 0; i <inEmailDatas.size(); i++)
+    {
+        tmpAddCount = isCanAddToBackPack(allProps, inEmailDatas.at(i).props, useGridCount);
+        if (tmpAddCount != -1)
+        {
+            emailIds.push_back(inEmailDatas.at(i).emailId);
+            useGridCount += tmpAddCount;
+            mergeProps(allProps, inEmailDatas.at(i).props);
+        }
+    }
+    return emailIds;
+}
+
+/*
+ * @breif: 判断是否可以添加到背包队列中
+ * @param: tmpProps: 背包队列
+ * @param: inAddProps: 要添加的道具队列
+ * @param: inUserGridCount: tmpProps使用的格子数
+ * @return: 返回新增的格子数，－1:无法添加的背包队列中
+ */
+int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAddProps, int inUserGridCount)
+{
+    int bRet = -1;
+    int key = 0;
+    int count = 0;
+    int isOnly = 0;
+    int limitCount;
+    CPtProp *tmp = NULL;
+    for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end() && (inUserGridCount+count) <= m_nOpenGridCount; i++)
+    {
+        key = i->first;
+        tmp = m_rAllProps.at(key);
+        CCAssert(tmp != NULL, "no this prop");
+        isOnly = tmp->getIsOnlyNum();
+        if (isOnly == 1)
+        {
+            //已存在
+            if (tmpProps.find(key)!= tmpProps.end())
+            {
+                return bRet;
+            }else
+            {
+                count++;
+            }
+        }else
+        {
+            int addCount = i->second;
+            limitCount = tmp->getLimitNum();
+            if (tmpProps.find(key)!= tmpProps.end())
+            {
+                int addCount2 =tmpProps.at(key);
+                addCount += addCount2;
+                addCount = (addCount/limitCount + addCount%limitCount == 0 ? 0 : 1);
+                addCount2 = (addCount2/limitCount + addCount2%limitCount == 0 ? 0 : 1);
+                count += (addCount-addCount2);
+            
+            }else
+            {
+               
+                count += (addCount/limitCount + addCount%limitCount == 0 ? 0 : 1);
+            }
+        }
+    }
+    
+    if((inUserGridCount+count) <= m_nOpenGridCount)
+    {
+        bRet = count;
+        
+    }
+    
+    return bRet;
+}
+
+
+/*
+ * @breif: 将要添加的道具队列中数据和背包队列中的数据融合
+ * @param: tmpProps 背包队列
+ * @param: inAddProps 添加的道具队列
+ */
+void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
+{
+    for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end(); i++)
+    {
+        if (tmpProps.find(i->first) == tmpProps.end())
+        {
+            tmpProps.insert(map<int, int>::value_type (i->first, i->second));
+        }else
+        {
+            tmpProps.at(i->first) += i->second;
+        }
+    }
+}
+
+int CGamePlayer::getOpenGridCount()
+{
+    return m_nOpenGridCount;
+}
+int CGamePlayer::AddOpenGridCount(int inAddCount)
+{
+    m_nOpenGridCount += inAddCount;
+    m_nOpenGridCount = m_nOpenGridCount < 0 ? 0 : (m_nOpenGridCount%3==0 ? m_nOpenGridCount : (m_nOpenGridCount/3)*3);
+    return m_nOpenGridCount;
+}
+
+/*
+ * 获取使用的格子数：
+ */
+
+int CGamePlayer::getUseGridCount()
+{
+    int limitMax;
+    int isOnly;
+    int useGridCount = 0;
+    int keyId = 0;
+    int itemCount = 0;
+    CPtProp *tmp = NULL;
+    map<int,int> &allProps = m_vProps;
+    for (map<int, int>::iterator i = allProps.begin(); i != allProps.end(); i++)
+    {
+        keyId = i->first;
+        itemCount = i->second;
+        tmp =  m_rAllProps.at(keyId);
+        CCAssert(tmp!=NULL, "key is null!");
+        
+        isOnly = tmp->getIsOnlyNum();
+        if (isOnly == 1)
+        {
+            useGridCount++;
+        }else
+        {
+           limitMax = tmp->getLimitNum();
+            if (limitMax == 0)
+            {
+                continue;
+            }
+            useGridCount += ((itemCount/limitMax) + (itemCount % limitMax) == 0 ? 0 : 1);
+        }
+        
+    }
+    
+    return useGridCount;
+    
+}
 
 /*
  * 获取玩家基本信息

@@ -408,7 +408,7 @@ void CCardEvolutionLayer::addCard(CPtDisPlayCard *inCard)
         int level = inCard->getCardData()->m_iCurrLevel;
         // des card:
         int nextCardId = inCard->getCardData()->m_pCard->m_ccard_next;
-        CCard * nextCardData = m_pPlayer->m_hashmapAllCard[nextCardId];
+        CCard * nextCardData =SinglePlayer::instance()->getCardByCardId(nextCardId);
         if (nextCardData)
         {
             // if not evloution should delete fightCard:!!!

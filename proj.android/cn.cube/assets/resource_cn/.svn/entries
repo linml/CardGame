@@ -162,9 +162,6 @@ merlin
 
 36202
 
-sound
-dir
-
 card_config.plist
 file
 
@@ -198,6 +195,9 @@ card_config.plist.mine
 
 
 122645
+
+sound
+dir
 
 100004_l.plist
 file
@@ -335,40 +335,6 @@ merlin
 
 732
 
-100004_r.plist
-file
-
-
-
-
-2013-08-13T09:15:12.000000Z
-15c7be5cefd540d9292ef52c8521b5a4
-2013-08-13T09:32:24.972476Z
-962
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1543
-
 boss_icon_Effect_l.plist
 file
 1022
@@ -402,6 +368,40 @@ merlin
 
 
 1474
+
+100004_r.plist
+file
+
+
+
+
+2013-08-13T09:15:12.000000Z
+15c7be5cefd540d9292ef52c8521b5a4
+2013-08-13T09:32:24.972476Z
+962
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1543
 
 cardbg.txt
 file
@@ -556,7 +556,7 @@ file
 
 
 
-
+delete
 2013-07-23T05:47:25.000000Z
 287da9cba89ae758dd2453da496633f5
 2013-07-02T10:09:59.549774Z

@@ -17,6 +17,7 @@ class CSkillData
 {
 public:
     CSkillData();
+    ~CSkillData(){}
     int skill_id;        //技能ID
     int skill_type;      //技能类型
     int skill_logic;

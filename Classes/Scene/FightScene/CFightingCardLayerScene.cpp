@@ -478,7 +478,7 @@ void CFightingCardLayerScene::actionPFightSkill(const char *fightName,CCSprite *
 //    CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonster);
     CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
    // CCCallFuncN::create(this, <#SEL_CallFuncN selector#>)
-    CCCallFuncND *reorderAction=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::actionReorderZorder),(void *)pFight);
+   // CCCallFuncND *reorderAction=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::actionReorderZorder),(void *)pFight);
     
     CCCallFuncN *rebb=CCCallFuncN::create(this, callfuncN_selector(CFightingCardLayerScene::actionReorderZorderNode));
     

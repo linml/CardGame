@@ -11,21 +11,26 @@
 
 CPtPropConfigData::CPtPropConfigData()
 {
-    m_pConfigData = CCDictionary::createWithContentsOfFile(g_str_prop_config.c_str());
+   CCDictionary* m_pConfigData = CCDictionary::createWithContentsOfFile(g_str_prop_config.c_str());
     if (m_pConfigData)
     {
-        m_pConfigData->retain();
+        CCAssert(m_pConfigData!=NULL, "openfilefailure");
+        loadPropToMap(m_pConfigData);
     }
+   
     m_nPropId = -1;
 
 }
 
 CPtPropConfigData::~CPtPropConfigData()
 {
-    if(m_pConfigData)
+    
+    for (std::map<int, CPtProp*>::iterator i = m_pAllProps.begin(); i != m_pAllProps.end(); i++)
     {
-        m_pConfigData->release();
+        CC_SAFE_RELEASE(i->second);
+        i->second = NULL;
     }
+    m_pAllProps.clear();
 }
 
 bool CPtPropConfigData::getPropDataById(const int &inPropId)
@@ -39,33 +44,74 @@ bool CPtPropConfigData::getPropDataById(const int &inPropId)
         CCLog("don't update propconfig file");
         return true;
     }
-    char buffer[20] = {0};
-    sprintf(buffer, "%d", inPropId);
-    if (m_pConfigData)
-    {
-        CCDictionary * tmp = (CCDictionary *) m_pConfigData->objectForKey(buffer);
-        if (tmp == NULL)
+   
+        CPtProp *prop = m_pAllProps.at(inPropId);
+        if (prop == NULL)
         {
             return false;
+            
         }
         // getData:
-        m_strPropName = GameTools::valueForKey("name", tmp);
-        m_nPropType  = GameTools::intForKey("type", tmp);
-        m_nUnLockLevel = GameTools::intForKey("unlock_level", tmp);
-        m_nUseDelete = GameTools::intForKey("use_delete", tmp);
-        m_nQuality = GameTools::intForKey("quality", tmp);
-        m_nPrice =  GameTools::intForKey("price", tmp);
-        m_nSkillId = GameTools::intForKey("skill_id", tmp);
-        m_nSellCoin = GameTools::intForKey("sell_coin", tmp);
-        m_nCoin = GameTools::intForKey("coin",tmp);
-        m_strIconName = GameTools::valueForKey("icon", tmp);
-        m_nLimitNum = GameTools::intForKey("limit_num", tmp);
-        m_nMaxNum = GameTools::intForKey("max_num", tmp);
-        m_strTips = GameTools::valueForKey("tips", tmp);
+        m_strPropName = prop->getPropName();    
+        m_nPropType  = prop->getPropType();    
+        m_nUnLockLevel = prop->getUnLockLevel();
+        m_nUseDelete = prop->getUseDelete(); 
+        m_nPrice =  prop->getPrice(); 
+        m_nSkillId = prop->getSkillId(); 
+        m_nSellCoin = prop->getSellCoin(); 
+        m_nCoin = prop->getCoin(); 
+        m_strIconName = prop->getIconName(); 
+        m_nLimitNum = prop->getLimitNum();
+        m_nIsOnly = prop->getIsOnlyNum(); 
+        m_strTips = prop->getTips(); 
         
         m_nPropId = inPropId;
         return true;
-    }
-    return false;
 }
 
+CPtProp * CPtPropConfigData::getPropById(const int &inPropId)
+{
+    bool bRet = false;
+    CPtProp * prop = NULL;
+    
+    if(inPropId < 0)
+    {
+        bRet = false;
+    }else
+    {
+        prop = m_pAllProps.at(inPropId);
+        
+    }
+
+    return prop;
+}
+
+void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
+{
+    if (inConfigData)
+    {
+        CPtProp *prop = NULL;
+        CCDictElement *element = NULL;
+        CCDictionary * tmpValue = NULL;
+        int keyId = 0;
+        CCDICT_FOREACH(inConfigData, element)
+        {
+            keyId = atoi(element->getStrKey());
+            prop= new CPtProp();
+            tmpValue = (CCDictionary *)element->getObject();
+            prop->setPropName(GameTools::valueForKey("name", tmpValue));
+            prop->setPropType(GameTools::intForKey("type", tmpValue));
+            prop->setUnLockLevel(GameTools::intForKey("unlock_level", tmpValue));
+            prop->setUseDelete(GameTools::intForKey("use_delete", tmpValue));
+            prop->setPrice(GameTools::intForKey("price", tmpValue));
+            prop->setSkillId(GameTools::intForKey("skill_id", tmpValue));
+            prop->setSellCoin(GameTools::intForKey("sell_coin", tmpValue));
+            prop->setCoin(GameTools::intForKey("coin",tmpValue));
+            prop->setIconName(GameTools::valueForKey("icon", tmpValue));
+            prop->setLimitNum(GameTools::intForKey("limit_num", tmpValue));
+            prop->setIsOnlyNum(GameTools::intForKey("is_only", tmpValue));
+            prop->setTips(GameTools::valueForKey("tips", tmpValue));
+            m_pAllProps.insert(map<int, CPtProp*>::value_type (keyId, prop));
+        }
+    }
+}

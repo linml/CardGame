@@ -10,6 +10,8 @@
 #define _1_cube_gameStruct_h
 
 #include <vector>
+#include <map>
+
 
 enum EN_FACETO
 {
@@ -55,5 +57,17 @@ struct STC_HOUSEPOS{
 };
 
 typedef STC_HOUSEPOS TP_Orientations;
+
+/*
+ * emialId: 邮件ID
+ * props: 该邮件所拥有的道具：key：道具ID， value：道具数目
+ */
+
+struct EMAIL_DATA
+{
+    int emailId;
+    std::map<int, int> props;
+    
+};
 
 #endif

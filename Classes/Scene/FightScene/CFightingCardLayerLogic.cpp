@@ -362,7 +362,6 @@ bool CFightingCardLayerLogic::checkSendZengfu()
         {
       
             appendHpAngryUpdate();
-            appendUpdateBuffer();
         }
         //获得当前的buffer列表
         result=true;
@@ -387,7 +386,6 @@ void CFightingCardLayerLogic::appendUpdateBuffer()
         SinglePlayer::instance()->appendCFightCardFightingBuffer(NULL);
         return;
     }
-
     CFightCardFightingBuffer *fightBuffer=new CFightCardFightingBuffer;
     fightBuffer->m_index=m_iTotalHuihe;
     for (list<CCardBufferStatusRefactor *>::iterator itAfter=m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.begin(); itAfter!=m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.end(); itAfter++)
