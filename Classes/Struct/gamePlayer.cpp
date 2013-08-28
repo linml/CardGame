@@ -913,9 +913,10 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
         gameInitStatus=ERROR_MSG_CONNECTSERVERERROR;
         return;
     }
+
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GameBegin");
     char *strdata=(char *)object;
-    
+    CCLog("%s",strdata);    
     CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
     delete []strdata;
     int codeReslut=GameTools::intForKey("code", dict);
