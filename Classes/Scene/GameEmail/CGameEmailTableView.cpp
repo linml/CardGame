@@ -66,6 +66,7 @@ bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSize ce
     tableView->setDirection(kCCScrollViewDirectionVertical);
     tableView->setPosition(p);
     tableView->setDelegate(this);
+    tableView->setTouchPriority(-8);
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
     this->addChild(tableView);
     return true;
@@ -115,7 +116,12 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
             if(lingquButton)
             {
                 string word = Utility::getWordWithFile("word.plist", "lingqujiangpin");
-                CGameButtonControl *gameLingqu=CGameButtonControl::createButton(TEXTMID, word.c_str(), <#const char *normalPng#>, <#const char *selectPng#>)
+                CGameButtonControl *gameLingqu=CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Normal.png");
+                gameLingqu->setPosition(lingquButton->getPosition());
+                gameLingqu->setTag(lingquButton->getTag());
+                gameLingqu->setAnchorPoint(lingquButton->getAnchorPoint());
+                cell->addChild(gameLingqu);
+                cell ->reorderChild(gameLingqu,lingquButton->getZOrder());
                 cell->removeChild(lingquButton, 0);
             }
         }
@@ -123,18 +129,14 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
 
 CCTableViewCell* CGameEmailTableView::tableCellAtIndex(CCTableView *table, unsigned int idx) {
     
-    CCString* string = CCString::createWithFormat("%d", idx);
     CCTableViewCell* cell = table->cellAtIndex(idx);
     if (!cell) {
         cell = new CCTableViewCell();
         cell->autorelease();
         this->initCellItem(cell, idx);
-    }else{
-        CCLabelTTF* label_ = (CCLabelTTF*)cell->getChildByTag(100);
-		if(label_ != NULL)
-		{
-			label_->setString(string->getCString());
-		}
+    }
+    else
+    {
         scrollBar(table);
     }
     return cell;
@@ -157,9 +159,8 @@ void CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* 
     
 }
 
-#pragma mark - CCScrollViewDelegate
-void CGameEmailTableView::scrollViewDidScroll(CCScrollView* view) {
-    CCLog("**************************************");
+void CGameEmailTableView::scrollViewDidScroll(CCScrollView* view)
+{
     scrollBar((CCTableView*)view);
 }
 
@@ -179,64 +180,64 @@ void CGameEmailTableView::scrollBar(CCTableView* table)
         return;
     }
     
-    if (!m_huaTiao) {
-        m_huaTiao = CCSprite::create("scrollBar.png");
-        if(m_huaTiao != NULL)
-        {
-            CCSize sizeBar = m_huaTiao->getContentSize();
-            this->addChild(m_huaTiao, 1);
-            m_huaTiao->setScaleY(viewSize.height/sizeBar.height);
-            float scaley = 0;
-            scaley = m_huaTiao->getScaleY();
-            float per = viewSize.height/conSize.height;
-            scaley = scaley*per;
-            m_huaTiao->setScaleY(scaley);
-            
-            m_huaTiao->setAnchorPoint(ccp(0,0.5));
-        }
-    }
-	if(m_huaTiao == NULL)
-	{
-		return;
-	}
-    m_huaTiao->setOpacity(255);
-    
-    CCPoint scrollViewPoint = table->getPosition();
-    
-    CCSize sizeBar = m_huaTiao->getContentSize();
-	// tableSize.height == cell个数*cell的height
-	CCSize tableSize = table->getContentSize();
-	// CCTableView
-	CCSize tableViewSize = table->getViewSize();
-    //    tableViewSize = CCSize(tableViewSize.width, tableViewSize.height-sizeBar.height);
-	// 每次拖动的偏移量？(负值)
-	CCPoint contOffsetPos = table->getContentOffset();
-    
-	// 总的偏移量
-	float maxOff = tableViewSize.height - tableSize.height;
-	// 拖动的偏移量
-	float curOff = contOffsetPos.y - maxOff;
-	// 计算百分百
-	float percentage = fabs(curOff)/fabs(maxOff);
-    
-    //	printf("contOffsetPos:%f ,curOff:%f, maxOff:%f, per:%f\n", contOffsetPos.y, curOff, maxOff, percentage);
-	
-	// 拖拉到最顶端或最低端后继续拖动(弹回)会出现percentage值小于0.1和大于1.0的情况，我们分别把percentage重置为0和1.0f
-	if(curOff < 0)
-	{
-		percentage = 0;
-	}
-	if(percentage > 1.0f)
-	{
-		percentage = 1.0f;
-	}
-    
-	// bar移动到最顶端的position.y
-	float barTopPosY = scrollViewPoint.y+tableViewSize.height -(sizeBar.height*m_huaTiao->getScaleY())/2 ;
-	// bar移动到最低端的position.y
-	float barLowPosY = scrollViewPoint.y+(sizeBar.height*m_huaTiao->getScaleY())/2;
-	// ....
-	float h = barTopPosY - percentage*(barTopPosY- barLowPosY);;
-    
-	m_huaTiao->setPosition(ccp(tableViewSize.width*1.05 , h));
+//    if (!m_huaTiao) {
+//        m_huaTiao = CCSprite::create("scrollBar.png");
+//        if(m_huaTiao != NULL)
+//        {
+//            CCSize sizeBar = m_huaTiao->getContentSize();
+//            this->addChild(m_huaTiao, 1);
+//            m_huaTiao->setScaleY(viewSize.height/sizeBar.height);
+//            float scaley = 0;
+//            scaley = m_huaTiao->getScaleY();
+//            float per = viewSize.height/conSize.height;
+//            scaley = scaley*per;
+//            m_huaTiao->setScaleY(scaley);
+//            
+//            m_huaTiao->setAnchorPoint(ccp(0,0.5));
+//        }
+//    }
+//	if(m_huaTiao == NULL)
+//	{
+//		return;
+//	}
+//    m_huaTiao->setOpacity(255);
+//    
+//    CCPoint scrollViewPoint = table->getPosition();
+//    
+//    CCSize sizeBar = m_huaTiao->getContentSize();
+//	// tableSize.height == cell个数*cell的height
+//	CCSize tableSize = table->getContentSize();
+//	// CCTableView
+//	CCSize tableViewSize = table->getViewSize();
+//    //    tableViewSize = CCSize(tableViewSize.width, tableViewSize.height-sizeBar.height);
+//	// 每次拖动的偏移量？(负值)
+//	CCPoint contOffsetPos = table->getContentOffset();
+//    
+//	// 总的偏移量
+//	float maxOff = tableViewSize.height - tableSize.height;
+//	// 拖动的偏移量
+//	float curOff = contOffsetPos.y - maxOff;
+//	// 计算百分百
+//	float percentage = fabs(curOff)/fabs(maxOff);
+//    
+//    //	printf("contOffsetPos:%f ,curOff:%f, maxOff:%f, per:%f\n", contOffsetPos.y, curOff, maxOff, percentage);
+//	
+//	// 拖拉到最顶端或最低端后继续拖动(弹回)会出现percentage值小于0.1和大于1.0的情况，我们分别把percentage重置为0和1.0f
+//	if(curOff < 0)
+//	{
+//		percentage = 0;
+//	}
+//	if(percentage > 1.0f)
+//	{
+//		percentage = 1.0f;
+//	}
+//    
+//	// bar移动到最顶端的position.y
+//	float barTopPosY = scrollViewPoint.y+tableViewSize.height -(sizeBar.height*m_huaTiao->getScaleY())/2 ;
+//	// bar移动到最低端的position.y
+//	float barLowPosY = scrollViewPoint.y+(sizeBar.height*m_huaTiao->getScaleY())/2;
+//	// ....
+//	float h = barTopPosY - percentage*(barTopPosY- barLowPosY);;
+//    
+//	m_huaTiao->setPosition(ccp(tableViewSize.width*1.05 , h));
 }

@@ -46,6 +46,7 @@ void CGameEmailManager::decodeEmap(CCDictionary *dict)
                     pGameEmailData->m_mapDataProp[atoi(pchKey)]=GameTools::intForKey(pchKey, emailItemDirector);
                 }
             }
+            CCLog("m_gameEmail====");
             m_gameEmail[pGameEmailData->getGameEmailMsgId()]=pGameEmailData;
         }
     }
@@ -213,6 +214,11 @@ string CGameEmailManager::getJsonData()
         cleareMyDictionaryList();
     }
     return  resultStr;
+}
+
+int CGameEmailManager::getMailCount()
+{
+    return m_gameEmail.size();
 }
 
 void CGameEmailManager::testData()

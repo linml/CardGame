@@ -38,6 +38,7 @@ public:
     CMyDictionary * createMydict();
     void cleareMyDictionaryList();
     void testData();
+    int getMailCount();
 public:
     int m_iGetHttpStatus;
     map<int , CGameEmailData *>m_gameEmail;

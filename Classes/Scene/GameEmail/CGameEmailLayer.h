@@ -31,6 +31,7 @@ private:
     bool initCreate();
     bool loadPlistFile();
     void createRecvAllButton();
+    void creaetEmailTableView();
 protected:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
