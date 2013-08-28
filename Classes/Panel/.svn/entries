@@ -1,14 +1,14 @@
 10
 
 dir
-1050
+1080
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Panel
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-23T04:57:29.159381Z
-1046
+2013-08-28T01:14:12.104453Z
+1072
 merlin
 has-props
 
@@ -62,10 +62,37 @@ merlin
 
 CFileReadWrite.h
 file
-0
 
 
-add
+
+
+2013-08-27T02:29:26.000000Z
+cc816d5ef444cc6e2df292daa5e0d069
+2013-08-28T01:14:12.104453Z
+1072
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+544
 
 CGameCardBuffer.cpp
 file
@@ -237,13 +264,6 @@ merlin
 
 2355
 
-GlobalSchedule.cpp
-file
-0
-
-
-add
-
 CPtTableItem.cpp
 file
 
@@ -280,10 +300,37 @@ phileas
 
 CMyDictionary.cpp
 file
-0
 
 
-add
+
+
+2013-08-27T05:42:54.000000Z
+f18d6c86feb3c9300f5ab86aa1b17b46
+2013-08-28T01:14:12.104453Z
+1072
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2270
 
 CGameErrorConfigLayer.h
 file
@@ -387,6 +434,40 @@ phileas
 
 4477
 
+CGlobalSchedule.cpp
+file
+
+
+
+
+2013-08-27T08:19:33.000000Z
+8325f11ab5e28b4f2a39cc939a6c93b3
+2013-08-28T01:14:12.104453Z
+1072
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1565
+
 CPtListViewWidget.cpp
 file
 
@@ -455,19 +536,39 @@ phileas
 
 1442
 
-GlobalSchedule.h
-file
-0
-
-
-add
-
 CMyDictionary.h
 file
-0
 
 
-add
+
+
+2013-08-27T05:42:46.000000Z
+6587fccd6967657fdec4c5cc2e1971b9
+2013-08-28T01:14:12.104453Z
+1072
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+880
 
 CPtBarWidget.h
 file
@@ -502,6 +603,40 @@ phileas
 
 
 1222
+
+CGlobalSchedule.h
+file
+
+
+
+
+2013-08-27T08:19:36.000000Z
+e97a8e79179c8fcfffbcc3b645558a99
+2013-08-28T01:14:12.104453Z
+1072
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+955
 
 CPtButtonWidget.cpp
 file
@@ -675,7 +810,41 @@ merlin
 
 CFileReadWrite.cpp
 file
-0
+
+
+
+
+2013-08-27T02:29:46.000000Z
+16998a36c302373568dc384e26d9f3a6
+2013-08-28T01:14:12.104453Z
+1072
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1852
+
+Button
+dir
+
 
 
 add

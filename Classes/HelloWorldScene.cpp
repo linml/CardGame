@@ -9,6 +9,7 @@
 #include "HBActionScript.h"
 #include "HBActionAni.h" 
 #include "CGameCardBuffer.h"
+#include "CBackpackContainerLayer.h"
 
 
 using namespace cocos2d;
@@ -91,7 +92,7 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
 
-   // test(this);
+    test(this);
     // add "HelloWorld" splash screen"
 
  //   CCSprite* pSprite = CCSprite::create("resource_cn/img/HelloWorld.png");
@@ -144,7 +145,8 @@ void test(CCNode *pSender)
 {
     
    // CBattleArrayLayer *layer = CBattleArrayLayer::create();
-    CCardSettingScene *layer = CCardSettingScene::create();
+   // CCardSettingScene *layer = CCardSettingScene::create();
+    CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
     pSender->addChild(layer);
 }
 

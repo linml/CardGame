@@ -3,7 +3,7 @@
     <key>spriteFileName</key>
     <string>xialatiao</string>
     <key>imagePath</key>
-    <string>../Library/Application Support/iPhone Simulator/6.1/Applications/33C246C2-32ED-4F91-A782-D9073F17BAC8/MapView.app/resource/image/xialatiao.png</string>
+    <string>../../CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/xialatiao.png</string>
     <key>clipData</key>
     <dict>
         <key>JiNengLabel.png</key>

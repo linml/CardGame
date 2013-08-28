@@ -22,22 +22,31 @@ using namespace std;
 class CBackpackPageLayer : public CCLayer
 {
 public:
-    static CBackpackPageLayer *create(int inOpenNumber = 0);
+    static CBackpackPageLayer *create();
 
+    static CBackpackPageLayer *create(multimap<int, int> *inGridData, multimap<int, int>::iterator inBegin, multimap<int, int>::iterator inEnd, int inOpenGridCount);
     
 public:
     CBackpackPageLayer();
     virtual ~CBackpackPageLayer ();
 public:
-    virtual bool init(int inOpenNumber);
+    // touch event:
+    virtual bool init();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
     bool getTouchLock(){return m_bTouchLock;};
+    
+    // change page content:
+    void updatePageContent(multimap<int, int>::iterator inBegin, multimap<int, int>::iterator inEnd, int inOpenGridCount);
+    void updatePageContent(vector<multimap<int, int>::iterator> inDataIterators);
+    
+    void setGridData(multimap<int, int> * inGridData){m_pGridData = inGridData;};
+    
 protected:
-    void initCBackpackPageLayer(int inOpenNumber);
+    void initCBackpackPageLayer();
     void handlerTouch();
     
     void addItems(int inUseNum);
@@ -49,9 +58,20 @@ protected:
     void initPanel(bool inResetTexture=false);
     void resetPanel();
     
+    bool canOpenGrid();
     void openGrid();
     void openGridUI();
     
+    void onClickOpenGrid();
+    void onReceiveOpenGridMsg(CCObject *pOject);
+    
+    void updatePageContentUI(bool inAllProps = true);
+    
+    void onClickUseProp(int inPropId, int inPropNum);
+    void onClickDeleteProp(int inProp, int inPropNum);
+    
+    void onReceiveUsePropMsg(CCObject *pOject);
+    void onReceiveDeletProp(CCObject *pObject);
 protected:
     bool m_bTouchLock;
     
@@ -70,6 +90,9 @@ protected:
     
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
+    
+    multimap<int, int> * m_pGridData;
+    vector<multimap<int, int>::iterator> m_cGridDataIterator;
     
     static const int AllGridInPageNumber = 9;
     static const int DeleteTag = 2000;

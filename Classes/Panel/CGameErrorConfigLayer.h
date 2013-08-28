@@ -29,6 +29,7 @@ enum EN_DIALOGTYPE {
 
 class CErrorDialog :public cocos2d::CCLayer {
 public:
+    //std::string str,CCObject *, SEL_CallFunc okFunction,SEL_CallFunc cancelFunction
     CErrorDialog();
     ~CErrorDialog();
     static void CreateByMsgId(std::string strKeyId,EN_DIALOGTYPE entypeButton);

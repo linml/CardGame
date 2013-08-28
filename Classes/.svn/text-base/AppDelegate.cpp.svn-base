@@ -14,7 +14,8 @@
 #include "SceneManager.h"
 #include "MemoryGameCollabLayer.h"
 #include "CGameErrorConfigLayer.h"
-
+#include "CGameEmailManager.h"
+#include "CPtTool.h"
 
 USING_NS_CC;
 
@@ -45,11 +46,11 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	pDirector->setAnimationInterval(1.0 / 60);
-
-
+   // const char *tempdata=CPtTool::readFileName(std::string("resource_cn/emailmsg.txt").c_str()).c_str();
+   // G_GAMESINGEMAIL::instance()->decodeEmap(tempdata);
+   // CCLOG("%s",G_GAMESINGEMAIL::instance()->getJsonData().c_str());
     SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
-   //  pDirector->runWithScene(CErrorDialog::scene());
-
+   // pDirector->runWithScene(HelloWorld::scene());
   //  CCScene *scene=CCScene::create();
   // SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
 

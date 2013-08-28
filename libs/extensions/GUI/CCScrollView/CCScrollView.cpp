@@ -145,7 +145,7 @@ bool CCScrollView::init()
 
 void CCScrollView::registerWithTouchDispatcher()
 {
-    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, 0, false);
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, getTouchPriority(), false);
 }
 
 bool CCScrollView::isNodeVisible(CCNode* node)

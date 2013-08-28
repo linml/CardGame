@@ -94,5 +94,13 @@
 	<string>确认</string>
 	<key>cuowutishiquxiao</key>
 	<string>取消</string>
+	<key>backpack_all</key>
+	<string>All</string>
+	<key>backpack_prop</key>
+	<string>The props</string>
+	<key>backpack_material</key>
+	<string>Material</string>
+	<key>backpack_task</key>
+	<string>The task</string>
 </dict>
 </plist>

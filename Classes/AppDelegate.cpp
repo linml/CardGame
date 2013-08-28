@@ -49,9 +49,11 @@ bool AppDelegate::applicationDidFinishLaunching()
    // const char *tempdata=CPtTool::readFileName(std::string("resource_cn/emailmsg.txt").c_str()).c_str();
    // G_GAMESINGEMAIL::instance()->decodeEmap(tempdata);
    // CCLOG("%s",G_GAMESINGEMAIL::instance()->getJsonData().c_str());
+   // CCLOG("==%d", G_GAMESINGEMAIL::instance()->getCurrentEmailMapMaxMsgId());
+   // CCLOG("===%d",G_GAMESINGEMAIL::instance()->getCurrentEmailUnreadCount());
+    
     SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
-   //  pDirector->runWithScene(CErrorDialog::scene());
-
+   // pDirector->runWithScene(HelloWorld::scene());
   //  CCScene *scene=CCScene::create();
   // SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
 

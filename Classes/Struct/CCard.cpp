@@ -119,15 +119,11 @@ void CFightCard::updateFight(CCard *card, int level /*=1*/)
             // 累加的
             CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
             levelConfig->update(level);
-            
-           
             updateCard(level);
             CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
             m_nCurrentPrice = levelConfig->getConin();
             m_nNeedExp = levelConfig->getExp();
-            // test:
             m_nLeadShip = card->m_icard_leadership;
-            
         }
         CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
         

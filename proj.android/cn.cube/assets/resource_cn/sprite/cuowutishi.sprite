@@ -3,37 +3,37 @@
     <key>spriteFileName</key>
     <string>cuowutishi</string>
     <key>imagePath</key>
-    <string>../Documents/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/cuowutishi.png</string>
+    <string>../../CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/cuowutishi.png</string>
     <key>clipData</key>
     <dict>
-        <key>界面优化0-副本-2_01.png</key>
-        <string>{316,2,85,55}</string>
-        <key>界面优化0-副本-2_02.png</key>
-        <string>{243,31,48,48}</string>
-        <key>界面优化0-副本-2_03.png</key>
-        <string>{2,83,32,42}</string>
-        <key>界面优化0-副本-2_04.png</key>
-        <string>{160,2,154,27}</string>
-        <key>界面优化0-副本-2_05.png</key>
-        <string>{160,31,81,55}</string>
-        <key>界面优化0-副本-2_06.png</key>
+        <key>Label_2_01.png</key>
+        <string>{160,2,85,55}</string>
+        <key>Label_2_02.png</key>
+        <string>{85,68,48,48}</string>
+        <key>Label_2_03.png</key>
+        <string>{49,125,32,42}</string>
+        <key>Label_2_04.png</key>
+        <string>{2,39,154,27}</string>
+        <key>Label_2_05.png</key>
+        <string>{2,68,81,55}</string>
+        <key>Label_2_06.png</key>
         <string>{2,2,156,35}</string>
-        <key>界面优化0-副本-2_09.png</key>
-        <string>{52,63,45,22}</string>
-        <key>界面优化0-副本-2_12.png</key>
-        <string>{52,39,48,22}</string>
-        <key>界面优化0-副本-2_15.png</key>
-        <string>{102,39,45,42}</string>
-        <key>界面优化0-副本-2_16.png</key>
-        <string>{99,83,32,42}</string>
-        <key>界面优化0-副本-2_17.png</key>
-        <string>{2,39,48,42}</string>
+        <key>Label_2_09.png</key>
+        <string>{2,125,45,22}</string>
+        <key>Label_2_12.png</key>
+        <string>{85,118,48,22}</string>
+        <key>Label_2_15.png</key>
+        <string>{158,59,85,42}</string>
+        <key>Label_2_16.png</key>
+        <string>{218,103,32,42}</string>
+        <key>Label_2_17.png</key>
+        <string>{135,103,81,42}</string>
     </dict>
     <key>mapSpriteData</key>
     <dict>
-        <key>界面优化0-副本-2_01.png</key>
+        <key>Label_2_01.png</key>
         <dict>
-            <key>界面优化0-副本-2_01.png</key>
+            <key>Label_2_01.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -47,9 +47,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_02.png</key>
+        <key>Label_2_02.png</key>
         <dict>
-            <key>界面优化0-副本-2_02.png</key>
+            <key>Label_2_02.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -63,9 +63,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_03.png</key>
+        <key>Label_2_03.png</key>
         <dict>
-            <key>界面优化0-副本-2_03.png</key>
+            <key>Label_2_03.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -79,9 +79,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_04.png</key>
+        <key>Label_2_04.png</key>
         <dict>
-            <key>界面优化0-副本-2_04.png</key>
+            <key>Label_2_04.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -95,9 +95,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_05.png</key>
+        <key>Label_2_05.png</key>
         <dict>
-            <key>界面优化0-副本-2_05.png</key>
+            <key>Label_2_05.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -111,9 +111,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_06.png</key>
+        <key>Label_2_06.png</key>
         <dict>
-            <key>界面优化0-副本-2_06.png</key>
+            <key>Label_2_06.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -127,9 +127,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_09.png</key>
+        <key>Label_2_09.png</key>
         <dict>
-            <key>界面优化0-副本-2_09.png</key>
+            <key>Label_2_09.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -143,9 +143,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_12.png</key>
+        <key>Label_2_12.png</key>
         <dict>
-            <key>界面优化0-副本-2_12.png</key>
+            <key>Label_2_12.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -159,9 +159,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_15.png</key>
+        <key>Label_2_15.png</key>
         <dict>
-            <key>界面优化0-副本-2_15.png</key>
+            <key>Label_2_15.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -175,9 +175,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_16.png</key>
+        <key>Label_2_16.png</key>
         <dict>
-            <key>界面优化0-副本-2_16.png</key>
+            <key>Label_2_16.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -191,9 +191,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>界面优化0-副本-2_17.png</key>
+        <key>Label_2_17.png</key>
         <dict>
-            <key>界面优化0-副本-2_17.png</key>
+            <key>Label_2_17.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>

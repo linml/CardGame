@@ -63,6 +63,12 @@
 		6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24817964AF800E16CDE /* CFightSkillManager.cpp */; };
 		6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */; };
 		6FD24A5F17CAE474007F87B8 /* CGameEmailData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FD24A5D17CAE474007F87B8 /* CGameEmailData.cpp */; };
+		6FEF3BDB17CDA0E000AEA328 /* CGameEmailLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FEF3BD917CDA0E000AEA328 /* CGameEmailLayer.cpp */; };
+		6FEF3BE617CDDF5E00AEA328 /* CBackpackContainerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FEF3BE217CDDF5E00AEA328 /* CBackpackContainerLayer.cpp */; };
+		6FEF3BE717CDDF5E00AEA328 /* CBackpackPageLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FEF3BE417CDDF5E00AEA328 /* CBackpackPageLayer.cpp */; };
+		6FEF3BEF17CDEC4000AEA328 /* CButtonControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FEF3BED17CDEC4000AEA328 /* CButtonControl.cpp */; };
+		6FEF3BF217CDED0D00AEA328 /* CGameButtonControl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FEF3BF017CDED0C00AEA328 /* CGameButtonControl.cpp */; };
+		6FEF3BF517CDF4BC00AEA328 /* CGameEmailTableView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FEF3BF317CDF4BC00AEA328 /* CGameEmailTableView.cpp */; };
 		8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E13F18A17700F5F0050812F /* TaskLayer.cpp */; };
 		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
 		8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */; };
@@ -419,6 +425,18 @@
 		6FBBC24C17966FA400E16CDE /* CAnimationSpriteGameFight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAnimationSpriteGameFight.h; sourceTree = "<group>"; };
 		6FD24A5D17CAE474007F87B8 /* CGameEmailData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameEmailData.cpp; sourceTree = "<group>"; };
 		6FD24A5E17CAE474007F87B8 /* CGameEmailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameEmailData.h; sourceTree = "<group>"; };
+		6FEF3BD917CDA0E000AEA328 /* CGameEmailLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameEmailLayer.cpp; sourceTree = "<group>"; };
+		6FEF3BDA17CDA0E000AEA328 /* CGameEmailLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameEmailLayer.h; sourceTree = "<group>"; };
+		6FEF3BE217CDDF5E00AEA328 /* CBackpackContainerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBackpackContainerLayer.cpp; sourceTree = "<group>"; };
+		6FEF3BE317CDDF5E00AEA328 /* CBackpackContainerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBackpackContainerLayer.h; sourceTree = "<group>"; };
+		6FEF3BE417CDDF5E00AEA328 /* CBackpackPageLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBackpackPageLayer.cpp; sourceTree = "<group>"; };
+		6FEF3BE517CDDF5E00AEA328 /* CBackpackPageLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBackpackPageLayer.h; sourceTree = "<group>"; };
+		6FEF3BED17CDEC4000AEA328 /* CButtonControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CButtonControl.cpp; sourceTree = "<group>"; };
+		6FEF3BEE17CDEC4000AEA328 /* CButtonControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CButtonControl.h; sourceTree = "<group>"; };
+		6FEF3BF017CDED0C00AEA328 /* CGameButtonControl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameButtonControl.cpp; sourceTree = "<group>"; };
+		6FEF3BF117CDED0D00AEA328 /* CGameButtonControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameButtonControl.h; sourceTree = "<group>"; };
+		6FEF3BF317CDF4BC00AEA328 /* CGameEmailTableView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameEmailTableView.cpp; sourceTree = "<group>"; };
+		6FEF3BF417CDF4BC00AEA328 /* CGameEmailTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameEmailTableView.h; sourceTree = "<group>"; };
 		8E13F18A17700F5F0050812F /* TaskLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskLayer.cpp; sourceTree = "<group>"; };
 		8E13F18B17700F5F0050812F /* TaskLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskLayer.h; sourceTree = "<group>"; };
 		8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExplorationScene.cpp; sourceTree = "<group>"; };
@@ -1177,6 +1195,47 @@
 			path = FightScene;
 			sourceTree = "<group>";
 		};
+		6FEF3BD817CDA0C800AEA328 /* GameEmail */ = {
+			isa = PBXGroup;
+			children = (
+				6FEF3BD917CDA0E000AEA328 /* CGameEmailLayer.cpp */,
+				6FEF3BDA17CDA0E000AEA328 /* CGameEmailLayer.h */,
+				6FEF3BF317CDF4BC00AEA328 /* CGameEmailTableView.cpp */,
+				6FEF3BF417CDF4BC00AEA328 /* CGameEmailTableView.h */,
+			);
+			path = GameEmail;
+			sourceTree = "<group>";
+		};
+		6FEF3BE017CDDF5D00AEA328 /* Backpack */ = {
+			isa = PBXGroup;
+			children = (
+				6FEF3BE117CDDF5E00AEA328 /* Layer */,
+			);
+			path = Backpack;
+			sourceTree = "<group>";
+		};
+		6FEF3BE117CDDF5E00AEA328 /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				6FEF3BE217CDDF5E00AEA328 /* CBackpackContainerLayer.cpp */,
+				6FEF3BE317CDDF5E00AEA328 /* CBackpackContainerLayer.h */,
+				6FEF3BE417CDDF5E00AEA328 /* CBackpackPageLayer.cpp */,
+				6FEF3BE517CDDF5E00AEA328 /* CBackpackPageLayer.h */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
+		6FEF3BEC17CDEC3F00AEA328 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				6FEF3BED17CDEC4000AEA328 /* CButtonControl.cpp */,
+				6FEF3BEE17CDEC4000AEA328 /* CButtonControl.h */,
+				6FEF3BF017CDED0C00AEA328 /* CGameButtonControl.cpp */,
+				6FEF3BF117CDED0D00AEA328 /* CGameButtonControl.h */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
 		8E6CE590176EEF1E00CF5C0D /* ExplorationScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1323,6 +1382,7 @@
 		9F801315175493D400EEC0BC /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				6FEF3BEC17CDEC3F00AEA328 /* Control */,
 				6FB7013A17C33EB7006B0C60 /* CGameErrorConfigLayer.cpp */,
 				6FB7013B17C33EB8006B0C60 /* CGameErrorConfigLayer.h */,
 				9F2A2F5B17B33A1C0000E8DE /* CPtButtonWidget.cpp */,
@@ -1360,6 +1420,8 @@
 		9F801316175493D400EEC0BC /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				6FEF3BE017CDDF5D00AEA328 /* Backpack */,
+				6FEF3BD817CDA0C800AEA328 /* GameEmail */,
 				6FAD753C17A269C700AB8D8E /* CardSettingScene */,
 				8E6CE590176EEF1E00CF5C0D /* ExplorationScene */,
 				6F780745176469830049321C /* HallScene */,
@@ -2726,6 +2788,12 @@
 				6F280A8117CC53A900D3CF97 /* CMyDictionary.cpp in Sources */,
 				6F280A8417CC975300D3CF97 /* CGlobalSchedule.cpp in Sources */,
 				6F280A8717CC9DC300D3CF97 /* SGamePlayerData.cpp in Sources */,
+				6FEF3BDB17CDA0E000AEA328 /* CGameEmailLayer.cpp in Sources */,
+				6FEF3BE617CDDF5E00AEA328 /* CBackpackContainerLayer.cpp in Sources */,
+				6FEF3BE717CDDF5E00AEA328 /* CBackpackPageLayer.cpp in Sources */,
+				6FEF3BEF17CDEC4000AEA328 /* CButtonControl.cpp in Sources */,
+				6FEF3BF217CDED0D00AEA328 /* CGameButtonControl.cpp in Sources */,
+				6FEF3BF517CDF4BC00AEA328 /* CGameEmailTableView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

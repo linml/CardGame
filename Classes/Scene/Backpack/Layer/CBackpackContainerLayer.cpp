@@ -37,6 +37,7 @@ CBackpackContainerLayer::CBackpackContainerLayer()
     m_pIndicators = NULL;
     m_pTabs = NULL;
     m_pCurrentPage = NULL;
+    m_pCloseButton = NULL;
     
     m_bPageTouchEnable = false;
     m_nOpenGridCount = 9;
@@ -82,6 +83,12 @@ bool CBackpackContainerLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     m_nTouchTag =  TouchRect::SearchTouchTag(pTouch->getLocation(), m_cTouches);
     if (m_nTouchTag != -1)
     {
+        if (m_nTouchTag == 8)
+        {
+            // pressed close button:
+            
+            return  true;
+        }
         if ( m_nCurrentTab == (m_nTouchTag-3000))
         {
             return true ;
@@ -139,11 +146,22 @@ void CBackpackContainerLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             }else
             {
                 PtSoundTool::playSysSoundEffect("UI_click.wav");
+                if (m_nTouchTag == 8)
+                {
+                    removeFromParentAndCleanup(true);
+                    return;
+                }
                 handlerTouch();
             }
         
         }else
         {
+            if (m_nTouchTag == 8)
+            {
+                // close Button event:
+                return;
+            }
+            
             if (m_nCurrentTab == m_nTouchTag-3000)
             {
                 return;
@@ -186,9 +204,12 @@ void CBackpackContainerLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 
 void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
 {
+    inOpenNumber = SinglePlayer::instance()->getOpenGridCount();
+    initGrids();
     int tmpPageCount = inOpenNumber/9+ 1 ;
     m_nPageCount = m_nPageCount >= tmpPageCount ? tmpPageCount: m_nPageCount;
     
+    CCLog("the size %d", m_cNumInGrid.size());
     loadResource();
     
     
@@ -203,7 +224,7 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
     m_pItems = CCArray::createWithCapacity(5);
     m_pItems->retain();
    
-   
+
     
     // init scrollview:
     m_pContainer = CCScrollView::create(m_cContainerSize);
@@ -215,22 +236,33 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
     
     m_nCurPage = 0;
     // add backpackpage to container:
+    multimap<int, int>::iterator mapIterator = m_cNumInGrid.begin();
+    multimap<int, int>::iterator mapIteratorEnd = mapIterator;
     for (int i = 0; i < m_nMaxPageCount; i++)
     {
         CBackpackPageLayer * item  = NULL;
         if (inOpenNumber-9 >= 0)
         {
+            int j =0;
+            do {
+                if (mapIteratorEnd == m_cNumInGrid.end())
+                {
+                    break;
+                }
+                j++;
+                mapIteratorEnd++;
+            } while (j < 9);
             inOpenNumber -= 9;
-            item = CBackpackPageLayer::create(9);
+            
+            item = CBackpackPageLayer::create(&m_cNumInGrid, mapIterator, mapIteratorEnd, 9);
+            mapIterator = mapIteratorEnd;
         }
-        else if(inOpenNumber> 0)
+        else
         {
-             item = CBackpackPageLayer::create(inOpenNumber);
-        }else
-        {
-              item = CBackpackPageLayer::create();
+             item = CBackpackPageLayer::create(&m_cNumInGrid, mapIterator, m_cNumInGrid.end(), inOpenNumber);
+            CCLog("%d", inOpenNumber);
+            inOpenNumber = 0;
         }
-      
         m_pItems->addObject(item);
         item->setPosition(ccp(-m_cContainerOffset.x+i*m_cContainerSize.width, -m_cContainerOffset.y));
          m_pContainer->addChild(item);
@@ -243,6 +275,9 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
             
         }
     }
+    CCLog("the size: %d", m_cNumInGrid.size());
+    
+    
     m_pContainer->setContentSize(CCSizeMake(m_cContainerSize.width*m_nPageCount, m_cContainerSize.height));
     
     // init indicator:
@@ -307,9 +342,54 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
 
         
     }
+    array[0] = 1, array[1] = 1, array[2] = 8;
+    m_pCloseButton = (CCSprite*) m_cMaps->getElementByTags(array, 3);
+    Utility::addTouchRect(8, m_pCloseButton, m_cTouches);
   
-    goAllTab();
+    updatePageContent(m_nPageCount);
+    updateIndicators(m_nPageCount);
 }
+
+void CBackpackContainerLayer::initGrids()
+{
+    map<int, int> &allProps = SinglePlayer::instance()->m_vProps;
+    CPtProp * tmp = NULL;
+    CPtPropConfigData * propData = SinglePropConfigData::instance();
+    int limitNum = 0;
+    int lastNum = 0;
+    int itemNum = 0;
+    for (map<int, int>::iterator i = allProps.begin(); i != allProps.end();  i++)
+    {
+        tmp = propData->getPropById(i->first);
+        CCAssert(tmp != NULL, "no has this prop");
+        if (tmp->getIsOnlyNum() == 1)
+        {
+            m_cNumInGrid.insert(map<int, int>::value_type(i->first, 1));
+            
+        }else
+        {
+            itemNum = i->second;
+            limitNum = tmp->getLimitNum();
+            if (itemNum <= limitNum)
+            {
+                  m_cNumInGrid.insert(map<int, int>::value_type(i->first, itemNum));
+            }else
+            {
+                for (int j = 0; j < itemNum/limitNum; j++)
+                {
+                    m_cNumInGrid.insert(map<int, int>::value_type(i->first, limitNum));
+                }
+                lastNum = itemNum%limitNum;
+                if (lastNum != 0)
+                {
+                   m_cNumInGrid.insert(map<int, int>::value_type(i->first, lastNum));
+                }
+            }
+            
+        }
+    }
+}
+
 
 void CBackpackContainerLayer::handlerTouch()
 {
@@ -494,30 +574,124 @@ void CBackpackContainerLayer::updateCurrentPage()
     m_pCurrentPage = (CBackpackPageLayer*)m_pItems->objectAtIndex(m_nCurPage);
 }
 
+void CBackpackContainerLayer::updateTabContent(vector<multimap<int, int>::iterator> & inVector)
+{
+    vector<multimap<int, int>::iterator> &tmpVector  = inVector;
+    int size = tmpVector.size();
+    if (size == 0)
+    {
+        // ...
+        
+    }
+    int pageCount = size/9 + size%9 == 0 ? 0 : 1;
+    CBackpackPageLayer *itemPage = NULL;
+    updateUI(pageCount);
+    vector<multimap<int, int>::iterator>::iterator beginIterator = tmpVector.begin();
+    for (int i  = 0; i <pageCount; i++)
+    {
+        itemPage = (CBackpackPageLayer*) m_pItems->objectAtIndex(i);
+        if (size < 9)
+        {
+            itemPage->updatePageContent( vector<multimap<int, int>::iterator>(beginIterator, tmpVector.end()));
+            
+        }else
+        {
+            itemPage->updatePageContent( vector<multimap<int, int>::iterator>(beginIterator, beginIterator+9));
+            beginIterator = beginIterator+9;
+            size -= 9;
+            
+        }
+        
+        
+        
+    }
+
+}
 // action:
 
 void CBackpackContainerLayer::goAllTab()
 {
-    updateUI(2);
     
-    
+    int  inOpenNumber = SinglePlayer::instance()->getOpenGridCount();
+    CCLog("the openCountNumber: %d", inOpenNumber);
+    int tmpPageCount = inOpenNumber/9+ 1 ;
+    CBackpackPageLayer * item  = NULL;
+
+    // add backpackpage to container:
+    multimap<int, int>::iterator mapIterator = m_cNumInGrid.begin();
+    multimap<int, int>::iterator mapIteratorEnd = mapIterator;
+    CCLog("the openCountNumber: %d, pageCount: %d", inOpenNumber, tmpPageCount);
+    for (int i = 0; i < tmpPageCount; i++)
+    {
+        item = (CBackpackPageLayer *)m_pItems->objectAtIndex(i);
+        
+        if (inOpenNumber-9 >= 0)
+        {
+            int j =0;
+            do {
+                if (mapIteratorEnd == m_cNumInGrid.end())
+                {
+                    break;
+                }
+                j++;
+                mapIteratorEnd++;
+            } while (j < 9);
+            
+            inOpenNumber -= 9;
+            item->updatePageContent(mapIterator, mapIteratorEnd, 9);
+            mapIterator = mapIteratorEnd;
+        }
+        else if(inOpenNumber == 0)
+        {
+            CCLog("the openNumber %d", inOpenNumber);
+            item->updatePageContent(mapIterator, m_cNumInGrid.end(), 0);
+        }else
+        {
+            item->updatePageContent(mapIterator, m_cNumInGrid.end(), inOpenNumber);
+            inOpenNumber = 0;
+        }
+        
+    }
+    updateUI(tmpPageCount);
+        
 }
 void CBackpackContainerLayer::goPropTab()
 {
-    updateUI(1);
+    vector<multimap<int, int>::iterator> tmpVector  = getFilterPointer(1);
+    updateTabContent(tmpVector);
 }
 void CBackpackContainerLayer::goMaterialTab()
 {
-    updateUI(1);
+    vector<map<int, int>::iterator> tmpVector  = getFilterPointer(3);
+    updateTabContent(tmpVector);
     
 }
 void CBackpackContainerLayer::goTaskTab()
 {
-    updateUI(1);
+    vector<map<int, int>::iterator> tmpVector  = getFilterPointer(2);
+    updateTabContent(tmpVector);
 }
 
 void CBackpackContainerLayer:: closeBackPack()
 {
     
     removeFromParentAndCleanup(true);
+}
+
+/*
+ * @breif :获取过滤后的grid数据指针队列
+ * @param: inType: 1--> props; 3-->Material; 2-->task
+ */
+vector<multimap<int, int>::iterator> CBackpackContainerLayer::getFilterPointer(int inType)
+{
+    vector<map<int, int>::iterator> tmpVector ;
+    CPtPropConfigData * propData = SinglePropConfigData::instance();
+    for (multimap<int, int>::iterator i = m_cNumInGrid.begin(); i != m_cNumInGrid.end(); i++)
+    {
+        if (propData->getPropById(i->first)->getPropType() == inType)
+        {
+            tmpVector.push_back(i);
+        }
+    }
+    return tmpVector;
 }

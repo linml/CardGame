@@ -61,7 +61,6 @@ bool CErrorDialog::initCreate(std::string strKeyId,EN_DIALOGTYPE enDialogType)
             removeTagArray("1,2,1");
             CCSize size=Utility::getNodeByTag(this, "1,1")->getContentSize();
             CCLog("%f,%f",size.width,size.height);
-//            Utility::getNodeByTag(this, "1,2,0")->setPosition(ccp(, <#__Y__#>))
         }
             break;
         case EN_DIALOGTYPE_ONLYOK:

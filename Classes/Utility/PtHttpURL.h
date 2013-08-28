@@ -65,6 +65,16 @@
 
 //获取道具背包
 #define STR_URL_BAG_PROP(UID)       URL_FACTORY("api.php?m=Item&a=getItem&uid=",UID)
+#define STR_URL_ADD_GRID(UID)       URL_FACTORY("api.php?m=bag&a=unlock&uid=",UID)
+
+
+//删除和使用道具
+#define STR_URL_DELETE_PROP(UID)    URL_FACTORY("api.php?m=Item&a=deleteItem&uid=",UID)
+#define STR_URL_USE_GRID(UID)       URL_FACTORY("api.php?m=Item&a=useItem&uid=",UID)
+//临时获取已开启的格子数:
+#define STR_URL_OPENGRID_NUM(UID)  URL_FACTORY("api.php?m=bag&a=maxbag&uid=",UID)
+
+
 
 //获取邮件
 #define STR_URL_EMAIL(UID)          URL_FACTORY("api.php?m=Email&a=getEmail&uid=",UID) 

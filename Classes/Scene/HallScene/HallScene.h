@@ -40,6 +40,7 @@ public:
 protected:
     bool initHall();
     void handlerTouch();
+    void createEmailLayer();
     
 protected:
     int m_nTouchTag;

@@ -13,7 +13,8 @@
 #include "AsgardLayer.h"
 #include "WordCache.h"
 #include "CPtScrollWordsWidget.h"
-
+#include "CBackpackContainerLayer.h"
+#include "CGameEmailLayer.h"
 
 CCScene* CHallScene::scene()
 {
@@ -259,9 +260,15 @@ bool CHallScene::initHall()
     
     return bRet;
 }
-
+void CHallScene::createEmailLayer()
+{
+    CGameEmailLayer *gameEmailLayer=CGameEmailLayer::CreateEmailLayer();
+    addChild(gameEmailLayer,900);
+    
+}
 void CHallScene::handlerTouch()
 {
+    CCLayer * layer = NULL;
     CCLog("touch tag : %d", m_nTouchTag);
     if (m_nTouchTag != -1) {
         Utility::handleBtnCallBack(m_touchSprite, this, NULL);
@@ -272,7 +279,7 @@ void CHallScene::handlerTouch()
             
             break;            
         case 2002:
-            
+            createEmailLayer();
             break;
         case 2003:
             
@@ -284,7 +291,10 @@ void CHallScene::handlerTouch()
             
             break;
         case 2006:
-            
+            // backpack-->
+            layer = CBackpackContainerLayer::create();
+            addChild(layer, 1000);
+            CCLog("backpack...");
             break;
         case 2007:
             

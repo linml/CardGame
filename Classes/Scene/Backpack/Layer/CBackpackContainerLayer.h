@@ -9,6 +9,8 @@
 #ifndef ___1_cube__CBackpackContainerLayer__
 #define ___1_cube__CBackpackContainerLayer__
 
+#include <multimap.h>
+
 #include "cocos2d.h"
 #include "cocos-ext.h"
 
@@ -39,6 +41,10 @@ public:
     
 protected:
     void initCBackpackContainerLayer(int inOpenNumber);
+    
+    // init grid data struct:
+    void initGrids();
+    
     void handlerTouch();
     
     void adjustScrollView(float offset);
@@ -54,7 +60,7 @@ protected:
     void updateIndicators(const int  & inCount);
     void updatePageContent(const int &inCount);
     void updateUI(const int &inCount);
-
+    void updateTabContent(vector<multimap<int, int>::iterator> & inVector);
     // action:
     
     void goAllTab();
@@ -65,6 +71,9 @@ protected:
     // about resource load & release:
     void loadResource();
     void releaseResource();
+    
+    
+    vector<multimap<int, int>::iterator> getFilterPointer(int inType);
     
 protected:
     bool m_bScrollEnable;
@@ -82,7 +91,7 @@ protected:
     CCPoint m_cContainerOffset;
     CCPoint m_cTouchPoint;
     
-    
+    CCSprite *m_pCloseButton;
     
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
@@ -102,6 +111,9 @@ protected:
     CCRect m_cNoramlTabRect;
     CCRect m_cPressedTabRect;
     CCArray *m_pTabs;
+    
+    // grid data struct:
+    std::multimap<int, int> m_cNumInGrid;
     
     //test:
     void load();

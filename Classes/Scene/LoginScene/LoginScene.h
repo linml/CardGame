@@ -71,6 +71,7 @@ protected:
     bool isLoadEndConfig;
     bool isLoadTeam;
     bool isGameInit;
+    bool isLoadBackPack;
     
 };
 

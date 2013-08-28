@@ -48,7 +48,7 @@ string CFileReadWrite::getFileByName(string pFileName){
     return NULL;
 }
 
-bool CFileReadWrite::saveFile(char *pContent, string pFileName)
+bool CFileReadWrite::saveFile(const char *pContent, string pFileName)
 {
     //第一获取储存的文件路径
     string path = CCFileUtils::sharedFileUtils()->getWriteablePath() + pFileName;

@@ -25,6 +25,7 @@ CGamePlayerData::CGamePlayerData()
     m_friend_count=0;
     m_sLevelPlayer=NULL;
     m_irvc=0;
+    m_nOpenGridCount = 9;
 }
 void CGamePlayerData::decodeDictnory(CCDictionary *dict)
 {
@@ -40,6 +41,8 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_guide_step=GameTools::intForKey("guide_step", dict);
     m_sign=GameTools::intForKey("sign",dict);
     m_friend_count=GameTools::intForKey("friend_count",dict);
+    m_nOpenGridCount = GameTools::intForKey("max_bag", dict);
+    
 }
 void CGamePlayerData::setLevelConfig(SLevelPlayer * pSlevel)
 {

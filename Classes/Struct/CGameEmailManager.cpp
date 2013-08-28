@@ -15,6 +15,7 @@
 #include "PtHttpClient.h"
 #include "CMyDictionary.h"
 #include "CGameEmailData.h"
+#include "CFileReadWrite.h"
 //str="{"1000":19,"1001":19}"
 
 void CGameEmailManager::decodeEmap(CCDictionary *dict)
@@ -137,8 +138,12 @@ void CGameEmailManager::loadLocalEmail()
         //读取本地保存的文件 放到
     
 }
-
-
+void CGameEmailManager::writeToFile()
+{
+    string str=getJsonData();
+    CFileReadWrite::saveFile(str.c_str(), "emailsavefile.db");
+    
+}
 void CGameEmailManager::cleareMyDictionaryList()
 {
     for (list<CMyDictionary *>::iterator mydeleteIt=m_ldataManagerMydict.begin();mydeleteIt!=m_ldataManagerMydict.end() ;mydeleteIt++   )
@@ -226,7 +231,7 @@ void CGameEmailManager::getHttpReponse(CCObject *object)
     }
     char *data=(char *)object;
     //判断code问题；
-    CCDictionary *dict=PtJsonUtility::JsonStringParse(data);
+    // CCDictionary *dict=PtJsonUtility::JsonStringParse(data);
     delete data;
     data=NULL;
     
@@ -242,6 +247,51 @@ int  CGameEmailManager::getUpdateTotalEmail()
     return  CCUserDefault::sharedUserDefault()->getIntegerForKey("UpdateTotalEmail",0);    
 }
 
+
+template <class fT, class sT>
+struct second_less : public binary_function <fT , sT , bool>
+{
+    bool operator()(
+                    const pair<fT, sT>& _1,
+                    const pair<fT, sT>& _2
+                    ) const
+    {
+        return _1.first < _2.first;
+    }
+};
+
+
+int  CGameEmailManager::getCurrentEmailMapMaxMsgId()
+{
+   map<int, CGameEmailData *>::iterator loc = max_element(m_gameEmail.begin(), m_gameEmail.end(), second_less<int ,const CGameEmailData *>());
+    if(loc!=m_gameEmail.end())
+    {
+        return loc->first;
+    }
+    return 0;
+}
+
+template<class Key, class Value,class UStatus>
+class totalUnread : public binary_function<typename std::map<Key, Value>::value_type , UStatus, bool>
+{
+public:
+    bool operator()(const typename map<Key, Value>::value_type iter, const UStatus& value) const
+    {
+        if (iter.second->getGameEmailStatus() == value)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+};
+int  CGameEmailManager::getCurrentEmailUnreadCount()
+{
+    return count_if(m_gameEmail.begin(), m_gameEmail.end(), bind2nd(totalUnread<int ,const CGameEmailData *,int>(),0));
+    ;
+}
 void CGameEmailManager::setCurrentTotalEmail(int value)
 {
     CCUserDefault::sharedUserDefault()->setIntegerForKey("CurrentTotalEmail", value);

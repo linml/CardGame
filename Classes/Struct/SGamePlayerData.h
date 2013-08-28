@@ -37,6 +37,7 @@ public:
     int    m_friend_count;
     int  m_irvc;
     struct SLevelPlayer *m_sLevelPlayer;
+    int    m_nOpenGridCount;
 };
 
 #endif /* defined(___1_cube__SGamePlayerData__) */

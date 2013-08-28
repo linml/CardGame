@@ -49,7 +49,6 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
     loadGamesConfig();
     m_gGamePlayerData=new CGamePlayerData();
     initPlayerStatusZero();
-    testPlayInfoData();
 }
 
 CGamePlayer::~CGamePlayer()
@@ -638,13 +637,6 @@ void CGamePlayer::ReduceCoin(const int &inReduceCoin)
     m_gGamePlayerData->m_icoin  -= inReduceCoin;
 }
 
-void CGamePlayer::testPlayInfoData()
-{
-    m_gGamePlayerData->m_icoin  = 500000;
-    m_gGamePlayerData->m_irvc  = 100000;
-    m_nOpenGridCount = 9;
-    
-}
 
 void CGamePlayer::appendCFightCardFightingBuffer(CFightCardFightingBuffer *data)
 {
@@ -685,17 +677,54 @@ void CGamePlayer::onFightExitScene()
 
 void CGamePlayer::loadPropsInfo()
 {
- 
-    
+  m_bLoadProps = false;
+  ADDHTTPREQUESTPOSTDATA(STR_URL_BAG_PROP(194), "loadProps", "loadProps","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parsePropsInfo));
     
 }
 void CGamePlayer:: parsePropsInfo(CCObject *pObject)
 {
+    m_bLoadProps = true;
+    char *buffer = (char*) pObject;
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "loadProps");
     // reset props package
     m_vProps.clear();
     
-    // test code:
+    CCAssert(buffer!=NULL, "server Error");
     
+    // parse data to m_vProps:
+    CCDictionary *tmpDictionary = PtJsonUtility::JsonStringParse(buffer);
+    if (tmpDictionary)
+    {
+        int resultCode = GameTools::intForKey("code", tmpDictionary);
+        int propId = 0;
+        int propCount = 0;
+        
+        if (resultCode == 0)
+        {
+            tmpDictionary = (CCDictionary*) tmpDictionary->objectForKey("result");
+        
+            CCArray * items = tmpDictionary == NULL? NULL : (CCArray*) tmpDictionary->objectForKey("items");
+            
+            for (int i = 0;  items!= NULL && i < items->count(); i++)
+            {
+                tmpDictionary = (CCDictionary*) items->objectAtIndex(i);
+                
+                if (tmpDictionary)
+                {
+                    propId = GameTools::intForKey("item_id", tmpDictionary);
+                    propCount = GameTools::intForKey("num", tmpDictionary);
+                    m_vProps.insert(map<int,int>::value_type(propId, propCount));
+                }
+            
+            }
+        CCLog("prop %d",m_vProps.size());     
+            
+        }else
+        {
+            CCLog("load prop error...");
+        }
+    }
+    delete [] buffer;
 }
 /*
  * @breif: 获取可以添加到背包的邮件队列
@@ -732,6 +761,7 @@ vector<int>CGamePlayer::getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas
  */
 int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAddProps, int inUserGridCount)
 {
+    int m_nOpenGridCount = m_gGamePlayerData->m_nOpenGridCount;
     int bRet = -1;
     int key = 0;
     int count = 0;
@@ -805,10 +835,11 @@ void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
 
 int CGamePlayer::getOpenGridCount()
 {
-    return m_nOpenGridCount;
+    return m_gGamePlayerData->m_nOpenGridCount;
 }
 int CGamePlayer::AddOpenGridCount(int inAddCount)
 {
+    int &m_nOpenGridCount = m_gGamePlayerData->m_nOpenGridCount;
     m_nOpenGridCount += inAddCount;
     m_nOpenGridCount = m_nOpenGridCount < 0 ? 0 : (m_nOpenGridCount%3==0 ? m_nOpenGridCount : (m_nOpenGridCount/3)*3);
     return m_nOpenGridCount;
@@ -884,13 +915,13 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
     }
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GameBegin");
     char *strdata=(char *)object;
+    
     CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
     delete []strdata;
     int codeReslut=GameTools::intForKey("code", dict);
     if(codeReslut!=0)
     {
         gameInitStatus=codeReslut;
-        
     }
     else{
         CCDictionary *dictresult=(CCDictionary *)dict->objectForKey("result");

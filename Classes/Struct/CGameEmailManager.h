@@ -26,10 +26,13 @@ public:
 public:
     int  getCurrentTotalEmail();
     int  getUpdateTotalEmail();
+    int  getCurrentEmailMapMaxMsgId();
+    int  getCurrentEmailUnreadCount();
     void setCurrentTotalEmail(int value);
     void setUpdateTotalEmail(int value);
     void loadLocalEmail();
     void deleteAllEmail();
+    void writeToFile();
     void deleteEmailByEmailId(int msgID);
     std::string getJsonData();
     CMyDictionary * createMydict();

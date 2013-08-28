@@ -8,12 +8,14 @@
 
 #include "CBackpackPageLayer.h"
 #include "CPtTool.h"
+#include "PtHttpClient.h"
+#include "PtHttpURL.h"
+#include "PtJsonUtility.h"
 
-
-CBackpackPageLayer * CBackpackPageLayer::create(int inOpenNumber)
+CBackpackPageLayer * CBackpackPageLayer::create()
 {
     CBackpackPageLayer *layer = new CBackpackPageLayer();
-    if (layer && layer->init(inOpenNumber))
+    if (layer && layer->init())
     {
         layer->autorelease();
     }
@@ -26,6 +28,26 @@ CBackpackPageLayer * CBackpackPageLayer::create(int inOpenNumber)
     
     return layer;
 }
+
+CBackpackPageLayer * CBackpackPageLayer::create(multimap<int, int> *inGridData, multimap<int, int>::iterator inBegin, multimap<int, int>::iterator inEnd,int inOpenGridCount)
+{
+    CBackpackPageLayer *layer = new CBackpackPageLayer();
+    if (layer && layer->init())
+    {
+        layer->autorelease();
+        layer->setGridData(inGridData);
+        layer->updatePageContent(inBegin, inEnd, inOpenGridCount);
+    }
+    else
+    {
+        CC_SAFE_DELETE(layer);
+        layer = NULL;
+    }
+    
+    
+    return layer;
+}
+
 
 CBackpackPageLayer::CBackpackPageLayer()
 {
@@ -56,12 +78,12 @@ CBackpackPageLayer::~CBackpackPageLayer()
     CC_SAFE_RELEASE(m_pMasks);
 }
 
-bool CBackpackPageLayer::init(int inOpenNumber)
+bool CBackpackPageLayer::init()
 {
     bool bRet = false;
     do {
         CC_BREAK_IF(!CCLayer::init());
-        initCBackpackPageLayer(inOpenNumber);
+        initCBackpackPageLayer();
         bRet = true;
     } while (0);
     
@@ -78,6 +100,7 @@ bool CBackpackPageLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     
     // detect lock buttons:
     int lockCount = m_pMasks->count();
+    CCLog("touch lock count : %d",lockCount);
     CCSprite * sprite = NULL;
     for (int i = 0;  i < lockCount; i++)
     {
@@ -147,7 +170,8 @@ void CBackpackPageLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             if (CPtTool::isInNode(sprite, pTouch))
             {
                 CCLog("open the grid:");
-                openGrid();
+               // openGrid();
+                onClickOpenGrid();
                 break;
             }
         }
@@ -207,7 +231,7 @@ void CBackpackPageLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 }
 
 
-void CBackpackPageLayer::initCBackpackPageLayer(int inOpenNumber)
+void CBackpackPageLayer::initCBackpackPageLayer()
 {
     
     
@@ -222,16 +246,6 @@ void CBackpackPageLayer::initCBackpackPageLayer(int inOpenNumber)
     m_pItemNums->retain();
     
     initPanel(true);
-    // test:
-    m_nOpenGridNumber =inOpenNumber;
-    addMask(AllGridInPageNumber-m_nOpenGridNumber);
-    
-    if (inOpenNumber != 0)
-    {
-        // use grid:
-        addItems(6);
-    }
-  
 }
 
 void CBackpackPageLayer::handlerTouch()
@@ -356,6 +370,14 @@ void CBackpackPageLayer::initPanel(bool inResetTexture)
             tmp->setVisible(false);
         }
         m_pDeleteButtons[i] = tmp;
+        
+        // number:
+        tmp = (CCSprite *) mapLayer->getChildByTag(18) ;
+        label = CCLabelTTF::create("0", "Arial", 18);
+        label->setPosition(ccp(15,15));
+        label->setAnchorPoint(ccp(0.5,0.5));
+        tmp->addChild(label);
+        m_pItemNums->addObject(label);
 
     }
     
@@ -397,21 +419,35 @@ void CBackpackPageLayer::clearItem(CCNode *node)
 }
 void CBackpackPageLayer::resetPanel()
 {
+    for (int i = 0; i < m_pMasks->count(); i++)
+    {
+        ((CCSprite*)m_pMasks->objectAtIndex(i))->removeFromParentAndCleanup(true);
+    }
+    m_pMasks->removeAllObjects();
     CCNode *mapLayer = NULL;
-
     int array[]={1,0};
     for (int i = 0; i < AllGridInPageNumber; i++)
     {
         array[1] = i;
         mapLayer = m_cMaps->getElementByTags(array, 2);
+        CCNode *node = NULL;
         if (mapLayer)
         {
+            mapLayer->setVisible(true);
             for (int j = 16; j < 21; j++)
             {
-                mapLayer = mapLayer->getChildByTag(j);
-                if (mapLayer)
+                if (j == 18)
                 {
-                    mapLayer->removeAllChildrenWithCleanup(true);
+                    ((CCLabelTTF *)m_pItemNums->objectAtIndex(i))->setString("");
+                    continue;
+                }else if(j==19 || j == 20)
+                {
+                    continue;
+                }
+                node = mapLayer->getChildByTag(j);
+                if (node)
+                {
+                    node->removeAllChildrenWithCleanup(true);
                 }
             }
             
@@ -422,10 +458,7 @@ void CBackpackPageLayer::resetPanel()
         m_pUseButton[i]->setUserData((void*)-1);
         
     }
-    if (m_pItemNums)
-    {
-        m_pItemNums->removeAllObjects();
-    }
+
   
 
 }
@@ -519,10 +552,17 @@ void CBackpackPageLayer::setItem(CCNode *node, CPtProp *inData)
 
 }
 
+bool CBackpackPageLayer::canOpenGrid()
+{
+    bool bRet = true;
+    
+    return bRet;
+}
 
 void CBackpackPageLayer::openGrid()
 {
     
+    SinglePlayer::instance()->AddOpenGridCount(3);
     // handler event:
     // updateData:
     m_nOpenGridNumber += 3;
@@ -549,4 +589,205 @@ void CBackpackPageLayer::openGridUI()
         sprite->removeFromParentAndCleanup(true);
         m_pMasks->removeObjectAtIndex(0);
     }
+}
+
+void CBackpackPageLayer::onClickOpenGrid()
+{
+    // 是否可以开启格子：
+    bool canOpen = canOpenGrid();
+    if (canOpen == false)
+    {
+        //
+        CCLog("can't open grid");
+        return;
+    }
+    int openGridCount = SinglePlayer::instance()->getOpenGridCount();
+        openGridCount += 3;
+    if (openGridCount > 45)
+    {
+        CCLog("error");
+        return;
+    }
+  //  sig=2ac2b1e302c46976beaab20a68ef95(标识码),bag_type_id=101(背包类型),grid_num=12(背包格子) unlock_way=1 (解锁方式  1：现金币解锁 2:系统赠送)
+    char buffer[100] = {};
+    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&bag_type_id=101&grid_num=%d&unlock_way=1",openGridCount);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_ADD_GRID(196),"phileas", "addGrid", buffer,callfuncO_selector(CBackpackPageLayer::onReceiveOpenGridMsg));
+
+}
+void CBackpackPageLayer::onReceiveOpenGridMsg(CCObject *pOject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "addGrid");
+    char *buff =(char*) pOject;
+    
+    if (buff)
+    {
+       CCDictionary *tmp= PtJsonUtility::JsonStringParse(buff);
+        if (tmp)
+        {
+            int result  = GameTools::intForKey("code", tmp);
+            if (result == 0)
+            {
+                openGrid();
+            }else
+            {
+                // error tip:
+                CCLog("add grid error....");
+            }
+        }
+    }else
+    {
+        CCLog("server error");
+    }
+}
+
+
+void CBackpackPageLayer::onClickUseProp(int inPropId, int inPropNum)
+{
+    //sig=2ac2b1e302c46976beaab20a68ef95(用户标识码) item_id=1(道具ID) num=1(数量)
+    char buffer[100] = {0};
+    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&item_id=%d&num=%d", inPropId, inPropNum);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_USE_GRID(196), "useProp", "useProp", buffer, callfuncO_selector(CBackpackPageLayer::onReceiveUsePropMsg));
+}
+void CBackpackPageLayer::onClickDeleteProp(int inPropId, int inPropNum)
+{
+    //sig=2ac2b1e302c46976beaab20a68ef95(用户标识码) item_id=1(道具ID) num=1(数量)
+    char buffer[100] = {0};
+    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef9&item_id=1%d&num=%d", inPropId, inPropNum);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_DELETE_PROP(196), "deleteProp", "deleteProp", buffer, callfuncO_selector(CBackpackPageLayer::onReceiveDeletProp));
+    
+}
+
+void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "useProp");
+    char *buff = (char*)pOject;
+    if (buff)
+    {
+        CCDictionary * tmp = PtJsonUtility::JsonStringParse(buff);
+        if(tmp)
+        {
+            int resultCode = GameTools::intForKey("code", tmp);
+            if (resultCode == 0)
+            {
+                // success:
+            }
+            else
+            {
+                // failure:
+                  CCLog("CBackpackPageLayer::onReceiveUsePropMsg-->server error code: %d", resultCode);
+            }
+        }
+        delete [] buff;
+    }else
+    {
+        // server no response:
+        CCLog("CBackpackPageLayer::onReceiveUsePropMsg-->server no response");
+    }
+}
+void CBackpackPageLayer::onReceiveDeletProp(CCObject *pObject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "deleteProp");
+    char *buff = (char*) pObject;
+    
+    if (buff)
+    {
+        CCDictionary * tmp = PtJsonUtility::JsonStringParse(buff);
+        if(tmp)
+        {
+            int resultCode = GameTools::intForKey("code", tmp);
+            if (resultCode == 0)
+            {
+                // success:
+            }
+            else
+            {
+                // failure:
+                CCLog("CBackpackPageLayer::onReceiveDeletePropMsg-->server error code: %d", resultCode);
+            }
+        }
+        delete [] buff;
+    }else
+    {
+        // server no response:
+        CCLog("CBackpackPageLayer::onReceiveDeletePropMsg-->server no response");
+    }
+
+}
+
+
+void CBackpackPageLayer::updatePageContent(multimap<int, int>::iterator inBegin, multimap<int, int>::iterator inEnd, int inOpenGridCount)
+{
+
+    // update data:
+    m_cGridDataIterator.clear();
+    for (multimap<int, int>::iterator i = inBegin; i != inEnd; i++)
+    {
+        m_cGridDataIterator.push_back(i);
+    }
+    
+    m_nOpenGridNumber = inOpenGridCount;
+    // update UI:
+    updatePageContentUI(true);
+    
+}
+void CBackpackPageLayer::updatePageContent(vector<multimap<int, int>::iterator> inDataIterators)
+{
+    CCLog("----------the size: %d", m_pGridData->size() );
+    // update data:
+    m_cGridDataIterator.clear();
+    m_cGridDataIterator.assign(inDataIterators.begin(), inDataIterators.end());
+    m_nOpenGridNumber = m_cGridDataIterator.size();
+    // update UI:
+    updatePageContentUI(false);
+    CCLog("----------the size: %d", m_pGridData->size() );
+
+}
+
+void CBackpackPageLayer::updatePageContentUI(bool inAllProps /*= true*/)
+{
+    resetPanel();
+    CPtPropConfigData * propData = SinglePropConfigData::instance();
+    int useGridCount = m_cGridDataIterator.size();
+    multimap<int, int>::iterator mapIterator;
+    CCAssert(useGridCount <= 9, "CBackpackPageLayer::updatePageContentUI-->error");
+    CCNode * node = NULL;
+    CPtProp *prop = NULL;
+    int array[]={1,0};
+    char buff[20]={0};
+    for (int i = 0 ; i < useGridCount; i++)
+    {
+        mapIterator = m_cGridDataIterator.at(i);
+        array[1] = i;
+        node =  m_cMaps->getElementByTags(array,2);
+        
+        sprintf(buff, "%d", mapIterator->second);
+        ((CCLabelTTF*)m_pItemNums->objectAtIndex(i))->setString(buff);
+        // test:
+        prop = propData->getPropById(mapIterator->first);
+        if (prop)
+        {
+            setItem(node, prop);
+        }
+    }
+
+    if (inAllProps)
+    {
+        // Lock
+        if (AllGridInPageNumber - m_nOpenGridNumber > 0)
+        {
+            addMask(AllGridInPageNumber-m_nOpenGridNumber);
+        }
+        
+    }else
+    {
+        // unLock:
+        CCLog("");
+        for (int i = useGridCount; i < AllGridInPageNumber; i++)
+        {
+            array[1] = i;
+            node =  m_cMaps->getElementByTags(array,2);
+            node->setVisible(false);
+        }
+    }
+    
 }

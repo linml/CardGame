@@ -20,7 +20,7 @@ public:
     static string getFileByName(string pFileName);
     
     /** 储存内容到文件 */
-    static bool saveFile(char* pContent,string pFileName);
+    static bool saveFile(const char* pContent,string pFileName);
     
 };
 #endif /* defined(___1_cube__CFileReadWrite__) */

@@ -1,14 +1,14 @@
 10
 
 dir
-1050
+1080
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-26T09:27:48.569351Z
-1050
+2013-08-28T04:46:21.798134Z
+1079
 phileas
 has-props
 
@@ -31,6 +31,13 @@ dir
 
 Backpack
 dir
+
+GameEmail
+dir
+
+
+
+add
 
 ExplorationScene
 dir

@@ -173,6 +173,7 @@ bool CLoginScene::initLogin()
         isLoadEndConfig=false;
         isLoadTeam=false;
         isGameInit=false;
+        isLoadBackPack = false;
         scheudoLoadGameConfig(); //by merlin
     } while (0);
     return bRet;
@@ -278,21 +279,31 @@ void CLoginScene::addFunctionInitGames(float t)
                 
                 if(SinglePlayer::instance()->gameInitStatus==1)
                 {
+                    setText("BackPack info");
+                    if (!isLoadBackPack)
+                    {
+                        SinglePlayer::instance()->loadPropsInfo();
+                        isLoadBackPack = true;
+                    }else if(SinglePlayer::instance()->getLoadPropEnd())
+                    {
+                        setText("CARD TEM info");
+                        if(!isLoadTeam)
+                        {
+                            SinglePlayer::instance()->loadCardTeamInfo();
+                            isLoadTeam=true;
+                        }
+                        else if (SinglePlayer::instance()->isLoadEndCardTeam)
+                        {
+                            setText("welcome");
+                            unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
+                            Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
+                        }
 
-                    setText("CARD TEM info");
-                    if(!isLoadTeam)
-                    {
-                        SinglePlayer::instance()->loadCardTeamInfo();
-                        isLoadTeam=true;
                     }
-                    else if (SinglePlayer::instance()->isLoadEndCardTeam)
-                    {
-                        setText("welcome");
-                        unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
-                        Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
-                    }
+
                 }
-                else{
+                else
+                {
                     
                 }
             }

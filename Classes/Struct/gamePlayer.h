@@ -118,9 +118,8 @@ public:
     vector<SEveryATKData*>m_vHpAngry;
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
 
-    //读取道具背包信息
-    void loadPropsInfo();
-    void parsePropsInfo(CCObject *pObject);
+   
+
     
 //获取玩家基本信息
 public:
@@ -129,18 +128,26 @@ public:
     vector<CFightCard *>m_vCardBag;
     vector<vector<CFightCard*> >m_vvBattleArray;
     int m_iCurrentBattleTeam;  //!< 当前的选择 战斗的阵容
-    map<int, int> m_vProps;    //!< 道具背包:
+// 道具背包:
+public:
+    //读取道具背包信息
+    void loadPropsInfo();
+    void parsePropsInfo(CCObject *pObject);
+ 
     vector<int> getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas);
     int getOpenGridCount();
     int AddOpenGridCount(int inAddCount);
     int getUseGridCount();
+    map<int, int> m_vProps;
+    
+    bool getLoadPropEnd(){return  m_bLoadProps;};
 protected:
     map<int, CPtProp*> &m_rAllProps;
+    bool m_bLoadProps;
 protected:
     int isCanAddToBackPack(map<int, int> &tmpProps, map<int, int> &inAddProps , int inUserGridCount);
-    void mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps);
+    void mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps);    
     
-    int m_nOpenGridCount;
     
     // play info:
 public:
@@ -152,7 +159,6 @@ public:
     void ReduceRVC(const int &inReduceRVC);
     void ReduceCoin(const int &inReduceCoin);
     
-    void testPlayInfoData();
 protected:
     CGamePlayerData *m_gGamePlayerData;
 private:

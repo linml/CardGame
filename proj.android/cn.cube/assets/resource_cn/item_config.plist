@@ -13,8 +13,6 @@
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
-		<string>3</string>
-		<key>quality</key>
 		<string>1</string>
 		<key>coin</key>
 		<string>2000</string>
@@ -28,8 +26,8 @@
 		<string>icon_001.png</string>
 		<key>limit_num</key>
 		<string>5</string>
-		<key>max_num</key>
-		<string>100</string>
+		<key>is_only</key>
+		<string>0</string>
 		<key>tips</key>
 		<string>进化材料用于进化</string>
 	</dict>
@@ -44,9 +42,7 @@
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
-		<string>3</string>
-		<key>quality</key>
-		<string>1</string>
+		<string>2</string>
 		<key>coin</key>
 		<string>2000</string>
 		<key>price</key>
@@ -59,8 +55,8 @@
 		<string>icon_002.png</string>
 		<key>limit_num</key>
 		<string>5</string>
-		<key>max_num</key>
-		<string>100</string>
+		<key>is_only</key>
+		<string>0</string>
 		<key>tips</key>
 		<string>进化材料用于进化</string>
 	</dict>
@@ -76,8 +72,6 @@
 		<string>1</string>
 		<key>use_delete</key>
 		<string>3</string>
-		<key>quality</key>
-		<string>1</string>
 		<key>coin</key>
 		<string>2000</string>
 		<key>price</key>
@@ -90,8 +84,8 @@
 		<string>icon_003.png</string>
 		<key>limit_num</key>
 		<string>5</string>
-		<key>max_num</key>
-		<string>100</string>
+		<key>is_only</key>
+		<string>0</string>
 		<key>tips</key>
 		<string>进化材料用于进化</string>
 	</dict>
@@ -106,9 +100,7 @@
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
-		<string>3</string>
-		<key>quality</key>
-		<string>1</string>
+		<string>4</string>
 		<key>coin</key>
 		<string>2000</string>
 		<key>price</key>
@@ -121,8 +113,8 @@
 		<string>icon_004.png</string>
 		<key>limit_num</key>
 		<string>5</string>
-		<key>max_num</key>
-		<string>100</string>
+		<key>is_only</key>
+		<string>0</string>
 		<key>tips</key>
 		<string>进化材料用于进化</string>
 	</dict>
@@ -138,8 +130,6 @@
 		<string>1</string>
 		<key>use_delete</key>
 		<string>3</string>
-		<key>quality</key>
-		<string>1</string>
 		<key>coin</key>
 		<string>2000</string>
 		<key>price</key>
@@ -149,11 +139,11 @@
 		<key>sell_coin</key>
 		<string>100</string>
 		<key>icon</key>
-		<string>icon_003.png</string>
+		<string>icon_001.png</string>
 		<key>limit_num</key>
 		<string>5</string>
-		<key>max_num</key>
-		<string>100</string>
+		<key>is_only</key>
+		<string>0</string>
 		<key>tips</key>
 		<string>进化材料用于进化</string>
 	</dict>
@@ -169,8 +159,6 @@
 		<string>1</string>
 		<key>use_delete</key>
 		<string>3</string>
-		<key>quality</key>
-		<string>1</string>
 		<key>coin</key>
 		<string>2000</string>
 		<key>price</key>
@@ -180,11 +168,11 @@
 		<key>sell_coin</key>
 		<string>100</string>
 		<key>icon</key>
-		<string>icon_002.png</string>
+		<string>icon_003.png</string>
 		<key>limit_num</key>
 		<string>5</string>
-		<key>max_num</key>
-		<string>100</string>
+		<key>is_only</key>
+		<string>0</string>
 		<key>tips</key>
 		<string>进化材料用于进化</string>
 	</dict>
