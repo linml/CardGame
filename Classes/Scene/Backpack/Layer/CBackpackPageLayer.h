@@ -67,12 +67,17 @@ protected:
     
     void updatePageContentUI(bool inAllProps = true);
     
+    void onClickUseProp(CCObject *object);
     void onClickUseProp(int inPropId, int inPropNum);
+    
+    void onClickDeleteProp(CCObject *object);
     void onClickDeleteProp(int inProp, int inPropNum);
     
     void onReceiveUsePropMsg(CCObject *pOject);
     void onReceiveDeletProp(CCObject *pObject);
 protected:
+    
+    
     bool m_bTouchLock;
     
     int m_nTouchTag;
@@ -93,6 +98,8 @@ protected:
     
     multimap<int, int> * m_pGridData;
     vector<multimap<int, int>::iterator> m_cGridDataIterator;
+    
+    PropItem m_cPropItem;
     
     static const int AllGridInPageNumber = 9;
     static const int DeleteTag = 2000;

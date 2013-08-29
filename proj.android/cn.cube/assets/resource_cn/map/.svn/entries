@@ -1,15 +1,15 @@
 10
 
 dir
-1094
+1106
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/map
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-29T08:57:16.208427Z
-1094
-phileas
+2013-08-29T12:50:43.692448Z
+1101
+merlin
 has-props
 
 
@@ -236,10 +236,10 @@ file
 
 
 
-2013-08-28T07:29:10.000000Z
-d1e3fb396c91545e3d1ce31c402447a3
-2013-08-28T07:30:52.393435Z
-1085
+2013-08-29T09:30:06.000000Z
+c01bac9e5fbc0b02261e8f58507d4500
+2013-08-29T12:50:43.692448Z
+1101
 merlin
 has-props
 
@@ -262,7 +262,7 @@ has-props
 
 
 
-160597
+160654
 
 chushoujiemian.map
 file

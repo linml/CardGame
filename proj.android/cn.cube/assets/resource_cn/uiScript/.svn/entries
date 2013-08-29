@@ -1,15 +1,15 @@
 10
 
 dir
-1094
+1106
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/uiScript
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-29T08:57:16.208427Z
-1094
-phileas
+2013-08-29T12:50:43.692448Z
+1101
+merlin
 has-props
 
 
@@ -128,16 +128,16 @@ has-props
 
 11980
 
-qianghua.plist
+zhenxingfudong.plist
 file
 
 
 
 
-2013-08-28T01:10:20.000000Z
-796c1a304bfee2fed7787852d3367497
-2013-08-20T10:14:37.885553Z
-1015
+2013-07-23T05:47:25.000000Z
+fa3cd462118066abf0cdf2a5364ceb00
+2013-07-22T06:13:26.779914Z
+725
 phileas
 
 
@@ -160,7 +160,7 @@ phileas
 
 
 
-5315
+5546
 
 confirm.plist
 file
@@ -196,16 +196,16 @@ phileas
 
 1163
 
-zhenxingfudong.plist
+qianghua.plist
 file
 
 
 
 
-2013-07-23T05:47:25.000000Z
-fa3cd462118066abf0cdf2a5364ceb00
-2013-07-22T06:13:26.779914Z
-725
+2013-08-28T01:10:20.000000Z
+796c1a304bfee2fed7787852d3367497
+2013-08-20T10:14:37.885553Z
+1015
 phileas
 
 
@@ -228,7 +228,7 @@ phileas
 
 
 
-5546
+5315
 
 cubeCardSprite.plist
 file
@@ -298,18 +298,17 @@ phileas
 
 3087
 
-daoju.plist
+task.plist
 file
 
 
 
 
-2013-08-28T01:10:20.000000Z
-a0040cddca961091be5c62d6a236cbd7
-2013-08-26T09:27:09.735541Z
-1049
-phileas
-has-props
+2013-07-05T06:01:23.000000Z
+2713c74bc2f6fafa8434c395b3e847d9
+2013-06-17T08:03:03.103333Z
+526
+merlin
 
 
 
@@ -330,7 +329,8 @@ has-props
 
 
 
-536
+
+16809
 
 kapaixinxijiemian.plist
 file
@@ -366,17 +366,18 @@ phileas
 
 3562
 
-task.plist
+daoju.plist
 file
 
 
 
 
-2013-07-05T06:01:23.000000Z
-2713c74bc2f6fafa8434c395b3e847d9
-2013-06-17T08:03:03.103333Z
-526
-merlin
+2013-08-28T01:10:20.000000Z
+a0040cddca961091be5c62d6a236cbd7
+2013-08-26T09:27:09.735541Z
+1049
+phileas
+has-props
 
 
 
@@ -397,42 +398,7 @@ merlin
 
 
 
-
-16809
-
-cuowutishi.plist
-file
-
-
-
-
-2013-08-20T07:10:50.000000Z
-b5a23296d90b22bbd5ee4def8f2a375b
-2013-08-21T03:56:08.259789Z
-1022
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1808
+536
 
 deleteprop.plist
 file
@@ -467,6 +433,40 @@ has-props
 
 
 866
+
+cuowutishi.plist
+file
+
+
+
+
+2013-08-20T07:10:50.000000Z
+b5a23296d90b22bbd5ee4def8f2a375b
+2013-08-21T03:56:08.259789Z
+1022
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1808
 
 exploration.plist
 file
@@ -740,6 +740,40 @@ phileas
 
 2557
 
+youjianjiemian.plist
+file
+
+
+
+
+2013-08-28T07:43:37.000000Z
+657c1ff3793ebf4a6bd50f0952c8f185
+2013-08-29T12:50:43.692448Z
+1101
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+459
+
 room.plist
 file
 
@@ -909,4 +943,72 @@ has-props
 
 
 855
+
+gameinit.txt
+file
+
+
+
+
+2013-08-28T09:42:18.000000Z
+c4330dd8d75eda75c22f91c881b63b48
+2013-08-29T12:50:43.692448Z
+1101
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+43093
+
+mail_cell.plist
+file
+
+
+
+
+2013-08-29T02:51:33.000000Z
+e904c105651170090e6ae2ad5869d2a4
+2013-08-29T12:50:43.692448Z
+1101
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+447
 

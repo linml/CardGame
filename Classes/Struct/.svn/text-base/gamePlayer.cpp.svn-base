@@ -732,6 +732,16 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
  * @return: 可以添加的背包的邮件ID队列
  */
 
+void CGamePlayer::updateProps()
+{
+    for (map<int, int>::iterator i = m_vProps.begin(); i!=m_vProps.end(); i++)
+    {
+        if (i->second == 0)
+        {
+            m_vProps.erase(i);
+        }
+    }
+}
 vector<int>CGamePlayer::getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas)
 {
     int useGridCount = getUseGridCount();

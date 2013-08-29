@@ -23,7 +23,7 @@ CBackpackContainerLayer*  CBackpackContainerLayer::create(int inOpenNumber)
         layer = NULL;
     }
     
-    
+
     return layer;
     
 }
@@ -51,6 +51,7 @@ CBackpackContainerLayer::CBackpackContainerLayer()
 
 CBackpackContainerLayer::~CBackpackContainerLayer()
 {
+    SinglePlayer::instance()->updateProps();
     //relase resouce:
     if (m_cMaps)
     {
@@ -201,9 +202,27 @@ void CBackpackContainerLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
     ccTouchEnded(pTouch, pEvent);
 }
 
+static void test(CCNode *pSender)
+{
+    CCLog("the begin %d", time(NULL), clock());
+    LayoutLayer* map = LayoutLayer::create();
+    map->initWithFile(pSender, CSTR_FILEPTAH(plistPath, "beibao.plist"));
+    for (int i = 0; i < 5; i++)
+    {
+        CCLayer *layer = CCLayer::create();
+        map = LayoutLayer::create();
+        map->initWithFile(layer, CSTR_FILEPTAH(plistPath, "daoju.plist"));
+        pSender->addChild(layer);
+    }
+     CCLog("the end %d", time(NULL), clock());
+}
 
 void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
 {
+//    // test
+//    test(this);
+//    return;
+//    // test end:
     inOpenNumber = SinglePlayer::instance()->getOpenGridCount();
     initGrids();
     int tmpPageCount = inOpenNumber/9+ 1 ;
@@ -220,11 +239,10 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(-10000);
-    
+ 
     m_pItems = CCArray::createWithCapacity(5);
     m_pItems->retain();
    
-
     
     // init scrollview:
     m_pContainer = CCScrollView::create(m_cContainerSize);
@@ -238,6 +256,7 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
     // add backpackpage to container:
     multimap<int, int>::iterator mapIterator = m_cNumInGrid.begin();
     multimap<int, int>::iterator mapIteratorEnd = mapIterator;
+   
     for (int i = 0; i < m_nMaxPageCount; i++)
     {
         CBackpackPageLayer * item  = NULL;
@@ -253,15 +272,17 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
                 mapIteratorEnd++;
             } while (j < 9);
             inOpenNumber -= 9;
-            
+            CCLog("the begin-- %d", clock());
             item = CBackpackPageLayer::create(&m_cNumInGrid, mapIterator, mapIteratorEnd, 9);
             mapIterator = mapIteratorEnd;
+            CCLog("the end-- %d", clock());
         }
         else
         {
              item = CBackpackPageLayer::create(&m_cNumInGrid, mapIterator, m_cNumInGrid.end(), inOpenNumber);
             CCLog("%d", inOpenNumber);
             inOpenNumber = 0;
+          
         }
         m_pItems->addObject(item);
         item->setPosition(ccp(-m_cContainerOffset.x+i*m_cContainerSize.width, -m_cContainerOffset.y));
@@ -275,6 +296,7 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
             
         }
     }
+  
     CCLog("the size: %d", m_cNumInGrid.size());
     
     

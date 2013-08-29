@@ -71,6 +71,20 @@ void CHallScene::createEmailNumberUnread()
             addChild(sprite,201,601);
         }
     }
+    if(!getChildByTag(603))
+    {
+        CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 15);
+        labelttf->setColor(g_custom_color[0]);
+        addChild(labelttf,201,603);
+        CCPoint point=getChildByTag(600)->getPosition();
+        labelttf->setPosition(ccp(point.x,point.y-20));
+    }
+    if(G_GAMESINGEMAIL::instance()->getMailCount()>=45)
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF*)getChildByTag(603);
+        string word=Utility::getWordWithFile("word.plist", "youjiankuaimanle");
+        labelttf->setString(word.c_str());
+    }
     if(!getChildByTag(602))
     {
         CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 15);
@@ -85,7 +99,7 @@ void CHallScene::createEmailNumberUnread()
     }
     else
     {
-        if(getUnreadCount==EMAILMAXNUMBERCOUNT)
+        if(getUnreadCount>=EMAILMAXNUMBERCOUNT)
         {
             sprintf(data, "%s","MAX");
         }

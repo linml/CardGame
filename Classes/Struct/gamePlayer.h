@@ -140,6 +140,7 @@ public:
     int getUseGridCount();
     map<int, int> m_vProps;
     
+    void updateProps();
     bool getLoadPropEnd(){return  m_bLoadProps;};
 protected:
     map<int, CPtProp*> &m_rAllProps;

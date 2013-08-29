@@ -24,7 +24,7 @@ public:
     CC_SYNTHESIZE(int, m_nUseDelete, UseDelete);
     CC_SYNTHESIZE(int, m_nCoin, Coin);
     CC_SYNTHESIZE(int, m_nPrice, Price);
-    CC_SYNTHESIZE(int, m_nSkillId, SkillId);
+    CC_SYNTHESIZE(int, m_nUseId, UseId);
     CC_SYNTHESIZE(int, m_nSellCoin, SellCoin);
     CC_SYNTHESIZE(std::string, m_strIconName, IconName);
     CC_SYNTHESIZE(int, m_nLimitNum, LimitNum);
@@ -53,7 +53,7 @@ public:
     CC_SYNTHESIZE_READONLY(int, m_nUseDelete, UseDelete);
     CC_SYNTHESIZE_READONLY(int, m_nCoin, Coin);
     CC_SYNTHESIZE_READONLY(int, m_nPrice, Price);
-    CC_SYNTHESIZE_READONLY(int, m_nSkillId, SkillId);
+    CC_SYNTHESIZE_READONLY(int, m_nUseId, UseId);
     CC_SYNTHESIZE_READONLY(int, m_nSellCoin, SellCoin);
     CC_SYNTHESIZE_READONLY(std::string, m_strIconName, IconName);
     CC_SYNTHESIZE_READONLY(int, m_nLimitNum, LimitNum);

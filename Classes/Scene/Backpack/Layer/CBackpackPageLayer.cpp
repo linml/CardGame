@@ -11,7 +11,8 @@
 #include "PtHttpClient.h"
 #include "PtHttpURL.h"
 #include "PtJsonUtility.h"
-
+#include "CDeletePropLayer.h"
+#include "CGameDialogLayer.h"
 CBackpackPageLayer * CBackpackPageLayer::create()
 {
     CBackpackPageLayer *layer = new CBackpackPageLayer();
@@ -213,12 +214,9 @@ void CBackpackPageLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         if (m_nTouchTag == tag)
         {
             // delete event:
-            CCLog("delete end: %d", m_nTouchTag);
+           
+            handlerTouch();
             
-        }else if(m_nTouchTag == tag)
-        {
-            // use event:
-             CCLog("use: end %d", m_nTouchTag);
         }
         
     }
@@ -250,6 +248,46 @@ void CBackpackPageLayer::initCBackpackPageLayer()
 
 void CBackpackPageLayer::handlerTouch()
 {
+    
+    
+    if(m_nTouchTag >= UseTag)
+    {
+       
+        m_cPropItem.propCount = 0;
+        m_cPropItem.propId = 0;
+        PropItem *item = &m_cPropItem;
+        CCLog("use end: %d", m_nTouchTag);
+        int index = m_nTouchTag-UseTag;
+        CCAssert(index <= m_cGridDataIterator.size(), "click error");
+        multimap<int, int>::iterator it = m_cGridDataIterator.at(index);
+        item->propId = it->first;
+        item->propCount = 1;
+        if (it->second == 0)
+        {
+            return;
+        }
+        char buffer[100] = {0};
+        std::string s = SinglePropConfigData::instance()->getPropById(item->propId)->getPropName();
+        sprintf(buffer, "你确定要使用%s道具吗?", s.c_str());
+        CPtDialog * dialog = CPtDialog::create(buffer, this, callfuncO_selector(CBackpackPageLayer::onClickUseProp), NULL, item, NULL);
+
+        CCDirector::sharedDirector()->getRunningScene()->addChild(dialog, 100, 10000);
+        
+    }else if (m_nTouchTag >= DeleteTag)
+    {
+        CCLog("delete end: %d", m_nTouchTag);
+        m_cPropItem.propCount = 0;
+        m_cPropItem.propId = 0;
+        PropItem *item = &m_cPropItem;
+        int index = m_nTouchTag-DeleteTag;
+        CCAssert(index <= m_cGridDataIterator.size(), "click error");
+        multimap<int, int>::iterator it = m_cGridDataIterator.at(index);
+        item->propId = it->first;
+        item->propCount = it->second;
+        CDeletePropLayer * layer = CDeletePropLayer::create(item);
+        layer->setHanlder(this, callfuncO_selector(CBackpackPageLayer::onClickDeleteProp), NULL);
+        CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 100, 10000);
+    }
     
 }
 
@@ -409,9 +447,11 @@ void CBackpackPageLayer::clearItem(CCNode *node)
         if (parent)
         {
             parent->setUserData((void*)-1);
+            parent->setVisible(false);
         }if (node)
         {
             node->setUserData((void*)-1);
+            node->setVisible(false);
         }
         
     }
@@ -641,6 +681,15 @@ void CBackpackPageLayer::onReceiveOpenGridMsg(CCObject *pOject)
 }
 
 
+void CBackpackPageLayer::onClickUseProp(CCObject *object)
+{
+    if (object)
+    {
+        PropItem * item = (PropItem*)object;
+        onClickUseProp(item->propId, item->propCount);
+    }
+}
+
 void CBackpackPageLayer::onClickUseProp(int inPropId, int inPropNum)
 {
     //sig=2ac2b1e302c46976beaab20a68ef95(用户标识码) item_id=1(道具ID) num=1(数量)
@@ -648,11 +697,23 @@ void CBackpackPageLayer::onClickUseProp(int inPropId, int inPropNum)
     sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&item_id=%d&num=%d", inPropId, inPropNum);
     ADDHTTPREQUESTPOSTDATA(STR_URL_USE_GRID(196), "useProp", "useProp", buffer, callfuncO_selector(CBackpackPageLayer::onReceiveUsePropMsg));
 }
+
+void CBackpackPageLayer::onClickDeleteProp(CCObject *object)
+{
+    if (object)
+    {
+        PropItem * item = (PropItem*)object;
+        m_cPropItem.propCount = item->propCount;
+        m_cPropItem.propId = item->propId;
+
+        onClickDeleteProp(item->propId, item->propCount);
+    }
+}
 void CBackpackPageLayer::onClickDeleteProp(int inPropId, int inPropNum)
 {
     //sig=2ac2b1e302c46976beaab20a68ef95(用户标识码) item_id=1(道具ID) num=1(数量)
     char buffer[100] = {0};
-    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef9&item_id=1%d&num=%d", inPropId, inPropNum);
+    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&item_id=%d&num=%d", inPropId, inPropNum);
     ADDHTTPREQUESTPOSTDATA(STR_URL_DELETE_PROP(196), "deleteProp", "deleteProp", buffer, callfuncO_selector(CBackpackPageLayer::onReceiveDeletProp));
     
 }
@@ -669,7 +730,24 @@ void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
             int resultCode = GameTools::intForKey("code", tmp);
             if (resultCode == 0)
             {
+                CCLog("use end: %d", m_nTouchTag);
+                int index = m_nTouchTag-UseTag;
+                CCAssert(index <= m_cGridDataIterator.size(), "click error");
+                multimap<int, int>::iterator it = m_cGridDataIterator.at(index);
+                it->second --;
+                SinglePlayer::instance()->m_vProps.find(it->first)->second --;
+                char tmpbuff[10]={0};
+                sprintf(tmpbuff, "%d",it->second);
+                ((CCLabelTTF*) m_pItemNums->objectAtIndex(index))->setString(tmpbuff);
+                CCDirector::sharedDirector()->getRunningScene()->removeChildByTag(10000, true);
+                if (it->second == 0)
+                {
+                    int array[2] = {1,index};
+                    clearItem(m_cMaps->getElementByTags(array,2));
+                }
+
                 // success:
+
             }
             else
             {
@@ -698,6 +776,22 @@ void CBackpackPageLayer::onReceiveDeletProp(CCObject *pObject)
             if (resultCode == 0)
             {
                 // success:
+                CCLog("use end: %d", m_nTouchTag);
+                int index = m_nTouchTag-DeleteTag;
+                CCAssert(index <= m_cGridDataIterator.size(), "click error");
+                multimap<int, int>::iterator it = m_cGridDataIterator.at(index);
+                it->second -= m_cPropItem.propCount;
+                SinglePlayer::instance()->m_vProps.find(it->first)->second-=m_cPropItem.propCount;
+                char tmpbuff[10]={0};
+                sprintf(tmpbuff, "%d",it->second);
+                ((CCLabelTTF*) m_pItemNums->objectAtIndex(index))->setString(tmpbuff);
+                CCDirector::sharedDirector()->getRunningScene()->removeChildByTag(10000, true);
+                if (it->second == 0)
+                {
+                    int array[2] = {1,index};
+                    clearItem(m_cMaps->getElementByTags(array,2));
+                }
+
             }
             else
             {
@@ -764,7 +858,7 @@ void CBackpackPageLayer::updatePageContentUI(bool inAllProps /*= true*/)
         ((CCLabelTTF*)m_pItemNums->objectAtIndex(i))->setString(buff);
         // test:
         prop = propData->getPropById(mapIterator->first);
-        if (prop)
+        if (prop && mapIterator->second != 0)
         {
             setItem(node, prop);
         }

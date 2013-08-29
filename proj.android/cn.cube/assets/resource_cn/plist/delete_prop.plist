@@ -33,15 +33,15 @@
             <key>bar_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,41},{245,10}}</string>
+                <string>{{2,41},{223,10}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{245,10}}</string>
+                <string>{{0,0},{223,10}}</string>
                 <key>sourceSize</key>
-                <string>{245,10}</string>
+                <string>{223,10}</string>
             </dict>
             <key>subBtn_normal.png</key>
             <dict>
@@ -105,7 +105,7 @@
             <key>size</key>
             <string>{256,64}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:23501ddca56a4ccd2b13a8d92adfc308$</string>
+            <string>$TexturePacker:SmartUpdate:95769b84051951a984b70074a9c27e4e$</string>
             <key>textureFileName</key>
             <string>delete_prop.png</string>
         </dict>

@@ -42,6 +42,7 @@ namespace CPtTool
     time_t strtotime(char* const date,  std::string str="%Y%m%d%H%M%S");
     std::string   timetodate(time_t const timer);
     double getDateIntermissionRebackMSC(time_t beforeTime,time_t afterTime);
+    void getDataShijianChai(time_t befortime,time_t befortimeE,std::string &str);
     std::string  readFileName(const char *filename);
     CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize);
     

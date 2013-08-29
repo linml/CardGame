@@ -45,11 +45,13 @@ protected:
     CC_SYNTHESIZE(int ,m_iGameEmailUid , GameEmailUid);
     CC_SYNTHESIZE(int ,m_iGameEmailFromUid ,GameEmailFromUid);
     CC_SYNTHESIZE(int ,m_iGameEmailType ,GameEmailType);
-    CC_SYNTHESIZE(int ,m_iGameEmailTime , GameEmailTime); //在这个时间之前是有效的
+    CC_SYNTHESIZE(int ,m_iGameEmailStartTime , GameEmailStartTime); //在这个时间begin
+    CC_SYNTHESIZE(int ,m_iGameEmailEndTime , GameEmailEndTime); //在这个时间begin
     CC_SYNTHESIZE(std::string, m_sGameEmailTitle, GameEmailTitle);
     CC_SYNTHESIZE(std::string , m_sGameEmailContent, GameEmailContent);
     CC_SYNTHESIZE(int ,m_iGameEmailCoins ,GameEmailCoins); //!< 钱币
     CC_SYNTHESIZE(int ,m_iGameEmailExp ,GameEmailExp);     //!< 经验
+    void getEmailCreateTime(string &str);
 public:
     map<int, int>m_mapDataProp;  //
 protected:

@@ -1,15 +1,15 @@
 10
 
 dir
-1094
+1106
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/word
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-26T09:27:09.735541Z
-1049
-phileas
+2013-08-29T12:50:43.692448Z
+1101
+merlin
 has-props
 
 
@@ -66,11 +66,11 @@ file
 
 
 
-2013-08-28T01:10:20.000000Z
-2451d96275c7cbc42cf100d7df6ec656
-2013-08-26T09:27:09.735541Z
-1049
-phileas
+2013-08-29T03:49:51.000000Z
+700e230e37d07c9067b76d0000de4041
+2013-08-29T12:50:43.692448Z
+1101
+merlin
 
 
 
@@ -92,7 +92,7 @@ phileas
 
 
 
-3149
+3257
 
 tips.plist
 file

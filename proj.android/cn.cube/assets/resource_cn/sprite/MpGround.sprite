@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict>
+    <key>spriteFileName</key>
+    <string>MpGround</string>
+    <key>imagePath</key>
+    <string>../../kapaiziyuanku/Work/images/MpGround.png</string>
+    <key>clipData</key>
+    <dict>
+        <key>MpGround.png</key>
+        <string>{0,0,1024,96}</string>
+    </dict>
+    <key>mapSpriteData</key>
+    <dict>
+        <key>MpGround.png</key>
+        <dict>
+            <key>MpGround.png</key>
+            <dict>
+                <key>pos</key>
+                <string>{0,0}</string>
+                <key>filp</key>
+                <integer>0</integer>
+                <key>scale</key>
+                <string>1</string>
+                <key>rotate</key>
+                <string>0</string>
+                <key>anchor</key>
+                <string>{0,1}</string>
+            </dict>
+        </dict>
+    </dict>
+</dict>

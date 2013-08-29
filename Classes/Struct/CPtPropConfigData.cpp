@@ -57,7 +57,7 @@ bool CPtPropConfigData::getPropDataById(const int &inPropId)
         m_nUnLockLevel = prop->getUnLockLevel();
         m_nUseDelete = prop->getUseDelete(); 
         m_nPrice =  prop->getPrice(); 
-        m_nSkillId = prop->getSkillId(); 
+        m_nUseId = prop->getUseId();
         m_nSellCoin = prop->getSellCoin(); 
         m_nCoin = prop->getCoin(); 
         m_strIconName = prop->getIconName(); 
@@ -99,12 +99,13 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
             keyId = atoi(element->getStrKey());
             prop= new CPtProp();
             tmpValue = (CCDictionary *)element->getObject();
+            prop->setPropId(keyId);
             prop->setPropName(GameTools::valueForKey("name", tmpValue));
             prop->setPropType(GameTools::intForKey("type", tmpValue));
             prop->setUnLockLevel(GameTools::intForKey("unlock_level", tmpValue));
             prop->setUseDelete(GameTools::intForKey("use_delete", tmpValue));
             prop->setPrice(GameTools::intForKey("price", tmpValue));
-            prop->setSkillId(GameTools::intForKey("skill_id", tmpValue));
+            prop->setUseId(GameTools::intForKey("use_id", tmpValue));
             prop->setSellCoin(GameTools::intForKey("sell_coin", tmpValue));
             prop->setCoin(GameTools::intForKey("coin",tmpValue));
             prop->setIconName(GameTools::valueForKey("icon", tmpValue));

@@ -231,13 +231,17 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
                     
                     CCLabelTTF *labelContext=CCLabelTTF::create(gameData->getGameEmailContent().c_str(),"Arial",15);
                     cell->addChild(labelContext);
-                    labelContext->setDimensions(CCSizeMake(400, 200));
+                    labelContext->setDimensions(CCSizeMake(500, 200));
                     point=Utility::getNodeByTag(cell, "1,0,11")->getPosition();
                     labelContext->setPosition(ccp(point.x+8,point.y-3));
                     cell->reorderChild(labelContext, Utility::getNodeByTag(cell, "1,0,30")->getZOrder());
                     labelContext->setColor(g_custom_color[18]);
                     labelContext->setAnchorPoint(ccp(0,1));
                     labelContext->setHorizontalAlignment(kCCTextAlignmentLeft);
+                    string str;
+                    gameData->getEmailCreateTime(str);
+                    CCLabelTTF *labelContextTime=CCLabelTTF::create(str, "Arial", 15);
+                    
                 }
                 
             }
