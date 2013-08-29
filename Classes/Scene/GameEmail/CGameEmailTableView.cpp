@@ -22,24 +22,54 @@
 
 CEmrysTableView::CEmrysTableView():CCTableView()
 {
-
+_mydefineDeleagte=NULL;
 
 }
-//bool CCTableView::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
-//{
-//    //让  父类 去计算  中间点。
-//    bool flag= CCScrollView::ccTouchBegan(pTouch, pEvent);
-//    m_oldPoint =m_tTouchPoint;
-//    return flag;
-//}
 
-CEmrysTableView *CEmrysTableView::Create(cocos2d::extension::CCTableViewDataSource *dataSource, cocos2d::CCSize size)
+bool CEmrysTableView::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
+{
+    //让  父类 去计算  中间点。
+    bool flag=CCTableView::ccTouchBegan(pTouch, pEvent);
+    if(flag)
+    {
+        CCPoint  point = this->getContainer()->convertTouchToNodeSpace(pTouch);
+        if (m_eVordering == kCCTableViewFillTopDown) {
+            CCSize cellSize = m_pDataSource->cellSizeForTable(this);
+            point.y -= cellSize.height;
+        }
+        int index = this->_indexFromOffset(point);
+        CCTableViewCell   *cell;
+        cell=this->_cellWithIndex(index);
+        if(_mydefineDeleagte)
+        {
+            _mydefineDeleagte->tablecellTouchNode(cell, pTouch);
+        }
+    }
+    return flag;
+}
+void CEmrysTableView::ccTouchMove(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent)
+{
+    CCTableView::ccTouchMoved(pTouch, pEvent);
+    if (_mydefineDeleagte) {
+        CCPoint  point = this->getContainer()->convertTouchToNodeSpace(pTouch);
+        if (m_eVordering == kCCTableViewFillTopDown) {
+            CCSize cellSize = m_pDataSource->cellSizeForTable(this);
+            point.y -= cellSize.height;
+        }
+        int index = this->_indexFromOffset(point);
+        CCTableViewCell   *cell;
+        cell=this->_cellWithIndex(index);
+            _mydefineDeleagte->tablecellTouchNode(cell, pTouch);
+    }
+}
+CEmrysTableView *CEmrysTableView::Create(cocos2d::extension::CCTableViewDataSource *dataSource, cocos2d::CCSize size,CEmrysTableViewDelegate *mydefineDeleagte)
 {
         CEmrysTableView*tableView=new CEmrysTableView();
         tableView->initWithViewSize(size, NULL);
         tableView->autorelease();
         tableView->setDataSource(dataSource);
         tableView->_updateContentSize();
+        tableView->_mydefineDeleagte=mydefineDeleagte;
         return tableView;;
 }
 
@@ -93,12 +123,13 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 
 CGameEmailTableView::CGameEmailTableView()
 {
-    
+    node=NULL;
 }
 CGameEmailTableView::~CGameEmailTableView()
 {
     
 }
+    
 CGameEmailTableView*CGameEmailTableView::creat(CCPoint p , CCSize s ,int cellNum , CCSize cellSize , CCSize tableCellSize)
 {
     CGameEmailTableView* layerView = new CGameEmailTableView;
@@ -143,7 +174,7 @@ bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSize ce
     m_tableViewPoint = p;
     
     
-    tableView = CEmrysTableView::Create(this, s);
+    tableView = CEmrysTableView::Create(this, s,this);
     tableView->setDirection(kCCScrollViewDirectionVertical);
     tableView->setPosition(p);
     tableView->setDelegate(this);
@@ -174,7 +205,7 @@ bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSprite*
     m_pTexture = cellImage->getTexture();
     m_TextureRect = cellImage->getTextureRect();
     
-   tableView =CEmrysTableView::Create(this, m_tableViewSize);
+   tableView =CEmrysTableView::Create(this, m_tableViewSize,this);
     tableView->setDirection(kCCScrollViewDirectionVertical);
     tableView->setPosition(p);
     tableView->setDelegate(this);
@@ -199,6 +230,8 @@ unsigned int CGameEmailTableView::numberOfCellsInTableView(CCTableView *table)
 {
     return G_GAMESINGEMAIL::instance()->getMailCount();
 }
+    
+
 
 void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
 {
@@ -232,7 +265,7 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
                     CCLabelTTF *labelContext=CCLabelTTF::create(gameData->getGameEmailContent().c_str(),"Arial",15);
                     cell->addChild(labelContext);
                     labelContext->setDimensions(CCSizeMake(500, 200));
-                    point=Utility::getNodeByTag(cell, "1,0,11")->getPosition();
+                     point=Utility::getNodeByTag(cell, "1,0,11")->getPosition();
                     labelContext->setPosition(ccp(point.x+8,point.y-3));
                     cell->reorderChild(labelContext, Utility::getNodeByTag(cell, "1,0,30")->getZOrder());
                     labelContext->setColor(g_custom_color[18]);
@@ -240,12 +273,13 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
                     labelContext->setHorizontalAlignment(kCCTextAlignmentLeft);
                     string str;
                     gameData->getEmailCreateTime(str);
-                    CCLabelTTF *labelContextTime=CCLabelTTF::create(str, "Arial", 15);
-                    
+                    CCLabelTTF *labelContextTime=CCLabelTTF::create(str.c_str(), "Arial", 15);
+                    cell->addChild(labelContextTime);
+                    labelContext->setColor(g_custom_color[17]);
+                    labelContext->setHorizontalAlignment(kCCTextAlignmentRight);
                 }
-                
             }
-        }
+    }
 }
 
 CCTableViewCell* CGameEmailTableView::tableCellAtIndex(CCTableView *table, unsigned int idx) {
@@ -273,6 +307,35 @@ CCSize CGameEmailTableView::tableCellSizeForIndex(CCTableView *table, unsigned i
 }
 
 #pragma mark - CCTableViewDelegate
+    void CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)
+    {
+      
+        CCRect rect=cell->getChildByTag(2000)->boundingBox();
+        CCPoint point=pTouch->getLocation();
+        point=cell->convertTouchToNodeSpace(pTouch);
+        if(cell->getChildByTag(2000)->boundingBox().containsPoint(point))
+        {
+            CGameButtonControl *gamebutton=(CGameButtonControl*)cell->getChildByTag(2000);
+            if(node!=gamebutton)
+            {
+                if(node)
+                {
+                    ((CGameButtonControl*)node)->unselected();
+                }
+                gamebutton->selected();
+                node=gamebutton;
+            }
+        }
+        else {
+            if(node)
+            {
+               ((CGameButtonControl*)node)->unselected(); 
+            }
+            node=NULL;
+        }
+
+    }
+    
 void CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell) {
     int value =cell->getIdx();
     CCLog("you touch cell at %d", value);

@@ -33,7 +33,8 @@ void CGameEmailManager::decodeEmap(CCDictionary *dict)
             pGameEmailData->setGameEmailFromUid(GameTools::intForKey("from_uid", emailDirector));
             pGameEmailData->setGameEmailType(GameTools::intForKey("type", emailDirector));
             pGameEmailData->setGameEmailStatus(GameTools::intForKey("status",emailDirector));
-            pGameEmailData->setGameEmailTime(GameTools::intForKey("time", emailDirector));
+            pGameEmailData->setGameEmailStartTime(GameTools::intForKey("start_time", emailDirector));
+            pGameEmailData->setGameEmailEndTime(GameTools::intForKey("end_time", emailDirector));
             pGameEmailData->setGameEmailTitle(GameTools::valueForKey("title", emailDirector));
             pGameEmailData->setGameEmailContent(GameTools::valueForKey("content", emailDirector));
             CCDictionary *emailItemDirector=(CCDictionary *)(emailDirector->objectForKey("item"));
@@ -72,7 +73,8 @@ void CGameEmailManager::decodeEmap(std::string str)
             pGameEmailData->setGameEmailFromUid(GameTools::intForKey("from_uid", emailDirector));
             pGameEmailData->setGameEmailType(GameTools::intForKey("type", emailDirector));
             pGameEmailData->setGameEmailStatus(GameTools::intForKey("status",emailDirector));
-            pGameEmailData->setGameEmailTime(GameTools::intForKey("time", emailDirector));
+            pGameEmailData->setGameEmailStartTime(GameTools::intForKey("start_time", emailDirector));
+            pGameEmailData->setGameEmailEndTime(GameTools::intForKey("start_time", emailDirector));
             pGameEmailData->setGameEmailTitle(GameTools::valueForKey("title", emailDirector));
             pGameEmailData->setGameEmailContent(GameTools::valueForKey("content", emailDirector));
             CCDictionary *emailItemDirector=(CCDictionary *)(emailDirector->objectForKey("item"));
@@ -217,7 +219,8 @@ string CGameEmailManager::getJsonData()
                 gameEmailContextDict->InsertItem("from_uid", gameEmailData->getGameEmailFromUid());
                 gameEmailContextDict->InsertItem("type", gameEmailData->getGameEmailType());
                 gameEmailContextDict->InsertItem("status", gameEmailData->getGameEmailStatus());
-                gameEmailContextDict->InsertItem("time", gameEmailData->getGameEmailTime());
+                gameEmailContextDict->InsertItem("start_time", gameEmailData->getGameEmailStartTime());
+                gameEmailContextDict->InsertItem("time", gameEmailData->getGameEmailEndTime());
                 gameEmailContextDict->InsertItem("title", gameEmailData->getGameEmailTitle().c_str());
                 gameEmailContextDict->InsertItem("content", gameEmailData->getGameEmailContent().c_str());
                 if ( gameEmailData->getGameEmailCoins()>0)

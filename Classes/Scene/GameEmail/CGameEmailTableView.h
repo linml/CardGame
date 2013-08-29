@@ -16,20 +16,31 @@ using namespace cocos2d;
 using namespace extension;
 using namespace std;
 
+class CEmrysTableViewDelegate {
+public:
+    virtual void tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)=0;
+protected:
+    CCNode *_cellNode;
+};
+
+
 class CEmrysTableView:public CCTableView
 {
 public:
     CEmrysTableView();
     ~CEmrysTableView();
-   static CEmrysTableView *Create(CCTableViewDataSource *dataSource,CCSize size);
+   static CEmrysTableView *Create(CCTableViewDataSource *dataSource,CCSize size,CEmrysTableViewDelegate *_mydefineDeleagte);
     virtual  void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
+    virtual void ccTouchMove(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent);
 public:
     CCTouch *m_pTouch;
+    CEmrysTableViewDelegate *_mydefineDeleagte;
 };
 
 
 
-class CGameEmailTableView : public cocos2d::CCLayer, public CCTableViewDataSource, public CCTableViewDelegate
+class CGameEmailTableView : public cocos2d::CCLayer, public CCTableViewDataSource, public CCTableViewDelegate ,public CEmrysTableViewDelegate
 {
 public:
     CGameEmailTableView();
@@ -42,10 +53,13 @@ public:
     static CGameEmailTableView*creat(CCPoint p , CCSize s ,int cellNum , CCSize cellSize , CCSize tableCellSize);
     static CGameEmailTableView*creat(CCPoint p , CCSize s ,int cellNum , CCSprite*cellImage , int cellgap);
     void initCellItem(CCTableViewCell*cell, unsigned int idx);
+    void tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch);
     CREATE_FUNC(CGameEmailTableView);
     //处理滚动的标签
     void scrollBar(CCTableView* table);
-    void selector_update(float _dt);    
+    void selector_update(float _dt);
+private:
+    CCNode *node;
 public:
     void scrollViewDidScroll(CCScrollView* view);
     void scrollViewDidZoom(CCScrollView* view);

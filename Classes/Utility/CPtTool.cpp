@@ -516,21 +516,26 @@ namespace CPtTool
     }
     void getDataShijianChai(time_t  beforetime,time_t now,std::string &str)
     {
-        struct tm *l=localtime(&beforetime);
-        int value=time(NULL);
-        struct tm *e=localtime(&now);
-        int day=e->tm_mday-l->tm_mday;
-        int mouch=e->tm_hour-l->tm_hour;
-        if(mouch<0)
+        double interval=difftime(now, beforetime);
+        long day=(long)interval/(24*3600);//天
+        long hour=(long)interval%(24*3600)/3600;//小时
+        long minute=(long)interval%3600/60;//分钟
+        //long second=(long)interval%60;//秒
+        std::stringstream ss;
+        if(day>0)
         {
-            mouch+=24;
-            day-=1;
+            ss<<day<<"天";
         }
-        char data[20];
-        sprintf(data, "%d",day);
-        str+=std::string(data)+"天";
-        sprintf(data, "%d",mouch);
-        str+=std::string(data)+"时";
+        if (hour>0)
+        {
+            ss<<hour<<"时";
+        }
+        if (minute)
+        {
+            ss<<minute<<"分";
+        }
+        
+        ss>>str;
         
     }
     
