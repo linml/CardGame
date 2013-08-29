@@ -122,6 +122,37 @@ void CGameEmailManager::deleteAllEmail()
     m_gameEmail.erase(m_gameEmail.begin(),m_gameEmail.end());
 }
 
+void CGameEmailManager::deleteEmailData(vector<int >emilIdList)
+{
+    if(emilIdList.size()==0)
+    {
+        deleteAllEmail();
+    }
+    else{
+        for (map<int , CGameEmailData *>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end();it++) {
+            bool needDelete=true;
+            for (int i=0; i<emilIdList.size(); i++)
+            {
+                if(it->first==emilIdList[i])
+                {
+                    needDelete=false;
+                    break;
+                }
+            }
+            if(needDelete)
+            {
+                if (it != m_gameEmail.end())
+                {
+                    delete  it->second;
+                    it->second=NULL;
+                    m_gameEmail.erase(it);
+                } 
+
+            }
+        }
+    }
+}
+
 void CGameEmailManager::deleteEmailByEmailId(int msgID)
 {
     map < int, CGameEmailData * >::iterator iter;
@@ -130,7 +161,7 @@ void CGameEmailManager::deleteEmailByEmailId(int msgID)
     {
        delete  iter->second;
        iter->second=NULL;
-       m_gameEmail.erase(msgID);
+       m_gameEmail.erase(iter);
     } 
 }
 
@@ -139,6 +170,8 @@ void CGameEmailManager::loadLocalEmail()
         //读取本地保存的文件 放到
     
 }
+
+
 void CGameEmailManager::writeToFile()
 {
     string str=getJsonData();
@@ -157,8 +190,8 @@ void CGameEmailManager::cleareMyDictionaryList()
         }
     }
     m_ldataManagerMydict.erase(m_ldataManagerMydict.begin(), m_ldataManagerMydict.end());
-
 }
+
 
 CMyDictionary *CGameEmailManager::createMydict()
 {
@@ -216,6 +249,32 @@ string CGameEmailManager::getJsonData()
     return  resultStr;
 }
 
+CGameEmailData *CGameEmailManager::getGameDataByIndex(int index)
+{
+    if (index<25)
+    {
+        int i=0;
+        for (map<int , CGameEmailData *>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end(); it++) {
+            if (i==index) {
+                return it->second;
+            }
+            i++;
+        }
+    }
+    else{
+//        30;
+        int  i=m_gameEmail.size()-index;
+        for(map<int,CGameEmailData *>::reverse_iterator rit=m_gameEmail.rbegin();rit!=m_gameEmail.rend();rit++)
+        {
+            if (i==0) {
+                return rit->second;
+            }
+            i--;
+        }
+    }
+    return NULL;
+}
+
 int CGameEmailManager::getMailCount()
 {
     return m_gameEmail.size();
@@ -240,7 +299,14 @@ void CGameEmailManager::getHttpReponse(CCObject *object)
     // CCDictionary *dict=PtJsonUtility::JsonStringParse(data);
     delete data;
     data=NULL;
-    
+}
+void funcChangeRead( pair<const int, CGameEmailData *>& itr )
+{
+    itr.second->setGameEmailStatus(1) ;
+}
+void CGameEmailManager::changeEmailStatus()
+{
+    for_each(m_gameEmail.begin(), m_gameEmail.end(), funcChangeRead);
 }
 
 
@@ -253,6 +319,47 @@ int  CGameEmailManager::getUpdateTotalEmail()
     return  CCUserDefault::sharedUserDefault()->getIntegerForKey("UpdateTotalEmail",0);    
 }
 
+
+void CGameEmailManager::removeGameEmailData(list<int> vlistEmailList)
+{
+    for ( list<int>::iterator itList=vlistEmailList.begin() ; itList!=vlistEmailList.end(); itList++) {
+        map<int,CGameEmailData *>::iterator it= m_gameEmail.find(*itList);
+        if(it!=m_gameEmail.end())
+        {
+            CGameEmailData *tempData=it->second;
+            delete tempData;
+            tempData=NULL;
+            m_gameEmail.erase(it);
+        }
+    }
+}
+
+void CGameEmailManager::copyDataTovectory(vector<EMAIL_DATA>&vEmaildata,int data)
+{
+    if(data==-1)
+    {
+            EMAIL_DATA tamep;
+            for (map<int , CGameEmailData *>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end(); it++) {
+                    tamep.emailId=it->first;
+                    tamep.props=it->second->m_mapDataProp;
+                    vEmaildata.push_back(tamep);
+                }
+    }
+    else
+    {
+        EMAIL_DATA tamep;
+        for (map<int , CGameEmailData *>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end(); it++) {
+            if(data==0)
+            {
+                tamep.emailId=it->first;
+                tamep.props=it->second->m_mapDataProp;
+                vEmaildata.push_back(tamep);
+                return;
+            }
+            data--;
+        }
+    }
+}
 
 template <class fT, class sT>
 struct second_less : public binary_function <fT , sT , bool>
@@ -283,6 +390,7 @@ class totalUnread : public binary_function<typename std::map<Key, Value>::value_
 public:
     bool operator()(const typename map<Key, Value>::value_type iter, const UStatus& value) const
     {
+        CCLog("%d=====%d",iter.second->getGameEmailStatus(),value);
         if (iter.second->getGameEmailStatus() == value)
         {
             return true;

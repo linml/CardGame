@@ -15,6 +15,8 @@
 #include "CPtScrollWordsWidget.h"
 #include "CBackpackContainerLayer.h"
 #include "CGameEmailLayer.h"
+#include "CGameEmailManager.h"
+#define  EMAILMAXNUMBERCOUNT 50
 
 CCScene* CHallScene::scene()
 {
@@ -26,11 +28,12 @@ CCScene* CHallScene::scene()
 
 CHallScene::CHallScene()
 {
-                     
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::updateEmailNumber), "youjiangengxin", NULL);
 }
 
 CHallScene::~CHallScene()
 {
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "youjiangengxin");
     m_cplist->release();
     //clean the cache:
     HBSpriteCache::sharedHBSpriteCache()->purgesharedHBSpriteCache();
@@ -44,11 +47,56 @@ bool CHallScene::init()
     do {
         CC_BREAK_IF(!CCLayer::init());
         CC_BREAK_IF(!initHall());
+        createEmailNumberUnread();
         bRet = true;
     } while (0);
     return bRet;
 }
 
+void CHallScene::createEmailNumberUnread()
+{
+    int getUnreadCount=G_GAMESINGEMAIL::instance()->getCurrentEmailUnreadCount();
+    char data[4];
+    sprintf(data, "%d",getUnreadCount);
+    
+    if(!getChildByTag(601))
+    {
+        CCSprite *sprite=CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "emailUnreadNumber.png"));
+        if(getChildByTag(600)){
+            CCSprite *nodetemp=(CCSprite *)getChildByTag(600);
+            CCPoint point=getChildByTag(600)->getPosition();
+            int width=nodetemp->boundingBox().size.width;
+            int height=nodetemp->boundingBox().size.height;
+            sprite->setPosition(ccp(point.x+width-20,point.y+height-20));
+            addChild(sprite,201,601);
+        }
+    }
+    if(!getChildByTag(602))
+    {
+        CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 15);
+        labelttf->setColor(g_custom_color[0]);
+        addChild(labelttf,201,602);
+        labelttf->setPosition(getChildByTag(601)->getPosition());
+    }
+    if(getUnreadCount==0)
+    {
+        getChildByTag(601)->setVisible(false);
+        getChildByTag(602)->setVisible(false);
+    }
+    else
+    {
+        if(getUnreadCount==EMAILMAXNUMBERCOUNT)
+        {
+            sprintf(data, "%s","MAX");
+        }
+        CCLabelTTF *labelttf=(CCLabelTTF *)(getChildByTag(602));
+        labelttf->setString(data);
+    }    
+}
+void CHallScene::updateEmailNumber(CCObject *object)
+{
+    createEmailNumberUnread();
+}
 
 bool CHallScene::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {

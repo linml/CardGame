@@ -1,14 +1,14 @@
 10
 
 dir
-1071
+1094
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-26T09:27:09.735541Z
-1049
+2013-08-29T08:57:16.208427Z
+1094
 phileas
 has-props
 
@@ -381,19 +381,16 @@ phileas
 img
 dir
 
-map
-dir
-
 item_config.plist
 file
 
 
 
 
-2013-08-28T01:10:22.000000Z
-8805a5fa683939da3cf30ba7ad5eab3e
-2013-08-26T09:27:09.735541Z
-1049
+2013-08-29T08:58:17.000000Z
+a511e5c30f4c234249da30d290088c39
+2013-08-29T08:57:16.208427Z
+1094
 phileas
 
 
@@ -416,7 +413,10 @@ phileas
 
 
 
-3992
+7652
+
+map
+dir
 
 100000_l.plist
 file
@@ -588,40 +588,6 @@ phileas
 
 22000
 
-100004_r.plist
-file
-
-
-
-
-2013-08-13T09:15:12.000000Z
-15c7be5cefd540d9292ef52c8521b5a4
-2013-08-13T09:32:24.972476Z
-962
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1543
-
 boss_icon_Effect_l.plist
 file
 
@@ -655,6 +621,40 @@ merlin
 
 
 1474
+
+100004_r.plist
+file
+
+
+
+
+2013-08-13T09:15:12.000000Z
+15c7be5cefd540d9292ef52c8521b5a4
+2013-08-13T09:32:24.972476Z
+962
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1543
 
 particle
 dir
@@ -693,35 +693,11 @@ merlin
 
 1546
 
-sprite
-dir
-
 font
 dir
 
-level_max.plist
-file
-1088
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-deleted
+sprite
+dir
 
 bufferfire.plist
 file

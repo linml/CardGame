@@ -12,6 +12,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "CSingleton.h"
+#include "gameStruct.h"
 using namespace std;
 using namespace cocos2d;
 class CGameEmailData;
@@ -23,6 +24,7 @@ public:
     void decodeEmap(CCDictionary *dict);
     void postHttpRequest();
     void getHttpReponse(CCObject *object);
+    void changeEmailStatus();
 public:
     int  getCurrentTotalEmail();
     int  getUpdateTotalEmail();
@@ -34,11 +36,15 @@ public:
     void deleteAllEmail();
     void writeToFile();
     void deleteEmailByEmailId(int msgID);
+    void deleteEmailData(vector<int >emilIdList);
     std::string getJsonData();
     CMyDictionary * createMydict();
     void cleareMyDictionaryList();
     void testData();
     int getMailCount();
+    CGameEmailData *getGameDataByIndex(int index);
+    void removeGameEmailData(list<int >vlistEmailList);
+    void copyDataTovectory(vector<EMAIL_DATA>&vEmaildata,int data=-1);
 public:
     int m_iGetHttpStatus;
     map<int , CGameEmailData *>m_gameEmail;

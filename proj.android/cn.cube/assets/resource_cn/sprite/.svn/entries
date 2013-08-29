@@ -1,14 +1,14 @@
 10
 
 dir
-1071
+1094
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/sprite
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-26T09:27:09.735541Z
-1049
+2013-08-29T08:57:16.208427Z
+1094
 phileas
 has-props
 
@@ -28,19 +28,15 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 chushoujiemian.sprite
 file
-1083
-
-
-
-2013-08-28T07:14:28.000000Z
-a56fc4abfcc61e2d8ccf4b33bb6042b4
-2013-08-28T07:30:11.423237Z
-1083
-merlin
 
 
 
 
+2013-08-29T08:58:16.000000Z
+ba047dc6b320eed777d74d909cc801e1
+2013-08-29T08:57:16.208427Z
+1094
+phileas
 
 
 
@@ -58,7 +54,11 @@ merlin
 
 
 
-2465
+
+
+
+
+1522
 
 fight_confirm.sprite
 file
@@ -164,15 +164,15 @@ phileas
 
 baoguoziyuan1.sprite
 file
-1083
 
 
 
-2013-08-28T07:23:28.000000Z
-4847d2df4466ad0a5a0140d52cff00f3
-2013-08-28T07:30:11.423237Z
-1083
-merlin
+
+2013-08-29T08:58:16.000000Z
+2d46bda26c2db5e239f329c8cd0acc2f
+2013-08-29T08:57:16.208427Z
+1094
+phileas
 has-props
 
 
@@ -194,7 +194,7 @@ has-props
 
 
 
-14433
+14869
 
 cubeCardSprite.sprite
 file
@@ -266,7 +266,7 @@ merlin
 
 baoguosuoding.sprite
 file
-1078
+
 
 
 
@@ -436,15 +436,15 @@ merlin
 
 xialatiao.sprite
 file
-1083
 
 
 
-2013-08-28T03:55:31.000000Z
-89ffdb2900c19bae77e1c6d1aaabaf01
-2013-08-28T07:30:11.423237Z
-1083
-merlin
+
+2013-08-29T08:58:17.000000Z
+76e6849b1a339f597c3f24e756e2a33f
+2013-08-29T08:57:16.208427Z
+1094
+phileas
 has-props
 
 
@@ -466,7 +466,7 @@ has-props
 
 
 
-4304
+4416
 
 button.sprite
 file
@@ -570,6 +570,74 @@ phileas
 
 4710
 
+youjianziyuan.sprite
+file
+
+
+
+
+2013-08-29T08:58:17.000000Z
+c3bc7fdf7c1c6db122831cb2aedd1d31
+2013-08-29T08:57:16.208427Z
+1094
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6732
+
+jinhua.sprite
+file
+
+
+
+
+2013-08-29T08:58:17.000000Z
+f5f942f2c204a23b73c4a3fd9808f29d
+2013-08-29T08:57:16.208427Z
+1094
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1432
+
 logon.sprite
 file
 
@@ -603,74 +671,6 @@ merlin
 
 
 5980
-
-jinhua.sprite
-file
-
-
-
-
-2013-08-06T09:58:51.000000Z
-69fcd7298c7cf9dbd89baa73cf8a7d75
-2013-08-02T08:54:15.280686Z
-855
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1480
-
-youjianziyuan.sprite
-file
-1084
-
-
-
-2013-08-28T03:42:35.000000Z
-cf560460214d69ee300826a5c251c993
-2013-08-28T07:30:39.017346Z
-1084
-merlin
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6548
 
 main.sprite
 file
@@ -774,17 +774,18 @@ phileas
 
 948
 
-zhenxingfudong.sprite
+qianghua.sprite
 file
 
 
 
 
-2013-07-23T05:47:26.000000Z
-3402cb513a3831cbe2b68c86693e0988
-2013-07-22T06:13:26.779914Z
-725
+2013-08-29T08:58:17.000000Z
+f7f97b9ee0ca508c5233185c0c7d04b3
+2013-08-29T08:57:16.208427Z
+1094
 phileas
+has-props
 
 
 
@@ -805,8 +806,7 @@ phileas
 
 
 
-
-10133
+10139
 
 confirm.sprite
 file
@@ -842,16 +842,50 @@ phileas
 
 3501
 
-qianghua.sprite
+zhenxingfudong.sprite
 file
 
 
 
 
-2013-07-26T08:29:06.000000Z
-b8c9b27408ad6ef1d0967ba51320d1c2
-2013-07-26T08:18:25.329843Z
-797
+2013-08-29T08:58:17.000000Z
+1219bf1733804195940fdb019544516d
+2013-08-29T08:57:16.208427Z
+1094
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+10463
+
+baoguoziyuan2.sprite
+file
+
+
+
+
+2013-08-29T08:58:17.000000Z
+1daa9ee4dc592651915c5925a43d6932
+2013-08-29T08:57:16.208427Z
+1094
 phileas
 has-props
 
@@ -874,7 +908,7 @@ has-props
 
 
 
-9878
+9064
 
 hengtiao.sprite
 file
@@ -882,10 +916,10 @@ file
 
 
 
-2013-08-14T06:48:41.000000Z
-a503f69e5dfb22848b37a78b1a9acb89
-2013-08-14T02:35:55.102602Z
-969
+2013-08-29T08:58:17.000000Z
+6a5e5d3f2c7f820989b1dd681b9fe5b0
+2013-08-29T08:57:16.208427Z
+1094
 phileas
 has-props
 
@@ -908,19 +942,19 @@ has-props
 
 
 
-2609
+2597
 
-baoguoziyuan2.sprite
+zhujiemianziyuan.sprite
 file
-1083
 
 
 
-2013-08-28T07:26:50.000000Z
-8f1a472c1ed671c850947aecccdc8c21
-2013-08-28T07:30:11.423237Z
-1083
-merlin
+
+2013-08-29T08:58:17.000000Z
+4cddffe79ee67f9d70636d3ea127a2e9
+2013-08-29T08:57:16.208427Z
+1094
+phileas
 has-props
 
 
@@ -942,7 +976,41 @@ has-props
 
 
 
-8808
+29902
+
+cuowutishi.sprite
+file
+
+
+
+
+2013-08-29T08:58:17.000000Z
+b0e4a5db40808a5373a2116134fa8f56
+2013-08-29T08:57:16.208427Z
+1094
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6728
 
 door.sprite
 file
@@ -978,84 +1046,16 @@ phileas
 
 2014
 
-cuowutishi.sprite
-file
-1083
-
-
-
-2013-08-28T03:57:39.000000Z
-9cbe7799ed7190297cad61c5c7dc6963
-2013-08-28T07:30:11.423237Z
-1083
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6544
-
-zhujiemianziyuan.sprite
-file
-
-
-
-
-2013-08-28T01:10:20.000000Z
-93b302066e5635c49a5d74437f261a45
-2013-08-26T09:27:09.735541Z
-1049
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-30370
-
 KaPaiGround.sprite
 file
 
 
 
 
-2013-08-14T06:48:41.000000Z
-b45ad94ea4847e89dc082a9a26962cb6
-2013-08-14T02:35:55.102602Z
-969
+2013-08-29T08:58:17.000000Z
+1bd78ff54c5881551024df1adda71eb3
+2013-08-29T08:57:16.208427Z
+1094
 phileas
 has-props
 
@@ -1078,5 +1078,5 @@ has-props
 
 
 
-974
+908
 

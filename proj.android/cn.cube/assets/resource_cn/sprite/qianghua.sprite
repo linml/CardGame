@@ -3,49 +3,49 @@
     <key>spriteFileName</key>
     <string>qianghua</string>
     <key>imagePath</key>
-    <string>../Library/Application Support/iPhone Simulator/6.1/Applications/33C246C2-32ED-4F91-A782-D9073F17BAC8/MapView.app/resource/image/qianghua.png</string>
+    <string>../../kapaiziyuanku/Work/images/qianghua.png</string>
     <key>clipData</key>
     <dict>
-        <key>jin.png</key>
-        <string>{2,2,161,14}</string>
+        <key>jinbi.png</key>
+        <string>{84,24,25,25}</string>
         <key>jindu.png</key>
-        <string>{2,18,201,24}</string>
+        <string>{2,54,201,24}</string>
         <key>juxing_01.png</key>
-        <string>{205,18,21,22}</string>
+        <string>{25,16,21,22}</string>
         <key>juxing_02.png</key>
-        <string>{228,18,19,22}</string>
+        <string>{2,15,19,22}</string>
         <key>juxing_04.png</key>
-        <string>{2,44,20,22}</string>
+        <string>{62,23,20,22}</string>
         <key>kuang_01.png</key>
-        <string>{24,44,20,20}</string>
+        <string>{179,2,20,20}</string>
         <key>kuang_02.png</key>
-        <string>{46,44,22,11}</string>
+        <string>{2,2,22,11}</string>
         <key>kuang_04.png</key>
-        <string>{76,44,27,21}</string>
+        <string>{201,2,27,21}</string>
         <key>kuang_06.png</key>
-        <string>{108,44,17,21}</string>
+        <string>{235,2,19,21}</string>
         <key>kuang_07.png</key>
-        <string>{131,44,12,28}</string>
+        <string>{111,24,12,28}</string>
         <key>kuang_10.png</key>
-        <string>{145,44,12,28}</string>
+        <string>{48,16,12,28}</string>
         <key>kuang_13.png</key>
-        <string>{159,44,20,19}</string>
+        <string>{62,2,20,19}</string>
         <key>kuang_14.png</key>
-        <string>{181,44,16,19}</string>
+        <string>{84,2,16,19}</string>
         <key>kuang_17.png</key>
-        <string>{199,44,19,20}</string>
+        <string>{102,2,19,20}</string>
         <key>kuang_18.png</key>
-        <string>{221,44,23,12}</string>
+        <string>{32,2,23,12}</string>
         <key>kuang_19.png</key>
-        <string>{2,74,27,20}</string>
+        <string>{124,2,27,20}</string>
         <key>kuang_20.png</key>
-        <string>{38,74,14,20}</string>
+        <string>{161,2,14,20}</string>
     </dict>
     <key>mapSpriteData</key>
     <dict>
-        <key>jin.png</key>
+        <key>jinbi.png</key>
         <dict>
-            <key>jin.png</key>
+            <key>jinbi.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -315,5 +315,7 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
+        <key>clip17</key>
+        <dict/>
     </dict>
 </dict>

@@ -7,7 +7,7 @@
         <key>mapSize</key>
         <string>{100,100}</string>
         <key>backgroundColor</key>
-        <string>{243,230,255,255}</string>
+        <string>{0,0,0,255}</string>
         <key>gridInfo</key>
         <string>{64,64,16,12}</string>
         <key>layerNameArray</key>
@@ -24,9 +24,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{233,279}</string>
+                <string>{226,165}</string>
                 <key>z</key>
                 <integer>0</integer>
                 <key>tag</key>
@@ -37,9 +37,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{281,279}</string>
+                <string>{274,165}</string>
                 <key>z</key>
                 <integer>5</integer>
                 <key>tag</key>
@@ -50,9 +50,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{329,279}</string>
+                <string>{322,165}</string>
                 <key>z</key>
                 <integer>10</integer>
                 <key>tag</key>
@@ -63,9 +63,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{377,279}</string>
+                <string>{370,165}</string>
                 <key>z</key>
                 <integer>15</integer>
                 <key>tag</key>
@@ -76,9 +76,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{425,279}</string>
+                <string>{418,165}</string>
                 <key>z</key>
                 <integer>20</integer>
                 <key>tag</key>
@@ -89,9 +89,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{473,279}</string>
+                <string>{466,165}</string>
                 <key>z</key>
                 <integer>25</integer>
                 <key>tag</key>
@@ -102,9 +102,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{521,279}</string>
+                <string>{514,165}</string>
                 <key>z</key>
                 <integer>30</integer>
                 <key>tag</key>
@@ -115,9 +115,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{569,279}</string>
+                <string>{562,165}</string>
                 <key>z</key>
                 <integer>35</integer>
                 <key>tag</key>
@@ -128,9 +128,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{617,279}</string>
+                <string>{610,165}</string>
                 <key>z</key>
                 <integer>40</integer>
                 <key>tag</key>
@@ -141,9 +141,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{233,327}</string>
+                <string>{226,213}</string>
                 <key>z</key>
                 <integer>45</integer>
                 <key>tag</key>
@@ -154,9 +154,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{281,327}</string>
+                <string>{274,213}</string>
                 <key>z</key>
                 <integer>50</integer>
                 <key>tag</key>
@@ -167,9 +167,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{329,327}</string>
+                <string>{322,213}</string>
                 <key>z</key>
                 <integer>55</integer>
                 <key>tag</key>
@@ -180,9 +180,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{377,327}</string>
+                <string>{370,213}</string>
                 <key>z</key>
                 <integer>60</integer>
                 <key>tag</key>
@@ -193,9 +193,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{425,327}</string>
+                <string>{418,213}</string>
                 <key>z</key>
                 <integer>65</integer>
                 <key>tag</key>
@@ -206,9 +206,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{473,327}</string>
+                <string>{466,213}</string>
                 <key>z</key>
                 <integer>70</integer>
                 <key>tag</key>
@@ -219,9 +219,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{521,327}</string>
+                <string>{514,213}</string>
                 <key>z</key>
                 <integer>75</integer>
                 <key>tag</key>
@@ -232,9 +232,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{569,327}</string>
+                <string>{562,213}</string>
                 <key>z</key>
                 <integer>80</integer>
                 <key>tag</key>
@@ -245,9 +245,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{617,327}</string>
+                <string>{610,213}</string>
                 <key>z</key>
                 <integer>85</integer>
                 <key>tag</key>
@@ -258,9 +258,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{233,375}</string>
+                <string>{226,261}</string>
                 <key>z</key>
                 <integer>90</integer>
                 <key>tag</key>
@@ -271,9 +271,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{281,375}</string>
+                <string>{274,261}</string>
                 <key>z</key>
                 <integer>95</integer>
                 <key>tag</key>
@@ -284,9 +284,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{329,375}</string>
+                <string>{322,261}</string>
                 <key>z</key>
                 <integer>100</integer>
                 <key>tag</key>
@@ -297,9 +297,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{377,375}</string>
+                <string>{370,261}</string>
                 <key>z</key>
                 <integer>105</integer>
                 <key>tag</key>
@@ -310,9 +310,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{425,375}</string>
+                <string>{418,261}</string>
                 <key>z</key>
                 <integer>110</integer>
                 <key>tag</key>
@@ -323,9 +323,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{473,375}</string>
+                <string>{466,261}</string>
                 <key>z</key>
                 <integer>115</integer>
                 <key>tag</key>
@@ -336,9 +336,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{521,375}</string>
+                <string>{514,261}</string>
                 <key>z</key>
                 <integer>120</integer>
                 <key>tag</key>
@@ -349,9 +349,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{569,375}</string>
+                <string>{562,261}</string>
                 <key>z</key>
                 <integer>125</integer>
                 <key>tag</key>
@@ -362,9 +362,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{617,375}</string>
+                <string>{610,261}</string>
                 <key>z</key>
                 <integer>130</integer>
                 <key>tag</key>
@@ -375,9 +375,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{665,279}</string>
+                <string>{658,165}</string>
                 <key>z</key>
                 <integer>135</integer>
                 <key>tag</key>
@@ -388,9 +388,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{665,327}</string>
+                <string>{658,213}</string>
                 <key>z</key>
                 <integer>140</integer>
                 <key>tag</key>
@@ -401,9 +401,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{665,375}</string>
+                <string>{658,261}</string>
                 <key>z</key>
                 <integer>145</integer>
                 <key>tag</key>
@@ -414,9 +414,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{233,423}</string>
+                <string>{226,309}</string>
                 <key>z</key>
                 <integer>150</integer>
                 <key>tag</key>
@@ -427,9 +427,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{281,423}</string>
+                <string>{274,309}</string>
                 <key>z</key>
                 <integer>155</integer>
                 <key>tag</key>
@@ -440,9 +440,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{329,423}</string>
+                <string>{322,309}</string>
                 <key>z</key>
                 <integer>160</integer>
                 <key>tag</key>
@@ -453,9 +453,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{377,423}</string>
+                <string>{370,309}</string>
                 <key>z</key>
                 <integer>165</integer>
                 <key>tag</key>
@@ -466,9 +466,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{425,423}</string>
+                <string>{418,309}</string>
                 <key>z</key>
                 <integer>170</integer>
                 <key>tag</key>
@@ -479,9 +479,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{473,423}</string>
+                <string>{466,309}</string>
                 <key>z</key>
                 <integer>175</integer>
                 <key>tag</key>
@@ -492,9 +492,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{521,423}</string>
+                <string>{514,309}</string>
                 <key>z</key>
                 <integer>180</integer>
                 <key>tag</key>
@@ -505,9 +505,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{569,423}</string>
+                <string>{562,309}</string>
                 <key>z</key>
                 <integer>185</integer>
                 <key>tag</key>
@@ -518,9 +518,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{617,423}</string>
+                <string>{610,309}</string>
                 <key>z</key>
                 <integer>190</integer>
                 <key>tag</key>
@@ -531,9 +531,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{665,423}</string>
+                <string>{658,309}</string>
                 <key>z</key>
                 <integer>195</integer>
                 <key>tag</key>
@@ -544,9 +544,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{713,279}</string>
+                <string>{706,165}</string>
                 <key>z</key>
                 <integer>200</integer>
                 <key>tag</key>
@@ -557,9 +557,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{713,327}</string>
+                <string>{706,213}</string>
                 <key>z</key>
                 <integer>205</integer>
                 <key>tag</key>
@@ -570,9 +570,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{713,375}</string>
+                <string>{706,261}</string>
                 <key>z</key>
                 <integer>210</integer>
                 <key>tag</key>
@@ -583,9 +583,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_02.png</string>
+                <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{713,423}</string>
+                <string>{706,309}</string>
                 <key>z</key>
                 <integer>215</integer>
                 <key>tag</key>
@@ -599,9 +599,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_01.png</string>
+                <string>Label_2_01.png</string>
                 <key>pos</key>
-                <string>{222,271}</string>
+                <string>{215,157}</string>
                 <key>z</key>
                 <integer>0</integer>
                 <key>tag</key>
@@ -612,9 +612,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{307,271}</string>
+                <string>{300,157}</string>
                 <key>z</key>
                 <integer>5</integer>
                 <key>tag</key>
@@ -625,9 +625,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{339,271}</string>
+                <string>{332,157}</string>
                 <key>z</key>
                 <integer>10</integer>
                 <key>tag</key>
@@ -638,9 +638,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{371,271}</string>
+                <string>{364,157}</string>
                 <key>z</key>
                 <integer>15</integer>
                 <key>tag</key>
@@ -651,9 +651,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{403,271}</string>
+                <string>{396,157}</string>
                 <key>z</key>
                 <integer>20</integer>
                 <key>tag</key>
@@ -664,9 +664,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{435,271}</string>
+                <string>{428,157}</string>
                 <key>z</key>
                 <integer>25</integer>
                 <key>tag</key>
@@ -677,9 +677,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{467,271}</string>
+                <string>{460,157}</string>
                 <key>z</key>
                 <integer>30</integer>
                 <key>tag</key>
@@ -690,9 +690,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{499,271}</string>
+                <string>{492,157}</string>
                 <key>z</key>
                 <integer>35</integer>
                 <key>tag</key>
@@ -703,9 +703,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{531,271}</string>
+                <string>{524,157}</string>
                 <key>z</key>
                 <integer>40</integer>
                 <key>tag</key>
@@ -716,9 +716,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{563,271}</string>
+                <string>{556,157}</string>
                 <key>z</key>
                 <integer>45</integer>
                 <key>tag</key>
@@ -729,9 +729,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{595,271}</string>
+                <string>{588,157}</string>
                 <key>z</key>
                 <integer>50</integer>
                 <key>tag</key>
@@ -742,9 +742,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{627,271}</string>
+                <string>{620,157}</string>
                 <key>z</key>
                 <integer>55</integer>
                 <key>tag</key>
@@ -755,9 +755,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_03.png</string>
+                <string>Label_2_03.png</string>
                 <key>pos</key>
-                <string>{659,271}</string>
+                <string>{652,157}</string>
                 <key>z</key>
                 <integer>60</integer>
                 <key>tag</key>
@@ -768,9 +768,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_05.png</string>
+                <string>Label_2_05.png</string>
                 <key>pos</key>
-                <string>{691,271}</string>
+                <string>{684,157}</string>
                 <key>z</key>
                 <integer>65</integer>
                 <key>tag</key>
@@ -781,9 +781,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_09.png</string>
+                <string>Label_2_09.png</string>
                 <key>pos</key>
-                <string>{222,326}</string>
+                <string>{215,212}</string>
                 <key>z</key>
                 <integer>70</integer>
                 <key>tag</key>
@@ -794,9 +794,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_09.png</string>
+                <string>Label_2_09.png</string>
                 <key>pos</key>
-                <string>{222,348}</string>
+                <string>{215,234}</string>
                 <key>z</key>
                 <integer>75</integer>
                 <key>tag</key>
@@ -807,9 +807,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_09.png</string>
+                <string>Label_2_09.png</string>
                 <key>pos</key>
-                <string>{222,370}</string>
+                <string>{215,256}</string>
                 <key>z</key>
                 <integer>80</integer>
                 <key>tag</key>
@@ -820,9 +820,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_09.png</string>
+                <string>Label_2_09.png</string>
                 <key>pos</key>
-                <string>{222,392}</string>
+                <string>{215,278}</string>
                 <key>z</key>
                 <integer>85</integer>
                 <key>tag</key>
@@ -833,9 +833,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_09.png</string>
+                <string>Label_2_09.png</string>
                 <key>pos</key>
-                <string>{222,414}</string>
+                <string>{215,300}</string>
                 <key>z</key>
                 <integer>90</integer>
                 <key>tag</key>
@@ -846,9 +846,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_15.png</string>
+                <string>Label_2_15.png</string>
                 <key>pos</key>
-                <string>{222,436}</string>
+                <string>{215,322}</string>
                 <key>z</key>
                 <integer>95</integer>
                 <key>tag</key>
@@ -859,9 +859,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_12.png</string>
+                <string>Label_2_12.png</string>
                 <key>pos</key>
-                <string>{724,326}</string>
+                <string>{717,212}</string>
                 <key>z</key>
                 <integer>100</integer>
                 <key>tag</key>
@@ -872,9 +872,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_12.png</string>
+                <string>Label_2_12.png</string>
                 <key>pos</key>
-                <string>{724,348}</string>
+                <string>{717,234}</string>
                 <key>z</key>
                 <integer>105</integer>
                 <key>tag</key>
@@ -885,9 +885,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_12.png</string>
+                <string>Label_2_12.png</string>
                 <key>pos</key>
-                <string>{724,370}</string>
+                <string>{717,256}</string>
                 <key>z</key>
                 <integer>110</integer>
                 <key>tag</key>
@@ -898,9 +898,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_12.png</string>
+                <string>Label_2_12.png</string>
                 <key>pos</key>
-                <string>{724,392}</string>
+                <string>{717,278}</string>
                 <key>z</key>
                 <integer>115</integer>
                 <key>tag</key>
@@ -911,9 +911,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_12.png</string>
+                <string>Label_2_12.png</string>
                 <key>pos</key>
-                <string>{724,414}</string>
+                <string>{717,300}</string>
                 <key>z</key>
                 <integer>120</integer>
                 <key>tag</key>
@@ -924,9 +924,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_17.png</string>
+                <string>Label_2_17.png</string>
                 <key>pos</key>
-                <string>{724,436}</string>
+                <string>{684,322}</string>
                 <key>z</key>
                 <integer>125</integer>
                 <key>tag</key>
@@ -937,312 +937,312 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_04.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{427,262}</string>
+                <string>{332,322}</string>
                 <key>z</key>
                 <integer>205</integer>
                 <key>tag</key>
-                <integer>41</integer>
+                <integer>42</integer>
             </dict>
             <key>mapSprite27</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{267,436}</string>
+                <string>{300,322}</string>
                 <key>z</key>
                 <integer>210</integer>
                 <key>tag</key>
-                <integer>42</integer>
+                <integer>43</integer>
             </dict>
             <key>mapSprite28</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{287,436}</string>
+                <string>{492,322}</string>
                 <key>z</key>
                 <integer>215</integer>
                 <key>tag</key>
-                <integer>43</integer>
+                <integer>45</integer>
             </dict>
             <key>mapSprite29</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{307,436}</string>
+                <string>{364,322}</string>
                 <key>z</key>
-                <integer>220</integer>
+                <integer>225</integer>
                 <key>tag</key>
-                <integer>44</integer>
+                <integer>47</integer>
             </dict>
             <key>mapSprite30</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{327,436}</string>
+                <string>{396,322}</string>
                 <key>z</key>
-                <integer>225</integer>
+                <integer>235</integer>
                 <key>tag</key>
-                <integer>45</integer>
+                <integer>48</integer>
             </dict>
             <key>mapSprite31</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{347,436}</string>
+                <string>{428,322}</string>
                 <key>z</key>
-                <integer>230</integer>
+                <integer>240</integer>
                 <key>tag</key>
-                <integer>46</integer>
+                <integer>51</integer>
             </dict>
             <key>mapSprite32</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{367,436}</string>
+                <string>{460,322}</string>
                 <key>z</key>
-                <integer>235</integer>
+                <integer>255</integer>
                 <key>tag</key>
-                <integer>47</integer>
+                <integer>53</integer>
             </dict>
             <key>mapSprite33</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{387,436}</string>
+                <string>{524,322}</string>
                 <key>z</key>
-                <integer>240</integer>
+                <integer>265</integer>
                 <key>tag</key>
-                <integer>48</integer>
+                <integer>58</integer>
             </dict>
             <key>mapSprite34</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{407,436}</string>
+                <string>{556,322}</string>
                 <key>z</key>
-                <integer>245</integer>
+                <integer>290</integer>
                 <key>tag</key>
-                <integer>49</integer>
+                <integer>59</integer>
             </dict>
             <key>mapSprite35</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{427,436}</string>
+                <string>{588,322}</string>
                 <key>z</key>
-                <integer>250</integer>
+                <integer>295</integer>
                 <key>tag</key>
-                <integer>50</integer>
+                <integer>61</integer>
             </dict>
             <key>mapSprite36</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{447,436}</string>
+                <string>{620,322}</string>
                 <key>z</key>
-                <integer>255</integer>
+                <integer>305</integer>
                 <key>tag</key>
-                <integer>51</integer>
+                <integer>64</integer>
             </dict>
             <key>mapSprite37</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_16.png</string>
                 <key>pos</key>
-                <string>{467,436}</string>
+                <string>{652,322}</string>
                 <key>z</key>
-                <integer>260</integer>
+                <integer>320</integer>
                 <key>tag</key>
-                <integer>52</integer>
+                <integer>65</integer>
             </dict>
             <key>mapSprite38</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{487,436}</string>
+                <string>{250,167}</string>
                 <key>z</key>
-                <integer>265</integer>
+                <integer>325</integer>
                 <key>tag</key>
-                <integer>53</integer>
+                <integer>66</integer>
             </dict>
             <key>mapSprite39</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{507,436}</string>
+                <string>{297,167}</string>
                 <key>z</key>
-                <integer>270</integer>
+                <integer>330</integer>
                 <key>tag</key>
-                <integer>54</integer>
+                <integer>67</integer>
             </dict>
             <key>mapSprite40</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{527,436}</string>
+                <string>{344,167}</string>
                 <key>z</key>
-                <integer>275</integer>
+                <integer>335</integer>
                 <key>tag</key>
-                <integer>55</integer>
+                <integer>68</integer>
             </dict>
             <key>mapSprite41</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{547,436}</string>
+                <string>{391,167}</string>
                 <key>z</key>
-                <integer>280</integer>
+                <integer>340</integer>
                 <key>tag</key>
-                <integer>56</integer>
+                <integer>69</integer>
             </dict>
             <key>mapSprite42</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{567,436}</string>
+                <string>{434,167}</string>
                 <key>z</key>
-                <integer>285</integer>
+                <integer>345</integer>
                 <key>tag</key>
-                <integer>57</integer>
+                <integer>70</integer>
             </dict>
             <key>mapSprite43</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{587,436}</string>
+                <string>{481,167}</string>
                 <key>z</key>
-                <integer>290</integer>
+                <integer>350</integer>
                 <key>tag</key>
-                <integer>58</integer>
+                <integer>71</integer>
             </dict>
             <key>mapSprite44</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{607,436}</string>
+                <string>{527,167}</string>
                 <key>z</key>
-                <integer>295</integer>
+                <integer>355</integer>
                 <key>tag</key>
-                <integer>59</integer>
+                <integer>72</integer>
             </dict>
             <key>mapSprite45</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{627,436}</string>
+                <string>{574,167}</string>
                 <key>z</key>
-                <integer>300</integer>
+                <integer>360</integer>
                 <key>tag</key>
-                <integer>60</integer>
+                <integer>73</integer>
             </dict>
             <key>mapSprite46</key>
             <dict>
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_2_04.png</string>
                 <key>pos</key>
-                <string>{647,436}</string>
+                <string>{420,149}</string>
                 <key>z</key>
-                <integer>305</integer>
+                <integer>365</integer>
                 <key>tag</key>
-                <integer>61</integer>
+                <integer>41</integer>
             </dict>
             <key>mapSprite47</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{667,436}</string>
+                <string>{621,167}</string>
                 <key>z</key>
-                <integer>310</integer>
+                <integer>370</integer>
                 <key>tag</key>
-                <integer>62</integer>
+                <integer>74</integer>
             </dict>
             <key>mapSprite48</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{687,436}</string>
+                <string>{666,167}</string>
                 <key>z</key>
-                <integer>315</integer>
+                <integer>375</integer>
                 <key>tag</key>
-                <integer>63</integer>
+                <integer>75</integer>
             </dict>
             <key>mapSprite49</key>
             <dict>
                 <key>spriteName</key>
-                <string>cuowutishi</string>
+                <string>baoguoziyuan1</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_16.png</string>
+                <string>Label_0_12.png</string>
                 <key>pos</key>
-                <string>{707,436}</string>
+                <string>{690,167}</string>
                 <key>z</key>
-                <integer>320</integer>
+                <integer>380</integer>
                 <key>tag</key>
-                <integer>64</integer>
+                <integer>76</integer>
             </dict>
         </dict>
         <key>anniu</key>
@@ -1252,9 +1252,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_06.png</string>
+                <string>Label_2_06.png</string>
                 <key>pos</key>
-                <string>{308,404}</string>
+                <string>{301,290}</string>
                 <key>z</key>
                 <integer>0</integer>
                 <key>tag</key>
@@ -1265,9 +1265,9 @@
                 <key>spriteName</key>
                 <string>cuowutishi</string>
                 <key>mapSpriteName</key>
-                <string>界面优化0-副本-2_06.png</string>
+                <string>Label_2_06.png</string>
                 <key>pos</key>
-                <string>{530,404}</string>
+                <string>{525,290}</string>
                 <key>z</key>
                 <integer>5</integer>
                 <key>tag</key>

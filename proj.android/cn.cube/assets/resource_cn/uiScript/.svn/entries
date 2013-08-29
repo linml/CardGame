@@ -1,14 +1,14 @@
 10
 
 dir
-1071
+1094
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/uiScript
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-26T09:27:09.735541Z
-1049
+2013-08-29T08:57:16.208427Z
+1094
 phileas
 has-props
 
@@ -128,16 +128,16 @@ has-props
 
 11980
 
-zhenxingfudong.plist
+qianghua.plist
 file
 
 
 
 
-2013-07-23T05:47:25.000000Z
-fa3cd462118066abf0cdf2a5364ceb00
-2013-07-22T06:13:26.779914Z
-725
+2013-08-28T01:10:20.000000Z
+796c1a304bfee2fed7787852d3367497
+2013-08-20T10:14:37.885553Z
+1015
 phileas
 
 
@@ -160,7 +160,7 @@ phileas
 
 
 
-5546
+5315
 
 confirm.plist
 file
@@ -196,16 +196,16 @@ phileas
 
 1163
 
-qianghua.plist
+zhenxingfudong.plist
 file
 
 
 
 
-2013-08-28T01:10:20.000000Z
-796c1a304bfee2fed7787852d3367497
-2013-08-20T10:14:37.885553Z
-1015
+2013-07-23T05:47:25.000000Z
+fa3cd462118066abf0cdf2a5364ceb00
+2013-07-22T06:13:26.779914Z
+725
 phileas
 
 
@@ -228,7 +228,7 @@ phileas
 
 
 
-5315
+5546
 
 cubeCardSprite.plist
 file
@@ -298,17 +298,18 @@ phileas
 
 3087
 
-task.plist
+daoju.plist
 file
 
 
 
 
-2013-07-05T06:01:23.000000Z
-2713c74bc2f6fafa8434c395b3e847d9
-2013-06-17T08:03:03.103333Z
-526
-merlin
+2013-08-28T01:10:20.000000Z
+a0040cddca961091be5c62d6a236cbd7
+2013-08-26T09:27:09.735541Z
+1049
+phileas
+has-props
 
 
 
@@ -329,8 +330,7 @@ merlin
 
 
 
-
-16809
+536
 
 kapaixinxijiemian.plist
 file
@@ -366,18 +366,17 @@ phileas
 
 3562
 
-daoju.plist
+task.plist
 file
 
 
 
 
-2013-08-28T01:10:20.000000Z
-a0040cddca961091be5c62d6a236cbd7
-2013-08-26T09:27:09.735541Z
-1049
-phileas
-has-props
+2013-07-05T06:01:23.000000Z
+2713c74bc2f6fafa8434c395b3e847d9
+2013-06-17T08:03:03.103333Z
+526
+merlin
 
 
 
@@ -398,7 +397,8 @@ has-props
 
 
 
-536
+
+16809
 
 cuowutishi.plist
 file
@@ -433,6 +433,40 @@ merlin
 
 
 1808
+
+deleteprop.plist
+file
+
+
+
+
+2013-08-29T08:58:17.000000Z
+5d623b329811863f20417cf44504ff5b
+2013-08-29T08:57:16.208427Z
+1094
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+866
 
 exploration.plist
 file
@@ -841,4 +875,38 @@ phileas
 
 
 1373
+
+beibao.plist
+file
+
+
+
+
+2013-08-29T08:58:17.000000Z
+f8697689d6d2c351f9f65692029e2a5e
+2013-08-29T08:57:16.208427Z
+1094
+phileas
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+855
 

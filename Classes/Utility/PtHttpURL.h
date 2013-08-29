@@ -78,6 +78,10 @@
 
 //获取邮件
 #define STR_URL_EMAIL(UID)          URL_FACTORY("api.php?m=Email&a=getEmail&uid=",UID) 
+//修改邮件未读或者已读表示
+#define STR_URL_EMAILREADSTATUS(UID) URL_FACTORY("api.php?m=Inbox&a=updateInboxStatus&uid=",UID)
+
+#define STR_URL_EMAILGETITEMS(UID) URL_FACTORY("api.php?m=Inbox&a=getItems&uid=",UID)
 
 //系统初始化
 

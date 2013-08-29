@@ -123,6 +123,7 @@ const ccColor3B g_custom_color[] = {
     
     {255,210,0},    //17 装备列表选中
     {0,0,0},    //18 black
+    {255,125,125} //19黄色
 };
 
 typedef struct TPlayTask {

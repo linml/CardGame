@@ -734,7 +734,7 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
 
 vector<int>CGamePlayer::getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas)
 {
-    int useGridCount = getUseGridCount();
+    int useGridCount =getUseGridCount();
     vector<int> emailIds;
     map<int, int> allProps = m_vProps;
     int tmpAddCount = 0;

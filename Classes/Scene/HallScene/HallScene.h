@@ -36,12 +36,14 @@ public:
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    void createEmailNumberUnread();
+    void updateEmailNumber(CCObject *object);
+    
     
 protected:
     bool initHall();
     void handlerTouch();
     void createEmailLayer();
-    
 protected:
     int m_nTouchTag;
     CCSprite* m_touchSprite;

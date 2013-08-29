@@ -3,7 +3,7 @@
     <key>spriteFileName</key>
     <string>zhujiemianziyuan</string>
     <key>imagePath</key>
-    <string>../../kapaiziyuanku/Work/images/zhujiemianziyuan.png</string>
+    <string>../../CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/zhujiemianziyuan.png</string>
     <key>clipData</key>
     <dict>
         <key>0_01.png</key>
@@ -84,31 +84,31 @@
         <string>{746,2,141,33}</string>
         <key>zhenxingbutton_Normal.png</key>
         <string>{730,37,141,33}</string>
-        <key>包裹界面-副本_03.png</key>
+        <key>Label_6_03.png</key>
         <string>{1010,2,11,23}</string>
-        <key>包裹界面-副本_04.png</key>
+        <key>Label_6_04.png</key>
         <string>{2,42,76,68}</string>
-        <key>包裹界面-副本_05.png</key>
+        <key>Label_6_05.png</key>
         <string>{1010,27,9,23}</string>
-        <key>包裹界面-副本_06.png</key>
+        <key>Label_6_06.png</key>
         <string>{577,68,41,35}</string>
-        <key>包裹界面-副本_07.png</key>
+        <key>Label_6_07.png</key>
         <string>{873,37,12,23}</string>
-        <key>包裹界面-副本_09.png</key>
+        <key>Label_6_09.png</key>
         <string>{886,96,40,28}</string>
-        <key>包裹界面-副本_12.png</key>
+        <key>Label_6_12.png</key>
         <string>{535,38,40,36}</string>
-        <key>包裹界面-副本_15.png</key>
+        <key>Label_6_15.png</key>
         <string>{270,38,59,61}</string>
-        <key>包裹界面-副本_22.png</key>
+        <key>Label_6_22.png</key>
         <string>{928,96,34,30}</string>
-        <key>包裹界面-副本_25.png</key>
+        <key>Label_6_25.png</key>
         <string>{851,72,33,37}</string>
-        <key>包裹界面-副本_31.png</key>
+        <key>Label_6_31.png</key>
         <string>{873,62,12,5}</string>
-        <key>包裹界面-副本_33.png</key>
+        <key>Label_6_33.png</key>
         <string>{1010,82,11,5}</string>
-        <key>包裹界面-副本_35.png</key>
+        <key>Label_6_35.png</key>
         <string>{964,121,8,5}</string>
     </dict>
     <key>mapSpriteData</key>
@@ -737,9 +737,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_03.png</key>
+        <key>Label_6_03.png</key>
         <dict>
-            <key>包裹界面-副本_03.png</key>
+            <key>Label_6_03.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -753,9 +753,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_04.png</key>
+        <key>Label_6_04.png</key>
         <dict>
-            <key>包裹界面-副本_04.png</key>
+            <key>Label_6_04.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -769,9 +769,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_05.png</key>
+        <key>Label_6_05.png</key>
         <dict>
-            <key>包裹界面-副本_05.png</key>
+            <key>Label_6_05.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -785,9 +785,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_06.png</key>
+        <key>Label_6_06.png</key>
         <dict>
-            <key>包裹界面-副本_06.png</key>
+            <key>Label_6_06.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -801,9 +801,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_07.png</key>
+        <key>Label_6_07.png</key>
         <dict>
-            <key>包裹界面-副本_07.png</key>
+            <key>Label_6_07.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -817,9 +817,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_09.png</key>
+        <key>Label_6_09.png</key>
         <dict>
-            <key>包裹界面-副本_09.png</key>
+            <key>Label_6_09.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -833,9 +833,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_12.png</key>
+        <key>Label_6_12.png</key>
         <dict>
-            <key>包裹界面-副本_12.png</key>
+            <key>Label_6_12.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -849,9 +849,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_15.png</key>
+        <key>Label_6_15.png</key>
         <dict>
-            <key>包裹界面-副本_15.png</key>
+            <key>Label_6_15.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -865,9 +865,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_22.png</key>
+        <key>Label_6_22.png</key>
         <dict>
-            <key>包裹界面-副本_22.png</key>
+            <key>Label_6_22.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -881,9 +881,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_25.png</key>
+        <key>Label_6_25.png</key>
         <dict>
-            <key>包裹界面-副本_25.png</key>
+            <key>Label_6_25.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -897,9 +897,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_31.png</key>
+        <key>Label_6_31.png</key>
         <dict>
-            <key>包裹界面-副本_31.png</key>
+            <key>Label_6_31.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -913,9 +913,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_33.png</key>
+        <key>Label_6_33.png</key>
         <dict>
-            <key>包裹界面-副本_33.png</key>
+            <key>Label_6_33.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -929,9 +929,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>包裹界面-副本_35.png</key>
+        <key>Label_6_35.png</key>
         <dict>
-            <key>包裹界面-副本_35.png</key>
+            <key>Label_6_35.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>

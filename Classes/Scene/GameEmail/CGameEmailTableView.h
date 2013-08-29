@@ -15,6 +15,20 @@
 using namespace cocos2d;
 using namespace extension;
 using namespace std;
+
+class CEmrysTableView:public CCTableView
+{
+public:
+    CEmrysTableView();
+    ~CEmrysTableView();
+   static CEmrysTableView *Create(CCTableViewDataSource *dataSource,CCSize size);
+    virtual  void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+public:
+    CCTouch *m_pTouch;
+};
+
+
+
 class CGameEmailTableView : public cocos2d::CCLayer, public CCTableViewDataSource, public CCTableViewDelegate
 {
 public:
@@ -35,13 +49,15 @@ public:
 public:
     void scrollViewDidScroll(CCScrollView* view);
     void scrollViewDidZoom(CCScrollView* view);
+    void reloadData();
     
 public:
     unsigned int numberOfCellsInTableView(CCTableView *table);
     CCTableViewCell* tableCellAtIndex(CCTableView *table, unsigned int idx);
     CCSize cellSizeForTable(CCTableView *table);
     CCSize tableCellSizeForIndex(CCTableView *table, unsigned int idx);
-    
+    void sendPostHttpGetSingleItem(int msgID);
+    void recvBockHttpCallBack(CCObject *object);
 public:
     void tableCellTouched(CCTableView* table, CCTableViewCell* cell);
     
@@ -60,6 +76,7 @@ public:
     CCRect m_TextureRect;
     float m_cellScaleX ;
     float m_cellScaleY ;
+    CEmrysTableView * tableView;
 };
 
 

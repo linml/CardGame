@@ -20,6 +20,14 @@ public:
     std::string CUiEmailContext;
     
 };
+enum EN_EMAILHTTPREQUEST {
+    EN_EMAILHTTPREQUEST_NONE = 0,
+    EN_EMAILHTTPREQUEST_CHANEGSTATUS =1,
+    EN_EMAILHTTPREQUEST_GETSINGLEITEM,
+    EN_EMAILHTTPREQUEST_GETALLEMAIL
+    };
+
+
 class CGameButtonControl;
 class  CGameEmailLayer :public CCLayer 
 {
@@ -32,6 +40,17 @@ private:
     bool loadPlistFile();
     void createRecvAllButton();
     void creaetEmailTableView();
+    void getAllEmailItem();
+    //发送已经读取的表示
+    void sendPostHttpChangeEmailStatus();
+    void sendPostHttpGetAllItem();
+    void sendPostHttpGetSingleItem();
+    void recvBockHttpCallBack(CCObject *object);
+    bool decodeRecvBackStr(char *data); //true 邮件校验成功
+private:
+    CCNode *m_tempTouchNode;
+    EN_EMAILHTTPREQUEST m_enhttpStatus;
+    vector<int>canereadList;
 protected:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);

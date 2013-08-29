@@ -94,6 +94,8 @@
 	<string>确认</string>
 	<key>cuowutishiquxiao</key>
 	<string>取消</string>
+	<key>quanbulingqu</key>
+	<string>全部领取</string>
 	<key>lingqujiangpin</key>
 	<string>领取</string>
 	<key>backpack_all</key>

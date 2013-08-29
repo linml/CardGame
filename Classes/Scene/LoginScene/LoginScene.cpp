@@ -99,7 +99,8 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             
             break;
         case BUTTON_PLAY_TAG:
-            Utility::handleBtnCallBack(touchSprite, this, callfunc_selector(CLoginScene::playGame));
+            scheudoLoadGameConfig();
+            
             break;
         default:
             break;
@@ -161,7 +162,7 @@ bool CLoginScene::initLogin()
         
         if(Utility::getNodeByTag(this, "0,2,0"))
         {
-            Utility::getNodeByTag(this, "0,2,0")->setVisible(false);
+            Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
         }
         // set layer touche enable
         setTouchEnabled(true);
@@ -174,7 +175,7 @@ bool CLoginScene::initLogin()
         isLoadTeam=false;
         isGameInit=false;
         isLoadBackPack = false;
-        scheudoLoadGameConfig(); //by merlin
+        //scheudoLoadGameConfig(); //by merlin
     } while (0);
     return bRet;
     
@@ -296,7 +297,9 @@ void CLoginScene::addFunctionInitGames(float t)
                         {
                             setText("welcome");
                             unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
-                            Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
+                            playGame();
+//                            Utility::handleBtnCallBack(touchSprite, this, callfunc_selector(CLoginScene::playGame));
+                           // Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
                         }
 
                     }

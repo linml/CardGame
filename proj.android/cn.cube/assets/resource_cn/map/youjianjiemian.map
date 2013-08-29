@@ -1840,12 +1840,12 @@
                 <integer>142</integer>
             </dict>
         </dict>
-        <key>shade</key>
+             <key>shade</key>
         <dict>
             <key>mapSprite0</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1858,7 +1858,7 @@
             <key>mapSprite1</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1871,7 +1871,7 @@
             <key>mapSprite2</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1884,7 +1884,7 @@
             <key>mapSprite3</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1897,7 +1897,7 @@
             <key>mapSprite4</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1910,7 +1910,7 @@
             <key>mapSprite5</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1923,7 +1923,7 @@
             <key>mapSprite6</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1936,7 +1936,7 @@
             <key>mapSprite7</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1949,7 +1949,7 @@
             <key>mapSprite8</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1962,7 +1962,7 @@
             <key>mapSprite9</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1975,7 +1975,7 @@
             <key>mapSprite10</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -1988,7 +1988,7 @@
             <key>mapSprite11</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2001,7 +2001,7 @@
             <key>mapSprite12</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2014,7 +2014,7 @@
             <key>mapSprite13</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2027,7 +2027,7 @@
             <key>mapSprite14</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2040,7 +2040,7 @@
             <key>mapSprite15</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2053,7 +2053,7 @@
             <key>mapSprite16</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2066,7 +2066,7 @@
             <key>mapSprite17</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2079,7 +2079,7 @@
             <key>mapSprite18</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2092,7 +2092,7 @@
             <key>mapSprite19</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2105,7 +2105,7 @@
             <key>mapSprite20</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2118,7 +2118,7 @@
             <key>mapSprite21</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2131,7 +2131,7 @@
             <key>mapSprite22</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2144,7 +2144,7 @@
             <key>mapSprite23</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2157,7 +2157,7 @@
             <key>mapSprite24</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2170,7 +2170,7 @@
             <key>mapSprite25</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2</string>
                 <key>pos</key>
@@ -2186,7 +2186,7 @@
             <key>mapSprite0</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2199,7 +2199,7 @@
             <key>mapSprite1</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2212,7 +2212,7 @@
             <key>mapSprite2</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2225,7 +2225,7 @@
             <key>mapSprite3</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2238,7 +2238,7 @@
             <key>mapSprite4</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2251,7 +2251,7 @@
             <key>mapSprite5</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2264,7 +2264,7 @@
             <key>mapSprite6</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2277,7 +2277,7 @@
             <key>mapSprite7</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2290,7 +2290,7 @@
             <key>mapSprite8</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2303,7 +2303,7 @@
             <key>mapSprite9</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2316,7 +2316,7 @@
             <key>mapSprite10</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2329,7 +2329,7 @@
             <key>mapSprite11</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2342,7 +2342,7 @@
             <key>mapSprite12</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2355,7 +2355,7 @@
             <key>mapSprite13</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2368,7 +2368,7 @@
             <key>mapSprite14</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2381,7 +2381,7 @@
             <key>mapSprite15</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2394,7 +2394,7 @@
             <key>mapSprite16</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2407,7 +2407,7 @@
             <key>mapSprite17</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2420,7 +2420,7 @@
             <key>mapSprite18</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2433,7 +2433,7 @@
             <key>mapSprite19</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2446,7 +2446,7 @@
             <key>mapSprite20</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2459,7 +2459,7 @@
             <key>mapSprite21</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2472,7 +2472,7 @@
             <key>mapSprite22</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2485,7 +2485,7 @@
             <key>mapSprite23</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2498,7 +2498,7 @@
             <key>mapSprite24</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>
@@ -2511,7 +2511,7 @@
             <key>mapSprite25</key>
             <dict>
                 <key>spriteName</key>
-                <string>chushoujiemian</string>
+                <string>chushoujiemian2</string>
                 <key>mapSpriteName</key>
                 <string>clip2_copy</string>
                 <key>pos</key>

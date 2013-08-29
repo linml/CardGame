@@ -3,7 +3,7 @@
     <key>spriteFileName</key>
     <string>main</string>
     <key>imagePath</key>
-    <string>main.png</string>
+    <string>../../CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/main.png</string>
     <key>clipData</key>
     <dict>
         <key>bar.png</key>

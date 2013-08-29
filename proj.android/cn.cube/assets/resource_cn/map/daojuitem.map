@@ -26,7 +26,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{83,104}</string>
 				<key>z</key>
@@ -39,7 +39,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{319,270}</string>
 				<key>z</key>
@@ -52,7 +52,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{83,270}</string>
 				<key>z</key>
@@ -65,7 +65,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{319,104}</string>
 				<key>z</key>
@@ -78,7 +78,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{123,104}</string>
 				<key>z</key>
@@ -91,7 +91,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{173,104}</string>
 				<key>z</key>
@@ -104,7 +104,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{223,104}</string>
 				<key>z</key>
@@ -117,7 +117,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{273,104}</string>
 				<key>z</key>
@@ -130,7 +130,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{123,279}</string>
 				<key>z</key>
@@ -143,7 +143,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{172,279}</string>
 				<key>z</key>
@@ -156,7 +156,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{221,279}</string>
 				<key>z</key>
@@ -169,7 +169,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{270,279}</string>
 				<key>z</key>
@@ -182,7 +182,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{83,140}</string>
 				<key>z</key>
@@ -195,7 +195,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{83,205}</string>
 				<key>z</key>
@@ -208,7 +208,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{331,140}</string>
 				<key>z</key>
@@ -221,7 +221,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{331,205}</string>
 				<key>z</key>
@@ -234,7 +234,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{82,105}</string>
 				<key>z</key>
@@ -247,7 +247,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{86,138}</string>
 				<key>z</key>
@@ -260,7 +260,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{169,201}</string>
 				<key>z</key>
@@ -273,7 +273,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{87,273}</string>
 				<key>z</key>
@@ -286,7 +286,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{237,272}</string>
 				<key>z</key>
@@ -302,7 +302,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{368,104}</string>
 				<key>z</key>
@@ -315,7 +315,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{604,270}</string>
 				<key>z</key>
@@ -328,7 +328,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{368,270}</string>
 				<key>z</key>
@@ -341,7 +341,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{604,104}</string>
 				<key>z</key>
@@ -354,7 +354,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{408,104}</string>
 				<key>z</key>
@@ -367,7 +367,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{458,104}</string>
 				<key>z</key>
@@ -380,7 +380,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{508,104}</string>
 				<key>z</key>
@@ -393,7 +393,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{558,104}</string>
 				<key>z</key>
@@ -406,7 +406,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{408,279}</string>
 				<key>z</key>
@@ -419,7 +419,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{457,279}</string>
 				<key>z</key>
@@ -432,7 +432,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{506,279}</string>
 				<key>z</key>
@@ -445,7 +445,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{555,279}</string>
 				<key>z</key>
@@ -458,7 +458,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{368,140}</string>
 				<key>z</key>
@@ -471,7 +471,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{368,205}</string>
 				<key>z</key>
@@ -484,7 +484,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{616,140}</string>
 				<key>z</key>
@@ -497,7 +497,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{616,205}</string>
 				<key>z</key>
@@ -510,7 +510,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{367,105}</string>
 				<key>z</key>
@@ -523,7 +523,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{371,138}</string>
 				<key>z</key>
@@ -536,7 +536,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{454,201}</string>
 				<key>z</key>
@@ -549,7 +549,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{372,273}</string>
 				<key>z</key>
@@ -562,7 +562,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{522,272}</string>
 				<key>z</key>
@@ -578,7 +578,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{654,103}</string>
 				<key>z</key>
@@ -591,7 +591,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{890,269}</string>
 				<key>z</key>
@@ -604,7 +604,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{654,269}</string>
 				<key>z</key>
@@ -617,7 +617,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{890,103}</string>
 				<key>z</key>
@@ -630,7 +630,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{694,103}</string>
 				<key>z</key>
@@ -643,7 +643,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{744,103}</string>
 				<key>z</key>
@@ -656,7 +656,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{794,103}</string>
 				<key>z</key>
@@ -669,7 +669,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{844,103}</string>
 				<key>z</key>
@@ -682,7 +682,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{694,278}</string>
 				<key>z</key>
@@ -695,7 +695,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{743,278}</string>
 				<key>z</key>
@@ -708,7 +708,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{792,278}</string>
 				<key>z</key>
@@ -721,7 +721,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{841,278}</string>
 				<key>z</key>
@@ -734,7 +734,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{654,139}</string>
 				<key>z</key>
@@ -747,7 +747,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{654,204}</string>
 				<key>z</key>
@@ -760,7 +760,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{902,139}</string>
 				<key>z</key>
@@ -773,7 +773,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{902,204}</string>
 				<key>z</key>
@@ -786,7 +786,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{653,104}</string>
 				<key>z</key>
@@ -799,7 +799,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{657,137}</string>
 				<key>z</key>
@@ -812,7 +812,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{740,200}</string>
 				<key>z</key>
@@ -825,7 +825,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{658,272}</string>
 				<key>z</key>
@@ -838,7 +838,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{808,271}</string>
 				<key>z</key>
@@ -854,7 +854,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{82,309}</string>
 				<key>z</key>
@@ -867,7 +867,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{318,475}</string>
 				<key>z</key>
@@ -880,7 +880,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{82,475}</string>
 				<key>z</key>
@@ -893,7 +893,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{318,309}</string>
 				<key>z</key>
@@ -906,7 +906,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{122,309}</string>
 				<key>z</key>
@@ -919,7 +919,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{172,309}</string>
 				<key>z</key>
@@ -932,7 +932,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{222,309}</string>
 				<key>z</key>
@@ -945,7 +945,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{272,309}</string>
 				<key>z</key>
@@ -958,7 +958,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{122,484}</string>
 				<key>z</key>
@@ -971,7 +971,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{171,484}</string>
 				<key>z</key>
@@ -984,7 +984,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{220,484}</string>
 				<key>z</key>
@@ -997,7 +997,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{269,484}</string>
 				<key>z</key>
@@ -1010,7 +1010,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{82,345}</string>
 				<key>z</key>
@@ -1023,7 +1023,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{82,410}</string>
 				<key>z</key>
@@ -1036,7 +1036,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{330,345}</string>
 				<key>z</key>
@@ -1049,7 +1049,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{330,410}</string>
 				<key>z</key>
@@ -1062,7 +1062,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{81,310}</string>
 				<key>z</key>
@@ -1075,7 +1075,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{85,343}</string>
 				<key>z</key>
@@ -1088,7 +1088,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{168,406}</string>
 				<key>z</key>
@@ -1101,7 +1101,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{86,478}</string>
 				<key>z</key>
@@ -1114,7 +1114,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{236,477}</string>
 				<key>z</key>
@@ -1130,7 +1130,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{367,308}</string>
 				<key>z</key>
@@ -1143,7 +1143,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{603,474}</string>
 				<key>z</key>
@@ -1156,7 +1156,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{367,474}</string>
 				<key>z</key>
@@ -1169,7 +1169,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{603,308}</string>
 				<key>z</key>
@@ -1182,7 +1182,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{407,308}</string>
 				<key>z</key>
@@ -1195,7 +1195,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{457,308}</string>
 				<key>z</key>
@@ -1208,7 +1208,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{507,308}</string>
 				<key>z</key>
@@ -1221,7 +1221,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{557,308}</string>
 				<key>z</key>
@@ -1234,7 +1234,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{407,483}</string>
 				<key>z</key>
@@ -1247,7 +1247,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{456,483}</string>
 				<key>z</key>
@@ -1260,7 +1260,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{505,483}</string>
 				<key>z</key>
@@ -1273,7 +1273,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{554,483}</string>
 				<key>z</key>
@@ -1286,7 +1286,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{367,344}</string>
 				<key>z</key>
@@ -1299,7 +1299,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{367,409}</string>
 				<key>z</key>
@@ -1312,7 +1312,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{615,344}</string>
 				<key>z</key>
@@ -1325,7 +1325,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{615,409}</string>
 				<key>z</key>
@@ -1338,7 +1338,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{366,309}</string>
 				<key>z</key>
@@ -1351,7 +1351,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{370,342}</string>
 				<key>z</key>
@@ -1364,7 +1364,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{453,405}</string>
 				<key>z</key>
@@ -1377,7 +1377,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{371,477}</string>
 				<key>z</key>
@@ -1390,7 +1390,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{521,476}</string>
 				<key>z</key>
@@ -1406,7 +1406,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{654,307}</string>
 				<key>z</key>
@@ -1419,7 +1419,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{890,473}</string>
 				<key>z</key>
@@ -1432,7 +1432,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{654,473}</string>
 				<key>z</key>
@@ -1445,7 +1445,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{890,307}</string>
 				<key>z</key>
@@ -1458,7 +1458,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{694,307}</string>
 				<key>z</key>
@@ -1471,7 +1471,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{744,307}</string>
 				<key>z</key>
@@ -1484,7 +1484,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{794,307}</string>
 				<key>z</key>
@@ -1497,7 +1497,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{844,307}</string>
 				<key>z</key>
@@ -1510,7 +1510,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{694,482}</string>
 				<key>z</key>
@@ -1523,7 +1523,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{743,482}</string>
 				<key>z</key>
@@ -1536,7 +1536,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{792,482}</string>
 				<key>z</key>
@@ -1549,7 +1549,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{841,482}</string>
 				<key>z</key>
@@ -1562,7 +1562,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{654,343}</string>
 				<key>z</key>
@@ -1575,7 +1575,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{654,408}</string>
 				<key>z</key>
@@ -1588,7 +1588,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{902,343}</string>
 				<key>z</key>
@@ -1601,7 +1601,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{902,408}</string>
 				<key>z</key>
@@ -1614,7 +1614,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{653,308}</string>
 				<key>z</key>
@@ -1627,7 +1627,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{657,341}</string>
 				<key>z</key>
@@ -1640,7 +1640,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{740,404}</string>
 				<key>z</key>
@@ -1653,7 +1653,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{658,476}</string>
 				<key>z</key>
@@ -1666,7 +1666,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{808,475}</string>
 				<key>z</key>
@@ -1682,7 +1682,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{82,514}</string>
 				<key>z</key>
@@ -1695,7 +1695,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{318,680}</string>
 				<key>z</key>
@@ -1708,7 +1708,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{82,680}</string>
 				<key>z</key>
@@ -1721,7 +1721,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{318,514}</string>
 				<key>z</key>
@@ -1734,7 +1734,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{122,514}</string>
 				<key>z</key>
@@ -1747,7 +1747,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{172,514}</string>
 				<key>z</key>
@@ -1760,7 +1760,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{222,514}</string>
 				<key>z</key>
@@ -1773,7 +1773,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{272,514}</string>
 				<key>z</key>
@@ -1786,7 +1786,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{122,689}</string>
 				<key>z</key>
@@ -1799,7 +1799,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{171,689}</string>
 				<key>z</key>
@@ -1812,7 +1812,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{220,689}</string>
 				<key>z</key>
@@ -1825,7 +1825,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{269,689}</string>
 				<key>z</key>
@@ -1838,7 +1838,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{82,550}</string>
 				<key>z</key>
@@ -1851,7 +1851,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{82,615}</string>
 				<key>z</key>
@@ -1864,7 +1864,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{330,550}</string>
 				<key>z</key>
@@ -1877,7 +1877,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{330,615}</string>
 				<key>z</key>
@@ -1890,7 +1890,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{81,515}</string>
 				<key>z</key>
@@ -1903,7 +1903,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{85,548}</string>
 				<key>z</key>
@@ -1916,7 +1916,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{168,611}</string>
 				<key>z</key>
@@ -1929,7 +1929,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{86,683}</string>
 				<key>z</key>
@@ -1942,7 +1942,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{236,682}</string>
 				<key>z</key>
@@ -1958,7 +1958,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{367,513}</string>
 				<key>z</key>
@@ -1971,7 +1971,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{603,679}</string>
 				<key>z</key>
@@ -1984,7 +1984,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{367,679}</string>
 				<key>z</key>
@@ -1997,7 +1997,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{603,513}</string>
 				<key>z</key>
@@ -2010,7 +2010,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{407,513}</string>
 				<key>z</key>
@@ -2023,7 +2023,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{457,513}</string>
 				<key>z</key>
@@ -2036,7 +2036,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{507,513}</string>
 				<key>z</key>
@@ -2049,7 +2049,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{557,513}</string>
 				<key>z</key>
@@ -2062,7 +2062,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{407,688}</string>
 				<key>z</key>
@@ -2075,7 +2075,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{456,688}</string>
 				<key>z</key>
@@ -2088,7 +2088,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{505,688}</string>
 				<key>z</key>
@@ -2101,7 +2101,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{554,688}</string>
 				<key>z</key>
@@ -2114,7 +2114,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{367,549}</string>
 				<key>z</key>
@@ -2127,7 +2127,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{367,614}</string>
 				<key>z</key>
@@ -2140,7 +2140,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{615,549}</string>
 				<key>z</key>
@@ -2153,7 +2153,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{615,614}</string>
 				<key>z</key>
@@ -2166,7 +2166,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{366,514}</string>
 				<key>z</key>
@@ -2179,7 +2179,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{370,547}</string>
 				<key>z</key>
@@ -2192,7 +2192,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{453,610}</string>
 				<key>z</key>
@@ -2205,7 +2205,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{371,682}</string>
 				<key>z</key>
@@ -2218,7 +2218,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{521,681}</string>
 				<key>z</key>
@@ -2234,7 +2234,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_39.png</string>
+				<string>Label_0_39.png</string>
 				<key>pos</key>
 				<string>{654,512}</string>
 				<key>z</key>
@@ -2247,7 +2247,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_88.png</string>
+				<string>Label_0_88.png</string>
 				<key>pos</key>
 				<string>{890,678}</string>
 				<key>z</key>
@@ -2260,7 +2260,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_90.png</string>
+				<string>Label_0_90.png</string>
 				<key>pos</key>
 				<string>{654,678}</string>
 				<key>z</key>
@@ -2273,7 +2273,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_51.png</string>
+				<string>Label_0_51.png</string>
 				<key>pos</key>
 				<string>{890,512}</string>
 				<key>z</key>
@@ -2286,7 +2286,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{694,512}</string>
 				<key>z</key>
@@ -2299,7 +2299,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{744,512}</string>
 				<key>z</key>
@@ -2312,7 +2312,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{794,512}</string>
 				<key>z</key>
@@ -2325,7 +2325,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_49.png</string>
+				<string>Label_0_49.png</string>
 				<key>pos</key>
 				<string>{844,512}</string>
 				<key>z</key>
@@ -2338,7 +2338,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{694,687}</string>
 				<key>z</key>
@@ -2351,7 +2351,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{743,687}</string>
 				<key>z</key>
@@ -2364,7 +2364,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{792,687}</string>
 				<key>z</key>
@@ -2377,7 +2377,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_84.png</string>
+				<string>Label_0_84.png</string>
 				<key>pos</key>
 				<string>{841,687}</string>
 				<key>z</key>
@@ -2390,7 +2390,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{654,548}</string>
 				<key>z</key>
@@ -2403,7 +2403,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_67.png</string>
+				<string>Label_1_67.png</string>
 				<key>pos</key>
 				<string>{654,613}</string>
 				<key>z</key>
@@ -2416,7 +2416,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{902,548}</string>
 				<key>z</key>
@@ -2429,7 +2429,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan2</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_70.png</string>
+				<string>Label_1_70.png</string>
 				<key>pos</key>
 				<string>{902,613}</string>
 				<key>z</key>
@@ -2442,7 +2442,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_01.png</string>
+				<string>Label_0_01.png</string>
 				<key>pos</key>
 				<string>{653,513}</string>
 				<key>z</key>
@@ -2455,7 +2455,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_07.png</string>
+				<string>Label_0_07.png</string>
 				<key>pos</key>
 				<string>{657,546}</string>
 				<key>z</key>
@@ -2468,7 +2468,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_02.png</string>
+				<string>Label_0_02.png</string>
 				<key>pos</key>
 				<string>{740,609}</string>
 				<key>z</key>
@@ -2481,7 +2481,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{658,681}</string>
 				<key>z</key>
@@ -2494,7 +2494,7 @@
 				<key>spriteName</key>
 				<string>baoguoziyuan1</string>
 				<key>mapSpriteName</key>
-				<string>包裹界面-副本_11.png</string>
+				<string>Label_0_11.png</string>
 				<key>pos</key>
 				<string>{808,680}</string>
 				<key>z</key>

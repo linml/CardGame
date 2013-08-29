@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dict>
     <key>spriteFileName</key>
-    <string>hengtiao</string>
+    <string>chushoujiemian2</string>
     <key>imagePath</key>
-    <string>../../CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/hengtiao.png</string>
+    <string>../../CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/chushoujiemian.png</string>
     <key>clipData</key>
     <dict>
-        <key>Label2.png</key>
-        <string>{201,39,409,2}</string>
-        <key>Label3.png</key>
-        <string>{2,39,197,22}</string>
-        <key>Label6.png</key>
-        <string>{2,2,906,35}</string>
-        <key>Label7.png</key>
-        <string>{2,63,905,10}</string>
+        <key>chushoujiemian1.png</key>
+        <string>{2,41,70,150}</string>
+        <key>chushoujiemian2.png</key>
+        <string>{2,2,451,37}</string>
+        <key>clip2</key>
+        <string>{23,111,26,55}</string>
     </dict>
     <key>mapSpriteData</key>
     <dict>
-        <key>Label2.png</key>
+        <key>chushoujiemian1.png</key>
         <dict>
-            <key>Label2.png</key>
+            <key>chushoujiemian1.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -33,9 +31,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>Label3.png</key>
+        <key>chushoujiemian2.png</key>
         <dict>
-            <key>Label3.png</key>
+            <key>chushoujiemian2.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -49,9 +47,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>Label6.png</key>
+        <key>clip2</key>
         <dict>
-            <key>Label6.png</key>
+            <key>clip2</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -65,18 +63,18 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>Label7.png</key>
+        <key>clip2_copy</key>
         <dict>
-            <key>Label7.png</key>
+            <key>clip2</key>
             <dict>
                 <key>pos</key>
-                <string>{0,0}</string>
+                <string>{27,55}</string>
                 <key>filp</key>
                 <integer>0</integer>
                 <key>scale</key>
                 <string>1</string>
                 <key>rotate</key>
-                <string>0</string>
+                <string>180</string>
                 <key>anchor</key>
                 <string>{0,1}</string>
             </dict>

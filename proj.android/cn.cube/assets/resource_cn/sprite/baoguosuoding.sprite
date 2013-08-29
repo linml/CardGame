@@ -3,7 +3,7 @@
     <key>spriteFileName</key>
     <string>baoguosuoding</string>
     <key>imagePath</key>
-    <string>../../kapaiziyuanku/Work/images/baoguosuoding.png</string>
+    <string>../../CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/baoguosuoding.png</string>
     <key>clipData</key>
     <dict>
         <key>包裹界面-zhezao_01.png</key>

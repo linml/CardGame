@@ -7,7 +7,7 @@
 		<key>initProperty</key>
 		<dict>
 			<key>tag</key>
-			<string>100</string>
+			<string>1</string>
 		</dict>
 		<key>layerFile</key>
 		<string>mail_item.map</string>

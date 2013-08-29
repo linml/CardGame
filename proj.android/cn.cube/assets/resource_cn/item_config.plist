@@ -2,6 +2,130 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>100001</key>
+	<dict>
+		<key>item_id</key>
+		<string>100001</string>
+		<key>name</key>
+		<string>体力药水</string>
+		<key>type</key>
+		<string>1</string>
+		<key>unlock_level</key>
+		<string>1</string>
+		<key>use_delete</key>
+		<string>1</string>
+		<key>coin</key>
+		<string>0</string>
+		<key>price</key>
+		<string>10</string>
+		<key>use_id</key>
+		<string>100001</string>
+		<key>use_scene</key>
+		<string>0</string>
+		<key>sell_coin</key>
+		<string>1</string>
+		<key>icon</key>
+		<string>icon_007.png</string>
+		<key>limit_num</key>
+		<string>20</string>
+		<key>is_only</key>
+		<string>0</string>
+		<key>tips</key>
+		<string>补充体力</string>
+	</dict>
+	<key>100004</key>
+	<dict>
+		<key>item_id</key>
+		<string>100004</string>
+		<key>name</key>
+		<string>经验药水</string>
+		<key>type</key>
+		<string>1</string>
+		<key>unlock_level</key>
+		<string>1</string>
+		<key>use_delete</key>
+		<string>1</string>
+		<key>coin</key>
+		<string>0</string>
+		<key>price</key>
+		<string>20</string>
+		<key>use_id</key>
+		<string>100004</string>
+		<key>use_scene</key>
+		<string>0</string>
+		<key>sell_coin</key>
+		<string>2</string>
+		<key>icon</key>
+		<string>icon_008.png</string>
+		<key>limit_num</key>
+		<string>10</string>
+		<key>is_only</key>
+		<string>0</string>
+		<key>tips</key>
+		<string>1小时内的经验获取提升5%</string>
+	</dict>
+	<key>100005</key>
+	<dict>
+		<key>item_id</key>
+		<string>100005</string>
+		<key>name</key>
+		<string>1级新手礼包</string>
+		<key>type</key>
+		<string>1</string>
+		<key>unlock_level</key>
+		<string>1</string>
+		<key>use_delete</key>
+		<string>2</string>
+		<key>coin</key>
+		<string>0</string>
+		<key>price</key>
+		<string>0</string>
+		<key>use_id</key>
+		<string>100005</string>
+		<key>use_scene</key>
+		<string>0</string>
+		<key>sell_coin</key>
+		<string>0</string>
+		<key>icon</key>
+		<string>icon_010.png</string>
+		<key>limit_num</key>
+		<string>1</string>
+		<key>is_only</key>
+		<string>1</string>
+		<key>tips</key>
+		<string>打开获得新手物品</string>
+	</dict>
+	<key>100009</key>
+	<dict>
+		<key>item_id</key>
+		<string>100009</string>
+		<key>name</key>
+		<string>回程卷轴</string>
+		<key>type</key>
+		<string>1</string>
+		<key>unlock_level</key>
+		<string>1</string>
+		<key>use_delete</key>
+		<string>3</string>
+		<key>coin</key>
+		<string>0</string>
+		<key>price</key>
+		<string>100</string>
+		<key>use_id</key>
+		<string>100009</string>
+		<key>use_scene</key>
+		<string>1</string>
+		<key>sell_coin</key>
+		<string>10</string>
+		<key>icon</key>
+		<string>icon_009.png</string>
+		<key>limit_num</key>
+		<string>3</string>
+		<key>is_only</key>
+		<string>0</string>
+		<key>tips</key>
+		<string>在副本中使用，以回到主城</string>
+	</dict>
 	<key>200001</key>
 	<dict>
 		<key>item_id</key>
@@ -13,12 +137,14 @@
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
-		<string>1</string>
+		<string>3</string>
 		<key>coin</key>
 		<string>2000</string>
 		<key>price</key>
 		<string>0</string>
-		<key>skill_id</key>
+		<key>use_id</key>
+		<string>0</string>
+		<key>use_scene</key>
 		<string>0</string>
 		<key>sell_coin</key>
 		<string>100</string>
@@ -42,12 +168,14 @@
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
-		<string>2</string>
+		<string>3</string>
 		<key>coin</key>
 		<string>2000</string>
 		<key>price</key>
 		<string>0</string>
-		<key>skill_id</key>
+		<key>use_id</key>
+		<string>0</string>
+		<key>use_scene</key>
 		<string>0</string>
 		<key>sell_coin</key>
 		<string>100</string>
@@ -76,7 +204,9 @@
 		<string>2000</string>
 		<key>price</key>
 		<string>0</string>
-		<key>skill_id</key>
+		<key>use_id</key>
+		<string>0</string>
+		<key>use_scene</key>
 		<string>0</string>
 		<key>sell_coin</key>
 		<string>100</string>
@@ -100,12 +230,14 @@
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
-		<string>4</string>
+		<string>3</string>
 		<key>coin</key>
 		<string>2000</string>
 		<key>price</key>
 		<string>0</string>
-		<key>skill_id</key>
+		<key>use_id</key>
+		<string>0</string>
+		<key>use_scene</key>
 		<string>0</string>
 		<key>sell_coin</key>
 		<string>100</string>
@@ -134,12 +266,14 @@
 		<string>2000</string>
 		<key>price</key>
 		<string>0</string>
-		<key>skill_id</key>
+		<key>use_id</key>
+		<string>0</string>
+		<key>use_scene</key>
 		<string>0</string>
 		<key>sell_coin</key>
 		<string>100</string>
 		<key>icon</key>
-		<string>icon_001.png</string>
+		<string>icon_005.png</string>
 		<key>limit_num</key>
 		<string>5</string>
 		<key>is_only</key>
@@ -163,18 +297,51 @@
 		<string>2000</string>
 		<key>price</key>
 		<string>0</string>
-		<key>skill_id</key>
+		<key>use_id</key>
+		<string>0</string>
+		<key>use_scene</key>
 		<string>0</string>
 		<key>sell_coin</key>
 		<string>100</string>
 		<key>icon</key>
-		<string>icon_003.png</string>
+		<string>icon_006.png</string>
 		<key>limit_num</key>
 		<string>5</string>
 		<key>is_only</key>
 		<string>0</string>
 		<key>tips</key>
 		<string>进化材料用于进化</string>
+	</dict>
+	<key>300001</key>
+	<dict>
+		<key>item_id</key>
+		<string>300001</string>
+		<key>name</key>
+		<string>妈妈的手绢</string>
+		<key>type</key>
+		<string>2</string>
+		<key>unlock_level</key>
+		<string>1</string>
+		<key>use_delete</key>
+		<string>4</string>
+		<key>coin</key>
+		<string>0</string>
+		<key>price</key>
+		<string>0</string>
+		<key>use_id</key>
+		<string>0</string>
+		<key>use_scene</key>
+		<string>2</string>
+		<key>sell_coin</key>
+		<string>0</string>
+		<key>icon</key>
+		<string>icon_011.png</string>
+		<key>limit_num</key>
+		<string>1</string>
+		<key>is_only</key>
+		<string>1</string>
+		<key>tips</key>
+		<string>将妈妈的手绢送到爸爸的工地</string>
 	</dict>
 </dict>
 </plist>
