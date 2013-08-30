@@ -47,6 +47,10 @@ private:
     void sendPostHttpGetSingleItem();
     void recvBockHttpCallBack(CCObject *object);
     bool decodeRecvBackStr(char *data); //true 邮件校验成功
+    void showDialogBagFull(CCObject *obect);
+    
+    void dialogOkButtonSetFunc(CCObject *object);
+    void dialogCancelButtonSetFunc(CCObject *object);
 private:
     CCNode *m_tempTouchNode;
     EN_EMAILHTTPREQUEST m_enhttpStatus;

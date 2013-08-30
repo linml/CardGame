@@ -1,9 +1,9 @@
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
 #include "gameConfig.h"
-
+#include "CDeletePropLayer.h"
 #include "CCardSettingScene.h"
-
+#include "CGameDialogLayer.h"
 #include "PtActionUtility.h"
 #include "Utility.h"
 #include "HBActionScript.h"
@@ -141,13 +141,21 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 #endif
 }
 
+PropItem item;
 void test(CCNode *pSender)
 {
     
    // CBattleArrayLayer *layer = CBattleArrayLayer::create();
    // CCardSettingScene *layer = CCardSettingScene::create();
-    CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
+    //CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
+   // pSender->addChild(layer);
+  // CPtDialog * dialog = CPtDialog::create();
+    
+    item.propId = 100001;
+    item.propCount = 20;
+    CDeletePropLayer * layer = CDeletePropLayer::create(&item);
     pSender->addChild(layer);
+
 }
 
 

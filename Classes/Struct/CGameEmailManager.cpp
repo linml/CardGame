@@ -17,7 +17,23 @@
 #include "CGameEmailData.h"
 #include "CFileReadWrite.h"
 //str="{"1000":19,"1001":19}"
-
+CGameEmailManager::CGameEmailManager()
+{
+    
+}
+CGameEmailManager::~CGameEmailManager()
+{
+    for (map<int ,CGameEmailData *>::iterator it= m_gameEmail.begin();it!=m_gameEmail.end();it++) {
+        if(it->second)
+        {
+            CGameEmailData *data=it->second;
+            delete data;
+            data=NULL;
+            
+        }
+    }
+    m_gameEmail.erase(m_gameEmail.begin(),m_gameEmail.end());
+}
 void CGameEmailManager::decodeEmap(CCDictionary *dict)
 {
     CCArray *vKeyArray=dict->allKeys();
@@ -33,8 +49,9 @@ void CGameEmailManager::decodeEmap(CCDictionary *dict)
             pGameEmailData->setGameEmailFromUid(GameTools::intForKey("from_uid", emailDirector));
             pGameEmailData->setGameEmailType(GameTools::intForKey("type", emailDirector));
             pGameEmailData->setGameEmailStatus(GameTools::intForKey("status",emailDirector));
+ //           pGameEmailData->setGameEmailStatus(0);
             pGameEmailData->setGameEmailStartTime(GameTools::intForKey("start_time", emailDirector));
-            pGameEmailData->setGameEmailEndTime(GameTools::intForKey("end_time", emailDirector));
+            pGameEmailData->setGameEmailEndTime(GameTools::intForKey("expire_time", emailDirector));
             pGameEmailData->setGameEmailTitle(GameTools::valueForKey("title", emailDirector));
             pGameEmailData->setGameEmailContent(GameTools::valueForKey("content", emailDirector));
             CCDictionary *emailItemDirector=(CCDictionary *)(emailDirector->objectForKey("item"));
@@ -72,9 +89,10 @@ void CGameEmailManager::decodeEmap(std::string str)
             pGameEmailData->setGameEmailCoins(GameTools::intForKey("coins", emailDirector));
             pGameEmailData->setGameEmailFromUid(GameTools::intForKey("from_uid", emailDirector));
             pGameEmailData->setGameEmailType(GameTools::intForKey("type", emailDirector));
-            pGameEmailData->setGameEmailStatus(GameTools::intForKey("status",emailDirector));
+            //pGameEmailData->setGameEmailStatus(GameTools::intForKey("status",emailDirector));
+            pGameEmailData->setGameEmailStatus(0);
             pGameEmailData->setGameEmailStartTime(GameTools::intForKey("start_time", emailDirector));
-            pGameEmailData->setGameEmailEndTime(GameTools::intForKey("start_time", emailDirector));
+            pGameEmailData->setGameEmailEndTime(GameTools::intForKey("expire_time", emailDirector));
             pGameEmailData->setGameEmailTitle(GameTools::valueForKey("title", emailDirector));
             pGameEmailData->setGameEmailContent(GameTools::valueForKey("content", emailDirector));
             CCDictionary *emailItemDirector=(CCDictionary *)(emailDirector->objectForKey("item"));
@@ -131,7 +149,8 @@ void CGameEmailManager::deleteEmailData(vector<int >emilIdList)
         deleteAllEmail();
     }
     else{
-        for (map<int , CGameEmailData *>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end();it++) {
+        for (map<int , CGameEmailData *>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end();it++)
+        {
             bool needDelete=true;
             for (int i=0; i<emilIdList.size(); i++)
             {
@@ -151,6 +170,10 @@ void CGameEmailManager::deleteEmailData(vector<int >emilIdList)
                 } 
 
             }
+        }
+           std::cout<<"file data";
+        for (map<int , CGameEmailData *>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end();it++) {
+            std::cout<<it->first<<" ";
         }
     }
 }
@@ -173,11 +196,39 @@ void CGameEmailManager::loadLocalEmail()
     
 }
 
-
+#include <fstream>
 void CGameEmailManager::writeToFile()
 {
-    string str=getJsonData();
-    CFileReadWrite::saveFile(str.c_str(), "emailsavefile.db");
+    string path = CCFileUtils::sharedFileUtils()->getWriteablePath() + "emailsavefile.db";
+    CCLOG("wanna save file path = %s",path.c_str());
+    ofstream outFile(path.c_str());
+    map<int, CGameEmailData *>::const_iterator map_it = m_gameEmail.begin();
+    while(map_it!= m_gameEmail.end())
+    {
+        if(map_it->second)
+        {
+         CGameEmailData *gameEmailData=(map_it->second);
+         outFile <<map_it->first<<" ";
+         outFile <<gameEmailData->getGameEmailFromUid()<<"|";
+         outFile <<gameEmailData->getGameEmailType()<<"|";
+         outFile <<gameEmailData->getGameEmailStatus()<<"|";
+         outFile <<gameEmailData->getGameEmailStartTime()<<"|";
+         outFile <<gameEmailData->getGameEmailEndTime()<<"|";
+         outFile <<gameEmailData->getGameEmailTitle().c_str()<<"|";
+         outFile <<gameEmailData->getGameEmailContent().c_str()<<"|";
+         outFile <<gameEmailData->getGameEmailCoins()<<"|";
+         outFile <<gameEmailData->getGameEmailExp()<<"|";
+          for (map<int , int>::iterator propIt=gameEmailData->m_mapDataProp.begin(); propIt!=gameEmailData->m_mapDataProp.end()   ; propIt++)
+          {
+                outFile <<propIt->first<<" ";
+              outFile <<  propIt->second<<" ";
+          }
+         outFile <<endl;
+        }
+
+        map_it++;
+    }
+    //CFileReadWrite::saveFile(str.c_str(), "emailsavefile.db");
     
 }
 void CGameEmailManager::cleareMyDictionaryList()
@@ -204,52 +255,59 @@ CMyDictionary *CGameEmailManager::createMydict()
 
 string CGameEmailManager::getJsonData()
 {
-    string resultStr;
-    list<CMyDictionary *>dataManagerMydict;
-    if (m_gameEmail.size()>0) {
-        CMyDictionary *mydata=createMydict();
-        
-        for (map<int , CGameEmailData*>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end(); it++)
-        {
-            if(it->second)
-            {
-                CGameEmailData *gameEmailData=(it->second);
-                CMyDictionary *gameEmailContextDict=createMydict();
-                gameEmailContextDict->InsertItem("msg_id", gameEmailData->getGameEmailMsgId());
-                gameEmailContextDict->InsertItem("from_uid", gameEmailData->getGameEmailFromUid());
-                gameEmailContextDict->InsertItem("type", gameEmailData->getGameEmailType());
-                gameEmailContextDict->InsertItem("status", gameEmailData->getGameEmailStatus());
-                gameEmailContextDict->InsertItem("start_time", gameEmailData->getGameEmailStartTime());
-                gameEmailContextDict->InsertItem("time", gameEmailData->getGameEmailEndTime());
-                gameEmailContextDict->InsertItem("title", gameEmailData->getGameEmailTitle().c_str());
-                gameEmailContextDict->InsertItem("content", gameEmailData->getGameEmailContent().c_str());
-                if ( gameEmailData->getGameEmailCoins()>0)
-                {
-                    gameEmailContextDict->InsertItem("coins", gameEmailData->getGameEmailCoins());
-                }
-                if(gameEmailData->getGameEmailExp()>0)
-                {
-                    gameEmailContextDict->InsertItem("exp", gameEmailData->getGameEmailExp());
-                }
-                if (gameEmailData->m_mapDataProp.size()>0)
-                {
-                    CMyDictionary *mypropdata=createMydict();
-                    for (map<int , int>::iterator propIt=gameEmailData->m_mapDataProp.begin(); propIt!=gameEmailData->m_mapDataProp.end()   ; propIt++) {
-                        char itemID[20];
-                        sprintf(itemID, "%d", propIt->first);
-                        mypropdata->InsertItem(itemID,propIt->second);
-                    }
-                    gameEmailContextDict->InsertSubItem("item", mypropdata);
-                }
-                char itemSubItemID[20];
-                sprintf(itemSubItemID, "%d",it->first);
-                mydata->InsertSubItem(itemSubItemID, gameEmailContextDict);
-            }
-        }
-        resultStr=mydata->GetDescriptionString();
-        cleareMyDictionaryList();
-    }
-    return  resultStr;
+    
+    return  "";
+//    string resultStr;
+//    list<CMyDictionary *>dataManagerMydict;
+//    if (m_gameEmail.size()>0) {
+//        CMyDictionary *mydata=createMydict();
+//        
+//        for (map<int , CGameEmailData*>::iterator it=m_gameEmail.begin(); it!=m_gameEmail.end(); it++)
+//        {
+//            if(it->second)
+//            {
+////                CGameEmailData *gameEmailData=(it->second);
+////                CMyDictionary *gameEmailContextDict=createMydict();
+////             //   gameEmailContextDict->InsertItem("msg_id", gameEmailData->getGameEmailMsgId());
+////                gameEmailContextDict->InsertItem("from_uid", gameEmailData->getGameEmailFromUid());
+////                gameEmailContextDict->InsertItem("type", gameEmailData->getGameEmailType());
+////                gameEmailContextDict->InsertItem("status", gameEmailData->getGameEmailStatus());
+////                gameEmailContextDict->InsertItem("start_time", gameEmailData->getGameEmailStartTime());
+////                gameEmailContextDict->InsertItem("expire_time", gameEmailData->getGameEmailEndTime());
+////                gameEmailContextDict->InsertItem("title", gameEmailData->getGameEmailTitle().c_str());
+////                string strcontext=gameEmailData->getGameEmailContent().c_str();
+////                CCLog("====>>>%s",strcontext.c_str());
+////                gameEmailContextDict->InsertItem("content", strcontext);
+////                if ( gameEmailData->getGameEmailCoins()>0)
+////                {
+////                    gameEmailContextDict->InsertItem("coins", gameEmailData->getGameEmailCoins());
+////                }
+////                if(gameEmailData->getGameEmailExp()>0)
+////                {
+////                    gameEmailContextDict->InsertItem("exp", gameEmailData->getGameEmailExp());
+////                }
+////                if (gameEmailData->m_mapDataProp.size()>0)
+////                {
+////                    CMyDictionary *mypropdata=createMydict();
+////                    for (map<int , int>::iterator propIt=gameEmailData->m_mapDataProp.begin(); propIt!=gameEmailData->m_mapDataProp.end()   ; propIt++) {
+////                        char itemID[20];
+////                        sprintf(itemID, "%d", propIt->first);
+////                        mypropdata->InsertItem(itemID,propIt->second);
+////                    }
+////                    gameEmailContextDict->InsertSubItem("item", mypropdata);
+////                }
+////                char itemSubItemID[20];
+////                sprintf(itemSubItemID, "%d",it->first);
+////                CCLog("%s",gameEmailContextDict->GetDescriptionString());
+////                mydata->InsertSubItem(itemSubItemID, gameEmailContextDict);
+////                CCLog("%s",mydata->GetDescriptionString());
+//            }
+//        }
+//        CCLog("%s", mydata->GetDescriptionString());
+//        resultStr="";
+//        cleareMyDictionaryList();
+//    }
+//    return  resultStr;
 }
 
 CGameEmailData *CGameEmailManager::getGameDataByIndex(int index)
@@ -265,7 +323,6 @@ CGameEmailData *CGameEmailManager::getGameDataByIndex(int index)
         }
     }
     else{
-//        30;
         int  i=m_gameEmail.size()-index;
         for(map<int,CGameEmailData *>::reverse_iterator rit=m_gameEmail.rbegin();rit!=m_gameEmail.rend();rit++)
         {
@@ -393,7 +450,7 @@ class totalUnread : public binary_function<typename std::map<Key, Value>::value_
 public:
     bool operator()(const typename map<Key, Value>::value_type iter, const UStatus& value) const
     {
-        CCLog("%d=====%d",iter.second->getGameEmailStatus(),value);
+     //   CCLog("%d=====%d",iter.second->getGameEmailStatus(),value);
         if (iter.second->getGameEmailStatus() == value)
         {
             return true;

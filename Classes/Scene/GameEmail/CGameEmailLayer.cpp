@@ -17,15 +17,19 @@
 #include "gameStruct.h"
 #include "PtJsonUtility.h"
 #define GOLDPLACE_TOUCH_PRORITY -2
+#include "CGameDialogLayer.h"
+
 CGameEmailLayer::CGameEmailLayer()
 {
     m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath,"youxianniu.plist"));
     m_tempTouchNode=NULL;
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CGameEmailLayer::showDialogBagFull), "BEIBAOMANLEXIANSHIDUIHUAKUAN", NULL);
 }
 
 CGameEmailLayer::~CGameEmailLayer()
 {
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "BEIBAOMANLEXIANSHIDUIHUAKUAN");
     CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath,"youxianniu.plist"));
 }
 
@@ -86,6 +90,7 @@ bool CGameEmailLayer::decodeRecvBackStr(char *strdata)
                 G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
                 ((CGameEmailTableView*)getChildByTag(8))->reloadData();
             }
+            CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
             return true;
         }
         else
@@ -95,7 +100,7 @@ bool CGameEmailLayer::decodeRecvBackStr(char *strdata)
             if(str->compare("1")==0)
             {
                 G_GAMESINGEMAIL::instance()->changeEmailStatus();
-                CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
+                 CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
                  return true;
             }
             else
@@ -151,10 +156,32 @@ void CGameEmailLayer::getAllEmailItem()
         str +="&sig=2ac2b1e302c46976beaab20a68ef95";
         ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "MERLINEMAILSTATUS", "EMAILSTATUS",str.c_str(),callfuncO_selector(CGameEmailLayer::recvBockHttpCallBack));
     }
-    
+    else  if(G_GAMESINGEMAIL::instance()->getMailCount()>0 && canereadList.size()==0)
+    {
+        showDialogBagFull(NULL);
+    }
+}
+void CGameEmailLayer::showDialogBagFull(cocos2d::CCObject *obect)
+{
+    string word = Utility::getWordWithFile("word.plist", "caonima");
+    CPtDialog *ptDialog=CPtDialog::create(word.c_str() , this , callfuncO_selector(CGameEmailLayer::dialogOkButtonSetFunc), callfuncO_selector(CGameEmailLayer::dialogCancelButtonSetFunc), NULL, NULL);
+    addChild(ptDialog,1000,10000);
+}
 
+void CGameEmailLayer::dialogOkButtonSetFunc(CCObject *object)
+{
+    removeFromParentAndCleanup(true);
+    CCNotificationCenter::sharedNotificationCenter()->postNotification("CAONIMAXIANSHIBEIBAO");
     
 }
+
+
+void CGameEmailLayer::dialogCancelButtonSetFunc(CCObject *object)
+{
+    removeChildByTag(10000, true);
+    
+}
+
 
 void CGameEmailLayer::sendPostHttpGetAllItem()
 {
@@ -204,7 +231,7 @@ bool CGameEmailLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCNode *node=Utility::getNodeByTag(this, "100,7,41");
     CCPoint touchPoint=pTouch->getLocation();
-    if(node->boundingBox().containsPoint(touchPoint))
+    if(node&&node->boundingBox().containsPoint(touchPoint))
     {
         CCLog("aaaaaaa1");
         m_tempTouchNode=node;
@@ -251,13 +278,12 @@ void CGameEmailLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
 void CGameEmailLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    //CCNode *node=Utility::getNodeByTag(this, "100,7,40");
-   // if(node &&node->boundingBox()->contain)
     CCNode *node=Utility::getNodeByTag(this, "100,7,41");
     CCPoint touchPoint=pTouch->getLocation();
     if(node->boundingBox().containsPoint(touchPoint))
     {
-        CCLog("aaaaaaa4");
+         PtSoundTool::playSysSoundEffect("UI_click.wav");
+         CCLog("aaaaaaa4");
         if(m_tempTouchNode==node)
         {
             removeFromParentAndCleanup(true);
@@ -266,12 +292,22 @@ void CGameEmailLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     else if(getChildByTag(7)->boundingBox().containsPoint(touchPoint))
     {
         CCLog("aaaaaaa3");
-        ((CGameButtonControl *)m_tempTouchNode)->unselected();
+         PtSoundTool::playSysSoundEffect("UI_click.wav");
+        if (((CGameButtonControl *)m_tempTouchNode))
+        {
+                    ((CGameButtonControl *)m_tempTouchNode)->unselected();
+        }
+
         if(m_tempTouchNode==getChildByTag(7))
         {
+            ((CGameButtonControl *)m_tempTouchNode)->unselected();
             m_tempTouchNode=NULL;
             getAllEmailItem();
         }
+    }
+    else
+    {
+        ((CGameButtonControl *)getChildByTag(7))->unselected();
     }
 }
 

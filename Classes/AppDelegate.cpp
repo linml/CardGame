@@ -13,7 +13,6 @@
 #include "HelloWorldScene.h"
 #include "SceneManager.h"
 #include "MemoryGameCollabLayer.h"
-#include "CGameErrorConfigLayer.h"
 #include "CGameEmailManager.h"
 #include "CPtTool.h"
 
@@ -53,7 +52,7 @@ bool AppDelegate::applicationDidFinishLaunching()
    // CCLOG("===%d",G_GAMESINGEMAIL::instance()->getCurrentEmailUnreadCount());
     
     SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
-   // pDirector->runWithScene(HelloWorld::scene());
+  //  pDirector->runWithScene(HelloWorld::scene());
   //  CCScene *scene=CCScene::create();
   // SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
 

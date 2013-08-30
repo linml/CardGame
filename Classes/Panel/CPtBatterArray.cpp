@@ -1535,7 +1535,6 @@ void CPtBattleArrayPanel::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     
     
     CCScrollView::ccTouchEnded(pTouch, pEvent);
-    
     CCPoint m_EndOffset=getContentOffset();
 //    if (m_cBeginOffset.equals(m_EndOffset))
 //    {

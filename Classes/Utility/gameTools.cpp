@@ -460,5 +460,61 @@ namespace GameTools {
         
         return layer;
     }
+    
+    CCSprite* createTip(CCNode* pFatherNode,const char* tipData,CCSize offSize,int order,int tag)
+    {
+        CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath,"tip.plist"));
+        
+        CCLabelTTF* tip_word = CCLabelTTF::create();
+        tip_word->setString(tipData);
+        tip_word->setFontSize(22);
+        tip_word->setPosition(ccp(5, 0));
+        tip_word->setAnchorPoint(ccp(0,0.5));
+        
+        int nWordLen = tip_word->getContentSize().width;
+        
+        int nJigsawAmount = nWordLen/10 + 2;
+        
+        CCLayer* tip_BgLayer = CCLayer::create();
+        tip_BgLayer->setContentSize(CCSizeMake(nWordLen+40, 50));
+        tip_BgLayer->setPosition(ccp(0, -9.5));
+        tip_BgLayer->addChild(tip_word,10000);
+        
+        
+        for (int i=0; i< nJigsawAmount; i++) {
+            CCSprite* tip_main=CCSprite::createWithSpriteFrameName("tip_main.png");
+            tip_main->setPosition(ccp(i*10,0));
+            tip_BgLayer->addChild(tip_main,i,1000+i);
+            
+        }
+        
+        CCSprite* tip_left=CCSprite::createWithSpriteFrameName("tip_left.png");
+        tip_left->setAnchorPoint(ccp(0.5,0));
+        tip_BgLayer->getChildByTag(1000)->addChild(tip_left);
+        
+        CCSprite* tip_right=CCSprite::createWithSpriteFrameName("tip_right.png");
+        tip_right->setAnchorPoint(ccp(-0.5,0));
+        tip_BgLayer->getChildByTag(1000+nJigsawAmount-1)->addChild(tip_right);
+        
+        
+        CCSprite* tip_arrow = CCSprite::createWithSpriteFrameName("tip_arrow.png");
+        tip_arrow->setPosition(ccp(offSize.width, offSize.height));
+        tip_arrow->addChild(tip_BgLayer,-1);
+        
+        pFatherNode->addChild(tip_arrow,order,tag);
+
+        
+        CCPoint posR = Utility::getabsolutePos(tip_right);
+        CCPoint posBg = tip_BgLayer->getPosition();
+        if(posR.x>1024)
+        {
+            tip_BgLayer->setPosition(ccp(posBg.x-posR.x+1024-10,posBg.y));
+        }
+        
+        
+        return tip_arrow;
+        
+    }
+
 
 }

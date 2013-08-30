@@ -17,6 +17,9 @@
 #include "CCardBufferStatus.h"
 using namespace std;
 using namespace cocos2d;
+
+class CCardBufferStatusRefactor;
+
 class CCard
 {
 public:

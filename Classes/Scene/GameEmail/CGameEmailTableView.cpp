@@ -22,7 +22,8 @@
 
 CEmrysTableView::CEmrysTableView():CCTableView()
 {
-_mydefineDeleagte=NULL;
+    _mydefineDeleagte=NULL;
+    m_beginTouchPoint=CCPointZero;
 
 }
 
@@ -33,22 +34,127 @@ bool CEmrysTableView::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *p
     if(flag)
     {
         CCPoint  point = this->getContainer()->convertTouchToNodeSpace(pTouch);
-        if (m_eVordering == kCCTableViewFillTopDown) {
-            CCSize cellSize = m_pDataSource->cellSizeForTable(this);
-            point.y -= cellSize.height;
-        }
+        m_beginTouchPoint=pTouch->getLocation();
         int index = this->_indexFromOffset(point);
         CCTableViewCell   *cell;
         cell=this->_cellWithIndex(index);
-        if(_mydefineDeleagte)
+        if(_mydefineDeleagte &&cell)
         {
             _mydefineDeleagte->tablecellTouchNode(cell, pTouch);
         }
     }
     return flag;
 }
-void CEmrysTableView::ccTouchMove(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent)
+
+void CEmrysTableView::scrollViewDidScroll(CCScrollView* view)
 {
+    unsigned int uCountOfItems = m_pDataSource->numberOfCellsInTableView(this);
+    if (0 == uCountOfItems)
+    {
+        return;
+    }
+    
+    unsigned int startIdx = 0, endIdx = 0, idx = 0, maxIdx = 0;
+    CCPoint offset = ccpMult(this->getContentOffset(), -1);
+    maxIdx = MAX(uCountOfItems-1, 0);
+    const CCSize cellSize = m_pDataSource->cellSizeForTable(this);
+    
+    if (m_eVordering == kCCTableViewFillTopDown)
+    {
+        offset.y = offset.y + m_tViewSize.height/this->getContainer()->getScaleY() - cellSize.height;
+    }
+    startIdx = this->_indexFromOffset(offset);
+    
+    if (m_eVordering == kCCTableViewFillTopDown)
+    {
+        offset.y -= m_tViewSize.height/this->getContainer()->getScaleY();
+    }
+    else
+    {
+        offset.y += m_tViewSize.height/this->getContainer()->getScaleY();
+    }
+    offset.x += m_tViewSize.width/this->getContainer()->getScaleX();
+  //  CCLog("offset=%f,offset=%f",offset.x,offset.y);
+    endIdx   = this->_indexFromOffset(offset);
+    
+#if 0 // For Testing.
+    CCObject* pObj;
+    int i = 0;
+    CCARRAY_FOREACH(m_pCellsUsed, pObj)
+    {
+        CCTableViewCell* pCell = (CCTableViewCell*)pObj;
+        CCLog("cells Used index %d, value = %d", i, pCell->getIdx());
+        i++;
+    }
+    CCLog("---------------------------------------");
+    i = 0;
+    CCARRAY_FOREACH(m_pCellsFreed, pObj)
+    {
+        CCTableViewCell* pCell = (CCTableViewCell*)pObj;
+        CCLog("cells freed index %d, value = %d", i, pCell->getIdx());
+        i++;
+    }
+    CCLog("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+#endif
+    
+    if (m_pCellsUsed->count() > 0)
+    {
+        CCTableViewCell* cell = (CCTableViewCell*)m_pCellsUsed->objectAtIndex(0);
+        
+        idx = cell->getIdx();
+        while(idx <startIdx)
+        {
+            this->_moveCellOutOfSight(cell);
+            if (m_pCellsUsed->count() > 0)
+            {
+                cell = (CCTableViewCell*)m_pCellsUsed->objectAtIndex(0);
+                idx = cell->getIdx();
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    
+    if (m_pCellsUsed->count() > 0)
+    {
+        CCTableViewCell *cell = (CCTableViewCell*)m_pCellsUsed->lastObject();
+        idx = cell->getIdx();
+        
+        while(idx <= maxIdx && idx > endIdx)
+        {
+            this->_moveCellOutOfSight(cell);
+            if (m_pCellsUsed->count() > 0)
+            {
+                cell = (CCTableViewCell*)m_pCellsUsed->lastObject();
+                idx = cell->getIdx();
+                
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
+    
+    for (unsigned int i=startIdx; i <= endIdx; i++)
+    {
+        //if ([m_pIndices containsIndex:i])
+        if (m_pIndices->find(i) != m_pIndices->end())
+        {
+            continue;
+        }
+        this->updateCellAtIndex(i);
+    }
+}
+
+void CEmrysTableView::ccTouchMoved(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent)
+{
+    if(abs((int)(pTouch->getLocation().y-m_beginTouchPoint.y))<20.0)
+    {
+        return;
+    }
     CCTableView::ccTouchMoved(pTouch, pEvent);
     if (_mydefineDeleagte) {
         CCPoint  point = this->getContainer()->convertTouchToNodeSpace(pTouch);
@@ -59,9 +165,14 @@ void CEmrysTableView::ccTouchMove(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEv
         int index = this->_indexFromOffset(point);
         CCTableViewCell   *cell;
         cell=this->_cellWithIndex(index);
+        if(cell)
+        {
             _mydefineDeleagte->tablecellTouchNode(cell, pTouch);
+        }
     }
 }
+ 
+ 
 CEmrysTableView *CEmrysTableView::Create(cocos2d::extension::CCTableViewDataSource *dataSource, cocos2d::CCSize size,CEmrysTableViewDelegate *mydefineDeleagte)
 {
         CEmrysTableView*tableView=new CEmrysTableView();
@@ -75,7 +186,7 @@ CEmrysTableView *CEmrysTableView::Create(cocos2d::extension::CCTableViewDataSour
 
 CEmrysTableView::~CEmrysTableView()
 {
-    
+    CCLog("remove=============>");
 }
 
 
@@ -108,8 +219,11 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
                 CCSize cellSize = m_pDataSource->cellSizeForTable(this);
                 point.y -= cellSize.height;
             }
+            
             index = this->_indexFromOffset(point);
+            CCLog("index=%d",index);
             cell  = this->_cellWithIndex(index);
+            CCLog("%f,%f",cell->getContentSize().width,cell->getContentSize().height);
             
             if (cell) {
                 m_pTouch=pTouch;
@@ -124,6 +238,7 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 CGameEmailTableView::CGameEmailTableView()
 {
     node=NULL;
+    isSendPostGetData=false;
 }
 CGameEmailTableView::~CGameEmailTableView()
 {
@@ -180,10 +295,7 @@ bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSize ce
     tableView->setDelegate(this);
     tableView->setTouchPriority(-8);
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
-    //this->addChild(tableView);
     this->addChild(tableView,2,77777);
-    tableView->retain();
-    tableView->reloadData();
     return true;
 }
 bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSprite*cellImage , int cellgap){
@@ -205,7 +317,7 @@ bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSprite*
     m_pTexture = cellImage->getTexture();
     m_TextureRect = cellImage->getTextureRect();
     
-   tableView =CEmrysTableView::Create(this, m_tableViewSize,this);
+    tableView =CEmrysTableView::Create(this, m_tableViewSize,this);
     tableView->setDirection(kCCScrollViewDirectionVertical);
     tableView->setPosition(p);
     tableView->setDelegate(this);
@@ -222,6 +334,7 @@ void CGameEmailTableView::reloadData()
     {
         CCLog("reloadddata");
         tableView->reloadData();
+        tableView->setContentOffset(tableView->minContainerOffset());
     }
 }
 #pragma mark - CCTableViewDataSource
@@ -243,7 +356,7 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
             if(lingquButton)
             {
                 string word = Utility::getWordWithFile("word.plist", "lingqujiangpin");
-                CGameButtonControl *gameLingqu=CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Normal.png");
+                CGameButtonControl *gameLingqu=CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
                 gameLingqu->setPosition(lingquButton->getPosition());
                 //gameLingqu->setTag(lingquButton->getTag());
                 gameLingqu->setAnchorPoint(lingquButton->getAnchorPoint());
@@ -262,21 +375,29 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
                     cell->reorderChild(label, Utility::getNodeByTag(cell, "1,0,10")->getZOrder());
                     label->setColor(g_custom_color[10]);
                     
-                    CCLabelTTF *labelContext=CCLabelTTF::create(gameData->getGameEmailContent().c_str(),"Arial",15);
-                    cell->addChild(labelContext);
-                    labelContext->setDimensions(CCSizeMake(500, 200));
+                     CCLabelTTF *labelContext=CCLabelTTF::create(gameData->getGameEmailContent().c_str(),"Arial",15);
+                     cell->addChild(labelContext);
+                     labelContext->setDimensions(CCSizeMake(480, 200));
                      point=Utility::getNodeByTag(cell, "1,0,11")->getPosition();
-                    labelContext->setPosition(ccp(point.x+8,point.y-3));
-                    cell->reorderChild(labelContext, Utility::getNodeByTag(cell, "1,0,30")->getZOrder());
-                    labelContext->setColor(g_custom_color[18]);
-                    labelContext->setAnchorPoint(ccp(0,1));
+                     labelContext->setPosition(ccp(point.x+8,point.y-3));
+                     cell->reorderChild(labelContext, Utility::getNodeByTag(cell, "1,0,30")->getZOrder());
+                     labelContext->setColor(g_custom_color[18]);
+                     labelContext->setAnchorPoint(ccp(0,1));
                     labelContext->setHorizontalAlignment(kCCTextAlignmentLeft);
+                    
                     string str;
                     gameData->getEmailCreateTime(str);
                     CCLabelTTF *labelContextTime=CCLabelTTF::create(str.c_str(), "Arial", 15);
                     cell->addChild(labelContextTime);
-                    labelContext->setColor(g_custom_color[17]);
-                    labelContext->setHorizontalAlignment(kCCTextAlignmentRight);
+                    point=Utility::getNodeByTag(cell, "1,0,31")->getPosition();
+                    labelContextTime->setPosition(ccp(point.x-80,point.y-30));
+                    labelContextTime->setColor(g_custom_color[17]);
+                    labelContextTime->setAnchorPoint(ccp(0,1));
+                    labelContextTime->setHorizontalAlignment(kCCTextAlignmentRight);
+                    cell->reorderChild(labelContextTime, Utility::getNodeByTag(cell, "1,0,31")->getZOrder()+1);
+                    
+                    //CCSprite  *sprite = CCSprite::create("")
+                    
                 }
             }
     }
@@ -309,7 +430,11 @@ CCSize CGameEmailTableView::tableCellSizeForIndex(CCTableView *table, unsigned i
 #pragma mark - CCTableViewDelegate
     void CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)
     {
-      
+        if(!(cell->getChildByTag(2000)))
+        {
+            return;
+        }
+       CCLog("cell->getIdx() :%d", cell->getIdx());
         CCRect rect=cell->getChildByTag(2000)->boundingBox();
         CCPoint point=pTouch->getLocation();
         point=cell->convertTouchToNodeSpace(pTouch);
@@ -322,9 +447,9 @@ CCSize CGameEmailTableView::tableCellSizeForIndex(CCTableView *table, unsigned i
                 {
                     ((CGameButtonControl*)node)->unselected();
                 }
-                gamebutton->selected();
                 node=gamebutton;
             }
+            gamebutton->selected();
         }
         else {
             if(node)
@@ -347,6 +472,12 @@ void CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* 
         point=cell->convertTouchToNodeSpace(tempTouch);
         if(cell->getChildByTag(2000)->boundingBox().containsPoint(point))
         {
+            if(node)
+            {
+                ((CGameButtonControl *)node)->unselected();
+                node=NULL;
+            }
+            ((CGameButtonControl *)cell->getChildByTag(2000))->unselected();
             sendPostHttpGetSingleItem(value);
         }
     }
@@ -356,11 +487,20 @@ void CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* 
 
 void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
 {
+
+    CCLog("this=%x",this);
+    if(isSendPostGetData)
+    {
+        return ;
+    }
+    isSendPostGetData=true;
+     PtSoundTool::playSysSoundEffect("UI_click.wav");
     vector<EMAIL_DATA >vemaildatalist;
     G_GAMESINGEMAIL::instance()->copyDataTovectory(vemaildatalist,msg_id);
     vector<int>canereadList;//.clear();
     CGamePlayer *player=SinglePlayer::instance();
     canereadList=player->getCanAddToBackPackEmals(vemaildatalist);
+
     if(canereadList.size()>0)
     {
         // & info="[1,2,3]"
@@ -375,13 +515,30 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
         str+=data;
         CCLog("post get data:%s",str.c_str());
         str +="&sig=2ac2b1e302c46976beaab20a68ef95";
-        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "MERLINEMAILSTATUS", "EMAILSTATUS",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
+        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "MERLINEMAILSTATUS123", "EMAILSTATUS",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
+    }
+    else{
+        if (G_GAMESINGEMAIL::instance()->getMailCount()>0) {
+            if(this->getParent())
+            {
+                isSendPostGetData=false;
+                CCNotificationCenter::sharedNotificationCenter()->postNotification("BEIBAOMANLEXIANSHIDUIHUAKUAN");
+            }
+        }
     }
         
 }
     
 void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
 {
+    CCLog("%x",object);
+    isSendPostGetData=false;
+    CCLog("recvBockHttpCallBack");
+    if(!object)
+    {
+        return;
+    }
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "MERLINEMAILSTATUS123");
     char *strdata=(char *)object;
     CCLog("%s",strdata);
     CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
@@ -396,26 +553,26 @@ void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
         CCDictionary *dictresult=(CCDictionary *)dict->objectForKey("result");
             CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
             vector<int >livetable;
-            for (int i=0; i<array->count();i++) {
+            for (int i=0; i<array->count();i++)
+            {
                 CCString * cocosstr=(CCString *)array->objectAtIndex(i);
                 livetable.push_back(atoi(cocosstr->m_sString.c_str()));
             }
-        if (livetable.size()==0) {
+        if (livetable.size()==0)
+        {
             G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
-            //numberOfCellsInTableView(tableView);
-            //tableView->removeCellAtIndex(0);
             tableView->reloadData();
         }
-        else{
+        else
+        {
             if(livetable.size()!=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail())
             {
                 G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
-                //numberOfCellsInTableView(tableView);
-                //tableView->removeCellAtIndex(0);
                 tableView->reloadData();
             }
         }
-       
+        CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
+        G_GAMESINGEMAIL::instance()->writeToFile();
     }
     
 }

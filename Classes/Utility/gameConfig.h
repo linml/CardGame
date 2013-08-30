@@ -5,8 +5,10 @@
 #include "PtSoundTool.h"
 #include "Utility.h"
 #include "PtActionUtility.h"
+#include "cocos-ext.h"
 using namespace std;
 using namespace cocos2d;
+using namespace cocos2d::extension;
 
 
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WIN32)

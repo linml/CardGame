@@ -19,6 +19,9 @@ using namespace std;
 #include "PtHttpClient.h"
 
 
+#define REGITER_SUCCESS "RegiterSuccess"
+
+
 // it should move ot one macro file
 #define LOGO_ZORDER (5)
 #define LOGIN_ZORDER (0)
@@ -59,9 +62,12 @@ public:
     
     void playGame();
     
+    void notificationRegiterRecevice(CCObject* obj);
+    
 protected:
     bool initLogin();
     bool handleTouchSpritePool(CCPoint point);
+    bool isTouchPlayerGame;
 protected:
     bool m_bLogoOver;
     LayoutLayer *maps;

@@ -27,7 +27,7 @@
 //登录
 #define STR_URL_LOGIN               STR_URL_ADRESS"gateway.php?m=Platform&a=login"
 //注册
-#define STR_URL_REGISTER            STR_URL_ADRESS"gateway.php?m=Platform&a=register"
+#define STR_URL_REGISTER            "http://passport.games.com/gateway.php?m=Platform&a=register"//STR_URL_ADRESS"gateway.php?m=Platform&a=register"
 //服务器列表
 #define STR_URL_SERVER_LIST(UID)    URL_FACTORY("gateway.php?m=Platform&a=selectServer",UID)
 //登录服务器
@@ -60,6 +60,7 @@
 //战斗前选择阵容
 //调试的时候需要在api 测试的时候需要添加oliver/CubeSERVER/trunk/web/
 #define STR_URL_CHOOSE_TEAM(UID)    URL_FACTORY("api.php?m=Fight&a=getTeamInfo&uid=",UID)
+
 //战斗结束校验
 #define STR_URL_FIGHT(UID)          URL_FACTORY("api.php?m=Fight&a=fight&uid=",UID)
 

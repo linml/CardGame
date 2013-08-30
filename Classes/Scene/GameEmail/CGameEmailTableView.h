@@ -29,12 +29,15 @@ class CEmrysTableView:public CCTableView
 public:
     CEmrysTableView();
     ~CEmrysTableView();
-   static CEmrysTableView *Create(CCTableViewDataSource *dataSource,CCSize size,CEmrysTableViewDelegate *_mydefineDeleagte);
+    static CEmrysTableView *Create(CCTableViewDataSource *dataSource,CCSize size,CEmrysTableViewDelegate *_mydefineDeleagte);
     virtual  void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual bool ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent);
-    virtual void ccTouchMove(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent);
+   // virtual void ccTouchMove(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent);
+    virtual    void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    void scrollViewDidScroll(CCScrollView* view);
 public:
     CCTouch *m_pTouch;
+    CCPoint m_beginTouchPoint;
     CEmrysTableViewDelegate *_mydefineDeleagte;
 };
 
@@ -60,6 +63,7 @@ public:
     void selector_update(float _dt);
 private:
     CCNode *node;
+    bool  isSendPostGetData;
 public:
     void scrollViewDidScroll(CCScrollView* view);
     void scrollViewDidZoom(CCScrollView* view);

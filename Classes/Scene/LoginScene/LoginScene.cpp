@@ -16,6 +16,7 @@
 #include "CPtListViewWidget.h"
 #include "CPtTableItem.h"
 #include "gamePlayer.h"
+#include "RegisterLayer.h"
 
 // implement of the CLoginScene:
 
@@ -35,7 +36,7 @@ CCScene* CLoginScene::scene()
 
 CLoginScene::CLoginScene()
 {
-    
+    isTouchPlayerGame=false;
 }
 CLoginScene::~CLoginScene()
 {
@@ -94,13 +95,22 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
     int tag = -1;
     CCSprite* touchSprite = NULL;
     tag = TouchRect::SearchTouchTag(point, touchRect, &touchSprite);
+    int uid = -1;
     switch (tag) {
         case -1:
             
             break;
-        case BUTTON_PLAY_TAG:
-            scheudoLoadGameConfig();
-            
+        case BUTTON_PLAY_TAG:            
+            uid = CCUserDefault::sharedUserDefault()->getIntegerForKey("uid");
+            if(uid>193)
+            {
+                scheudoLoadGameConfig();
+            }
+            else
+            {
+                CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CLoginScene::notificationRegiterRecevice), REGITER_SUCCESS, NULL);
+                addChild(CRegisterLayer::create(this),10000);
+            }
             break;
         default:
             break;
@@ -256,7 +266,11 @@ bool CLoginScene::addLabelToShowPrecessInfo()
 
 void CLoginScene::scheudoLoadGameConfig()
 {
-    schedule(schedule_selector(CLoginScene::addFunctionInitGames));
+    if(!isTouchPlayerGame)
+    {
+        isTouchPlayerGame=true;
+        schedule(schedule_selector(CLoginScene::addFunctionInitGames));
+    }
 }
 
 void CLoginScene::addFunctionInitGames(float t)
@@ -307,11 +321,26 @@ void CLoginScene::addFunctionInitGames(float t)
                 }
                 else
                 {
-                    
+                    isTouchPlayerGame=false;
+                    isGameInit=false;
+                    isLoadCardBag=false;
+                    isLoadEndConfig=false;
+                    isLoadTeam=false;;
+                    isGameInit=false;
+                    isLoadBackPack=false;
                 }
+            }
+            else{
+                
             }
         }
     }
+}
+
+void CLoginScene::notificationRegiterRecevice(CCObject* obj)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, REGITER_SUCCESS);
+    scheudoLoadGameConfig();
 }
 
 

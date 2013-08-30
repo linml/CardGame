@@ -9,15 +9,20 @@
 #include "CMyDictionary.h"
 void CMyDictionary::InsertItem(const char * pszKey, int nValue)
 {
-   m_cRoot[pszKey] = nValue;  
+   m_cRoot[pszKey] =  Json::Value(nValue);
 }
 void CMyDictionary::InsertItem(const char * pszKey, double fValue)
 {
-     m_cRoot[pszKey] = fValue;
+     m_cRoot[pszKey] = Json::Value(fValue);
 }
+void CMyDictionary::InsertItem(const char * pszKey, const std::string  pszValue)
+{
+    m_cRoot[pszKey] = Json::Value(pszValue);
+}
+
 void CMyDictionary::InsertItem(const char * pszKey, const char * pszValue)
 {
-     m_cRoot[pszKey] = pszValue;
+     m_cRoot[pszKey] = Json::Value(pszValue);
 }
 void CMyDictionary::InsertSubItem(const char * pszKey, CMyDictionary * pSubDictionary)
 {

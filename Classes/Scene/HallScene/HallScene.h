@@ -44,6 +44,8 @@ protected:
     bool initHall();
     void handlerTouch();
     void createEmailLayer();
+    void showBackBag();
+    void showBackNotice(CCObject *object);
 protected:
     int m_nTouchTag;
     CCSprite* m_touchSprite;

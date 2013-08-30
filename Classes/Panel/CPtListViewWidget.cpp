@@ -742,6 +742,7 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
 
 unsigned int CPtListViewWidget::numberOfCellsInTableView(CCTableView *table)
 {
+  //  return 1;
     return m_nRows;
 }
 

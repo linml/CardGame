@@ -17,6 +17,7 @@
 #include "CGameEmailLayer.h"
 #include "CGameEmailManager.h"
 #define  EMAILMAXNUMBERCOUNT 50
+#define  EMAILTISHI 20
 
 CCScene* CHallScene::scene()
 {
@@ -29,11 +30,13 @@ CCScene* CHallScene::scene()
 CHallScene::CHallScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::updateEmailNumber), "youjiangengxin", NULL);
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showBackNotice), "CAONIMAXIANSHIBEIBAO", NULL);
 }
 
 CHallScene::~CHallScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "youjiangengxin");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this,"CAONIMAXIANSHIBEIBAO");
     m_cplist->release();
     //clean the cache:
     HBSpriteCache::sharedHBSpriteCache()->purgesharedHBSpriteCache();
@@ -79,11 +82,20 @@ void CHallScene::createEmailNumberUnread()
         CCPoint point=getChildByTag(600)->getPosition();
         labelttf->setPosition(ccp(point.x,point.y-20));
     }
-    if(G_GAMESINGEMAIL::instance()->getMailCount()>=45)
+    if(G_GAMESINGEMAIL::instance()->getMailCount()>=EMAILTISHI)
     {
-        CCLabelTTF *labelttf=(CCLabelTTF*)getChildByTag(603);
-        string word=Utility::getWordWithFile("word.plist", "youjiankuaimanle");
-        labelttf->setString(word.c_str());
+        if(!getChildByTag(600)->getChildByTag(604))
+        {
+            string word=Utility::getWordWithFile("word.plist", "youjiankuaimanle");
+            GameTools::createTip(getChildByTag(600),word.c_str(),CCSizeMake(50,-5),1,604);
+        }
+    }
+    else
+    {
+        if( getChildByTag(600)->getChildByTag(604))
+        {
+           getChildByTag(600)->removeChildByTag(604,true);
+        }
     }
     if(!getChildByTag(602))
     {
@@ -144,7 +156,17 @@ void CHallScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
     
 }
 
+void CHallScene::showBackNotice(cocos2d::CCObject *object)
+{
+    showBackBag();
+}
 
+void CHallScene::showBackBag()
+{
+       CCLayer * layer = CBackpackContainerLayer::create();
+    addChild(layer, 1000);
+    CCLog("backpack...");
+}
 // protectd methdo:
 bool CHallScene::initHall()
 {
@@ -354,9 +376,7 @@ void CHallScene::handlerTouch()
             break;
         case 2006:
             // backpack-->
-            layer = CBackpackContainerLayer::create();
-            addChild(layer, 1000);
-            CCLog("backpack...");
+            showBackBag();
             break;
         case 2007:
             

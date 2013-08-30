@@ -398,24 +398,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "399292882.196705"
+         timestampString = "399549451.724468"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "907"
-         endingLineNumber = "907"
-         landmarkName = "CGamePlayer::onGameBegin()"
-         landmarkType = "5">
+         startingLineNumber = "913"
+         endingLineNumber = "913">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/CGameEmailManager.cpp"
-         timestampString = "399351074.462206"
+         timestampString = "399544265.030089"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "23"
-         endingLineNumber = "23"
+         startingLineNumber = "39"
+         endingLineNumber = "39"
          landmarkName = "CGameEmailManager::decodeEmap(CCDictionary *dict)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -424,11 +422,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/CGameEmailManager.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399544388.335315"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "53"
-         endingLineNumber = "53"
+         startingLineNumber = "70"
+         endingLineNumber = "70"
          landmarkName = "CGameEmailManager::decodeEmap(CCDictionary *dict)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -437,24 +435,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailLayer.cpp"
-         timestampString = "399458597.86483"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "59"
-         endingLineNumber = "59"
-         landmarkName = "CGameEmailLayer::sendPostHttpChangeEmailStatus()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/GameEmail/CGameEmailLayer.cpp"
-         timestampString = "399465691.573759"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "129"
-         endingLineNumber = "129"
+         startingLineNumber = "134"
+         endingLineNumber = "134"
          landmarkName = "CGameEmailLayer::getAllEmailItem()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -463,11 +448,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailLayer.cpp"
-         timestampString = "399465691.573759"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "137"
-         endingLineNumber = "137"
+         startingLineNumber = "142"
+         endingLineNumber = "142"
          landmarkName = "CGameEmailLayer::getAllEmailItem()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -481,33 +466,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "737"
          endingLineNumber = "737"
-         landmarkName = "CGamePlayer::getCanAddToBackPackEmals(vector&lt;EMAIL_DATA&gt; inEmailDatas)"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/GameEmail/CGameEmailLayer.cpp"
-         timestampString = "399458597.86483"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "56"
-         endingLineNumber = "56"
-         landmarkName = "CGameEmailLayer::sendPostHttpChangeEmailStatus()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "../../Classes/Scene/GameEmail/CGameEmailLayer.cpp"
-         timestampString = "399458729.313072"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "64"
-         endingLineNumber = "64"
-         landmarkName = "CGameEmailLayer::decodeRecvBackStr(char *strdata)"
+         landmarkName = "CGamePlayer::updateProps()"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -533,7 +492,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "742"
          endingLineNumber = "742"
-         landmarkName = "CGamePlayer::getCanAddToBackPackEmals(vector&lt;EMAIL_DATA&gt; inEmailDatas)"
+         landmarkName = "CGamePlayer::updateProps()"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -541,12 +500,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "399459223.868816"
+         timestampString = "399549451.724468"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "854"
-         endingLineNumber = "854"
-         landmarkName = "CGamePlayer::getUseGridCount()"
+         startingLineNumber = "860"
+         endingLineNumber = "860"
+         landmarkName = "CGamePlayer::AddOpenGridCount(int inAddCount)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -554,11 +513,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailLayer.cpp"
-         timestampString = "399465691.573759"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "138"
-         endingLineNumber = "138"
+         startingLineNumber = "143"
+         endingLineNumber = "143"
          landmarkName = "CGameEmailLayer::getAllEmailItem()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -585,7 +544,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "744"
          endingLineNumber = "744"
-         landmarkName = "CGamePlayer::getCanAddToBackPackEmals(vector&lt;EMAIL_DATA&gt; inEmailDatas)"
+         landmarkName = "CGamePlayer::updateProps()"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -597,20 +556,18 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "764"
-         endingLineNumber = "764"
-         landmarkName = "CGamePlayer::isCanAddToBackPack(map&lt;int, int&gt; &amp;tmpProps, map&lt;int, int&gt;&amp; inAddProps, int inUserGridCount)"
-         landmarkType = "5">
+         endingLineNumber = "764">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailLayer.cpp"
-         timestampString = "399465691.573759"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "152"
-         endingLineNumber = "152"
+         startingLineNumber = "157"
+         endingLineNumber = "157"
          landmarkName = "CGameEmailLayer::getAllEmailItem()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -619,11 +576,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "355"
-         endingLineNumber = "355"
+         startingLineNumber = "486"
+         endingLineNumber = "486"
          landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -632,11 +589,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "346"
-         endingLineNumber = "346"
+         startingLineNumber = "471"
+         endingLineNumber = "471"
          landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -645,11 +602,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "345"
-         endingLineNumber = "345"
+         startingLineNumber = "470"
+         endingLineNumber = "470"
          landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -658,11 +615,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "344"
-         endingLineNumber = "344"
+         startingLineNumber = "469"
+         endingLineNumber = "469"
          landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -671,11 +628,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "340"
-         endingLineNumber = "340"
+         startingLineNumber = "465"
+         endingLineNumber = "465"
          landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -684,16 +641,16 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399548204.299152"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "374"
-         endingLineNumber = "374"
+         startingLineNumber = "514"
+         endingLineNumber = "514"
          landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../libs/extensions/GUI/CCScrollView/CCTableView.cpp"
@@ -710,11 +667,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399548602.832649"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "400"
-         endingLineNumber = "400"
+         startingLineNumber = "558"
+         endingLineNumber = "558"
          landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -723,11 +680,414 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399484790.999364"
+         timestampString = "399548602.832649"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "565"
+         endingLineNumber = "565"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399547802.03595"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "438"
+         endingLineNumber = "438"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399529881.616299"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "223"
+         endingLineNumber = "223"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCTableView.cpp"
+         timestampString = "399520325.466419"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "317"
+         endingLineNumber = "317"
+         landmarkName = "CCTableView::_indexFromOffset(CCPoint offset)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCTableView.cpp"
+         timestampString = "399520425.710903"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "332"
+         endingLineNumber = "332"
+         landmarkName = "CCTableView::__indexFromOffset(CCPoint offset)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCTableView.cpp"
+         timestampString = "399520485.564874"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "325"
+         endingLineNumber = "325"
+         landmarkName = "CCTableView::_indexFromOffset(CCPoint offset)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399529881.616299"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "224"
+         endingLineNumber = "224"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+         timestampString = "399522326.325117"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "679"
+         endingLineNumber = "679"
+         landmarkName = "CCScrollView::ccTouchMoved(CCTouch* touch, CCEvent* event)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+         timestampString = "399522383.81296"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "205"
+         endingLineNumber = "205"
+         landmarkName = "CCScrollView::setContentOffset(CCPoint offset, bool animated/* = false*/)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+         timestampString = "399522403.401077"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "217"
+         endingLineNumber = "217"
+         landmarkName = "CCScrollView::setContentOffset(CCPoint offset, bool animated/* = false*/)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+         timestampString = "399522407.525118"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "220"
+         endingLineNumber = "220"
+         landmarkName = "CCScrollView::setContentOffset(CCPoint offset, bool animated/* = false*/)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCTableView.cpp"
+         timestampString = "399522446.579153"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "385"
+         endingLineNumber = "385"
+         landmarkName = "CCTableView::scrollViewDidScroll(CCScrollView* view)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399548602.832649"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "595"
+         endingLineNumber = "595"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+         timestampString = "399522935.468435"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "224"
+         endingLineNumber = "224"
+         landmarkName = "CCScrollView::setContentOffset(CCPoint offset, bool animated/* = false*/)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399548602.832649"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "581"
+         endingLineNumber = "581"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399524797.114702"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "51"
+         endingLineNumber = "51"
+         landmarkName = "CEmrysTableView::scrollViewDidScroll(CCScrollView* view)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399524797.114702"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "104"
+         endingLineNumber = "104"
+         landmarkName = "CEmrysTableView::scrollViewDidScroll(CCScrollView* view)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399524797.114702"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
+         landmarkName = "CEmrysTableView::scrollViewDidScroll(CCScrollView* view)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399524797.114702"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
+         landmarkName = "CEmrysTableView::scrollViewDidScroll(CCScrollView* view)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399524797.114702"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
+         landmarkName = "CEmrysTableView::ccTouchMoved(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399524797.114702"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "158"
+         endingLineNumber = "158"
+         landmarkName = "CEmrysTableView::ccTouchMoved(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399547802.03595"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "433"
+         endingLineNumber = "433"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Utility/Utility.cpp"
+         timestampString = "399527594.984281"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "249"
+         endingLineNumber = "249"
+         landmarkName = "handleBtnCallBack(CCSprite* sprite, CCObject* target, SEL_CallFunc selector, CCPoint anchorPoint,const string&amp; soundFile)"
+         landmarkType = "7">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399547802.03595"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "353"
+         endingLineNumber = "353"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399547802.03595"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "408"
          endingLineNumber = "408"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../libs/extensions/GUI/CCScrollView/CCTableView.cpp"
+         timestampString = "399534256.002196"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "105"
+         endingLineNumber = "105"
+         landmarkName = "CCTableView::reloadData()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Struct/CGameEmailManager.cpp"
+         timestampString = "399544388.335315"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "86"
+         endingLineNumber = "86"
+         landmarkName = "CGameEmailManager::decodeEmap(std::string str)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Struct/CGameEmailManager.cpp"
+         timestampString = "399544330.987156"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "45"
+         endingLineNumber = "45"
+         landmarkName = "CGameEmailManager::decodeEmap(CCDictionary *dict)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399548602.832649"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "525"
+         endingLineNumber = "525"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399548204.299152"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "520"
+         endingLineNumber = "520"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399548204.299152"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "504"
+         endingLineNumber = "504"
+         landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "399549090.503513"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "496"
+         endingLineNumber = "496"
          landmarkName = "CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
          landmarkType = "5">
       </FileBreakpoint>

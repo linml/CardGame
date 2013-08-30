@@ -516,7 +516,10 @@ namespace CPtTool
     }
     void getDataShijianChai(time_t  beforetime,time_t now,std::string &str)
     {
+        CCLog("beforetime::%s",timetodate(beforetime).c_str());
+        CCLog("now::%s",timetodate(now).c_str());
         double interval=difftime(now, beforetime);
+         CCLog(" intervale=%f",interval);
         long day=(long)interval/(24*3600);//天
         long hour=(long)interval%(24*3600)/3600;//小时
         long minute=(long)interval%3600/60;//分钟
@@ -524,15 +527,15 @@ namespace CPtTool
         std::stringstream ss;
         if(day>0)
         {
-            ss<<day<<"天";
+            ss<<day<<"天前";
         }
-        if (hour>0)
+        else if (hour>0)
         {
-            ss<<hour<<"时";
+            ss<<hour<<"时前";
         }
-        if (minute)
+        else if (minute)
         {
-            ss<<minute<<"分";
+            ss<<minute<<"分前";
         }
         
         ss>>str;

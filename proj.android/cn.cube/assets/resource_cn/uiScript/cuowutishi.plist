@@ -16,6 +16,22 @@
 		<key>z</key>
 		<string>0</string>
 	</dict>
+	<key>bgColor</key>
+	<dict>
+		<key>color</key>
+		<string>{0,0,0,200}</string>
+		<key>fatherTagArray</key>
+		<string>1,0</string>
+		<key>initProperty</key>
+		<dict>
+			<key>tag</key>
+			<string>3</string>
+		</dict>
+		<key>type</key>
+		<string>ColorLayer</string>
+		<key>z</key>
+		<string>-10</string>
+	</dict>
 	<key>t_quxiao</key>
 	<dict>
 		<key>tagArray</key>

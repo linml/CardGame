@@ -48,6 +48,7 @@ namespace Utility {
     //获取 node 父节点 Y方向缩放值
     float getParentScaleY(CCNode* node);
     
+    CCPoint getabsolutePos(CCNode* node);
     CCPoint getPositionByTag(CCNode* father, CCPoint pos, const vector<int> vTag,int index = 0);
     CCPoint getPositionByTag(CCNode* father, CCPoint pos, const string& sTag,int index = 0);
     

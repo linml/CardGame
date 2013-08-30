@@ -17,6 +17,7 @@ public:
     void InsertItem(const char * pszKey, int nValue);
     void InsertItem(const char * pszKey, double fValue);
     void InsertItem(const char * pszKey, const char * pszValue);
+    void InsertItem(const char * pszKey, const std::string  pszValue);
     void InsertSubItem(const char * pszKey, CMyDictionary * pSubDictionary);
     bool InsertArrayItem(const char * pszArrayKey, int nValue);
     bool InsertArrayItem(const char * pszArrayKey, double fValue);

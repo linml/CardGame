@@ -20,6 +20,8 @@ class CMyDictionary;
 class CGameEmailManager :public cocos2d::CCObject
 {
 public:
+    CGameEmailManager();
+    ~CGameEmailManager();
     void decodeEmap(std::string str);
     void decodeEmap(CCDictionary *dict);
     void postHttpRequest();

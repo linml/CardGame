@@ -1,15 +1,15 @@
 10
 
 dir
-1106
+1135
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-29T13:01:00.234323Z
-1106
-phileas
+2013-08-30T09:22:26.940149Z
+1133
+merlin
 has-props
 
 
@@ -34,10 +34,6 @@ dir
 
 GameEmail
 dir
-
-
-
-add
 
 ExplorationScene
 dir

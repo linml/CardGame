@@ -122,6 +122,17 @@ namespace Utility {
         return 1.0;
     }
     
+    CCPoint getabsolutePos(CCNode* node) {
+        CCPoint pos = ccp(0,0);
+        CCNode* pNode = node;
+        while (pNode != NULL) {
+            pos.x += pNode->getPosition().x;
+            pos.y += pNode->getPosition().y;
+            pNode = pNode->getParent();
+        }
+        return pos;
+    }
+    
     CCPoint getPositionByTag(CCNode* father, CCPoint pos, const vector<int> vTag, int index) {
         CCNode* node = (CCNode*) father->getChildByTag(vTag[index]);
         

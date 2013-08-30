@@ -414,7 +414,7 @@ void CBackpackPageLayer::initPanel(bool inResetTexture)
         label = CCLabelTTF::create("0", "Arial", 18);
         label->setPosition(ccp(15,15));
         label->setAnchorPoint(ccp(0.5,0.5));
-        tmp->addChild(label);
+        tmp->addChild(label,0,1);
         m_pItemNums->addObject(label);
 
     }
@@ -434,9 +434,17 @@ void CBackpackPageLayer::clearItem(CCNode *node)
             {
                 ((CCLabelTTF *)parent->getChildByTag(1))->setColor(ccGRAY);
                 ((CCSprite *)parent)->setTextureRect(m_aButtonRect[2]);
+                parent->setVisible(false);
             }else
             {
-                parent->removeAllChildrenWithCleanup(true);
+                if (i == 18)
+                {
+                    parent->getChildByTag(1)->setVisible(false);
+                }else
+                {
+                    parent->removeAllChildrenWithCleanup(true);
+                }
+                
             }
         }
         
@@ -482,6 +490,7 @@ void CBackpackPageLayer::resetPanel()
                     continue;
                 }else if(j==19 || j == 20)
                 {
+                    // use and delete button
                     continue;
                 }
                 node = mapLayer->getChildByTag(j);
@@ -853,12 +862,29 @@ void CBackpackPageLayer::updatePageContentUI(bool inAllProps /*= true*/)
         mapIterator = m_cGridDataIterator.at(i);
         array[1] = i;
         node =  m_cMaps->getElementByTags(array,2);
-        
+        if (mapIterator->second == 0)
+        {
+            CCLog("the zero--------%d", mapIterator->first);
+            node->getChildByTag(19)->setVisible(false);
+            node->getChildByTag(20)->setVisible(false);
+            continue;
+        }
+        CCLog("the number: %d", mapIterator->second);
         sprintf(buff, "%d", mapIterator->second);
-        ((CCLabelTTF*)m_pItemNums->objectAtIndex(i))->setString(buff);
+        CCLabelTTF * label = ((CCLabelTTF*)m_pItemNums->objectAtIndex(i));
+        if (label)
+        {
+            if (label->retainCount() == 1 && label->getParent() == NULL)
+            {
+                node->getChildByTag(18)->addChild(label);
+            }
+            label->setVisible(true);
+            label->setString(buff);
+        }
+        
         // test:
         prop = propData->getPropById(mapIterator->first);
-        if (prop && mapIterator->second != 0)
+        if (prop)
         {
             setItem(node, prop);
         }
@@ -883,5 +909,7 @@ void CBackpackPageLayer::updatePageContentUI(bool inAllProps /*= true*/)
             node->setVisible(false);
         }
     }
+    
+    
     
 }

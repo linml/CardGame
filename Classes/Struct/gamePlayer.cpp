@@ -780,6 +780,12 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
     CPtProp *tmp = NULL;
     for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end() && (inUserGridCount+count) <= m_nOpenGridCount; i++)
     {
+                //bymerlin
+        if(key==900001|| key==900002)
+        {
+            continue;
+        }        //bymerlin
+        
         key = i->first;
         tmp = m_rAllProps.at(key);
         CCAssert(tmp != NULL, "no this prop");
@@ -910,7 +916,7 @@ void CGamePlayer::onGameBegin()
     gameInitStatus=0;
     int getEmailMax=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail();
     char data[50];
-    sprintf(data, "&info={\"maxid\":%d}",getEmailMax);
+    sprintf(data, "&info={\"max_id\":%d}",getEmailMax);
     string connectData="sig=2ac2b1e302c46976beaab20a68ef95";
     connectData+=data;
     ADDHTTPREQUESTPOSTDATA(STR_URL_GAMEINIT(194), "GameBegin", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::onGameBeginCallBack));

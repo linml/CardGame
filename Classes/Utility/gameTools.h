@@ -85,6 +85,11 @@ namespace GameTools {
     //生成文字
     CCLabelTTF* createWord(const string& word,const string& font,int intFontSize,ccColor3B color);
 
+    
+    //绘制提示框
+    //pFatherNode:提示框父节点 tipData:提示内容 offSize:提示框偏移量 order:渲染层级 tag:提示框标签
+    //返回提示框节点
+    CCSprite* createTip(CCNode* pFatherNode,const char* tipData,CCSize offSize,int order=10000,int tag=1000);
 
 
 };

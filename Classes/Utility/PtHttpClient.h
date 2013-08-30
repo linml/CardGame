@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
+#include "PtHttpURL.h"
 #include <queue>
 
 using namespace cocos2d;
