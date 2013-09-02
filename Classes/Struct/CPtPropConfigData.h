@@ -47,6 +47,7 @@ public:
     bool getPropDataById(const int &inPropId);
 
     CPtProp *getPropById(const int &inPropId);
+    std::string getIconName(const int &inPropId);
     
     map<int, CPtProp*> &getProps(){return m_pAllProps;};
     
@@ -68,6 +69,9 @@ protected:
 protected:
     int m_nPropId;
     map<int, CPtProp*> m_pAllProps;
+    
+    std::string m_sExpIcon;
+    std::string m_sCoinIcon;
 };
 
 typedef Singleton<CPtPropConfigData> SinglePropConfigData;

@@ -79,13 +79,33 @@ bool CGameEmailLayer::decodeRecvBackStr(char *strdata)
         if (m_enhttpStatus==EN_EMAILHTTPREQUEST_GETSINGLEITEM  ||
             m_enhttpStatus==EN_EMAILHTTPREQUEST_GETALLEMAIL )
         {
+            //与 单个领取里面代码重复 得重构
+            //获取 coin
+            int  coin=((CCString *)dictresult->objectForKey("coin"))->intValue();
+            //获取items
+            //获取 经验
+            int  exp=((CCString *)dictresult->objectForKey("exp"))->intValue();
+            map<int , int>mapitems;
+            CCDictionary *emailItemDirector=(CCDictionary *)(dictresult->objectForKey("item"));
+            if(emailItemDirector)
+            {
+                CCDictElement* pElement = NULL;
+                CCDICT_FOREACH(emailItemDirector, pElement)
+                {
+                    const char* pchKey = pElement->getStrKey();
+                    mapitems[atoi(pchKey)]=GameTools::intForKey(pchKey, emailItemDirector);
+                }
+            }
+            SinglePlayer::instance()->receiveEmail(mapitems,exp, coin);
+            
+            
             CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
             vector<int >livetable;
             for (int i=0; i<array->count();i++) {
                 CCString * cocosstr=(CCString *)array->objectAtIndex(i);
                 livetable.push_back(atoi(cocosstr->m_sString.c_str()));
             }
-            if(livetable.size()!=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail())
+            if(livetable.size()!=G_GAMESINGEMAIL::instance()->getMailCount())
             {
                 G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
                 ((CGameEmailTableView*)getChildByTag(8))->reloadData();

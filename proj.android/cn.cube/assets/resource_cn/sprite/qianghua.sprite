@@ -3,49 +3,49 @@
     <key>spriteFileName</key>
     <string>qianghua</string>
     <key>imagePath</key>
-    <string>../../kapaiziyuanku/Work/images/qianghua.png</string>
+    <string>../../Documents/CubeCOCO1/proj.android/cn.cube/assets/resource_cn/img/qianghua.png</string>
     <key>clipData</key>
     <dict>
-        <key>jinbi.png</key>
-        <string>{84,24,25,25}</string>
+        <key>jin.png</key>
+        <string>{2,2,161,14}</string>
         <key>jindu.png</key>
-        <string>{2,54,201,24}</string>
+        <string>{2,18,201,24}</string>
         <key>juxing_01.png</key>
-        <string>{25,16,21,22}</string>
+        <string>{205,18,21,22}</string>
         <key>juxing_02.png</key>
-        <string>{2,15,19,22}</string>
+        <string>{228,18,19,22}</string>
         <key>juxing_04.png</key>
-        <string>{62,23,20,22}</string>
+        <string>{2,44,20,22}</string>
         <key>kuang_01.png</key>
-        <string>{179,2,20,20}</string>
+        <string>{24,44,20,20}</string>
         <key>kuang_02.png</key>
-        <string>{2,2,22,11}</string>
+        <string>{46,44,22,11}</string>
         <key>kuang_04.png</key>
-        <string>{201,2,27,21}</string>
+        <string>{76,44,27,21}</string>
         <key>kuang_06.png</key>
-        <string>{235,2,19,21}</string>
+        <string>{108,44,17,21}</string>
         <key>kuang_07.png</key>
-        <string>{111,24,12,28}</string>
+        <string>{131,44,12,28}</string>
         <key>kuang_10.png</key>
-        <string>{48,16,12,28}</string>
+        <string>{145,44,12,28}</string>
         <key>kuang_13.png</key>
-        <string>{62,2,20,19}</string>
+        <string>{159,44,20,19}</string>
         <key>kuang_14.png</key>
-        <string>{84,2,16,19}</string>
+        <string>{181,44,16,19}</string>
         <key>kuang_17.png</key>
-        <string>{102,2,19,20}</string>
+        <string>{199,44,19,20}</string>
         <key>kuang_18.png</key>
-        <string>{32,2,23,12}</string>
+        <string>{221,44,23,12}</string>
         <key>kuang_19.png</key>
-        <string>{124,2,27,20}</string>
+        <string>{2,74,27,20}</string>
         <key>kuang_20.png</key>
-        <string>{161,2,14,20}</string>
+        <string>{38,74,14,20}</string>
     </dict>
     <key>mapSpriteData</key>
     <dict>
-        <key>jinbi.png</key>
+        <key>jin.png</key>
         <dict>
-            <key>jinbi.png</key>
+            <key>jin.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -315,7 +315,5 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>clip17</key>
-        <dict/>
     </dict>
 </dict>

@@ -54,7 +54,15 @@ void CGameEmailData::decodeJsonData(std::string str)
 {
     
 }
-
-
+#include "CPtPropConfigData.h"
+string CGameEmailData::getFirstItemsPng()
+{
+    map<int, int>::iterator it=m_mapDataProp.begin();
+    if(it==m_mapDataProp.end())
+    {
+        return "";
+    }
+    return SinglePropConfigData::instance()->getIconName(it->first);
+}
 
 

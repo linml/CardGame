@@ -24,7 +24,7 @@ CEmrysTableView::CEmrysTableView():CCTableView()
 {
     _mydefineDeleagte=NULL;
     m_beginTouchPoint=CCPointZero;
-
+    
 }
 
 bool CEmrysTableView::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
@@ -44,6 +44,23 @@ bool CEmrysTableView::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *p
         }
     }
     return flag;
+}
+
+void CEmrysTableView::reloadDataView()
+{
+    CCTableView::reloadData();
+    CCLog("CCScrollView1--- %f, %f",m_tViewSize.width - m_pContainer->getContentSize().width*m_pContainer->getScaleX(),
+          m_tViewSize.height - m_pContainer->getContentSize().height*m_pContainer->getScaleY());
+    CCLog("CCScrollView2--- %f, %f",m_tViewSize.width ,
+          m_tViewSize.height );
+    float y = (m_tViewSize.height - m_pContainer->getContentSize().height*m_pContainer->getScaleY()) ;
+    if (y >= 0)
+    {
+        setContentOffset(ccp(0,y));
+    }else
+    {
+        setContentOffset(ccp(0,y));
+    }
 }
 
 void CEmrysTableView::scrollViewDidScroll(CCScrollView* view)
@@ -74,7 +91,7 @@ void CEmrysTableView::scrollViewDidScroll(CCScrollView* view)
         offset.y += m_tViewSize.height/this->getContainer()->getScaleY();
     }
     offset.x += m_tViewSize.width/this->getContainer()->getScaleX();
-  //  CCLog("offset=%f,offset=%f",offset.x,offset.y);
+    //  CCLog("offset=%f,offset=%f",offset.x,offset.y);
     endIdx   = this->_indexFromOffset(offset);
     
 #if 0 // For Testing.
@@ -171,17 +188,17 @@ void CEmrysTableView::ccTouchMoved(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pE
         }
     }
 }
- 
- 
+
+
 CEmrysTableView *CEmrysTableView::Create(cocos2d::extension::CCTableViewDataSource *dataSource, cocos2d::CCSize size,CEmrysTableViewDelegate *mydefineDeleagte)
 {
-        CEmrysTableView*tableView=new CEmrysTableView();
-        tableView->initWithViewSize(size, NULL);
-        tableView->autorelease();
-        tableView->setDataSource(dataSource);
-        tableView->_updateContentSize();
-        tableView->_mydefineDeleagte=mydefineDeleagte;
-        return tableView;;
+    CEmrysTableView*tableView=new CEmrysTableView();
+    tableView->initWithViewSize(size, NULL);
+    tableView->autorelease();
+    tableView->setDataSource(dataSource);
+    tableView->_updateContentSize();
+    tableView->_mydefineDeleagte=mydefineDeleagte;
+    return tableView;;
 }
 
 CEmrysTableView::~CEmrysTableView()
@@ -193,15 +210,14 @@ CEmrysTableView::~CEmrysTableView()
 void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     
-    if (!this->isVisible()) {
+    if (!this->isVisible())
+    {
         return;
     }
     CCPoint   newPoint= this->convertTouchToNodeSpace(pTouch);
     
     
 #if(CC_PLATFORM_ANDROID==CC_TARGET_PLATFORM)
-    
-    
     if (m_pTouches->count() == 1 &&  (abs((int)(newPoint.x-m_oldPoint.x))<=20 && abs((int)(newPoint.y-m_oldPoint.y))<=20))
     {
         CCLOG("adfasdf");
@@ -209,13 +225,13 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         if (m_pTouches->count() == 1 && !this->isTouchMoved())
         {
 #endif
-            
             unsigned int        index;
             CCTableViewCell   *cell;
             CCPoint           point;
             
             point = this->getContainer()->convertTouchToNodeSpace(pTouch);
-            if (m_eVordering == kCCTableViewFillTopDown) {
+            if (m_eVordering == kCCTableViewFillTopDown)
+            {
                 CCSize cellSize = m_pDataSource->cellSizeForTable(this);
                 point.y -= cellSize.height;
             }
@@ -225,13 +241,17 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             cell  = this->_cellWithIndex(index);
             CCLog("%f,%f",cell->getContentSize().width,cell->getContentSize().height);
             
-            if (cell) {
+            if (cell)
+            {
                 m_pTouch=pTouch;
                 m_pTableViewDelegate->tableCellTouched(this, cell);
-            
+                
             }
         }
         CCScrollView::ccTouchEnded(pTouch, pEvent);
+#if(CC_PLATFORM_ANDROID==CC_TARGET_PLATFORM)
+    }
+#endif
 }
 
 
@@ -244,7 +264,7 @@ CGameEmailTableView::~CGameEmailTableView()
 {
     
 }
-    
+
 CGameEmailTableView*CGameEmailTableView::creat(CCPoint p , CCSize s ,int cellNum , CCSize cellSize , CCSize tableCellSize)
 {
     CGameEmailTableView* layerView = new CGameEmailTableView;
@@ -333,8 +353,8 @@ void CGameEmailTableView::reloadData()
     if(tableView)
     {
         CCLog("reloadddata");
-        tableView->reloadData();
-        tableView->setContentOffset(tableView->minContainerOffset());
+        tableView->reloadDataView();
+        //        tableView->setContentOffset(tableView->minContainerOffset());
     }
 }
 #pragma mark - CCTableViewDataSource
@@ -343,63 +363,70 @@ unsigned int CGameEmailTableView::numberOfCellsInTableView(CCTableView *table)
 {
     return G_GAMESINGEMAIL::instance()->getMailCount();
 }
-    
+
 
 
 void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
 {
-        if(cell)
+    if(cell)
+    {
+        LayoutLayer *tempLayerout=LayoutLayer::create();
+        tempLayerout->initWithFile(cell, CSTR_FILEPTAH(plistPath, "mail_cell.plist"));
+        CCSprite *lingquButton=(CCSprite *)Utility::getNodeByTag(cell, "1,0,32");
+        if(lingquButton)
         {
-            LayoutLayer *tempLayerout=LayoutLayer::create();
-            tempLayerout->initWithFile(cell, CSTR_FILEPTAH(plistPath, "mail_cell.plist"));
-            CCSprite *lingquButton=(CCSprite *)Utility::getNodeByTag(cell, "1,0,32");
-            if(lingquButton)
+            string word = Utility::getWordWithFile("word.plist", "lingqujiangpin");
+            CGameButtonControl *gameLingqu=CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
+            gameLingqu->setPosition(lingquButton->getPosition());
+            //gameLingqu->setTag(lingquButton->getTag());
+            gameLingqu->setAnchorPoint(lingquButton->getAnchorPoint());
+            cell->addChild(gameLingqu,lingquButton->getZOrder(),2000);
+            //cell ->reorderChild(gameLingqu,lingquButton->getZOrder());
+            cell->removeChild(lingquButton, true);
+            CCLog("load index::%d",idx);
+            CGameEmailData *gameData=G_GAMESINGEMAIL::instance()->getGameDataByIndex(idx);
+            if(gameData)
             {
-                string word = Utility::getWordWithFile("word.plist", "lingqujiangpin");
-                CGameButtonControl *gameLingqu=CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
-                gameLingqu->setPosition(lingquButton->getPosition());
-                //gameLingqu->setTag(lingquButton->getTag());
-                gameLingqu->setAnchorPoint(lingquButton->getAnchorPoint());
-                cell->addChild(gameLingqu,lingquButton->getZOrder(),2000);
-                //cell ->reorderChild(gameLingqu,lingquButton->getZOrder());
-                cell->removeChild(lingquButton, true);
-                CCLog("load index::%d",idx);
-                CGameEmailData *gameData=G_GAMESINGEMAIL::instance()->getGameDataByIndex(idx);
-                if(gameData)
-                {
-                    CCLog("getGameEmailTitle:::%s",gameData->getGameEmailTitle().c_str());
-                    CCLabelTTF *label=CCLabelTTF::create(gameData->getGameEmailTitle().c_str(),"Arial",15);
-                    CCPoint point=Utility::getNodeByTag(cell, "1,0,5")->getPosition();
-                    cell->addChild(label);
-                    label->setPosition(ccp(point.x+2,point.y-8));
-                    cell->reorderChild(label, Utility::getNodeByTag(cell, "1,0,10")->getZOrder());
-                    label->setColor(g_custom_color[10]);
-                    
-                     CCLabelTTF *labelContext=CCLabelTTF::create(gameData->getGameEmailContent().c_str(),"Arial",15);
-                     cell->addChild(labelContext);
-                     labelContext->setDimensions(CCSizeMake(480, 200));
-                     point=Utility::getNodeByTag(cell, "1,0,11")->getPosition();
-                     labelContext->setPosition(ccp(point.x+8,point.y-3));
-                     cell->reorderChild(labelContext, Utility::getNodeByTag(cell, "1,0,30")->getZOrder());
-                     labelContext->setColor(g_custom_color[18]);
-                     labelContext->setAnchorPoint(ccp(0,1));
-                    labelContext->setHorizontalAlignment(kCCTextAlignmentLeft);
-                    
-                    string str;
-                    gameData->getEmailCreateTime(str);
-                    CCLabelTTF *labelContextTime=CCLabelTTF::create(str.c_str(), "Arial", 15);
-                    cell->addChild(labelContextTime);
-                    point=Utility::getNodeByTag(cell, "1,0,31")->getPosition();
-                    labelContextTime->setPosition(ccp(point.x-80,point.y-30));
-                    labelContextTime->setColor(g_custom_color[17]);
-                    labelContextTime->setAnchorPoint(ccp(0,1));
-                    labelContextTime->setHorizontalAlignment(kCCTextAlignmentRight);
-                    cell->reorderChild(labelContextTime, Utility::getNodeByTag(cell, "1,0,31")->getZOrder()+1);
-                    
-                    //CCSprite  *sprite = CCSprite::create("")
-                    
-                }
+                CCLog("getGameEmailTitle:::%s",gameData->getGameEmailTitle().c_str());
+                CCLabelTTF *label=CCLabelTTF::create(gameData->getGameEmailTitle().c_str(),"Arial",15);
+                CCPoint point=Utility::getNodeByTag(cell, "1,0,1")->getPosition();
+                cell->addChild(label);
+                label->setPosition(ccp(point.x+8,point.y-21));
+                cell->reorderChild(label, Utility::getNodeByTag(cell, "1,0,10")->getZOrder());
+                label->setColor(g_custom_color[10]);
+                label->setAnchorPoint(ccp(0,0));
+                label->setHorizontalAlignment(kCCTextAlignmentLeft);
+                
+                CCLabelTTF *labelContext=CCLabelTTF::create(gameData->getGameEmailContent().c_str(),"Arial",15);
+                cell->addChild(labelContext);
+                labelContext->setDimensions(CCSizeMake(480, 200));
+                point=Utility::getNodeByTag(cell, "1,0,11")->getPosition();
+                labelContext->setPosition(ccp(point.x+8,point.y-5));
+                cell->reorderChild(labelContext, Utility::getNodeByTag(cell, "1,0,30")->getZOrder());
+                labelContext->setColor(g_custom_color[18]);
+                labelContext->setAnchorPoint(ccp(0,1));
+                labelContext->setHorizontalAlignment(kCCTextAlignmentLeft);
+                
+                string str;
+                gameData->getEmailCreateTime(str);
+                CCLabelTTF *labelContextTime=CCLabelTTF::create(str.c_str(), "Arial", 15);
+                cell->addChild(labelContextTime);
+                point=Utility::getNodeByTag(cell, "1,0,31")->getPosition();
+                labelContextTime->setPosition(ccp(point.x-50,point.y-30));
+                labelContextTime->setColor(g_custom_color[17]);
+                labelContextTime->setAnchorPoint(ccp(0,1));
+                labelContextTime->setHorizontalAlignment(kCCTextAlignmentRight);
+                cell->reorderChild(labelContextTime, Utility::getNodeByTag(cell, "1,0,31")->getZOrder()+1);
+                string strPng=g_propImagesPath+gameData->getFirstItemsPng();
+                CCSprite  *sprite = CCSprite::create(strPng.c_str());
+                CCSize rect=Utility::getNodeByTag(cell, "1,0,0")->boundingBox().size;
+                int valueZorder=Utility::getNodeByTag(cell, "1,0,0")->getZOrder()+1;
+                Utility::getNodeByTag(cell, "1,0,0")->addChild(sprite,valueZorder);
+                sprite->setPosition(ccp(rect.width/2,rect.height/2));
+                
+                
             }
+        }
     }
 }
 
@@ -428,39 +455,39 @@ CCSize CGameEmailTableView::tableCellSizeForIndex(CCTableView *table, unsigned i
 }
 
 #pragma mark - CCTableViewDelegate
-    void CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)
+void CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)
+{
+    if(!(cell->getChildByTag(2000)))
     {
-        if(!(cell->getChildByTag(2000)))
+        return;
+    }
+    CCLog("cell->getIdx() :%d", cell->getIdx());
+    CCRect rect=cell->getChildByTag(2000)->boundingBox();
+    CCPoint point=pTouch->getLocation();
+    point=cell->convertTouchToNodeSpace(pTouch);
+    if(cell->getChildByTag(2000)->boundingBox().containsPoint(point))
+    {
+        CGameButtonControl *gamebutton=(CGameButtonControl*)cell->getChildByTag(2000);
+        if(node!=gamebutton)
         {
-            return;
-        }
-       CCLog("cell->getIdx() :%d", cell->getIdx());
-        CCRect rect=cell->getChildByTag(2000)->boundingBox();
-        CCPoint point=pTouch->getLocation();
-        point=cell->convertTouchToNodeSpace(pTouch);
-        if(cell->getChildByTag(2000)->boundingBox().containsPoint(point))
-        {
-            CGameButtonControl *gamebutton=(CGameButtonControl*)cell->getChildByTag(2000);
-            if(node!=gamebutton)
-            {
-                if(node)
-                {
-                    ((CGameButtonControl*)node)->unselected();
-                }
-                node=gamebutton;
-            }
-            gamebutton->selected();
-        }
-        else {
             if(node)
             {
-               ((CGameButtonControl*)node)->unselected(); 
+                ((CGameButtonControl*)node)->unselected();
             }
-            node=NULL;
+            node=gamebutton;
         }
-
+        gamebutton->selected();
+    }
+    else {
+        if(node)
+        {
+            ((CGameButtonControl*)node)->unselected();
+        }
+        node=NULL;
     }
     
+}
+
 void CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell) {
     int value =cell->getIdx();
     CCLog("you touch cell at %d", value);
@@ -487,24 +514,24 @@ void CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* 
 
 void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
 {
-
+    
     CCLog("this=%x",this);
     if(isSendPostGetData)
     {
         return ;
     }
     isSendPostGetData=true;
-     PtSoundTool::playSysSoundEffect("UI_click.wav");
+    PtSoundTool::playSysSoundEffect("UI_click.wav");
     vector<EMAIL_DATA >vemaildatalist;
     G_GAMESINGEMAIL::instance()->copyDataTovectory(vemaildatalist,msg_id);
     vector<int>canereadList;//.clear();
     CGamePlayer *player=SinglePlayer::instance();
     canereadList=player->getCanAddToBackPackEmals(vemaildatalist);
-
+    
     if(canereadList.size()>0)
     {
         // & info="[1,2,3]"
-//        m_enhttpStatus=EN_EMAILHTTPREQUEST_GETALLEMAIL;
+        //        m_enhttpStatus=EN_EMAILHTTPREQUEST_GETALLEMAIL;
         string str="&info=[";
         char data[12];
         for (int i=0; i<canereadList.size()-1; i++) {
@@ -526,9 +553,9 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
             }
         }
     }
-        
-}
     
+}
+
 void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
 {
     CCLog("%x",object);
@@ -551,31 +578,79 @@ void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
     else
     {
         CCDictionary *dictresult=(CCDictionary *)dict->objectForKey("result");
-            CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
-            vector<int >livetable;
-            for (int i=0; i<array->count();i++)
+        //获取 coin
+        int  coin=((CCString *)dictresult->objectForKey("coin"))->intValue();
+        //获取items
+        //获取 经验
+        int  exp=((CCString *)dictresult->objectForKey("exp"))->intValue();
+        map<int , int>mapitems;
+        CCDictionary *emailItemDirector=(CCDictionary *)(dictresult->objectForKey("item"));
+        if(emailItemDirector)
+        {
+            CCDictElement* pElement = NULL;
+            CCDICT_FOREACH(emailItemDirector, pElement)
             {
-                CCString * cocosstr=(CCString *)array->objectAtIndex(i);
-                livetable.push_back(atoi(cocosstr->m_sString.c_str()));
+                const char* pchKey = pElement->getStrKey();
+                mapitems[atoi(pchKey)]=GameTools::intForKey(pchKey, emailItemDirector);
             }
+        }
+        SinglePlayer::instance()->receiveEmail(mapitems,exp, coin);
+        
+        CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
+        vector<int >livetable;
+        for (int i=0; i<array->count();i++)
+        {
+            CCString * cocosstr=(CCString *)array->objectAtIndex(i);
+            livetable.push_back(atoi(cocosstr->m_sString.c_str()));
+        }
         if (livetable.size()==0)
         {
             G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
-            tableView->reloadData();
+            tableView->reloadDataView();
         }
         else
         {
             if(livetable.size()!=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail())
             {
                 G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
-                tableView->reloadData();
+                tableView->reloadDataView();
             }
         }
+        runDialogAction();
         CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
         G_GAMESINGEMAIL::instance()->writeToFile();
     }
     
 }
+
+void CGameEmailTableView::runDialogAction()
+{
+    CCLabelTTF *labelttf=NULL;
+    if (getChildByTag(255555))
+    {
+        labelttf=(CCLabelTTF *)getChildByTag(255555);
+        labelttf->stopAllActions();
+    }
+    else
+    {
+        labelttf=CCLabelTTF::create("领取成功", "Arial", 45);
+        addChild(labelttf,900,255555);
+    }
+    labelttf->setColor(ccc3(255, 0, 0));
+    CCSize size=CCDirector::sharedDirector()->getWinSize();
+    labelttf->setPosition(ccp(size.width*0.5,size.height*0.5));
+    labelttf->runAction(CCSequence::create(CCSpawn::create(CCMoveBy::create(1.0, ccp(0,100)),CCFadeOut::create(1.0),NULL),CCCallFunc::create(this, callfunc_selector(CGameEmailTableView::removeDialog)),NULL));
+                        
+    
+}
+void CGameEmailTableView::removeDialog()
+{
+    if (getChildByTag(255555))
+    {
+        removeChildByTag(255555, true);
+    }
+}
+
 void CGameEmailTableView::scrollViewDidScroll(CCScrollView* view)
 {
     scrollBar((CCTableView*)view);
@@ -599,64 +674,64 @@ void CGameEmailTableView::scrollBar(CCTableView* table)
         return;
     }
     
-//    if (!m_huaTiao) {
-//        m_huaTiao = CCSprite::create("scrollBar.png");
-//        if(m_huaTiao != NULL)
-//        {
-//            CCSize sizeBar = m_huaTiao->getContentSize();
-//            this->addChild(m_huaTiao, 1);
-//            m_huaTiao->setScaleY(viewSize.height/sizeBar.height);
-//            float scaley = 0;
-//            scaley = m_huaTiao->getScaleY();
-//            float per = viewSize.height/conSize.height;
-//            scaley = scaley*per;
-//            m_huaTiao->setScaleY(scaley);
-//            
-//            m_huaTiao->setAnchorPoint(ccp(0,0.5));
-//        }
-//    }
-//	if(m_huaTiao == NULL)
-//	{
-//		return;
-//	}
-//    m_huaTiao->setOpacity(255);
-//    
-//    CCPoint scrollViewPoint = table->getPosition();
-//    
-//    CCSize sizeBar = m_huaTiao->getContentSize();
-//	// tableSize.height == cell个数*cell的height
-//	CCSize tableSize = table->getContentSize();
-//	// CCTableView
-//	CCSize tableViewSize = table->getViewSize();
-//    //    tableViewSize = CCSize(tableViewSize.width, tableViewSize.height-sizeBar.height);
-//	// 每次拖动的偏移量？(负值)
-//	CCPoint contOffsetPos = table->getContentOffset();
-//    
-//	// 总的偏移量
-//	float maxOff = tableViewSize.height - tableSize.height;
-//	// 拖动的偏移量
-//	float curOff = contOffsetPos.y - maxOff;
-//	// 计算百分百
-//	float percentage = fabs(curOff)/fabs(maxOff);
-//    
-//    //	printf("contOffsetPos:%f ,curOff:%f, maxOff:%f, per:%f\n", contOffsetPos.y, curOff, maxOff, percentage);
-//	
-//	// 拖拉到最顶端或最低端后继续拖动(弹回)会出现percentage值小于0.1和大于1.0的情况，我们分别把percentage重置为0和1.0f
-//	if(curOff < 0)
-//	{
-//		percentage = 0;
-//	}
-//	if(percentage > 1.0f)
-//	{
-//		percentage = 1.0f;
-//	}
-//    
-//	// bar移动到最顶端的position.y
-//	float barTopPosY = scrollViewPoint.y+tableViewSize.height -(sizeBar.height*m_huaTiao->getScaleY())/2 ;
-//	// bar移动到最低端的position.y
-//	float barLowPosY = scrollViewPoint.y+(sizeBar.height*m_huaTiao->getScaleY())/2;
-//	// ....
-//	float h = barTopPosY - percentage*(barTopPosY- barLowPosY);;
-//    
-//	m_huaTiao->setPosition(ccp(tableViewSize.width*1.05 , h));
+    //    if (!m_huaTiao) {
+    //        m_huaTiao = CCSprite::create("scrollBar.png");
+    //        if(m_huaTiao != NULL)
+    //        {
+    //            CCSize sizeBar = m_huaTiao->getContentSize();
+    //            this->addChild(m_huaTiao, 1);
+    //            m_huaTiao->setScaleY(viewSize.height/sizeBar.height);
+    //            float scaley = 0;
+    //            scaley = m_huaTiao->getScaleY();
+    //            float per = viewSize.height/conSize.height;
+    //            scaley = scaley*per;
+    //            m_huaTiao->setScaleY(scaley);
+    //
+    //            m_huaTiao->setAnchorPoint(ccp(0,0.5));
+    //        }
+    //    }
+    //	if(m_huaTiao == NULL)
+    //	{
+    //		return;
+    //	}
+    //    m_huaTiao->setOpacity(255);
+    //
+    //    CCPoint scrollViewPoint = table->getPosition();
+    //
+    //    CCSize sizeBar = m_huaTiao->getContentSize();
+    //	// tableSize.height == cell个数*cell的height
+    //	CCSize tableSize = table->getContentSize();
+    //	// CCTableView
+    //	CCSize tableViewSize = table->getViewSize();
+    //    //    tableViewSize = CCSize(tableViewSize.width, tableViewSize.height-sizeBar.height);
+    //	// 每次拖动的偏移量？(负值)
+    //	CCPoint contOffsetPos = table->getContentOffset();
+    //
+    //	// 总的偏移量
+    //	float maxOff = tableViewSize.height - tableSize.height;
+    //	// 拖动的偏移量
+    //	float curOff = contOffsetPos.y - maxOff;
+    //	// 计算百分百
+    //	float percentage = fabs(curOff)/fabs(maxOff);
+    //
+    //    //	printf("contOffsetPos:%f ,curOff:%f, maxOff:%f, per:%f\n", contOffsetPos.y, curOff, maxOff, percentage);
+    //
+    //	// 拖拉到最顶端或最低端后继续拖动(弹回)会出现percentage值小于0.1和大于1.0的情况，我们分别把percentage重置为0和1.0f
+    //	if(curOff < 0)
+    //	{
+    //		percentage = 0;
+    //	}
+    //	if(percentage > 1.0f)
+    //	{
+    //		percentage = 1.0f;
+    //	}
+    //
+    //	// bar移动到最顶端的position.y
+    //	float barTopPosY = scrollViewPoint.y+tableViewSize.height -(sizeBar.height*m_huaTiao->getScaleY())/2 ;
+    //	// bar移动到最低端的position.y
+    //	float barLowPosY = scrollViewPoint.y+(sizeBar.height*m_huaTiao->getScaleY())/2;
+    //	// ....
+    //	float h = barTopPosY - percentage*(barTopPosY- barLowPosY);;
+    //
+    //	m_huaTiao->setPosition(ccp(tableViewSize.width*1.05 , h));
 }

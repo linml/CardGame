@@ -86,6 +86,29 @@ CPtProp * CPtPropConfigData::getPropById(const int &inPropId)
     return prop;
 }
 
+std::string CPtPropConfigData::getIconName(const int &inPropId)
+{
+    CPtProp * prop = NULL;
+    
+    if(inPropId < 0)
+    {
+        return "";
+    }else if(inPropId == EXPID)
+    {
+        return m_sExpIcon;
+    }else if(inPropId == COINSID)
+    {
+        return m_sCoinIcon;
+    }
+    else
+    {
+        prop = m_pAllProps.at(inPropId);
+        return prop->getIconName();
+    }
+    
+    return "";
+}
+
 void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
 {
     if (inConfigData)
@@ -97,10 +120,16 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
         CCDICT_FOREACH(inConfigData, element)
         {
             keyId = atoi(element->getStrKey());
-            if (keyId == EXPID || keyId == COINSID)
+            if (keyId == COINSID)
             {
                 //经验和金币
+               m_sCoinIcon = GameTools::valueForKey("icon", tmpValue);
                 continue;
+            }else if(keyId == EXPID)
+            {
+               m_sExpIcon = GameTools::valueForKey("icon", tmpValue);
+                continue;
+                
             }
             prop= new CPtProp();
             tmpValue = (CCDictionary *)element->getObject();

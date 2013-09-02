@@ -35,6 +35,7 @@ public:
    // virtual void ccTouchMove(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent);
     virtual    void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     void scrollViewDidScroll(CCScrollView* view);
+    void  reloadDataView();
 public:
     CCTouch *m_pTouch;
     CCPoint m_beginTouchPoint;
@@ -68,6 +69,8 @@ public:
     void scrollViewDidScroll(CCScrollView* view);
     void scrollViewDidZoom(CCScrollView* view);
     void reloadData();
+    void runDialogAction();
+    void removeDialog();
     
 public:
     unsigned int numberOfCellsInTableView(CCTableView *table);

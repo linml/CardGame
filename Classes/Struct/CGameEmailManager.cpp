@@ -392,10 +392,10 @@ int  CGameEmailManager::getCurrentEmailMapMaxMsgId()
 }
 
 template<class GAMEEMAILDATA,class UStatus>
-class totalUnread : public binary_function<typename std::list<GAMEEMAILDATA>::iterator , UStatus, bool>
+class totalUnread : public binary_function<typename std::list<GAMEEMAILDATA>::value_type , UStatus, bool>
 {
 public:
-    bool operator()(const typename std::list<GAMEEMAILDATA>::iterator iter, const UStatus & value) const
+    bool operator()(const typename list<GAMEEMAILDATA>::value_type iter, const UStatus& value) const
     {
         if (iter->getGameEmailStatus() == value)
         {
@@ -409,7 +409,7 @@ public:
 };
 int  CGameEmailManager::getCurrentEmailUnreadCount()
 {
-    return count_if(m_listGameEamil.begin(), m_listGameEamil.end(), bind2nd(findFuncByEmailID<const CGameEmailData *,int>(),0));
+    return count_if(m_listGameEamil.begin(), m_listGameEamil.end(), bind2nd(totalUnread<const CGameEmailData *,int>(),0));
     ;
 }
 void CGameEmailManager::setCurrentTotalEmail(int value)

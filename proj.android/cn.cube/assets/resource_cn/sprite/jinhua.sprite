@@ -3,7 +3,7 @@
     <key>spriteFileName</key>
     <string>jinhua</string>
     <key>imagePath</key>
-    <string>../../kapaiziyuanku/Work/images/jinhua.png</string>
+    <string>../../Documents/CubeCOCO1/proj.android/cn.cube/assets/resource_cn/img/jinhua.png</string>
     <key>clipData</key>
     <dict>
         <key>jian.png</key>

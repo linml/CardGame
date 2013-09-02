@@ -98,6 +98,7 @@ public:
 public: //读取 卡队列的信息
     void loadCardTeamInfo();
     void loadCardTeamInfoCallBack(CCObject *obj);
+    void loadCardTeamInfoCallBackByDict(CCDictionary *dictresult);
     int isLoadEndCardTeam;
 public:
     //读取对战别的英雄对战的阵容
@@ -141,6 +142,7 @@ public:
     //读取道具背包信息
     void loadPropsInfo();
     void parsePropsInfo(CCObject *pObject);
+    void parseProsInfoByDict(CCDictionary *dict);
  
     vector<int> getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas);
     int getOpenGridCount();

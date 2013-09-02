@@ -1,14 +1,14 @@
 10
 
 dir
-1144
+1155
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/LoginScene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-30T10:04:37.315539Z
-1136
+2013-09-02T09:26:38.683016Z
+1155
 merlin
 has-props
 
@@ -32,10 +32,10 @@ file
 
 
 
-2013-08-30T10:04:01.000000Z
-ba9b38aca36439149a5d99bd9ae2ec09
-2013-08-30T10:04:37.315539Z
-1136
+2013-09-02T08:02:19.000000Z
+aecd3054ab336a813bec7ce60334ae79
+2013-09-02T09:26:38.683016Z
+1155
 merlin
 
 
@@ -58,7 +58,7 @@ merlin
 
 
 
-9302
+9226
 
 Layer
 dir

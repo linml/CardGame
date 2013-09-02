@@ -1,14 +1,14 @@
 10
 
 dir
-1106
+1146
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-29T12:58:13.847299Z
-1105
+2013-09-02T05:05:55.056924Z
+1144
 phileas
 has-props
 
@@ -162,9 +162,6 @@ merlin
 
 36202
 
-sound
-dir
-
 card_config.plist
 file
 
@@ -198,6 +195,9 @@ card_config.plist.mine
 
 
 122645
+
+sound
+dir
 
 100004_l.plist
 file
@@ -233,9 +233,6 @@ merlin
 
 1637
 
-plist
-dir
-
 100000_r.plist
 file
 
@@ -269,6 +266,9 @@ merlin
 
 
 1643
+
+plist
+dir
 
 skill_config.plist
 file
@@ -338,40 +338,6 @@ merlin
 
 732
 
-boss_icon_Effect_l.plist
-file
-
-
-
-
-2013-08-15T08:18:50.000000Z
-227d0cb6359fc5de325c8fa9cfef9cc0
-2013-08-21T03:56:08.259789Z
-1022
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1474
-
 100004_r.plist
 file
 
@@ -405,6 +371,40 @@ merlin
 
 
 1543
+
+boss_icon_Effect_l.plist
+file
+
+
+
+
+2013-08-15T08:18:50.000000Z
+227d0cb6359fc5de325c8fa9cfef9cc0
+2013-08-21T03:56:08.259789Z
+1022
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1474
 
 cardbg.txt
 file
@@ -702,10 +702,10 @@ file
 
 
 
-2013-08-29T08:58:17.000000Z
-a511e5c30f4c234249da30d290088c39
-2013-08-29T08:57:16.208427Z
-1094
+2013-09-02T07:09:54.000000Z
+b7859a365e3994ff1ee672a48aa3f342
+2013-09-02T05:05:55.056924Z
+1144
 phileas
 
 
@@ -728,7 +728,7 @@ phileas
 
 
 
-7652
+9374
 
 map
 dir

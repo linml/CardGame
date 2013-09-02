@@ -415,6 +415,10 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
     if(GameTools::intForKey("code",dirct)==0)
     {
         CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
+        if (!dictresult)
+        {
+            return;
+        }
         CCArray *vKeyArrayresult=dictresult->allKeys();
         for (int i=0; i<vKeyArrayresult->count(); i++)
         {
@@ -455,6 +459,59 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
     isLoadEndCardTeam=true;
     
 }
+
+void CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)
+{
+    m_vvBattleArray.resize(3);
+   if (!dictresult)
+    {
+        for (int i=0; i<m_vvBattleArray.size(); i++) {
+            if(m_vvBattleArray[i].size()==0)
+            {
+                vector<CFightCard *>tempVectory(5);
+                m_vvBattleArray[i]=tempVectory;
+            }
+        }
+        return;
+    }
+    CCArray *vKeyArrayresult=dictresult->allKeys();
+    for (int i=0; i<vKeyArrayresult->count(); i++)
+    {
+            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+            if(cardDirector)
+            {
+                vector<CFightCard *>tempVcard(5);
+                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
+                CCArray *vKeyArraytemp=cardtemp->allKeys();
+                for (int j=0; j<vKeyArraytemp->count(); j++)
+                {
+                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(j);
+                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
+                    int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
+                    int position=GameTools::intForKey("position", cardDirectorDetail);
+                    tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
+                    if(tempVcard[position-1])
+                    {
+                        tempVcard[position-1]->setInBattleArray(i+1);//(true);
+                    }
+                    
+                    
+                }
+                int index=atoi(key->m_sString.c_str())-1;
+                CCLog("index=========%d",index);
+                m_vvBattleArray[index]=tempVcard;
+            }
+        }
+        for (int i=0; i<m_vvBattleArray.size(); i++) {
+            if(m_vvBattleArray[i].size()==0)
+            {
+                vector<CFightCard *>tempVectory(5);
+                m_vvBattleArray[i]=tempVectory;
+            }
+        } 
+}
+
 
 
 CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
@@ -695,6 +752,34 @@ void CGamePlayer::loadPropsInfo()
   ADDHTTPREQUESTPOSTDATA(STR_URL_BAG_PROP(194), "loadProps", "loadProps","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parsePropsInfo));
     
 }
+
+void CGamePlayer::parseProsInfoByDict(CCDictionary *tmpDictionary)
+{
+    if (tmpDictionary)
+    {
+        int propId = 0;
+        int propCount = 0;
+        
+
+            CCArray * items =(CCArray*) tmpDictionary ;
+            for (int i = 0;  items!= NULL && i < items->count(); i++)
+            {
+                tmpDictionary = (CCDictionary*) items->objectAtIndex(i);
+                
+                if (tmpDictionary)
+                {
+                    propId = GameTools::intForKey("item_id", tmpDictionary);
+                    propCount = GameTools::intForKey("num", tmpDictionary);
+                    m_vProps.insert(map<int,int>::value_type(propId, propCount));
+                }
+                
+            }
+            CCLog("prop %d",m_vProps.size());
+            
+        }
+
+}
+
 void CGamePlayer:: parsePropsInfo(CCObject *pObject)
 {
     m_bLoadProps = true;
@@ -707,6 +792,7 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
     
     // parse data to m_vProps:
     CCDictionary *tmpDictionary = PtJsonUtility::JsonStringParse(buffer);
+    delete [] buffer;
     if (tmpDictionary)
     {
         int resultCode = GameTools::intForKey("code", tmpDictionary);
@@ -738,7 +824,7 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
             CCLog("load prop error...");
         }
     }
-    delete [] buffer;
+
 }
 /*
  * @breif: 获取可以添加到背包的邮件队列
@@ -856,6 +942,11 @@ void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
      CPtPropConfigData *propData =   SinglePropConfigData::instance();
     for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end(); i++)
     {
+        if (i->first == EXPID || i->first == COINSID)
+        {
+            continue;
+        }
+        
         if (tmpProps.find(i->first) == tmpProps.end())
         {
             tmpProps.insert(map<int, int>::value_type (i->first, i->second));
@@ -1047,23 +1138,35 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             CCDictionary *dicinfobox_info=(CCDictionary *)dictresult->objectForKey("inbox_info");
             G_GAMESINGEMAIL::instance()->decodeEmap(dicinfobox_info);
         }
+            
         teamStrType=typeid(*dictresult->objectForKey("user_info")).name();
         if(teamStrType.find("CCDictionary")!=std::string::npos)
         {
-             CCDictionary *dicuserinfo=(CCDictionary *)dictresult->objectForKey("user_info");
+               CCDictionary *dicuserinfo=(CCDictionary *)dictresult->objectForKey("user_info");
              parseJsonUserInfo(dicuserinfo);
             gameInitStatus=1;
         }
-        
+        CCDictionary *getCardItem=(CCDictionary *)dictresult->objectForKey("card_team");
+        loadCardTeamInfoCallBackByDict(getCardItem);
         
     }
 }
+
 void CGamePlayer::parseJsonUserInfo(CCDictionary *dict)
 {
     if(m_gGamePlayerData)
     {
         m_gGamePlayerData->decodeDictnory(dict);
     }
-    CCDictionary *cardinfo=(CCDictionary *)(dict->objectForKey("card_item"));
-    decodeCardDict(cardinfo);
+        CCDictionary *cardinfo=(CCDictionary *)(dict->objectForKey("card_item"));
+            if (cardinfo) {
+                        decodeCardDict(cardinfo);
+                }
+    
+    CCDictionary *bag_info=(CCDictionary *)(dict->objectForKey("bag_info"));
+    if(bag_info)
+    {
+        parseProsInfoByDict(bag_info);
+    }
+    
 }

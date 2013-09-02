@@ -38,6 +38,7 @@ public:
     ~CGameEmailData();
     bool isOutActiveTime();   //!<   判断日期 过期问题
     void decodeJsonData(std::string str);
+    string getFirstItemsPng();
 protected:
     CC_SYNTHESIZE(int ,m_iGameEmailItemid, GameEmailItemid);
     CC_SYNTHESIZE(int ,m_iGameEmailStatus, GameEmailStatus);

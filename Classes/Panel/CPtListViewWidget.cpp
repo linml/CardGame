@@ -527,7 +527,7 @@ void TableView::reload()
     float y = (m_tViewSize.height - m_pContainer->getContentSize().height*m_pContainer->getScaleY()) ;
     if (y >= 0)
     {
-        setContentOffset(ccp(0,y));
+         setContentOffset(ccp(0,y));
     }else
     {
          setContentOffset(ccp(0,y));

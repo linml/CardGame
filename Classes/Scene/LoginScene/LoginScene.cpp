@@ -112,6 +112,9 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
                 addChild(CRegisterLayer::create(this),10000);
             }
             break;
+        case 2000:
+            CCUserDefault::sharedUserDefault()->setIntegerForKey("uid", 0);
+            break;
         default:
             break;
     }
@@ -186,6 +189,13 @@ bool CLoginScene::initLogin()
         isGameInit=false;
         isLoadBackPack = false;
         //scheudoLoadGameConfig(); //by merlin
+        
+        CCLabelTTF* LogOut = CCLabelTTF::create();
+        LogOut->setString("注销账号");
+        LogOut->setFontSize(24);
+        LogOut->setPosition(ccp(970,30));
+        addChild(LogOut);
+        Utility::addTouchRect(2000, LogOut, touchRect);
     } while (0);
     return bRet;
     
@@ -294,41 +304,31 @@ void CLoginScene::addFunctionInitGames(float t)
                 
                 if(SinglePlayer::instance()->gameInitStatus==1)
                 {
-                    setText("BackPack info");
-                    if (!isLoadBackPack)
-                    {
-                        SinglePlayer::instance()->loadPropsInfo();
-                        isLoadBackPack = true;
-                    }else if(SinglePlayer::instance()->getLoadPropEnd())
-                    {
+//                    setText("BackPack info");
+//                    if (!isLoadBackPack)
+//                    {
+//                        SinglePlayer::instance()->loadPropsInfo();
+//                        isLoadBackPack = true;
+//                    }
+//                    else
+//                    if(SinglePlayer::instance()->getLoadPropEnd())
+//                    {
                         setText("CARD TEM info");
-                        if(!isLoadTeam)
-                        {
-                            SinglePlayer::instance()->loadCardTeamInfo();
-                            isLoadTeam=true;
-                        }
-                        else if (SinglePlayer::instance()->isLoadEndCardTeam)
-                        {
-                            setText("welcome");
+                         setText("welcome");
                             unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
                             playGame();
-//                            Utility::handleBtnCallBack(touchSprite, this, callfunc_selector(CLoginScene::playGame));
-                           // Utility::getNodeByTag(this, "0,2,0")->setVisible(true);
-                        }
-
+                   
                     }
-
-                }
-                else
-                {
-                    isTouchPlayerGame=false;
-                    isGameInit=false;
-                    isLoadCardBag=false;
-                    isLoadEndConfig=false;
-                    isLoadTeam=false;;
-                    isGameInit=false;
-                    isLoadBackPack=false;
-                }
+                    else
+                    {
+                        isTouchPlayerGame=false;
+                        isGameInit=false;
+                        isLoadCardBag=false;
+                        isLoadEndConfig=false;
+                        isLoadTeam=false;;
+                        isGameInit=false;
+                        isLoadBackPack=false;
+                    }
             }
             else{
                 

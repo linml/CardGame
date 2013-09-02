@@ -17,7 +17,7 @@
 #include "CGameEmailLayer.h"
 #include "CGameEmailManager.h"
 #define  EMAILMAXNUMBERCOUNT 50
-#define  EMAILTISHI 20
+#define  EMAILTISHI 40
 
 CCScene* CHallScene::scene()
 {
