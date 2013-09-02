@@ -13,6 +13,9 @@
 #include "CSingleton.h"
 using namespace cocos2d;
 
+#define EXPID 900000
+#define COINSID 900001
+
 class CPtProp : public CCObject
 {
 public:

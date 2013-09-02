@@ -15,6 +15,7 @@
 #include <vector>
 #include "CGamePlayerStruct.h"
 #include "CPtPropConfigData.h"
+#include "CGameEmailData.h"
 using namespace std;
 class CImapact;
 class CSkillData;
@@ -119,7 +120,14 @@ public:
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
 
    
-
+// 领取邮件：
+public:
+    void receiveEmail(CGameEmailData * inEmailData);
+    void receiveEmail(map<int, int> inProps, int inAddPlayerExp, int inAddPlayerCoin);
+// interface of prop:
+    void addProp(int inPropId, int inAddNum);
+    int subProp(int inPropId, int inSubNum);
+    map<int,int> getPlayerProps();
     
 //获取玩家基本信息
 public:
@@ -138,12 +146,13 @@ public:
     int getOpenGridCount();
     int AddOpenGridCount(int inAddCount);
     int getUseGridCount();
-    map<int, int> m_vProps;
+   
     
     void updateProps();
     bool getLoadPropEnd(){return  m_bLoadProps;};
 protected:
-    map<int, CPtProp*> &m_rAllProps;
+    map<int, CPtProp*> &m_rAllProps; // 静态配置中道具信息
+    map<int, int> m_vProps;          // 用户道具列表
     bool m_bLoadProps;
 protected:
     int isCanAddToBackPack(map<int, int> &tmpProps, map<int, int> &inAddProps , int inUserGridCount);
@@ -154,6 +163,10 @@ protected:
 public:
     int getCoin();
     int getRVC();
+    int getPlayerExp();
+    
+    void addPalyerExp(int inAddExp);
+    void subPlayerExp(int inSubExp);
     
     void addRVC(const int &inAddValue);
     void addCoin(const int &inAddValue);

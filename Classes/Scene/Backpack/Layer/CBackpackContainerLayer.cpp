@@ -285,6 +285,9 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
           
         }
         m_pItems->addObject(item);
+        item->setCurrentPageTag(i);
+        item->setContainerHandler(this);
+        item->setContainerHandler(this);
         item->setPosition(ccp(-m_cContainerOffset.x+i*m_cContainerSize.width, -m_cContainerOffset.y));
          m_pContainer->addChild(item);
         if (i == m_nCurPage)
@@ -374,7 +377,7 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
 
 void CBackpackContainerLayer::initGrids()
 {
-    map<int, int> &allProps = SinglePlayer::instance()->m_vProps;
+    map<int, int> allProps = SinglePlayer::instance()->getPlayerProps();
     CPtProp * tmp = NULL;
     CPtPropConfigData * propData = SinglePropConfigData::instance();
     int limitNum = 0;
@@ -568,7 +571,7 @@ void CBackpackContainerLayer::updateIndicators(const int & inCount)
     
 }
 
-void CBackpackContainerLayer::updatePageContent(const int &inCount)
+void CBackpackContainerLayer::updatePageContent(const int &inCount,bool inFirstPage /*= true*/)
 {
     m_pContainer->getContainer()->removeAllChildrenWithCleanup(true);
     CCNode *item = NULL;
@@ -579,15 +582,17 @@ void CBackpackContainerLayer::updatePageContent(const int &inCount)
         m_pContainer->addChild(item);
     }
     m_pContainer->setContentSize(CCSizeMake(m_cContainerSize.width*inCount, m_cContainerSize.height));
-    m_pContainer->setContentOffset(CCPointZero);
-    updateIndicator(m_nCurPage, 0);
-    m_nCurPage = 0;
+    if (inFirstPage)
+    {
+        updateToFirstPage();
+    }
+    
 }
 
-void CBackpackContainerLayer::updateUI(const int &inCount)
+void CBackpackContainerLayer::updateUI(const int &inCount, bool inFirstPage /*= true*/)
 {
     updateIndicators(inCount);
-    updatePageContent(inCount);
+    updatePageContent(inCount,inFirstPage);
     updateCurrentPage();
 }
 
@@ -596,8 +601,16 @@ void CBackpackContainerLayer::updateCurrentPage()
     m_pCurrentPage = (CBackpackPageLayer*)m_pItems->objectAtIndex(m_nCurPage);
 }
 
-void CBackpackContainerLayer::updateTabContent(vector<multimap<int, int>::iterator> & inVector)
+void CBackpackContainerLayer::updateToFirstPage()
 {
+    m_pContainer->setContentOffset(CCPointZero);
+    updateIndicator(m_nCurPage, 0);
+    m_nCurPage = 0;
+}
+
+void CBackpackContainerLayer::updateTabContent(vector<multimap<int, int>::iterator> & inVector, int inFromPage /*= 0*/, bool inFirstPage /*= true*/)
+{
+    
     vector<multimap<int, int>::iterator> &tmpVector  = inVector;
     int size = tmpVector.size();
     if (size == 0)
@@ -606,10 +619,14 @@ void CBackpackContainerLayer::updateTabContent(vector<multimap<int, int>::iterat
         
     }
     int pageCount = size/9 + size%9 == 0 ? 0 : 1;
+    if (inFromPage != 0 && inFromPage >= pageCount)
+    {
+        return;
+    }
     CBackpackPageLayer *itemPage = NULL;
-    updateUI(pageCount);
+    updateUI(pageCount, inFirstPage);
     vector<multimap<int, int>::iterator>::iterator beginIterator = tmpVector.begin();
-    for (int i  = 0; i <pageCount; i++)
+    for (int i  = inFromPage; i <pageCount; i++)
     {
         itemPage = (CBackpackPageLayer*) m_pItems->objectAtIndex(i);
         if (size < 9)
@@ -716,4 +733,100 @@ vector<multimap<int, int>::iterator> CBackpackContainerLayer::getFilterPointer(i
         }
     }
     return tmpVector;
+}
+
+/* @note：调用之前要先grid中value为0的格子
+ * @breif: 重派分页：
+ * @param: inFromPag (0-5)下一页：
+ */
+void CBackpackContainerLayer::reLoadPage(int inFromPage)
+{
+        
+    vector<multimap<int, int>::iterator> dataIterators;
+    CBackpackPageLayer *pageLayer = NULL;
+    for (int i = inFromPage; i < m_nPageCount; i++)
+    {
+        pageLayer =(CBackpackPageLayer*) m_pItems->objectAtIndex(i);
+        if (pageLayer)
+        {
+             const  vector<multimap<int, int>::iterator> &tmpIterator =  pageLayer->getCurrentGridDataIterators();
+            if (tmpIterator.size() == 0)
+            {
+                break;
+            }else
+            {
+                dataIterators.insert(dataIterators.end(), tmpIterator.begin(), tmpIterator.end());
+            }
+        }
+    }
+    
+    if (m_nCurrentTab == 0)
+    {
+        int  inOpenNumber = SinglePlayer::instance()->getOpenGridCount();
+        CCLog("the openCountNumber: %d", inOpenNumber);
+        int tmpPageCount = inOpenNumber/9+ 1 ;
+        CBackpackPageLayer * item  = NULL;
+        
+        // add backpackpage to container:
+        multimap<int, int>::iterator mapIterator = dataIterators.at(0);
+        multimap<int, int>::iterator mapIteratorEnd = mapIterator;
+        
+        inOpenNumber -= inFromPage * 9;
+        for (int i = inFromPage; i < tmpPageCount; i++)
+        {
+            item = (CBackpackPageLayer *)m_pItems->objectAtIndex(i);
+            
+            if (inOpenNumber-9 >= 0)
+            {
+                if (dataIterators.size() > 9)
+                {
+                    mapIteratorEnd = dataIterators.at(9);
+                }else
+                {
+                    mapIteratorEnd = m_cNumInGrid.end();
+                }
+                
+                inOpenNumber -= 9;
+                item->updatePageContent(mapIterator, mapIteratorEnd, 9);
+                mapIterator = mapIteratorEnd;
+            }
+            else if(inOpenNumber == 0)
+            {
+                CCLog("the openNumber %d", inOpenNumber);
+                item->updatePageContent(mapIterator, m_cNumInGrid.end(), 0);
+            }else
+            {
+                item->updatePageContent(mapIterator, m_cNumInGrid.end(), inOpenNumber);
+                inOpenNumber = 0;
+            }
+            
+        }
+        updateUI(tmpPageCount,false);
+        return;
+    }
+
+    
+  //  if (dataIterators.size()!= 0)
+    {
+        updateTabContent(dataIterators, inFromPage,false);
+    }
+    
+}
+
+void CBackpackContainerLayer::appendPage()
+{
+    if (m_nPageCount < m_nMaxPageCount)
+    {
+        m_nPageCount ++;
+        updateIndicators(m_nPageCount);
+     
+        CBackpackPageLayer *item = NULL;
+
+        item = (CBackpackPageLayer*) m_pItems->objectAtIndex(m_nPageCount-1);
+        item->initGridPage();
+        m_pContainer->addChild(item);
+        m_pContainer->setContentSize(CCSizeMake(m_cContainerSize.width*m_nPageCount, m_cContainerSize.height));
+
+    }
+    
 }

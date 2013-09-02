@@ -13,11 +13,12 @@
 #include "CBattleArrayLayer.h"
 #include "CPtPropConfigData.h"
 #include "LayoutLayer.h"
-
 #include <vector>
 
 using namespace cocos2d;
 using namespace std;
+
+class CBackpackContainerLayer;
 
 class CBackpackPageLayer : public CCLayer
 {
@@ -44,7 +45,8 @@ public:
     void updatePageContent(vector<multimap<int, int>::iterator> inDataIterators);
     
     void setGridData(multimap<int, int> * inGridData){m_pGridData = inGridData;};
-    
+    vector<multimap<int, int>::iterator> getCurrentGridDataIterators(){return m_cGridDataIterator;};
+    void initGridPage();
 protected:
     void initCBackpackPageLayer();
     void handlerTouch();
@@ -75,9 +77,11 @@ protected:
     
     void onReceiveUsePropMsg(CCObject *pOject);
     void onReceiveDeletProp(CCObject *pObject);
+    
+    void reloadPage(multimap<int, int>::iterator inZeroInterator, vector<multimap<int, int>::iterator>::iterator inVectorIterator);
 protected:
     
-    
+    bool m_bLockRequest;
     bool m_bTouchLock;
     
     int m_nTouchTag;
@@ -96,6 +100,7 @@ protected:
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
     
+//    CBackpackContainerLayer * m_pContainerHandler;
     multimap<int, int> * m_pGridData;
     vector<multimap<int, int>::iterator> m_cGridDataIterator;
     
@@ -104,6 +109,10 @@ protected:
     static const int AllGridInPageNumber = 9;
     static const int DeleteTag = 2000;
     static const int UseTag = 3000;
+    
+    CC_SYNTHESIZE(int , m_nCurrentPageTag, CurrentPageTag);
+    CC_SYNTHESIZE(CBackpackContainerLayer*, m_pContainerHandler, ContainerHandler);
+
 
 };
 

@@ -52,6 +52,10 @@ protected:
     CC_SYNTHESIZE(int ,m_iGameEmailCoins ,GameEmailCoins); //!< 钱币
     CC_SYNTHESIZE(int ,m_iGameEmailExp ,GameEmailExp);     //!< 经验
     void getEmailCreateTime(string &str);
+    bool operator > (const CGameEmailData &man) const
+    {
+        return m_iGameEmailStartTime > man.m_iGameEmailStartTime;
+    }
 public:
     map<int, int>m_mapDataProp;  //
 protected:

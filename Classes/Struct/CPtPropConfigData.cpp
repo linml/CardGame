@@ -97,6 +97,11 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
         CCDICT_FOREACH(inConfigData, element)
         {
             keyId = atoi(element->getStrKey());
+            if (keyId == EXPID || keyId == COINSID)
+            {
+                //经验和金币
+                continue;
+            }
             prop= new CPtProp();
             tmpValue = (CCDictionary *)element->getObject();
             prop->setPropId(keyId);

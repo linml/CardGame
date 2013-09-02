@@ -620,6 +620,20 @@ int CGamePlayer::getRVC()
     return  m_gGamePlayerData->m_irvc;
 }
 
+int CGamePlayer::getPlayerExp()
+{
+    return m_gGamePlayerData->m_iexp;
+}
+
+void CGamePlayer::addPalyerExp(int inAddExp)
+{
+    m_gGamePlayerData->m_iexp += inAddExp;
+}
+void CGamePlayer::subPlayerExp(int inSubExp)
+{
+    m_gGamePlayerData->m_iexp -= inSubExp;
+}
+
 void CGamePlayer::addRVC(const int &inAddValue)
 {
      m_gGamePlayerData->m_irvc += inAddValue;
@@ -765,7 +779,7 @@ vector<int>CGamePlayer::getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas
 /*
  * @breif: 判断是否可以添加到背包队列中
  * @param: tmpProps: 背包队列
- * @param: inAddProps: 要添加的道具队列
+ * @param: inAddProps: 要添加的道具队列 (包含特殊的道具：金币和经验)
  * @param: inUserGridCount: tmpProps使用的格子数
  * @return: 返回新增的格子数，－1:无法添加的背包队列中
  */
@@ -780,13 +794,14 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
     CPtProp *tmp = NULL;
     for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end() && (inUserGridCount+count) <= m_nOpenGridCount; i++)
     {
-                //bymerlin
-        if(key==900001|| key==900002)
-        {
-            continue;
-        }        //bymerlin
         
         key = i->first;
+        // filter exp and coin:
+        if (key == EXPID || key == COINSID)
+        {
+            continue;
+        }
+        
         tmp = m_rAllProps.at(key);
         CCAssert(tmp != NULL, "no this prop");
         isOnly = tmp->getIsOnlyNum();
@@ -795,7 +810,8 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
             //已存在
             if (tmpProps.find(key)!= tmpProps.end())
             {
-                return bRet;
+              //  return bRet;
+                continue;
             }else
             {
                 count++;
@@ -837,6 +853,7 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
  */
 void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
 {
+     CPtPropConfigData *propData =   SinglePropConfigData::instance();
     for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end(); i++)
     {
         if (tmpProps.find(i->first) == tmpProps.end())
@@ -844,7 +861,14 @@ void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
             tmpProps.insert(map<int, int>::value_type (i->first, i->second));
         }else
         {
-            tmpProps.at(i->first) += i->second;
+            if(propData->getPropById(i->first)->getIsOnlyNum() == 1)
+            {
+                
+            }else
+            {
+                tmpProps.at(i->first) += i->second;
+            }
+            
         }
     }
 }
@@ -900,6 +924,81 @@ int CGamePlayer::getUseGridCount()
     return useGridCount;
     
 }
+
+void CGamePlayer::receiveEmail(CGameEmailData * inEmailData)
+{
+    receiveEmail(inEmailData->m_mapDataProp, inEmailData->getGameEmailExp(), inEmailData->getGameEmailCoins());
+}
+void CGamePlayer::receiveEmail(map<int, int> inProps, int inAddPlayerExp, int inAddPlayerCoin)
+{
+    // add props:
+    if (inProps.size()!= 0)
+    {
+         mergeProps(m_vProps, inProps);
+    }
+   
+    // add play exp and coin:
+    addPalyerExp(inAddPlayerExp);
+    addCoin(inAddPlayerCoin);
+    
+}
+// interface of prop:
+/*
+ * @breif: 添加道具到背包中，不进行检测，由服务端进行检测
+ * @param: inPropId, 道具的ID
+ * @param: inAddNum, 添加的数量
+ */
+
+void CGamePlayer::addProp(int inPropId, int inAddNum)
+{
+    map<int, int>::iterator it =  m_vProps.find(inPropId);
+    if (it != m_vProps.end())
+    {
+        it->second += inAddNum;
+    }else
+    {
+        m_vProps.insert(map<int, int>::value_type(inPropId, inAddNum));
+    }
+}
+/*
+ * @breif: 删除道具, 当道具的数目减为0时，将自动缩进
+ * @param: inPropId, 道具ID
+ * @param: inSubNum, 删除数目
+ * @return: -1 --> 没有该道具， －2 --> 道具的数目不够删除， 0 --> 删除成功
+ */
+
+int CGamePlayer::subProp(int inPropId, int inSubNum)
+{
+    int resultCode = -1;
+    map<int, int>::iterator it =  m_vProps.find(inPropId);
+    if (it != m_vProps.end())
+    {
+        if (it->second >= inSubNum)
+        {
+            it->second -= inSubNum;
+            if (it->second == 0)
+            {
+                m_vProps.erase(it);
+            }
+            
+            resultCode = 0;
+        }else
+        {
+            resultCode = -2;
+        }
+
+    }
+    return  resultCode;
+}
+
+/*
+ * @breif: 返回用户道具列表， struct： key--> propId, value --> propNum
+ */
+map<int,int> CGamePlayer::getPlayerProps()
+{
+    return m_vProps;
+}
+
 
 /*
  * 获取玩家基本信息

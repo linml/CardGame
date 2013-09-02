@@ -32,6 +32,9 @@ public:
 public:
     CBackpackContainerLayer();
     virtual ~CBackpackContainerLayer();
+    
+    void reLoadPage(int inFromPage);
+    void appendPage();
 public:
     virtual bool init(int inOpenNumber);
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -58,9 +61,10 @@ protected:
     
     // update UI
     void updateIndicators(const int  & inCount);
-    void updatePageContent(const int &inCount);
-    void updateUI(const int &inCount);
-    void updateTabContent(vector<multimap<int, int>::iterator> & inVector);
+    void updatePageContent(const int &inCount, bool inFirstPage = true);
+    void updateUI(const int &inCount ,bool inFirstPage = true);
+    void updateTabContent(vector<multimap<int, int>::iterator> & inVector, int inFromPage = 0,bool inFirstPage = true);
+    void updateToFirstPage();
     // action:
     
     void goAllTab();
@@ -74,12 +78,13 @@ protected:
     
     
     vector<multimap<int, int>::iterator> getFilterPointer(int inType);
+   
     
 protected:
     bool m_bScrollEnable;
     bool m_bPageTouchEnable;
-    bool m_bMoveEnable;
     
+    bool m_bMoveEnable;
     int m_nTouchTag;
     int m_nCurPage;
     int m_nOpenGridCount;
@@ -115,9 +120,7 @@ protected:
     // grid data struct:
     std::multimap<int, int> m_cNumInGrid;
     
-    //test:
-    void load();
-    void callback(float dt);
+    
     
 };
 

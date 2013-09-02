@@ -6,6 +6,7 @@
 //
 //
 
+#include "CBackpackContainerLayer.h"
 #include "CBackpackPageLayer.h"
 #include "CPtTool.h"
 #include "PtHttpClient.h"
@@ -52,13 +53,16 @@ CBackpackPageLayer * CBackpackPageLayer::create(multimap<int, int> *inGridData, 
 
 CBackpackPageLayer::CBackpackPageLayer()
 {
+    m_nCurrentPageTag = 0;
     m_bTouchLock = false;
     m_cMaps = NULL;
     m_pItemNums = NULL;
     m_pMasks = NULL;
+    m_pContainerHandler = NULL;
     m_nTouchTag = -1;
     m_nOpenGridNumber = 0;
     m_nUserGridNumber = 0;
+    m_bLockRequest = false;
     
     for (int i = 0;  i < 9; i++)
     {
@@ -491,6 +495,7 @@ void CBackpackPageLayer::resetPanel()
                 }else if(j==19 || j == 20)
                 {
                     // use and delete button
+
                     continue;
                 }
                 node = mapLayer->getChildByTag(j);
@@ -505,7 +510,8 @@ void CBackpackPageLayer::resetPanel()
         //reset button tag:
         m_pDeleteButtons[i]->setUserData((void*)-1);
         m_pUseButton[i]->setUserData((void*)-1);
-        
+        m_pDeleteButtons[i]->setVisible(false);
+        m_pUseButton[i]->setVisible(false);
     }
 
   
@@ -610,6 +616,10 @@ bool CBackpackPageLayer::canOpenGrid()
 
 void CBackpackPageLayer::openGrid()
 {
+    if (m_nOpenGridNumber >= AllGridInPageNumber)
+    {
+        return;
+    }
     
     SinglePlayer::instance()->AddOpenGridCount(3);
     // handler event:
@@ -638,18 +648,23 @@ void CBackpackPageLayer::openGridUI()
         sprite->removeFromParentAndCleanup(true);
         m_pMasks->removeObjectAtIndex(0);
     }
+    if(m_pMasks->count() == 0)
+    {
+        m_pContainerHandler->appendPage();
+    }
 }
 
 void CBackpackPageLayer::onClickOpenGrid()
 {
     // 是否可以开启格子：
     bool canOpen = canOpenGrid();
-    if (canOpen == false)
+    if (canOpen == false || m_bLockRequest == true)
     {
         //
         CCLog("can't open grid");
         return;
     }
+    m_bLockRequest = true;
     int openGridCount = SinglePlayer::instance()->getOpenGridCount();
         openGridCount += 3;
     if (openGridCount > 45)
@@ -660,11 +675,12 @@ void CBackpackPageLayer::onClickOpenGrid()
   //  sig=2ac2b1e302c46976beaab20a68ef95(标识码),bag_type_id=101(背包类型),grid_num=12(背包格子) unlock_way=1 (解锁方式  1：现金币解锁 2:系统赠送)
     char buffer[100] = {};
     sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&bag_type_id=101&grid_num=%d&unlock_way=1",openGridCount);
-    ADDHTTPREQUESTPOSTDATA(STR_URL_ADD_GRID(196),"phileas", "addGrid", buffer,callfuncO_selector(CBackpackPageLayer::onReceiveOpenGridMsg));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_ADD_GRID(196),"addGrid", "addGrid", buffer,callfuncO_selector(CBackpackPageLayer::onReceiveOpenGridMsg));
 
 }
 void CBackpackPageLayer::onReceiveOpenGridMsg(CCObject *pOject)
 {
+    m_bLockRequest = false;
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "addGrid");
     char *buff =(char*) pOject;
     
@@ -744,15 +760,16 @@ void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
                 CCAssert(index <= m_cGridDataIterator.size(), "click error");
                 multimap<int, int>::iterator it = m_cGridDataIterator.at(index);
                 it->second --;
-                SinglePlayer::instance()->m_vProps.find(it->first)->second --;
+                SinglePlayer::instance()->subProp(it->first, 1); // m_vProps.find(it->first)->second --;
                 char tmpbuff[10]={0};
                 sprintf(tmpbuff, "%d",it->second);
                 ((CCLabelTTF*) m_pItemNums->objectAtIndex(index))->setString(tmpbuff);
                 CCDirector::sharedDirector()->getRunningScene()->removeChildByTag(10000, true);
                 if (it->second == 0)
                 {
-                    int array[2] = {1,index};
-                    clearItem(m_cMaps->getElementByTags(array,2));
+//                    int array[2] = {1,index};
+//                    clearItem(m_cMaps->getElementByTags(array,2));
+                    reloadPage(it, m_cGridDataIterator.begin()+index);
                 }
 
                 // success:
@@ -790,15 +807,16 @@ void CBackpackPageLayer::onReceiveDeletProp(CCObject *pObject)
                 CCAssert(index <= m_cGridDataIterator.size(), "click error");
                 multimap<int, int>::iterator it = m_cGridDataIterator.at(index);
                 it->second -= m_cPropItem.propCount;
-                SinglePlayer::instance()->m_vProps.find(it->first)->second-=m_cPropItem.propCount;
+                SinglePlayer::instance()->subProp(it->first, m_cPropItem.propCount); //m_vProps.find(it->first)->second-=m_cPropItem.propCount;
                 char tmpbuff[10]={0};
                 sprintf(tmpbuff, "%d",it->second);
                 ((CCLabelTTF*) m_pItemNums->objectAtIndex(index))->setString(tmpbuff);
                 CCDirector::sharedDirector()->getRunningScene()->removeChildByTag(10000, true);
                 if (it->second == 0)
                 {
-                    int array[2] = {1,index};
-                    clearItem(m_cMaps->getElementByTags(array,2));
+//                    int array[2] = {1,index};
+//                    clearItem(m_cMaps->getElementByTags(array,2));
+                    reloadPage(it, m_cGridDataIterator.begin()+index);
                 }
 
             }
@@ -835,15 +853,25 @@ void CBackpackPageLayer::updatePageContent(multimap<int, int>::iterator inBegin,
 }
 void CBackpackPageLayer::updatePageContent(vector<multimap<int, int>::iterator> inDataIterators)
 {
-    CCLog("----------the size: %d", m_pGridData->size() );
     // update data:
     m_cGridDataIterator.clear();
     m_cGridDataIterator.assign(inDataIterators.begin(), inDataIterators.end());
     m_nOpenGridNumber = m_cGridDataIterator.size();
     // update UI:
     updatePageContentUI(false);
-    CCLog("----------the size: %d", m_pGridData->size() );
 
+}
+
+void CBackpackPageLayer::initGridPage()
+{
+    m_cGridDataIterator.clear();
+    m_nOpenGridNumber = m_cGridDataIterator.size();
+    // update UI:
+    resetPanel();
+    if (AllGridInPageNumber - m_nOpenGridNumber > 0)
+    {
+        addMask(AllGridInPageNumber-m_nOpenGridNumber);
+    }
 }
 
 void CBackpackPageLayer::updatePageContentUI(bool inAllProps /*= true*/)
@@ -857,6 +885,10 @@ void CBackpackPageLayer::updatePageContentUI(bool inAllProps /*= true*/)
     CPtProp *prop = NULL;
     int array[]={1,0};
     char buff[20]={0};
+    if (useGridCount == 0)
+    {
+        
+    }
     for (int i = 0 ; i < useGridCount; i++)
     {
         mapIterator = m_cGridDataIterator.at(i);
@@ -911,5 +943,23 @@ void CBackpackPageLayer::updatePageContentUI(bool inAllProps /*= true*/)
     }
     
     
+}
+
+void CBackpackPageLayer::reloadPage(multimap<int, int>::iterator inZeroInterator,vector<multimap<int, int>::iterator>::iterator inVectorIterator)
+{
     
+    
+    if (inZeroInterator->second == 0)
+    {
+        m_pGridData->erase(inZeroInterator);
+
+    }
+    if(inVectorIterator != m_cGridDataIterator.end())
+    {
+        m_cGridDataIterator.erase(inVectorIterator);
+    }
+    if (m_pContainerHandler)
+    {
+        m_pContainerHandler->reLoadPage(m_nCurrentPageTag);
+    }
 }
