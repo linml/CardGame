@@ -86,6 +86,8 @@ private:
     EN_EMAILHTTPREQUEST m_enhttpStatus;
     vector<int>canereadList;
     CCSprite *m_pScrollViewGuanDongTiao;
+    float m_fOldScrollBarPosiontYtop;
+    float m_foldscrollBarPosiontylow;
 protected:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);

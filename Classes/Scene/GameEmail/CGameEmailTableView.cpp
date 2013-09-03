@@ -277,7 +277,9 @@ CGameEmailTableView::~CGameEmailTableView()
 
 void CGameEmailTableView::setGunDongTiaoPtr()
 {
-    m_pScrollViewGuanDongTiao=(CCSprite *)Utility::getNodeByTag(this, "1,7,40");
+    m_pScrollViewGuanDongTiao=(CCSprite *)Utility::getNodeByTag(this, "1,7,0");
+    m_fOldScrollBarPosiontYtop=m_pScrollViewGuanDongTiao->getPosition().y;
+    m_foldscrollBarPosiontylow=Utility::getNodeByTag(this, "1,7,26")->getPosition().y;
 }
 
 
@@ -976,8 +978,9 @@ void CGameEmailTableView::scrollBar(CCTableView* table)
     {
         percentage = 1.0f;
     }
-    float barTopPosY = bar->getPosition().y;
-    float barLowPosY =table->getPosition().y+80;
-    float h = barTopPosY - percentage*(barTopPosY- barLowPosY);;
+    float barTopPosY = m_fOldScrollBarPosiontYtop;
+    float barLowPosY =m_foldscrollBarPosiontylow;
+    float h = barTopPosY - percentage*(barTopPosY- barLowPosY);
+    CCLog("h:%f,barTopPosY %f");
     bar->setPosition(ccp(bar->getPosition().x, h));
 }
