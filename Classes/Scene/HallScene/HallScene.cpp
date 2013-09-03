@@ -14,7 +14,7 @@
 #include "WordCache.h"
 #include "CPtScrollWordsWidget.h"
 #include "CBackpackContainerLayer.h"
-#include "CGameEmailLayer.h"
+#include "CGameEmailTableView.h"
 #include "CGameEmailManager.h"
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
@@ -346,7 +346,7 @@ bool CHallScene::initHall()
 }
 void CHallScene::createEmailLayer()
 {
-    CGameEmailLayer *gameEmailLayer=CGameEmailLayer::CreateEmailLayer();
+    CGameEmailTableView *gameEmailLayer=CGameEmailTableView::CreateEmailLayer();
     addChild(gameEmailLayer,900);
     
 }

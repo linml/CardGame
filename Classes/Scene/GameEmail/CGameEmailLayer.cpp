@@ -24,6 +24,7 @@ CGameEmailLayer::CGameEmailLayer()
     m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath,"youxianniu.plist"));
     m_tempTouchNode=NULL;
+    m_pScrollViewGuanDongTiao=NULL;
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CGameEmailLayer::showDialogBagFull), "BEIBAOMANLEXIANSHIDUIHUAKUAN", NULL);
 }
 
@@ -44,12 +45,18 @@ CGameEmailLayer *CGameEmailLayer::CreateEmailLayer()
     return gameEmailLayer;
 }
 
+void CGameEmailLayer::setGunDongTiaoPtr()
+{
+    m_pScrollViewGuanDongTiao=(CCSprite *)Utility::getNodeByTag(this, "1,7,40");
+}
+
 bool CGameEmailLayer::initCreate()
 {
     loadPlistFile();
     createRecvAllButton();
     creaetEmailTableView();
     sendPostHttpChangeEmailStatus();
+    setGunDongTiaoPtr();
     setTouchEnabled(true);
     return true;
 }

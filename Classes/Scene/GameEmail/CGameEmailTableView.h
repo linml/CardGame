@@ -19,6 +19,7 @@ using namespace std;
 class CEmrysTableViewDelegate {
 public:
     virtual void tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)=0;
+    virtual void tableScrolBarView(CCTableView *)=0;
 protected:
     CCNode *_cellNode;
 };
@@ -41,6 +42,13 @@ public:
     CCPoint m_beginTouchPoint;
     CEmrysTableViewDelegate *_mydefineDeleagte;
 };
+enum EN_EMAILHTTPREQUEST {
+    EN_EMAILHTTPREQUEST_NONE = 0,
+    EN_EMAILHTTPREQUEST_CHANEGSTATUS =1,
+    EN_EMAILHTTPREQUEST_GETSINGLEITEM,
+    EN_EMAILHTTPREQUEST_GETALLEMAIL
+};
+
 
 
 
@@ -49,23 +57,49 @@ class CGameEmailTableView : public cocos2d::CCLayer, public CCTableViewDataSourc
 public:
     CGameEmailTableView();
     ~CGameEmailTableView();
-    virtual bool init();
     virtual bool initView(CCPoint p , CCSize s ,int cellNum , CCSize cellSize , CCSize tableCellSize);
     virtual bool initView(CCPoint p , CCSize s ,int cellNum , CCSprite*cellImage , int cellgap);
-    
-    static cocos2d::CCScene* scene();
-    static CGameEmailTableView*creat(CCPoint p , CCSize s ,int cellNum , CCSize cellSize , CCSize tableCellSize);
-    static CGameEmailTableView*creat(CCPoint p , CCSize s ,int cellNum , CCSprite*cellImage , int cellgap);
+    static CGameEmailTableView *CreateEmailLayer();
     void initCellItem(CCTableViewCell*cell, unsigned int idx);
     void tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch);
     CREATE_FUNC(CGameEmailTableView);
-    //处理滚动的标签
     void scrollBar(CCTableView* table);
     void selector_update(float _dt);
+private:
+    bool initCreate();
+    bool loadPlistFile();
+    void createRecvAllButton();
+    void creaetEmailTableView();
+    void getAllEmailItem();
+    void sendPostHttpChangeEmailStatus();
+    void sendPostHttpGetAllItem();
+    void sendPostHttpGetSingleItem();
+    bool decodeRecvBackStr(char *data); //true 邮件校验成功
+    void decodeSingleRecvEmail(char *data);
+    void showDialogBagFull(CCObject *obect);
+    void setGunDongTiaoPtr();
+    
+    void dialogOkButtonSetFunc(CCObject *object);
+    void dialogCancelButtonSetFunc(CCObject *object);
+private:
+    CCNode *m_tempTouchNode;
+    EN_EMAILHTTPREQUEST m_enhttpStatus;
+    vector<int>canereadList;
+    CCSprite *m_pScrollViewGuanDongTiao;
+protected:
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void registerWithTouchDispatcher(void);
+    void onExit();
+
+
 private:
     CCNode *node;
     bool  isSendPostGetData;
 public:
+    void tableScrolBarView(CCTableView *tableveiw);
     void scrollViewDidScroll(CCScrollView* view);
     void scrollViewDidZoom(CCScrollView* view);
     void reloadData();

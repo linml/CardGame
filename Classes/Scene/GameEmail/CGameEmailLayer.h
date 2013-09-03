@@ -48,6 +48,7 @@ private:
     void recvBockHttpCallBack(CCObject *object);
     bool decodeRecvBackStr(char *data); //true 邮件校验成功
     void showDialogBagFull(CCObject *obect);
+    void setGunDongTiaoPtr();
     
     void dialogOkButtonSetFunc(CCObject *object);
     void dialogCancelButtonSetFunc(CCObject *object);
@@ -55,6 +56,7 @@ private:
     CCNode *m_tempTouchNode;
     EN_EMAILHTTPREQUEST m_enhttpStatus;
     vector<int>canereadList;
+    CCSprite *m_pScrollViewGuanDongTiao;
 protected:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);

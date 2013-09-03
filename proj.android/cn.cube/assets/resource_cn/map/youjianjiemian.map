@@ -1840,7 +1840,7 @@
                 <integer>142</integer>
             </dict>
         </dict>
-             <key>shade</key>
+        <key>shade</key>
         <dict>
             <key>mapSprite0</key>
             <dict>
@@ -4571,7 +4571,7 @@
                 <key>mapSpriteName</key>
                 <string>Label4.png</string>
                 <key>pos</key>
-                <string>{840,237}</string>
+                <string>{839,211}</string>
                 <key>z</key>
                 <integer>200</integer>
                 <key>tag</key>

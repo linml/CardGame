@@ -308,13 +308,15 @@ void CGameEmailManager::getHttpReponse(CCObject *object)
     delete data;
     data=NULL;
 }
-void funcChangeRead(list<CGameEmailData *>::iterator &it)
-{
-    (*it)->setGameEmailStatus(1) ;
-}
+struct funcChangeRead{
+    void operator ()(CGameEmailData *data)
+    {
+        data->setGameEmailStatus(1);
+    }
+};
 void CGameEmailManager::changeEmailStatus()
 {
-    //for_each(m_listGameEamil.begin(), m_listGameEamil.end(), funcChangeRead);
+    for_each(m_listGameEamil.begin(), m_listGameEamil.end(), funcChangeRead());
 }
 
 

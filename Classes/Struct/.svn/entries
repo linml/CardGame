@@ -406,6 +406,13 @@ merlin
 Craftsmanship
 dir
 
+CGameStory.h
+file
+0
+
+
+add
+
 CGameEmailData.h
 file
 
@@ -882,6 +889,13 @@ phileas
 
 2278
 
+CGameStory.cpp
+file
+0
+
+
+add
+
 CGameEmailData.cpp
 file
 
@@ -950,40 +964,6 @@ merlin
 
 14557
 
-CGameErrorConfig.h
-file
-
-
-
-
-2013-08-21T03:28:30.000000Z
-4794a16f0232b31f33ca8a9e764e0654
-2013-08-19T07:54:27.523422Z
-1010
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-550
-
 CCard.h
 file
 
@@ -1017,6 +997,40 @@ wood
 
 
 3448
+
+CGameErrorConfig.h
+file
+
+
+
+
+2013-08-21T03:28:30.000000Z
+4794a16f0232b31f33ca8a9e764e0654
+2013-08-19T07:54:27.523422Z
+1010
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+550
 
 CFightCardBufferData.cpp
 file

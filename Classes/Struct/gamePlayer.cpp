@@ -775,9 +775,7 @@ void CGamePlayer::parseProsInfoByDict(CCDictionary *tmpDictionary)
                 
             }
             CCLog("prop %d",m_vProps.size());
-            
-        }
-
+       }
 }
 
 void CGamePlayer:: parsePropsInfo(CCObject *pObject)

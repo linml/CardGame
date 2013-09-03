@@ -18,6 +18,7 @@
 #include "PtHttpClient.h"
 #include "PtHttpURL.h"
 #include "PtJsonUtility.h"
+#include "CGameDialogLayer.h"
 
 
 CEmrysTableView::CEmrysTableView():CCTableView()
@@ -164,6 +165,10 @@ void CEmrysTableView::scrollViewDidScroll(CCScrollView* view)
         }
         this->updateCellAtIndex(i);
     }
+    if(_mydefineDeleagte)
+    {
+        _mydefineDeleagte->tableScrolBarView(this);
+    }
 }
 
 void CEmrysTableView::ccTouchMoved(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent)
@@ -239,10 +244,11 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             index = this->_indexFromOffset(point);
             CCLog("index=%d",index);
             cell  = this->_cellWithIndex(index);
-            CCLog("%f,%f",cell->getContentSize().width,cell->getContentSize().height);
+           
             
             if (cell)
             {
+                CCLog("%f,%f",cell->getContentSize().width,cell->getContentSize().height);
                 m_pTouch=pTouch;
                 m_pTableViewDelegate->tableCellTouched(this, cell);
                 
@@ -257,45 +263,96 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 
 CGameEmailTableView::CGameEmailTableView()
 {
+   m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
     node=NULL;
     isSendPostGetData=false;
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath,"youxianniu.plist"));
+    m_tempTouchNode=NULL;
+    m_pScrollViewGuanDongTiao=NULL;
 }
 CGameEmailTableView::~CGameEmailTableView()
 {
-    
+     CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath,"youxianniu.plist"));
 }
 
-CGameEmailTableView*CGameEmailTableView::creat(CCPoint p , CCSize s ,int cellNum , CCSize cellSize , CCSize tableCellSize)
+void CGameEmailTableView::setGunDongTiaoPtr()
 {
-    CGameEmailTableView* layerView = new CGameEmailTableView;
-    if (layerView) {
-        layerView->initView( p ,  s , cellNum ,  cellSize ,  tableCellSize);
-        layerView->autorelease();
-        return layerView;
-    }
-    CC_SAFE_DELETE(layerView);
-    return NULL;
+    m_pScrollViewGuanDongTiao=(CCSprite *)Utility::getNodeByTag(this, "1,7,40");
 }
 
-CGameEmailTableView *CGameEmailTableView::creat(CCPoint p , CCSize s ,int cellNum , CCSprite*cellImage , int cellgap){
-    CGameEmailTableView* layerView = new CGameEmailTableView;
-    if (layerView) {
-        layerView->initView(  p ,  s , cellNum , cellImage ,  cellgap);
-        layerView->autorelease();
-        return layerView;
-    }
-    CC_SAFE_DELETE(layerView);
-    return NULL;
-}
-bool CGameEmailTableView::init()
+
+
+CGameEmailTableView *CGameEmailTableView::CreateEmailLayer()
 {
-    
-    if ( !CCLayer::init() )
+     CGameEmailTableView *gameEmailLayer=new CGameEmailTableView();
+    if(!gameEmailLayer || !gameEmailLayer->initCreate())
     {
-        return false;
+        delete gameEmailLayer;
+        gameEmailLayer=NULL;
     }
+    gameEmailLayer->autorelease();
+    return gameEmailLayer;
+}
+
+bool CGameEmailTableView::loadPlistFile()
+{
+    LayoutLayer *tempLayerout=LayoutLayer::create();
+    tempLayerout->initWithFile(this, CSTR_FILEPTAH(plistPath, "youjianjiemian.plist"));
     return true;
 }
+
+
+void CGameEmailTableView::creaetEmailTableView()
+{
+    initView(ccp(200,150), CCSizeMake(800, 400),0, CCSizeMake(800, 100), CCSizeMake(600, 120));
+    
+}
+
+void CGameEmailTableView::showDialogBagFull(cocos2d::CCObject *obect)
+{
+    string word = Utility::getWordWithFile("word.plist", "caonima");
+    CPtDialog *ptDialog=CPtDialog::create(word.c_str() , this , callfuncO_selector(CGameEmailTableView::dialogOkButtonSetFunc), callfuncO_selector(CGameEmailTableView::dialogCancelButtonSetFunc), NULL, NULL);
+    addChild(ptDialog,1000,10000);
+}
+
+
+void CGameEmailTableView::createRecvAllButton()
+{
+    string word = Utility::getWordWithFile("word.plist", "quanbulingqu");
+    
+    CGameButtonControl *sprite=CGameButtonControl::createButton(TEXTMID, word.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
+    addChild(sprite,900,7);
+    CCNode *node=Utility::getNodeByTag(this, "1,3,0");
+    CCPoint point;
+    if(node)
+    {
+        point=node->getPosition();
+        sprite->setPosition(ccp(point.x,point.y-32));
+        sprite->setAnchorPoint(ccp(0,0));
+    }
+}
+
+bool CGameEmailTableView::initCreate()
+{
+    loadPlistFile();
+    createRecvAllButton();
+    creaetEmailTableView();
+    sendPostHttpChangeEmailStatus();
+    setGunDongTiaoPtr();
+    setTouchEnabled(true);
+    return true;
+}
+
+void CGameEmailTableView::sendPostHttpChangeEmailStatus()
+{
+    int value=G_GAMESINGEMAIL::instance()->getCurrentEmailUnreadCount();
+    if(value>0)
+    {
+        m_enhttpStatus=EN_EMAILHTTPREQUEST_CHANEGSTATUS;
+        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILREADSTATUS(194), "MERLINEMAILSTATUS", "EMAILSTATUS","sig=2ac2b1e302c46976beaab20a68ef95",callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
+    }
+}
+
 
 bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSize cellSize , CCSize tableCellSize){
     if ( !CCLayer::init() )
@@ -352,9 +409,7 @@ void CGameEmailTableView::reloadData()
     tableView=(CEmrysTableView *)getChildByTag(77777);
     if(tableView)
     {
-        CCLog("reloadddata");
         tableView->reloadDataView();
-        //        tableView->setContentOffset(tableView->minContainerOffset());
     }
 }
 #pragma mark - CCTableViewDataSource
@@ -516,7 +571,7 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
 {
     
     CCLog("this=%x",this);
-    if(isSendPostGetData)
+    if(m_enhttpStatus!=EN_EMAILHTTPREQUEST_NONE)
     {
         return ;
     }
@@ -542,6 +597,7 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
         str+=data;
         CCLog("post get data:%s",str.c_str());
         str +="&sig=2ac2b1e302c46976beaab20a68ef95";
+        m_enhttpStatus=EN_EMAILHTTPREQUEST_GETSINGLEITEM;
         ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "MERLINEMAILSTATUS123", "EMAILSTATUS",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
     }
     else{
@@ -555,8 +611,7 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
     }
     
 }
-
-void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
+void CGameEmailTableView::decodeSingleRecvEmail(char *object)
 {
     CCLog("%x",object);
     isSendPostGetData=false;
@@ -620,7 +675,91 @@ void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
         CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
         G_GAMESINGEMAIL::instance()->writeToFile();
     }
+
+}
+
+bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
+{
+    CCLog("%s",strdata);
+    CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
+    delete []strdata;
+    int codeReslut=GameTools::intForKey("code", dict);
+    if(codeReslut!=0)
+    {
+        return false;
+    }
+    else
+    {
+        CCDictionary *dictresult=(CCDictionary *)dict->objectForKey("result");
+        if (m_enhttpStatus==EN_EMAILHTTPREQUEST_GETSINGLEITEM  ||
+            m_enhttpStatus==EN_EMAILHTTPREQUEST_GETALLEMAIL )
+        {
+            //与 单个领取里面代码重复 得重构
+            //获取 coin
+            int  coin=((CCString *)dictresult->objectForKey("coin"))->intValue();
+            //获取items
+            //获取 经验
+            int  exp=((CCString *)dictresult->objectForKey("exp"))->intValue();
+            map<int , int>mapitems;
+            CCDictionary *emailItemDirector=(CCDictionary *)(dictresult->objectForKey("item"));
+            if(emailItemDirector)
+            {
+                CCDictElement* pElement = NULL;
+                CCDICT_FOREACH(emailItemDirector, pElement)
+                {
+                    const char* pchKey = pElement->getStrKey();
+                    mapitems[atoi(pchKey)]=GameTools::intForKey(pchKey, emailItemDirector);
+                }
+            }
+            SinglePlayer::instance()->receiveEmail(mapitems,exp, coin);
+            
+            
+            CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
+            vector<int >livetable;
+            for (int i=0; i<array->count();i++) {
+                CCString * cocosstr=(CCString *)array->objectAtIndex(i);
+                livetable.push_back(atoi(cocosstr->m_sString.c_str()));
+            }
+            if(livetable.size()!=G_GAMESINGEMAIL::instance()->getMailCount())
+            {
+                G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
+                reloadData();
+            }
+            CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
+            return true;
+        }
+        else
+        {
+            CCString *str=(CCString *)dictresult->objectForKey("info");
+            CCLog("%s",str->m_sString.c_str());
+            if(str->compare("1")==0)
+            {
+                G_GAMESINGEMAIL::instance()->changeEmailStatus();
+                CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
+                return true;
+            }
+            else
+            {
+                return  false;
+            }
+        }
+        return true;
+    }
+}
+
+void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
+{
     
+    
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "MERLINEMAILSTATUS");
+    if(!object)
+    {
+        m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
+        return;
+    }
+    decodeRecvBackStr((char *)object);
+    G_GAMESINGEMAIL::instance()->writeToFile();
+    m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
 }
 
 void CGameEmailTableView::runDialogAction()
@@ -650,7 +789,10 @@ void CGameEmailTableView::removeDialog()
         removeChildByTag(255555, true);
     }
 }
-
+void CGameEmailTableView::tableScrolBarView(CCTableView *tableveiw)
+{
+    scrollBar((CCTableView*)tableveiw);
+}
 void CGameEmailTableView::scrollViewDidScroll(CCScrollView* view)
 {
     scrollBar((CCTableView*)view);
@@ -660,78 +802,182 @@ void CGameEmailTableView::scrollViewDidZoom(CCScrollView* view) {
     
 }
 
+void CGameEmailTableView::dialogCancelButtonSetFunc(cocos2d::CCObject *object)
+{
+        removeChildByTag(10000, true);
+}
 
+void CGameEmailTableView::dialogOkButtonSetFunc(cocos2d::CCObject *object)
+{
+    removeFromParentAndCleanup(true);
+    CCNotificationCenter::sharedNotificationCenter()->postNotification("CAONIMAXIANSHIBEIBAO");
+}
+
+
+
+void CGameEmailTableView::getAllEmailItem()
+{
+    //  ((CGameEmailTableView*)getChildByTag(8))->reloadData();
+    // return;
+    CCLog("getAllEmailItem");
+    if(m_enhttpStatus!=EN_EMAILHTTPREQUEST_NONE)
+    {
+        return;
+    }
+    vector<EMAIL_DATA >vemaildatalist;
+    G_GAMESINGEMAIL::instance()->copyDataTovectory(vemaildatalist);
+    canereadList.clear();
+    CGamePlayer *player=SinglePlayer::instance();
+    canereadList=player->getCanAddToBackPackEmals(vemaildatalist);
+    if(canereadList.size()>0)
+    {
+        // & info="[1,2,3]"
+        m_enhttpStatus=EN_EMAILHTTPREQUEST_GETALLEMAIL;
+        string str="&info=[";
+        char data[12];
+        for (int i=0; i<canereadList.size()-1; i++) {
+            sprintf(data, "%d,",canereadList[i]);
+            str +=data;
+        }
+        sprintf(data, "%d]",canereadList[canereadList.size()-1]);
+        str+=data;
+        CCLog("post get data:%s",str.c_str());
+        str +="&sig=2ac2b1e302c46976beaab20a68ef95";
+        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "MERLINEMAILSTATUS", "EMAILSTATUS",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
+    }
+    else  if(G_GAMESINGEMAIL::instance()->getMailCount()>0 && canereadList.size()==0)
+    {
+        showDialogBagFull(NULL);
+    }
+}
+
+bool CGameEmailTableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+    CCNode *node=Utility::getNodeByTag(this, "1,7,41");
+    CCPoint touchPoint=pTouch->getLocation();
+    if(node&&node->boundingBox().containsPoint(touchPoint))
+    {
+        CCLog("aaaaaaa1");
+        m_tempTouchNode=node;
+    }
+    else if(getChildByTag(7)->boundingBox().containsPoint(touchPoint))
+    {
+        ((CGameButtonControl *)getChildByTag(7))->selected();
+        m_tempTouchNode=getChildByTag(7);
+    }
+    return true;
+}
+
+void CGameEmailTableView::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
+{
+    CCNode *node=Utility::getNodeByTag(this, "1,7,41");
+    CCPoint touchPoint=pTouch->getLocation();
+    if(node&&node->boundingBox().containsPoint(pTouch->getLocation()))
+    {
+        CCLog("aaaaaaa2");
+        if(m_tempTouchNode!=node)
+        {
+            if(m_tempTouchNode==getChildByTag(7))
+            {
+                ((CGameButtonControl *)getChildByTag(7))->unselected();
+            }
+            m_tempTouchNode=node;
+        }
+    }
+    else if(getChildByTag(7)->boundingBox().containsPoint(touchPoint))
+    {
+        if(m_tempTouchNode!=getChildByTag(7))
+        {
+            ((CGameButtonControl *)getChildByTag(7))->selected();
+            m_tempTouchNode=getChildByTag(7);
+        }
+    } else if(m_tempTouchNode ==getChildByTag(7))
+    {
+        ((CGameButtonControl *)m_tempTouchNode)->unselected();
+        m_tempTouchNode=NULL;
+    }
+}
+
+void CGameEmailTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
+{
+    CCNode *node=Utility::getNodeByTag(this, "1,7,41");
+    CCPoint touchPoint=pTouch->getLocation();
+    if(node&&node->boundingBox().containsPoint(touchPoint))
+    {
+        PtSoundTool::playSysSoundEffect("UI_click.wav");
+        CCLog("aaaaaaa4");
+        if(m_tempTouchNode==node)
+        {
+            removeFromParentAndCleanup(true);
+        }
+    }
+    else if(getChildByTag(7)->boundingBox().containsPoint(touchPoint))
+    {
+        CCLog("aaaaaaa3");
+        PtSoundTool::playSysSoundEffect("UI_click.wav");
+        if (((CGameButtonControl *)m_tempTouchNode))
+        {
+            ((CGameButtonControl *)m_tempTouchNode)->unselected();
+        }
+        
+        if(m_tempTouchNode==getChildByTag(7))
+        {
+            ((CGameButtonControl *)m_tempTouchNode)->unselected();
+            m_tempTouchNode=NULL;
+            getAllEmailItem();
+        }
+    }
+    else
+    {
+        ((CGameButtonControl *)getChildByTag(7))->unselected();
+    }
+}
+void CGameEmailTableView::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
+{
+    
+}
+#define GOLDPLACE_TOUCH_PRORITY -2
+void CGameEmailTableView::registerWithTouchDispatcher(void)
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,GOLDPLACE_TOUCH_PRORITY-1, true);
+}
+
+void CGameEmailTableView::onExit()
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+    CCLayer::onExit();
+}
 
 
 //add处理滚动:
 
 void CGameEmailTableView::scrollBar(CCTableView* table)
 {
-    CCSize conSize = table->getContentSize();
-    CCSize viewSize = table->getViewSize();
-    
-    if (conSize.height < viewSize.height) {
+    CCNode* bar = Utility::getNodeByTag(this, "1,7,40");
+    if(bar == NULL)
+    {
         return;
     }
     
-    //    if (!m_huaTiao) {
-    //        m_huaTiao = CCSprite::create("scrollBar.png");
-    //        if(m_huaTiao != NULL)
-    //        {
-    //            CCSize sizeBar = m_huaTiao->getContentSize();
-    //            this->addChild(m_huaTiao, 1);
-    //            m_huaTiao->setScaleY(viewSize.height/sizeBar.height);
-    //            float scaley = 0;
-    //            scaley = m_huaTiao->getScaleY();
-    //            float per = viewSize.height/conSize.height;
-    //            scaley = scaley*per;
-    //            m_huaTiao->setScaleY(scaley);
-    //
-    //            m_huaTiao->setAnchorPoint(ccp(0,0.5));
-    //        }
-    //    }
-    //	if(m_huaTiao == NULL)
-    //	{
-    //		return;
-    //	}
-    //    m_huaTiao->setOpacity(255);
-    //
-    //    CCPoint scrollViewPoint = table->getPosition();
-    //
-    //    CCSize sizeBar = m_huaTiao->getContentSize();
-    //	// tableSize.height == cell个数*cell的height
-    //	CCSize tableSize = table->getContentSize();
-    //	// CCTableView
-    //	CCSize tableViewSize = table->getViewSize();
-    //    //    tableViewSize = CCSize(tableViewSize.width, tableViewSize.height-sizeBar.height);
-    //	// 每次拖动的偏移量？(负值)
-    //	CCPoint contOffsetPos = table->getContentOffset();
-    //
-    //	// 总的偏移量
-    //	float maxOff = tableViewSize.height - tableSize.height;
-    //	// 拖动的偏移量
-    //	float curOff = contOffsetPos.y - maxOff;
-    //	// 计算百分百
-    //	float percentage = fabs(curOff)/fabs(maxOff);
-    //
-    //    //	printf("contOffsetPos:%f ,curOff:%f, maxOff:%f, per:%f\n", contOffsetPos.y, curOff, maxOff, percentage);
-    //
-    //	// 拖拉到最顶端或最低端后继续拖动(弹回)会出现percentage值小于0.1和大于1.0的情况，我们分别把percentage重置为0和1.0f
-    //	if(curOff < 0)
-    //	{
-    //		percentage = 0;
-    //	}
-    //	if(percentage > 1.0f)
-    //	{
-    //		percentage = 1.0f;
-    //	}
-    //
-    //	// bar移动到最顶端的position.y
-    //	float barTopPosY = scrollViewPoint.y+tableViewSize.height -(sizeBar.height*m_huaTiao->getScaleY())/2 ;
-    //	// bar移动到最低端的position.y
-    //	float barLowPosY = scrollViewPoint.y+(sizeBar.height*m_huaTiao->getScaleY())/2;
-    //	// ....
-    //	float h = barTopPosY - percentage*(barTopPosY- barLowPosY);;
-    //
-    //	m_huaTiao->setPosition(ccp(tableViewSize.width*1.05 , h));
+    CCSize tableSize = table->getContentSize();
+    CCSize tableViewSize = table->getViewSize();
+    
+    CCPoint contOffsetPos = table->getContentOffset();
+    float maxOff = tableViewSize.height - tableSize.height;
+    CCLog("tableViewSize.height:%f,tableSize.height:%f,table->getContentOffset():%f",tableViewSize.height,tableSize.height,table->getContentOffset().y);
+    float curOff = contOffsetPos.y - maxOff;
+    float percentage = fabs(curOff)/fabs(maxOff);
+    printf("curOff:%f, maxOff:%f, per:%f\n", curOff, maxOff, percentage);
+    if(percentage < 0.1f)
+    {
+        percentage = 0;
+    }
+    if(percentage > 1.0f)
+    {
+        percentage = 1.0f;
+    }
+    float barTopPosY = bar->getPosition().y;
+    float barLowPosY =table->getPosition().y+80;
+    float h = barTopPosY - percentage*(barTopPosY- barLowPosY);;
+    bar->setPosition(ccp(bar->getPosition().x, h));
 }
