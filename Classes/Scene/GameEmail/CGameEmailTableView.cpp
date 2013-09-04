@@ -727,6 +727,7 @@ bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
                 G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
                 reloadData();
             }
+            runDialogAction();
             CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
             return true;
         }

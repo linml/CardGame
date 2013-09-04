@@ -1,15 +1,15 @@
 10
 
 dir
-1155
+1165
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-02T09:26:38.683016Z
-1155
-merlin
+2013-09-03T10:24:38.007614Z
+1165
+wood
 has-props
 
 
@@ -233,6 +233,13 @@ phileas
 
 928
 
+CGameTalkDialog.cpp
+file
+0
+
+
+add
+
 CGameErrorConfig.cpp
 file
 
@@ -406,13 +413,6 @@ merlin
 Craftsmanship
 dir
 
-CGameStory.h
-file
-0
-
-
-add
-
 CGameEmailData.h
 file
 
@@ -555,11 +555,11 @@ file
 
 
 
-2013-09-02T08:00:03.000000Z
-5558ad9f2b05548b037d606b71dd0cba
-2013-09-02T09:26:38.683016Z
-1155
-merlin
+2013-09-04T01:08:16.000000Z
+49357db94e29b59f783b55a90d9721e8
+2013-09-03T10:24:38.007614Z
+1165
+wood
 
 
 
@@ -581,7 +581,7 @@ merlin
 
 
 
-5663
+5791
 
 CGamePlayerStruct.cpp
 file
@@ -889,7 +889,7 @@ phileas
 
 2278
 
-CGameStory.cpp
+CGameTalkDialog.h
 file
 0
 
@@ -932,14 +932,14 @@ merlin
 
 CGameEmailManager.cpp
 file
-1158
+1166
 
 
 
-2013-09-02T10:04:26.000000Z
-41bcc4ad7d62d26211bc7c8058ae322d
-2013-09-02T10:02:38.017521Z
-1158
+2013-09-03T09:38:28.000000Z
+e30a3c0179b04cece228ce6c8ea2ea65
+2013-09-04T01:09:23.137761Z
+1166
 merlin
 
 
@@ -962,7 +962,7 @@ merlin
 
 
 
-14557
+14578
 
 CCard.h
 file
@@ -1136,14 +1136,14 @@ merlin
 
 gamePlayer.cpp
 file
-1159
+1166
 
 
 
-2013-09-02T10:11:49.000000Z
-e1ae412c0716ce5dd129962af1141aa1
-2013-09-02T10:12:03.634769Z
-1159
+2013-09-04T01:08:16.000000Z
+1dbdf3377c51b4ab71c24db21ab01a7d
+2013-09-04T01:09:23.137761Z
+1166
 merlin
 
 
@@ -1166,7 +1166,7 @@ merlin
 
 
 
-36040
+36269
 
 CAnimationSpriteGameFight.h
 file

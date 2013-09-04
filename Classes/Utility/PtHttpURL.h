@@ -22,10 +22,10 @@
 #endif
 #endif
 
-#define URL_FACTORY(ADR,UID) (string(STR_URL_ADRESS)+string(ADR)+ConvertToString(SinglePlayer::instance()->getUserId())).c_str()
+#define URL_FACTORY(ADR,UID) (string(STR_URL_ADRESS)+string(ADR)+string(SinglePlayer::instance()->getUserId())).c_str()
 
 //登录
-#define STR_URL_LOGIN               STR_URL_ADRESS"gateway.php?m=Platform&a=login"
+#define STR_URL_LOGIN               "http://passport.games.com/gateway.php?m=Platform&a=login"//STR_URL_ADRESS"gateway.php?m=Platform&a=login"
 //注册
 #define STR_URL_REGISTER            "http://passport.games.com/gateway.php?m=Platform&a=register"//STR_URL_ADRESS"gateway.php?m=Platform&a=register"
 //服务器列表

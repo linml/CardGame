@@ -18,6 +18,7 @@
 #include "gamePlayer.h"
 #include "RegisterLayer.h"
 
+
 // implement of the CLoginScene:
 
 CCScene* CLoginScene::scene()
@@ -95,16 +96,18 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
     int tag = -1;
     CCSprite* touchSprite = NULL;
     tag = TouchRect::SearchTouchTag(point, touchRect, &touchSprite);
-    int uid = -1;
+    string strAccount = "";
+    string strPassword = "";
     switch (tag) {
         case -1:
             
             break;
         case BUTTON_PLAY_TAG:            
-            uid = CCUserDefault::sharedUserDefault()->getIntegerForKey("uid");
-            if(uid>193)
+            strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
+            strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password");
+            if(strAccount != ""  && strPassword != "")
             {
-                scheudoLoadGameConfig();
+                doLogin();
             }
             else
             {
@@ -113,13 +116,54 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             }
             break;
         case 2000:
-            CCUserDefault::sharedUserDefault()->setIntegerForKey("uid", 0);
+            remove(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str());
+//            CCUserDefault::sharedUserDefault()->purgeSharedUserDefault();
+//            CCUserDefault::sharedUserDefault()->flush();
             break;
         default:
             break;
     }
     
     return bRet;
+}
+
+void CLoginScene::doLogin()
+{
+    char achData[256]={};
+    memset(achData, 0, 256);
+    string strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
+    string strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password").c_str();
+    sprintf(achData, "name=%s&password=%s",strAccount.c_str(),strPassword.c_str());
+    ADDHTTPREQUESTPOSTDATA(STR_URL_LOGIN,
+                           "CALLBACK_CLoginScene_doLogin",
+                           "REQUEST_CLoginScene_doLogin",
+                           achData,
+                           callfuncO_selector(CLoginScene::onReceiveLoginMsg));
+}
+
+void CLoginScene::onReceiveLoginMsg(CCObject* obj)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CLoginScene_doLogin");
+    char* data = (char*)obj;
+    if(!data)
+    {
+        CCLog("网络连接出错");
+    }
+    else if(strstr(data,"10101"))
+    {
+        CCLog("密码错误");
+    }
+    else
+    {
+        CCDictionary* dic = (CCDictionary*)PtJsonUtility::JsonStringParse(data)->objectForKey("result");
+        CCDictionary* usrData = (CCDictionary*)dic->objectForKey("user");
+        CCString* uid = (CCString*)usrData->objectForKey("puid");
+        CCString* sig = (CCString*)usrData->objectForKey("sig");
+        SinglePlayer::instance()->setUserId(uid->m_sString);
+        SinglePlayer::instance()->setUserSig(sig->m_sString);
+        scheudoLoadGameConfig();
+    }
+    
 }
 
 void CLoginScene::playGame()

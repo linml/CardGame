@@ -20,6 +20,9 @@
 using namespace cocos2d;
 using namespace std;
 
+#define ADD_TAG 2
+#define SUB_TAG 1
+
 class CDeletePropLayer : public CCLayer
 {
 public:
@@ -42,22 +45,35 @@ protected:
     void initDeletePropLayer(PropItem *item);
     void handlerTouch();
     void updateTexture(bool sliderEnable = false, bool inEnd = false);
+    
+    void startLongPress(int inType);
+    void stopLongPress();
+    void longTouchCallBack(float dt);
 protected:
-    int m_nTouchTag;
+  
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
     CCLabelTTF * m_pNumberLabel;
     
+    float m_fTotalTime;
+    
+    int m_nTouchTag;
     int m_nMaxCount;
     int m_nCurrentCount;
     int m_nPropId;
+    int m_nType;
+    
+    bool m_bMove;
+    bool m_bLongPress;
+    bool m_bCanDrag;
+    
     
     CCSprite * m_pBtn[2];
     CCRect m_cTouchSpriteFrameRect[6];
     
     CPtSliderWidget *m_pSlider;
     CCSprite * m_pThum;
-    bool m_bCanDrag;
+    
     
     SEL_CallFuncO m_pConfirmSelector;
     SEL_CallFuncO m_pCancelSelector;

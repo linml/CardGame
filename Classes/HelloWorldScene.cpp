@@ -10,6 +10,7 @@
 #include "HBActionAni.h" 
 #include "CGameCardBuffer.h"
 #include "CBackpackContainerLayer.h"
+#include "CGameStoryLayer.h"
 
 
 using namespace cocos2d;
@@ -92,7 +93,7 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
 
-    test(this);
+  //  test(this);
     // add "HelloWorld" splash screen"
 
  //   CCSprite* pSprite = CCSprite::create("resource_cn/img/HelloWorld.png");
@@ -128,6 +129,8 @@ bool HelloWorld::init()
 //    removeChildByTag(<#int tag#>, <#bool cleanup#>)
 //    testBufferPng(this);
 //    this->getCamera()->setEyeXYZ(-60, 0,100);
+    
+    CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(1,this);
     return true;
 }
 

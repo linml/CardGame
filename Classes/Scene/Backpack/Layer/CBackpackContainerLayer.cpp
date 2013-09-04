@@ -219,10 +219,6 @@ static void test(CCNode *pSender)
 
 void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
 {
-//    // test
-//    test(this);
-//    return;
-//    // test end:
     inOpenNumber = SinglePlayer::instance()->getOpenGridCount();
     initGrids();
     int tmpPageCount = inOpenNumber/9+ 1 ;

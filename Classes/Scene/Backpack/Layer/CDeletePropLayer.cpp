@@ -16,7 +16,7 @@ CDeletePropLayer::CDeletePropLayer()
 {
     m_nTouchTag = -1;
     m_nMaxCount = 0 ;
-    m_nCurrentCount = 0;
+    m_nCurrentCount = 1;
     
     m_pNumberLabel = NULL;
     m_pSlider = NULL;
@@ -75,7 +75,8 @@ bool CDeletePropLayer::init(PropItem *inPropItem)
 
 bool CDeletePropLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-
+   m_bMove = false;
+   m_bLongPress = false;
    m_bCanDrag =  m_pSlider->touchBegan(pTouch, pEvent);
    if (m_bCanDrag)
    {
@@ -93,7 +94,7 @@ bool CDeletePropLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
             {
                 m_pBtn[0]->setTextureRect(m_cTouchSpriteFrameRect[3]);
             }
-
+            startLongPress(SUB_TAG);
 
         }else if(m_nTouchTag == 2002)
         {
@@ -101,7 +102,7 @@ bool CDeletePropLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
             {
                 m_pBtn[1]->setTextureRect(m_cTouchSpriteFrameRect[1]);
             }
-            
+            startLongPress(ADD_TAG);
             
         }else if(m_nTouchTag == 2)
         {
@@ -115,6 +116,10 @@ bool CDeletePropLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CDeletePropLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (fabs(pTouch->getDelta().x) > 3)
+    {
+        m_bMove = true;
+    }
     if (m_bCanDrag)
     {
       m_bCanDrag =  m_pSlider->touchMoved(pTouch, pEvent);
@@ -134,6 +139,8 @@ void CDeletePropLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         return;
     }
     
+    stopLongPress();
+    
     
     if (m_nTouchTag == 2001)
     {
@@ -142,15 +149,25 @@ void CDeletePropLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         {
             m_pBtn[0]->setTextureRect(m_cTouchSpriteFrameRect[2]);
         }
+       
+        if (m_bLongPress)
+        {
+            return;
+        }
         m_nCurrentCount--;
         m_nCurrentCount = m_nCurrentCount >=0? m_nCurrentCount : 0;
         updateTexture();
+
         
     }else if(m_nTouchTag == 2002)
     {
         if (m_pBtn[1])
         {
             m_pBtn[1]->setTextureRect(m_cTouchSpriteFrameRect[0]);
+        }
+        if (m_bLongPress)
+        {
+            return;
         }
         m_nCurrentCount++;
         m_nCurrentCount = m_nCurrentCount <= m_nMaxCount ? m_nCurrentCount : m_nMaxCount;
@@ -295,6 +312,7 @@ void CDeletePropLayer::initDeletePropLayer(PropItem *inPropItem)
     m_pSlider->setMaximumValue(m_nMaxCount); // Sets the max value of range
     m_pSlider->setPosition(ccp(point.x+45, point.y-30));
     m_pSlider->setAnchorPoint(CCPointZero);
+    m_pSlider->setValue(1.0f);
     addChild(m_pSlider, 1000);
     
 }
@@ -364,5 +382,41 @@ void CDeletePropLayer::updateTexture(bool sliderEnable /* = false*/,bool inEnd /
      
     }
     
+}
+
+void CDeletePropLayer::startLongPress(int inType)
+{
+    m_nType = inType;
+    m_bLongPress = false;
+    this->schedule(schedule_selector(CDeletePropLayer::longTouchCallBack), 0.5f);
+}
+void CDeletePropLayer::stopLongPress()
+{
+    this->unschedule(schedule_selector(CDeletePropLayer::longTouchCallBack));
+}
+
+void CDeletePropLayer::longTouchCallBack(float dt)
+{
+   
+    if (m_bMove)
+    {
+        stopLongPress();
+    }
+    m_bLongPress = true;
+    if (m_nType ==  SUB_TAG)
+    {
+        m_nCurrentCount = 0.0f;
+        m_pSlider->setValue(m_nCurrentCount);
+    }else if(ADD_TAG)
+    {
+        m_nCurrentCount = m_nMaxCount;
+        m_pSlider->setValue(m_nCurrentCount);
+
+        
+    }else
+    {
+        stopLongPress();
+    }
+        
 }
 

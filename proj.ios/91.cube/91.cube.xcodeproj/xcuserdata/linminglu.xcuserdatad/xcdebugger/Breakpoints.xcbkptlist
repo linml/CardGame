@@ -452,9 +452,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "845"
-         endingLineNumber = "845"
-         landmarkName = "CGamePlayer::getCanAddToBackPackEmals(vector&lt;EMAIL_DATA&gt; inEmailDatas)"
-         landmarkType = "5">
+         endingLineNumber = "845">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -465,9 +463,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "835"
-         endingLineNumber = "835"
-         landmarkName = "CGamePlayer::updateProps()"
-         landmarkType = "5">
+         endingLineNumber = "835">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -773,11 +769,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399898086.671962"
+         timestampString = "399950611.522398"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "958"
-         endingLineNumber = "958"
+         startingLineNumber = "959"
+         endingLineNumber = "959"
          landmarkName = "CGameEmailTableView::scrollBar(CCTableView* table)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -799,11 +795,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399898086.671962"
+         timestampString = "399950611.522398"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "800"
-         endingLineNumber = "800"
+         startingLineNumber = "801"
+         endingLineNumber = "801"
          landmarkName = "CGameEmailTableView::scrollViewDidScroll(CCScrollView* view)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -908,7 +904,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "249"
          endingLineNumber = "249"
-         landmarkName = "handleBtnCallBack(CCSprite* sprite, CCObject* target, SEL_CallFunc selector, CCPoint anchorPoint,const string&amp; soundFile)"
+         landmarkName = "setExistSpriteAnchorPoint(CCSprite* sprite, CCPoint anchorPoint)"
          landmarkType = "7">
       </FileBreakpoint>
       <FileBreakpoint
@@ -1161,11 +1157,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399898086.671962"
+         timestampString = "399950611.522398"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "735"
-         endingLineNumber = "735"
+         startingLineNumber = "736"
+         endingLineNumber = "736"
          landmarkName = "CGameEmailTableView::decodeRecvBackStr(char *strdata)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1213,12 +1209,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399898086.671962"
+         timestampString = "399950611.522398"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "964"
-         endingLineNumber = "964"
+         startingLineNumber = "965"
+         endingLineNumber = "965"
          landmarkName = "CGameEmailTableView::scrollBar(CCTableView* table)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/LoginScene/LoginScene.cpp"
+         timestampString = "399951248.332478"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "95"
+         endingLineNumber = "95"
+         landmarkName = "CLoginScene::handleTouchSpritePool(CCPoint point)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

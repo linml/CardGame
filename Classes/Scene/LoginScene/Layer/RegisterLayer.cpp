@@ -43,6 +43,7 @@ bool CRegisterLayer::init()
     // name
     m_pEditName = CCEditBox::create(CCSizeMake(300, 50), CCScale9Sprite::create("resource_cn/img/tabButton_normal.png"));
     m_pEditName->setPosition(ccp(x+300,y));
+    m_pEditName->setMaxLength(14);
     m_pEditName->setPlaceHolder("Name");
     addChild(m_pEditName);
     
@@ -131,10 +132,15 @@ void CRegisterLayer::menuCancelCallback(CCObject* pSender)
 
 void CRegisterLayer::menuRegisterCallback(CCObject* pSender)
 {
+    
     const char* pchData = m_pEditName->getText();
-    if(!m_pEditName->getText())
+    if(!m_pEditName->getText()||!strcmp(m_pEditName->getText(), ""))
     {
         m_pErrInf->setString("昵称不能为空！");
+    }
+    if(m_pEditName->getText() && strchr(m_pEditName->getText(),' '))
+    {
+        m_pErrInf->setString("昵称不能含空格！");
     }
     else if(!m_pEditEMail->getText())
     {
@@ -168,22 +174,17 @@ void  CRegisterLayer::doRegiter()
 {
     char achData[256]={};
     memset(achData, 0, 256);
-    sprintf(achData, "name=%s&password=123",m_pEditEMail->getText());
+    sprintf(achData, "name=%s&password=%s",m_pEditEMail->getText(),m_pEditPassword_re->getText());
     ADDHTTPREQUESTPOSTDATA(STR_URL_REGISTER,
                            "CALLBACK_CRegisterLayer_doRegiter",
                            "REQUEST_CRegisterLayer_doRegiter",
                            achData,
                            callfuncO_selector(CRegisterLayer::onReceiveRegiterMsg));
-//    CPtHttpClient::addRequest(STR_URL_REGISTER,"CALLBACK_CRegisterLayer_doRegiter" , "REQUEST_CRegisterLayer_doRegiter");
-//    CCNotificationCenter::sharedNotificationCenter()->postNotification(REGITER_SUCCESS,NULL);
-////    STR_URL_REGISTER;
-//    
-//    removeFromParentAndCleanup(true);
-
 }
 
 void CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)
 {
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CRegisterLayer_doRegiter");
     char* data = (char*)pOject;
     if(!data)
     {
@@ -199,9 +200,12 @@ void CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)
         CCDictionary* dic = (CCDictionary*)PtJsonUtility::JsonStringParse(data)->objectForKey("result");
         CCDictionary* usrData = (CCDictionary*)dic->objectForKey("user");
         CCString* uid = (CCString*)usrData->objectForKey("puid");
-        CCUserDefault::sharedUserDefault()->setIntegerForKey("uid", atoi(uid->m_sString.c_str()));
+        CCString* sig = (CCString*)usrData->objectForKey("sig");
+        SinglePlayer::instance()->setUserSig(sig->m_sString);
+        SinglePlayer::instance()->setUserId(uid->m_sString);
+        CCUserDefault::sharedUserDefault()->setStringForKey("account", m_pEditEMail->getText());
+        CCUserDefault::sharedUserDefault()->setStringForKey("password", m_pEditPassword_re->getText());
         CCNotificationCenter::sharedNotificationCenter()->postNotification(REGITER_SUCCESS,NULL);
         removeFromParentAndCleanup(true);
-        //        m_pErrInf->setString(uid->m_sString.c_str());
     }
 }

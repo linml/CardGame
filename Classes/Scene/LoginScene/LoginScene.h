@@ -64,6 +64,9 @@ public:
     
     void notificationRegiterRecevice(CCObject* obj);
     
+    void doLogin();
+    void onReceiveLoginMsg(CCObject* obj);
+    
 protected:
     bool initLogin();
     bool handleTouchSpritePool(CCPoint point);

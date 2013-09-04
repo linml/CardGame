@@ -41,6 +41,8 @@ using namespace std;
 CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getProps())
 {
 
+    m_strSig = "";
+    m_strUid = "";
     isLoadServer=false;
     for (int i=0; i<m_vvBattleArray.size(); i++) {
         DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> ,CFightCard );
@@ -775,9 +777,7 @@ void CGamePlayer::parseProsInfoByDict(CCDictionary *tmpDictionary)
                 
             }
             CCLog("prop %d",m_vProps.size());
-            
-        }
-
+       }
 }
 
 void CGamePlayer:: parsePropsInfo(CCObject *pObject)
@@ -1096,13 +1096,29 @@ map<int,int> CGamePlayer::getPlayerProps()
  */
 
 //获取Uid
-int CGamePlayer::getUserId()
+const char* CGamePlayer::getUserId()
 {
-    return CCUserDefault::sharedUserDefault()->getIntegerForKey("uid");
+    return m_strUid.c_str();
+}
+
+void CGamePlayer::setUserId(string strUid)
+{
+    m_strUid = strUid;
+}
+//获取Sig
+const char* CGamePlayer::getUserSig()
+{
+    return m_strSig.c_str();
+}
+
+void CGamePlayer::setUserSig(string sig)
+{
+    m_strSig = sig;
 }
 
 void CGamePlayer::onGameBegin()
 {
+    //xianbei modify
     gameInitStatus=0;
     int getEmailMax=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail();
     char data[50];

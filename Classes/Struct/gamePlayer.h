@@ -132,7 +132,10 @@ public:
     
 //获取玩家基本信息
 public:
-    int getUserId();
+    const char* getUserId();
+    void setUserId(string strUid);
+    const char* getUserSig();
+    void setUserSig(string sig);
 public:
     vector<CFightCard *>m_vCardBag;
     vector<vector<CFightCard*> >m_vvBattleArray;
@@ -178,12 +181,13 @@ public:
 protected:
     CGamePlayerData *m_gGamePlayerData;
 private:
-    int m_nUid;
     map<int, CCard *>m_hashmapAllCard;
     vector<SLevelPlayer *>m_gvPlayerLevel;
     map<int ,CSkillData *>m_vSkillInfo;
     vector< CImapact * >m_vImpactInfo;
-    
+    string m_strSig;
+    string m_strUid;
+
 };
 typedef Singleton<CGamePlayer> SinglePlayer;
 
