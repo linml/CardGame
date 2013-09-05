@@ -1,14 +1,14 @@
 10
 
 dir
-1165
+1200
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/HallScene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-02T10:02:38.017521Z
-1158
+2013-09-04T01:09:23.137761Z
+1166
 merlin
 has-props
 
@@ -28,7 +28,7 @@ d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
 HallScene.cpp
 file
-1166
+
 
 
 

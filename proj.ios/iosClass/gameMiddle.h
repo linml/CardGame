@@ -9,6 +9,8 @@
 #ifndef _1_cube_gameMiddle_h
 #define _1_cube_gameMiddle_h
 
-
+namespace Middle {
+    void showAlertView(const char* pchMsgData);
+} 
 
 #endif

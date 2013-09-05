@@ -10,6 +10,8 @@
 #include "LoginScene.h"
 #include "PtHttpClient.h"
 #include "PtJsonUtility.h"
+#include "gameMiddle.h"
+#include "Pt_AES.h"
 
 CRegisterLayer* CRegisterLayer::create(void* parent)
 {
@@ -136,31 +138,31 @@ void CRegisterLayer::menuRegisterCallback(CCObject* pSender)
     const char* pchData = m_pEditName->getText();
     if(!m_pEditName->getText()||!strcmp(m_pEditName->getText(), ""))
     {
-        m_pErrInf->setString("昵称不能为空！");
+        Middle::showAlertView("昵称不能为空！");
     }
-    if(m_pEditName->getText() && strchr(m_pEditName->getText(),' '))
+    else if(m_pEditName->getText() && strchr(m_pEditName->getText(),' '))
     {
-        m_pErrInf->setString("昵称不能含空格！");
+        Middle::showAlertView("昵称不能含空格！");
     }
     else if(!m_pEditEMail->getText())
     {
-        m_pErrInf->setString("账号不能为空！");
+        Middle::showAlertView("账号不能为空！");
     }
     else if(!strchr(m_pEditEMail->getText(),'@'))
     {
-        m_pErrInf->setString("账号格式异常！");
+        Middle::showAlertView("账号格式异常！");
     }
     else if(!m_pEditPassword->getText())
     {
-        m_pErrInf->setString("密码不能为空！");
+        Middle::showAlertView("密码不能为空！");
     }
     else if(!m_pEditPassword_re->getText())
     {
-        m_pErrInf->setString("确认密码不能为空！");
+        Middle::showAlertView("确认密码不能为空！");
     }
     else if(strcmp(m_pEditPassword->getText(), m_pEditPassword_re->getText()))
     {
-        m_pErrInf->setString("两次密码输入不一致！");
+        Middle::showAlertView("两次密码输入不一致！");
     }
     else
     {
@@ -174,7 +176,9 @@ void  CRegisterLayer::doRegiter()
 {
     char achData[256]={};
     memset(achData, 0, 256);
-    sprintf(achData, "name=%s&password=%s",m_pEditEMail->getText(),m_pEditPassword_re->getText());
+    char pass[64] ="";
+    Pt_AES::sharePtAESTool("cube")->EncryptString(m_pEditPassword_re->getText(),pass);
+    sprintf(achData, "name=%s&password=%s",m_pEditEMail->getText(),pass);
     ADDHTTPREQUESTPOSTDATA(STR_URL_REGISTER,
                            "CALLBACK_CRegisterLayer_doRegiter",
                            "REQUEST_CRegisterLayer_doRegiter",
@@ -188,11 +192,11 @@ void CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)
     char* data = (char*)pOject;
     if(!data)
     {
-        m_pErrInf->setString("网络异常,请重试");
+        Middle::showAlertView("网络异常,请重试");
     }
     else if(strstr(data,"10102"))
     {
-        m_pErrInf->setString("邮箱已注册");
+        Middle::showAlertView("邮箱已注册");
     }
     else
     {
@@ -203,8 +207,18 @@ void CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)
         CCString* sig = (CCString*)usrData->objectForKey("sig");
         SinglePlayer::instance()->setUserSig(sig->m_sString);
         SinglePlayer::instance()->setUserId(uid->m_sString);
+        CCUserDefault::sharedUserDefault()->setStringForKey("name", m_pEditName->getText());
         CCUserDefault::sharedUserDefault()->setStringForKey("account", m_pEditEMail->getText());
-        CCUserDefault::sharedUserDefault()->setStringForKey("password", m_pEditPassword_re->getText());
+        string fileName = CCFileUtils::sharedFileUtils()->getWriteablePath()+"password";
+        char achPassword[64] ="";
+        Pt_AES::sharePtAESTool("cube")->EncryptString(m_pEditPassword_re->getText(),achPassword);
+        FILE* file = fopen(fileName.c_str(),"w");
+        if(file)
+        {
+            fputs(achPassword, file);
+        }
+        fclose(file);
+//        CCUserDefault::sharedUserDefault()->setStringForKey("password", achPassword);
         CCNotificationCenter::sharedNotificationCenter()->postNotification(REGITER_SUCCESS,NULL);
         removeFromParentAndCleanup(true);
     }

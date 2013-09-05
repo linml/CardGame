@@ -159,7 +159,9 @@ void CGameEmailManager::postHttpRequest()
     string str=string("info={\"total\":")+ data;
     sprintf(data, "%d",getUpdateTotalEmail());
     str +=string(",\"update\":")+data+"}";
-    string connectData="sig=2ac2b1e302c46976beaab20a68ef95";
+//xianbei modify    string connectData="sig=2ac2b1e302c46976beaab20a68ef95";
+    string connectData="sig=";
+    connectData += STR_USER_SIG;
     connectData+="&"+str;
     //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
     ADDHTTPREQUESTPOSTDATA(STR_URL_EMAIL(connectData), "GetEmail", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGameEmailManager::getHttpReponse));

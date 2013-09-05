@@ -590,7 +590,8 @@ void CCardEnhanceLayer::saveOnClick()
     }
     char buff[200]={0};
     char param[200]={0};
-    sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&type=%d&info={\"card_id\":\"%d\",\"other\":[",0,m_pSelectCard->getCardData()->m_User_Card_ID);
+//xianbei modify    sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&type=%d&info={\"card_id\":\"%d\",\"other\":[",0,m_pSelectCard->getCardData()->m_User_Card_ID);
+    sprintf(buff, "sig=%s&type=%d&info={\"card_id\":\"%d\",\"other\":[",STR_USER_SIG,0,m_pSelectCard->getCardData()->m_User_Card_ID);
     char tmp [20];
     for (int i = 0; i < MATERIALCARDCOUNT; i++)
     {

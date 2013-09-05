@@ -253,8 +253,11 @@ void CGamePlayer::loadServerCardBag()
 {
     isLoadCardBagEnd=0;
 #ifndef AAAAFOROSMACHINE
-    //http://cube.games.com/api.php?m=Card&a=getCardItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
-    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parseCardBagJson));
+//     ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parseCardBagJson));
+    string data = "sig=";
+    data += m_strSig;
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo",data.c_str() ,callfuncO_selector(CGamePlayer::parseCardBagJson));
+
 #else
     char *data=new char [5];
     parseCardBagJson((CCObject *)data);
@@ -367,8 +370,9 @@ void CGamePlayer::deleteFromCardBag(vector<int>user_CardId)
 
 void CGamePlayer::loadServerPlayerInfo()
 {
+    //xianbei delete
     isLoadPlayerInfoEnd=false;
-    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "GetServerPlayerInfo", "merlinaskplayerinfo1", "sig=2ac2b1e302c46976beaab20a68ef95",callfuncO_selector(CGamePlayer::loadServerPlayerInfoCallBack));
+//    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "GetServerPlayerInfo", "merlinaskplayerinfo1", "sig=2ac2b1e302c46976beaab20a68ef95",callfuncO_selector(CGamePlayer::loadServerPlayerInfoCallBack));
     
 }
 
@@ -390,13 +394,14 @@ void CGamePlayer::loadServerPlayerInfoCallBack(cocos2d::CCObject *obj)
 
 void CGamePlayer::loadCardTeamInfo()
 {
-    isLoadEndCardTeam=false;
- #ifndef AAAAFOROSMACHINE
-    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_TEAM(194), "GetLoadCardItem", "merlinaskplayerinfo1","sig=2ac2b1e302c46976beaab20a68ef95", callfuncO_selector(CGamePlayer::loadCardTeamInfoCallBack));
-#else
-    char *data=new char [5];
-    loadCardTeamInfoCallBack((CCObject *)data);
-#endif
+    //xianbei delete
+//    isLoadEndCardTeam=false;
+//#ifndef AAAAFOROSMACHINE
+//    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_TEAM(194), "GetLoadCardItem", "merlinaskplayerinfo1","sig=2ac2b1e302c46976beaab20a68ef95", callfuncO_selector(CGamePlayer::loadCardTeamInfoCallBack));
+//#else
+//    char *data=new char [5];
+//    loadCardTeamInfoCallBack((CCObject *)data);
+//#endif
 }
 
 void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
@@ -534,20 +539,21 @@ CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
 void CGamePlayer::loadRival(int  usid,int  troops)
 {
     isLoadFightTeam=0;
-#ifndef AAAAFOROSMACHINE
+//#ifndef AAAAFOROSMACHINE
     char data[50];
     sprintf(data, "%d",usid);
     string str=string("info={\"uid\":")+ data;
     sprintf(data, "%d",troops);
     str +=string(",\"troops\":")+data+"}";
-    string connectData="sig=2ac2b1e302c46976beaab20a68ef95";
+    string connectData="sig=";
+    connectData += m_strSig;
     connectData+="&"+str;
     //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
     ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
-#else
-    char *data=new char[5];
-    parseRival((CCObject *)data);
-#endif
+//#else
+//    char *data=new char[5];
+//    parseRival((CCObject *)data);
+//#endif
 }
 
 void CGamePlayer::parseRival(CCObject *object)
@@ -674,6 +680,11 @@ int CGamePlayer::getCoin()
     return  m_gGamePlayerData->m_icoin;
 }
 
+int CGamePlayer::getPlayerPrice()
+{
+    return m_gGamePlayerData->m_icash;
+}
+
 int CGamePlayer::getRVC()
 {
     return  m_gGamePlayerData->m_irvc;
@@ -682,6 +693,21 @@ int CGamePlayer::getRVC()
 int CGamePlayer::getPlayerExp()
 {
     return m_gGamePlayerData->m_iexp;
+}
+
+int CGamePlayer::getPlayerLevel()
+{
+    return m_gGamePlayerData->m_ilevel;
+}
+
+void CGamePlayer::addPlayerPrice(int inAddPrice)
+{
+    m_gGamePlayerData->m_icash += inAddPrice;
+}
+void CGamePlayer::subPlayerPrice(int inSubPrice)
+{
+    m_gGamePlayerData->m_icash -= inSubPrice;
+    m_gGamePlayerData->m_icash = m_gGamePlayerData->m_icash >= 0 ? m_gGamePlayerData->m_icash : 0;
 }
 
 void CGamePlayer::addPalyerExp(int inAddExp)
@@ -750,8 +776,9 @@ void CGamePlayer::onFightExitScene()
 
 void CGamePlayer::loadPropsInfo()
 {
-  m_bLoadProps = false;
-  ADDHTTPREQUESTPOSTDATA(STR_URL_BAG_PROP(194), "loadProps", "loadProps","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parsePropsInfo));
+    //xianbei delete
+//  m_bLoadProps = false;
+//  ADDHTTPREQUESTPOSTDATA(STR_URL_BAG_PROP(194), "loadProps", "loadProps","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parsePropsInfo));
     
 }
 
@@ -842,6 +869,13 @@ void CGamePlayer::updateProps()
         }
     }
 }
+
+bool CGamePlayer::addGridBySys()
+{
+    
+    return getPlayerLevel() >= OPENGGRIDLEVLE ;
+}
+
 vector<int>CGamePlayer::getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas)
 {
     int useGridCount =getUseGridCount();
@@ -857,7 +891,13 @@ vector<int>CGamePlayer::getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas
             emailIds.push_back(inEmailDatas.at(i).emailId);
             useGridCount += tmpAddCount;
             mergeProps(allProps, inEmailDatas.at(i).props);
+            
+            CCLog("the userGridcount: %d", useGridCount);
         }
+    }
+    for (int i = 0; i < emailIds.size(); i++)
+    {
+        CCLog("the size: %d", emailIds.at(i));
     }
     return emailIds;
 }
@@ -877,6 +917,7 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
     int count = 0;
     int isOnly = 0;
     int limitCount;
+    bool propEnable = false;
     CPtProp *tmp = NULL;
     for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end() && (inUserGridCount+count) <= m_nOpenGridCount; i++)
     {
@@ -888,6 +929,7 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
             continue;
         }
         
+        propEnable = true;
         tmp = m_rAllProps.at(key);
         CCAssert(tmp != NULL, "no this prop");
         isOnly = tmp->getIsOnlyNum();
@@ -910,8 +952,8 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
             {
                 int addCount2 =tmpProps.at(key);
                 addCount += addCount2;
-                addCount = (addCount/limitCount + addCount%limitCount == 0 ? 0 : 1);
-                addCount2 = (addCount2/limitCount + addCount2%limitCount == 0 ? 0 : 1);
+                addCount = (addCount/limitCount) + (addCount%limitCount == 0 ? 0 : 1);
+                addCount2 = (addCount2/limitCount) + (addCount2%limitCount == 0 ? 0 : 1);
                 count += (addCount-addCount2);
             
             }else
@@ -926,6 +968,10 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
     {
         bRet = count;
         
+    }
+    if (propEnable == false)
+    {
+        bRet = 0;
     }
     
     return bRet;
@@ -955,7 +1001,8 @@ void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
             if(propData->getPropById(i->first)->getIsOnlyNum() == 1)
             {
                 
-            }else
+            }
+            else
             {
                 tmpProps.at(i->first) += i->second;
             }
@@ -1007,7 +1054,7 @@ int CGamePlayer::getUseGridCount()
             {
                 continue;
             }
-            useGridCount += ((itemCount/limitMax) + (itemCount % limitMax) == 0 ? 0 : 1);
+            useGridCount += (itemCount/limitMax) + ((itemCount % limitMax) == 0 ? 0 : 1);
         }
         
     }
@@ -1121,9 +1168,10 @@ void CGamePlayer::onGameBegin()
     //xianbei modify
     gameInitStatus=0;
     int getEmailMax=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail();
-    char data[50];
-    sprintf(data, "&info={\"max_id\":%d}",getEmailMax);
-    string connectData="sig=2ac2b1e302c46976beaab20a68ef95";
+    char data[256];
+    sprintf(data, "&info={\"max_id\":%d,\"name\":\"%s\"}",getEmailMax,CCUserDefault::sharedUserDefault()->getStringForKey("name").c_str());
+    string connectData="sig=";
+    connectData += m_strSig;
     connectData+=data;
     ADDHTTPREQUESTPOSTDATA(STR_URL_GAMEINIT(194), "GameBegin", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::onGameBeginCallBack));
     

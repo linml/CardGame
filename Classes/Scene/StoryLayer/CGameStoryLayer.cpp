@@ -10,15 +10,24 @@
 #include "CGameStory.h"
 #include "gameConfig.h"
 #include "CGameTalkDialog.h"
+#include "CGameRoleAnimation.h"
 
 CGameStoryLayer::CGameStoryLayer()
 {
     m_oldGameDialog=NULL;
     wndSize=CCDirector::sharedDirector()->getWinSize();
+    m_pRoleAnimation=new  CGameRoleAnimation;
+    isKuaiJingZhuangTai=false;
 }
 
 CGameStoryLayer::~CGameStoryLayer()
 {
+    if(m_pRoleAnimation)
+    {
+        delete m_pRoleAnimation;
+        m_pRoleAnimation=NULL;
+    }
+    CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);
     
 }
 
@@ -45,8 +54,17 @@ bool CGameStoryLayer::initCreateStory(int storyId, cocos2d::CCNode *node)
     m_bIsEndDialog=true;
     createKuaiJing();
     loadDialogList();
-    node->addChild(this);
+    createDialogLayer();
+    if(node)
+    {
+        node->addChild(this);
+    }
+    else{
+        CCDirector::sharedDirector()->getRunningScene()->addChild(this);
+    }
+    isCaneTouch=false;
     schedule(schedule_selector(CGameStoryLayer::updateTimeToShow), 1.0f);
+    setTouchEnabled(true);
     return true;
 }
 
@@ -63,16 +81,24 @@ void CGameStoryLayer::updateTimeToShow(float t)
     
 }
 
+void CGameStoryLayer::setCaneTouch()
+{
+    isCaneTouch=true;
+}
+
 void CGameStoryLayer::endTalk()
 {
-    m_vDialogTalkIndex++;
-    m_bIsEndDialog=true;
+    if(isCaneTouch)
+    {
+        m_vDialogTalkIndex++;
+        m_bIsEndDialog=true;
+    }
 }
 
 void CGameStoryLayer::loadDialogList()
 {
     map<int , CGameTalkDialog *>m_mapDialogTalk;
-    CCDictionary *directory = CCDictionary::createWithContentsOfFile((resRootPath+"storydialog.plist").c_str());
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile((resRootPath+"dialoguelist.plist").c_str());
     CCArray *vKeyArray=directory->allKeys();
     if (!vKeyArray)
     {
@@ -85,7 +111,7 @@ void CGameStoryLayer::loadDialogList()
         gameDialogTalk->setGameTalkID(GameTools::intForKey("id", storyDialogTalk));
         gameDialogTalk->setGameTalkUiPlan(GameTools::intForKey("plan", storyDialogTalk));
         gameDialogTalk->setGameTalkDialogWord(GameTools::valueForKey("word", storyDialogTalk));
-        gameDialogTalk->setGameTalkDialogPng(GameTools::valueForKey("png", storyDialogTalk));
+        gameDialogTalk->setGameTalkDialogPng(GameTools::valueForKey("pic", storyDialogTalk));
         gameDialogTalk->setGameTalkSoundEffects(GameTools::valueForKey("soundeffects", storyDialogTalk));
         gameDialogTalk->setGameTalkEffects(GameTools::valueForKey("effects", storyDialogTalk));
         m_mapDialogTalk[gameDialogTalk->getGameTalkID()]=gameDialogTalk;
@@ -110,71 +136,88 @@ void CGameStoryLayer::loadDialogList()
     }
     m_mapDialogTalk.erase(m_mapDialogTalk.begin(),m_mapDialogTalk.end());
 }
+
+void CGameStoryLayer::createDialogLayer()
+{
+    CCPoint  labelPoint;
+    CCSprite *lSprite=CCSprite::create("resource_cn/img/fighting/card_res_002_000.png");
+    addChild(lSprite,1,100);
+    lSprite->setVisible(false);
+    CCLayerColor *lcolor=CCLayerColor::create(ccc4(125, 125, 125, 125), 600, 150);
+    float x=(wndSize.width-lcolor->getContentSize().width)*0.5-20;
+    lcolor->setPosition(ccp(x,180));
+    lcolor->setVisible(false);
+    lcolor->setAnchorPoint(ccp(0.5,0.5));
+    addChild(lcolor,1,101);
+    labelPoint.x=lcolor->getContentSize().width*0.5;
+    labelPoint.y=lcolor->getContentSize().height*0.5;
+    CCLabelTTF *llabelTTF=CCLabelTTF::create("123", "Arial", 25);
+    lcolor->addChild(llabelTTF,1,102);
+    llabelTTF->setPosition(labelPoint);
+    llabelTTF->setDimensions(CCSizeMake(600, 150));
+    llabelTTF->setHorizontalAlignment(kCCTextAlignmentLeft);
+    
+        
+}
+
+
 //每个界面的对话框设置 是显示2 个对话框。 第一个的tag 是100， 第二个是200
 void  CGameStoryLayer::displayDialog(CGameTalkDialog *gameDialog)
 {
-    
-    if(m_oldGameDialog)
+    isCaneTouch=false;
+    if(m_pRoleAnimation)
     {
-        if(m_oldGameDialog->getGameTalkUiPlan()%2==0)
-        {
-            //如果是偶数 那么是右边的。 如果是技术 那么是左边的
-            
-            CCNode *node=getChildByTag(200);
-            CCPoint point=node->getPosition();
-            node->runAction(CCMoveTo::create(0.2f, ccp(point.x,600)));
-            node=getChildByTag(100);
-            if(node)
-            {
-                removeChild(node, true);
-            }
-
-        }
-        else{
-            CCNode *node=getChildByTag(100);
-            CCPoint point=node->getPosition();
-            node->runAction(CCMoveTo::create(0.2f, ccp(point.x,600)));
-            node=getChildByTag(200);
-            if(node)
-            {
-                removeChild(node, true);
-            } 
-        }
-    }
-    
-    
-    
- 
-    if(m_oldGameDialog!=gameDialog)
-    {
-        CCSprite *sprite=CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, gameDialog->getGameTalkDialogPng().c_str()));
-        addChild(sprite,1,101); //该东西 不需要移动
-        CCLayerColor *colordialog=CCLayerColor::create(ccc4(125, 125, 125, 125));
-        addChild(colordialog,1,100);
-        colordialog->setContentSize(CCSizeMake(800, 200));
-        colordialog->setPosition(ccp(wndSize.width*0.5,200));
-        CCLabelTTF *labelttf=CCLabelTTF::create(gameDialog->getGameTalkDialogWord().c_str(), "Arial", 100);
-        colordialog->addChild(labelttf);
- 
-    }
-    else{
-        
+        m_pRoleAnimation->runActionAnimation(this, gameDialog, m_oldGameDialog);
     }
     m_oldGameDialog=gameDialog;
 }
 
+void CGameStoryLayer::updateEveryAnimationPlayEnd(float t)
+{
+        if(isCaneTouch)
+        {
+           // isCaneTouch=false;
+            endTalk();
+            isCaneTouch=false;
+        }
+}
 
 bool CGameStoryLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-        return  true;
+    return  true;
 }
+
 void CGameStoryLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
     
 }
+
 void CGameStoryLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
-    endTalk();
+    if(getChildByTag(1000)->boundingBox().containsPoint(pTouch->getLocation()))
+    {
+        if(!isKuaiJingZhuangTai)
+        {
+            isKuaiJingZhuangTai=true;
+            CCDirector::sharedDirector()->getScheduler()->setTimeScale(2.0f);
+            schedule(schedule_selector(CGameStoryLayer::updateEveryAnimationPlayEnd), 0.5f);
+            CCLog("快进 ing========");
+        }
+        else
+        {
+            isKuaiJingZhuangTai=false;
+            CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0f);
+            unschedule(schedule_selector(CGameStoryLayer::updateEveryAnimationPlayEnd));
+        }
+
+    }
+    else
+    {
+        if(!isKuaiJingZhuangTai)
+        {
+            endTalk();
+        }
+    }
 }
 void CGameStoryLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {

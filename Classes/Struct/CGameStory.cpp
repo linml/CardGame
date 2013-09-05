@@ -15,7 +15,7 @@ CGameStory::CGameStory()
 
 CGameStory::~CGameStory()
 {
-    
+    m_mapStory.erase(m_mapStory.begin(),m_mapStory.end());
 }
 
 void CGameStory::initGameStoryData()
@@ -27,6 +27,8 @@ void CGameStory::initGameStoryData()
         for (int i=0; i<vKeyArray->count(); i++) {
             CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
             CCDictionary *story=(CCDictionary*)(directory->objectForKey(key->m_sString));
+            int storyId=GameTools::intForKey("story_id", story);
+            this->m_mapStory[storyId]=GameTools::valueForKey("dialoguelist_id", story);
         }
     }
 }

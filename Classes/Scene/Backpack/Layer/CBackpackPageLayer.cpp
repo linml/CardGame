@@ -609,8 +609,20 @@ void CBackpackPageLayer::setItem(CCNode *node, CPtProp *inData)
 
 bool CBackpackPageLayer::canOpenGrid()
 {
-    bool bRet = true;
+    bool bRet = false;
+    //
+    CGamePlayer * player = SinglePlayer::instance();
+    int openGrid =  player->getOpenGridCount() +3;
+    if (player->addGridBySys())
+    {
+        openGrid -= 3;
+    }
     
+    int price = ((openGrid - 9)/3 -1) * 9 + 6;
+    if (price >= player->getPlayerPrice())
+    {
+        bRet = true;
+    }
     return bRet;
 }
 
@@ -620,12 +632,20 @@ void CBackpackPageLayer::openGrid()
     {
         return;
     }
-    
-    SinglePlayer::instance()->AddOpenGridCount(3);
+    CGamePlayer * player = SinglePlayer::instance();
+    player->AddOpenGridCount(3);
     // handler event:
     // updateData:
     m_nOpenGridNumber += 3;
     // more todo :
+   
+    int openGrid =  player->getOpenGridCount() +3;
+    if (player->addGridBySys())
+    {
+        openGrid -= 3;
+    }
+    int price = ((openGrid - 9)/3 -1) * 9 + 6;
+    player->subPlayerPrice(price);
     
     // update ui
     openGridUI();
@@ -674,7 +694,8 @@ void CBackpackPageLayer::onClickOpenGrid()
     }
   //  sig=2ac2b1e302c46976beaab20a68ef95(标识码),bag_type_id=101(背包类型),grid_num=12(背包格子) unlock_way=1 (解锁方式  1：现金币解锁 2:系统赠送)
     char buffer[100] = {};
-    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&bag_type_id=101&grid_num=%d&unlock_way=1",openGridCount);
+//xianbei modify    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&bag_type_id=101&grid_num=%d&unlock_way=1",openGridCount);
+    sprintf(buffer, "sig=%s&bag_type_id=101&grid_num=%d&unlock_way=1",STR_USER_SIG,openGridCount);
     ADDHTTPREQUESTPOSTDATA(STR_URL_ADD_GRID(196),"addGrid", "addGrid", buffer,callfuncO_selector(CBackpackPageLayer::onReceiveOpenGridMsg));
 
 }
@@ -719,7 +740,8 @@ void CBackpackPageLayer::onClickUseProp(int inPropId, int inPropNum)
 {
     //sig=2ac2b1e302c46976beaab20a68ef95(用户标识码) item_id=1(道具ID) num=1(数量)
     char buffer[100] = {0};
-    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&item_id=%d&num=%d", inPropId, inPropNum);
+//xianbei modify    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&item_id=%d&num=%d", inPropId, inPropNum);
+    sprintf(buffer, "sig=%s&item_id=%d&num=%d",STR_USER_SIG , inPropId, inPropNum);
     ADDHTTPREQUESTPOSTDATA(STR_URL_USE_GRID(196), "useProp", "useProp", buffer, callfuncO_selector(CBackpackPageLayer::onReceiveUsePropMsg));
 }
 
@@ -738,7 +760,8 @@ void CBackpackPageLayer::onClickDeleteProp(int inPropId, int inPropNum)
 {
     //sig=2ac2b1e302c46976beaab20a68ef95(用户标识码) item_id=1(道具ID) num=1(数量)
     char buffer[100] = {0};
-    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&item_id=%d&num=%d", inPropId, inPropNum);
+//xianbei modify    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&item_id=%d&num=%d", inPropId, inPropNum);
+    sprintf(buffer, "sig=%s&item_id=%d&num=%d",STR_USER_SIG, inPropId, inPropNum);
     ADDHTTPREQUESTPOSTDATA(STR_URL_DELETE_PROP(196), "deleteProp", "deleteProp", buffer, callfuncO_selector(CBackpackPageLayer::onReceiveDeletProp));
     
 }

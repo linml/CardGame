@@ -1141,8 +1141,9 @@ void CPtBattleArray::save()
     }
     
     char buffer[200]={0};
-    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&troops=%d&card_color_id=%d&card_team_param={"
-            ,inTag,suit);
+//xianbei modify    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&troops=%d&card_color_id=%d&card_team_param={"
+//            ,inTag,suit);
+    sprintf(buffer, "sig=%s&troops=%d&card_color_id=%d&card_team_param={",STR_USER_SIG, inTag,suit);
             string std = buffer;
     bool flag = true;
     for (int i = 0; i < 5; i++)

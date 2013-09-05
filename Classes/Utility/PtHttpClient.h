@@ -19,12 +19,6 @@ using namespace cocos2d::extension;
 using namespace std;
 
 
-#define SERVER_INF_ADR "http://cube.games.com/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
-
-
-
-//"http://cube.games.com/gateway.php?m=Platform&a=selectServer&puid=194&sig=2ac2b1e302c46976beaab20a68ef95"
-
 #define SERVER_SID "sid"
 #define SERVER_NAME "name"
 #define SERVER_IP "ip"

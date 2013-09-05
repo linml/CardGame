@@ -403,7 +403,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "1006"
          endingLineNumber = "1006"
-         landmarkName = "CGamePlayer::getUseGridCount()"
+         landmarkName = "CGamePlayer::mergeProps(map&lt;int, int&gt; &amp;tmpProps, map&lt;int, int&gt; &amp;inAddProps)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -441,7 +441,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "830"
-         endingLineNumber = "830">
+         endingLineNumber = "830"
+         landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -452,7 +454,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "845"
-         endingLineNumber = "845">
+         endingLineNumber = "845"
+         landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -463,7 +467,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "835"
-         endingLineNumber = "835">
+         endingLineNumber = "835"
+         landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -475,7 +481,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "953"
          endingLineNumber = "953"
-         landmarkName = "CGamePlayer::mergeProps(map&lt;int, int&gt; &amp;tmpProps, map&lt;int, int&gt; &amp;inAddProps)"
+         landmarkName = "CGamePlayer::isCanAddToBackPack(map&lt;int, int&gt; &amp;tmpProps, map&lt;int, int&gt;&amp; inAddProps, int inUserGridCount)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -488,7 +494,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "840"
          endingLineNumber = "840"
-         landmarkName = "CGamePlayer::updateProps()"
+         landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -501,7 +507,7 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "837"
          endingLineNumber = "837"
-         landmarkName = "CGamePlayer::updateProps()"
+         landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -513,9 +519,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "857"
-         endingLineNumber = "857"
-         landmarkName = "CGamePlayer::getCanAddToBackPackEmals(vector&lt;EMAIL_DATA&gt; inEmailDatas)"
-         landmarkType = "5">
+         endingLineNumber = "857">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -769,11 +773,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399950611.522398"
+         timestampString = "400067975.130182"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "959"
-         endingLineNumber = "959"
+         startingLineNumber = "961"
+         endingLineNumber = "961"
          landmarkName = "CGameEmailTableView::scrollBar(CCTableView* table)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -795,11 +799,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399950611.522398"
+         timestampString = "400067975.130182"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "801"
-         endingLineNumber = "801"
+         startingLineNumber = "803"
+         endingLineNumber = "803"
          landmarkName = "CGameEmailTableView::scrollViewDidScroll(CCScrollView* view)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -964,11 +968,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399898086.671962"
+         timestampString = "400067975.130182"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "610"
-         endingLineNumber = "610"
+         startingLineNumber = "612"
+         endingLineNumber = "612"
          landmarkName = "CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1033,9 +1037,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "273"
-         endingLineNumber = "273"
-         landmarkName = "CGameEmailManager::getGameDataByIndex(int index)"
-         landmarkType = "5">
+         endingLineNumber = "273">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1085,9 +1087,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "861"
-         endingLineNumber = "861"
-         landmarkName = "CGamePlayer::getCanAddToBackPackEmals(vector&lt;EMAIL_DATA&gt; inEmailDatas)"
-         landmarkType = "5">
+         endingLineNumber = "861">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1098,7 +1098,9 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "869"
-         endingLineNumber = "869">
+         endingLineNumber = "869"
+         landmarkName = "CGamePlayer::updateProps()"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1109,9 +1111,7 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "197"
-         endingLineNumber = "197"
-         landmarkName = "CGameEmailManager::deleteEmailData(vector&lt;int &gt;emilIdList)"
-         landmarkType = "5">
+         endingLineNumber = "197">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -1157,11 +1157,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399950611.522398"
+         timestampString = "400067975.130182"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "736"
-         endingLineNumber = "736"
+         startingLineNumber = "738"
+         endingLineNumber = "738"
          landmarkName = "CGameEmailTableView::decodeRecvBackStr(char *strdata)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1179,7 +1179,7 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
@@ -1209,16 +1209,16 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-         timestampString = "399950611.522398"
+         timestampString = "400067975.130182"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "965"
-         endingLineNumber = "965"
+         startingLineNumber = "967"
+         endingLineNumber = "967"
          landmarkName = "CGameEmailTableView::scrollBar(CCTableView* table)"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Scene/LoginScene/LoginScene.cpp"
@@ -1226,8 +1226,264 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "95"
-         endingLineNumber = "95"
-         landmarkName = "CLoginScene::handleTouchSpritePool(CCPoint point)"
+         endingLineNumber = "95">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061214.96459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "172"
+         endingLineNumber = "172"
+         landmarkName = "CGameStoryLayer::displayDialog(CGameTalkDialog *gameDialog)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061214.96459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "66"
+         endingLineNumber = "66"
+         landmarkName = "CGameStoryLayer::initCreateStory(int storyId, cocos2d::CCNode *node)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061866.374061"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "239"
+         endingLineNumber = "239"
+         landmarkName = "CGameStoryLayer::getStoryTalkList(int storyID)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Struct/CGameStory.cpp"
+         timestampString = "400039668.989919"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "23"
+         endingLineNumber = "23"
+         landmarkName = "CGameStory::initGameStoryData()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061214.96459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "170"
+         endingLineNumber = "170"
+         landmarkName = "CGameStoryLayer::displayDialog(CGameTalkDialog *gameDialog)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061518.827104"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "175"
+         endingLineNumber = "175">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/AnimationStoryActor/CGameRoleAnimation.cpp"
+         timestampString = "400059534.844553"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "83"
+         endingLineNumber = "83"
+         landmarkName = "CGameRoleAnimation::runActionAnimation(CCLayer *layer,CGameTalkDialog *newTalkDialog,CGameTalkDialog *oldDialog)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061214.96459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
+         landmarkName = "CGameStoryLayer::endTalk()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061214.96459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "91"
+         endingLineNumber = "91"
+         landmarkName = "CGameStoryLayer::endTalk()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061214.96459"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "74"
+         endingLineNumber = "74"
+         landmarkName = "CGameStoryLayer::updateTimeToShow(float t)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/AnimationStoryActor/CGameRoleAnimation.cpp"
+         timestampString = "400059534.844553"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "CGameRoleAnimation::runActionAnimation(CCLayer *layer,CGameTalkDialog *newTalkDialog,CGameTalkDialog *oldDialog)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/AnimationStoryActor/CGameRoleAnimation.cpp"
+         timestampString = "400059534.844553"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "90"
+         endingLineNumber = "90"
+         landmarkName = "CGameRoleAnimation::runActionAnimation(CCLayer *layer,CGameTalkDialog *newTalkDialog,CGameTalkDialog *oldDialog)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/AnimationStoryActor/CGameRoleAnimation.cpp"
+         timestampString = "400059534.844553"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "28"
+         endingLineNumber = "28"
+         landmarkName = "CGameRoleAnimation::dealAnimation()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/AnimationStoryActor/CGameRoleAnimation.cpp"
+         timestampString = "400059534.844553"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "26"
+         endingLineNumber = "26"
+         landmarkName = "CGameRoleAnimation::dealAnimation()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/AnimationStoryActor/CGameRoleAnimation.cpp"
+         timestampString = "400059534.844553"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "27"
+         endingLineNumber = "27"
+         landmarkName = "CGameRoleAnimation::dealAnimation()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/StoryLayer/CGameStoryLayer.cpp"
+         timestampString = "400061620.331128"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
+         landmarkName = "CGameStoryLayer::updateEveryAnimationPlayEnd(float t)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/LoginScene/Layer/RegisterLayer.cpp"
+         timestampString = "400062620.261209"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "191"
+         endingLineNumber = "191"
+         landmarkName = "CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/LoginScene/Layer/RegisterLayer.cpp"
+         timestampString = "400062624.389913"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "177"
+         endingLineNumber = "177"
+         landmarkName = "CRegisterLayer::doRegiter()"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Struct/gamePlayer.cpp"
+         timestampString = "400066710.650696"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "882"
+         endingLineNumber = "882"
+         landmarkName = "CGamePlayer::getCanAddToBackPackEmals(vector&lt;EMAIL_DATA&gt; inEmailDatas)"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+         timestampString = "400067815.034492"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "606"
+         endingLineNumber = "606"
+         landmarkName = "CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

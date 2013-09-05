@@ -23,6 +23,8 @@ class SEveryATKData;
 class CFightCardFightingBuffer;
 class CGamePlayerData;
 
+#define OPENGGRIDLEVLE 20
+
 class CGamePlayer : cocos2d::CCObject
 {
  public:
@@ -99,7 +101,7 @@ public: //读取 卡队列的信息
     void loadCardTeamInfo();
     void loadCardTeamInfoCallBack(CCObject *obj);
     void loadCardTeamInfoCallBackByDict(CCDictionary *dictresult);
-    int isLoadEndCardTeam;
+    int  isLoadEndCardTeam;
 public:
     //读取对战别的英雄对战的阵容
     void loadRival(int  usid,int troop);
@@ -151,10 +153,10 @@ public:
     int getOpenGridCount();
     int AddOpenGridCount(int inAddCount);
     int getUseGridCount();
-   
-    
     void updateProps();
     bool getLoadPropEnd(){return  m_bLoadProps;};
+    
+    bool addGridBySys();
 protected:
     map<int, CPtProp*> &m_rAllProps; // 静态配置中道具信息
     map<int, int> m_vProps;          // 用户道具列表
@@ -167,8 +169,13 @@ protected:
     // play info:
 public:
     int getCoin();
+    int getPlayerPrice();
     int getRVC();
     int getPlayerExp();
+    int getPlayerLevel();
+    
+    void addPlayerPrice(int inAddPrice);
+    void subPlayerPrice(int inSubPrice);
     
     void addPalyerExp(int inAddExp);
     void subPlayerExp(int inSubExp);

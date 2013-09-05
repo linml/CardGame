@@ -130,7 +130,7 @@ bool HelloWorld::init()
 //    testBufferPng(this);
 //    this->getCamera()->setEyeXYZ(-60, 0,100);
     
-    CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(1,this);
+    CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(30005,this);
     return true;
 }
 

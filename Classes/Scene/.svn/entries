@@ -1,14 +1,14 @@
 10
 
 dir
-1165
+1200
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-03T10:24:38.007614Z
-1165
+2013-09-05T08:25:39.010308Z
+1199
 wood
 has-props
 
@@ -46,10 +46,6 @@ dir
 
 StoryLayer
 dir
-
-
-
-add
 
 HallScene
 dir

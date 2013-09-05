@@ -343,7 +343,8 @@ void  CCardEvolutionLayer::saveOnClick()
 
     
         char buff[500]={0};
-        sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&&type=1&info=\"{\"card_id\":\"%d_%d\",\"other\":\"\"}",cardItemId, cardGroup);
+//xianbei modify        sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&&type=1&info=\"{\"card_id\":\"%d_%d\",\"other\":\"\"}",cardItemId, cardGroup);
+        sprintf(buff, "sig=%s&&type=1&info=\"{\"card_id\":\"%d_%d\",\"other\":\"\"}",STR_USER_SIG, cardItemId, cardGroup);
     
         CCLog("%s",buff);
     

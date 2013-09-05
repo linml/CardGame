@@ -22,6 +22,7 @@
 #endif
 #endif
 
+#define STR_USER_SIG SinglePlayer::instance()->getUserSig()
 #define URL_FACTORY(ADR,UID) (string(STR_URL_ADRESS)+string(ADR)+string(SinglePlayer::instance()->getUserId())).c_str()
 
 //登录

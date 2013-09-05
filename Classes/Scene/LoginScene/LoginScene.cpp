@@ -17,6 +17,9 @@
 #include "CPtTableItem.h"
 #include "gamePlayer.h"
 #include "RegisterLayer.h"
+#include "gameMiddle.h"
+#include "Pt_AES.h"
+#include "gameMiddle.h"
 
 
 // implement of the CLoginScene:
@@ -104,8 +107,8 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             break;
         case BUTTON_PLAY_TAG:            
             strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
-            strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password");
-            if(strAccount != ""  && strPassword != "")
+//            strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password");
+            if(strAccount != ""  )
             {
                 doLogin();
             }
@@ -117,6 +120,7 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             break;
         case 2000:
             remove(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str());
+            Middle::showAlertView("清除账号信息");
 //            CCUserDefault::sharedUserDefault()->purgeSharedUserDefault();
 //            CCUserDefault::sharedUserDefault()->flush();
             break;
@@ -132,8 +136,15 @@ void CLoginScene::doLogin()
     char achData[256]={};
     memset(achData, 0, 256);
     string strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
-    string strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password").c_str();
-    sprintf(achData, "name=%s&password=%s",strAccount.c_str(),strPassword.c_str());
+//    string strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password").c_str();
+    string fileName = CCFileUtils::sharedFileUtils()->getWriteablePath()+"password";
+    FILE* file = fopen(fileName.c_str(), "r");
+    char achPassword[64] = "";
+    if(file)
+    {
+        fgets(achPassword, 64, file);
+    }
+    sprintf(achData, "name=%s&password=%s",strAccount.c_str(),achPassword);
     ADDHTTPREQUESTPOSTDATA(STR_URL_LOGIN,
                            "CALLBACK_CLoginScene_doLogin",
                            "REQUEST_CLoginScene_doLogin",
@@ -147,11 +158,11 @@ void CLoginScene::onReceiveLoginMsg(CCObject* obj)
     char* data = (char*)obj;
     if(!data)
     {
-        CCLog("网络连接出错");
+        Middle::showAlertView("网络连接出错");
     }
     else if(strstr(data,"10101"))
     {
-        CCLog("密码错误");
+        Middle::showAlertView("密码错误");
     }
     else
     {

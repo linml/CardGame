@@ -11,7 +11,7 @@
 		<key>word</key>
 		<string>TVB剧情好好看啊</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -26,7 +26,7 @@
 		<key>word</key>
 		<string>你个蠢材</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -41,7 +41,7 @@
 		<key>word</key>
 		<string>屁股向后平沙落雁</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -56,7 +56,7 @@
 		<key>word</key>
 		<string>！！！！</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -71,7 +71,7 @@
 		<key>word</key>
 		<string>我去年买了个包2</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -86,7 +86,7 @@
 		<key>word</key>
 		<string>我去年买了个包3</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_000.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -101,7 +101,7 @@
 		<key>word</key>
 		<string>我去年买了个包4</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_008.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -116,7 +116,7 @@
 		<key>word</key>
 		<string>我去年买了个包5</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -131,7 +131,7 @@
 		<key>word</key>
 		<string>我去年买了个包6</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_008.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -146,7 +146,7 @@
 		<key>word</key>
 		<string>我去年买了个包7</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -161,7 +161,7 @@
 		<key>word</key>
 		<string>我去年买了个包8</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -176,7 +176,7 @@
 		<key>word</key>
 		<string>我去年买了个包9</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -191,7 +191,7 @@
 		<key>word</key>
 		<string>我去年买了个包10</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -206,7 +206,7 @@
 		<key>word</key>
 		<string>我去年买了个包11</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -221,7 +221,7 @@
 		<key>word</key>
 		<string>我去年买了个包12</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -236,7 +236,7 @@
 		<key>word</key>
 		<string>我去年买了个包13</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -251,7 +251,7 @@
 		<key>word</key>
 		<string>我去年买了个包14</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -266,7 +266,7 @@
 		<key>word</key>
 		<string>我去年买了个包15</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -281,7 +281,7 @@
 		<key>word</key>
 		<string>我去年买了个包16</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -296,7 +296,7 @@
 		<key>word</key>
 		<string>我去年买了个包17</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -311,7 +311,7 @@
 		<key>word</key>
 		<string>我去年买了个包18</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -326,7 +326,7 @@
 		<key>word</key>
 		<string>我去年买了个包19</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -341,7 +341,7 @@
 		<key>word</key>
 		<string>我去年买了个包20</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -356,7 +356,7 @@
 		<key>word</key>
 		<string>我去年买了个包21</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>
@@ -371,7 +371,7 @@
 		<key>word</key>
 		<string>我去年买了个包22</string>
 		<key>pic</key>
-		<string>cg.png</string>
+		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
 		<string>1111.wav</string>
 		<key>effect</key>

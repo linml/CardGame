@@ -140,7 +140,8 @@ void CCardSellLayer::saveOnClick()
     char param[200]={0};
     char p[20]={0};
     int index = 0;
-    sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
+//xianbei modify    sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
+    sprintf(buff, "&sig=%s&item_ids=[",STR_USER_SIG);
    
 
     
@@ -179,7 +180,8 @@ void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)
         char param[200]={0};
         char p[20]={0};
         int index = 0;
-        sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
+//xianbei modify        sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
+        sprintf(buff, "&sig=%s&item_ids=[",STR_USER_SIG);
         
         
         CCArray * array = m_pSellPackage->getItems();

@@ -572,7 +572,7 @@ void CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* 
 void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
 {
     
-    CCLog("this=%x",this);
+    CCLog("this=%x",msg_id);
     if(m_enhttpStatus!=EN_EMAILHTTPREQUEST_NONE)
     {
         return ;
@@ -603,11 +603,13 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
         ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "MERLINEMAILSTATUS123", "EMAILSTATUS",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
     }
     else{
-        if (G_GAMESINGEMAIL::instance()->getMailCount()>0) {
+        if (G_GAMESINGEMAIL::instance()->getMailCount()>0)
+        {
             if(this->getParent())
             {
                 isSendPostGetData=false;
-                CCNotificationCenter::sharedNotificationCenter()->postNotification("BEIBAOMANLEXIANSHIDUIHUAKUAN");
+                showDialogBagFull(NULL);
+                //CCNotificationCenter::sharedNotificationCenter()->postNotification("BEIBAOMANLEXIANSHIDUIHUAKUAN");
             }
         }
     }
@@ -703,7 +705,7 @@ bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
             //获取 经验
             int  exp=((CCString *)dictresult->objectForKey("exp"))->intValue();
             map<int , int>mapitems;
-            CCDictionary *emailItemDirector=(CCDictionary *)(dictresult->objectForKey("item"));
+            CCDictionary *emailItemDirector=(CCDictionary *)(dictresult->objectForKey("items"));
             if(emailItemDirector)
             {
                 CCDictElement* pElement = NULL;

@@ -51,8 +51,8 @@ bool AppDelegate::applicationDidFinishLaunching()
    // CCLOG("==%d", G_GAMESINGEMAIL::instance()->getCurrentEmailMapMaxMsgId());
    // CCLOG("===%d",G_GAMESINGEMAIL::instance()->getCurrentEmailUnreadCount());
     
-  //  SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
-    pDirector->runWithScene(HelloWorld::scene());
+    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
+   // pDirector->runWithScene(HelloWorld::scene());
   //  CCScene *scene=CCScene::create();
   // SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
 

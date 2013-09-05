@@ -1,14 +1,14 @@
 10
 
 dir
-1165
+1200
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-03T10:24:38.007614Z
-1165
+2013-09-05T07:59:22.043248Z
+1193
 wood
 has-props
 
@@ -235,10 +235,37 @@ phileas
 
 CGameTalkDialog.cpp
 file
-0
+1201
 
 
-add
+
+2013-09-04T08:50:36.000000Z
+98d32a93321f8bbf85d288d9be8aa91b
+2013-09-05T08:58:06.112148Z
+1201
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+492
 
 CGameErrorConfig.cpp
 file
@@ -276,14 +303,14 @@ merlin
 
 CCard.cpp
 file
+1201
 
 
 
-
-2013-08-28T01:50:29.000000Z
-cbe8e1c211aaf2b1c0fa3eab4454f84d
-2013-08-30T02:30:28.525073Z
-1113
+2013-09-05T01:59:25.000000Z
+66ba7eb05044a9bedb7331c628436c2e
+2013-09-05T08:58:06.112148Z
+1201
 merlin
 
 
@@ -306,7 +333,7 @@ merlin
 
 
 
-10956
+10960
 
 CCardBufferStatus.h
 file
@@ -412,6 +439,40 @@ merlin
 
 Craftsmanship
 dir
+
+CGameStory.h
+file
+1201
+
+
+
+2013-09-04T03:17:54.000000Z
+c0bf04ccf88399ea81117a03b7264103
+2013-09-05T08:58:06.112148Z
+1201
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+487
 
 CGameEmailData.h
 file
@@ -555,11 +616,11 @@ file
 
 
 
-2013-09-04T01:08:16.000000Z
-49357db94e29b59f783b55a90d9721e8
-2013-09-03T10:24:38.007614Z
-1165
-wood
+2013-09-05T08:24:14.000000Z
+b4ea21404e842f2ddc800f962af5bedc
+2013-09-04T09:19:08.218429Z
+1181
+phileas
 
 
 
@@ -581,41 +642,7 @@ wood
 
 
 
-5791
-
-CGamePlayerStruct.cpp
-file
-
-
-
-
-2013-07-09T06:42:48.000000Z
-a2075a57882e9f143c123c44442bf6a7
-2013-07-09T06:55:44.448099Z
-682
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-118
+5979
 
 CPtLevelConfigData.cpp
 file
@@ -651,6 +678,40 @@ phileas
 
 6975
 
+CGamePlayerStruct.cpp
+file
+
+
+
+
+2013-07-09T06:42:48.000000Z
+a2075a57882e9f143c123c44442bf6a7
+2013-07-09T06:55:44.448099Z
+682
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+118
+
 CPtStarConfigData.cpp
 file
 
@@ -684,6 +745,40 @@ phileas
 
 
 2304
+
+CPtSectionConfigData.h
+file
+
+
+
+
+2013-09-05T08:24:14.000000Z
+f738c344ce550ea353bab9aa2273a881
+2013-09-04T09:19:08.218429Z
+1181
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4441
 
 AnimationLogic.h
 file
@@ -821,40 +916,6 @@ merlin
 
 803
 
-SEveryATKData.h
-file
-
-
-
-
-2013-08-21T06:28:00.000000Z
-df396954f5b270db40bfc122d1fd428d
-2013-08-22T00:55:44.892135Z
-1028
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-414
-
 CPtPropConfigData.h
 file
 
@@ -889,12 +950,107 @@ phileas
 
 2278
 
+SEveryATKData.h
+file
+
+
+
+
+2013-08-21T06:28:00.000000Z
+df396954f5b270db40bfc122d1fd428d
+2013-08-22T00:55:44.892135Z
+1028
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+414
+
 CGameTalkDialog.h
 file
-0
+1201
 
 
-add
+
+2013-09-04T08:47:48.000000Z
+b227289ef5d57e122ad390ece92fd45a
+2013-09-05T08:58:06.112148Z
+1201
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+841
+
+CGameStory.cpp
+file
+1201
+
+
+
+2013-09-05T02:03:59.000000Z
+aa6a6a9aba3642865d6ed33975dda65e
+2013-09-05T08:58:06.112148Z
+1201
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+927
 
 CGameEmailData.cpp
 file
@@ -932,19 +1088,15 @@ merlin
 
 CGameEmailManager.cpp
 file
-1166
-
-
-
-2013-09-03T09:38:28.000000Z
-e30a3c0179b04cece228ce6c8ea2ea65
-2013-09-04T01:09:23.137761Z
-1166
-merlin
 
 
 
 
+2013-09-05T08:24:14.000000Z
+b514ede36118d34fc53fad60434dc92b
+2013-09-05T07:59:22.043248Z
+1193
+wood
 
 
 
@@ -962,7 +1114,11 @@ merlin
 
 
 
-14578
+
+
+
+
+14658
 
 CCard.h
 file
@@ -1136,37 +1292,15 @@ merlin
 
 gamePlayer.cpp
 file
-1166
-
-
-
-2013-09-04T01:08:16.000000Z
-1dbdf3377c51b4ab71c24db21ab01a7d
-2013-09-04T01:09:23.137761Z
-1166
-merlin
+1210
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-36269
+7e689ca53d50c449a2296b64373b380e
+2013-09-05T09:56:35.825406Z
+1209
+phileas
 
 CAnimationSpriteGameFight.h
 file
@@ -1235,6 +1369,40 @@ merlin
 
 
 428
+
+CPtSectionConfigData.cpp
+file
+
+
+
+
+2013-09-05T08:24:14.000000Z
+827cf0309c79d6f306c110452d1bc2e1
+2013-09-04T09:19:08.218429Z
+1181
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8654
 
 AnimationLogic.cpp
 file
