@@ -105,9 +105,9 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
         case -1:
             
             break;
-        case BUTTON_PLAY_TAG:            
+        case BUTTON_PLAY_TAG:
             strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
-//            strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password");
+            //            strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password");
             if(strAccount != ""  )
             {
                 doLogin();
@@ -121,8 +121,8 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
         case 2000:
             remove(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str());
             Middle::showAlertView("清除账号信息");
-//            CCUserDefault::sharedUserDefault()->purgeSharedUserDefault();
-//            CCUserDefault::sharedUserDefault()->flush();
+            //            CCUserDefault::sharedUserDefault()->purgeSharedUserDefault();
+            //            CCUserDefault::sharedUserDefault()->flush();
             break;
         default:
             break;
@@ -133,10 +133,13 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
 
 void CLoginScene::doLogin()
 {
+    if (isTouchPlayerGame) {
+        return ;
+    }
     char achData[256]={};
     memset(achData, 0, 256);
     string strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
-//    string strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password").c_str();
+    //    string strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password").c_str();
     string fileName = CCFileUtils::sharedFileUtils()->getWriteablePath()+"password";
     FILE* file = fopen(fileName.c_str(), "r");
     char achPassword[64] = "";
@@ -339,7 +342,7 @@ void CLoginScene::scheudoLoadGameConfig()
 }
 
 void CLoginScene::addFunctionInitGames(float t)
-{   
+{
     if(!isLoadEndConfig)
     {
         setText("loading  config");
@@ -356,34 +359,25 @@ void CLoginScene::addFunctionInitGames(float t)
         else{
             if(SinglePlayer::instance()->gameInitStatus!=0)
             {
-                
+                setText("game init ok");
+                unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
                 if(SinglePlayer::instance()->gameInitStatus==1)
                 {
-//                    setText("BackPack info");
-//                    if (!isLoadBackPack)
-//                    {
-//                        SinglePlayer::instance()->loadPropsInfo();
-//                        isLoadBackPack = true;
-//                    }
-//                    else
-//                    if(SinglePlayer::instance()->getLoadPropEnd())
-//                    {
-                        setText("CARD TEM info");
-                         setText("welcome");
-                            unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
-                            playGame();
-                   
-                    }
-                    else
-                    {
-                        isTouchPlayerGame=false;
-                        isGameInit=false;
-                        isLoadCardBag=false;
-                        isLoadEndConfig=false;
-                        isLoadTeam=false;;
-                        isGameInit=false;
-                        isLoadBackPack=false;
-                    }
+                    setText("SetGameInit info");
+                    playGame();
+                    
+                }
+                else
+                {
+                    Middle::showAlertView("下载数据出错");
+                    isTouchPlayerGame=false;
+                    isGameInit=false;
+                    isLoadCardBag=false;
+                    isLoadEndConfig=false;
+                    isLoadTeam=false;;
+                    isGameInit=false;
+                    isLoadBackPack=false;
+                }
             }
             else{
                 

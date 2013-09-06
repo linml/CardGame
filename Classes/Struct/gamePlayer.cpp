@@ -959,7 +959,7 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
             }else
             {
                
-                count += (addCount/limitCount + addCount%limitCount == 0 ? 0 : 1);
+                count += (addCount/limitCount) + (addCount%limitCount == 0 ? 0 : 1);
             }
         }
     }

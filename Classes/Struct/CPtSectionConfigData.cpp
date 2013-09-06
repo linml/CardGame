@@ -21,7 +21,7 @@ CPtSectionConfigData* CPtSectionConfigData::create(int inChapterId)
 {
     CCDictionary * tmp = NULL;
     char buff[150]={0};
-    sprintf(buff, "%s_%d.plist", CSTR_FILEPTAH(g_chapterPath, "partlist_"), inChapterId);
+    sprintf(buff, "%s_%d.plist", CSTR_FILEPTAH(g_chapterPath, "partlist"), inChapterId);
     tmp = CCDictionary::createWithContentsOfFile(buff);
     CPtSectionConfigData * data = new CPtSectionConfigData(tmp);
     data->autorelease();
@@ -60,10 +60,10 @@ void CPtSectionConfigData::loadSectionDataByChapter(cocos2d::CCDictionary *inSec
             tmpSection->setChapterId(GameTools::intForKey("chapter_id", tmpValue));
             tmpSection->setSequence(GameTools::intForKey("order_by", tmpValue));
             tmpSection->setSectionPicName(GameTools::valueForKey("part_pic", tmpValue));
-            tmpSection->setTipId(GameTools::intForKey("part_tips", tmpValue));
+            tmpSection->setTipId(GameTools::valueForKey("part_tips", tmpValue));
             tmpSection->setSceneId(GameTools::intForKey("scene_id", tmpValue));
             tmpSection->setMaxStep(GameTools::intForKey("max_step", tmpValue));
-            tmpSection->setMagicCost(GameTools::intForKey("magic_cost", tmpValue));
+            tmpSection->setAP(GameTools::intForKey("ap", tmpValue));
             tmpSection->setBounsExp(GameTools::intForKey("bouns_exp", tmpValue));
             tmpSection->setBounsMoney(GameTools::intForKey("bouns_money", tmpValue));
             tmpSection->setBounsRmb(GameTools::intForKey("bouns_rmb", tmpValue));
@@ -75,6 +75,8 @@ void CPtSectionConfigData::loadSectionDataByChapter(cocos2d::CCDictionary *inSec
             
             m_pIdToSequence->setObject(CCInteger::create(tmpSection->getSequence()),tmpSection->getSectionId());
             m_pSectionsInChapter->setObject(tmpSection, tmpSection->getSequence());
+            
+            CCLog("the size : %d", m_pSectionsInChapter->count());
             
         }
     }
@@ -232,6 +234,7 @@ CPtChapterConfigData::~CPtChapterConfigData()
 CCArray * CPtChapterConfigData::getOpenChapter(int inMaxId)
 {
     
+    
     if (inMaxId > m_pChapters->count())
     {
         return NULL;
@@ -241,8 +244,12 @@ CCArray * CPtChapterConfigData::getOpenChapter(int inMaxId)
         CPtChapter * chapter = NULL;
         for (int i = 1; i <= inMaxId ; i++)
         {
-          chapter = (CPtChapter*) m_pChapters->objectForKey(i-1);
-            array->addObject(chapter);
+          chapter = (CPtChapter*) m_pChapters->objectForKey(i);
+            if (chapter)
+            {
+                array->addObject(chapter);
+            }
+         
         }
         return array;
     }
@@ -278,7 +285,7 @@ void CPtChapterConfigData::loadChapterConifg()
         chapter->setChapterId(chapterId);
         chapter->setChapterName(GameTools::valueForKey("chapter_name", elementValue));
         chapter->setChapterPicName(GameTools::valueForKey("chapter_pic", elementValue));
-        chapter->setChapterTipid(GameTools::intForKey("chapter_tips", elementValue));
+        chapter->setChapterTipid(GameTools::valueForKey("chapter_tips", elementValue));
 
         chapter->setRewordCard(GameTools::intForKey("reword_card_item_id", elementValue), GameTools::intForKey("number", elementValue));
         chapter->setReword(GameTools::intForKey("reword_item_id_1", elementValue), GameTools::intForKey("number", elementValue));

@@ -351,7 +351,9 @@ void CGameEmailTableView::sendPostHttpChangeEmailStatus()
     if(value>0)
     {
         m_enhttpStatus=EN_EMAILHTTPREQUEST_CHANEGSTATUS;
-        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILREADSTATUS(194), "MERLINEMAILSTATUS", "EMAILSTATUS","sig=2ac2b1e302c46976beaab20a68ef95",callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
+        string postStrdata="sig=";
+        postStrdata+=SinglePlayer::instance()->getUserSig();
+        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILREADSTATUS(194), "MERLINEMAILSTATUS", "EMAILSTATUS",postStrdata.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
     }
 }
 

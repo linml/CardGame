@@ -69,9 +69,9 @@ void CGameEmailManager::sortList()
 {
 //    std::greater<CGameEmailData *> gt;
     m_listGameEamil.sort(nodejiangxu());
-    for (list<CGameEmailData *>::iterator it=m_listGameEamil.begin(); it!=m_listGameEamil.end(); it++) {
-        cout<<CPtTool::timetodate((*it)->getGameEmailStartTime())<<" "<<(*it)->getGameEmailStartTime()<<endl;
-    }
+//    for (list<CGameEmailData *>::iterator it=m_listGameEamil.begin(); it!=m_listGameEamil.end(); it++) {
+//        cout<<CPtTool::timetodate((*it)->getGameEmailStartTime())<<" "<<(*it)->getGameEmailStartTime()<<endl;
+//    }
 }
 
 void CGameEmailManager::decodeEmap(CCDictionary *dict)

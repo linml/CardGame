@@ -1,15 +1,15 @@
 10
 
 dir
-1200
+1234
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-05T07:59:22.043248Z
-1193
-wood
+2013-09-06T06:26:22.076946Z
+1221
+phileas
 has-props
 
 
@@ -235,7 +235,7 @@ phileas
 
 CGameTalkDialog.cpp
 file
-1201
+
 
 
 
@@ -303,7 +303,7 @@ merlin
 
 CCard.cpp
 file
-1201
+
 
 
 
@@ -442,7 +442,7 @@ dir
 
 CGameStory.h
 file
-1201
+
 
 
 
@@ -752,10 +752,10 @@ file
 
 
 
-2013-09-05T08:24:14.000000Z
-f738c344ce550ea353bab9aa2273a881
-2013-09-04T09:19:08.218429Z
-1181
+2013-09-06T09:24:58.000000Z
+a705cd80d9c02cd4b1d1c00be6edb6b2
+2013-09-06T06:26:22.076946Z
+1221
 phileas
 
 
@@ -778,7 +778,7 @@ phileas
 
 
 
-4441
+3998
 
 AnimationLogic.h
 file
@@ -986,7 +986,7 @@ merlin
 
 CGameTalkDialog.h
 file
-1201
+
 
 
 
@@ -1020,7 +1020,7 @@ merlin
 
 CGameStory.cpp
 file
-1201
+
 
 
 
@@ -1292,14 +1292,14 @@ merlin
 
 gamePlayer.cpp
 file
-1210
 
 
 
 
-7e689ca53d50c449a2296b64373b380e
-2013-09-05T09:56:35.825406Z
-1209
+
+ac7feffb663b3cb66873e7d24b0a0886
+2013-09-06T06:20:55.978683Z
+1220
 phileas
 
 CAnimationSpriteGameFight.h
@@ -1376,10 +1376,10 @@ file
 
 
 
-2013-09-05T08:24:14.000000Z
-827cf0309c79d6f306c110452d1bc2e1
-2013-09-04T09:19:08.218429Z
-1181
+2013-09-06T09:24:58.000000Z
+46f0f5290c9012894c132d924adbe4cd
+2013-09-06T06:26:22.076946Z
+1221
 phileas
 
 
@@ -1402,7 +1402,7 @@ phileas
 
 
 
-8654
+8792
 
 AnimationLogic.cpp
 file
