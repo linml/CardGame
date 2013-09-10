@@ -110,7 +110,9 @@ public: //读取 卡队列的信息
 public:
     //读取对战别的英雄对战的阵容
     void loadRival(int  usid,int troop);
+    void loadNpcCard(int zhang,int jie,int bu,int dijige);
     void parseRival(CCObject *object);
+    void parseNpcCard(CCObject *object);
     int  isLoadFightTeam;
     void randRomIndexAdd();
     void logicRandValue(int &value,bool needAdd=true);

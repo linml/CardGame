@@ -21,6 +21,7 @@
 #include "CFightCardBufferData.h"
 #include "CGameEmailManager.h"
 #include "SGamePlayerData.h"
+#include "CGameNpcCard.h"
 
 //#define AAAAFOROSMACHINE 1
 
@@ -582,6 +583,107 @@ void CGamePlayer::loadRival(int  usid,int  troops)
 //    parseRival((CCObject *)data);
 //#endif
 }
+void CGamePlayer::loadNpcCard(int zhang, int jie, int bu, int dijige)
+{
+    //isLoadFightTeam=0;
+    #ifdef AAAAFOROSMACHINE
+//    char data[50];
+//    sprintf(data, "%d",usid);
+//    string str=string("info={\"uid\":")+ data;
+//    sprintf(data, "%d",troops);
+//    str +=string(",\"troops\":")+data+"}";
+//    string connectData="sig=";
+//    connectData += m_strSig;
+//    connectData+="&"+str;
+//    //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+//    ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
+#else
+        char *data=new char[5];
+        parseNpcCard((CCObject *)data);
+#endif
+}
+/*
+ {
+ "code": 0,
+ "result": {
+ "npccardteam": {
+ "1": "4000001",
+ "2": "4000002",
+ "3": "4000003",
+ "4": "4000004",
+ "5": "4000005"
+ },
+ "rand_data": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+ }
+ }
+ */
+void CGamePlayer::parseNpcCard(cocos2d::CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetNpcCard");
+    char *datat=(char *)object;
+    CCLog("%s",datat);
+#ifndef AAAAFOROSMACHINE
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+#else
+    
+#endif
+     delete [] datat;
+    if(GameTools::intForKey("code",dirct)==0)
+    {
+        CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("npccardteam");
+        CCArray *vKeyArrayresult=dictresult->allKeys();
+        for (int i=0; i<vKeyArrayresult->count(); i++)
+        {
+            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+            if(cardDirector)
+            {
+                DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
+                m_hashmapMonsterCard.resize(5);
+                string teamStrType=typeid(*cardDirector->objectForKey("team")).name();
+                if(teamStrType.find("CCDictionary")!=std::string::npos)
+                {
+                    CCDictionary *cardtemp=((CCDictionary *)cardDirector->objectForKey("team"));
+                    CCArray *vKeyArraytemp=cardtemp->allKeys();
+                    for (int i=0; i<vKeyArraytemp->count(); i++)
+                    {
+                        CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
+                        CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
+                        int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
+                        int position=GameTools::intForKey("position", cardDirectorDetail);
+                        position=(position-1<0?0:position-1); //后台的数据的postion 是1开始的。
+                        CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
+                        m_hashmapMonsterCard[position]=pFightCard;
+                    }
+                }
+                else if(teamStrType.find("CCArray")!=std::string::npos)
+                {
+                    CCArray *vKeyArraytemp=(CCArray *)(cardDirector->objectForKey("team"));
+                    for (int i=0; i<vKeyArraytemp->count(); i++)
+                    {
+                        CCDictionary *cardDirectorDetail=(CCDictionary *)vKeyArraytemp->objectAtIndex(i);
+                        int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
+                        int position=GameTools::intForKey("position", cardDirectorDetail);
+                        CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
+                        m_hashmapMonsterCard[position]=pFightCard;
+                    }
+                }
+                CCArray *vKeyArraytempBBB=(CCArray *)(((CCDictionary *)dirct->objectForKey("result"))->objectForKey("random_data"));
+                std::vector<int>().swap(m_getRandom_data);
+                m_currRandRomIndex=0;
+                for (int i=0; i<vKeyArraytempBBB->count(); i++) {
+                    CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
+                    m_getRandom_data.push_back(strtemp->intValue());
+                }
+                
+            }
+        }
+        
+    }
+
+}
+
+
 
 void CGamePlayer::parseRival(CCObject *object)
 {

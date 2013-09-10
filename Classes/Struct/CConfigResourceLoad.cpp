@@ -68,6 +68,10 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
 {
     CCDictionary *directory = CCDictionary::createWithContentsOfFile(fileName);
     CCArray *vKeyArray=directory->allKeys();
+    if(!vKeyArray)
+    {
+        return false;
+    }
     for (int i=0; i<vKeyArray->count(); i++) {
         CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
         CCDictionary *cardDirector=(CCDictionary*)(directory->objectForKey(key->m_sString));

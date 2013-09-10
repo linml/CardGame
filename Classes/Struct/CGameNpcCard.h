@@ -21,8 +21,7 @@ public:
 class CGameNpcCard :public CFightCard
 {
 public:
-    
-    CGameNpcCard(CCard *card,int level);
+    CGameNpcCard(CNpcCard *card);
     ~CGameNpcCard();
 private:
     int  getAddValue(int level, int type);

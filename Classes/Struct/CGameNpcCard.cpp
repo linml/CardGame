@@ -11,17 +11,9 @@ CNpcCard::CNpcCard()
 {
     m_npcCardLevel=0;
 };
-//~CNpcCard(){};
-int CNpcCard::getCardLevel()
+CGameNpcCard::CGameNpcCard(CNpcCard *card):CFightCard(card,card->m_npcCardLevel)
 {
-    return m_npcCardLevel;
-}
-
-
-
-CGameNpcCard::CGameNpcCard(CCard *card,int level):CFightCard()
-{
-  m_iCurrLevel=level;
+  m_iCurrLevel=card->m_npcCardLevel;
   m_attack=m_iNpcAttack=card->m_icard_attack;
   m_defend=m_iNpcDefine=card->m_icard_defend;
   m_iCurrExp=m_iNpcHp=card->m_icardhp;

@@ -398,11 +398,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1028"
-         endingLineNumber = "1028"
+         startingLineNumber = "1100"
+         endingLineNumber = "1100"
          landmarkName = "CGamePlayer::mergeProps(map&lt;int, int&gt; &amp;tmpProps, map&lt;int, int&gt; &amp;inAddProps)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -437,11 +437,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "852"
-         endingLineNumber = "852"
+         startingLineNumber = "924"
+         endingLineNumber = "924"
          landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -450,11 +450,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "867"
-         endingLineNumber = "867"
+         startingLineNumber = "939"
+         endingLineNumber = "939"
          landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -463,11 +463,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "857"
-         endingLineNumber = "857"
+         startingLineNumber = "929"
+         endingLineNumber = "929"
          landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -476,11 +476,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "975"
-         endingLineNumber = "975"
+         startingLineNumber = "1047"
+         endingLineNumber = "1047"
          landmarkName = "CGamePlayer::isCanAddToBackPack(map&lt;int, int&gt; &amp;tmpProps, map&lt;int, int&gt;&amp; inAddProps, int inUserGridCount)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -489,11 +489,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "862"
-         endingLineNumber = "862"
+         startingLineNumber = "934"
+         endingLineNumber = "934"
          landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -502,11 +502,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "859"
-         endingLineNumber = "859"
+         startingLineNumber = "931"
+         endingLineNumber = "931"
          landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -515,11 +515,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "879"
-         endingLineNumber = "879"
+         startingLineNumber = "951"
+         endingLineNumber = "951"
          landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1085,22 +1085,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "883"
-         endingLineNumber = "883">
+         startingLineNumber = "955"
+         endingLineNumber = "955">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "891"
-         endingLineNumber = "891"
+         startingLineNumber = "963"
+         endingLineNumber = "963"
          landmarkName = "CGamePlayer::updateProps()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1120,11 +1120,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "499"
-         endingLineNumber = "499"
+         startingLineNumber = "502"
+         endingLineNumber = "502"
          landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1133,11 +1133,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "528"
-         endingLineNumber = "528"
+         startingLineNumber = "531"
+         endingLineNumber = "531"
          landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1146,11 +1146,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "509"
-         endingLineNumber = "509"
+         startingLineNumber = "512"
+         endingLineNumber = "512"
          landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
          landmarkType = "5">
       </FileBreakpoint>
@@ -1465,11 +1465,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "../../Classes/Struct/gamePlayer.cpp"
-         timestampString = "400490481.764041"
+         timestampString = "400492075.634475"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "904"
-         endingLineNumber = "904">
+         startingLineNumber = "976"
+         endingLineNumber = "976">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
