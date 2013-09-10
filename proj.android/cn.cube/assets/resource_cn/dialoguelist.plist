@@ -9,7 +9,7 @@
 		<key>plan</key>
 		<string>1</string>
 		<key>word</key>
-		<string>TVB剧情好好看啊</string>
+		<string>210001</string>
 		<key>pic</key>
 		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
@@ -24,7 +24,7 @@
 		<key>plan</key>
 		<string>2</string>
 		<key>word</key>
-		<string>你个蠢材</string>
+		<string>210002</string>
 		<key>pic</key>
 		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
@@ -39,7 +39,7 @@
 		<key>plan</key>
 		<string>3</string>
 		<key>word</key>
-		<string>屁股向后平沙落雁</string>
+		<string>210003</string>
 		<key>pic</key>
 		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
@@ -54,7 +54,7 @@
 		<key>plan</key>
 		<string>4</string>
 		<key>word</key>
-		<string>！！！！</string>
+		<string>210004</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
@@ -69,7 +69,7 @@
 		<key>plan</key>
 		<string>5</string>
 		<key>word</key>
-		<string>我去年买了个包2</string>
+		<string>210005</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
@@ -84,7 +84,7 @@
 		<key>plan</key>
 		<string>6</string>
 		<key>word</key>
-		<string>我去年买了个包3</string>
+		<string>210006</string>
 		<key>pic</key>
 		<string>fighting/card_role_000.png</string>
 		<key>soundeffects</key>
@@ -99,7 +99,7 @@
 		<key>plan</key>
 		<string>7</string>
 		<key>word</key>
-		<string>我去年买了个包4</string>
+		<string>210004</string>
 		<key>pic</key>
 		<string>fighting/card_role_008.png</string>
 		<key>soundeffects</key>
@@ -114,7 +114,7 @@
 		<key>plan</key>
 		<string>8</string>
 		<key>word</key>
-		<string>我去年买了个包5</string>
+		<string>210005</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
@@ -129,7 +129,7 @@
 		<key>plan</key>
 		<string>9</string>
 		<key>word</key>
-		<string>我去年买了个包6</string>
+		<string>210001</string>
 		<key>pic</key>
 		<string>fighting/card_role_008.png</string>
 		<key>soundeffects</key>
@@ -144,7 +144,7 @@
 		<key>plan</key>
 		<string>1</string>
 		<key>word</key>
-		<string>我去年买了个包7</string>
+		<string>210002</string>
 		<key>pic</key>
 		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
@@ -159,7 +159,7 @@
 		<key>plan</key>
 		<string>2</string>
 		<key>word</key>
-		<string>我去年买了个包8</string>
+		<string>210004</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
@@ -174,7 +174,7 @@
 		<key>plan</key>
 		<string>3</string>
 		<key>word</key>
-		<string>我去年买了个包9</string>
+		<string>210003</string>
 		<key>pic</key>
 		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
@@ -189,7 +189,7 @@
 		<key>plan</key>
 		<string>4</string>
 		<key>word</key>
-		<string>我去年买了个包10</string>
+		<string>210001</string>
 		<key>pic</key>
 		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
@@ -204,7 +204,7 @@
 		<key>plan</key>
 		<string>5</string>
 		<key>word</key>
-		<string>我去年买了个包11</string>
+		<string>210005</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
@@ -219,7 +219,7 @@
 		<key>plan</key>
 		<string>6</string>
 		<key>word</key>
-		<string>我去年买了个包12</string>
+		<string>210006</string>
 		<key>pic</key>
 		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
@@ -234,7 +234,7 @@
 		<key>plan</key>
 		<string>7</string>
 		<key>word</key>
-		<string>我去年买了个包13</string>
+		<string>210004</string>
 		<key>pic</key>
 		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
@@ -249,7 +249,7 @@
 		<key>plan</key>
 		<string>8</string>
 		<key>word</key>
-		<string>我去年买了个包14</string>
+		<string>210003</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
@@ -264,7 +264,7 @@
 		<key>plan</key>
 		<string>9</string>
 		<key>word</key>
-		<string>我去年买了个包15</string>
+		<string>210002</string>
 		<key>pic</key>
 		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
@@ -279,7 +279,7 @@
 		<key>plan</key>
 		<string>1</string>
 		<key>word</key>
-		<string>我去年买了个包16</string>
+		<string>210001</string>
 		<key>pic</key>
 		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
@@ -294,7 +294,7 @@
 		<key>plan</key>
 		<string>2</string>
 		<key>word</key>
-		<string>我去年买了个包17</string>
+		<string>210002</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
@@ -309,7 +309,7 @@
 		<key>plan</key>
 		<string>3</string>
 		<key>word</key>
-		<string>我去年买了个包18</string>
+		<string>210001</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>
@@ -324,7 +324,7 @@
 		<key>plan</key>
 		<string>4</string>
 		<key>word</key>
-		<string>我去年买了个包19</string>
+		<string>210003</string>
 		<key>pic</key>
 		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
@@ -339,7 +339,7 @@
 		<key>plan</key>
 		<string>5</string>
 		<key>word</key>
-		<string>我去年买了个包20</string>
+		<string>210005</string>
 		<key>pic</key>
 		<string>fighting/card_role_001.png</string>
 		<key>soundeffects</key>
@@ -354,7 +354,7 @@
 		<key>plan</key>
 		<string>6</string>
 		<key>word</key>
-		<string>我去年买了个包21</string>
+		<string>210003</string>
 		<key>pic</key>
 		<string>fighting/card_role_002.png</string>
 		<key>soundeffects</key>
@@ -369,7 +369,7 @@
 		<key>plan</key>
 		<string>7</string>
 		<key>word</key>
-		<string>我去年买了个包22</string>
+		<string>210002</string>
 		<key>pic</key>
 		<string>fighting/card_role_003.png</string>
 		<key>soundeffects</key>

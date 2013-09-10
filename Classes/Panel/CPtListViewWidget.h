@@ -58,6 +58,7 @@ protected:
     void afterDraw();
     void setInitState();
     CC_SYNTHESIZE(bool, m_bDelayMode, DelayMode);
+    CC_SYNTHESIZE(bool, m_bItemHanlerTouch, ItemHandlerTouchEnable);
     
 
 };
@@ -76,8 +77,9 @@ public:
     void setPaddingWidth(float paddWidth);
     void setPaddingHeight(float paddingHeight);
     void setChipEnable(bool inChipEnable){ ((TableView*) m_pTableView)->setChip(inChipEnable);};
+    void setItemHandlerEnable(bool inEnable){((TableView*)m_pTableView)->setItemHandlerTouchEnable(inEnable);};
+    void setTableItemTouchDelegate(CCTableViewDelegate * inItemTouchDelegate){ m_pTableView->setDelegate(inItemTouchDelegate);};
     CCTableView * getTableView(){ return m_pTableView;};
-
     void reload();
 public:
     virtual bool init(CCArray *items, CCSize containerSize,CCScrollViewDirection direction = kCCScrollViewDirectionVertical,  CCSize PaddingSize = CCSizeMake(5, 2.5), int inColumCount = 1);

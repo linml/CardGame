@@ -8,6 +8,7 @@ static bool isMove(CCTouch *pTouch);
 
 TableView::TableView()
 {
+    m_bItemHanlerTouch = true;
     m_bBegan = false;
     m_bDecide = false;
     m_bScroll = false;
@@ -224,10 +225,13 @@ bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
    // m_bCanScroll
     CCSize size=  getViewSize();
     CCSize size2 = getContentSize();
-    CCLog("size :%f, %f", size.width, size.height);
-    CCLog("size2: %f, %f", size2.width, size2.height);
+   
     m_bCanScroll = size2.height > size.height ;
     
+    if (m_bItemHanlerTouch == false)
+    {
+        return CCTableView::ccTouchBegan(pTouch, pEvent);
+    }
     
     if (m_bDelayMode)
     {
@@ -259,7 +263,7 @@ bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         if (m_pSelectItem)
         {
             CCTouchDelegate *touchDelegate = dynamic_cast<CCTouchDelegate*>(m_pSelectItem) ;
-            if (touchDelegate)
+            if (touchDelegate != NULL)
             {
                 m_bTouchDragSelect = touchDelegate->ccTouchBegan(pTouch, pEvent);
             }
@@ -274,6 +278,11 @@ bool TableView::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 }
 void TableView::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (m_bItemHanlerTouch == false)
+    {
+        return CCTableView::ccTouchMoved(pTouch, pEvent);
+    }
+    
     if (m_bDelayMode)
     {
         return  ccTouchDelayMove(pTouch, pEvent);
@@ -313,6 +322,12 @@ void TableView::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 
 void TableView::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
+
+    if (m_bItemHanlerTouch == false)
+    {
+      return   CCTableView::ccTouchEnded(pTouch, pEvent);
+    }
+    
     if (m_bDelayMode)
     {
         return  ccTouchDelayEnd(pTouch, pEvent);

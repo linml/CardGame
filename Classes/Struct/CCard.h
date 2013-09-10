@@ -24,6 +24,8 @@ class CCard
 {
 public:
     CCard();
+    virtual int getCardLevel(){};
+    virtual ~CCard(){};
     int m_icard_id;
     string m_scard_name;
     int  m_ccard_next;  ///next id
@@ -47,8 +49,8 @@ public:
     string m_scard_head;  //头像
     string m_scard_ground; //
     string m_scard_role;
-    
 };
+
 //FIGHTING CARD
 class  CFightCard
 {
@@ -56,7 +58,7 @@ public:
     CFightCard();
     CFightCard(CCard *card,int level=1);
     
-    ~CFightCard();
+   virtual  ~CFightCard();
 private:
     void init();
 public:
@@ -64,7 +66,7 @@ public:
     void updateFight(CCard *card, int level =1);
     void updateCard(int level);
     
-    int  getAddValue(int level, int type);
+    virtual int  getAddValue(int level, int type); //如果是怪物信息的话 这边调用的方式是不一样的 直接返回子类的
     int  getNeedValue(int level, int type);
     int  getSupportValue(int type);
     int  getCostConin();

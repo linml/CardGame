@@ -19,12 +19,36 @@
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
 
-CCScene* CHallScene::scene()
+
+
+/*
+ * @param pType: 1: create hall with biforest layer:
+ */
+
+CCScene *CHallScene::scene(int pType)
 {
-    CCScene *scene = CCScene::create();
-    CHallScene *layer = CHallScene::create();
-    scene->addChild(layer);
-    return scene;
+  
+        CCScene *scene = CCScene::create();
+        CHallScene *layer = CHallScene::create(pType);
+        scene->addChild(layer);
+        return scene;
+    
+}
+
+CHallScene * CHallScene::create(int pType)
+{
+    CHallScene *pRet = new CHallScene();
+    if (pRet && pRet->init(pType))
+    {
+        pRet->autorelease();
+        return pRet;
+    }
+    else
+    {
+        CC_SAFE_DELETE(pRet);
+        return NULL;
+    }
+
 }
 
 CHallScene::CHallScene()
@@ -44,12 +68,12 @@ CHallScene::~CHallScene()
 }
 
 
-bool CHallScene::init()
+bool CHallScene::init(int inType)
 {
     bool bRet = false;
     do {
         CC_BREAK_IF(!CCLayer::init());
-        CC_BREAK_IF(!initHall());
+        CC_BREAK_IF(!initHall(inType));
         createEmailNumberUnread();
         bRet = true;
     } while (0);
@@ -167,8 +191,8 @@ void CHallScene::showBackBag()
     addChild(layer, 1000);
     CCLog("backpack...");
 }
-// protectd methdo:
-bool CHallScene::initHall()
+// protectd method:
+bool CHallScene::initHall(int inType)
 {
     bool bRet = false;
     
@@ -329,7 +353,10 @@ bool CHallScene::initHall()
         
         CAsgardLayer *asgard = CAsgardLayer::create();
         this->addChild(asgard, 200);
-        
+        if (inType == 1)
+        {
+            asgard->createBiforestLayer();
+        }
         
         
         

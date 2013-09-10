@@ -130,24 +130,24 @@ void FightResultConfirm::initFightResultConfirm()
 
 void FightResultConfirm::handlerTouch()
 {
-    CCLog("FightResultConfirm:%d, %d",  m_nTouchTag, m_nResult);
-    if (m_nTouchTag == 2001)
-    {
-        if (g_nLevle == 9 && m_nResult == 1)
-        {
-            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
-            g_nLevle = 0;
-
-            
-        }else
-        {
-            if (m_nResult == 1)
-            {
-                g_nLevle++;
-            }
-              SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
-        }
-        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-    }
+//    CCLog("FightResultConfirm:%d, %d",  m_nTouchTag, m_nResult);
+//    if (m_nTouchTag == 2001)
+//    {
+//        if (g_nLevle == 9 && m_nResult == 1)
+//        {
+//            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+//            g_nLevle = 0;
+//
+//            
+//        }else
+//        {
+//            if (m_nResult == 1)
+//            {
+//                g_nLevle++;
+//            }
+//              SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
+//        }
+//        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+//    }
   }
 

@@ -58,6 +58,8 @@ void CPtHttpClient::addRequest(stcRequestInf tInf)
 {
     printf("addRequest %s\n",tInf.m_pchTag);
     m_qRequestInf.push(tInf);
+    //
+    CCLog("the queue: size: %d", getRequestQueueSize());
     if(!m_bIsSending)
     {
         send(m_qRequestInf.front());
@@ -117,9 +119,12 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
 void CPtHttpClient::notificationMsgRecevice(CCObject* obj)
 {
 //    PtJsonUtility::JsonStringParse((char*)obj);
+    CCLog("the queue size: %d", m_qRequestInf.size());
     stcRequestInf inf = m_qRequestInf.front();
     CCNotificationCenter::sharedNotificationCenter()->postNotification(inf.m_pSelector, (CCObject*)obj);
+    CCLog("the queue size: %d", m_qRequestInf.size());
     m_qRequestInf.pop();
+    CCLog("the queue size: %d", m_qRequestInf.size());
     if(!m_qRequestInf.empty())
     {
         send(m_qRequestInf.front());

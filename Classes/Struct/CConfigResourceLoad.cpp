@@ -12,11 +12,10 @@
 #include "gameTools.h"
 #include "CGamePlayerStruct.h"
 #include "CSkillData.h"
+#include "CGameNpcCard.h"
 
 bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const char *cardFileName)
 {
-    
-    
     CCDictionary *directory = CCDictionary::createWithContentsOfFile(cardFileName);
     CCArray *vKeyArray=directory->allKeys();
     for (int i=0; i<vKeyArray->count(); i++) {
@@ -32,7 +31,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_icard_leadership=GameTools::intForKey("card_leadership", cardDirector);
         card->m_icard_exp=GameTools::intForKey("card_exp", cardDirector);    //吃掉该卡牌的 经验
         card->m_icard_price=GameTools::intForKey("card_price", cardDirector);  //卖掉该卡佩的 价格
-      //  card->m_ileve_max=GameTools::intForKey("card_leve_max", cardDirector);   //等级最高级别
+        //  card->m_ileve_max=GameTools::intForKey("card_leve_max", cardDirector);   //等级最高级别
         card->m_icard_attack=GameTools::intForKey("card_attack", cardDirector); //攻击力
         card->m_icard_defend=GameTools::intForKey("card_defend", cardDirector); //防御力
         card->m_icardhp=GameTools::intForKey("card_hp",cardDirector);// 卡牌的总的HP
@@ -61,7 +60,55 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         return true;
     }
     return false;
+    
+    
 }
+
+bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, const char *fileName)
+{
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile(fileName);
+    CCArray *vKeyArray=directory->allKeys();
+    for (int i=0; i<vKeyArray->count(); i++) {
+        CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
+        CCDictionary *cardDirector=(CCDictionary*)(directory->objectForKey(key->m_sString));
+        CCard *card=new CNpcCard();
+        card->m_icard_id=GameTools::intForKey("npc_id", cardDirector);
+        card->m_scard_name=string(GameTools::valueForKey("name", cardDirector));
+        card->m_ccard_next=GameTools::intForKey("card_next", cardDirector);  ///背景底色
+        card->m_sicard_star=GameTools::intForKey("star", cardDirector);
+        card->m_icard_stirps=GameTools::intForKey("stirps", cardDirector);   //种族
+        card->m_icard_suit=GameTools::intForKey("suit", cardDirector);      //随机数值
+        card->m_icard_attack=GameTools::intForKey("attack", cardDirector); //攻击力
+        card->m_icard_defend=GameTools::intForKey("defend", cardDirector); //防御力
+        card->m_icardhp=GameTools::intForKey("hp",cardDirector);// 卡牌的总的HP
+        card->m_iusually_attack=GameTools::intForKey("usually_attack", cardDirector);
+        card->m_iskillLine=GameTools::intForKey("skill_energy", cardDirector);
+        card->m_iskillHelp=GameTools::intForKey("skill_help", cardDirector);
+        card->m_iskillDead=GameTools::intForKey("skill_dead", cardDirector);
+        card->m_iskillBuff=GameTools::intForKey("skill_buff", cardDirector);
+        card->m_scard_tips=GameTools::valueForKey("card_tips", cardDirector);
+        card->m_scard_resources=GameTools::valueForKey("card_resources", cardDirector);
+        card->m_scard_head=GameTools::valueForKey("card_head", cardDirector);
+        card->m_scard_ground=GameTools::valueForKey("card_ground", cardDirector);
+        card->m_scard_role="card_role_"+card->m_scard_resources+".png";
+        card->m_scard_resources="peo"+card->m_scard_resources+".png";
+        ((CNpcCard *)card)->m_npcCardLevel=GameTools::intForKey("level",cardDirector);
+        int index = card->m_sicard_star -1;
+        index = abs(index) > 7 ? 7: abs(index);
+        card->m_ileve_max = g_aMaxLevel[index];
+        hashMapNpcCardAll[key->intValue()]=card;
+    }
+    cout<<"card plist size ="<<hashMapNpcCardAll.size()<<endl;
+    if(hashMapNpcCardAll.size()>0)
+    {
+        return true;
+    }
+    return false;
+}
+
+
+
+
 bool CConfigResourceLoad::loadPlayerLevelInfo(vector<SLevelPlayer *> *vPlayerLevel, const char *playerFileName)
 {
     

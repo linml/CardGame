@@ -620,13 +620,13 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
 void CGameEmailTableView::decodeSingleRecvEmail(char *object)
 {
     CCLog("%x",object);
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "MERLINEMAILSTATUS123");
     isSendPostGetData=false;
     CCLog("recvBockHttpCallBack");
     if(!object)
     {
         return;
     }
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "MERLINEMAILSTATUS123");
     char *strdata=(char *)object;
     CCLog("%s",strdata);
     CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
@@ -767,6 +767,7 @@ void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
     decodeRecvBackStr((char *)object);
     G_GAMESINGEMAIL::instance()->writeToFile();
     m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
+    
 }
 
 void CGameEmailTableView::runDialogAction()

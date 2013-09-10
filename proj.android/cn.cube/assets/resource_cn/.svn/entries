@@ -1,15 +1,15 @@
 10
 
 dir
-1146
+1278
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-02T05:05:55.056924Z
-1144
-phileas
+2013-09-10T02:15:56.059238Z
+1269
+merlin
 has-props
 
 
@@ -25,6 +25,74 @@ has-props
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+dialoguelist.plist
+file
+
+
+
+
+2013-09-10T02:05:39.000000Z
+393b6b43a85c69c62e74217b1480f4bc
+2013-09-10T02:15:56.059238Z
+1269
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8120
+
+task_config.plist
+file
+
+
+
+
+2013-09-10T01:40:02.000000Z
+ddab26d29acfbb41a464b375e0494bae
+2013-09-09T08:39:42.883427Z
+1257
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+887
 
 meiyouyongskill_config.plist
 file
@@ -94,6 +162,333 @@ phileas
 
 71035
 
+chapter
+dir
+
+card_config.plist
+file
+
+
+
+
+2013-08-14T06:48:41.000000Z
+1e89d38dd472cca6cc09a08026282263
+2013-08-14T02:35:26.476882Z
+968
+phileas
+
+
+
+
+
+card_config.plist.r853
+card_config.plist.r862
+card_config.plist.mine
+
+
+
+
+
+
+
+
+
+
+
+
+
+122645
+
+sound
+dir
+
+plist
+dir
+
+cardteam.txt
+file
+
+
+
+
+2013-08-06T09:56:37.000000Z
+997c4d7de1dafcb412e49a0be597ec53
+2013-08-06T10:10:36.375682Z
+865
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+732
+
+cardbg.txt
+file
+
+
+
+
+2013-08-06T09:57:29.000000Z
+0377610e3f8a111ca1716b421d1a26d1
+2013-08-06T10:10:36.375682Z
+865
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4369
+
+uiScript
+dir
+
+shoushang_l.plist
+file
+
+
+
+
+2013-08-13T07:35:17.000000Z
+692cfca7cc64af9cb3466013eeea0cd7
+2013-08-13T09:32:24.972476Z
+962
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+596
+
+team.txt
+file
+
+
+
+
+2013-08-06T09:58:42.000000Z
+4270c17d409b0e917da2d453bd4aa1af
+2013-08-06T10:10:36.375682Z
+865
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+513
+
+skill_effect_config.plist
+file
+
+
+
+
+2013-08-22T00:53:12.000000Z
+d319a3d7d35764221f5ea7754657cc66
+2013-08-22T00:55:44.892135Z
+1028
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+39479
+
+shoushang_r.plist
+file
+
+
+
+
+2013-08-13T07:34:34.000000Z
+74ebc518a9154e365b6c7ad857f4a615
+2013-08-13T09:32:24.972476Z
+962
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+596
+
+word
+dir
+
+card_star_level_up_config.plist
+file
+
+
+
+
+2013-08-06T09:58:51.000000Z
+47b54a9df91c3196433901b5a57c4bc9
+2013-08-02T08:54:15.280686Z
+855
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5320
+
+img
+dir
+
+map
+dir
+
+item_config.plist
+file
+
+
+
+
+2013-09-02T07:09:54.000000Z
+b7859a365e3994ff1ee672a48aa3f342
+2013-09-02T05:05:55.056924Z
+1144
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+9374
+
 100000_l.plist
 file
 
@@ -161,43 +556,6 @@ merlin
 
 
 36202
-
-card_config.plist
-file
-
-
-
-
-2013-08-14T06:48:41.000000Z
-1e89d38dd472cca6cc09a08026282263
-2013-08-14T02:35:26.476882Z
-968
-phileas
-
-
-
-
-
-card_config.plist.r853
-card_config.plist.r862
-card_config.plist.mine
-
-
-
-
-
-
-
-
-
-
-
-
-
-122645
-
-sound
-dir
 
 100004_l.plist
 file
@@ -267,9 +625,6 @@ merlin
 
 1643
 
-plist
-dir
-
 skill_config.plist
 file
 
@@ -304,17 +659,17 @@ phileas
 
 22000
 
-cardteam.txt
+trigger.plist
 file
 
 
 
 
-2013-08-06T09:56:37.000000Z
-997c4d7de1dafcb412e49a0be597ec53
-2013-08-06T10:10:36.375682Z
-865
-merlin
+2013-09-10T01:40:02.000000Z
+ff1f462ba52e9d0514add23a4c249a32
+2013-09-10T01:34:11.879633Z
+1265
+phileas
 
 
 
@@ -336,7 +691,7 @@ merlin
 
 
 
-732
+657
 
 100004_r.plist
 file
@@ -406,113 +761,8 @@ merlin
 
 1474
 
-cardbg.txt
-file
-
-
-
-
-2013-08-06T09:57:29.000000Z
-0377610e3f8a111ca1716b421d1a26d1
-2013-08-06T10:10:36.375682Z
-865
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4369
-
-uiScript
-dir
-
 particle
 dir
-
-team.txt
-file
-
-
-
-
-2013-08-06T09:58:42.000000Z
-4270c17d409b0e917da2d453bd4aa1af
-2013-08-06T10:10:36.375682Z
-865
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-513
-
-shoushang_l.plist
-file
-
-
-
-
-2013-08-13T07:35:17.000000Z
-692cfca7cc64af9cb3466013eeea0cd7
-2013-08-13T09:32:24.972476Z
-962
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-596
 
 boss_icon_Effect_r.plist
 file
@@ -548,45 +798,11 @@ merlin
 
 1546
 
-font
-dir
-
 sprite
 dir
 
-skill_effect_config.plist
-file
-
-
-
-
-2013-08-22T00:53:12.000000Z
-d319a3d7d35764221f5ea7754657cc66
-2013-08-22T00:55:44.892135Z
-1028
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-39479
+font
+dir
 
 bufferfire.plist
 file
@@ -622,16 +838,16 @@ merlin
 
 649
 
-shoushang_r.plist
+story.plist
 file
 
 
 
 
-2013-08-13T07:34:34.000000Z
-74ebc518a9154e365b6c7ad857f4a615
-2013-08-13T09:32:24.972476Z
-962
+2013-09-09T09:59:21.000000Z
+bb8f7bfc650e688134190dc29c58a973
+2013-09-10T02:15:56.059238Z
+1269
 merlin
 
 
@@ -654,84 +870,7 @@ merlin
 
 
 
-596
-
-word
-dir
-
-img
-dir
-
-card_star_level_up_config.plist
-file
-
-
-
-
-2013-08-06T09:58:51.000000Z
-47b54a9df91c3196433901b5a57c4bc9
-2013-08-02T08:54:15.280686Z
-855
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-5320
-
-item_config.plist
-file
-
-
-
-
-2013-09-02T07:09:54.000000Z
-b7859a365e3994ff1ee672a48aa3f342
-2013-09-02T05:05:55.056924Z
-1144
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9374
-
-map
-dir
+1812
 
 action
 dir

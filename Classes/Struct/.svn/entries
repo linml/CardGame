@@ -1,14 +1,14 @@
 10
 
 dir
-1234
+1278
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-06T06:26:22.076946Z
-1221
+2013-09-10T02:33:01.399948Z
+1271
 phileas
 has-props
 
@@ -198,6 +198,13 @@ phileas
 
 
 4115
+
+CGameNpcCard.cpp
+file
+0
+
+
+add
 
 SGamePlayerData.h
 file
@@ -610,16 +617,16 @@ merlin
 
 1392
 
-gamePlayer.h
+CTaskConfigData.h
 file
 
 
 
 
-2013-09-05T08:24:14.000000Z
-b4ea21404e842f2ddc800f962af5bedc
-2013-09-04T09:19:08.218429Z
-1181
+2013-09-10T02:07:32.000000Z
+6bad755c66c58e31262320820e531709
+2013-09-09T10:16:04.466842Z
+1262
 phileas
 
 
@@ -642,7 +649,75 @@ phileas
 
 
 
-5979
+2223
+
+gamePlayer.h
+file
+
+
+
+
+2013-09-10T02:07:32.000000Z
+6831d2f0c68faf5ae113183c0119d53e
+2013-09-09T10:16:04.466842Z
+1262
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6735
+
+CTriggerConfigData.h
+file
+
+
+
+
+2013-09-10T05:47:56.000000Z
+fbdb0ea2c1cce043f6a966db6de6dae1
+2013-09-10T02:33:01.399948Z
+1271
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+985
 
 CPtLevelConfigData.cpp
 file
@@ -984,16 +1059,23 @@ merlin
 
 414
 
+CGameNpcCard.h
+file
+0
+
+
+add
+
 CGameTalkDialog.h
 file
 
 
 
 
-2013-09-04T08:47:48.000000Z
-b227289ef5d57e122ad390ece92fd45a
-2013-09-05T08:58:06.112148Z
-1201
+2013-09-10T01:28:03.000000Z
+faf786e50571cb9aaeea0d4f2b81a6d0
+2013-09-10T02:07:59.532531Z
+1268
 merlin
 
 
@@ -1016,7 +1098,7 @@ merlin
 
 
 
-841
+922
 
 CGameStory.cpp
 file
@@ -1092,11 +1174,11 @@ file
 
 
 
-2013-09-05T08:24:14.000000Z
-b514ede36118d34fc53fad60434dc92b
-2013-09-05T07:59:22.043248Z
-1193
-wood
+2013-09-06T07:23:27.000000Z
+71e1d48c234e94e165a9760cf12513a0
+2013-09-09T06:40:31.026381Z
+1249
+merlin
 
 
 
@@ -1118,7 +1200,7 @@ wood
 
 
 
-14658
+14664
 
 CCard.h
 file
@@ -1126,11 +1208,11 @@ file
 
 
 
-2013-08-30T10:04:01.000000Z
-f6e1457216dcbe1b8fccc06a618ecea5
-2013-08-30T06:24:28.358043Z
-1121
-wood
+2013-09-09T02:23:51.000000Z
+07a09a53241c1cb90e0a666bd4a5bdd9
+2013-09-09T06:40:31.026381Z
+1249
+merlin
 
 
 
@@ -1152,7 +1234,7 @@ wood
 
 
 
-3448
+3545
 
 CGameErrorConfig.h
 file
@@ -1228,10 +1310,10 @@ file
 
 
 
-2013-08-27T01:11:42.000000Z
-0fbc34b34b1dc652cb827d43dd2fe9b2
-2013-08-26T09:27:09.735541Z
-1049
+2013-09-10T02:07:32.000000Z
+930ce503916fc44df2249bf55baf1d71
+2013-09-09T10:16:04.466842Z
+1262
 phileas
 
 
@@ -1254,7 +1336,7 @@ phileas
 
 
 
-1030
+1225
 
 CConfigResourceLoad.h
 file
@@ -1290,17 +1372,107 @@ merlin
 
 912
 
+CTaskConfigData.cpp
+file
+
+
+
+
+2013-09-10T02:07:32.000000Z
+fc84060857cce07f0c2095e2e154a033
+2013-09-09T10:16:04.466842Z
+1262
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4805
+
 gamePlayer.cpp
 file
 
 
 
 
-
-ac7feffb663b3cb66873e7d24b0a0886
-2013-09-06T06:20:55.978683Z
-1220
+2013-09-10T02:07:32.000000Z
+3575e7ba2046b41de32a98707ec07832
+2013-09-09T10:16:04.466842Z
+1262
 phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+39291
+
+CTriggerConfigData.cpp
+file
+
+
+
+
+2013-09-10T05:47:56.000000Z
+e6a9d8504442b61a07d2ddf4321aac21
+2013-09-10T02:33:01.399948Z
+1271
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2292
 
 CAnimationSpriteGameFight.h
 file

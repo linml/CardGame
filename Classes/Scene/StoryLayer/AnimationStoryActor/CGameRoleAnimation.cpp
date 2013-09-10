@@ -123,17 +123,24 @@ void CGameRoleAnimation::startDealAction(CCAction *action, float startLableValue
     string str=CSTR_FILEPTAH(g_mapImagesPath,m_pGameDialog->getGameTalkDialogPng().c_str());
     CCLog("%s",str.c_str());
     CCSprite *sprite=(CCSprite *)m_Player->getChildByTag(100);
+    CCPoint postion=sprite->getPosition();
+    CCPoint anpoint=sprite->getAnchorPoint();
+    int zordr=sprite->getZOrder();
     CCTextureCache::sharedTextureCache()->removeTexture(sprite->getTexture());
-    sprite->setTexture(CCTextureCache::sharedTextureCache()->addImage(str.c_str()));
-    sprite->setVisible(true);
+    m_Player->removeChild(sprite, true);
+    CCSprite *spritenew=CCSprite::createWithTexture(CCTextureCache::sharedTextureCache()->addImage(str.c_str()));
+    m_Player->addChild(spritenew,zordr,100);
+    spritenew->setPosition(postion);
+    spritenew->setAnchorPoint(anpoint);                                                    
+    spritenew->setVisible(true);
     if (isLeft) {
-        sprite->setPosition(ccp(0,500));
+        spritenew->setPosition(ccp(0,500));
     }
     else{
-        sprite->setPosition(ccp(wndSize.width,500));
+        spritenew->setPosition(ccp(wndSize.width,500));
     }
     
-    sprite->runAction(action);
+    spritenew->runAction(action);
     CCLabelTTF *labelttf=(CCLabelTTF *)(m_Player->getChildByTag(101)->getChildByTag(102));
     labelttf->setString(m_pGameDialog->getGameTalkDialogWord().c_str());
     CCLayerColor *layerColor=(CCLayerColor *)(m_Player->getChildByTag(101));
@@ -142,16 +149,24 @@ void CGameRoleAnimation::startDealAction(CCAction *action, float startLableValue
         layerColor->setPosition(ccp(280,500));
     }
     else{
-        layerColor->setPosition(ccp(420,500));
+        layerColor->setPosition(ccp(600,500));
     }
-    layerColor->runAction(CCSequence::create(CCDelayTime::create(startLableValue),CCShow::create(),CCFadeTo::create(0.2, 125),CCCallFunc::create(this, callfunc_selector(CGameRoleAnimation::showEnd)),NULL));
+    layerColor->runAction(CCSequence::create(CCDelayTime::create(startLableValue),CCShow::create(),CCFadeTo::create(0.2, 125),CCCallFunc::create(this,callfunc_selector(CGameRoleAnimation::callbackShowTouchIcon)),CCCallFunc::create(this, callfunc_selector(CGameRoleAnimation::showEnd)),NULL));
 }
 
 void CGameRoleAnimation::disappearDialog()
 {
     m_Player->getChildByTag(100)->runAction(CCFadeOut::create(0.2));
-    m_Player->getChildByTag(101)->runAction(CCSequence::create(CCFadeOut::create(0.2),CCCallFunc::create(this, callfunc_selector(CGameRoleAnimation::moveDialogToUpEnd) ),NULL));
+    m_Player->getChildByTag(101)->getChildByTag(103)->setVisible(false);
+    m_Player->getChildByTag(101)->runAction(CCSequence::create(CCFadeOut::create(0.2),CCCallFunc::create(this, callfunc_selector(CGameRoleAnimation::moveDialogToUpEnd)),NULL));
+    
 }
+
+void CGameRoleAnimation::callbackShowTouchIcon()
+{
+    m_Player->getChildByTag(101)->getChildByTag(103)->setVisible(true);
+}
+
 void CGameRoleAnimation::moveDialogToUpEnd()
 {
     dealAnimation();
@@ -161,7 +176,6 @@ void CGameRoleAnimation::moveDialogToUpEnd()
 
 void CGameRoleAnimation::showEnd(CCObject *object)
 {
-    
     ((CGameStoryLayer *)m_Player)->setCaneTouch();
 }
 

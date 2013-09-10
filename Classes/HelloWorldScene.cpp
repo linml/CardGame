@@ -93,7 +93,7 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
 
-  //  test(this);
+   // test(this);
     // add "HelloWorld" splash screen"
 
  //   CCSprite* pSprite = CCSprite::create("resource_cn/img/HelloWorld.png");
@@ -129,8 +129,10 @@ bool HelloWorld::init()
 //    removeChildByTag(<#int tag#>, <#bool cleanup#>)
 //    testBufferPng(this);
 //    this->getCamera()->setEyeXYZ(-60, 0,100);
-    
-    CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(30005,this);
+    CCSprite *sprite=CCSprite::create("resource_cn/img/hall.png");
+    addChild(sprite,0,200);
+    sprite->setPosition(ccp(size.width*0.5,size.height*0.5));
+   CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(30005,this);
     return true;
 }
 
@@ -145,6 +147,7 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 }
 
 PropItem item;
+#include "Biforest.h"
 void test(CCNode *pSender)
 {
     
@@ -154,9 +157,10 @@ void test(CCNode *pSender)
    // pSender->addChild(layer);
   // CPtDialog * dialog = CPtDialog::create();
     
-    item.propId = 100001;
-    item.propCount = 20;
-    CDeletePropLayer * layer = CDeletePropLayer::create(&item);
+//    item.propId = 100001;
+//    item.propCount = 20;
+//    CDeletePropLayer * layer = CDeletePropLayer::create(&item);
+    CBiforestLayer *layer = CBiforestLayer::create();
     pSender->addChild(layer);
 
 }

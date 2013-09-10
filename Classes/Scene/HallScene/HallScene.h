@@ -23,15 +23,15 @@ USING_NS_CC;
 class CHallScene : public CCLayer {
     
 public:
-    static CCScene* scene();
-    CREATE_FUNC(CHallScene);
+    static CCScene *scene(int pType = 0);
+    static CHallScene *create(int pType = 0);
 
 public:
     CHallScene();
     ~CHallScene();
 
 public:
-    virtual bool init();
+    virtual bool init(int inType = 0);
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
@@ -41,7 +41,7 @@ public:
     
     
 protected:
-    bool initHall();
+    bool initHall(int inType = 0);
     void handlerTouch();
     void createEmailLayer();
     void showBackBag();

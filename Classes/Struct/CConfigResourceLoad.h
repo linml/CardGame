@@ -27,6 +27,7 @@ public:
     bool loadPlayerLevelInfo(vector<SLevelPlayer *>*vPlayerLevel,const char *fileName);
     bool loadSkillLogicInfo(map<int, CSkillData *> &vPlayerLevel,const char *fileName);
     bool loadEffectLogicInfo(vector<CImapact *> &vPlayerLevel,const char *fileName);
+    bool loadNPCCardInfo(map<int ,CCard *>&hashMapNpcCardAll,const char *fileName);
 public:
     
 };

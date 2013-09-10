@@ -12,13 +12,17 @@
 #include "CConfirmLayer.h"
 #include "SceneManager.h"
 #include "Utility.h"
+#include "PtJsonUtility.h"
+#include "PtHttpURL.h"
+#include "PtHttpClient.h"
+#include "CGameStoryLayer.h"
 
 // test:
-int g_nLevle = 0;
-int g_array[3]={0};
+//int g_nLevle = 0;
+//int g_array[3]={0};
 int g_index = -1;
 
-
+SECTION_DATA CExploration::s_SectionData ;
 
 CCScene* CExploration::scene()
 {
@@ -33,11 +37,7 @@ CCScene* CExploration::scene()
 
 CExploration::CExploration()
 {
-    for (int i = 0; i < 3; i++)
-    {
-        m_pBtn[i] = NULL;
-    }
-    m_pTouchSprite = NULL;
+    initData();
 }
 
 CExploration::~CExploration()
@@ -64,7 +64,14 @@ bool CExploration::init()
 
 bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-    
+    if (m_bLoadTaskInfo == false)
+    {
+        return false;
+    }
+    if (m_bCanTouch == false)
+    {
+        return false;
+    }
     // todo:
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
@@ -111,7 +118,9 @@ void CExploration::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
                 break;
         }
         handlerTouch();
-    }else
+        
+    }
+   // else
     {
         switch (m_nTouchTag)
         {
@@ -136,6 +145,21 @@ void CExploration::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 
 
 // protectd method:
+
+void CExploration::initData()
+{
+    m_bLoadTaskInfo = true;
+    m_bCanTouch = true;
+    for (int i = 0; i < 3; i++)
+    {
+        m_pBtn[i] = NULL;
+    }
+    m_pTouchSprite = NULL;
+    m_pProgress = NULL;
+    
+    m_pTrigger = SingleTriggerConfig::instance()->getTriggerById(s_SectionData.sectionInfo->getTriggerId());
+
+}
 
 bool CExploration::initExploration()
 {
@@ -211,7 +235,7 @@ bool CExploration::initExploration()
         // bottom buttons:
         
         char buffer[10] = {0};
-        sprintf(buffer, "%d/10",g_nLevle+1);
+        sprintf(buffer, "%d/%d",s_SectionData.currentStep, s_SectionData.sectionInfo->getMaxStep());
         btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "mission.png"));
         btnActivity->setPosition(ccp(size.width/2, btnActivity->getContentSize().height/2 +15.0f));
         pLabel = CCLabelTTF::create(buffer, "Scissor Cuts", 20);
@@ -219,6 +243,8 @@ bool CExploration::initExploration()
         btnActivity->addChild(pLabel);
         this->addChild(btnActivity, 200, 2004);
         Utility::addTouchRect(2004, btnActivity, m_cTouches);
+        
+        m_pProgress = pLabel;
         
         btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
         btnActivity->setPosition(ccp(size.width-230, btnActivity->getContentSize().height/2 +15.0f));
@@ -307,65 +333,84 @@ bool CExploration::initExploration()
         
         // init arrows:
         
-        randonArrows(g_nLevle);
+      //  randonArrows(s_SectionData.currentStep);
+        
+        initEvent();
+        handlerTrigger();
         bRet = true;
     } while (0);
     
     return bRet;
 }
 
+void CExploration:: initEvent()
+{
+    char buffer[50] = {};
+    
+    int wordInex = 0;
+    srand(time(0));
+    
+    for (int i = 0; i < 3; i++)
+    {
+        m_pBtn[i]->setType(rand()%4);
+        wordInex = (rand()%30)+1;
+        sprintf(buffer, "%d", wordInex);
+        m_pBtn[i]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
+    }
+        
+        
+      
+
+}
 
 void CExploration::handlerTouch()
 {
     
-    CCLog("CExploration:%d, %d", m_nTouchTag, g_nLevle
-          );
     
-    if (g_nLevle == 9 )
-    {
-        if (m_nTouchTag == CENTER_TOUCH_TAG)
-        {
-            CCLog("CExploration:: center.. break");
-            attachConfirm();
-        }else if(m_nTouchTag == 2008)
-        {
-//            CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
-            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
-            
-        }
-            
-        return;
-        
-    }
+//    if (s_SectionData.currentStep == s_SectionData.sectionInfo->getMaxStep())
+//    {
+//        if (m_nTouchTag == CENTER_TOUCH_TAG)
+//        {
+//            CCLog("CExploration:: center.. break");
+//            attachConfirm();
+//        }else if(m_nTouchTag == 2008)
+//        {
+//            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+//            
+//        }
+//            
+//        return;
+//        
+//    }
     if (m_nTouchTag > 3000) {
         m_pBtn[m_nTouchTag-3001]->setEnd();
     }
     switch (m_nTouchTag) {
         case LEFT_TOUCH_TAG:
             CCLog("CExploration:: left");
-            g_index = 0;            // to do:
+            m_nWhichEvent = 0;            // to do:
             m_pBtn[m_nTouchTag-3001]->setPress();
-            attachConfirm();
+            handlerEvent();
             break;
         case CENTER_TOUCH_TAG:
-            g_index = 1;
+            m_nWhichEvent = 1;
             CCLog("CExploration:: center");
             // to do:
             m_pBtn[m_nTouchTag-3001]->setPress();
-            attachConfirm();
+            handlerEvent();
             break;
             
         case RIGHT_TOUCH_TAG:
             CCLog("CExploration:: right");
             m_pBtn[m_nTouchTag-3001]->setPress();
-            g_index = 2;
-            attachConfirm();
+            m_nWhichEvent = 2;
+            handlerEvent();
             // to do:
             break;
             
         case 2008:
             //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
-            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+            onSaveSectionProgress();
             
             break;
         default:
@@ -373,53 +418,241 @@ void CExploration::handlerTouch()
     }
 }
 
-void CExploration::randonArrows(const int inLevle)
+void CExploration::handlerEvent()
 {
-    
-    char buffer[50] = {};
-    
-    int wordInex = 0;
-    srand(time(0));
-    
-    if (inLevle >= 0 && inLevle < 9)
+    if (m_nWhichEvent>= 0 || m_nWhichEvent < 3)
     {
-        for (int i = 0; i < 3; i++)
+        int eventType = s_SectionData.eventId[m_nWhichEvent];
+        if (eventType == EMPTY_EVENT)
         {
-            m_pBtn[i]->setType(rand()%4);
-            wordInex = (rand()%30)+1;
-            sprintf(buffer, "%d", wordInex);
-            g_array[i] = m_pBtn[i]->getType();
-            m_pBtn[i]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
+            // add step:
+            onSendEventRequest();
         }
-        
-        
-    }else if(g_nLevle == 9)
-    {
-        m_pBtn[0]->setVisible(false);
-        m_pBtn[2]->setVisible(false);
-        m_pBtn[1]->setType(1);
-        g_array[1] = m_pBtn[1]->getType();
-        
-        wordInex = (rand()%30)+1;
-        sprintf(buffer, "%d", wordInex);
-        m_pBtn[1]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
     }
-    
     
 }
 
+void CExploration::handlerSuccess()
+{
+    // add 
+    s_SectionData.currentStep++;
+    if (s_SectionData.currentStep == s_SectionData.sectionInfo->getMaxStep())
+    {
+        // go back chapter scene:
+     //  SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
+
+      //  hanlderLoadTaskInfo();
+        scheduleOnce(schedule_selector(CExploration::callBack), 0.2);
+        return;
+    }
+    updateUI();
+}
+
+void CExploration::handlerTrigger()
+{
+    if (m_pTrigger && s_SectionData.currentStep == m_pTrigger->getTriggerStep())
+    {
+       
+        CGameStoryLayer::CreateStoryLayer(m_pTrigger->getStoryId(), CCDirector::sharedDirector()->getRunningScene());
+    }
+}
+
+//void CExploration::randonArrows(const int inLevle)
+//{
+//    
+//    char buffer[50] = {};
+//    
+//    int wordInex = 0;
+//    srand(time(0));
+//    
+//    if (inLevle >= 0 && inLevle < 9)
+//    {
+//        for (int i = 0; i < 3; i++)
+//        {
+//            m_pBtn[i]->setType(rand()%4);
+//            wordInex = (rand()%30)+1;
+//            sprintf(buffer, "%d", wordInex);
+//            g_array[i] = m_pBtn[i]->getType();
+//            m_pBtn[i]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
+//        }
+//        
+//        
+//    }else if(g_nLevle == 9)
+//    {
+//        m_pBtn[0]->setVisible(false);
+//        m_pBtn[2]->setVisible(false);
+//        m_pBtn[1]->setType(1);
+//        g_array[1] = m_pBtn[1]->getType();
+//        
+//        wordInex = (rand()%30)+1;
+//        sprintf(buffer, "%d", wordInex);
+//        m_pBtn[1]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
+//    }
+//    
+//    
+//}
+
 void CExploration::attachConfirm()
 {
-    CCNode *node = NULL;
-    node = getChildByTag(100);
-    if(node)
+//    CCNode *node = NULL;
+//    node = getChildByTag(100);
+//    if(node)
+//    {
+//        CCLog("the ...");
+//      //  removeChild(node, true);
+//        node->setVisible(false);
+//        CConfirmLayer *layer = CConfirmLayer::create();
+//        this->addChild(layer, 5, 10);
+//    }
+//    
+    
+}
+
+// ui:
+
+void CExploration::updateUI()
+{
+    char buffer[10] = {0};
+    sprintf(buffer, "%d/%d",s_SectionData.currentStep, s_SectionData.sectionInfo->getMaxStep());
+    m_pProgress->setString(buffer);
+    handlerTrigger();
+}
+
+
+// connect server:
+
+// api.php?m=Part&a=recordPart&uid=194(用户ID)&sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)&chapter_id=1(章)&part_id=1(节)&item_id=1(道具ID)
+void CExploration::onSaveSectionProgress()
+{
+    m_bCanTouch = false;
+    int propId = 20001;
+    char buffer[200]={0};
+    CPtSection*  m_pSection = s_SectionData.sectionInfo;
+    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&item_id=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(), propId);
+    
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SAVE_PROGRESS(196),"saveProgress", "saveProgress",buffer, callfuncO_selector(CExploration::onReceiveSaveMsg));
+
+    
+}
+void CExploration::onReceiveSaveMsg(CCObject *pObject)
+{
+    m_bCanTouch = true;
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "saveProgress");
+    char *buffer = (char*) pObject;
+    if (buffer)
     {
-        CCLog("the ...");
-      //  removeChild(node, true);
-        node->setVisible(false);
-        CConfirmLayer *layer = CConfirmLayer::create();
-        this->addChild(layer, 5, 10);
+        CCDictionary *tmp = PtJsonUtility::JsonStringParse(buffer);
+        if (tmp)
+        {
+            onParseSaveMsgByDictionary(tmp);
+        }else
+        {
+            backHall();
+        }
+        
+    }else
+    {
+        CCLog("error: cann't connect server");
+        backHall();
     }
     
+
     
+}
+void CExploration::onParseSaveMsgByDictionary(CCDictionary *pResultDict)
+{
+    int result = GameTools::intForKey("code", pResultDict);
+    if (result == 0)
+    {
+        //success:
+       
+        
+    }else
+    {
+        CCLog("error: code: %d", result);
+    }
+     backHall();
+}
+
+//模块 ：api.php?m=Part&a=commonEvent&uid=194(用户ID)&sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)&chapter_id=1(章)&part_id=1(节)&step=1(小节中第几步)
+void CExploration::onSendEventRequest()
+{
+    // constructor post data:
+    CPtSection *m_pSection = s_SectionData.sectionInfo;
+
+    char buffer[200]={0};
+    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(),  s_SectionData.currentStep);
+
+    ADDHTTPREQUESTPOSTDATA(STR_URL_NEXT_EVENT(196),"nextEvent", "nextEvent",buffer, callfuncO_selector(CExploration::onReceiveEventRequetMsg));
+    m_bCanTouch =false;
+}
+void CExploration::onReceiveEventRequetMsg(CCObject *pObject)
+{
+    m_bCanTouch = true;
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "nextEvent");
+    char *buffer = (char*) pObject;
+    if (buffer)
+    {
+        CCDictionary *tmp = PtJsonUtility::JsonStringParse(buffer);
+        if (tmp)
+        {
+            onParseEventRequestMsg(tmp);
+        }
+      
+    }else
+    {
+        CCLog("error: cann't connect server");
+    }
+    
+}
+void CExploration::onParseEventRequestMsg(CCDictionary *pResultDict)
+{
+    int result = GameTools::intForKey("code", pResultDict);
+    if (result == 0)
+    {
+        //success:
+        handlerSuccess();
+    }else
+    {
+        CCLog("error: code: %d", result);
+    }
+}
+
+void CExploration::backHall()
+{
+     SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+}
+
+void CExploration::onReceiveTaskInfo(CCObject *pObject)
+{
+    m_bLoadTaskInfo = true;
+    char *buff = (char*) pObject;
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "getNextTaskInfo");
+    if (buff)
+    {
+        CCDictionary * tmp = PtJsonUtility::JsonStringParse(buff);
+        SinglePlayer::instance()->onParseTaskInfoByDictionary(tmp);
+        delete [] buff;
+    }
+    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
+
+
+
+    
+}
+void CExploration::hanlderLoadTaskInfo()
+{
+    m_bLoadTaskInfo = false;
+    m_bLoadTaskInfo = false;
+    char buffer[200]={0}; 
+    sprintf(buffer, "sig=%s",STR_USER_SIG);
+    
+    CCLog("%s", buffer);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_TASK(196),"getNextTaskInfo", "getNextTaskInfo",buffer, callfuncO_selector(CExploration::onReceiveTaskInfo));
+
+}
+
+void CExploration::callBack(float dt)
+{
+    hanlderLoadTaskInfo();
 }

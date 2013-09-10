@@ -7,7 +7,7 @@
 			<key>story_id</key>
 			<string>30001</string>
 			<key>story_name</key>
-			<string>开幕式序章</string>
+			<string>?????</string>
 			<key>dialoguelist_id</key>
 			<string>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,19</string>
 		</dict>
@@ -16,7 +16,7 @@
 			<key>story_id</key>
 			<string>30002</string>
 			<key>story_name</key>
-			<string>成人仪式</string>
+			<string>????</string>
 			<key>dialoguelist_id</key>
 			<string>19,20,1,2,3,4,5,8,10</string>
 		</dict>
@@ -25,7 +25,7 @@
 			<key>story_id</key>
 			<string>30003</string>
 			<key>story_name</key>
-			<string>cccccc仪式</string>
+			<string>cccccc??</string>
 			<key>dialoguelist_id</key>
 			<string>12,13,1,2,5,8,10,11,9,26,33,24,</string>
 		</dict>
@@ -45,7 +45,7 @@
 			<key>story_name</key>
 			<string>ddd</string>
 			<key>dialoguelist_id</key>
-			<string>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,19</string>
+			<string>2,13,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,19</string>
 		</dict>
 		<key>30006</key>
 		<dict>

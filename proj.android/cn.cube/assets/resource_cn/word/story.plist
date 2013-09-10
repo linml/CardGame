@@ -3,30 +3,14 @@
 <plist version="1.0">
 <dict>
 	<key>1</key>
-	<string>第一章：英雄之死</string>
+	<string> 在战场上即将死去的佣兵见到了女武神瓦尔基里，但由于对人世间强烈的执着让他对瓦尔基里发起了攻击。当佣兵的剑与瓦尔基里的剑相交到一起时发生了剧烈的爆炸。而再醒来的佣兵，却已经来到了另一个世界。</string>
+	<key>1_1</key>
+	<string>醒来的佣兵来到了神界，而在它身边已经有一个人，就如同在等着他的到来一般。陌生的环境，敌我不分的邂逅，佣兵是否该朝着金宫前进</string>
 	<key>2</key>
-	<string>第二章：转世英灵</string>
-	<key>3</key>
-	<string>第三章：布塔</string>
-	<key>4</key>
-	<string>第四章：wood</string>
-	<key>5</key>
-	<string>第五章：手游</string>
-    <key>6</key>
-	<string>第五章：手游</string>
-    <key>7</key>
-	<string>第五章：手游</string>
-    <key>8</key>
-	<string>第五章：手游</string>
-    <key>9</key>
-	<string>第五章：手游</string>
-    <key>10</key>
-	<string>第五章：手游</string>
-    <key>11</key>
-	<string>第五章：手游</string>
-    <key>12</key>
-	<string>第五章：手游</string>
-    <key>13</key>
-	<string>第五章：手游</string>
+	<string>佣兵接受了奥丁的任务，前往铁森林寻找英灵，但在内心中却一直存在着反抗意识，脑子里也有着无数的谜团。虽然对于凯瑟琳的身份仍有诸多疑问，但毫无办法的佣兵只能选择相信，因为这是他唯一的希望。</string>
+	<key>2_1</key>
+	<string>铁森林是连接人界和巨人国度的天然屏障，从来没有人可以安然的穿越整个铁森林。而这一次的任务也仅仅只是在铁森林边缘进行，这里有着人类最偏僻的村庄。</string>
+	<key>2_2</key>
+	<string>进入铁森林边缘地带后两人并没有发现异常，在陆续的清楚一些野兽后也放低了警惕，而此时两人并未感觉到气温的逐渐下降，当凯瑟琳终于发现地上已经结霜之后，一直隐藏着的敌人已经举起了利爪。</string>
 </dict>
 </plist>

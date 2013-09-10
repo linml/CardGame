@@ -36,7 +36,7 @@ public:
     void runMapScene();
 
     bool runSceneSelect(int touch_tag);
-    void runTargetScene(EN_CURRSCENE en_targetScene);
+    void runTargetScene(EN_CURRSCENE en_targetScene, int inParam = 0);
 private:
     void runCreateCardScene();
     void runTaskScene();
@@ -45,7 +45,7 @@ private:
     void runUpgradeScene();
     void runFightScene();
     void runLoginScene();
-    void runHallScene();
+    void runHallScene(int inOpenType = 0);
     void runCardSettingScene();
     //test
 public:

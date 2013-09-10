@@ -9,6 +9,7 @@
 #ifndef _1_cube_gameStruct_h
 #define _1_cube_gameStruct_h
 
+#include "CPtSectionConfigData.h"
 #include <vector>
 #include <map>
 
@@ -69,5 +70,17 @@ struct EMAIL_DATA
     std::map<int, int> props;
     
 };
+
+#define EMPTY_EVENT -1
+
+struct SECTION_DATA
+{
+    CPtSection *sectionInfo;
+    int currentStep;
+    int eventId[3]={EMPTY_EVENT,EMPTY_EVENT,EMPTY_EVENT};
+};
+
+
+
 
 #endif

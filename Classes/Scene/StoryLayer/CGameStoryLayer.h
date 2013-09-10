@@ -29,9 +29,10 @@ private:
     void  updateTimeToShow(float t);
     void  endTalk();
     void  loadDialogList();
-    void createDialogLayer();
+    void  createDialogLayer();
     void  displayDialog(CGameTalkDialog *gameDialog);
-    void updateEveryAnimationPlayEnd(float t);
+    void  updateEveryAnimationPlayEnd(float t);
+    void  createColorStoryColorLayer();
     
 protected:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);

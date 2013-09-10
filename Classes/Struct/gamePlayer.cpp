@@ -41,6 +41,9 @@ using namespace std;
 CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getProps())
 {
 
+    m_bLoadTaskInfo = false;
+    m_nMaxSectionId = 1;
+    m_nMaxSectionId = 1;
     m_strSig = "";
     m_strUid = "";
     isLoadServer=false;
@@ -69,6 +72,7 @@ void CGamePlayer::loadGamesConfig()
     initPlayerTable((resRootPath +"level_config.plist").c_str());
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
+    loadNpcCard((resRootPath+"npc_config.plist").c_str());
     G_FightSkillManager::instance()->initSkill();//加载列表
 }
 
@@ -77,6 +81,7 @@ void CGamePlayer::onExitGameApp()
     clearAllEffectInfo();
     clearAllSkillInfo();
     clearAllCard();
+    clearAllNpcCard();
     clearPlayerTable();
     
 }
@@ -99,6 +104,27 @@ void CGamePlayer::initAllCard(const char *cardFileName)
 {
     G_SingleCConfigResourceLoad::instance()->loadCardInfo(m_hashmapAllCard, cardFileName);
 }
+
+//读取NPC效果表格
+void CGamePlayer::loadNpcCard(const char *npcCardName)
+{
+    G_SingleCConfigResourceLoad::instance()->loadNPCCardInfo(m_hashmapNpcAllCard, npcCardName);
+}
+void CGamePlayer::clearAllNpcCard()
+{
+    map<int ,CCard *>::iterator it;
+    for(it=m_hashmapNpcAllCard.begin();it!=m_hashmapNpcAllCard.end();++it)
+    {
+        if(it->second)
+        {
+            delete it->second;
+            it->second=NULL;
+        }
+    }
+    m_hashmapNpcAllCard.erase(m_hashmapNpcAllCard.begin(),m_hashmapNpcAllCard.end());
+    
+}
+
 
 CCard *CGamePlayer::getCardByCardId(int cardid)
 {
@@ -267,6 +293,7 @@ void CGamePlayer::loadServerCardBag()
 
 void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
 {
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
     clearServerCardBag();
     //添加card  字符串
     char *tempdatat=(char *)obj;
@@ -285,7 +312,7 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
 #endif
     delete []tempdatat;
     tempdatat=NULL;
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
+  
     assert(dict&&"aaaaaaaaa");
     if(GameTools::intForKey("code", dict)!=0)
     {
@@ -1138,6 +1165,78 @@ map<int,int> CGamePlayer::getPlayerProps()
 }
 
 
+//
+void CGamePlayer::onGetTaskInfo()
+{
+  
+    m_bLoadTaskInfo = false;
+    char buffer[200]={0};
+    sprintf(buffer, "sig=%s",STR_USER_SIG);
+    
+    CCLog("%s", buffer);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_TASK(196),"getTaskInfo", "getTaskInfo",buffer, callfuncO_selector(CGamePlayer::onReceiveTaskInfo));
+    
+}
+void CGamePlayer::onReceiveTaskInfo(CCObject *pObject)
+{
+    m_bLoadTaskInfo = true;
+    char * buffer = (char *)pObject;
+    CCLog("onReceiveTaskInfo:%s",buffer);
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "getTaskInfo");
+    if(buffer)
+    {
+        CCDictionary * tmp = PtJsonUtility::JsonStringParse(buffer);
+        delete []buffer;
+        if (tmp)
+        {
+            onParseTaskInfoByDictionary(tmp);
+        }
+    }else
+    {
+        CCLog("error: connect server");
+    }
+    
+    
+}
+
+void CGamePlayer::onParseTaskInfoByDictionary(CCDictionary *inDataDictionary)
+{
+    int result = GameTools::intForKey("code", inDataDictionary);
+    if(result == 0)
+    {
+        // success:
+        CCDictionary * tmp = (CCDictionary*)inDataDictionary->objectForKey("result");
+        tmp = (CCDictionary*)tmp->objectForKey("part");
+        m_nMaxSectionId= GameTools::intForKey("part_id", tmp);
+        m_nMaxChapterId = GameTools::intForKey("chapter_id", tmp);
+
+        
+    }else
+    {
+        CCLog("error:CGamePalyer::onReceiveGoSectionMsg error code: %d ", result);
+    }
+    
+    
+}
+
+void CGamePlayer::setCurrentTaskId(int inTaskId)
+{
+    m_nCurrentTaskId = inTaskId;
+    setChapterAndSectionByTask();
+}
+
+void CGamePlayer::setChapterAndSectionByTask()
+{
+    CPtTask* task = SingleTaskConfig::instance()->getTaskById(m_nCurrentTaskId);
+    if(task)
+    {
+        m_nMaxChapterId = task->getChapterId();
+        m_nMaxSectionId = task->getSectionId();
+    }
+}
+
+
+
 /*
  * 获取玩家基本信息
  */
@@ -1179,12 +1278,11 @@ void CGamePlayer::onGameBegin()
 
 void CGamePlayer::onGameBeginCallBack(CCObject *object)
 {
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GameBegin");
     if (!object) {
         gameInitStatus=ERROR_MSG_CONNECTSERVERERROR;
         return;
     }
-
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GameBegin");
     char *strdata=(char *)object;
     CCLog("%s",strdata);    
     CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);

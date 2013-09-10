@@ -22,6 +22,7 @@ public:
 protected:
     CC_SYNTHESIZE(int ,m_iGameTalkID, GameTalkID);
     CC_SYNTHESIZE(int ,m_iGameTalkUiPlan, GameTalkUiPlan);
+    CC_SYNTHESIZE(std::string, m_iGameTalkDicntionaryID, GameTalkDicntionaryID);
     CC_SYNTHESIZE(std::string ,m_sGameTalkDialogWord, GameTalkDialogWord);
     CC_SYNTHESIZE(std::string ,m_sGameTalkDialogPng, GameTalkDialogPng);
     CC_SYNTHESIZE(std::string , m_sGameTalkSoundEffects, GameTalkSoundEffects);

@@ -83,7 +83,19 @@
 //修改邮件未读或者已读表示
 #define STR_URL_EMAILREADSTATUS(UID) URL_FACTORY("api.php?m=Inbox&a=updateInboxStatus&uid=",UID)
 
-#define STR_URL_EMAILGETITEMS(UID) URL_FACTORY("api.php?m=Inbox&a=getItems&uid=",UID)
+#define STR_URL_EMAILGETITEMS(UID)  URL_FACTORY("api.php?m=Inbox&a=getItems&uid=",UID)
+
+//获取任务:(暂时为最大章和最大节)
+#define STR_URL_TASK(UID)           URL_FACTORY("api.php?m=Part&a=getPart&uid=",UID)
+
+//进入迷宫（既选中小节后进入）
+#define STR_URL_GOSECTION(UID)      URL_FACTORY("api.php?m=Part&a=getPartEvent&uid=",UID) 
+
+//保存进度:
+#define STR_URL_SAVE_PROGRESS(UID)   URL_FACTORY("api.php?m=Part&a=recordPart&uid=",UID) 
+
+//获取下个事件
+#define STR_URL_NEXT_EVENT(UID)      URL_FACTORY("api.php?m=Part&a=commonEvent&uid=",UID) 
 
 //系统初始化
 

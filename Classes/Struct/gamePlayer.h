@@ -16,6 +16,7 @@
 #include "CGamePlayerStruct.h"
 #include "CPtPropConfigData.h"
 #include "CGameEmailData.h"
+#include "CTaskConfigData.h"
 using namespace std;
 class CImapact;
 class CSkillData;
@@ -59,6 +60,10 @@ private:
     //读取效果表格
     void loadAllEffectInfo(const char *effectFileName);
     void clearAllEffectInfo();
+    
+    //读取NPC效果表格
+    void loadNpcCard(const char *npcCardName);
+    void clearAllNpcCard();
 
 public:
     vector<CFightCard *>m_hashmapFightingCard;
@@ -155,7 +160,6 @@ public:
     int getUseGridCount();
     void updateProps();
     bool getLoadPropEnd(){return  m_bLoadProps;};
-    
     bool addGridBySys();
 protected:
     map<int, CPtProp*> &m_rAllProps; // 静态配置中道具信息
@@ -166,7 +170,27 @@ protected:
     void mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps);    
     
     
-    // play info:
+// 探索信息:
+public:
+    int getMaxChapterId(){return m_nMaxChapterId ;};
+    int getMaxSectionid(){return m_nMaxSectionId;};
+    void setCurrentTaskId(int inTaskId);
+    int getCurrentTaskId(){return m_nCurrentTaskId;};
+    void openChapterAndSection(int inChapterId, int inSectionId){ m_nMaxChapterId = inChapterId, m_nMaxSectionId = inSectionId;};
+    // now is chapter and section:
+    void onGetTaskInfo();
+    void onParseTaskInfoByDictionary(CCDictionary *inDataDictionary);
+protected:
+    void onReceiveTaskInfo(CCObject *pObject);
+    void setChapterAndSectionByTask();
+    
+protected:
+    int m_nCurrentTaskId;
+    int m_nMaxChapterId;
+    int m_nMaxSectionId;
+    
+    CC_SYNTHESIZE(bool, m_bLoadTaskInfo, LoadTaskInfo);
+// play info:
 public:
     int getCoin();
     int getPlayerPrice();
@@ -192,6 +216,7 @@ private:
     vector<SLevelPlayer *>m_gvPlayerLevel;
     map<int ,CSkillData *>m_vSkillInfo;
     vector< CImapact * >m_vImpactInfo;
+    map<int ,CCard *>m_hashmapNpcAllCard;
     string m_strSig;
     string m_strUid;
 

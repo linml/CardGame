@@ -13,9 +13,10 @@
 
 #include "cocos2d.h"
 #include "LayoutLayer.h"
-
+#include "CPtListViewWidget.h"
 using namespace cocos2d;
 using namespace std;
+
 
 class CTaskLayer : public CCLayerColor {
     
@@ -44,6 +45,7 @@ protected:
     bool m_bGoEnable;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;
+
     
 };
 

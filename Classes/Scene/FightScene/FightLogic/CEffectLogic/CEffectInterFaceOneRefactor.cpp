@@ -30,7 +30,7 @@ void CEffectInterfaceOneRefactor::logicFightingCardByFightAndMonster(CFightCard 
     }
     if(pImapact->m_iParameter_8!=0||pImapact->m_iParameter_9!=0)
     {
-        iChangeatk= +pImapact->m_iParameter_8 + pMonster->getAddValue(pMonster->m_iCurrLevel, 1)*pImapact->m_iParameter_9/100;
+        iChangeatk= +pImapact->m_iParameter_8 + pMonster->getAddValue(pMonster->m_iCurrLevel, 1) * pImapact->m_iParameter_9/100;
     }
     if(pImapact->m_iParameter_4 ||pImapact->m_iParameter_5)
     {

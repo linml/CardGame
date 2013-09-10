@@ -29,11 +29,14 @@ class CAsgardLayer : public CCLayer {
     
 public:
     CREATE_FUNC(CAsgardLayer);
+
     
 public:
     CAsgardLayer();
     virtual ~CAsgardLayer();
     
+    void createBiforestLayer();
+    void onClickBiforest();
 public:
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -44,12 +47,16 @@ public:
 protected:
     void initArsgard();
     void handlerTouch();
+    
+    void callBack(float dt);
 protected:
     
+    bool m_bLoadTaskInfo;
     int m_nTouchTag;
     CCSprite* m_touchSprite;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;
+    
 };
 
 

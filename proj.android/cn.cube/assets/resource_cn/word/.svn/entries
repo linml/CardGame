@@ -1,14 +1,14 @@
 10
 
 dir
-1146
+1278
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/word
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-08-30T10:07:47.005706Z
-1137
+2013-09-10T02:15:56.059238Z
+1269
 merlin
 has-props
 
@@ -25,6 +25,40 @@ has-props
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+dictionary.plist
+file
+
+
+
+
+2013-09-10T02:07:25.000000Z
+2d27661f90ee77ed0ab511f9eea102a5
+2013-09-10T02:15:56.059238Z
+1269
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3441
 
 string.plist
 file
@@ -66,11 +100,11 @@ file
 
 
 
-2013-08-30T06:51:10.000000Z
-104681604cd812e9317656875d45fdf3
-2013-08-30T10:07:47.005706Z
-1137
-merlin
+2013-09-09T06:16:02.000000Z
+164629b4f43639653f1a094404d3d15f
+2013-09-06T06:26:22.076946Z
+1221
+phileas
 
 
 
@@ -92,7 +126,7 @@ merlin
 
 
 
-3434
+4827
 
 tips.plist
 file
@@ -134,10 +168,10 @@ file
 
 
 
-2013-07-23T05:47:26.000000Z
-4bd7de00e7b00c29adf96a68d5e0cdb1
-2013-07-22T06:13:26.779914Z
-725
+2013-09-09T06:16:02.000000Z
+4f9187ca1e4939808388f1c7c7e57378
+2013-09-06T06:26:22.076946Z
+1221
 phileas
 
 
@@ -160,7 +194,7 @@ phileas
 
 
 
-889
+1581
 
 errormsg.plist
 file

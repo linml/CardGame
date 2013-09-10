@@ -36,6 +36,7 @@ public:
     void setDialogPosition(CCNode *node);
     void endShowText(float seconed,CCNode *node);
     void disappearDialog();
+    void callbackShowTouchIcon();
     void startDealAction(CCAction *action, float startLableValue,bool isLeft);
 private:
     CCLayer *m_Player;

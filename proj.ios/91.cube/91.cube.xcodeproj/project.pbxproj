@@ -55,7 +55,9 @@
 		6FB568EB17C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB568E917C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp */; };
 		6FB568EE17C491E500B038F8 /* CEffectInterFaceOneRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB568EC17C491E400B038F8 /* CEffectInterFaceOneRefactor.cpp */; };
 		6FB5F57517A7A1EB0026206F /* SEveryATKData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB5F57317A7A1EB0026206F /* SEveryATKData.cpp */; };
-		6FB7FAF517C302F2006B0C60 /* errormsg.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6FB7FAF417C302F2006B0C60 /* errormsg.plist */; };
+		6FB7E44C17DEC34D004DF409 /* CGameNpcCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7E44A17DEC34C004DF409 /* CGameNpcCard.cpp */; };
+		6FB7E45117DEEA40004DF409 /* CTriggerConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7E44D17DEEA3C004DF409 /* CTriggerConfigData.cpp */; };
+		6FB7E45217DEEA40004DF409 /* CTaskConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7E44F17DEEA3E004DF409 /* CTaskConfigData.cpp */; };
 		6FB983AE17AF510200DCB630 /* CGameCardBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB983AC17AF510200DCB630 /* CGameCardBuffer.cpp */; };
 		6FB983B117AF84A400DCB630 /* CFightCardBufferData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB983AF17AF84A300DCB630 /* CFightCardBufferData.cpp */; };
 		6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24817964AF800E16CDE /* CFightSkillManager.cpp */; };
@@ -420,7 +422,12 @@
 		6FB568ED17C491E500B038F8 /* CEffectInterFaceOneRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceOneRefactor.h; sourceTree = "<group>"; };
 		6FB5F57317A7A1EB0026206F /* SEveryATKData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SEveryATKData.cpp; sourceTree = "<group>"; };
 		6FB5F57417A7A1EB0026206F /* SEveryATKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEveryATKData.h; sourceTree = "<group>"; };
-		6FB7FAF417C302F2006B0C60 /* errormsg.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = errormsg.plist; path = ../../proj.android/cn.cube/assets/resource_cn/word/errormsg.plist; sourceTree = "<group>"; };
+		6FB7E44A17DEC34C004DF409 /* CGameNpcCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameNpcCard.cpp; sourceTree = "<group>"; };
+		6FB7E44B17DEC34D004DF409 /* CGameNpcCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameNpcCard.h; sourceTree = "<group>"; };
+		6FB7E44D17DEEA3C004DF409 /* CTriggerConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTriggerConfigData.cpp; sourceTree = "<group>"; };
+		6FB7E44E17DEEA3D004DF409 /* CTriggerConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTriggerConfigData.h; sourceTree = "<group>"; };
+		6FB7E44F17DEEA3E004DF409 /* CTaskConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTaskConfigData.cpp; sourceTree = "<group>"; };
+		6FB7E45017DEEA3F004DF409 /* CTaskConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTaskConfigData.h; sourceTree = "<group>"; };
 		6FB983AC17AF510200DCB630 /* CGameCardBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameCardBuffer.cpp; sourceTree = "<group>"; };
 		6FB983AD17AF510200DCB630 /* CGameCardBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameCardBuffer.h; sourceTree = "<group>"; };
 		6FB983AF17AF84A300DCB630 /* CFightCardBufferData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightCardBufferData.cpp; sourceTree = "<group>"; };
@@ -1387,6 +1394,10 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6FB7E44D17DEEA3C004DF409 /* CTriggerConfigData.cpp */,
+				6FB7E44E17DEEA3D004DF409 /* CTriggerConfigData.h */,
+				6FB7E44F17DEEA3E004DF409 /* CTaskConfigData.cpp */,
+				6FB7E45017DEEA3F004DF409 /* CTaskConfigData.h */,
 				6F49CA7517D8851F0094874E /* CGameStory.cpp */,
 				6F49CA7617D8851F0094874E /* CGameTalkDialog.cpp */,
 				6F49CA7717D8851F0094874E /* CGameTalkDialog.h */,
@@ -1430,6 +1441,8 @@
 				6FB5F57417A7A1EB0026206F /* SEveryATKData.h */,
 				6FB983AF17AF84A300DCB630 /* CFightCardBufferData.cpp */,
 				6FB983B017AF84A400DCB630 /* CFightCardBufferData.h */,
+				6FB7E44A17DEC34C004DF409 /* CGameNpcCard.cpp */,
+				6FB7E44B17DEC34D004DF409 /* CGameNpcCard.h */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -1525,7 +1538,6 @@
 		9FC6ED771746084F0091BE98 = {
 			isa = PBXGroup;
 			children = (
-				6FB7FAF417C302F2006B0C60 /* errormsg.plist */,
 				9FC6ED961746084F0091BE98 /* 91.cube */,
 				9FC6ED851746084F0091BE98 /* Frameworks */,
 				9FC6ED831746084F0091BE98 /* Products */,
@@ -2588,7 +2600,6 @@
 				9FFE8E8D1781A03F00DF7D47 /* json_internalarray.inl in Resources */,
 				9FFE8E8E1781A03F00DF7D47 /* json_internalmap.inl in Resources */,
 				9FFE8E911781A03F00DF7D47 /* json_valueiterator.inl in Resources */,
-				6FB7FAF517C302F2006B0C60 /* errormsg.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2878,6 +2889,9 @@
 				6F49CA7417D884EA0094874E /* CGameStoryLayer.cpp in Sources */,
 				6F49CA7917D8851F0094874E /* CGameStory.cpp in Sources */,
 				6F49CA7A17D8851F0094874E /* CGameTalkDialog.cpp in Sources */,
+				6FB7E44C17DEC34D004DF409 /* CGameNpcCard.cpp in Sources */,
+				6FB7E45117DEEA40004DF409 /* CTriggerConfigData.cpp in Sources */,
+				6FB7E45217DEEA40004DF409 /* CTaskConfigData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

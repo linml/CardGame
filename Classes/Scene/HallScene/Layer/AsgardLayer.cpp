@@ -16,7 +16,7 @@
 
 CAsgardLayer::CAsgardLayer()
 {
-    
+    m_bLoadTaskInfo = true;
 }
 
 CAsgardLayer::~CAsgardLayer()
@@ -36,8 +36,21 @@ bool CAsgardLayer::init()
     return bRet;
 }
 
+void CAsgardLayer::createBiforestLayer()
+{
+   CCLayer*  layer = CBiforestLayer::create();
+    this->getParent()->addChild(layer, 30000, 6001);
+
+}
+
 bool CAsgardLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    // test:
+    if (m_bLoadTaskInfo == false)
+    {
+        return false;
+    }
+    
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag = TouchRect::SearchTouchTag(touchPoint, m_cTouches);
     if(m_nTouchTag != -1)
@@ -82,6 +95,7 @@ void CAsgardLayer::initArsgard()
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(GOLDPLACE_TOUCH_PRORITY);
+   
 }
 
 void CAsgardLayer::handlerTouch()
@@ -106,8 +120,8 @@ void CAsgardLayer::handlerTouch()
             break;
         case BIFROST_TOUCH_TAG:
             // to do:
-            layer = CBiforestLayer::create();
-            this->getParent()->addChild(layer, 30000, 6001);
+           // createBiforestLayer();
+            onClickBiforest();
             break;
         case DUPLICATE_TOUCH_TAG:
             // to do:
@@ -116,4 +130,25 @@ void CAsgardLayer::handlerTouch()
         default:
             break;
     }
+}
+
+void CAsgardLayer::callBack(float dt)
+{
+
+    if(SinglePlayer::instance()->getLoadTaskInfo())
+    {
+        m_bLoadTaskInfo = true;
+        createBiforestLayer();
+        this->unschedule(schedule_selector(CAsgardLayer::callBack));
+    }
+
+}
+
+void CAsgardLayer::onClickBiforest()
+{
+    m_bLoadTaskInfo = false;
+    SinglePlayer::instance()->onGetTaskInfo();
+    schedule(schedule_selector(CAsgardLayer::callBack), 0.2);
+    
+    
 }

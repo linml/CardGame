@@ -70,7 +70,7 @@ void SceneManager::runCreateCardScene()
     }
 }
 
-void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene)
+void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene ,int inParam)
 {
     switch (en_targetScene) {
             
@@ -78,7 +78,7 @@ void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene)
             runLoginScene();
             break;
         case EN_CURRSCENE_HALLSCENE:
-            runHallScene();
+            runHallScene(inParam);
             break;
         case EN_CURRSCENE_MAPSCENE :
             runMapScene();
@@ -141,14 +141,14 @@ void SceneManager::runLoginScene()
     }
 
 }
-void SceneManager::runHallScene()
+void SceneManager::runHallScene(int inOpenType)
 {
     if(m_currscene!=EN_CURRSCENE_HALLSCENE)
     {
         m_currscene=EN_CURRSCENE_HALLSCENE;
         CCDirector *pDirector=CCDirector::sharedDirector();
         
-        CCScene *pScene = CHallScene::scene();
+        CCScene *pScene = CHallScene::scene(inOpenType);
         
         if(pDirector->getRunningScene())
         {

@@ -14,6 +14,7 @@
 #include "PtJsonUtility.h"
 #include "CDeletePropLayer.h"
 #include "CGameDialogLayer.h"
+
 CBackpackPageLayer * CBackpackPageLayer::create()
 {
     CBackpackPageLayer *layer = new CBackpackPageLayer();
