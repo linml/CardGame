@@ -640,34 +640,10 @@ void CGamePlayer::parseNpcCard(cocos2d::CCObject *object)
             {
                 DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
                 m_hashmapMonsterCard.resize(5);
-                string teamStrType=typeid(*cardDirector->objectForKey("team")).name();
-                if(teamStrType.find("CCDictionary")!=std::string::npos)
-                {
-                    CCDictionary *cardtemp=((CCDictionary *)cardDirector->objectForKey("team"));
-                    CCArray *vKeyArraytemp=cardtemp->allKeys();
-                    for (int i=0; i<vKeyArraytemp->count(); i++)
-                    {
-                        CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(i);
-                        CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
-                        int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
-                        int position=GameTools::intForKey("position", cardDirectorDetail);
-                        position=(position-1<0?0:position-1); //后台的数据的postion 是1开始的。
-                        CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
-                        m_hashmapMonsterCard[position]=pFightCard;
-                    }
-                }
-                else if(teamStrType.find("CCArray")!=std::string::npos)
-                {
-                    CCArray *vKeyArraytemp=(CCArray *)(cardDirector->objectForKey("team"));
-                    for (int i=0; i<vKeyArraytemp->count(); i++)
-                    {
-                        CCDictionary *cardDirectorDetail=(CCDictionary *)vKeyArraytemp->objectAtIndex(i);
-                        int card_id=GameTools::intForKey("card_id", cardDirectorDetail);
-                        int position=GameTools::intForKey("position", cardDirectorDetail);
-                        CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
-                        m_hashmapMonsterCard[position]=pFightCard;
-                    }
-                }
+                int position=0;
+                int card_id=0;
+                CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
+                m_hashmapMonsterCard[position]=pFightCard;
                 CCArray *vKeyArraytempBBB=(CCArray *)(((CCDictionary *)dirct->objectForKey("result"))->objectForKey("random_data"));
                 std::vector<int>().swap(m_getRandom_data);
                 m_currRandRomIndex=0;

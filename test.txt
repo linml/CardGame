@@ -1,0 +1,1824 @@
+2013-09-10 15:52:23.346 91.cube[70529:907] cocos2d: surface size: 2048x1536
+Cocos2d: cocos2d: cocos2d-2.0-x-2.0.4
+Cocos2d: cocos2d: GL_VENDOR:     Imagination Technologies
+Cocos2d: cocos2d: GL_RENDERER:   PowerVR SGX 543
+Cocos2d: cocos2d: GL_VERSION:    OpenGL ES 2.0 IMGSGX543-73.16.1
+Cocos2d: cocos2d: GL_MAX_TEXTURE_SIZE: 4096
+Cocos2d: cocos2d: GL_MAX_TEXTURE_UNITS: 8
+Cocos2d: cocos2d: GL supports PVRTC: YES
+Cocos2d: cocos2d: GL supports BGRA8888 textures: NO
+Cocos2d: cocos2d: GL supports NPOT textures: YES
+Cocos2d: cocos2d: GL supports discard_framebuffer: YES
+Cocos2d: cocos2d: GL supports shareable VAO: YES
+Cocos2d: cocos2d: compiled with Profiling Support: NO
+Cocos2d: file:resource_cn/uiScript/login.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/login.plist
+Cocos2d: dict:key playerButton
+Cocos2d: dict:key login
+Cocos2d: dict:key player
+Cocos2d: file:resource_cn/map/logon.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/login.plist
+Cocos2d: LoginLayer::ccTouchEnded
+http://passport.games.com/gateway.php?m=Platform&a=login
+addRequest REQUEST_CLoginScene_doLogin
+Cocos2d: the queue: size: 1
+send http://passport.games.com/gateway.php?m=Platform&a=login
+post data:name=123222@11&password=\304\346p\266\254\3544\264Yim\2241;
+addRequest send
+Cocos2d: REQUEST_CLoginScene_doLogin completed
+Cocos2d: the queue size: 1
+	0    key code                 value :0                   
+	0    key puid                 value :280                 
+	1    key sig                  value :a706324d9df9c793318310d85217f677
+card plist size =100
+card plist size =8
+Cocos2d: the queue size: 1
+Cocos2d: the queue size: 0
+http://cube.games.com/api.php?m=GameBegin&a=init&uid=280
+addRequest merlinaskplayerinfo1
+Cocos2d: the queue: size: 1
+send http://cube.games.com/api.php?m=GameBegin&a=init&uid=280
+post data:sig=a706324d9df9c793318310d85217f677&info={"max_id":0,"name":"123"}
+addRequest send
+Cocos2d: merlinaskplayerinfo1 completed
+Cocos2d: the queue size: 1
+Cocos2d: {"code":0,"result":{"game_config":{"version":{"exp":"1","notice":"1"}},"inbox_info":{"5828":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1374854400,"expire_time":1379174400,"title":"\u4f3d\u5229\u7565","content":"\u590f\u6d1b\u514b"},"5834":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1377705600,"expire_time":1379001600,"title":"8\u670829\u65e5\u4e34\u65f6\u505c\u673a","content":"\u7531\u4e8e\u673a\u623f\u95ee\u9898\uff0c\u6211\u4eec\u57288\u670829\u65e514\u70b9\u8fdb\u884c\u4e86\u4e34\u65f6\u505c\u673a\u7ef4\u62a4\uff0c\u505c\u670d2\u4e2a\u5c0f\u65f6\uff0c\u7279\u8865\u507f\u5927\u88401\u74f6\uff0c\u611f\u8c22\u4f60\u4e00\u76f4\u4ee5\u6765\u5bf9\u74e6\u5c14\u57fa\u91cc\u7684\u652f\u6301\uff01"},"5835":{"from_uid":20,"type":0,"status":0,"item":{"200001":2},"start_time":1377705600,"expire_time":1379001600,"title":"8\u670829\u65e5\u4e34\u65f6\u505c\u673a","content":"\u7531\u4e8e\u673a\u623f\u95ee\u9898\uff0c\u6211\u4eec\u57288\u670829\u65e516\u70b9\u8fdb\u884c\u4e86\u4e34\u65f6\u505c\u673a\u7ef4\u62a4\uff0c\u505c\u670d2\u4e2a\u5c0f\u65f6\uff0c\u7279\u8865\u507f\u5927\u88401\u74f6\uff0c\u611f\u8c22\u4f60\u4e00\u76f4\u4ee5\u6765\u5bf9\u74e6\u5c14\u57fa\u91cc\u7684\u652f\u6301\uff01"},"5836":{"from_uid":20,"type":0,"status":0,"item":{"200004":2},"start_time":1377705600,"expire_time":1379001600,"title":"8\u670829\u65e5\u4e34\u65f6\u505c\u673a","content":"\u7531\u4e8e\u673a\u623f\u95ee\u9898\uff0c\u6211\u4eec\u57288\u670829\u65e518\u70b9\u8fdb\u884c\u4e86\u4e34\u65f6\u505c\u673a\u7ef4\u62a4\uff0c\u505c\u670d2\u4e2a\u5c0f\u65f6\uff0c\u7279\u8865\u507f\u5927\u88401\u74f6\uff0c\u611f\u8c22\u4f60\u4e00\u76f4\u4ee5\u6765\u5bf9\u74e6\u5c14\u57fa\u91cc\u7684\u652f\u6301\uff01"},"5837":{"from_uid":20,"type":0,"status":0,"item":{"200002":2,"200003":3,"200004":2},"start_time":1377705600,"expire_time":1379001600,"title":"8\u670830\u65e5\u7248\u672c\u66f4\u65b0","content":"\u8865\u507f\u6750\u65991\u4e00\u7ec4\uff0c\u611f\u8c22\u4f60\u4e00\u76f4\u4ee5\u6765\u5bf9\u74e6\u5c14\u57fa\u91cc\u7684\u652f\u6301\uff01"},"5839":{"from_uid":20,"type":0,"status":0,"item":{"200004":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67081\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b11000\u5143\u5b9d"},"5840":{"from_uid":20,"type":0,"status":0,"item":{"200001":100},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67082\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b12000\u5143\u5b9d"},"5841":{"from_uid":20,"type":0,"status":0,"item":{"200004":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67083\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b1200\u5143\u5b9d"},"5842":{"from_uid":20,"type":0,"status":0,"item":{"200002":2,"200003":3,"200005":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67084\u65e5\u7248\u672c\u66f4\u65b0","content":"\u516c\u6d4b\u5956\u52b1\u91d1\u5e01120"},"5843":{"from_uid":20,"type":0,"status":0,"item":{"200001":100},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67085\u65e5\u7248\u672c\u66f4\u65b0","content":"\u516c\u6d4b\u5956\u52b1\u91d1\u5e011200"},"5844":{"from_uid":20,"type":0,"status":0,"item":{"200004":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67086\u65e5\u7248\u672c\u66f4\u65b0","content":"\u516c\u6d4b\u5956\u52b1\u91d1\u5e01500"},"5845":{"from_uid":20,"type":0,"status":0,"item":{"200005":1},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67087\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b120\u5143\u5b9d"},"5846":{"from_uid":20,"type":0,"status":0,"item":{"200003":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67088\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b1220\u5143\u5b9d"},"5847":{"from_uid":20,"type":0,"status":0,"item":{"200002":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u67089\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b11220\u5143\u5b9d"},"5848":{"from_uid":20,"type":0,"status":0,"item":{"200002":2,"200003":3,"200004":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670810\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b11220\u5143\u5b9d2\u7ba1\u8840"},"5849":{"from_uid":20,"type":0,"status":0,"item":{"100001":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670810\u65e5\u505c\u673a\u7ef4\u62a4","content":"\u5956\u52b11220\u5143\u5b9d20\u7ba1\u8840"},"5850":{"from_uid":20,"type":0,"status":0,"item":{"100001":2,"100004":3,"100009":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670811\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b1\u56de\u57ce\u5377\u8f74"},"5851":{"from_uid":20,"type":0,"status":0,"item":{"100009":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670812\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b1\u56de\u57ce\u5377\u8f74"},"5852":{"from_uid":20,"type":0,"status":0,"item":{"100009":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670813\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b1\u56de\u57ce\u5377\u8f74"},"5853":{"from_uid":20,"type":0,"status":0,"item":{"100004":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670814\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b11220\u5143\u5b9d"},"5854":{"from_uid":20,"type":0,"status":0,"item":{"100004":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670815\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b11220\u5143\u5b9d"},"5855":{"from_uid":20,"type":0,"status":0,"item":{"100004":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670816\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b11220\u5143\u5b9d"},"5856":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670817\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b11220\u5143\u5b9d"},"5857":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1377705600,"expire_time":1379001600,"title":"9\u670818\u65e5\u7248\u672c\u66f4\u65b0","content":"\u5956\u52b11220\u5143\u5b9d"},"5858":{"from_uid":20,"type":0,"status":0,"item":{"100001":2,"100004":3,"100009":2},"start_time":1377705600,"expire_time":1379001600,"title":"8\u670829\u65e5\u7248\u672c\u66f4\u65b0","content":"\u6211\u4eec\u57288\u670829\u65e510\u70b9\u8fdb\u884c\u4e86\u4e24\u4e2a\u5c0f\u65f6\u7684\u7248\u672c\u66f4\u65b0\uff0c\u7279\u8865\u507f\u8fdb\u5316\u6750\u65995\u4e24\u4e2a\uff0c\u611f\u8c22\u60a8\u4e00\u76f4\u4ee5\u6765\u5bf9\u74e6\u5c14\u57fa\u91cc\u7684\u652f\u6301\uff01"},"5859":{"from_uid":20,"type":0,"status":0,"item":{"100001":2},"start_time":1377705600,"expire_time":1379001600,"title":"8\u670829\u65e5\u4e34\u65f6\u505c\u673a","content":"\u7531\u4e8e\u673a\u623f\u95ee\u9898\uff0c\u6211\u4eec\u57288\u670829\u65e514\u70b9\u8fdb\u884c\u4e86\u4e34\u65f6\u505c\u673a\u7ef4\u62a4\uff0c\u505c\u670d2\u4e2a\u5c0f\u65f6\uff0c\u7279\u8865\u507f\u5927\u88401\u74f6\uff0c\u611f\u8c22\u4f60\u4e00\u76f4\u4ee5\u6765\u5bf9\u74e6\u5c14\u57fa\u91cc\u7684\u652f\u6301\uff01"},"5860":{"from_uid":20,"type":0,"status":0,"item":{"100004":2},"start_time":1377705600,"expire_time":1379001600,"title":"123","content":"123"},"5861":{"from_uid":20,"type":0,"status":0,"item":{"100009":2},"start_time":1377705600,"expire_time":1379001600,"title":"\u5b98\u65b9","content":"\u4f46\u662f"},"5862":{"from_uid":20,"type":0,"status":0,"item":{"100009":2},"start_time":1377705600,"expire_time":1379001600,"title":"\u6536\u5230","content":"\u623f\u9876\u4e0a"},"5863":{"from_uid":20,"type":0,"status":0,"item":{"100001":2,"100004":3,"100009":2},"start_time":1377705600,"expire_time":1379001600,"title":"8\u670829\u65e5\u7248\u672c\u66f4\u65b0","content":"\u7684\u8428\u82ac"},"5864":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1377705600,"expire_time":1379001600,"title":"\u9001\u8fbe\u65b9\u5f0f\u5927","content":"\u6492\u8303\u5fb7\u8428\u8303\u5fb7\u8428"},"5865":{"from_uid":20,"type":0,"status":0,"item":{"100001":2},"start_time":1377705600,"expire_time":1379001600,"title":"\u963f\u8428\u5fb7\u7684\u53d1\u751f","content":"\u7684\u8428\u82ac\u6492"},"5866":{"from_uid":20,"type":0,"status":0,"item":{"100001":10},"start_time":1377705600,"expire_time":1379001600,"title":"\u554a\u6492\u8303\u5fb7\u8428\u8303\u5fb7\u8428","content":"\u8303\u5fb7\u8428\u8303\u5fb7\u8428\u8303\u5fb7\u8428\u53d1\u6c83\u7279"},"5876":{"from_uid":20,"type":0,"status":0,"item":{"200002":2,"200003":3,"200004":2},"start_time":1377792000,"expire_time":1379088000,"title":"8\u670830\u65e5\u66f4\u65b0","content":"8\u670830\u65e5\u66f4\u65b0"},"5877":{"from_uid":20,"type":0,"status":0,"item":{"200002":2,"200003":3,"200004":2},"start_time":1377878400,"expire_time":1379174400,"title":"8\u670831\u65e5\u66f4\u65b0","content":"8\u670831\u65e5\u66f4\u65b0"},"5881":{"from_uid":20,"type":0,"status":0,"item":{"100004":10},"start_time":1377532800,"expire_time":1378828800,"title":"8\u670827\u65e5\u66f4\u65b0","content":"8\u670827\u65e5\u66f4\u65b0"},"5882":{"from_uid":20,"type":0,"status":0,"item":{"900001":100,"100004":5,"200004":2},"start_time":1377619200,"expire_time":1378915200,"title":"8\u670828\u65e5\u66f4\u65b0","content":"8\u670828\u65e5\u66f4\u65b0"},"5883":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1377964800,"expire_time":1379260800,"title":"8\u670829\u65e5\u7248\u672c\u66f4\u65b0","content":"8\u670829\u65e5\u7248\u672c\u66f4\u65b0"},"5884":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"8\u670830\u65e5\u7248\u672c\u66f4\u65b0","content":"8\u670830\u65e5\u7248\u672c\u66f4\u65b0"},"5885":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67081\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67081\u65e5\u7248\u672c\u66f4\u65b0"},"5886":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67082\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67082\u65e5\u7248\u672c\u66f4\u65b0"},"5887":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67083\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67083\u65e5\u7248\u672c\u66f4\u65b0"},"5888":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67084\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67084\u65e5\u7248\u672c\u66f4\u65b0"},"5889":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67085\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67085\u65e5\u7248\u672c\u66f4\u65b0"},"5890":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67086\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67086\u65e5\u7248\u672c\u66f4\u65b0"},"5891":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67087\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67087\u65e5\u7248\u672c\u66f4\u65b0"},"5892":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67088\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67088\u65e5\u7248\u672c\u66f4\u65b0"},"5893":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u67089\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u67089\u65e5\u7248\u672c\u66f4\u65b0"},"5894":{"from_uid":20,"type":0,"status":0,"item":{"200005":2},"start_time":1378051200,"expire_time":1379347200,"title":"9\u670810\u65e5\u7248\u672c\u66f4\u65b0","content":"9\u670810\u65e5\u7248\u672c\u66f4\u65b0"}},"card_team":{"1":{"team":{"17846":{"position":"1","card_item_id":"17846"},"17847":{"position":"5","card_item_id":"17847"}},"card_color_id":0}},"user_info":{"bag_max":"20","cash":"0","coin":800,"energy":"10","exp":"0","uid":280,"username":"123","create_time":1378709801,"update_time":1378792599,"energy_update_time":1378709801,"level":1,"guide_step":0,"sign":0,"leader":0,"card_max":"150","friend_max":"20","max_bag":"9","card_item":{"17846":{"card_item_id":"17846","card_id":"100001","level":"1","exp":"200","suit":"3"},"17847":{"card_item_id":"17847","card_id":"100002","level":"1","exp":"400","suit":"37"},"17975":{"card_item_id":"17975","card_id":"100006","level":"1","exp":"400","suit":"25"},"17977":{"card_item_id":"17977","card_id":"100006","level":"1","exp":"400","suit":"11"},"17989":{"card_item_id":"17989","card_id":"100006","level":"1","exp":"400","suit":"20"},"17992":{"card_item_id":"17992","card_id":"100006","level":"1","exp":"400","suit":"11"},"17994":{"card_item_id":"17994","card_id":"100006","level":"1","exp":"400","suit":"9"},"17995":{"card_item_id":"17995","card_id":"100006","level":"1","exp":"400","suit":"43"},"17996":{"card_item_id":"17996","card_id":"100006","level":"1","exp":"400","suit":"10"},"17997":{"card_item_id":"17997","card_id":"100006","level":"1","exp":"400","suit":"17"},"17998":{"card_item_id":"17998","card_id":"100006","level":"1","exp":"400","suit":"20"},"17999":{"card_item_id":"17999","card_id":"100006","level":"1","exp":"400","suit":"9"},"18000":{"card_item_id":"18000","card_id":"100006","level":"1","exp":"400","suit":"42"},"18002":{"card_item_id":"18002","card_id":"100006","level":"1","exp":"400","suit":"2"},"18035":{"card_item_id":"18035","card_id":"100006","level":"1","exp":"400","suit":"39"}},"bag_info":[{"item_id":"200001","num":"5","grid":1}]}}}
+	0    key code                 value :0                   
+	0    key card_color_id        value :0                   
+	0    key card_item_id         value :17846               
+	1    key position             value :1                   
+	0    key card_item_id         value :17847               
+	1    key position             value :5                   
+	0    key exp                  value :1                   
+	1    key notice               value :1                   
+	0    key content              value :夏洛克           
+	1    key expire_time          value :1379174400          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1374854400          
+	5    key status               value :0                   
+	6    key title                value :伽利略           
+	7    key type                 value :0                   
+	0    key content              value :由于机房问题，我们在8月29日14点进行了临时停机维护，停服2个小时，特补偿大血1瓶，感谢你一直以来对瓦尔基里的支持！
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :8月29日临时停机
+	7    key type                 value :0                   
+	0    key content              value :由于机房问题，我们在8月29日16点进行了临时停机维护，停服2个小时，特补偿大血1瓶，感谢你一\347\233\264以来对瓦尔基里的支持！
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200001               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :8月29日临时停机
+	7    key type                 value :0                   
+	0    key content              value :由于机房问\351\242\230，我们在8月29日18点进行了临时停机维护，停服2个小时，特补偿大血1瓶，感谢你一直以来对瓦尔基里的支持！
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :8月29日临时停机
+	7    key type                 value :0                   
+	0    key content              value :补偿材料1一组，感谢你一直以来对瓦尔基里的支持！
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200002               value :2                   
+	1    key 200003               value :3                   
+	2    key 200004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :8月30日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励1000元宝    
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月1日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励2000元宝    
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200001               value :100                 
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月2日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励200元宝     
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月3日版本更新
+	7    key type                 value :0                   
+	0    key content              value :公测奖励金币120
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200002               value :2                   
+	1    key 200003               value :3                   
+	2    key 200005               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月4日版本更新
+	7    key type                 value :0                   
+	0    key content              value :公测奖励金币1200
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200001               value :100                 
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月5日版本更新
+	7    key type                 value :0                   
+	0    key content              value :公测奖励金币500
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月6日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励20元宝      
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200005               value :1                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月7日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励220元宝     
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200003               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月8日版本更\346\226\260
+	7    key type                 value :0                   
+	0    key content              value :奖励1220元宝    
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200002               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月9日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励1220元宝2管血
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200002               value :2                   
+	1    key 200003               value :3                   
+	2    key 200004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月10日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励1220元宝20管血
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100001               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月10日停机维护
+	7    key type                 value :0                   
+	0    key content              value :奖励回城卷轴  
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100001               value :2                   
+	1    key 100004               value :3                   
+	2    key 100009               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月11日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励回城卷轴  
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100009               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月12日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励回城卷轴  
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100009               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月13日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励1220元宝    
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月14日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励1220元宝    
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月15日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励1220元宝    
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月16日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励1220元宝    
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月17日版本更新
+	7    key type                 value :0                   
+	0    key content              value :奖励1220元宝    
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :9月18日版本更新
+	7    key type                 value :0                   
+	0    key content              value :我们在8月29日10点进行了两个小时的版本更新，特补偿进化材料5两个，感谢您一直以来对瓦尔基里的支持！
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100001               value :2                   
+	1    key 100004               value :3                   
+	2    key 100009               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :8月29日版本更新
+	7    key type                 value :0                   
+	0    key content              value :由于机房问题，我们在8月29日14点进行了临时停机维护，停服2个小时，特补偿大血1瓶，感谢你一直以来对瓦尔基里的支持！
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100001               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :8月29日临时停机
+	7    key type                 value :0                   
+	0    key content              value :123                 
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100004               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :123                 
+	7    key type                 value :0                   
+	0    key content              value :但是              
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100009               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :官方              
+	7    key type                 value :0                   
+	0    key content              value :房顶上           
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100009               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :收到              
+	7    key type                 value :0                   
+	0    key content              value :的萨芬           
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100001               value :2                   
+	1    key 100004               value :3                   
+	2    key 100009               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :8月29日版本更新
+	7    key type                 value :0                   
+	0    key content              value :撒范德萨范德萨
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :送达方式大     
+	7    key type                 value :0                   
+	0    key content              value :的萨芬撒        
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100001               value :2                   
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :阿萨德的发生  
+	7    key type                 value :0                   
+	0    key content              value :范德萨范德萨范德萨发沃特
+	1    key expire_time          value :1379001600          
+	2    key from_uid             value :20                  
+	0    key 100001               value :10                  
+	4    key start_time           value :1377705600          
+	5    key status               value :0                   
+	6    key title                value :啊撒范德萨范德萨
+	7    key type                 value :0                   
+	0    key content              value :8月30日更新     
+	1    key expire_time          value :1379088000          
+	2    key from_uid             value :20                  
+	0    key 200002               value :2                   
+	1    key 200003               value :3                   
+	2    key 200004               value :2                   
+	4    key start_time           value :1377792000          
+	5    key status               value :0                   
+	6    key title                value :8月30日更新     
+	7    key type                 value :0                   
+	0    key content              value :8月31日更新     
+	1    key expire_time          value :1379174400          
+	2    key from_uid             value :20                  
+	0    key 200002               value :2                   
+	1    key 200003               value :3                   
+	2    key 200004               value :2                   
+	4    key start_time           value :1377878400          
+	5    key status               value :0                   
+	6    key title                value :8月31日更新     
+	7    key type                 value :0                   
+	0    key content              value :8月27日更新     
+	1    key expire_time          value :1378828800          
+	2    key from_uid             value :20                  
+	0    key 100004               value :10                  
+	4    key start_time           value :1377532800          
+	5    key status               value :0                   
+	6    key title                value :8月27日更新     
+	7    key type                 value :0                   
+	0    key content              value :8月28日更新     
+	1    key expire_time          value :1378915200          
+	2    key from_uid             value :20                  
+	0    key 100004               value :5                   
+	1    key 200004               value :2                   
+	2    key 900001               value :100                 
+	4    key start_time           value :1377619200          
+	5    key status               value :0                   
+	6    key title                value :8月28日更新     
+	7    key type                 value :0                   
+	0    key content              value :8月29日版本更新
+	1    key expire_time          value :1379260800          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1377964800          
+	5    key status               value :0                   
+	6    key title                value :8月29日版本更新
+	7    key type                 value :0                   
+	0    key content              value :8月30日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :8月30日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月1日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月1日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月2日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月2日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月3日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月3日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月4日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月4日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月5日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月5日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月6日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月6日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月7日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月7日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月8日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月8日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月9日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月9日版本更新
+	7    key type                 value :0                   
+	0    key content              value :9月10日版本更新
+	1    key expire_time          value :1379347200          
+	2    key from_uid             value :20                  
+	0    key 200005               value :2                   
+	4    key start_time           value :1378051200          
+	5    key status               value :0                   
+	6    key title                value :9月10日版本更\346\226\260
+	7    key type                 value :0                   
+	0    key grid                 value :1                   
+	1    key item_id              value :200001              
+	2    key num                  value :5                   
+	1    key bag_max              value :20                  
+	0    key card_id              value :100001              
+	1    key card_item_id         value :17846               
+	2    key exp                  value :200                 
+	3    key level                value :1                   
+	4    key suit                 value :3                   
+	0    key card_id              value :100002              
+	1    key card_item_id         value :17847               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :37                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17975               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :25                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17977               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :11                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17989               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :20                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17992               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :11                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17994               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :9                   
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17995               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :43                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17996               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :10                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17997               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :17                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17998               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :20                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :17999               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :9                   
+	0    key card_id              value :100006              
+	1    key card_item_id         value :18000               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :42                  
+	0    key card_id              value :100006              
+	1    key card_item_id         value :18002               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :2                   
+	0    key card_id              value :100006              
+	1    key card_item_id         value :18035               
+	2    key exp                  value :400                 
+	3    key level                value :1                   
+	4    key suit                 value :39                  
+	3    key card_max             value :150                 
+	4    key cash                 value :0                   
+	5    key coin                 value :800                 
+	6    key create_time          value :1378709801          
+	7    key energy               value :10                  
+	8    key energy_update_time   value :1378709801          
+	9    key exp                  value :0                   
+	10   key friend_max           value :20                  
+	11   key guide_step           value :0                   
+	12   key leader               value :0                   
+	13   key level                value :1                   
+	14   key max_bag              value :9                   
+	15   key sign                 value :0                   
+	16   key uid                  value :280                 
+	17   key update_time          value :1378792599          
+	18   key username             value :123                 
+Cocos2d: prop 1
+Cocos2d: index=========0
+Cocos2d: the queue size: 1
+Cocos2d: the queue size: 0
+Cocos2d: file:resource_cn/uiScript/hall.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/hall.plist
+Cocos2d: dict:key main
+Cocos2d: dict:key s_level
+Cocos2d: dict:key s_title
+Cocos2d: file:resource_cn/map/main.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: word path = /var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/word/word.plist
+Cocos2d: 新文字
+Cocos2d: .....
+Cocos2d: word :选项
+Cocos2d: word :邮件
+Cocos2d: word :活动
+Cocos2d: word :英灵
+Cocos2d: word :背包
+Cocos2d: word :无用
+Cocos2d: word :回城
+Cocos2d: file:resource_cn/uiScript/asgard.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/asgard.plist
+Cocos2d: dict:key s_bifrost
+Cocos2d: dict:key t_valkyries
+Cocos2d: dict:key s_valkyries
+Cocos2d: dict:key asgard
+Cocos2d: dict:key t_duplicate
+Cocos2d: dict:key t_gladsheim
+Cocos2d: dict:key s_gladsheim
+Cocos2d: dict:key t_bifrost
+Cocos2d: dict:key s_duplicate
+Cocos2d: file:resource_cn/map/asgard.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/asgard.plist
+Cocos2d: CAsgardLayer m_nTag : 2004 
+Cocos2d: isButtonActing = 0
+AudioStreamBasicDescription:  2 ch,  44100 Hz, 'lpcm' (0x00000029) 32-bit little-endian float, deinterleaved
+Cocos2d: sig=a706324d9df9c793318310d85217f677
+http://cube.games.com/api.php?m=Part&a=getPart&uid=280
+addRequest getTaskInfo
+Cocos2d: the queue: size: 1
+send http://cube.games.com/api.php?m=Part&a=getPart&uid=280
+post data:sig=a706324d9df9c793318310d85217f677
+addRequest send
+Cocos2d: getTaskInfo completed
+Cocos2d: the queue size: 1
+Cocos2d: onReceiveTaskInfo:{"code":0,"result":{"part":{"id":"1828","part_id":"1","chapter_id":"1","type":"0"}}}
+	0    key code                 value :0                   
+	0    key chapter_id           value :1                   
+	1    key id                   value :1828                
+	2    key part_id              value :1                   
+	3    key type                 value :0                   
+Cocos2d: the queue size: 1
+Cocos2d: the queue size: 0
+Cocos2d: file:resource_cn/uiScript/biforest.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/biforest.plist
+Cocos2d: dict:key biforest
+Cocos2d: dict:key t_ch_1_1
+Cocos2d: dict:key t_go
+Cocos2d: dict:key t_close
+Cocos2d: dict:key t_ch_1
+Cocos2d: dict:key t_ch_2
+Cocos2d: file:resource_cn/map/biforest.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/biforest.plist
+Cocos2d: ---500000
+Cocos2d: word path = /var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/word/dictionary.plist
+Cocos2d: 新文字
+Cocos2d: touch which one: 0
+Cocos2d: the size : 1
+Cocos2d: CCScrollView1--- -269.000000, 419.000000
+Cocos2d: CCScrollView2--- 246.000000, 515.000000
+Cocos2d: isButtonActing = 0
+Cocos2d: CBiforestLayer: 2004
+Cocos2d: touch tag : 2003
+Cocos2d: isButtonActing = 0
+Cocos2d: CAsgardLayer m_nTag : 2001 
+Cocos2d: isButtonActing = 0
+Cocos2d: file:resource_cn/uiScript/zhenxing.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxing.plist
+Cocos2d: dict:key evolution
+Cocos2d: dict:key tevolution
+Cocos2d: dict:key tsell
+Cocos2d: dict:key teamTitle
+Cocos2d: dict:key teamArray
+Cocos2d: dict:key enhance
+Cocos2d: dict:key tenhance
+Cocos2d: dict:key outborder
+Cocos2d: dict:key sell
+Cocos2d: file:resource_cn/map/zhenxing.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxing.plist
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: user Id: 17846
+Cocos2d: the resource_cn/img/fighting/peo002.png
+Cocos2d: 1the resource_cn/img/fighting/peo002.png
+Cocos2d: user Id: 17847
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: 3
+Cocos2d: the fightArray: 0, 1 is NULL
+Cocos2d: the fightArray: 0, 2 is NULL
+Cocos2d: the fightArray: 0, 3 is NULL
+Cocos2d: the fightArray: size 0, 5
+Cocos2d: the fightArray: 1, 0 is NULL
+Cocos2d: the fightArray: 1, 1 is NULL
+Cocos2d: the fightArray: 1, 2 is NULL
+Cocos2d: the fightArray: 1, 3 is NULL
+Cocos2d: the fightArray: 1, 4 is NULL
+Cocos2d: the fightArray: size 1, 5
+Cocos2d: the fightArray: 2, 0 is NULL
+Cocos2d: the fightArray: 2, 1 is NULL
+Cocos2d: the fightArray: 2, 2 is NULL
+Cocos2d: the fightArray: 2, 3 is NULL
+Cocos2d: the fightArray: 2, 4 is NULL
+Cocos2d: the fightArray: size 2, 5
+Cocos2d: file:resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: dict:key zhenxingfudong
+Cocos2d: dict:key atkData
+Cocos2d: dict:key suitData
+Cocos2d: dict:key hpData
+Cocos2d: dict:key rvcData
+Cocos2d: dict:key defData
+Cocos2d: dict:key team1Name
+Cocos2d: dict:key saveTitle
+Cocos2d: file:resource_cn/map/zhenxingfudong.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: size: 5
+Cocos2d: fight: 3 null
+Cocos2d: fight: 2 null
+Cocos2d: fight: 1 null
+Cocos2d: fight: 0 null
+Cocos2d: file:resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: dict:key zhenxingfudong
+Cocos2d: dict:key atkData
+Cocos2d: dict:key suitData
+Cocos2d: dict:key hpData
+Cocos2d: dict:key rvcData
+Cocos2d: dict:key defData
+Cocos2d: dict:key team1Name
+Cocos2d: dict:key saveTitle
+Cocos2d: file:resource_cn/map/zhenxingfudong.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: size: 5
+Cocos2d: fight: 3 null
+Cocos2d: fight: 2 null
+Cocos2d: fight: 1 null
+Cocos2d: fight: 0 null
+Cocos2d: file:resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: dict:key zhenxingfudong
+Cocos2d: dict:key atkData
+Cocos2d: dict:key suitData
+Cocos2d: dict:key hpData
+Cocos2d: dict:key rvcData
+Cocos2d: dict:key defData
+Cocos2d: dict:key team1Name
+Cocos2d: dict:key saveTitle
+Cocos2d: file:resource_cn/map/zhenxingfudong.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: size: 5
+Cocos2d: id, 100002
+Cocos2d: the resource_cn/img/fighting/peo002.png
+Cocos2d: 1the resource_cn/img/fighting/peo002.png
+Cocos2d: fight: 3 null
+Cocos2d: fight: 2 null
+Cocos2d: fight: 1 null
+Cocos2d: fight: 0
+Cocos2d: position:0,id, 100001
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the card:0
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -719.000000
+Cocos2d: the page: 1, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -500.000000, end: 0.000000, -238.000000
+Cocos2d: the page: 0, 1
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, 0.000000, end: 0.000000, 128.000000
+Cocos2d: the page: 0, 0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: the selectIndex: -1
+Cocos2d: logo
+Cocos2d: begin: 0.000000, 0.000000, end: 0.000000, -442.000000
+Cocos2d: the page: 1, 0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: the selectIndex: -1
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -500.000000, end: 0.000000, -715.000000
+Cocos2d: the page: 2, 1
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: 1
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: the card:1
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the card:1
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: the card:1
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the card:1
+Cocos2d: the selectIndex: 1
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: the flag: 0
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: 1, removeAction:
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: 1, removeAction:
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the selectIndex: -1
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -1133.000000
+Cocos2d: the page: 2, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -721.000000
+Cocos2d: the page: 1, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: the selectIndex: -1
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -500.000000, end: 0.000000, -745.500000
+Cocos2d: the page: 2, 1
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the selectIndex: -1
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -1133.000000
+Cocos2d: the page: 2, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the selectIndex: -1
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -1133.000000
+Cocos2d: the page: 2, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArrayItem::onTeamArrayBegin
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArrayItem::onTeamArrayBegin
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArrayItem::onTeamArrayBegin
+Cocos2d: the resource_cn/img/fighting/peo002.png
+Cocos2d: 1the resource_cn/img/fighting/peo002.png
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArrayItem::onTeamArrayBegin
+Cocos2d: the resource_cn/img/fighting/peo002.png
+Cocos2d: 1the resource_cn/img/fighting/peo002.png
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d:  x, y: 14.000000, 0.500000, 0
+Cocos2d: p: x, y: -14.000000, 0.500000
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArrayItem::onTeamArrayBegin
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the moveCard: 546.000000 , 295.000000
+Cocos2d: the moveCard: 534.500000 , 292.000000
+Cocos2d: the moveCard: 522.500000 , 291.000000
+Cocos2d: the moveCard: 509.000000 , 289.500000
+Cocos2d: the moveCard: 494.500000 , 287.500000
+Cocos2d: the moveCard: 479.000000 , 284.000000
+Cocos2d: the moveCard: 468.000000 , 281.500000
+Cocos2d: the moveCard: 457.500000 , 280.000000
+Cocos2d: the moveCard: 447.500000 , 280.000000
+Cocos2d: the moveCard: 438.500000 , 280.000000
+Cocos2d: the moveCard: 428.500000 , 280.000000
+Cocos2d: the moveCard: 420.000000 , 280.000000
+Cocos2d: the moveCard: 411.000000 , 280.000000
+Cocos2d: the moveCard: 401.500000 , 280.000000
+Cocos2d: the moveCard: 393.500000 , 280.000000
+Cocos2d: the moveCard: 384.500000 , 280.000000
+Cocos2d: the moveCard: 375.500000 , 279.000000
+Cocos2d: the moveCard: 360.500000 , 275.000000
+Cocos2d: the moveCard: 354.000000 , 272.500000
+Cocos2d: the moveCard: 348.500000 , 271.500000
+Cocos2d: the moveCard: 343.000000 , 270.000000
+Cocos2d: the moveCard: 337.000000 , 269.000000
+Cocos2d: the moveCard: 328.500000 , 268.000000
+Cocos2d: the moveCard: 316.500000 , 266.000000
+Cocos2d: the moveCard: 304.000000 , 263.000000
+Cocos2d: the moveCard: 289.500000 , 259.500000
+Cocos2d: the moveCard: 275.000000 , 256.500000
+Cocos2d: the moveCard: 261.000000 , 254.500000
+Cocos2d: the moveCard: 243.500000 , 252.500000
+Cocos2d: the moveCard: 225.000000 , 250.000000
+Cocos2d: the moveCard: 204.500000 , 245.500000
+Cocos2d: the moveCard: 180.000000 , 237.500000
+Cocos2d: the moveCard: 157.000000 , 229.500000
+Cocos2d: the moveCard: 134.000000 , 223.500000
+Cocos2d: the moveCard: 108.000000 , 216.500000
+Cocos2d: the moveCard: 72.000000 , 199.500000
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d:  x, y: 9.500000, 3.000000, 0
+Cocos2d: p: x, y: -9.500000, -3.000000
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArrayItem::onTeamArrayBegin
+Cocos2d: the resource_cn/img/fighting/peo002.png
+Cocos2d: 1the resource_cn/img/fighting/peo002.png
+Cocos2d: the moveCard: 690.000000 , 292.500000
+Cocos2d: the moveCard: 680.000000 , 288.500000
+Cocos2d: the moveCard: 669.500000 , 284.500000
+Cocos2d: the moveCard: 660.000000 , 280.500000
+Cocos2d: the moveCard: 648.500000 , 276.000000
+Cocos2d: the moveCard: 634.000000 , 268.500000
+Cocos2d: the moveCard: 619.500000 , 262.000000
+Cocos2d: the moveCard: 605.000000 , 256.500000
+Cocos2d: the moveCard: 590.000000 , 250.500000
+Cocos2d: the moveCard: 574.500000 , 244.500000
+Cocos2d: the moveCard: 558.000000 , 236.500000
+Cocos2d: the moveCard: 540.500000 , 229.500000
+Cocos2d: the moveCard: 523.000000 , 222.500000
+Cocos2d: the moveCard: 505.000000 , 216.500000
+Cocos2d: the moveCard: 488.000000 , 210.500000
+Cocos2d: the moveCard: 471.000000 , 205.500000
+Cocos2d: the moveCard: 454.000000 , 200.000000
+Cocos2d: the moveCard: 437.000000 , 195.000000
+Cocos2d: the moveCard: 422.000000 , 190.500000
+Cocos2d: the moveCard: 407.000000 , 186.000000
+Cocos2d: the moveCard: 391.500000 , 182.500000
+Cocos2d: the moveCard: 378.500000 , 180.500000
+Cocos2d: the moveCard: 364.000000 , 179.500000
+Cocos2d: the moveCard: 351.000000 , 179.500000
+Cocos2d: the moveCard: 338.500000 , 179.500000
+Cocos2d: the moveCard: 329.000000 , 178.500000
+Cocos2d: the moveCard: 320.500000 , 178.000000
+Cocos2d: the moveCard: 311.500000 , 177.500000
+Cocos2d: the moveCard: 294.000000 , 176.000000
+Cocos2d: the moveCard: 283.000000 , 172.500000
+Cocos2d: the moveCard: 272.000000 , 167.000000
+Cocos2d: the moveCard: 261.500000 , 160.500000
+Cocos2d: the moveCard: 253.000000 , 153.000000
+Cocos2d: the card:0
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d:  x, y: 2.000000, 6.000000, 1
+Cocos2d: p: x, y: 2.000000, 6.000000
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: -1
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -1133.000000
+Cocos2d: the page: 2, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: -1
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -1129.000000
+Cocos2d: the page: 2, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -898.500000
+Cocos2d: the page: 2, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -914.000000
+Cocos2d: the page: 2, 2
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: file:resource_cn/uiScript/confirm.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: dict:key t_fight_confirm
+Cocos2d: dict:key fight_confirm
+Cocos2d: dict:key confirm
+Cocos2d: dict:key t_confirm
+Cocos2d: file:resource_cn/map/fight_confirm.map
+Cocos2d: file:resource_cn/map/confirm.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: 领导力不够
+Cocos2d: 2233
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -1000.000000
+Cocos2d: the page: 2, 2
+Cocos2d: m_nTag: 2001
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d:  x, y: 5.000000, 6.500000, 0
+Cocos2d: p: x, y: -5.000000, -6.500000
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: file:resource_cn/uiScript/confirm.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: dict:key t_fight_confirm
+Cocos2d: dict:key fight_confirm
+Cocos2d: dict:key confirm
+Cocos2d: dict:key t_confirm
+Cocos2d: file:resource_cn/map/fight_confirm.map
+Cocos2d: file:resource_cn/map/confirm.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: 领导力不够
+Cocos2d: 2233
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -1000.000000
+Cocos2d: the page: 2, 2
+Cocos2d: m_nTag: 2001
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: the card:0
+Cocos2d: file:resource_cn/uiScript/hall.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/hall.plist
+Cocos2d: dict:key main
+Cocos2d: dict:key s_level
+Cocos2d: dict:key s_title
+Cocos2d: file:resource_cn/map/main.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: word :选项
+Cocos2d: word :邮件
+Cocos2d: word :活动
+Cocos2d: word :英灵
+Cocos2d: word :背包
+Cocos2d: word :无用
+Cocos2d: word :回城
+Cocos2d: file:resource_cn/uiScript/asgard.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/asgard.plist
+Cocos2d: dict:key s_bifrost
+Cocos2d: dict:key t_valkyries
+Cocos2d: dict:key s_valkyries
+Cocos2d: dict:key asgard
+Cocos2d: dict:key t_duplicate
+Cocos2d: dict:key t_gladsheim
+Cocos2d: dict:key s_gladsheim
+Cocos2d: dict:key t_bifrost
+Cocos2d: dict:key s_duplicate
+Cocos2d: file:resource_cn/map/asgard.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/asgard.plist
+Cocos2d: inTag: 1
+Cocos2d: inTag: 2
+Cocos2d: inTag: 3
+Cocos2d: CAsgardLayer m_nTag : 2001 
+Cocos2d: isButtonActing = 0
+Cocos2d: file:resource_cn/uiScript/zhenxing.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxing.plist
+Cocos2d: dict:key evolution
+Cocos2d: dict:key tevolution
+Cocos2d: dict:key tsell
+Cocos2d: dict:key teamTitle
+Cocos2d: dict:key teamArray
+Cocos2d: dict:key enhance
+Cocos2d: dict:key tenhance
+Cocos2d: dict:key outborder
+Cocos2d: dict:key sell
+Cocos2d: file:resource_cn/map/zhenxing.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxing.plist
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: user Id: 17846
+Cocos2d: the resource_cn/img/fighting/peo002.png
+Cocos2d: 1the resource_cn/img/fighting/peo002.png
+Cocos2d: user Id: 17847
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: 3
+Cocos2d: the fightArray: 0, 1 is NULL
+Cocos2d: the fightArray: 0, 2 is NULL
+Cocos2d: the fightArray: 0, 3 is NULL
+Cocos2d: the fightArray: size 0, 5
+Cocos2d: the fightArray: 1, 0 is NULL
+Cocos2d: the fightArray: 1, 1 is NULL
+Cocos2d: the fightArray: 1, 2 is NULL
+Cocos2d: the fightArray: 1, 3 is NULL
+Cocos2d: the fightArray: 1, 4 is NULL
+Cocos2d: the fightArray: size 1, 5
+Cocos2d: the fightArray: 2, 0 is NULL
+Cocos2d: the fightArray: 2, 1 is NULL
+Cocos2d: the fightArray: 2, 2 is NULL
+Cocos2d: the fightArray: 2, 3 is NULL
+Cocos2d: the fightArray: 2, 4 is NULL
+Cocos2d: the fightArray: size 2, 5
+Cocos2d: file:resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: dict:key zhenxingfudong
+Cocos2d: dict:key atkData
+Cocos2d: dict:key suitData
+Cocos2d: dict:key hpData
+Cocos2d: dict:key rvcData
+Cocos2d: dict:key defData
+Cocos2d: dict:key team1Name
+Cocos2d: dict:key saveTitle
+Cocos2d: file:resource_cn/map/zhenxingfudong.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: size: 5
+Cocos2d: fight: 3 null
+Cocos2d: fight: 2 null
+Cocos2d: fight: 1 null
+Cocos2d: fight: 0 null
+Cocos2d: file:resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: dict:key zhenxingfudong
+Cocos2d: dict:key atkData
+Cocos2d: dict:key suitData
+Cocos2d: dict:key hpData
+Cocos2d: dict:key rvcData
+Cocos2d: dict:key defData
+Cocos2d: dict:key team1Name
+Cocos2d: dict:key saveTitle
+Cocos2d: file:resource_cn/map/zhenxingfudong.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: size: 5
+Cocos2d: fight: 3 null
+Cocos2d: fight: 2 null
+Cocos2d: fight: 1 null
+Cocos2d: fight: 0 null
+Cocos2d: file:resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/zhenxingfudong.plist
+Cocos2d: dict:key zhenxingfudong
+Cocos2d: dict:key atkData
+Cocos2d: dict:key suitData
+Cocos2d: dict:key hpData
+Cocos2d: dict:key rvcData
+Cocos2d: dict:key defData
+Cocos2d: dict:key team1Name
+Cocos2d: dict:key saveTitle
+Cocos2d: file:resource_cn/map/zhenxingfudong.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: size: 5
+Cocos2d: id, 100002
+Cocos2d: the resource_cn/img/fighting/peo002.png
+Cocos2d: 1the resource_cn/img/fighting/peo002.png
+Cocos2d: fight: 3 null
+Cocos2d: fight: 2 null
+Cocos2d: fight: 1 null
+Cocos2d: fight: 0
+Cocos2d: position:0,id, 100001
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the card:0
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: the card:0
+Cocos2d: the selectIndex: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: 1, removeAction:
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: 0
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchMoved
+Cocos2d: move in CPtBattleArrayLayer
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: 1, removeAction:
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d:  x, y: 31.000000, 19.500000, 0
+Cocos2d: p: x, y: -31.000000, -19.500000
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArrayItem::onTeamArrayBegin
+Cocos2d: the resource_cn/img/fighting/peo001.png
+Cocos2d: 1the resource_cn/img/fighting/peo001.png
+Cocos2d: the moveCard: 511.000000 , 283.500000
+Cocos2d: the moveCard: 481.500000 , 275.000000
+Cocos2d: the moveCard: 450.000000 , 267.500000
+Cocos2d: the moveCard: 417.000000 , 257.500000
+Cocos2d: the moveCard: 387.000000 , 248.000000
+Cocos2d: the moveCard: 361.500000 , 240.000000
+Cocos2d: the moveCard: 338.000000 , 232.000000
+Cocos2d: the moveCard: 314.000000 , 223.500000
+Cocos2d: the moveCard: 290.000000 , 217.500000
+Cocos2d: the moveCard: 267.500000 , 213.000000
+Cocos2d: the moveCard: 250.000000 , 209.000000
+Cocos2d: the moveCard: 233.500000 , 206.000000
+Cocos2d: the moveCard: 209.500000 , 202.500000
+Cocos2d: the moveCard: 199.000000 , 202.000000
+Cocos2d: the moveCard: 189.500000 , 201.500000
+Cocos2d: the moveCard: 178.000000 , 200.000000
+Cocos2d: the moveCard: 153.500000 , 196.500000
+Cocos2d: the moveCard: 132.000000 , 193.000000
+Cocos2d: the moveCard: 122.000000 , 191.500000
+Cocos2d: the moveCard: 105.500000 , 187.000000
+Cocos2d: the moveCard: 97.000000 , 184.500000
+Cocos2d: the moveCard: 96.000000 , 184.000000
+Cocos2d: the moveCard: 96.000000 , 183.500000
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d:  x, y: 18.500000, 13.000000, 0
+Cocos2d: p: x, y: -18.500000, -13.000000
+Cocos2d: CPtBattleArrayItem::ccTouchBegan
+Cocos2d: CPtBattleArrayItem::onTeamArrayBegin
+Cocos2d: the resource_cn/img/fighting/peo002.png
+Cocos2d: 1the resource_cn/img/fighting/peo002.png
+Cocos2d: the moveCard: 666.000000 , 291.000000
+Cocos2d: the moveCard: 640.000000 , 287.000000
+Cocos2d: the moveCard: 613.000000 , 283.000000
+Cocos2d: the moveCard: 582.000000 , 277.000000
+Cocos2d: the moveCard: 547.000000 , 270.500000
+Cocos2d: the moveCard: 509.500000 , 262.500000
+Cocos2d: the moveCard: 473.500000 , 255.000000
+Cocos2d: the moveCard: 439.500000 , 246.000000
+Cocos2d: the moveCard: 408.500000 , 238.000000
+Cocos2d: the moveCard: 378.000000 , 229.500000
+Cocos2d: the moveCard: 348.500000 , 221.000000
+Cocos2d: the moveCard: 323.000000 , 214.500000
+Cocos2d: the moveCard: 305.000000 , 210.000000
+Cocos2d: the moveCard: 291.000000 , 207.000000
+Cocos2d: the moveCard: 278.500000 , 204.500000
+Cocos2d: the moveCard: 269.000000 , 201.500000
+Cocos2d: the moveCard: 257.000000 , 198.500000
+Cocos2d: the moveCard: 252.000000 , 196.500000
+Cocos2d: the moveCard: 244.500000 , 192.000000
+Cocos2d: the moveCard: 232.000000 , 184.500000
+Cocos2d: the moveCard: 218.000000 , 175.000000
+Cocos2d: the moveCard: 205.500000 , 166.000000
+Cocos2d: the moveCard: 196.500000 , 160.500000
+Cocos2d: the moveCard: 190.000000 , 156.000000
+Cocos2d: the moveCard: 182.000000 , 152.500000
+Cocos2d: the moveCard: 180.500000 , 151.500000
+Cocos2d: the moveCard: 181.500000 , 151.500000
+Cocos2d: the card:0
+Cocos2d: the card:0
+Cocos2d: CPtBattleArray 2 ::ccTouchBegan
+Cocos2d: CPtBattleArray 3 ::ccTouchBegan
+Cocos2d: CPtBattleArray 4 ::ccTouchBegan
+Cocos2d: logo
+Cocos2d: CPtBattleArray::ccTouchEnded
+Cocos2d: file:resource_cn/uiScript/confirm.plist
+Cocos2d: m_sPlistFile:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: dict:key t_fight_confirm
+Cocos2d: dict:key fight_confirm
+Cocos2d: dict:key confirm
+Cocos2d: dict:key t_confirm
+Cocos2d: file:resource_cn/map/fight_confirm.map
+Cocos2d: file:resource_cn/map/confirm.map
+Cocos2d: m_sPlistFileaaa
+Cocos2d: .....
+Cocos2d: m_sPlistFile touch:/var/mobile/Applications/9BD0F065-59F1-4D15-92E4-C637B2D8B607/91.cube.app/resource_cn/uiScript/confirm.plist
+Cocos2d: 领导力不够
+Cocos2d: 2233
+Cocos2d: begin: 0.000000, -1000.000000, end: 0.000000, -1000.000000
+Cocos2d: the page: 2, 2
+Cocos2d: m_nTag: -1
+Cocos2d: m_nTag: -1
+Cocos2d: m_nTag: 2001
