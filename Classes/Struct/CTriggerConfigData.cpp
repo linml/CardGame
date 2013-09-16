@@ -92,6 +92,7 @@ CPtTrigger* CPtTriggerConfigData::getTriggerById(int inId)
 }
 
 
+
 void CPtTriggerConfigData::initialTriggerConfigData()
 {
     m_nCurrentTriggerId = -1;

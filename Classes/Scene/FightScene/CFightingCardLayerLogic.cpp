@@ -33,7 +33,7 @@ CFightingCardLayerLogic::CFightingCardLayerLogic()
 CFightingCardLayerLogic::~CFightingCardLayerLogic()
 {
     DELETE_POINT_VECTOR(m_vFightingCard,vector<CFightCard *>);
-    DELETE_POINT_VECTOR(m_vMonsterCard, vector<CFightCard *>);
+    //DELETE_POINT_VECTOR(m_vMonsterCard, vector<CFightCard *>);
 }
 
 bool CFightingCardLayerLogic::loadFromCardTeamTest()
@@ -47,7 +47,7 @@ bool CFightingCardLayerLogic::loadFromCardTeamTest()
     {
         if(tempSinglePlayer->m_hashmapMonsterCard[i])
         {
-            this->m_vMonsterCard.push_back(new CFightCard(*tempSinglePlayer->m_hashmapMonsterCard[i]));
+            this->m_vMonsterCard.push_back(tempSinglePlayer->m_hashmapMonsterCard[i]);
             m_vMonsterCard[i]->tag=1000*(i+1);
         }
         else
@@ -62,7 +62,10 @@ bool  CFightingCardLayerLogic::loadFromServerTest(int  loadTeamIndex)
 {
     CGamePlayer *tempSinglePlayer=SinglePlayer::instance();
     tempSinglePlayer->backUpFightTeam(loadTeamIndex);
-    if(tempSinglePlayer->isLoadEndCardTeam &&tempSinglePlayer->m_vvBattleArray.size()>0&&loadTeamIndex<tempSinglePlayer->m_vvBattleArray.size()&&tempSinglePlayer->m_vvBattleArray[loadTeamIndex].size()>0)
+    if(tempSinglePlayer->isLoadEndCardTeam &&
+       tempSinglePlayer->m_vvBattleArray.size()>0&&
+       loadTeamIndex<tempSinglePlayer->m_vvBattleArray.size()&&
+       tempSinglePlayer->m_vvBattleArray[loadTeamIndex].size()>0)
     {
         for (int i=0; i<SinglePlayer::instance()->m_vvBattleArray[loadTeamIndex].size();i++)
         {
@@ -446,7 +449,7 @@ EN_GAMEFIGHTSTATUS  CFightingCardLayerLogic::getWinStatus()
     CCLog("m_iFightCardIndex=%d",m_iFightCardIndex);
     for (int i=m_iFightCardIndex; i<m_vFightingCard.size()-1; i++)
     {
-        if(m_vFightingCard[i]&&!m_vFightingCard[i]->isDead) //没有死亡 拥户不算
+        if(m_vFightingCard[i] &&! m_vFightingCard[i]->isDead) //没有死亡 拥户不算
         {
             isCardAllDead=false;
             break;

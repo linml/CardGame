@@ -79,7 +79,8 @@ void LoadingScene::doScheule()
             Uid=rand()%4+194;
         } while (Uid==atoi(SinglePlayer::instance()->getUserId()));
         SinglePlayer::instance()->m_FightUid=Uid;
-        SinglePlayer::instance()->loadRival(Uid,3); //在阵容 进去的界面应该算这个值得啊
+        //SinglePlayer::instance()->loadRival(Uid,3); //在阵容 进去的界面应该算这个值得啊
+        SinglePlayer::instance()->loadNpcCardTeam(1, 1, 1, 1);
     }
     else if(targetScene_==EN_CURRSCENE_CARDSETTINGSCENE)
     {

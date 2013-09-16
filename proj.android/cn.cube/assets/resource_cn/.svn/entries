@@ -1,15 +1,15 @@
 10
 
 dir
-1278
+1354
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-10T02:15:56.059238Z
-1269
-merlin
+2013-09-11T11:57:09.867737Z
+1320
+phileas
 has-props
 
 
@@ -66,10 +66,10 @@ file
 
 
 
-2013-09-10T01:40:02.000000Z
-ddab26d29acfbb41a464b375e0494bae
-2013-09-09T08:39:42.883427Z
-1257
+2013-09-11T01:24:32.000000Z
+e5f08e8eb6e40bdfe4120fb3746e00f6
+2013-09-10T08:07:51.867447Z
+1289
 phileas
 
 
@@ -92,7 +92,7 @@ phileas
 
 
 
-887
+1603
 
 meiyouyongskill_config.plist
 file
@@ -162,6 +162,40 @@ phileas
 
 71035
 
+scean.plist
+file
+
+
+
+
+2013-09-12T01:39:52.000000Z
+b16874e0d97e304ca7cf83585171bccb
+2013-09-11T11:57:09.867737Z
+1320
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1835
+
 chapter
 dir
 
@@ -171,19 +205,11 @@ file
 
 
 
-2013-08-14T06:48:41.000000Z
-1e89d38dd472cca6cc09a08026282263
-2013-08-14T02:35:26.476882Z
-968
-phileas
-
-
-
-
-
-card_config.plist.r853
-card_config.plist.r862
-card_config.plist.mine
+2013-09-10T07:17:10.000000Z
+6f129a29e0c16407d89a2e16e6e0aec3
+2013-09-11T05:13:05.209950Z
+1303
+merlin
 
 
 
@@ -197,7 +223,15 @@ card_config.plist.mine
 
 
 
-122645
+
+
+
+
+
+
+
+
+117942
 
 sound
 dir
@@ -239,6 +273,40 @@ merlin
 
 732
 
+npccardteam.txt
+file
+
+
+
+
+2013-09-11T01:38:31.000000Z
+3235d3ca558cf1e7c3caf14c3ad3bf9f
+2013-09-11T02:53:39.460688Z
+1297
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+202
+
 cardbg.txt
 file
 
@@ -272,6 +340,40 @@ merlin
 
 
 4369
+
+special_event_config.plist
+file
+
+
+
+
+2013-09-12T01:39:52.000000Z
+906b91a2c66cb7460fc2645ce59e81b6
+2013-09-11T11:57:09.867737Z
+1320
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3161
 
 uiScript
 dir
@@ -415,6 +517,9 @@ merlin
 word
 dir
 
+img
+dir
+
 card_star_level_up_config.plist
 file
 
@@ -449,12 +554,6 @@ phileas
 
 5320
 
-img
-dir
-
-map
-dir
-
 item_config.plist
 file
 
@@ -488,6 +587,9 @@ phileas
 
 
 9374
+
+map
+dir
 
 100000_l.plist
 file
@@ -625,6 +727,40 @@ merlin
 
 1643
 
+trigger.plist
+file
+
+
+
+
+2013-09-11T01:24:32.000000Z
+63e8b977f513533e343e4dc31f8dfaba
+2013-09-10T09:03:06.788306Z
+1290
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+632
+
 skill_config.plist
 file
 
@@ -659,50 +795,16 @@ phileas
 
 22000
 
-trigger.plist
+npc_config.plist
 file
 
 
 
 
-2013-09-10T01:40:02.000000Z
-ff1f462ba52e9d0514add23a4c249a32
-2013-09-10T01:34:11.879633Z
-1265
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-657
-
-100004_r.plist
-file
-
-
-
-
-2013-08-13T09:15:12.000000Z
-15c7be5cefd540d9292ef52c8521b5a4
-2013-08-13T09:32:24.972476Z
-962
+2013-09-11T01:41:50.000000Z
+64bcb3153cabd9a6ae02135c3cf23145
+2013-09-11T02:53:39.460688Z
+1297
 merlin
 
 
@@ -725,7 +827,7 @@ merlin
 
 
 
-1543
+6202
 
 boss_icon_Effect_l.plist
 file
@@ -760,6 +862,40 @@ merlin
 
 
 1474
+
+100004_r.plist
+file
+
+
+
+
+2013-08-13T09:15:12.000000Z
+15c7be5cefd540d9292ef52c8521b5a4
+2013-08-13T09:32:24.972476Z
+962
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1543
 
 particle
 dir
@@ -803,6 +939,40 @@ dir
 
 font
 dir
+
+eventlist.plist
+file
+
+
+
+
+2013-09-12T01:39:52.000000Z
+b0e92563960cd3da6a78a1f7b2dcc243
+2013-09-11T11:56:39.996218Z
+1319
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7271
 
 bufferfire.plist
 file
@@ -874,4 +1044,38 @@ merlin
 
 action
 dir
+
+npc_ground_config.plist
+file
+
+
+
+
+2013-09-10T07:51:28.000000Z
+846f622f46d2cb8e516fe7e7f0d368b4
+2013-09-11T02:53:39.460688Z
+1297
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1471
 

@@ -37,7 +37,7 @@
 		<key>randomevent_id</key>
 		<string>1</string>
 		<key>trigger_id</key>
-		<string>1</string>
+		<string>1,2</string>
 	</dict>
 </dict>
 </plist>

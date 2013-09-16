@@ -9,6 +9,7 @@
 #include "CPtSectionConfigData.h"
 #include "gameTools.h"
 #include "gameConfig.h"
+
 //implement class of CPtSection
 CPtSection* CPtSection::create()
 {
@@ -16,6 +17,23 @@ CPtSection* CPtSection::create()
     section->autorelease();
     return section;
 }
+
+void CPtSection::setTriggers(const char * string)
+{
+    m_cTriggers.clear();
+    vector<std::string> tmp = GameTools::splitString(string, ",");
+    for (int i = 0; i < tmp.size(); i++)
+    {
+        m_cTriggers.push_back(atoi(tmp.at(i).c_str()));
+    }
+    
+}
+const vector<int>& CPtSection::getTriggers()
+{
+    return m_cTriggers;
+}
+
+// implement class of CPtSectionConfigData
 
 CPtSectionConfigData* CPtSectionConfigData::create(int inChapterId)
 {
@@ -71,8 +89,9 @@ void CPtSectionConfigData::loadSectionDataByChapter(cocos2d::CCDictionary *inSec
             tmpSection->setEndBounsMoney(GameTools::intForKey("endbouns_money",tmpValue));
             tmpSection->setTaskId(GameTools::intForKey("mission_id", tmpValue));
             tmpSection->setRandomEventId(GameTools::intForKey("randomevent_id", tmpValue));
-            tmpSection->setTriggerId(GameTools::intForKey("trigger_id", tmpValue));
             
+          //  tmpSection->setTriggerId(GameTools::intForKey("trigger_id", tmpValue));
+            tmpSection->setTriggers(GameTools::valueForKey("trigger_id", tmpValue));
             m_pIdToSequence->setObject(CCInteger::create(tmpSection->getSequence()),tmpSection->getSectionId());
             m_pSectionsInChapter->setObject(tmpSection, tmpSection->getSequence());
             
@@ -93,6 +112,15 @@ CPtSection * CPtSectionConfigData::getSectionById(int inSectionId)
 }
 
 /*
+ * @breif: 
+ * @param: from 0
+ */
+CPtSection * CPtSectionConfigData::getSectionByIndex(int inSectionIdex)
+{
+    inSectionIdex++;
+    return (CPtSection *) m_pSectionsInChapter->objectForKey(inSectionIdex);
+}
+/*
  * @breif: 返回该ID之前的小节数组
  * @param inSectionId : 当前小节的ID
  * @return 数组是临时变量，create的
@@ -110,7 +138,7 @@ CCArray* CPtSectionConfigData::getSectionsBeforeId(int inSectionId)
     {
         for (int i = 1; i <= sequence; i++)
         {
-            section = (CPtSection *) m_pSectionsInChapter->objectForKey(sequence);
+            section = (CPtSection *) m_pSectionsInChapter->objectForKey(i);
             array->addObject(section);
         }
     }

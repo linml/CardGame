@@ -38,16 +38,16 @@ CPtHttpClient* CPtHttpClient::sharePtHttpClient()
 
 void CPtHttpClient::send(stcRequestInf tInf)
 {
-    printf("send %s\n",tInf.m_pchURL);
+    printf("send %s\n",tInf.m_pchURL.c_str());
     CCHttpRequest* request = new CCHttpRequest();
-    request->setUrl(tInf.m_pchURL);
+    request->setUrl(tInf.m_pchURL.c_str());
     request->setRequestType(tInf.m_RequestType);
     request->setResponseCallback(this, callfuncND_selector(CPtHttpClient::onHttpRequestCompleted));
-    if (tInf.m_RequestType ==  CCHttpRequest::kHttpPost && tInf.m_pchData) {
-        printf("post data:%s\n",tInf.m_pchData);
-        request->setRequestData(tInf.m_pchData, strlen(tInf.m_pchData));
+    if (tInf.m_RequestType ==  CCHttpRequest::kHttpPost && tInf.m_pchData.c_str()) {
+        printf("post data:%s\n",tInf.m_pchData.c_str());
+        request->setRequestData(tInf.m_pchData.c_str(), tInf.m_pchData.length());
     }
-    request->setTag(tInf.m_pchTag);
+    request->setTag(tInf.m_pchTag.c_str());
     CCHttpClient::getInstance()->send(request);
     request->release();
     m_bIsSending = true ;
@@ -56,7 +56,7 @@ void CPtHttpClient::send(stcRequestInf tInf)
 
 void CPtHttpClient::addRequest(stcRequestInf tInf)
 {
-    printf("addRequest %s\n",tInf.m_pchTag);
+    printf("addRequest %s\n",tInf.m_pchTag.c_str());
     m_qRequestInf.push(tInf);
     //
     CCLog("the queue: size: %d", getRequestQueueSize());
@@ -84,10 +84,10 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
     
     // You can get original request type from: response->request->reqType
     const char* pchReciveTag = response->getHttpRequest()->getTag();
-    if (0 != strlen(pchReciveTag) && !strcmp(m_qRequestInf.front().m_pchTag, pchReciveTag))
+    if (0 != strlen(pchReciveTag) && !strcmp(m_qRequestInf.front().m_pchTag.c_str(), pchReciveTag))
     {
         CCLog("%s completed", response->getHttpRequest()->getTag());
-        m_bIsSending = false;
+//xianbei modify        m_bIsSending = false;
         
     }
     
@@ -121,9 +121,10 @@ void CPtHttpClient::notificationMsgRecevice(CCObject* obj)
 //    PtJsonUtility::JsonStringParse((char*)obj);
     CCLog("the queue size: %d", m_qRequestInf.size());
     stcRequestInf inf = m_qRequestInf.front();
-    CCNotificationCenter::sharedNotificationCenter()->postNotification(inf.m_pSelector, (CCObject*)obj);
     CCLog("the queue size: %d", m_qRequestInf.size());
+    CCNotificationCenter::sharedNotificationCenter()->postNotification(inf.m_pSelector.c_str(), (CCObject*)obj);
     m_qRequestInf.pop();
+    m_bIsSending = false;
     CCLog("the queue size: %d", m_qRequestInf.size());
     if(!m_qRequestInf.empty())
     {

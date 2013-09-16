@@ -253,7 +253,7 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
         else
         {
           
-            CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji();
+            CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji(pCard);
              CCLog("条件不满足 爆发了技能id:%d",pPutongSkill->skill_id);
             if (pPutongSkill)
             {
@@ -459,13 +459,21 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                 CCLog("pSkill->parameter_3================>%d",pSkill->parameter_3);
                 CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
                 CCLog("apppppend%d",totoalanimation++);
-                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,SinglePlayer::instance()->getBufferPlistByEffectId(pImpact->m_ieffect_id)));
-                CCLog("pSkill->parameter_3================>%s",pImpact->m_sEffectFile.c_str());
+                //显示回合？
+                string effectPliststr=SinglePlayer::instance()->getBufferPlistByEffectId(pImpact->m_ieffect_id);
+                if(effectPliststr.empty())
+                {
+                    m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,effectPliststr));
+                }
+                else{
+                    m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,pImpact->m_ieffect_id,effectPliststr));
+                }
+                CCLog("pSkill->parameter_4================>%s",pImpact->m_sEffectFile.c_str());
             }
         }
         else
         {
-            CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji();
+            CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji(pCard);
             if (pPutongSkill)
             {
                 logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);
@@ -688,11 +696,11 @@ bool CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
     return false;
 }
 
-void CFightSkillManager::appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex)
+void CFightSkillManager::appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex,int effectPlistId)
 {
 
     CCLog("aaaaaappend %d",totoalanimation++);
-    m_animationVector.push_back(new CAnimationSpriteGameFight(enAnimationType,enatkindex,AtkIndex,DefIndex,AddHp,SubHp,AddEngry,subAngry,skillid,0                                                      ));
+    m_animationVector.push_back(new CAnimationSpriteGameFight(enAnimationType,enatkindex,AtkIndex,DefIndex,AddHp,SubHp,AddEngry,subAngry,skillid,effectPlistId));
 }
 
 void CFightSkillManager::appendBuffIcon(CFightCard *fightCard,CFightCard *monster,EN_ATKFIGHT_INDEX enAtkFightIndex)
@@ -832,6 +840,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                     pFightCard->subDef(-pCardBufferRefactor->m_iDef);
                     pFightCard->appendEngry(-pCardBufferRefactor->m_iEngry);
                 }
+                appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_REMOVEPLIST, enatkindex,pCardBufferRefactor->m_iEffectid);
                 delete pCardBufferRefactor;
                 pCardBufferRefactor=NULL;
                 it=pFightCard->m_vlistBuffer.erase(it);

@@ -50,8 +50,6 @@ protected:
     
     CCSprite * m_pTabButton[4];
 // test: network;
-    
-    void load();
     void callback(float dt);
 };
 

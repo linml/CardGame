@@ -35,7 +35,7 @@
 		<key>skill_buff</key>
 		<string>0</string>
 		<key>card_resources</key>
-		<string>npc1.png</string>
+		<string>000</string>
 	</dict>
 	<key>440001</key>
 	<dict>
@@ -56,7 +56,7 @@
 		<key>defend</key>
 		<string>110</string>
 		<key>hp</key>
-		<string>462</string>
+		<string>500000</string>
 		<key>card_energy</key>
 		<string>150</string>
 		<key>usually_attack</key>
@@ -70,7 +70,7 @@
 		<key>skill_buff</key>
 		<string>0</string>
 		<key>card_resources</key>
-		<string>npc2.png</string>
+		<string>001</string>
 	</dict>
 	<key>440002</key>
 	<dict>
@@ -105,7 +105,7 @@
 		<key>skill_buff</key>
 		<string>0</string>
 		<key>card_resources</key>
-		<string>npc3.png</string>
+		<string>002</string>
 	</dict>
 	<key>440003</key>
 	<dict>
@@ -140,7 +140,7 @@
 		<key>skill_buff</key>
 		<string>0</string>
 		<key>card_resources</key>
-		<string>npc4.png</string>
+		<string>003</string>
 	</dict>
 	<key>440004</key>
 	<dict>
@@ -175,7 +175,7 @@
 		<key>skill_buff</key>
 		<string>0</string>
 		<key>card_resources</key>
-		<string>npc5.png</string>
+		<string>008</string>
 	</dict>
 	<key>440005</key>
 	<dict>
@@ -210,7 +210,7 @@
 		<key>skill_buff</key>
 		<string>0</string>
 		<key>card_resources</key>
-		<string>npc6.png</string>
+		<string>000</string>
 	</dict>
 	<key>440006</key>
 	<dict>
@@ -245,7 +245,7 @@
 		<key>skill_buff</key>
 		<string>0</string>
 		<key>card_resources</key>
-		<string>npc7.png</string>
+		<string>001</string>
 	</dict>
 	<key>440007</key>
 	<dict>
@@ -280,7 +280,7 @@
 		<key>skill_buff</key>
 		<string>0</string>
 		<key>card_resources</key>
-		<string>npc8.png</string>
+		<string>002</string>
 	</dict>
 </dict>
 </plist>

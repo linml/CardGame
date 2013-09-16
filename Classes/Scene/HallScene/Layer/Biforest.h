@@ -16,6 +16,8 @@
 #include "LayoutLayer.h"
 #include "CPtListViewWidget.h"
 #include "CPtTableItem.h"
+
+#include "CPtExpandableListView.h"
 using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace std;
@@ -76,6 +78,8 @@ protected:
     void updateLeftPanelUI();
     
     
+    void updatePanel(int inChapterId, int inSectionId);
+    
     void getChapters(int inMaxChapterId);
     void getSections(int inSelectedChapterId, int inMaxSectionId = -1);
     
@@ -99,6 +103,17 @@ protected:
     // load image resource:
     void loadResource();
     
+    // test with expandableListView:
+    CPtExpandableListView *m_pListView;
+    void test();
+    
+    CCNode* createItemViewByType(const char* inTitle, ITEM_TYPE inType = PARENT_TYPE);
+    void setNormal(CCObject *pObject);
+    void setSelected(CCObject *pObject);
+    void getChildren(CCObject* pObject);
+   
+    
+    
 protected:
     
     int m_nMaxChapterId;
@@ -107,7 +122,7 @@ protected:
     int m_nCurrentChapterId;
     int m_nCurrentSectionId;
     
-    int m_nSelectIndex;
+    int m_nCurrentSectionIndex;
     
     int m_nTouchTag;
     bool m_bSectionTouchEnable;

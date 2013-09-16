@@ -114,51 +114,23 @@ CPtTask * CTaskConfigData::getTaskById(int inId)
         if (tmpDic)
         {
             CPtTask *tmpTask = CPtTask::create();
-            /*
-             *<dict>
-             <key>task_id</key>
-             <string>300001</string>
-             <key>name</key>
-             <string>通关序章第一节</string>
-             <key>type</key>
-             <string>1</string>
-             <key>target_id</key>
-             <string>0</string>
-             <key>num</key>
-             <string>1</string>
-             <key>pre_task</key>
-             <string>0</string>
-             <key>exp</key>
-             <string>100</string>
-             <key>coin</key>
-             <string>40</string>
-             <key>rmb</key>
-             <string>0</string>
-             <key>items</key>
-             <string>{&quot;300001&quot;:&quot;1&quot;}</string>
-             <key>card_ids</key>
-             <string>0</string>
-             <key>chapter_id</key>
-             <string>1</string>
-             <key>pard_id</key>
-             <string>1</string>
-             <key>task_tags</key>
-             <string>1</string>
-             */
-            tmpTask->setTaskId(GameTools::intForKey("task_id", m_pTaskConfigData ));
-            tmpTask->setTaskType(GameTools::intForKey("type", m_pTaskConfigData));
-            tmpTask->setTargetId(GameTools::intForKey("target_id", m_pTaskConfigData));
-            tmpTask->setTargetNum(GameTools::intForKey("num", m_pTaskConfigData));
-            tmpTask->setPreTaskId(GameTools::intForKey("pre_task", m_pTaskConfigData));
-            tmpTask->setChapterId(GameTools::intForKey("chapter", m_pTaskConfigData));
-            tmpTask->setSectionId(GameTools::intForKey("pard_id", m_pTaskConfigData));
             
-            int exp = GameTools::intForKey("exp", m_pTaskConfigData);
-            int coin = GameTools::intForKey("coin", m_pTaskConfigData);
-            int rmb = GameTools::intForKey("rmb", m_pTaskConfigData);
+            tmpTask->setTaskId(GameTools::intForKey("task_id", tmpDic ));
+            tmpTask->setTaskType(GameTools::intForKey("type", tmpDic));
+            tmpTask->setTargetId(GameTools::intForKey("target_id", tmpDic));
+            tmpTask->setTargetNum(GameTools::intForKey("num", tmpDic));
+            tmpTask->setPreTaskId(GameTools::intForKey("pre_task", tmpDic));
+            tmpTask->setChapterId(GameTools::intForKey("chapter_id", tmpDic));
+            tmpTask->setSectionId(GameTools::intForKey("pard_id", tmpDic));
+            tmpTask->setTaskTipId(GameTools::intForKey("task_tags", tmpDic));
+    
+            
+            int exp = GameTools::intForKey("exp", tmpDic);
+            int coin = GameTools::intForKey("coin", tmpDic);
+            int rmb = GameTools::intForKey("rmb", tmpDic);
             tmpTask->setTaskReword(exp, coin, rmb);
-            tmpTask->setCardIds(GameTools::valueForKey("card_ids", m_pTaskConfigData));
-            tmpTask->setPropItems(GameTools::valueForKey("items", m_pTaskConfigData));
+            tmpTask->setCardIds(GameTools::valueForKey("card_ids", tmpDic));
+            tmpTask->setPropItems(GameTools::valueForKey("items", tmpDic));
 
             tmpTask->retain();
             CC_SAFE_RELEASE(m_pCurrentTask);
@@ -168,5 +140,6 @@ CPtTask * CTaskConfigData::getTaskById(int inId)
         
        
     }
+    return m_pCurrentTask;
     
 }

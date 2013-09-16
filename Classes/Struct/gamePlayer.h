@@ -35,12 +35,9 @@ class CGamePlayer : cocos2d::CCObject
     void onExitGameApp();
 public:
      CCard *getCardByCardId(int cardid);
-     SLevelPlayer *getPlayerDataByLevel(int level);
-     CSkillData *getPutongGongji();
+     CSkillData *getPutongGongji(CFightCard *pCard);
      CSkillData *getSkillBySkillId(int skillId);
      CImapact *getEffectTableByEffectId(int effectId);
-     bool isHaveSkillBySkillId(int skillID);
-    
      string getBufferPlistByEffectId(int effectID);
      string getBufferPngByEffectId(int effectID);
      CImapact *findByImpactId( int tempImpactId);
@@ -89,11 +86,7 @@ public: //读取卡包的信息
     void deleteFromCardBag(vector<int>user_CardId);
     bool isCardBagContainUserCardList(vector<int>User_CardId);
     int  isLoadCardBagEnd;
-    void decodeCardDict(CCDictionary *dict);
-public: //读取英雄的信息
-    void loadServerPlayerInfo();
-    void loadServerPlayerInfoCallBack(CCObject *obj);
-    bool isLoadPlayerInfoEnd;
+    void decodeCardDictAppendCardBag(CCDictionary *dict);
     CFightCard *findFightCardByCard_User_ID(int  carduserid);
 public:
     //系统初始化信息
@@ -103,17 +96,18 @@ public:
     int  gameInitStatus;
     
 public: //读取 卡队列的信息
-    void loadCardTeamInfo();
     void loadCardTeamInfoCallBack(CCObject *obj);
     void loadCardTeamInfoCallBackByDict(CCDictionary *dictresult);
     int  isLoadEndCardTeam;
 public:
     //读取对战别的英雄对战的阵容
     void loadRival(int  usid,int troop);
-    void loadNpcCard(int zhang,int jie,int bu,int dijige);
+    void loadNpcCardTeam(int zhang,int jie,int bu,int dijige);
     void parseRival(CCObject *object);
     void parseNpcCard(CCObject *object);
+    void parseNpcCard(CCDictionary *resultDictresult);
     int  isLoadFightTeam;
+    //战斗时候调用的随机值得。
     void randRomIndexAdd();
     void logicRandValue(int &value,bool needAdd=true);
     std::vector<int >m_getRandom_data;
@@ -134,7 +128,6 @@ public:
 public:
     void receiveEmail(CGameEmailData * inEmailData);
     void receiveEmail(map<int, int> inProps, int inAddPlayerExp, int inAddPlayerCoin);
-// interface of prop:
     void addProp(int inPropId, int inAddNum);
     int subProp(int inPropId, int inSubNum);
     map<int,int> getPlayerProps();

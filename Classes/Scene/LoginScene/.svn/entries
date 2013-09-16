@@ -1,15 +1,15 @@
 10
 
 dir
-1278
+1355
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/LoginScene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-09T06:40:31.026381Z
-1249
-merlin
+2013-09-12T10:12:04.603328Z
+1332
+wood
 has-props
 
 
@@ -32,33 +32,11 @@ file
 
 
 
-2013-09-06T09:06:26.000000Z
-01b167f60b1da83c03cda52fc9080c77
-2013-09-09T06:40:31.026381Z
-1249
-merlin
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-11022
+36a49c4ccd659ab2508f2713a5e45deb
+2013-09-12T10:10:52.429185Z
+1331
+wood
 
 Layer
 dir

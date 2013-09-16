@@ -20,6 +20,7 @@
 #include "gameMiddle.h"
 #include "Pt_AES.h"
 #include "gameMiddle.h"
+#include "Pt_AES.h"
 
 
 // implement of the CLoginScene:
@@ -119,10 +120,11 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             }
             break;
         case 2000:
+            CCUserDefault::sharedUserDefault()->setStringForKey("account", "");
             remove(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str());
             Middle::showAlertView("清除账号信息");
-            //            CCUserDefault::sharedUserDefault()->purgeSharedUserDefault();
-            //            CCUserDefault::sharedUserDefault()->flush();
+            CCUserDefault::sharedUserDefault()->setStringForKey("account", "");
+            // CCUserDefault::sharedUserDefault()->flush();
             break;
         default:
             break;
@@ -141,12 +143,14 @@ void CLoginScene::doLogin()
     string strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
     //    string strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password").c_str();
     string fileName = CCFileUtils::sharedFileUtils()->getWriteablePath()+"password";
-    FILE* file = fopen(fileName.c_str(), "r");
+    FILE* file = fopen(fileName.c_str(), "rb");
     char achPassword[64] = "";
     if(file)
     {
         fgets(achPassword, 64, file);
     }
+    fclose(file);
+    CCLog("password is %s",Pt_AES::sharePtAESTool("cube")->DecryptString(achData));
     sprintf(achData, "name=%s&password=%s",strAccount.c_str(),achPassword);
     ADDHTTPREQUESTPOSTDATA(STR_URL_LOGIN,
                            "CALLBACK_CLoginScene_doLogin",
@@ -167,6 +171,11 @@ void CLoginScene::onReceiveLoginMsg(CCObject* obj)
     {
         Middle::showAlertView("密码错误");
     }
+    else if(strstr(data,"10001"))
+    {
+        Middle::showAlertView("参数错误");
+    }
+
     else
     {
         CCDictionary* dic = (CCDictionary*)PtJsonUtility::JsonStringParse(data)->objectForKey("result");
@@ -389,7 +398,8 @@ void CLoginScene::addFunctionInitGames(float t)
 void CLoginScene::notificationRegiterRecevice(CCObject* obj)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, REGITER_SUCCESS);
-    scheudoLoadGameConfig();
+    Middle::showAlertView("注册成功");
+//    doLogin();
 }
 
 

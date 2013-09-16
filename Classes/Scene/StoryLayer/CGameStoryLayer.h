@@ -20,10 +20,10 @@ class CGameStoryLayer :public CCLayer
 public:
     CGameStoryLayer();
     ~CGameStoryLayer();
-    static CGameStoryLayer *CreateStoryLayer(int storyId,CCNode *node=NULL);
+    static CGameStoryLayer *CreateStoryLayer(int storyId,CCNode *node=NULL, int zorder = 300);
     void setCaneTouch();
 private:
-    bool initCreateStory(int storyId,CCNode *node);
+    bool initCreateStory(int storyId,CCNode *node,int zorder = 300);
     void createKuaiJing();
     string getStoryTalkList(int storyID);
     void  updateTimeToShow(float t);

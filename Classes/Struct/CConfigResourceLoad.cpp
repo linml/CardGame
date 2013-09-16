@@ -94,7 +94,7 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
         card->m_scard_resources=GameTools::valueForKey("card_resources", cardDirector);
         card->m_scard_head=GameTools::valueForKey("card_head", cardDirector);
         card->m_scard_ground=GameTools::valueForKey("card_ground", cardDirector);
-        card->m_scard_role="card_role_"+card->m_scard_resources+".png";
+        card->m_scard_role="card_role_"+card->m_scard_resources;
         card->m_scard_resources="peo"+card->m_scard_resources+".png";
         ((CNpcCard *)card)->m_npcCardLevel=GameTools::intForKey("level",cardDirector);
         int index = card->m_sicard_star -1;

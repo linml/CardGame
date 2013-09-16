@@ -44,6 +44,7 @@ const std::string act_over = "ActOver"; //踩格子效果动作结束专用
 const std::string act_remove_self = "RemoveSelf";//删除本身
 const std::string act_reset_zorder="ResetZorder";
 const std::string act_animateplist="Animate";
+const std::string act_animateplistStruct="AnimateStruct";
 const std::string act_hidetag="Removetag";
 const std::string act_jumpby="JumpBy";
 const std::string act_effectSound="PlayEffectSound";
@@ -54,7 +55,20 @@ public:
 	string actionType;
 	string action;
 };
-
+struct STexiaotag {
+    STexiaotag(const char *fileName,int tag)
+    {
+        data=new char [strlen(fileName)+1];
+        sprintf(data, "%s",fileName);
+        this->tag=tag;
+    }
+    ~STexiaotag()
+    {
+        delete  []data;
+    }
+    char *data;
+    int tag;
+};
 class ActionCallFun {
 public:
 	//标记动作结束
@@ -67,6 +81,7 @@ public:
     static bool getBtnStatus();
     void resetZorder(CCNode *node,void *data);
     void callTexiaoFile(CCNode *node,void *data);
+    void callTexiaoFileStruct(CCNode *node,void *data);
     void callPlayEffect(CCNode *node,void *data);
     void removeChildBytag(CCNode *node,void *data);
 };

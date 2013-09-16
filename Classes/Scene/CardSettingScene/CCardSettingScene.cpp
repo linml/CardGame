@@ -58,7 +58,6 @@ bool CCardSettingScene::init()
     {
         CC_BREAK_IF(!CCLayer::init());
         initCCardSetting();
-     //   load();
         bRet = true;
     } while (0);
     return bRet;
@@ -285,15 +284,15 @@ void CCardSettingScene::handlerTouch()
 
 
 // test:
-void CCardSettingScene::load()
-{
+//void CCardSettingScene::load()
+//{
+//
+//    CGamePlayer* m_pGamePlayer = SinglePlayer::instance();
+//    m_pGamePlayer->loadGamesConfig();
+//    m_pGamePlayer->loadServerCardBag();
+//    this->schedule(schedule_selector(CCardSettingScene::callback));
+//}
 
-    CGamePlayer* m_pGamePlayer = SinglePlayer::instance();
-    m_pGamePlayer->loadGamesConfig();
-    m_pGamePlayer->loadServerCardBag();
-    m_pGamePlayer->loadCardTeamInfo();
-    this->schedule(schedule_selector(CCardSettingScene::callback));
-}
 void CCardSettingScene::callback(float dt)
 {
      CGamePlayer* m_pGamePlayer = SinglePlayer::instance();

@@ -86,7 +86,7 @@
 #define STR_URL_EMAILGETITEMS(UID)  URL_FACTORY("api.php?m=Inbox&a=getItems&uid=",UID)
 
 //获取任务:(暂时为最大章和最大节)
-#define STR_URL_TASK(UID)           URL_FACTORY("api.php?m=Part&a=getPart&uid=",UID)
+#define STR_URL_TASK(UID)            URL_FACTORY("api.php?m=Task&a=getTasks&uid=",UID)   //URL_FACTORY("api.php?m=Part&a=getPart&uid=",UID)
 
 //进入迷宫（既选中小节后进入）
 #define STR_URL_GOSECTION(UID)      URL_FACTORY("api.php?m=Part&a=getPartEvent&uid=",UID) 

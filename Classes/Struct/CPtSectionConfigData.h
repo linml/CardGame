@@ -10,6 +10,7 @@
 #define ___1_cube__CPtSectionConfigData__
 
 #include <map>
+#include <string>
 #include "cocos2d.h"
 #include "CSingleton.h"
 
@@ -27,6 +28,10 @@ class CPtSection : public CCObject
 public:
     static CPtSection* create();
 public:
+    
+    void setTriggers(const char * string);
+    const vector<int>& getTriggers();
+    
     CC_SYNTHESIZE(int, m_nSectionId, SectionId);              // 小节Id
     CC_SYNTHESIZE(std::string, m_sSectionName, SectionName);  //小节名称
     CC_SYNTHESIZE(int, m_nChapterId, ChapterId);              // 该小节所属章节ID
@@ -46,7 +51,12 @@ public:
 
     CC_SYNTHESIZE(int, m_nTaskId, TaskId);                    // 任务ID
     CC_SYNTHESIZE(int, m_nRandomEventId, RandomEventId);      //随机ID
-    CC_SYNTHESIZE(int, m_nTriggerId, TriggerId);              // 触发ID
+    
+   // CC_SYNTHESIZE(int, m_nTriggerId, TriggerId);              // 触发ID组
+    
+    
+protected:
+    vector<int> m_cTriggers;
 };
 
 
@@ -57,6 +67,7 @@ public:
     CPtSectionConfigData(CCDictionary *inSectionDictionary);
     virtual ~CPtSectionConfigData();
     CPtSection *getSectionById(int inSectionId);
+    CPtSection *getSectionByIndex(int inSectionIdex);
     CCArray *getSectionsBeforeId(int inSectionId);
     CCArray *getSectionByOrder();
 protected:

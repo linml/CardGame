@@ -260,6 +260,13 @@ namespace PtActionUtility {
             return action;
 
         }
+        else if(actionType==act_animateplistStruct)
+        {
+            vector<string > temp=splitString(sAction, "(", ")");
+            STexiaotag *ptexiao=new STexiaotag(temp[0].c_str(),atoi(temp[1].c_str()));
+            CCCallFuncND* action = CCCallFuncND::create(NULL, callfuncND_selector(ActionCallFun::callTexiaoFileStruct),(void*)ptexiao);
+            return action;
+        }
         else if(actionType==act_hidetag)
         {
             int *tag=new int;
@@ -521,6 +528,7 @@ void ActionCallFun::removeChildBytag(CCNode *node,void *data)
     delete (int *)data;
     data=NULL;
 }
+
 void ActionCallFun::callTexiaoFile(CCNode *node,void *data)
 {
     char *filename= (char *)data;
@@ -530,6 +538,17 @@ void ActionCallFun::callTexiaoFile(CCNode *node,void *data)
     }
     delete [](char *)data;
     data=NULL;
+}
+
+void ActionCallFun::callTexiaoFileStruct(cocos2d::CCNode *node, void *data)
+{
+    STexiaotag *pTexiao=(STexiaotag *)data;
+    if(pTexiao)
+    {
+        Utility::runPtActionScript(node, pTexiao->data, pTexiao->tag);
+    }
+    delete pTexiao;
+    pTexiao=NULL;
 }
 
 void ActionCallFun::callPlayEffect(CCNode *node,void *data)

@@ -34,11 +34,13 @@ public:
     CPtTriggerConfigData();
     virtual ~CPtTriggerConfigData();
     CPtTrigger* getTriggerById(int inId);
+    
 protected:
     void initialTriggerConfigData();
 protected:
     int m_nCurrentTriggerId;
     CPtTrigger *m_pCurrentTrigger;
+
 };
 
 typedef Singleton<CPtTriggerConfigData>  SingleTriggerConfig;

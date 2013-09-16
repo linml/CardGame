@@ -145,7 +145,7 @@ void FightResultConfirm::handlerTouch()
 //            {
 //                g_nLevle++;
 //            }
-//              SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
+              SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
 //        }
 //        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
 //    }

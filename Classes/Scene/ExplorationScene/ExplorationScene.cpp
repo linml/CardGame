@@ -47,6 +47,7 @@ CExploration::~CExploration()
         m_cMaps->release();
     }
     
+    CC_SAFE_RELEASE(m_pTriggers);
 }
 
 
@@ -62,6 +63,12 @@ bool CExploration::init()
     return bRet;
 }
 
+void CExploration::onEnter()
+{
+    CCLayer::onEnter();
+    handlerTrigger();
+    
+}
 bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     if (m_bLoadTaskInfo == false)
@@ -157,8 +164,23 @@ void CExploration::initData()
     m_pTouchSprite = NULL;
     m_pProgress = NULL;
     
-    m_pTrigger = SingleTriggerConfig::instance()->getTriggerById(s_SectionData.sectionInfo->getTriggerId());
+    m_pPlayer = SinglePlayer::instance();
+  //  m_pTrigger = SingleTriggerConfig::instance()->getTriggerById(s_SectionData.sectionInfo->getTriggerId());
+    m_pTriggers = CCArray::create();
+    m_pTriggers->retain();
+    getTriggers();
+}
 
+void CExploration::getTriggers()
+{
+    CPtTriggerConfigData * triggerData =  SingleTriggerConfig::instance();
+    const vector<int>& triggerIds = s_SectionData.sectionInfo->getTriggers();
+    CPtTrigger * trigger = NULL;
+    for (int i = 0; i < triggerIds.size(); i++)
+    {
+        trigger =  triggerData->getTriggerById(triggerIds.at(i));
+        m_pTriggers->addObject(trigger);
+    }
 }
 
 bool CExploration::initExploration()
@@ -336,12 +358,13 @@ bool CExploration::initExploration()
       //  randonArrows(s_SectionData.currentStep);
         
         initEvent();
-        handlerTrigger();
+       // handlerTrigger();
         bRet = true;
     } while (0);
     
     return bRet;
 }
+
 
 void CExploration:: initEvent()
 {
@@ -413,6 +436,9 @@ void CExploration::handlerTouch()
             onSaveSectionProgress();
             
             break;
+        case 2001:
+             SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_FIGHTSCENE);
+            break;
         default:
             break;
     }
@@ -426,6 +452,10 @@ void CExploration::handlerEvent()
         if (eventType == EMPTY_EVENT)
         {
             // add step:
+            if (s_SectionData.currentStep == s_SectionData.sectionInfo->getMaxStep()+1)
+            {
+                return;
+            }
             onSendEventRequest();
         }
     }
@@ -436,13 +466,11 @@ void CExploration::handlerSuccess()
 {
     // add 
     s_SectionData.currentStep++;
-    if (s_SectionData.currentStep == s_SectionData.sectionInfo->getMaxStep())
+//    s_SectionData.currentStep >= s_SectionData.sectionInfo->getMaxStep()? s_SectionData.sectionInfo->getMaxStep() : s_SectionData.currentStep;
+    
+    if (s_SectionData.currentStep == s_SectionData.sectionInfo->getMaxStep()+1)
     {
-        // go back chapter scene:
-     //  SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
-
-      //  hanlderLoadTaskInfo();
-        scheduleOnce(schedule_selector(CExploration::callBack), 0.2);
+        scheduleOnce(schedule_selector(CExploration::callBack),0.0f);
         return;
     }
     updateUI();
@@ -450,10 +478,19 @@ void CExploration::handlerSuccess()
 
 void CExploration::handlerTrigger()
 {
-    if (m_pTrigger && s_SectionData.currentStep == m_pTrigger->getTriggerStep())
+    if (m_pTriggers)
     {
-       
-        CGameStoryLayer::CreateStoryLayer(m_pTrigger->getStoryId(), CCDirector::sharedDirector()->getRunningScene());
+        CPtTrigger *trigger = NULL;
+        for (int i = 0; i < m_pTriggers->count(); i++)
+        {
+            trigger = (CPtTrigger*)m_pTriggers->objectAtIndex(i);
+            if (trigger && trigger->getTriggerStep() == s_SectionData.currentStep)
+            {
+                CGameStoryLayer::CreateStoryLayer(trigger->getStoryId(), this);// CCDirector::sharedDirector()->getRunningScene());
+                break;
+            }
+        }
+     
     }
 }
 
@@ -643,7 +680,6 @@ void CExploration::onReceiveTaskInfo(CCObject *pObject)
 void CExploration::hanlderLoadTaskInfo()
 {
     m_bLoadTaskInfo = false;
-    m_bLoadTaskInfo = false;
     char buffer[200]={0}; 
     sprintf(buffer, "sig=%s",STR_USER_SIG);
     
@@ -655,4 +691,11 @@ void CExploration::hanlderLoadTaskInfo()
 void CExploration::callBack(float dt)
 {
     hanlderLoadTaskInfo();
+}
+
+
+void CExploration::addForwordReword()
+{
+    
+    
 }

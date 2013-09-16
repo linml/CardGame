@@ -18,6 +18,7 @@ CGameNpcCard::CGameNpcCard(CNpcCard *card):CFightCard(card,card->m_npcCardLevel)
   m_defend=m_iNpcDefine=card->m_icard_defend;
   m_iCurrExp=m_iNpcHp=card->m_icardhp;
   m_iHp=card->m_icardhp;
+ card->m_scard_ground="bg1.png";
 }
 
 CGameNpcCard::~CGameNpcCard()

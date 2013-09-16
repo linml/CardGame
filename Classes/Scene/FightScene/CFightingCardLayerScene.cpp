@@ -475,18 +475,15 @@ void CFightingCardLayerScene::showSkillBuffer(cocos2d::CCSprite *pFightSprite, c
 void CFightingCardLayerScene::actionPFightSkill(const char *fightName,CCSprite *pFight,CCSprite *pMonster)
 {
     CCAction *animation=PtActionUtility::getRunActionWithActionFile(fightName);
-//    CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonster);
     CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
-   // CCCallFuncN::create(this, <#SEL_CallFuncN selector#>)
-   // CCCallFuncND *reorderAction=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::actionReorderZorder),(void *)pFight);
-    
     CCCallFuncN *rebb=CCCallFuncN::create(this, callfuncN_selector(CFightingCardLayerScene::actionReorderZorderNode));
-    
     CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
     reorderChild(pFight,2);
-      pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,rebb,CCDelayTime::create(0.6f),endAnimation,NULL));
-  //  pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,reorderAction,CCDelayTime::create(0.6f),endAnimation,NULL));
-    pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
+    pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,rebb,CCDelayTime::create(0.6f),endAnimation,NULL));
+    if(pMonster)
+    {
+        pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
+    }
 }
 
 void CFightingCardLayerScene::actionHelpSprite(const char *fightName,CCSprite *pFight,CCSprite *pMonster)
@@ -630,6 +627,12 @@ void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fight
             textSkillInfo(fightAnimation);
             break;
         case  EN_ANIMATIONTYPE_DEADMOVE:
+            break;
+        case EN_ANIMATIONTYPE_REMOVEPLIST:
+            if(pFight)
+            {
+                pFight->removeChildByTag(fightAnimation->spritetag, true);
+            }
             break;
         case EN_ANIMATIONTYPE_BUFFPLISTOTHER:
         {

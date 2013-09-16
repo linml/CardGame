@@ -36,11 +36,13 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_ienergy=GameTools::intForKey("energy", dict); //精力dic
     m_ienergy_update_time=GameTools::intForKey("energy_update_time", dict);
     m_iVipScore=GameTools::intForKey("vip_score", dict);
+    m_irvc=GameTools::intForKey("leader", dict);
     m_iupdate_time=GameTools::intForKey("update_time",dict);
     m_create_time=GameTools::intForKey("create_time", dict);
     m_guide_step=GameTools::intForKey("guide_step", dict);
     m_sign=GameTools::intForKey("sign",dict);
-    m_friend_count=GameTools::intForKey("friend_count",dict);
+    m_friend_count=GameTools::intForKey("friend_max",dict);
+    m_susername=GameTools::valueForKey("username", dict);
     m_nOpenGridCount = GameTools::intForKey("max_bag", dict);
     
 }

@@ -1,14 +1,14 @@
 10
 
 dir
-1278
+1355
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/LoginScene/Layer
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-05T07:59:22.043248Z
-1193
+2013-09-12T10:12:04.603328Z
+1332
 wood
 has-props
 
@@ -32,33 +32,19 @@ file
 
 
 
-2013-09-05T09:55:09.000000Z
-9a5caa247adc5417d9f1d4f635602191
-2013-09-05T07:59:22.043248Z
-1193
+
+1ba25ca1df869d761aea522aaf2e6949
+2013-09-12T10:12:04.603328Z
+1332
 wood
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7987
+RegisterLayer.cpp.r1321
+RegisterLayer.cpp.r1334
+RegisterLayer.cpp.mine
 
 LogoLayer.h
 file

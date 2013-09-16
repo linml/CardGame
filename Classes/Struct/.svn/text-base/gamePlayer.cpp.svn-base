@@ -21,26 +21,58 @@
 #include "CFightCardBufferData.h"
 #include "CGameEmailManager.h"
 #include "SGamePlayerData.h"
+#include "CGameNpcCard.h"
+#include "CPtTool.h"
+#include "gameMiddle.h"
 
 //#define AAAAFOROSMACHINE 1
 
 using namespace std;
 #define SKILLPUTONGGONGJIID 100000
+
+template <class T>
+class CEmrysClearVectorMemory {
+public:
+    CEmrysClearVectorMemory(vector<T > &clearData)
+    {
+        this->m_clearData=clearData;
+    }
+    void clearVector()
+    {
+        vector<T >tempZero;
+        m_clearData.swap(tempZero);
+    }
+private:
+    vector<T >m_clearData;
+};
+inline bool dealWithCallbackObject(CCObject *object)
+{
+    if (!object) {
+        Middle::showAlertView("SERVER RETURN NULL DATA");
+        return false;
+    }
+    return true;
+}
+
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE,__TYPECLASSNAME__) \
 {\
-    for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
-        __TYPECLASSNAME__ *temp=*it; \
-        delete temp; \
-        temp=NULL; \
-    } \
-    VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+__TYPECLASSNAME__ *temp=*it; \
+delete temp; \
+temp=NULL; \
+} \
+VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+    CEmrysClearVectorMemory< __TYPECLASSNAME__ *> tempClear(VECTORARRAY) ; \
+    tempClear.clearVector(); \
 }
+
+
 
 
 
 CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getProps())
 {
-
+    
     m_bLoadTaskInfo = false;
     m_nMaxSectionId = 1;
     m_nMaxSectionId = 1;
@@ -72,6 +104,7 @@ void CGamePlayer::loadGamesConfig()
     initPlayerTable((resRootPath +"level_config.plist").c_str());
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
+    loadNpcCard((resRootPath+"npc_config.plist").c_str());
     G_FightSkillManager::instance()->initSkill();//加载列表
 }
 
@@ -80,6 +113,7 @@ void CGamePlayer::onExitGameApp()
     clearAllEffectInfo();
     clearAllSkillInfo();
     clearAllCard();
+    clearAllNpcCard();
     clearPlayerTable();
     
 }
@@ -103,6 +137,27 @@ void CGamePlayer::initAllCard(const char *cardFileName)
     G_SingleCConfigResourceLoad::instance()->loadCardInfo(m_hashmapAllCard, cardFileName);
 }
 
+//读取NPC效果表格
+void CGamePlayer::loadNpcCard(const char *npcCardName)
+{
+    G_SingleCConfigResourceLoad::instance()->loadNPCCardInfo(m_hashmapNpcAllCard, npcCardName);
+}
+void CGamePlayer::clearAllNpcCard()
+{
+    map<int ,CCard *>::iterator it;
+    for(it=m_hashmapNpcAllCard.begin();it!=m_hashmapNpcAllCard.end();++it)
+    {
+        if(it->second)
+        {
+            delete it->second;
+            it->second=NULL;
+        }
+    }
+    m_hashmapNpcAllCard.erase(m_hashmapNpcAllCard.begin(),m_hashmapNpcAllCard.end());
+    
+}
+
+
 CCard *CGamePlayer::getCardByCardId(int cardid)
 {
     return m_hashmapAllCard[cardid];
@@ -124,15 +179,16 @@ void CGamePlayer::loadAllSkillInfo(const char *skillFileName)
 
 void CGamePlayer::clearAllSkillInfo()
 {
-
+    
     for (map<int , CSkillData *>::iterator it=m_vSkillInfo.begin(); it!= m_vSkillInfo.end(); it++)
     {
-            delete it->second; 
-            it->second=NULL;
-                m_vSkillInfo.erase(it);
+        delete it->second;
+        it->second=NULL;
+        m_vSkillInfo.erase(it);
     }
-        m_vSkillInfo.erase(m_vSkillInfo.begin(),m_vSkillInfo.end());
+    m_vSkillInfo.erase(m_vSkillInfo.begin(),m_vSkillInfo.end());
 }
+
 string CGamePlayer::getBufferPlistByEffectId(int effectID)
 {
     for (int i=0; i<m_vImpactInfo.size(); i++) {
@@ -147,11 +203,12 @@ string CGamePlayer::getBufferPlistByEffectId(int effectID)
                 return "";
             }
             
-        
+            
         }
     }
     return "";
 }
+
 string CGamePlayer::getBufferPngByEffectId(int effectID)
 {
     for (int i=0; i<m_vImpactInfo.size(); i++) {
@@ -189,9 +246,10 @@ CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
     return m_vSkillInfo[skillId];
 }
 
-CSkillData *CGamePlayer::getPutongGongji()
+CSkillData *CGamePlayer::getPutongGongji(CFightCard *pCard)
 {
-
+    //正确的地方应该调用这个注释的语句
+    //return getSkillBySkillId(pCard->m_pCard->m_iusually_attack);
     return m_vSkillInfo[SKILLPUTONGGONGJIID];
 }
 
@@ -199,7 +257,7 @@ CSkillData *CGamePlayer::getPutongGongji()
 //读取效果表格
 void CGamePlayer::loadAllEffectInfo(const char *effectFileName)
 {
-     G_SingleCConfigResourceLoad::instance()->loadEffectLogicInfo(m_vImpactInfo,effectFileName);
+    G_SingleCConfigResourceLoad::instance()->loadEffectLogicInfo(m_vImpactInfo,effectFileName);
 }
 
 void CGamePlayer::clearAllEffectInfo()
@@ -227,7 +285,7 @@ void CGamePlayer::initByServerDictorny(cocos2d::CCDictionary *dict)
         CCArray *aary=GameTools::arrayForKey("card_info", dict);
         initFightingCardByserverDictorny(aary);
     }
-   isLoadServer=true;
+    isLoadServer=true;
 }
 
 void CGamePlayer::initFightingCardByserverDictorny(CCArray *array)
@@ -256,11 +314,11 @@ void CGamePlayer::loadServerCardBag()
 {
     isLoadCardBagEnd=0;
 #ifndef AAAAFOROSMACHINE
-//     ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parseCardBagJson));
+    //     ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parseCardBagJson));
     string data = "sig=";
     data += m_strSig;
     ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo",data.c_str() ,callfuncO_selector(CGamePlayer::parseCardBagJson));
-
+    
 #else
     char *data=new char [5];
     parseCardBagJson((CCObject *)data);
@@ -272,24 +330,22 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
     clearServerCardBag();
-    //添加card  字符串
-    char *tempdatat=(char *)obj;
-    CCLog("%s",tempdatat);
-    if(tempdatat==NULL)
+    if(!dealWithCallbackObject(obj))
     {
         isLoadCardBagEnd=ERROR_MSG_CONNECTSERVERERROR;
         return;
     }
+    //添加card  字符串
+    char *tempdatat=(char *)obj;
 #ifndef AAAAFOROSMACHINE
-
     CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdatat);
 #else
     const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
-     CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
+    CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
 #endif
     delete []tempdatat;
     tempdatat=NULL;
-  
+    
     assert(dict&&"aaaaaaaaa");
     if(GameTools::intForKey("code", dict)!=0)
     {
@@ -297,15 +353,17 @@ void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
         return ;
     }
     CCDictionary *directory =(CCDictionary*)((CCDictionary*)dict->objectForKey("result"))->objectForKey("card_item");
-    decodeCardDict(directory);
-    isLoadCardBagEnd=ERROR_MSG_NONE;
+    if (directory)
+    {
+            decodeCardDictAppendCardBag(directory);
+    }
 
+    isLoadCardBagEnd=ERROR_MSG_NONE;
+    
 }
 
-void CGamePlayer::decodeCardDict(cocos2d::CCDictionary *directory)
+void CGamePlayer::decodeCardDictAppendCardBag(cocos2d::CCDictionary *directory)
 {
-    
- 
     CCArray *array=directory->allKeys();;
     for (int i=0; i<array->count(); i++) {
         CCString *key=(CCString *)array->objectAtIndex(i);
@@ -316,6 +374,7 @@ void CGamePlayer::decodeCardDict(cocos2d::CCDictionary *directory)
         int cardexp=GameTools::intForKey("exp", detail);
         int card_item_id=GameTools::intForKey("card_item_id", detail);
         int card_suit = GameTools::intForKey("suit", detail);
+        
         CFightCard *fightCard=new CFightCard(m_hashmapAllCard[card_id],level);
         fightCard->m_iCurrExp=cardexp;
         fightCard->m_User_Card_ID=card_item_id;
@@ -372,55 +431,21 @@ void CGamePlayer::deleteFromCardBag(vector<int>user_CardId)
     }
 }
 
-void CGamePlayer::loadServerPlayerInfo()
-{
-    //xianbei delete
-    isLoadPlayerInfoEnd=false;
-//    ADDHTTPREQUESTPOSTDATA("http://cube.games.com/api.php?m=GameBegin&a=init&uid=229&sig=9d377f6c3e440ac6c9623c55a6f4f9d0&sid=1", "GetServerPlayerInfo", "merlinaskplayerinfo1", "sig=2ac2b1e302c46976beaab20a68ef95",callfuncO_selector(CGamePlayer::loadServerPlayerInfoCallBack));
-    
-}
-
-void CGamePlayer::loadServerPlayerInfoCallBack(cocos2d::CCObject *obj)
-{
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetServerPlayerInfo");
-    char *data=(char *)obj;
-    CCLog("%s",data);
-    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
-    if(GameTools::intForKey("code",dirct)==0)
-    {
-        CCDictionary *userinfodirct=(CCDictionary *)(((CCDictionary *)dirct->objectForKey("result"))->objectForKey("user_info"));
-        SinglePlayer::instance()->initByServerDictorny(userinfodirct);
-    }
-    isLoadPlayerInfoEnd=true;
-    delete []data;
-}
-
-
-void CGamePlayer::loadCardTeamInfo()
-{
-    //xianbei delete
-//    isLoadEndCardTeam=false;
-//#ifndef AAAAFOROSMACHINE
-//    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_TEAM(194), "GetLoadCardItem", "merlinaskplayerinfo1","sig=2ac2b1e302c46976beaab20a68ef95", callfuncO_selector(CGamePlayer::loadCardTeamInfoCallBack));
-//#else
-//    char *data=new char [5];
-//    loadCardTeamInfoCallBack((CCObject *)data);
-//#endif
-}
 
 void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
 {
-    m_vvBattleArray.resize(3);
+
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
+    m_vvBattleArray.resize(3);
     char *datat=(char *)obj;
 #ifndef  AAAAFOROSMACHINE
-        CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
 #else
     const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
-        CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
 #endif
     CCLog("%s",datat);
-
+    
     delete [] datat;
     datat=NULL;
     if(GameTools::intForKey("code",dirct)==0)
@@ -451,8 +476,8 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
                     {
                         tempVcard[position-1]->setInBattleArray(i+1);//(true);
                     }
-               
-            
+                    
+                    
                 }
                 int index=atoi(key->m_sString.c_str())-1;
                 CCLog("index=========%d",index);
@@ -474,7 +499,7 @@ void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
 void CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)
 {
     m_vvBattleArray.resize(3);
-   if (!dictresult)
+    if (!dictresult)
     {
         for (int i=0; i<m_vvBattleArray.size(); i++) {
             if(m_vvBattleArray[i].size()==0)
@@ -488,39 +513,44 @@ void CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)
     CCArray *vKeyArrayresult=dictresult->allKeys();
     for (int i=0; i<vKeyArrayresult->count(); i++)
     {
-            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
-            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
-            if(cardDirector)
+        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+        if(cardDirector)
+        {
+            vector<CFightCard *>tempVcard(5);
+            CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
+            CCArray *vKeyArraytemp=cardtemp->allKeys();
+            for (int j=0; j<vKeyArraytemp->count(); j++)
             {
-                vector<CFightCard *>tempVcard(5);
-                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
-                CCArray *vKeyArraytemp=cardtemp->allKeys();
-                for (int j=0; j<vKeyArraytemp->count(); j++)
+                CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(j);
+                CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
+                int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
+                int position=GameTools::intForKey("position", cardDirectorDetail);
+                tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
+                if(tempVcard[position-1])
                 {
-                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(j);
-                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
-                    int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
-                    int position=GameTools::intForKey("position", cardDirectorDetail);
-                    tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
-                    if(tempVcard[position-1])
-                    {
-                        tempVcard[position-1]->setInBattleArray(i+1);//(true);
-                    }
-                    
-                    
+                    tempVcard[position-1]->setInBattleArray(i+1);//(true);
                 }
-                int index=atoi(key->m_sString.c_str())-1;
-                CCLog("index=========%d",index);
-                m_vvBattleArray[index]=tempVcard;
+                
+                
             }
+            int index=atoi(key->m_sString.c_str())-1;
+            CCLog("index=========%d",index);
+            m_vvBattleArray[index]=tempVcard;
         }
-        for (int i=0; i<m_vvBattleArray.size(); i++) {
-            if(m_vvBattleArray[i].size()==0)
-            {
-                vector<CFightCard *>tempVectory(5);
-                m_vvBattleArray[i]=tempVectory;
-            }
-        } 
+    }
+    for (int i=0; i<m_vvBattleArray.size(); i++) {
+        if(m_vvBattleArray[i].size()==0)
+        {
+            vector<CFightCard *>tempVectory(5);
+            m_vvBattleArray[i]=tempVectory;
+        }
+        else
+        {
+            CCLog("index team is not null %d",i);
+        }
+    }
+    isLoadEndCardTeam=true;
 }
 
 
@@ -543,7 +573,7 @@ CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
 void CGamePlayer::loadRival(int  usid,int  troops)
 {
     isLoadFightTeam=0;
-//#ifndef AAAAFOROSMACHINE
+    //#ifndef AAAAFOROSMACHINE
     char data[50];
     sprintf(data, "%d",usid);
     string str=string("info={\"uid\":")+ data;
@@ -554,19 +584,115 @@ void CGamePlayer::loadRival(int  usid,int  troops)
     connectData+="&"+str;
     //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
     ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
-//#else
-//    char *data=new char[5];
-//    parseRival((CCObject *)data);
-//#endif
+}
+void CGamePlayer::loadNpcCardTeam(int zhang, int jie, int bu, int dijige)
+{
+    isLoadFightTeam=0;
+#ifdef AAAAFOROSMACHINE
+    //    char data[50];
+    //    sprintf(data, "%d",usid);
+    //    string str=string("info={\"uid\":")+ data;
+    //    sprintf(data, "%d",troops);
+    //    str +=string(",\"troops\":")+data+"}";
+    //    string connectData="sig=";
+    //    connectData += m_strSig;
+    //    connectData+="&"+str;
+    //    //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
+    //    ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
+#else
+    const  char *data=CPtTool::readFileName((resRootPath +"npccardteam.txt").c_str()).c_str();
+    char *datat=new char [strlen(data+1)];
+    memset(datat, 0, strlen(data+1));
+    memcpy(datat, data, strlen(data));
+    parseNpcCard((CCObject *)datat);
+#endif
+}
+/*
+ {
+ "code": 0,
+ "result": {
+ "npccardteam": {
+ "1": "4000001",
+ "2": "4000002",
+ "3": "4000003",
+ "4": "4000004",
+ "5": "4000005"
+ },
+ "random_data": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+ }
+ }
+ */
+void CGamePlayer::parseNpcCard(cocos2d::CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetNpcCard");
+    char *datat=(char *)object;
+    CCLog("%s",datat);
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+    delete [] datat;
+    if(GameTools::intForKey("code",dirct)==0)
+    {
+        CCDictionary *dictresult=(CCDictionary *)dirct->objectForKey("result");
+        if(dictresult)
+        {
+            parseNpcCard(dictresult);
+        }
+    }
+    isLoadFightTeam=true;
+}
+
+void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
+{
+    CCDictionary *dictresult=(CCDictionary*)resultDictresult->objectForKey("npc_team");
+    if(!dictresult)
+    {
+        return ;
+    }
+    CCArray *vKeyArrayresult=dictresult->allKeys();
+    for (int i=0; i<vKeyArrayresult->count(); i++)
+    {
+        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+        if(cardDirector)
+        {
+            DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
+            m_hashmapMonsterCard.resize(5);
+            if(dictresult)
+            {
+                CCDictElement* pElement = NULL;
+                CCDICT_FOREACH(dictresult, pElement)
+                {
+                    const char* pchKey = pElement->getStrKey();
+                    int position=atoi(pchKey)-1;
+                    CCAssert(position>=0, "fuck服务端传输位置为-1的");
+                    int card_id=GameTools::intForKey(pchKey, dictresult);
+                    CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
+                    m_hashmapMonsterCard[position]=pFightCard;
+                }
+            }
+            CCArray *vKeyArraytempBBB=(CCArray *)resultDictresult->objectForKey("random_data");
+            std::vector<int>().swap(m_getRandom_data);
+            m_currRandRomIndex=0;
+            for (int i=0; i<vKeyArraytempBBB->count(); i++) {
+                CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
+                m_getRandom_data.push_back(strtemp->intValue());
+            }
+            
+        }
+    }
+
 }
 
 void CGamePlayer::parseRival(CCObject *object)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetFightTeam");
+    if( !dealWithCallbackObject(object))
+    {
+        return;
+    }
     char *datat=(char *)object;
     CCLog("%s",datat);
 #ifndef AAAAFOROSMACHINE
-   CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
 #else
     const  char *data=readFileName((resRootPath +"team.txt").c_str()).c_str();
     CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
@@ -621,7 +747,7 @@ void CGamePlayer::parseRival(CCObject *object)
                         pFightCard->m_iSuit=suit;
                         m_hashmapMonsterCard[position]=pFightCard;
                     }
-
+                    
                 }
                 CCArray *vKeyArraytempBBB=(CCArray *)(cardDirector->objectForKey("random_data"));
                 m_getRandom_data.clear();
@@ -632,16 +758,16 @@ void CGamePlayer::parseRival(CCObject *object)
                 }
                 
             }
-       }
+        }
         
     }
     isLoadFightTeam=true;
-
+    
 }
 
 void CGamePlayer::randRomIndexAdd()
 {
-        m_currRandRomIndex++;
+    m_currRandRomIndex++;
 }
 
 void CGamePlayer::logicRandValue(int &value,bool needAdd)
@@ -662,6 +788,7 @@ void CGamePlayer::logicRandValue(int &value,bool needAdd)
     }
     CCLog("Value====:%d,random=%d",value,m_getRandom_data[m_currRandRomIndex]);
 }
+
 void CGamePlayer::backUpFightTeam(int index)
 {
     for (int i=0; i<m_vvBattleArray[index].size();i++)
@@ -725,7 +852,7 @@ void CGamePlayer::subPlayerExp(int inSubExp)
 
 void CGamePlayer::addRVC(const int &inAddValue)
 {
-     m_gGamePlayerData->m_irvc += inAddValue;
+    m_gGamePlayerData->m_irvc += inAddValue;
 }
 void CGamePlayer::addCoin(const int &inAddValue)
 {
@@ -763,7 +890,7 @@ void CGamePlayer::deleteFightMonsterCard()
 {
     DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *> ,CFightCard);
     DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *>,CFightCard);
-
+    
 }
 void CGamePlayer::onFightExitScene()
 {
@@ -771,6 +898,8 @@ void CGamePlayer::onFightExitScene()
     DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *> ,CFightCard);
     DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *> ,SEveryATKData);
     DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer * > ,CFightCardFightingBuffer);
+    CEmrysClearVectorMemory<int > tempClear(m_getRandom_data);
+    tempClear.clearVector();
 }
 
 
@@ -781,8 +910,8 @@ void CGamePlayer::onFightExitScene()
 void CGamePlayer::loadPropsInfo()
 {
     //xianbei delete
-//  m_bLoadProps = false;
-//  ADDHTTPREQUESTPOSTDATA(STR_URL_BAG_PROP(194), "loadProps", "loadProps","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parsePropsInfo));
+    //  m_bLoadProps = false;
+    //  ADDHTTPREQUESTPOSTDATA(STR_URL_BAG_PROP(194), "loadProps", "loadProps","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parsePropsInfo));
     
 }
 
@@ -793,22 +922,22 @@ void CGamePlayer::parseProsInfoByDict(CCDictionary *tmpDictionary)
         int propId = 0;
         int propCount = 0;
         
-
-            CCArray * items =(CCArray*) tmpDictionary ;
-            for (int i = 0;  items!= NULL && i < items->count(); i++)
+        
+        CCArray * items =(CCArray*) tmpDictionary ;
+        for (int i = 0;  items!= NULL && i < items->count(); i++)
+        {
+            tmpDictionary = (CCDictionary*) items->objectAtIndex(i);
+            
+            if (tmpDictionary)
             {
-                tmpDictionary = (CCDictionary*) items->objectAtIndex(i);
-                
-                if (tmpDictionary)
-                {
-                    propId = GameTools::intForKey("item_id", tmpDictionary);
-                    propCount = GameTools::intForKey("num", tmpDictionary);
-                    m_vProps.insert(map<int,int>::value_type(propId, propCount));
-                }
-                
+                propId = GameTools::intForKey("item_id", tmpDictionary);
+                propCount = GameTools::intForKey("num", tmpDictionary);
+                m_vProps.insert(map<int,int>::value_type(propId, propCount));
             }
-            CCLog("prop %d",m_vProps.size());
-       }
+            
+        }
+        CCLog("prop %d",m_vProps.size());
+    }
 }
 
 void CGamePlayer:: parsePropsInfo(CCObject *pObject)
@@ -833,7 +962,7 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
         if (resultCode == 0)
         {
             tmpDictionary = (CCDictionary*) tmpDictionary->objectForKey("result");
-        
+            
             CCArray * items = tmpDictionary == NULL? NULL : (CCArray*) tmpDictionary->objectForKey("items");
             
             for (int i = 0;  items!= NULL && i < items->count(); i++)
@@ -846,16 +975,16 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
                     propCount = GameTools::intForKey("num", tmpDictionary);
                     m_vProps.insert(map<int,int>::value_type(propId, propCount));
                 }
-            
+                
             }
-        CCLog("prop %d",m_vProps.size());     
+            CCLog("prop %d",m_vProps.size());
             
         }else
         {
             CCLog("load prop error...");
         }
     }
-
+    
 }
 /*
  * @breif: 获取可以添加到背包的邮件队列
@@ -942,7 +1071,7 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
             //已存在
             if (tmpProps.find(key)!= tmpProps.end())
             {
-              //  return bRet;
+                //  return bRet;
                 continue;
             }else
             {
@@ -959,10 +1088,10 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
                 addCount = (addCount/limitCount) + (addCount%limitCount == 0 ? 0 : 1);
                 addCount2 = (addCount2/limitCount) + (addCount2%limitCount == 0 ? 0 : 1);
                 count += (addCount-addCount2);
-            
+                
             }else
             {
-               
+                
                 count += (addCount/limitCount) + (addCount%limitCount == 0 ? 0 : 1);
             }
         }
@@ -989,7 +1118,7 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
  */
 void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
 {
-     CPtPropConfigData *propData =   SinglePropConfigData::instance();
+    CPtPropConfigData *propData =   SinglePropConfigData::instance();
     for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end(); i++)
     {
         if (i->first == EXPID || i->first == COINSID)
@@ -1053,7 +1182,7 @@ int CGamePlayer::getUseGridCount()
             useGridCount++;
         }else
         {
-           limitMax = tmp->getLimitNum();
+            limitMax = tmp->getLimitNum();
             if (limitMax == 0)
             {
                 continue;
@@ -1076,9 +1205,9 @@ void CGamePlayer::receiveEmail(map<int, int> inProps, int inAddPlayerExp, int in
     // add props:
     if (inProps.size()!= 0)
     {
-         mergeProps(m_vProps, inProps);
+        mergeProps(m_vProps, inProps);
     }
-   
+    
     // add play exp and coin:
     addPalyerExp(inAddPlayerExp);
     addCoin(inAddPlayerCoin);
@@ -1128,7 +1257,7 @@ int CGamePlayer::subProp(int inPropId, int inSubNum)
         {
             resultCode = -2;
         }
-
+        
     }
     return  resultCode;
 }
@@ -1145,7 +1274,7 @@ map<int,int> CGamePlayer::getPlayerProps()
 //
 void CGamePlayer::onGetTaskInfo()
 {
-  
+    
     m_bLoadTaskInfo = false;
     char buffer[200]={0};
     sprintf(buffer, "sig=%s",STR_USER_SIG);
@@ -1183,11 +1312,24 @@ void CGamePlayer::onParseTaskInfoByDictionary(CCDictionary *inDataDictionary)
     {
         // success:
         CCDictionary * tmp = (CCDictionary*)inDataDictionary->objectForKey("result");
-        tmp = (CCDictionary*)tmp->objectForKey("part");
-        m_nMaxSectionId= GameTools::intForKey("part_id", tmp);
-        m_nMaxChapterId = GameTools::intForKey("chapter_id", tmp);
-
-        
+        tmp = (CCDictionary*)tmp->objectForKey("task_info");
+        CCArray * keys = NULL;
+        if (tmp)
+        {
+            keys = tmp->allKeys();
+            if(keys&&keys->count()>=1)
+            {
+                const char * key = ((CCString*)keys->objectAtIndex(0))->getCString();
+                CCDictionary *tmpValue = (CCDictionary*)tmp->objectForKey(key);
+                if (tmpValue)
+                {
+                    m_nCurrentTaskId = GameTools::intForKey("task_id", tmpValue);
+                    setChapterAndSectionByTask();
+                }
+            }
+        }
+        //        m_nMaxSectionId= GameTools::intForKey("part_id", tmp);
+        //        m_nMaxChapterId = GameTools::intForKey("chapter_id", tmp);
     }else
     {
         CCLog("error:CGamePalyer::onReceiveGoSectionMsg error code: %d ", result);
@@ -1211,8 +1353,6 @@ void CGamePlayer::setChapterAndSectionByTask()
         m_nMaxSectionId = task->getSectionId();
     }
 }
-
-
 
 /*
  * 获取玩家基本信息
@@ -1261,7 +1401,7 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
         return;
     }
     char *strdata=(char *)object;
-    CCLog("%s",strdata);    
+    CCLog("%s",strdata);
     CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
     delete []strdata;
     int codeReslut=GameTools::intForKey("code", dict);
@@ -1277,12 +1417,12 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             CCDictionary *dicinfobox_info=(CCDictionary *)dictresult->objectForKey("inbox_info");
             G_GAMESINGEMAIL::instance()->decodeEmap(dicinfobox_info);
         }
-            
+        
         teamStrType=typeid(*dictresult->objectForKey("user_info")).name();
         if(teamStrType.find("CCDictionary")!=std::string::npos)
         {
-               CCDictionary *dicuserinfo=(CCDictionary *)dictresult->objectForKey("user_info");
-             parseJsonUserInfo(dicuserinfo);
+            CCDictionary *dicuserinfo=(CCDictionary *)dictresult->objectForKey("user_info");
+            parseJsonUserInfo(dicuserinfo);
             gameInitStatus=1;
         }
         CCDictionary *getCardItem=(CCDictionary *)dictresult->objectForKey("card_team");
@@ -1297,10 +1437,11 @@ void CGamePlayer::parseJsonUserInfo(CCDictionary *dict)
     {
         m_gGamePlayerData->decodeDictnory(dict);
     }
-        CCDictionary *cardinfo=(CCDictionary *)(dict->objectForKey("card_item"));
-            if (cardinfo) {
-                        decodeCardDict(cardinfo);
-                }
+    CCDictionary *cardinfo=(CCDictionary *)(dict->objectForKey("card_item"));
+    if (cardinfo)
+    {
+            decodeCardDictAppendCardBag(cardinfo);
+    }
     
     CCDictionary *bag_info=(CCDictionary *)(dict->objectForKey("bag_info"));
     if(bag_info)

@@ -49,16 +49,16 @@ inf.m_pSelector = NOTIFICATIONTAG;\
 inf.m_pchTag = HTTPREQUESTTAG;\
 inf.m_pchData = __POSTSTR__;\
 CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
-CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector, NULL);\
+CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector.c_str(), NULL);\
 }
 
 
 typedef struct STC_HTTPINF {
-    const char* m_pchURL;
-    const char* m_pSelector;
-    const char* m_pchTag;
+    string m_pchURL;
+    string m_pSelector;
+    string m_pchTag;
     CCHttpRequest::HttpRequestType m_RequestType;
-    const char* m_pchData;
+    string m_pchData;
 } stcRequestInf;
 
 typedef struct STC_SERVER_INF

@@ -38,10 +38,10 @@ CGameStoryLayer::~CGameStoryLayer()
     
 }
 
-CGameStoryLayer *CGameStoryLayer::CreateStoryLayer(int storyId,CCNode *node)
+CGameStoryLayer *CGameStoryLayer::CreateStoryLayer(int storyId,CCNode *node,int zorder)
 {
     CGameStoryLayer *gameStory=new CGameStoryLayer();
-    if(!gameStory || !gameStory->initCreateStory(storyId, node))
+    if(!gameStory || !gameStory->initCreateStory(storyId, node, zorder))
     {
         delete gameStory;
         gameStory=NULL;
@@ -53,7 +53,7 @@ CGameStoryLayer *CGameStoryLayer::CreateStoryLayer(int storyId,CCNode *node)
 }
 
 
-bool CGameStoryLayer::initCreateStory(int storyId, cocos2d::CCNode *node)
+bool CGameStoryLayer::initCreateStory(int storyId, cocos2d::CCNode *node, int zorder)
 {
     string str=getStoryTalkList(storyId);
     m_vDialogTalk= transToIntVector(splitString(str.c_str(), ","));
@@ -66,10 +66,10 @@ bool CGameStoryLayer::initCreateStory(int storyId, cocos2d::CCNode *node)
 
     if(node)
     {
-        node->addChild(this);
+        node->addChild(this, zorder);
     }
     else{
-        CCDirector::sharedDirector()->getRunningScene()->addChild(this);
+        CCDirector::sharedDirector()->getRunningScene()->addChild(this,zorder);
     }
     isCaneTouch=false;
     schedule(schedule_selector(CGameStoryLayer::updateTimeToShow));

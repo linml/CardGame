@@ -64,6 +64,8 @@ CFightCardFightingBuffer::CFightCardFightingBuffer()
 {
     m_index=0;
     this->m_vbufferList.clear();
+ 
+    
 }
 void CFightCardFightingBuffer::append(int EffectId, int Value, bool isLeft)
 {
@@ -87,4 +89,6 @@ CFightCardFightingBuffer::~CFightCardFightingBuffer()
 {
 
     DELETE_POINT_VECTOR(m_vbufferList,vector<CBufferIcon *>);
+    vector<CBufferIcon *>tempbufferList;
+    m_vbufferList.swap(tempbufferList);
 }

@@ -13,6 +13,7 @@
 		6F49CA7417D884EA0094874E /* CGameStoryLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA7117D884EA0094874E /* CGameStoryLayer.cpp */; };
 		6F49CA7917D8851F0094874E /* CGameStory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA7517D8851F0094874E /* CGameStory.cpp */; };
 		6F49CA7A17D8851F0094874E /* CGameTalkDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA7617D8851F0094874E /* CGameTalkDialog.cpp */; };
+		6F5E8A5B17E152E0003A3B3A /* CPtExpandableListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F5E8A5917E152E0003A3B3A /* CPtExpandableListView.cpp */; };
 		6F7353B4178D34190009D548 /* CCardBufferStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7353B2178D34190009D548 /* CCardBufferStatus.cpp */; };
 		6F780751176469830049321C /* HallScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780746176469830049321C /* HallScene.cpp */; };
 		6F780752176469830049321C /* AsgardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780749176469830049321C /* AsgardLayer.cpp */; };
@@ -334,6 +335,8 @@
 		6F49CA7617D8851F0094874E /* CGameTalkDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameTalkDialog.cpp; sourceTree = "<group>"; };
 		6F49CA7717D8851F0094874E /* CGameTalkDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameTalkDialog.h; sourceTree = "<group>"; };
 		6F49CA7817D8851F0094874E /* CGameStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameStory.h; sourceTree = "<group>"; };
+		6F5E8A5917E152E0003A3B3A /* CPtExpandableListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtExpandableListView.cpp; sourceTree = "<group>"; };
+		6F5E8A5A17E152E0003A3B3A /* CPtExpandableListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtExpandableListView.h; sourceTree = "<group>"; };
 		6F7353B2178D34190009D548 /* CCardBufferStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardBufferStatus.cpp; sourceTree = "<group>"; };
 		6F7353B3178D34190009D548 /* CCardBufferStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCardBufferStatus.h; sourceTree = "<group>"; };
 		6F780746176469830049321C /* HallScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = HallScene.cpp; sourceTree = "<group>"; };
@@ -1464,6 +1467,8 @@
 		9F801315175493D400EEC0BC /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				6F5E8A5917E152E0003A3B3A /* CPtExpandableListView.cpp */,
+				6F5E8A5A17E152E0003A3B3A /* CPtExpandableListView.h */,
 				9F095D2817D8730A00CE32B3 /* CFileReadWrite.cpp */,
 				9F095D2917D8730A00CE32B3 /* CFileReadWrite.h */,
 				9F095D2A17D8730A00CE32B3 /* CGameDialogLayer.cpp */,
@@ -2892,6 +2897,7 @@
 				6FB7E44C17DEC34D004DF409 /* CGameNpcCard.cpp in Sources */,
 				6FB7E45117DEEA40004DF409 /* CTriggerConfigData.cpp in Sources */,
 				6FB7E45217DEEA40004DF409 /* CTaskConfigData.cpp in Sources */,
+				6F5E8A5B17E152E0003A3B3A /* CPtExpandableListView.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

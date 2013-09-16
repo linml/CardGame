@@ -16,6 +16,7 @@
 #include "CPtButtonWidget.h"
 #include "CPtSectionConfigData.h"
 #include "gameStruct.h"
+#include "gamePlayer.h"
 
 using namespace cocos2d;
 
@@ -40,11 +41,12 @@ public:
     virtual ~CExploration();
 public:
     virtual bool init();
+    virtual void onEnter();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
-    
+  
 protected:
     bool initExploration();
     void initData();
@@ -65,6 +67,11 @@ protected:
     
     void callBack(float dt);
     
+    // reword:
+    void addForwordReword();
+    
+    void getTriggers();
+    
 protected:
     bool m_bCanTouch;
     bool m_bLoadTaskInfo;
@@ -76,9 +83,10 @@ protected:
     vector<TouchRect> m_cTouches;
     CCSprite * m_pTouchSprite;
     CCLabelTTF * m_pProgress;
+    //CPtTrigger * m_pTrigger;
+    CCArray *m_pTriggers;
     
-    CPtTrigger * m_pTrigger;
-    
+    CGamePlayer *m_pPlayer;
     
     
     

@@ -124,6 +124,13 @@ bool CRegisterLayer::init()
     m_pErrInf->setFontSize(28);
     m_pErrInf->setPosition(ccp(512,720));
     addChild(m_pErrInf);
+    
+    m_pEditName->setText("wood");
+    m_pEditPassword->setText("yu");
+    m_pEditPassword_re->setText("yu");
+    char email[256]="";
+    sprintf(email, "wood@%d",int(time(0)));
+    m_pEditEMail->setText(email);
 
     return true;
 }
@@ -177,13 +184,23 @@ void  CRegisterLayer::doRegiter()
     char achData[256]={};
     memset(achData, 0, 256);
     char pass[64] ="";
-    Pt_AES::sharePtAESTool("cube")->EncryptString(m_pEditPassword_re->getText(),pass);
+    memset(pass, 0, 64);
+    string strPassword = m_pEditPassword->getText();
+    Pt_AES::sharePtAESTool("cube")->EncryptString(strPassword.c_str(),pass);
     sprintf(achData, "name=%s&password=%s",m_pEditEMail->getText(),pass);
     ADDHTTPREQUESTPOSTDATA(STR_URL_REGISTER,
                            "CALLBACK_CRegisterLayer_doRegiter",
                            "REQUEST_CRegisterLayer_doRegiter",
                            achData,
                            callfuncO_selector(CRegisterLayer::onReceiveRegiterMsg));
+    string fileName = CCFileUtils::sharedFileUtils()->getWriteablePath()+"password";
+    FILE* file = fopen(fileName.c_str(),"wb");
+    if(file)
+    {
+        fputs(pass, file);
+    }
+    fclose(file);
+
 }
 
 void CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)
@@ -201,24 +218,8 @@ void CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)
     else
     {
         m_pErrInf->setString("注册成功");
-        CCDictionary* dic = (CCDictionary*)PtJsonUtility::JsonStringParse(data)->objectForKey("result");
-        CCDictionary* usrData = (CCDictionary*)dic->objectForKey("user");
-        CCString* uid = (CCString*)usrData->objectForKey("puid");
-        CCString* sig = (CCString*)usrData->objectForKey("sig");
-        SinglePlayer::instance()->setUserSig(sig->m_sString);
-        SinglePlayer::instance()->setUserId(uid->m_sString);
         CCUserDefault::sharedUserDefault()->setStringForKey("name", m_pEditName->getText());
         CCUserDefault::sharedUserDefault()->setStringForKey("account", m_pEditEMail->getText());
-        string fileName = CCFileUtils::sharedFileUtils()->getWriteablePath()+"password";
-        char achPassword[64] ="";
-        Pt_AES::sharePtAESTool("cube")->EncryptString(m_pEditPassword_re->getText(),achPassword);
-        FILE* file = fopen(fileName.c_str(),"w");
-        if(file)
-        {
-            fputs(achPassword, file);
-        }
-        fclose(file);
-//        CCUserDefault::sharedUserDefault()->setStringForKey("password", achPassword);
         CCNotificationCenter::sharedNotificationCenter()->postNotification(REGITER_SUCCESS,NULL);
         removeFromParentAndCleanup(true);
     }
