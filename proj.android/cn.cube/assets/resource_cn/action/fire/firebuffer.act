@@ -5,7 +5,7 @@
 	<key>fire11</key>
 	<dict>
 		<key>action</key>
-		<string>(sequence:(animate:10,fire/fire0_1.ani,0.05);(hide:))</string>
+		<string>(repeatForever:(animate:10,fire/fire0_1.ani,0.05))</string>
 		<key>nodeType</key>
 		<string>sprite</string>
 		<key>opacity</key>

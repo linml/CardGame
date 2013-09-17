@@ -464,16 +464,24 @@ void CFightingCardLayerScene::showSkillBuffer(cocos2d::CCSprite *pFightSprite, c
     
     if(pMonsterSprite2)
     {
-        string filePath=fightAnimation->m_sBufferPlist;
-        CCAction *animation=PtActionUtility::getRunActionWithActionFile(filePath.c_str());
-        CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
-        pMonsterSprite2->runAction(CCSequence::create((CCFiniteTimeAction*)animation,endAnimation,NULL));
+        CCNode *node=pMonsterSprite2->getChildByTag(fightAnimation->spritetag);
+        if(!node)
+        {
+            string filePath=fightAnimation->m_sBufferPlist;
+            CCAction *animation=PtActionUtility::getRunActionWithActionFile(filePath.c_str());
+            CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
+            pMonsterSprite2->runAction(CCSequence::create((CCFiniteTimeAction*)animation,endAnimation,NULL));
+        }
+        else{
+            AnimaitonEnd();
+        }
     }
     
 }
 
 void CFightingCardLayerScene::actionPFightSkill(const char *fightName,CCSprite *pFight,CCSprite *pMonster)
 {
+    CCLog("fightName:%s",fightName);
     CCAction *animation=PtActionUtility::getRunActionWithActionFile(fightName);
     CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
     CCCallFuncN *rebb=CCCallFuncN::create(this, callfuncN_selector(CFightingCardLayerScene::actionReorderZorderNode));
@@ -522,7 +530,6 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
            
                 CCLog("RIGHT LORD %d",fightAnimation->m_iATKindex);
                 filePath += "_r.plist";
-//                getChildByTag(m_vMonsterCard[fightAnimation->m_iATKindex]->tag)->runAction(CCSequence::create(CCMoveBy::create(0.2,ccp(-50,0)),CCMoveBy::create(0.2, ccp(50,0)), NULL));
                 actionPFightSkill(filePath.c_str(),pFightSprite,pMonsterSprite2);
             }
             else if(fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_LEFT_LORD)
@@ -530,7 +537,6 @@ void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonste
                
                 CCLog("LEFT LORD %d",fightAnimation->m_iATKindex);
                 filePath += "_l.plist";
-//                getChildByTag(m_vFightingCard[fightAnimation->m_iATKindex]->tag)->runAction(CCSequence::create(CCMoveBy::create(0.2,ccp(+50,0)),CCMoveBy::create(0.2, ccp(-50,0)), NULL));
                 actionPFightSkill(filePath.c_str(),pFightSprite,pMonsterSprite2);
             }
             else if(fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
