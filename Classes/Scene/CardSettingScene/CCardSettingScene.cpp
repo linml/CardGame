@@ -296,7 +296,7 @@ void CCardSettingScene::handlerTouch()
 void CCardSettingScene::callback(float dt)
 {
      CGamePlayer* m_pGamePlayer = SinglePlayer::instance();
-    if (m_pGamePlayer->isLoadCardBagEnd && m_pGamePlayer->isLoadEndCardTeam)
+    if (m_pGamePlayer->isLoadCardBagEnd && m_pGamePlayer->getLoadEndCardTeam())
     {
         initCCardSetting();
         this->unschedule(schedule_selector(CCardSettingScene::callback));

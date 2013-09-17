@@ -294,7 +294,7 @@ void CCardSellLayer::restCardFlag()
 
 void CCardSellLayer::removeCardInCardBag()
 {
-    vector<CFightCard *> & r_CardBag = m_pPlayer->m_vCardBag;
+    vector<CFightCard *> & r_CardBag = m_pPlayer->getCardBagVector();
     CCArray * arrayBag = m_pCardBag->getItems();
     std::list<int> ids;
     

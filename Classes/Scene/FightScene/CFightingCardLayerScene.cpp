@@ -55,11 +55,15 @@ CCScene *CFightingCardLayerScene::scene()
 
 CFightingCardLayerScene::CFightingCardLayerScene()
 {
-    
+    m_pSFightData=new SFightResultData();
 }
 
 CFightingCardLayerScene::~CFightingCardLayerScene()
 {
+    if(m_pSFightData)
+    {
+        delete m_pSFightData;
+    }
     SinglePlayer::instance()->onFightExitScene();
     G_FightSkillManager::instance()->clearAnimationList();
     //释放特效文件
@@ -96,7 +100,7 @@ bool CFightingCardLayerScene::init()
 void CFightingCardLayerScene::createShowFightUid()
 {
     char data[20];
-    sprintf(data, "FIHGTUID:%d",SinglePlayer::instance()->m_FightUid);
+    sprintf(data, "FIHGTUID:%d",SinglePlayer::instance()->getFightUid());
     CCLabelTTF *labelttf=CCLabelTTF::create(data, "Arial", 20);
     labelttf->setPosition(ccp(800, 700));
     addChild(labelttf,2,1000000);
@@ -196,7 +200,7 @@ void CFightingCardLayerScene::animationSchudel(float t)
     {
         unschedule(schedule_selector(CFightingCardLayerScene::animationSchudel));
         CCLog("end animation");
-        m_enWinStatus=SinglePlayer::instance()->m_enWinStatus;
+        m_enWinStatus=SinglePlayer::instance()->getWinOrLoseStatus();
         CPtTool::logMemoryInfo();
         if(m_enWinStatus==EN_GAMEFIGHTSTATUS_WIN)
         {
@@ -211,9 +215,9 @@ void CFightingCardLayerScene::animationSchudel(float t)
 
 void CFightingCardLayerScene::winDialog()
 {
-    int tmp = 1;
+   // int tmp = 1;
     FightResultConfirm * resultConfirm = new FightResultConfirm();
-    resultConfirm->setUserData((void*)tmp);
+    resultConfirm->setUserData((void*)m_pSFightData);
     resultConfirm->init();
     resultConfirm->autorelease();
     addChild(resultConfirm, 1000000);    
@@ -221,9 +225,9 @@ void CFightingCardLayerScene::winDialog()
 }
 void CFightingCardLayerScene::loseDialog()
 {
-    int tmp = 0;
+   // int tmp = 0;
     FightResultConfirm * resultConfirm = new FightResultConfirm();
-    resultConfirm->setUserData((void*)tmp);
+    resultConfirm->setUserData((void*)m_pSFightData);
     resultConfirm->init();
     resultConfirm->autorelease();
     addChild(resultConfirm, 100000);
@@ -331,10 +335,10 @@ void CFightingCardLayerScene::clearUpVectorBuffer()
 void CFightingCardLayerScene::updateBuffer()
 {
     clearUpVectorBuffer();
-    cout<<"bufferIndex====="<<bufferIndex<<" "<<SinglePlayer::instance()->m_vCFightCardFightingBuffer.size()<<endl;
-    if(bufferIndex<SinglePlayer::instance()->m_vCFightCardFightingBuffer.size())
+    cout<<"bufferIndex====="<<bufferIndex<<" "<<SinglePlayer::instance()->getFightCardFightingBuffer().size()<<endl;
+    if(bufferIndex<SinglePlayer::instance()->getFightCardFightingBuffer().size())
     {
-        CFightCardFightingBuffer *eveyatk=SinglePlayer::instance()->m_vCFightCardFightingBuffer[bufferIndex];
+        CFightCardFightingBuffer *eveyatk=SinglePlayer::instance()->getFightCardFightingBuffer()[bufferIndex];
         if(eveyatk)
         {
             CGamePlayer *player=SinglePlayer::instance();
@@ -378,10 +382,10 @@ void CFightingCardLayerScene::updateBuffer()
 }
 void CFightingCardLayerScene::updateHpAndAngry()
 {
-    cout<<"update====="<<hpUpdateIndex<<"/"<<SinglePlayer::instance()->m_vHpAngry.size()<<endl;
-    if(hpUpdateIndex<SinglePlayer::instance()->m_vHpAngry.size())
+    cout<<"update====="<<hpUpdateIndex<<"/"<<SinglePlayer::instance()->getHpAngryVectory().size()<<endl;
+    if(hpUpdateIndex<SinglePlayer::instance()->getHpAngryVectory().size())
     {
-        SEveryATKData *eveyatk=SinglePlayer::instance()->m_vHpAngry[hpUpdateIndex];
+        SEveryATKData *eveyatk=SinglePlayer::instance()->getHpAngryVectory()[hpUpdateIndex];
         if (eveyatk)
         {
             SSpriteStatus *spriteleft =eveyatk->data[0];
@@ -739,14 +743,34 @@ void CFightingCardLayerScene::animationSwf(CAnimationSpriteGameFight *fightAnima
             }
             break;
         case EN_ATKFIGHT_INDEX_RIGHT_MOVE:
+        {
+//            updateHpAndAngry();
+//            updateBuffer();
+//            m_vMonsterHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
+//            moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);//移动 card
+//            if(m_currCAnimationHP->m_iATKindex+1<m_vMonsterHero.size()-1 &&m_vMonsterHero[m_currCAnimationHP->m_iATKindex+1])
+//            {
+//                m_vMonsterHero[m_currCAnimationHP->m_iATKindex+1]->setVisible(true);
+//            }
+//            
             updateHpAndAngry();
             updateBuffer();
             m_vMonsterHero[m_currCAnimationHP->m_iATKindex]->setVisible(false);
             moveCardSprite(m_vMonsterCard,m_currCAnimationHP->m_iATKindex,false);//移动 card
-            if(m_currCAnimationHP->m_iATKindex+1<m_vMonsterHero.size()-1 &&m_vMonsterHero[m_currCAnimationHP->m_iATKindex+1])
-            {
-                m_vMonsterHero[m_currCAnimationHP->m_iATKindex+1]->setVisible(true);
+            int valueIndex=m_currCAnimationHP->m_iATKindex+1;
+            while (m_vMonsterHero[valueIndex]==NULL) {
+                valueIndex++;
+                if (valueIndex==m_vMonsterHero.size()-1) {
+                    break;
+                }
             }
+            if(valueIndex<m_vMonsterHero.size()-1)
+            {
+                    m_vMonsterHero[valueIndex]->setVisible(true);
+                    break;
+            }
+           
+        }
             break;
         default:
             break;
@@ -897,6 +921,7 @@ EN_ATKFIGHT_INDEX CFightingCardLayerScene::getHuiHeIndex()
 {
     return m_enHuiheIndex;
 }
+
 void CFightingCardLayerScene::loadFromServerTest()
 {
     for (int i=0; i<SinglePlayer::instance()->m_hashmapFightingCard.size(); i++)

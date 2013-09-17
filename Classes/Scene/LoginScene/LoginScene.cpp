@@ -366,11 +366,11 @@ void CLoginScene::addFunctionInitGames(float t)
             isGameInit=true;
         }
         else{
-            if(SinglePlayer::instance()->gameInitStatus!=0)
+            if(SinglePlayer::instance()->getGameInitStatus()!=0)
             {
                 setText("game init ok");
                 unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
-                if(SinglePlayer::instance()->gameInitStatus==1)
+                if(SinglePlayer::instance()->getGameInitStatus()==1)
                 {
                     setText("SetGameInit info");
                     playGame();

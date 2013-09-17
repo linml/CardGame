@@ -487,7 +487,7 @@ bool CPtBattleArrayItem::onTeamArrayBegin(CCTouch *pTouch, CCEvent *pEvent)
     m_pDelegateLayer->m_bReplace = false;
     s_currentBattleArray = m_pDelegateLayer->panel->getBattleArray(pTouch);
 
-    vector<vector<CFightCard *> > &fights = SinglePlayer::instance()->m_vvBattleArray;
+    vector<vector<CFightCard *> > &fights = SinglePlayer::instance()->getCardBattleArray();
     // new add  or replace:
     
     CPtDisPlayCard * displace =(CPtDisPlayCard*)(this->getDisplayView());
@@ -836,7 +836,7 @@ void CBattleArrayLayer::initCards()
 {
     m_bTableClikEnable = false;
     m_pGamePlayer = SinglePlayer::instance();
-    vector<CFightCard *> & bag =  m_pGamePlayer->m_vCardBag;
+    vector<CFightCard *> & bag =  m_pGamePlayer->getCardBagVector();
     CCArray * array = CCArray::create();
     for (int i = 0; i < bag.size() ; i++)
     {
@@ -882,7 +882,7 @@ void CBattleArrayLayer::initCards()
     addChild(m_pCards,1);
     
     //
-    vector<vector<CFightCard *> > &tmpFightArray = m_pGamePlayer->m_vvBattleArray;
+    vector<vector<CFightCard *> > &tmpFightArray = m_pGamePlayer->getCardBattleArray();
     CCLog("%d",tmpFightArray.size());
     for (int i = 0; i < tmpFightArray.size(); i++)
     {

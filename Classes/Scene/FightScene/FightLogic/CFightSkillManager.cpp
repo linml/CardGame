@@ -686,12 +686,10 @@ bool CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
                     (*pfuncCallBack)(pCard,fightCard,monsterCard,FightIndex,MonstIndex,pSkilldata,enAtkFightIndex);
                                     return true;
                 }
-                return false;
-
+              
             }
-            return false;
+
         }
-        return false;
     }
     return false;
 }

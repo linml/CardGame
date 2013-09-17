@@ -16,8 +16,18 @@
 
 using namespace std;
 using namespace cocos2d;
-
-
+// m_iFightType 0 : fight with npc, 1: fight with team
+class SFightResultData
+{
+public:
+    SFightResultData(){m_bHuiFang=false; m_iFightResult=0;m_iFightType=0;m_iFightUid=100000+rand()%100000;}
+    ~SFightResultData(){};
+public:
+    CC_SYNTHESIZE(bool, m_bHuiFang, HuiFang);
+    CC_SYNTHESIZE(int, m_iFightResult, FightResult);
+    CC_SYNTHESIZE(int, m_iFightType, FightType);
+    CC_SYNTHESIZE(int, m_iFightUid, FightUid);
+};
 
 
 class FightResultConfirm : public CCLayerColor {
@@ -28,7 +38,6 @@ public:
 public:
     FightResultConfirm();
     virtual ~FightResultConfirm();
-    
 public:
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -36,11 +45,14 @@ public:
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
+    void postHttpNpc();
+    void postHttpTeam();
+    void callBackData(CCObject *object);    
 protected:
     void initFightResultConfirm();
     void handlerTouch();
 protected:
-    int m_nResult;
+    SFightResultData * m_nResult;
     int m_nTouchTag;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;

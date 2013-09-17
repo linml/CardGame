@@ -1,14 +1,14 @@
 10
 
 dir
-1355
+1381
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-16T02:21:19.537594Z
-1348
+2013-09-17T03:03:10.731522Z
+1369
 merlin
 has-props
 
@@ -65,7 +65,7 @@ merlin
 
 CPtLevelConfigData.h
 file
-1356
+
 
 
 
@@ -578,14 +578,14 @@ merlin
 
 CGameEmailManager.h
 file
+1382
 
 
 
-
-2013-09-02T02:36:06.000000Z
-5aaa0729ba4a27fac3149b89b7a47fa6
-2013-09-02T07:47:29.498452Z
-1149
+2013-09-17T09:01:11.000000Z
+2d2547a4d6bfdbd9f97ff2ba95d3e5db
+2013-09-17T09:46:05.468594Z
+1382
 merlin
 
 
@@ -608,7 +608,7 @@ merlin
 
 
 
-1579
+1551
 
 CAnimationSpriteGameFight.cpp
 file
@@ -712,6 +712,40 @@ phileas
 
 2223
 
+gamePlayer.h
+file
+1382
+
+
+
+2013-09-17T09:34:56.000000Z
+07379ebf9208f1fc1586a8ada9f123d9
+2013-09-17T09:46:05.468594Z
+1382
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6923
+
 CTriggerConfigData.h
 file
 
@@ -745,74 +779,6 @@ phileas
 
 
 991
-
-gamePlayer.h
-file
-1356
-
-
-
-2013-09-16T05:55:09.000000Z
-667cd76865461ab6b9a702e5f157c8cd
-2013-09-16T06:33:56.349365Z
-1356
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6815
-
-CGamePlayerStruct.cpp
-file
-
-
-
-
-2013-07-09T06:42:48.000000Z
-a2075a57882e9f143c123c44442bf6a7
-2013-07-09T06:55:44.448099Z
-682
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-118
 
 CPtLevelConfigData.cpp
 file
@@ -848,17 +814,17 @@ phileas
 
 6975
 
-CPtSectionConfigData.h
+CGamePlayerStruct.cpp
 file
 
 
 
 
-2013-09-12T01:17:36.000000Z
-13a95899f4f86f222e4c005de2f9f6f6
-2013-09-11T11:56:39.996218Z
-1319
-phileas
+2013-07-09T06:42:48.000000Z
+a2075a57882e9f143c123c44442bf6a7
+2013-07-09T06:55:44.448099Z
+682
+merlin
 
 
 
@@ -880,7 +846,7 @@ phileas
 
 
 
-4221
+118
 
 CPtStarConfigData.cpp
 file
@@ -915,6 +881,40 @@ phileas
 
 
 2304
+
+CPtSectionConfigData.h
+file
+
+
+
+
+2013-09-12T01:17:36.000000Z
+13a95899f4f86f222e4c005de2f9f6f6
+2013-09-11T11:56:39.996218Z
+1319
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4221
 
 AnimationLogic.h
 file
@@ -1292,14 +1292,14 @@ merlin
 
 CGameEmailManager.cpp
 file
+1382
 
 
 
-
-2013-09-06T07:23:27.000000Z
-71e1d48c234e94e165a9760cf12513a0
-2013-09-09T06:40:31.026381Z
-1249
+2013-09-17T09:21:25.000000Z
+5eb01d3203e340ae5cc0f101db9684b7
+2013-09-17T09:46:05.468594Z
+1382
 merlin
 
 
@@ -1322,7 +1322,7 @@ merlin
 
 
 
-14664
+13848
 
 CCard.h
 file
@@ -1394,14 +1394,14 @@ merlin
 
 CFightCardBufferData.cpp
 file
+1382
 
 
 
-
-2013-08-23T04:54:49.000000Z
-910c0235783f60e444d6706c170fa68f
-2013-08-06T10:24:23.641146Z
-867
+2013-09-16T08:29:16.000000Z
+4a10dce33530e15491fd97113edca5f6
+2013-09-17T09:46:05.468594Z
+1382
 merlin
 
 
@@ -1424,7 +1424,7 @@ merlin
 
 
 
-2110
+2198
 
 gameStruct.h
 file
@@ -1530,14 +1530,14 @@ phileas
 
 gamePlayer.cpp
 file
-1356
+1382
 
 
 
-2013-09-16T06:31:05.000000Z
-cdbe874df7654d98294429fdafaf582f
-2013-09-16T06:33:56.349365Z
-1356
+2013-09-17T09:34:10.000000Z
+0056d5419c49cf8fec89b7ab5fa1da11
+2013-09-17T09:46:05.468594Z
+1382
 merlin
 
 
@@ -1560,7 +1560,7 @@ merlin
 
 
 
-43376
+39322
 
 CTriggerConfigData.cpp
 file

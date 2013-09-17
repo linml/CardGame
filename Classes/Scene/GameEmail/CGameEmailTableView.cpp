@@ -353,7 +353,7 @@ void CGameEmailTableView::sendPostHttpChangeEmailStatus()
         m_enhttpStatus=EN_EMAILHTTPREQUEST_CHANEGSTATUS;
         string postStrdata="sig=";
         postStrdata+=SinglePlayer::instance()->getUserSig();
-        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILREADSTATUS(194), "MERLINEMAILSTATUS", "EMAILSTATUS",postStrdata.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
+        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILREADSTATUS(194), "CALLBACK_CGameEmailTableView_EMAILSTATUS", "REQUEST_CALLBACK_CGameEmailTableView_EMAILSTATUS",postStrdata.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
     }
 }
 
@@ -602,7 +602,7 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
         CCLog("post get data:%s",str.c_str());
         str +="&sig=2ac2b1e302c46976beaab20a68ef95";
         m_enhttpStatus=EN_EMAILHTTPREQUEST_GETSINGLEITEM;
-        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "MERLINEMAILSTATUS123", "EMAILSTATUS",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
+        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "CALLBACK_CGameEmailTableView_getItems", "REQUEST_CALLBACK_CGameEmailTableView_getItems",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
     }
     else{
         if (G_GAMESINGEMAIL::instance()->getMailCount()>0)
@@ -620,7 +620,7 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
 void CGameEmailTableView::decodeSingleRecvEmail(char *object)
 {
     CCLog("%x",object);
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "MERLINEMAILSTATUS123");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGameEmailTableView_getItems");
     isSendPostGetData=false;
     CCLog("recvBockHttpCallBack");
     if(!object)
@@ -758,7 +758,7 @@ void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
 {
     
     
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "MERLINEMAILSTATUS");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGameEmailTableView_EMAILSTATUS");
     if(!object)
     {
         m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
@@ -851,7 +851,7 @@ void CGameEmailTableView::getAllEmailItem()
         str+=data;
         CCLog("post get data:%s",str.c_str());
         str +="&sig=2ac2b1e302c46976beaab20a68ef95";
-        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "MERLINEMAILSTATUS", "EMAILSTATUS",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
+        ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "CALLBACK_CGameEmailTableView_getItems", "REQUEST_CGameEmailTableView_getItems",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
     }
     else  if(G_GAMESINGEMAIL::instance()->getMailCount()>0 && canereadList.size()==0)
     {

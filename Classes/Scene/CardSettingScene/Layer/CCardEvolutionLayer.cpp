@@ -270,7 +270,7 @@ void CCardEvolutionLayer:: save()
         {
             //save card in BattleArray:
         int t = m_pSrcCard->getCardData()->m_User_Card_ID;
-        vector<CFightCard *> &tmpVect = m_pPlayer->m_vvBattleArray.at(index);
+        vector<CFightCard *> &tmpVect = m_pPlayer->getCardBattleArray().at(index);
              for (int i = 0; i< tmpVect.size(); i++)
              {
                  CCLog("user id: %d",tmpVect.at(i)->m_User_Card_ID );

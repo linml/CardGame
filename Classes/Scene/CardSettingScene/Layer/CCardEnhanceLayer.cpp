@@ -526,7 +526,7 @@ void CCardEnhanceLayer:: save()
     m_pPlayer->ReduceCoin(m_nCostConin);
     m_nCostConin = 0;
     
-    vector<CFightCard *> &r_CardBag = m_pPlayer->m_vCardBag;
+    vector<CFightCard *> &r_CardBag = m_pPlayer->getCardBagVector();
     CCArray * array = m_pCardBag->getItems();
     list<int> ids;
 

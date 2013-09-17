@@ -378,40 +378,6 @@ phileas
 uiScript
 dir
 
-shoushang_l.plist
-file
-
-
-
-
-2013-08-13T07:35:17.000000Z
-692cfca7cc64af9cb3466013eeea0cd7
-2013-08-13T09:32:24.972476Z
-962
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-596
-
 team.txt
 file
 
@@ -445,6 +411,40 @@ merlin
 
 
 513
+
+shoushang_l.plist
+file
+
+
+
+
+2013-08-13T07:35:17.000000Z
+692cfca7cc64af9cb3466013eeea0cd7
+2013-08-13T09:32:24.972476Z
+962
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+596
 
 skill_effect_config.plist
 file
@@ -517,9 +517,6 @@ merlin
 word
 dir
 
-img
-dir
-
 card_star_level_up_config.plist
 file
 
@@ -554,6 +551,12 @@ phileas
 
 5320
 
+img
+dir
+
+map
+dir
+
 item_config.plist
 file
 
@@ -587,9 +590,6 @@ phileas
 
 
 9374
-
-map
-dir
 
 100000_l.plist
 file
@@ -727,40 +727,6 @@ merlin
 
 1643
 
-trigger.plist
-file
-
-
-
-
-2013-09-11T01:24:32.000000Z
-63e8b977f513533e343e4dc31f8dfaba
-2013-09-10T09:03:06.788306Z
-1290
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-632
-
 skill_config.plist
 file
 
@@ -795,17 +761,17 @@ phileas
 
 22000
 
-npc_config.plist
+trigger.plist
 file
 
 
 
 
-2013-09-11T01:41:50.000000Z
-64bcb3153cabd9a6ae02135c3cf23145
-2013-09-11T02:53:39.460688Z
-1297
-merlin
+2013-09-11T01:24:32.000000Z
+63e8b977f513533e343e4dc31f8dfaba
+2013-09-10T09:03:06.788306Z
+1290
+phileas
 
 
 
@@ -827,7 +793,7 @@ merlin
 
 
 
-6202
+632
 
 boss_icon_Effect_l.plist
 file
@@ -862,6 +828,40 @@ merlin
 
 
 1474
+
+npc_config.plist
+file
+
+
+
+
+2013-09-11T01:41:50.000000Z
+64bcb3153cabd9a6ae02135c3cf23145
+2013-09-11T02:53:39.460688Z
+1297
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6202
 
 100004_r.plist
 file
@@ -976,14 +976,14 @@ phileas
 
 bufferfire.plist
 file
+1365
 
 
 
-
-2013-08-14T01:40:12.000000Z
-dc1f053fa20746beac40f32c80c2f02b
-2013-08-14T03:32:12.796162Z
-973
+2013-09-17T01:36:32.000000Z
+820159abb7bc9d710c44177deec1c7a2
+2013-09-17T02:14:57.583091Z
+1365
 merlin
 
 
@@ -1006,7 +1006,7 @@ merlin
 
 
 
-649
+697
 
 story.plist
 file

@@ -62,16 +62,16 @@ bool  CFightingCardLayerLogic::loadFromServerTest(int  loadTeamIndex)
 {
     CGamePlayer *tempSinglePlayer=SinglePlayer::instance();
     tempSinglePlayer->backUpFightTeam(loadTeamIndex);
-    if(tempSinglePlayer->isLoadEndCardTeam &&
-       tempSinglePlayer->m_vvBattleArray.size()>0&&
-       loadTeamIndex<tempSinglePlayer->m_vvBattleArray.size()&&
-       tempSinglePlayer->m_vvBattleArray[loadTeamIndex].size()>0)
+    if(tempSinglePlayer->getLoadEndCardTeam() &&
+       tempSinglePlayer->getCardBattleArray().size()>0&&
+       loadTeamIndex<tempSinglePlayer->getCardBattleArray().size()&&
+       tempSinglePlayer->getCardBattleArray()[loadTeamIndex].size()>0)
     {
-        for (int i=0; i<SinglePlayer::instance()->m_vvBattleArray[loadTeamIndex].size();i++)
+        for (int i=0; i<SinglePlayer::instance()->getCardBattleArray()[loadTeamIndex].size();i++)
         {
-            if(tempSinglePlayer->m_vvBattleArray[loadTeamIndex][i])
+            if(tempSinglePlayer->getCardBattleArray()[loadTeamIndex][i])
             {
-                m_vFightingCard.push_back(new CFightCard(*(tempSinglePlayer->m_vvBattleArray[loadTeamIndex][i])));
+                m_vFightingCard.push_back(new CFightCard(*(tempSinglePlayer->getCardBattleArray()[loadTeamIndex][i])));
                 m_vFightingCard[i]->tag=100*(i+1);
             }
             else
@@ -112,7 +112,7 @@ bool CFightingCardLayerLogic::logicFighting()
     else
     {
         m_enWinStatus=winStatus;
-        SinglePlayer::instance()->m_enWinStatus=winStatus;
+        SinglePlayer::instance()->setWinOrLoseStatus(winStatus);
         CCLog("winStatus:%d",(int)winStatus);
         return  true;
     }

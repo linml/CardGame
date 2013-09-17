@@ -1231,7 +1231,7 @@ void CPtBattleArray::callBack(CCObject *pSender)
     layer->setResultCode(result, true);
     if (result == 0)
     {
-        save(SinglePlayer::instance()->m_vvBattleArray.at(inTag-1));
+        save(SinglePlayer::instance()->getCardBattleArray().at(inTag-1));
         
     }else
     {
@@ -1329,7 +1329,7 @@ void CPtBattleArray::save(vector<CFightCard *> & infightArray)
 void CPtBattleArray::resetBattleArray()
 {
    
-    vector<CFightCard*> fightArray = SinglePlayer::instance()->m_vvBattleArray.at(inTag-1);
+    vector<CFightCard*> fightArray = SinglePlayer::instance()->getCardBattleArray().at(inTag-1);
     CCDictionary* dir =     CCardSettingScene::s_pBattleArrayCards;
     CPtDisPlayCard * tmp = NULL;
     CFightCard * tmpFightCard = NULL;
@@ -1458,7 +1458,7 @@ bool CPtBattleArrayPanel::init()
   
     for (int i = 2; i >= 0; i--)
     {
-        CPtBattleArray * battleArray = CPtBattleArray::create (gamePlayer->m_vvBattleArray.at(i) ,CCSizeMake(139, 200), ccp(175, 150) ,i+1);
+        CPtBattleArray * battleArray = CPtBattleArray::create (gamePlayer->getCardBattleArray().at(i) ,CCSizeMake(139, 200), ccp(175, 150) ,i+1);
         battleArray->setMoveLayer(m_pMoveLayer);
         layer->addChild(battleArray);
         battleArray->setPosition(ccp(0, (2-i) * 520 + 85));

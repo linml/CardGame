@@ -12,6 +12,7 @@
 #include "HallScene.h"
 #include "ExplorationScene.h"
 #include "SceneManager.h"
+#include "gameMiddle.h"
 
 FightResultConfirm::FightResultConfirm()
 {
@@ -34,6 +35,7 @@ bool FightResultConfirm::init()
     {
         CC_BREAK_IF(!CCLayerColor::initWithColor(ccc4(125, 125, 125, 125)));
         initFightResultConfirm();
+        //添加一个战斗回放的效果
         CCSprite *sprite=CCSprite::create("Icon-Small@2x.png");
         if(getChildByTag(2))
         {
@@ -50,10 +52,82 @@ bool FightResultConfirm::init()
         else{
              PtSoundTool::playSysSoundEffect("fight_failed.mp3");
         }
+        
+        setTouchMode(kCCTouchesOneByOne);
+        setTouchPriority(-INT_MAX);
+        if(m_nResult->getHuiFang())
+        {
+            
+            string word;
+            if(m_nResult->getFightResult()==1)
+            {
+                word = Utility::getWordWithFile("word.plist", "win");
+            }
+            else
+            {
+                word = Utility::getWordWithFile("word.plist", "lose");
+            }
+            CCLabelTTF* pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
+            pLabel->setPosition(ccp(240,140));
+            CCNode * node = m_cMaps->getElementByTags("2,0,0");
+            if(node)
+            {
+                node->addChild(pLabel);
+            }
+            setTouchEnabled(true);
+        }
+        else
+        {
+            //setTouchEnabled(false);
+            CCLabelTTF* pLabel = CCLabelTTF::create("loading...", "Scissor Cuts", 20);
+            pLabel->setPosition(ccp(240,140));
+            CCNode * node = m_cMaps->getElementByTags("2,0,0");
+            if(node)
+            {
+                node->addChild(pLabel,1,912);
+            }
+          
+            if (m_nResult->getFightType()==0) {
+                postHttpNpc();
+            }
+            else{
+                postHttpTeam();
+            }
+        }
+
     } while (0);
     return bRet;
 }
 
+void FightResultConfirm::postHttpTeam()
+{
+    callBackData(NULL);
+}
+
+void FightResultConfirm::postHttpNpc()
+{
+    callBackData(NULL);
+}
+
+void FightResultConfirm::callBackData(cocos2d::CCObject *object)
+{
+    
+    
+//    if(!object)
+//    {
+//        Middle::showAlertView("F**K 服务端传递空数据");
+//        return ;
+//    }
+    //显示奖励界面
+    
+    CCNode * node = m_cMaps->getElementByTags("2,0,0");
+    if(node && node->getChildByTag(912))
+    {
+        ((CCLabelTTF *)(node->getChildByTag(912)))->setString("测试数据0");
+    }    
+    setTouchEnabled(true);
+    
+}
 
 bool FightResultConfirm::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -67,6 +141,7 @@ void FightResultConfirm::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     if (getChildByTag(2)&&getChildByTag(2)->getChildByTag(911)&&((CCSprite *)(getChildByTag(2)->getChildByTag(911)))->boundingBox().containsPoint(pTouch->getPreviousLocation()))
     {
+        m_nResult->setHuiFang(true);
         CCNotificationCenter::sharedNotificationCenter()->postNotification("CONGTOUBOFANG");
         removeFromParentAndCleanup(true);
         return;
@@ -85,7 +160,7 @@ void FightResultConfirm::initFightResultConfirm()
 {
     // init data:
     m_nTouchTag = -1;
-    m_nResult = (int)getUserData();
+    m_nResult = (SFightResultData *)getUserData();
     
     m_cMaps = LayoutLayer::create();
     m_cMaps->retain();
@@ -93,38 +168,35 @@ void FightResultConfirm::initFightResultConfirm()
     m_cMaps->initWithFile(this, CSTR_FILEPTAH(plistPath, "confirm.plist"));
     m_cMaps->getTouchRects(m_cTouches);
     
-    // set touch
-    setTouchEnabled(true);
-    setTouchMode(kCCTouchesOneByOne);
-    setTouchPriority(-INT_MAX);
+  
     
      m_cMaps->getElementByTags("2")->setVisible(true);
      m_cMaps->getElementByTags("2,1")->setVisible(false);
      m_cMaps->getElementByTags("2,2")->setVisible(false);
      m_cMaps->getElementByTags("3")->setVisible(false);
     
-    string word ;
-    if (m_nResult == 1)
-    {
-         word = Utility::getWordWithFile("word.plist", "win");
-        Utility::getWordWithFile("word.plist", "option");
-        
-    }
-    else
-    {
-        word = Utility::getWordWithFile("word.plist", "lose");
-    }
+//    string word ;
+//    if (m_nResult == 1)
+//    {
+//         word = Utility::getWordWithFile("word.plist", "win");
+//        Utility::getWordWithFile("word.plist", "option");
+//        
+//    }
+//    else
+//    {
+//        word = Utility::getWordWithFile("word.plist", "lose");
+//    }
  
    
-    CCLabelTTF* pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
-    pLabel->setPosition(ccp(240,140));
-   
-    CCNode * node = m_cMaps->getElementByTags("2,0,0");
-    if(node)
-    {
-        CCLog("exist,%s", word.c_str());
-        node->addChild(pLabel);
-    }
+//    CCLabelTTF* pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
+//    pLabel->setPosition(ccp(240,140));
+//   
+//    CCNode * node = m_cMaps->getElementByTags("2,0,0");
+//    if(node)
+//    {
+//        CCLog("exist,%s", word.c_str());
+//        node->addChild(pLabel);
+//    }
     
 }
 

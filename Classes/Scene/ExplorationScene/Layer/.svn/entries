@@ -1,14 +1,14 @@
 10
 
 dir
-1355
+1381
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/ExplorationScene/Layer
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-06T10:30:42.348792Z
-1238
+2013-09-17T06:50:45.584303Z
+1374
 phileas
 has-props
 
@@ -60,6 +60,108 @@ phileas
 
 973
 
+CEventBoxDialog.h
+file
+
+
+
+
+2013-09-17T09:41:11.000000Z
+55cad1b2b81634c2bfe163d65221068f
+2013-09-17T06:50:45.584303Z
+1374
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1380
+
+CEventBoxReward.cpp
+file
+
+
+
+
+2013-09-17T09:41:11.000000Z
+d7c4e11a4ba52144e8ebde8089352fee
+2013-09-17T06:50:45.584303Z
+1374
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6209
+
+CEventBoxReward.h
+file
+
+
+
+
+2013-09-17T09:41:11.000000Z
+ca236925a7178ceeb09e43f80bad9a06
+2013-09-17T06:50:45.584303Z
+1374
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1228
+
 CConfirmLayer.cpp
 file
 
@@ -93,4 +195,38 @@ phileas
 
 
 3994
+
+CEventBoxDialog.cpp
+file
+
+
+
+
+2013-09-17T09:41:11.000000Z
+daaf77aefdc1d9b54e8c6e3cdc7ba229
+2013-09-17T06:50:45.584303Z
+1374
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6403
 

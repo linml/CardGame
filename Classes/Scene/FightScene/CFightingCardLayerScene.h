@@ -18,6 +18,7 @@ class CFightCard;
 class CAnimationSpriteGameFight;
 class SEveryATKData;
 class CGameCardBuffer;
+class SFightResultData;
 
 class CFightingCardLayerScene :public CCLayer
 {
@@ -116,6 +117,11 @@ public:
     vector<CFightCard *>m_vMonsterCard;
     vector<CGameCardBuffer *>m_leftBuffer;
     vector<CGameCardBuffer *>m_rightBuffer;
+    
+private:
+    SFightResultData *m_pSFightData;
+    
+    
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerScene__) */

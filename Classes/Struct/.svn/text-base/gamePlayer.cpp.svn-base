@@ -48,7 +48,7 @@ private:
 inline bool dealWithCallbackObject(CCObject *object)
 {
     if (!object) {
-        Middle::showAlertView("SERVER RETURN NULL DATA");
+        Middle::showAlertView("服务端传输NULL的数据");
         return false;
     }
     return true;
@@ -78,7 +78,6 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
     m_nMaxSectionId = 1;
     m_strSig = "";
     m_strUid = "";
-    isLoadServer=false;
     for (int i=0; i<m_vvBattleArray.size(); i++) {
         DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> ,CFightCard );
     }
@@ -285,7 +284,6 @@ void CGamePlayer::initByServerDictorny(cocos2d::CCDictionary *dict)
         CCArray *aary=GameTools::arrayForKey("card_info", dict);
         initFightingCardByserverDictorny(aary);
     }
-    isLoadServer=true;
 }
 
 void CGamePlayer::initFightingCardByserverDictorny(CCArray *array)
@@ -307,58 +305,6 @@ void CGamePlayer::initPlayerStatusZero()
 
 void CGamePlayer::getSeverPlayerInfo(cocos2d::CCObject *object)
 {
-    
-}
-
-void CGamePlayer::loadServerCardBag()
-{
-    isLoadCardBagEnd=0;
-#ifndef AAAAFOROSMACHINE
-    //     ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parseCardBagJson));
-    string data = "sig=";
-    data += m_strSig;
-    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_ITEM(194), "merlin", "merlinaskplayerinfo",data.c_str() ,callfuncO_selector(CGamePlayer::parseCardBagJson));
-    
-#else
-    char *data=new char [5];
-    parseCardBagJson((CCObject *)data);
-#endif
-    
-}
-
-void CGamePlayer::parseCardBagJson(cocos2d::CCObject *obj)
-{
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "merlinaskplayerinfo");
-    clearServerCardBag();
-    if(!dealWithCallbackObject(obj))
-    {
-        isLoadCardBagEnd=ERROR_MSG_CONNECTSERVERERROR;
-        return;
-    }
-    //添加card  字符串
-    char *tempdatat=(char *)obj;
-#ifndef AAAAFOROSMACHINE
-    CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdatat);
-#else
-    const char *tempdata=readFileName((resRootPath+"cardbg.txt").c_str()).c_str();
-    CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
-#endif
-    delete []tempdatat;
-    tempdatat=NULL;
-    
-    assert(dict&&"aaaaaaaaa");
-    if(GameTools::intForKey("code", dict)!=0)
-    {
-        CCLog("error");
-        return ;
-    }
-    CCDictionary *directory =(CCDictionary*)((CCDictionary*)dict->objectForKey("result"))->objectForKey("card_item");
-    if (directory)
-    {
-            decodeCardDictAppendCardBag(directory);
-    }
-
-    isLoadCardBagEnd=ERROR_MSG_NONE;
     
 }
 
@@ -429,71 +375,6 @@ void CGamePlayer::deleteFromCardBag(vector<int>user_CardId)
             }
         }
     }
-}
-
-
-void CGamePlayer::loadCardTeamInfoCallBack(CCObject *obj)
-{
-
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetLoadCardItem");
-    m_vvBattleArray.resize(3);
-    char *datat=(char *)obj;
-#ifndef  AAAAFOROSMACHINE
-    CCDictionary *dirct=PtJsonUtility::JsonStringParse(datat);
-#else
-    const  char *data=readFileName((resRootPath +"cardteam.txt").c_str()).c_str();
-    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
-#endif
-    CCLog("%s",datat);
-    
-    delete [] datat;
-    datat=NULL;
-    if(GameTools::intForKey("code",dirct)==0)
-    {
-        CCDictionary *dictresult=(CCDictionary *)((CCDictionary *)dirct->objectForKey("result"))->objectForKey("card_team");
-        if (!dictresult)
-        {
-            return;
-        }
-        CCArray *vKeyArrayresult=dictresult->allKeys();
-        for (int i=0; i<vKeyArrayresult->count(); i++)
-        {
-            CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
-            CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
-            if(cardDirector)
-            {
-                vector<CFightCard *>tempVcard(5);
-                CCDictionary *cardtemp=(CCDictionary *)cardDirector->objectForKey("team");
-                CCArray *vKeyArraytemp=cardtemp->allKeys();
-                for (int j=0; j<vKeyArraytemp->count(); j++)
-                {
-                    CCString *keytemp=(CCString *)vKeyArraytemp->objectAtIndex(j);
-                    CCDictionary *cardDirectorDetail=(CCDictionary*)(cardtemp->objectForKey(keytemp->m_sString));
-                    int card_item_id=GameTools::intForKey("card_item_id", cardDirectorDetail);
-                    int position=GameTools::intForKey("position", cardDirectorDetail);
-                    tempVcard[position-1]=findFightCardByCard_User_ID(card_item_id);
-                    if(tempVcard[position-1])
-                    {
-                        tempVcard[position-1]->setInBattleArray(i+1);//(true);
-                    }
-                    
-                    
-                }
-                int index=atoi(key->m_sString.c_str())-1;
-                CCLog("index=========%d",index);
-                m_vvBattleArray[index]=tempVcard;
-            }
-        }
-        for (int i=0; i<m_vvBattleArray.size(); i++) {
-            if(m_vvBattleArray[i].size()==0)
-            {
-                vector<CFightCard *>tempVectory(5);
-                m_vvBattleArray[i]=tempVectory;
-            }
-        }
-    }
-    isLoadEndCardTeam=true;
-    
 }
 
 void CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)
@@ -583,22 +464,13 @@ void CGamePlayer::loadRival(int  usid,int  troops)
     connectData += m_strSig;
     connectData+="&"+str;
     //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
-    ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "CALLBACK_CGamePlayer_GetFightTeam", "REQUEST_CGamePlayer_GetFightTeam",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
 }
 void CGamePlayer::loadNpcCardTeam(int zhang, int jie, int bu, int dijige)
 {
     isLoadFightTeam=0;
 #ifdef AAAAFOROSMACHINE
-    //    char data[50];
-    //    sprintf(data, "%d",usid);
-    //    string str=string("info={\"uid\":")+ data;
-    //    sprintf(data, "%d",troops);
-    //    str +=string(",\"troops\":")+data+"}";
-    //    string connectData="sig=";
-    //    connectData += m_strSig;
-    //    connectData+="&"+str;
-    //    //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
-    //    ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "GetFightTeam", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
+   
 #else
     const  char *data=CPtTool::readFileName((resRootPath +"npccardteam.txt").c_str()).c_str();
     char *datat=new char [strlen(data+1)];
@@ -647,13 +519,13 @@ void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
     {
         return ;
     }
-    CCArray *vKeyArrayresult=dictresult->allKeys();
-    for (int i=0; i<vKeyArrayresult->count(); i++)
-    {
-        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
-        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
-        if(cardDirector)
-        {
+//    CCArray *vKeyArrayresult=dictresult->allKeys();
+//    for (int i=0; i<vKeyArrayresult->count(); i++)
+//    {
+//        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+//        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+//        if(cardDirector)
+//        {
             DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
             m_hashmapMonsterCard.resize(5);
             if(dictresult)
@@ -663,10 +535,16 @@ void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
                 {
                     const char* pchKey = pElement->getStrKey();
                     int position=atoi(pchKey)-1;
-                    CCAssert(position>=0, "fuck服务端传输位置为-1的");
+                    CCAssert(position>=0, "f**k服务端传输位置为-1的");
                     int card_id=GameTools::intForKey(pchKey, dictresult);
-                    CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
-                    m_hashmapMonsterCard[position]=pFightCard;
+                    if(card_id==0)
+                    {
+                        m_hashmapMonsterCard[position]=NULL;
+                    }else{
+                        CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
+                        m_hashmapMonsterCard[position]=pFightCard;
+
+                    }
                 }
             }
             CCArray *vKeyArraytempBBB=(CCArray *)resultDictresult->objectForKey("random_data");
@@ -677,14 +555,14 @@ void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
                 m_getRandom_data.push_back(strtemp->intValue());
             }
             
-        }
-    }
+//        }
+//    }
 
 }
 
 void CGamePlayer::parseRival(CCObject *object)
 {
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GetFightTeam");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_GetFightTeam");
     if( !dealWithCallbackObject(object))
     {
         return;
@@ -885,7 +763,14 @@ void CGamePlayer::onFightInterScene()
     DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *> ,SEveryATKData);
     DELETE_POINT_VECTOR(m_vCFightCardFightingBuffer, vector<CFightCardFightingBuffer * > ,CFightCardFightingBuffer);
 }
-
+vector<SEveryATKData*> CGamePlayer::getHpAngryVectory()const
+{
+    return m_vHpAngry;
+}
+vector<CFightCardFightingBuffer *> CGamePlayer::getFightCardFightingBuffer()const
+{
+    return m_vCFightCardFightingBuffer;
+}
 void CGamePlayer::deleteFightMonsterCard()
 {
     DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *> ,CFightCard);
@@ -1338,6 +1223,16 @@ void CGamePlayer::onParseTaskInfoByDictionary(CCDictionary *inDataDictionary)
     
 }
 
+vector<CFightCard *> & CGamePlayer::getCardBagVector()
+{
+    return m_vCardBag;
+}
+
+vector<vector<CFightCard *> > &CGamePlayer::getCardBattleArray()
+{
+    return m_vvBattleArray;
+}
+
 void CGamePlayer::setCurrentTaskId(int inTaskId)
 {
     m_nCurrentTaskId = inTaskId;
@@ -1389,14 +1284,15 @@ void CGamePlayer::onGameBegin()
     string connectData="sig=";
     connectData += m_strSig;
     connectData+=data;
-    ADDHTTPREQUESTPOSTDATA(STR_URL_GAMEINIT(194), "GameBegin", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGamePlayer::onGameBeginCallBack));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GAMEINIT(194), "CALLBACK_CGamePlayer_GameBegin", "REQUEST_CGamePlayer_GameBegin",connectData.c_str(),callfuncO_selector(CGamePlayer::onGameBeginCallBack));
     
 }
 
 void CGamePlayer::onGameBeginCallBack(CCObject *object)
 {
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "GameBegin");
-    if (!object) {
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_GameBegin");
+    if (!dealWithCallbackObject(object))
+    {
         gameInitStatus=ERROR_MSG_CONNECTSERVERERROR;
         return;
     }
@@ -1427,7 +1323,6 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
         }
         CCDictionary *getCardItem=(CCDictionary *)dictresult->objectForKey("card_team");
         loadCardTeamInfoCallBackByDict(getCardItem);
-        
     }
 }
 

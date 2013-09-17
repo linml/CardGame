@@ -63,26 +63,23 @@ private:
     void clearAllNpcCard();
 
 public:
-    vector<CFightCard *>m_hashmapFightingCard;
-    vector<CFightCard *>m_hashmapMonsterCard;
-    //模拟战斗时候调用的 数据
-    bool isLoadServer;
+    vector<CFightCard *> m_hashmapFightingCard;
+    vector<CFightCard *> m_hashmapMonsterCard;
 private:
     void initByServerDictorny(cocos2d::CCDictionary *dict);
     void initFightingCardByserverDictorny(cocos2d::CCArray *dict);
 public:
-    int m_FightUid;
+    CC_SYNTHESIZE(int, m_FightUid, FightUid);
+    CC_SYNTHESIZE(int, gameInitStatus, GameInitStatus) ;
+    CC_SYNTHESIZE(int, isLoadEndCardTeam, LoadEndCardTeam);
+
 public:
     void initPlayerStatusZero();
     //获得服务端的数据并init下数据
     void getSeverPlayerInfo(CCObject *object);
-    
-    
-    //以后这个通讯的会单独抽离在通讯的框架里面。
+
 public: //读取卡包的信息
-    void loadServerCardBag();
     void clearServerCardBag();
-    void parseCardBagJson(CCObject *obj);
     void deleteFromCardBag(vector<int>user_CardId);
     bool isCardBagContainUserCardList(vector<int>User_CardId);
     int  isLoadCardBagEnd;
@@ -93,12 +90,9 @@ public:
     void onGameBegin();
     void onGameBeginCallBack(CCObject *object);
     void parseJsonUserInfo(CCDictionary *dict);
-    int  gameInitStatus;
-    
+
 public: //读取 卡队列的信息
-    void loadCardTeamInfoCallBack(CCObject *obj);
     void loadCardTeamInfoCallBackByDict(CCDictionary *dictresult);
-    int  isLoadEndCardTeam;
 public:
     //读取对战别的英雄对战的阵容
     void loadRival(int  usid,int troop);
@@ -110,8 +104,6 @@ public:
     //战斗时候调用的随机值得。
     void randRomIndexAdd();
     void logicRandValue(int &value,bool needAdd=true);
-    std::vector<int >m_getRandom_data;
-    int m_currRandRomIndex;
 public:
     void backUpFightTeam(int index);
     void appendAtkData(SEveryATKData * data);
@@ -119,10 +111,8 @@ public:
     void onFightInterScene();
     void onFightExitScene();
     void deleteFightMonsterCard();
-    EN_GAMEFIGHTSTATUS  m_enWinStatus;
-    vector<SEveryATKData*>m_vHpAngry;
-    vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
-
+    vector<SEveryATKData*> getHpAngryVectory()const;
+    vector<CFightCardFightingBuffer *>getFightCardFightingBuffer()const;
    
 // 领取邮件：
 public:
@@ -139,9 +129,9 @@ public:
     const char* getUserSig();
     void setUserSig(string sig);
 public:
-    vector<CFightCard *>m_vCardBag;
-    vector<vector<CFightCard*> >m_vvBattleArray;
-    int m_iCurrentBattleTeam;  //!< 当前的选择 战斗的阵容
+    vector<CFightCard *> & getCardBagVector();
+    vector<vector<CFightCard *> > &getCardBattleArray();
+
 // 道具背包:
 public:
     //读取道具背包信息
@@ -156,10 +146,6 @@ public:
     void updateProps();
     bool getLoadPropEnd(){return  m_bLoadProps;};
     bool addGridBySys();
-protected:
-    map<int, CPtProp*> &m_rAllProps; // 静态配置中道具信息
-    map<int, int> m_vProps;          // 用户道具列表
-    bool m_bLoadProps;
 protected:
     int isCanAddToBackPack(map<int, int> &tmpProps, map<int, int> &inAddProps , int inUserGridCount);
     void mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps);    
@@ -179,12 +165,7 @@ protected:
     void onReceiveTaskInfo(CCObject *pObject);
     void setChapterAndSectionByTask();
     
-protected:
-    int m_nCurrentTaskId;
-    int m_nMaxChapterId;
-    int m_nMaxSectionId;
-    
-    CC_SYNTHESIZE(bool, m_bLoadTaskInfo, LoadTaskInfo);
+
 // play info:
 public:
     int getCoin();
@@ -206,6 +187,9 @@ public:
     
 protected:
     CGamePlayerData *m_gGamePlayerData;
+    map<int, CPtProp*> &m_rAllProps; // 静态配置中道具信息
+    map<int, int> m_vProps;          // 用户道具列表
+    bool m_bLoadProps;
 private:
     map<int, CCard *>m_hashmapAllCard;
     vector<SLevelPlayer *>m_gvPlayerLevel;
@@ -214,6 +198,19 @@ private:
     map<int ,CCard *>m_hashmapNpcAllCard;
     string m_strSig;
     string m_strUid;
+    std::vector<int >m_getRandom_data;
+    int m_currRandRomIndex;
+protected:
+    int m_nCurrentTaskId;
+    int m_nMaxChapterId;
+    int m_nMaxSectionId;
+    vector<CFightCard *>m_vCardBag;
+    vector<vector<CFightCard*> >m_vvBattleArray;
+    CC_SYNTHESIZE(bool, m_bLoadTaskInfo, LoadTaskInfo);
+    CC_SYNTHESIZE(int , m_iCurrentBattleTeam, CurrentBattleTeam) ;  //!< 当前的选择 战斗的阵容
+    CC_SYNTHESIZE(EN_GAMEFIGHTSTATUS, m_enWinStatus, WinOrLoseStatus);
+    vector<SEveryATKData*>m_vHpAngry;
+    vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

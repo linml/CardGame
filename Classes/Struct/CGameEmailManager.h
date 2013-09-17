@@ -27,7 +27,6 @@ public:
     ~CGameEmailManager();
     void decodeEmap(std::string str);
     void decodeEmap(CCDictionary *dict);
-    void postHttpRequest();
     void getHttpReponse(CCObject *object);
     void changeEmailStatus();
 public:

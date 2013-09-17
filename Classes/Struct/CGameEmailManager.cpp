@@ -148,29 +148,6 @@ void CGameEmailManager::decodeEmap(std::string str)
         }
     }
 }
-
-
-void CGameEmailManager::postHttpRequest()
-{
-    m_iGetHttpStatus=0;
-#ifndef AAAAFOROSMACHINE
-    char data[50];
-    sprintf(data, "%d",getCurrentTotalEmail());
-    string str=string("info={\"total\":")+ data;
-    sprintf(data, "%d",getUpdateTotalEmail());
-    str +=string(",\"update\":")+data+"}";
-//xianbei modify    string connectData="sig=2ac2b1e302c46976beaab20a68ef95";
-    string connectData="sig=";
-    connectData += STR_USER_SIG;
-    connectData+="&"+str;
-    //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
-    ADDHTTPREQUESTPOSTDATA(STR_URL_EMAIL(connectData), "GetEmail", "merlinaskplayerinfo1",connectData.c_str(),callfuncO_selector(CGameEmailManager::getHttpReponse));
-#else
-    char *data=new char[5];
-    getHttpReponse((CCObject *)data);
-#endif
-}
-
 void CGameEmailManager::deleteAllEmail()
 {
     for (list<CGameEmailData *>::iterator it=m_listGameEamil.begin(); it!=m_listGameEamil.end(); it++)
@@ -183,6 +160,7 @@ void CGameEmailManager::deleteAllEmail()
     }
     m_listGameEamil.erase(m_listGameEamil.begin(),m_listGameEamil.end());
 }
+
 class vector_finder
 {
 public:
