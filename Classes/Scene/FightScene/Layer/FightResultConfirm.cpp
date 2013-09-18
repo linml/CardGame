@@ -13,6 +13,9 @@
 #include "ExplorationScene.h"
 #include "SceneManager.h"
 #include "gameMiddle.h"
+#include "PtHttpURL.h"
+#include "PtHttpClient.h"
+#include "PtJsonUtility.h"
 
 FightResultConfirm::FightResultConfirm()
 {
@@ -87,7 +90,8 @@ bool FightResultConfirm::init()
                 node->addChild(pLabel,1,912);
             }
           
-            if (m_nResult->getFightType()==0) {
+            if (m_nResult->getFightType()==0)
+            {
                 postHttpNpc();
             }
             else{
@@ -98,7 +102,6 @@ bool FightResultConfirm::init()
     } while (0);
     return bRet;
 }
-
 void FightResultConfirm::postHttpTeam()
 {
     callBackData(NULL);
@@ -106,19 +109,46 @@ void FightResultConfirm::postHttpTeam()
 
 void FightResultConfirm::postHttpNpc()
 {
-    callBackData(NULL);
+   
+    
+    int taskId =CExploration::getCurrentTaskId();
+    int eventId=CExploration::getCurrentEventId(); //事件ID
+    int chapterId=CExploration::getCurrentChapterId(); //章ID
+    int sectionId=CExploration::getCurrentSectionId(); //节ID
+    int stepNumber=CExploration::getCurrentStep();
+    int typeSuccess=m_nResult->getFightResult();
+    char buffer[200]={0};
+    //    CPtSection*  m_pSection = s_SectionData.sectionInfo;
+    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d&event_id=%d&type=%d&task_id=%d",STR_USER_SIG, chapterId, sectionId, stepNumber-1, eventId,typeSuccess,taskId);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_FINISH_EVENT(196),"CALLBACK_FightResultConfirm_finshEvent", "REQUEST_FightResultConfirm_finshEvent",buffer, callfuncO_selector(FightResultConfirm::callBackData));
 }
 
 void FightResultConfirm::callBackData(cocos2d::CCObject *object)
 {
     
+    CCLog("FightResultConfirm: %s",(char*)object);
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_FightResultConfirm_finshEvent");
     
-//    if(!object)
-//    {
-//        Middle::showAlertView("F**K 服务端传递空数据");
-//        return ;
-//    }
-    //显示奖励界面
+    int code = -1;
+    char *buff = (char*) object;
+    if (buff)
+    {
+        CCDictionary *pResult = PtJsonUtility::JsonStringParse(buff);
+        if (pResult)
+        {
+            code = GameTools::intForKey("code", pResult);
+            if (code == 0)
+            {
+                pResult = (CCDictionary*) pResult->objectForKey("result");
+                CCAssert(pResult, "result null");
+                CCDictionary *tmp = (CCDictionary*) pResult->objectForKey("event_info");
+                CExploration::setNextEventByDict(tmp);
+                int nextStep = GameTools::intForKey("next_step", pResult);
+                CExploration::setCurrentStep(nextStep);
+            }
+        }
+        
+    }
     
     CCNode * node = m_cMaps->getElementByTags("2,0,0");
     if(node && node->getChildByTag(912))

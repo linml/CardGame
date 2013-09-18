@@ -168,11 +168,16 @@ protected:
 
 // play info:
 public:
-    int getCoin();
-    int getPlayerPrice();
-    int getRVC();
-    int getPlayerExp();
-    int getPlayerLevel();
+    int getCoin();          //金币
+    int getPlayerPrice();  //现金
+    int getRVC();          //领导力
+    int getPlayerExp();    //经验
+    int getPlayerLevel();  //等级
+    int getPlayerHp();     //神力
+    int getPlayerEnergy();  //体力
+    
+    int setPlayerHp(int iValue); //神力
+    int setPlayerEnergy(int iValue);
     
     void addPlayerPrice(int inAddPrice);
     void subPlayerPrice(int inSubPrice);

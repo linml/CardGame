@@ -33,7 +33,7 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_icash=GameTools::intForKey("cash", dict);
     m_iexp=GameTools::intForKey("exp", dict);
     m_ilevel=GameTools::intForKey("level", dict);
-    m_ienergy=GameTools::intForKey("energy", dict); //精力dic
+    m_ienergy=GameTools::intForKey("energy", dict); //体力
     m_ienergy_update_time=GameTools::intForKey("energy_update_time", dict);
     m_iVipScore=GameTools::intForKey("vip_score", dict);
     m_irvc=GameTools::intForKey("leader", dict);
@@ -44,6 +44,7 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_friend_count=GameTools::intForKey("friend_max",dict);
     m_susername=GameTools::valueForKey("username", dict);
     m_nOpenGridCount = GameTools::intForKey("max_bag", dict);
+    m_iHp=GameTools::intForKey("hp", dict);
     
 }
 void CGamePlayerData::setLevelConfig(SLevelPlayer * pSlevel)

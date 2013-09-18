@@ -11,9 +11,29 @@
 #include "CPtTool.h"
 
 
+CEventBoxRewordLayer * CEventBoxRewordLayer::create(CEventBoxData *inEventBoxData,int inType)
+{
+    CEventBoxRewordLayer *pRet = new CEventBoxRewordLayer();
+    if (pRet && pRet->init(inEventBoxData, inType))
+    {
+        pRet->autorelease();
+        return pRet;
+    }
+    else
+    {
+        CC_SAFE_DELETE(pRet);
+        return NULL;
+    }
+
+    
+}
+
+
 CEventBoxRewordLayer::CEventBoxRewordLayer()
 {
     m_cMaps = NULL;
+    m_pTarget = NULL;
+    m_pConfirmSelector = NULL;
 }
 
 CEventBoxRewordLayer::~CEventBoxRewordLayer()
@@ -28,13 +48,13 @@ void CEventBoxRewordLayer::setHanlder(cocos2d::CCObject *inTarget, SEL_CallFuncO
     m_pConfirmSelector = inCanfirmSelector;
 }
 
-bool CEventBoxRewordLayer::init()
+bool CEventBoxRewordLayer::init(CEventBoxData *inEventBoxData,int inType)
 {
     bool bRet = false;
     do
     {
         CC_BREAK_IF(!CCLayer::init());
-        initEventBoxRewordLayer();
+        initEventBoxRewordLayer(inEventBoxData,inType);
         bRet = true;
     } while (0);
     return bRet;
@@ -82,17 +102,42 @@ void CEventBoxRewordLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
     
 }
 
+/*
+ * @param inType 0-1:
+ * 0---> 领奖
+ * 1---> 不可忽略
+ */
 
-void CEventBoxRewordLayer::initEventBoxRewordLayer()
+void CEventBoxRewordLayer::initEventBoxRewordLayer(CEventBoxData *inEventBoxData,int inType)
 {
+    this->setUserData((void*) inType);
     loadResource();
-    //createConfirmDialog();
-    createReWordDialog();
+    
+    if (inType == 0)
+    {
+        createConfirmDialog();
+    }else
+    {
+        createReWordDialog(inEventBoxData);
+    }
+
+    
+    setTouchEnabled(true);
+    setTouchMode(kCCTouchesOneByOne);
+    setTouchPriority(-40000);
 }
 
 void CEventBoxRewordLayer:: handlerTouch()
 {
-    
+    if (m_nTouchTag == 0)
+    {
+        // continue exploration
+        if(m_pTarget && m_pConfirmSelector)
+        {
+            (m_pTarget->*m_pConfirmSelector)(this);
+        }
+    }
+    //   removeFromParentAndCleanup(true);
 }
 
 void CEventBoxRewordLayer::loadResource()
@@ -101,7 +146,7 @@ void CEventBoxRewordLayer::loadResource()
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "dialog_bg.plist"), CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
 }
 
-void CEventBoxRewordLayer:: createReWordDialog()
+void CEventBoxRewordLayer:: createReWordDialog(CEventBoxData *inEventBoxData)
 {
     CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
     CCSpriteBatchNode * bathNode = CCSpriteBatchNode::createWithTexture(texture, 5);
@@ -118,7 +163,7 @@ void CEventBoxRewordLayer:: createReWordDialog()
     bathNode->addChild(mid);
     CCSize size2 = mid->boundingBox().size;
     int count = 2;
-    for (int i = 1; i < 3; i++)
+    for (int i = 1; i < 4; i++)
     {
         mid = CCSprite::createWithSpriteFrameName("dialog_mid.png");
         mid->setAnchorPoint(CCPointZero);
@@ -131,12 +176,63 @@ void CEventBoxRewordLayer:: createReWordDialog()
     bathNode->addChild(bottom);
     this->addChild(bathNode);
     
+
     char * title = "基础事件描述";
+    char * describle = "捡到一个小袋子，被下了禁制，不知道里面藏了什么好东西！需要注入15点神力才能开启";
+    CCPoint point = top->getPosition();
     CCLabelTTF * label = CCLabelTTF::create(title, "Arial", 18);
     label->setColor(ccc3(0, 240, 255));
+    label->setAnchorPoint(ccp(0, 1));
+    label->setPosition(ccp(point.x+ 180, point.y+ 70));
+    addChild(label);
+
+    label =  CCLabelTTF::create(describle, "Arial", 15, CCSizeMake(300, 0), kCCTextAlignmentLeft);
+    label->setColor(ccc3(126, 60, 30));
+    label->setAnchorPoint(ccp(0,1));
+    label->setPosition(ccp(point.x+150, point.y));
+    addChild(label);
+    
+    char *icon1 = "baoxiang_2.png";
+    char *icon2 = "baoxiang_3.png";
+    
+    texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_eventBoxPath, icon1));
+    CCSprite * icon = CCSprite::createWithTexture(texture);
+    icon->setAnchorPoint(CCPointZero);
+    icon->setPosition(ccp(point.x+50, point.y- 80));
+    addChild(icon);
+    
+    point = bottom->getPosition();
+    
+    texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_eventBoxPath, icon2));
+    
+    icon = CCSprite::createWithTexture(texture);
+    icon->setAnchorPoint(CCPointZero);
+    icon->setPosition(ccp(point.x+200, point.y+80));
+    addChild(icon);
+    
+    // btn:
+    
+    CCSpriteFrameCache* cach = CCSpriteFrameCache::sharedSpriteFrameCache();
+    CCSpriteFrame * frame  = cach->spriteFrameByName("Use_Normal.png");
+    m_cTouchSpriteFrameRect[0] = frame->getRect();
     
     
-       
+    const char * name="确定";
+    CCSprite *node = CCSprite::createWithSpriteFrame(frame);
+    node->setPosition(ccp(point.x+ 180, point.y + 25));
+    node->setAnchorPoint(CCPointZero);
+    label = CCLabelTTF::create(name, "Arial", 18);
+    CCSize size =  node->boundingBox().size;
+    label->setPosition(ccp(size.width/2, size.height/2));
+    label->setColor(ccc3(126, 60, 30));
+    node->addChild(label);
+   
+    m_pBtn = node;
+    
+    frame  = cach->spriteFrameByName("Use_Pressed.png");
+    m_cTouchSpriteFrameRect[1] = frame->getRect();
+
+    addChild(node);
 }
 
 void CEventBoxRewordLayer::createConfirmDialog()
@@ -145,10 +241,6 @@ void CEventBoxRewordLayer::createConfirmDialog()
     m_cMaps = LayoutLayer::create();
     m_cMaps->retain();
     m_cMaps->initWithFile(this, CSTR_FILEPTAH(plistPath, "deleteprop.plist"));
-    
-    setTouchEnabled(true);
-    setTouchMode(kCCTouchesOneByOne);
-    setTouchPriority(-40000);
  
 
     int number = 1;

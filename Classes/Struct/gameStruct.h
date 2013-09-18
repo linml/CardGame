@@ -71,14 +71,33 @@ struct EMAIL_DATA
     
 };
 
-#define EMPTY_EVENT -1
+#define EMPTY_EVENT 0
+
+/*
+ * @brief: 如type ＝ 0 则 storyID 和 specialEventId字段无效
+ */
+
+struct EVENTDATA
+{
+    int type = 0; // 0--> common event 1--> special event:
+    int eventId[3]={EMPTY_EVENT,EMPTY_EVENT,EMPTY_EVENT};
+    int storyId = -1;
+    int specialEventId = -1;
+};
 
 struct SECTION_DATA
 {
     CPtSection *sectionInfo;
     int currentStep;
-    int eventId[3]={EMPTY_EVENT,EMPTY_EVENT,EMPTY_EVENT};
+    //int eventId[3]={EMPTY_EVENT,EMPTY_EVENT,EMPTY_EVENT};
+    EVENTDATA eventData;
 };
+
+
+
+
+
+
 
 
 

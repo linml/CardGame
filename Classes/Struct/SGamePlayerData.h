@@ -27,7 +27,7 @@ public:
     int    m_icash;
     int    m_iexp;
     int    m_ilevel;
-    int    m_ienergy; //精力
+    int    m_ienergy; //体力
     int    m_iVipScore;
     int    m_ienergy_update_time;
     int    m_iupdate_time;
@@ -35,7 +35,8 @@ public:
     int    m_guide_step;
     int    m_sign;
     int    m_friend_count;
-    int  m_irvc;
+    int    m_irvc;
+    int    m_iHp;   //神力
     struct SLevelPlayer *m_sLevelPlayer;
     int    m_nOpenGridCount;
 };

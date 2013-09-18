@@ -417,6 +417,9 @@ void CDeletePropLayer::longTouchCallBack(float dt)
     {
         stopLongPress();
     }
-        
+    
+    char buff[10] ={0};
+    sprintf(buff, "%d", m_nCurrentCount);
+    m_pNumberLabel->setString(buff);
 }
 

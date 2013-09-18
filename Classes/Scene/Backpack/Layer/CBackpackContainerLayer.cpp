@@ -461,13 +461,14 @@ void CBackpackContainerLayer::adjustScrollView(float offset)
         nAdjustPage=nPage;
     }
     
-    nAdjustPage=MIN(nAdjustPage,m_nPageCount);
+    nAdjustPage=MIN(nAdjustPage,m_nPageCount-1);
     nAdjustPage=MAX(nAdjustPage,0);
     
     //change indicator:
+   
     updateIndicator(m_nCurPage, nAdjustPage);
-    
     scrollToPage(nAdjustPage);
+    
     CCLog("the page: %d, %d", nAdjustPage, nPage);
     updateCurrentPage();
 }
@@ -764,9 +765,10 @@ void CBackpackContainerLayer::reLoadPage(int inFromPage)
         CBackpackPageLayer * item  = NULL;
         
         // add backpackpage to container:
-        multimap<int, int>::iterator mapIterator = dataIterators.at(0);
+        multimap<int, int>::iterator mapIterator  = m_cNumInGrid.begin();
         multimap<int, int>::iterator mapIteratorEnd = mapIterator;
-        
+    
+
         inOpenNumber -= inFromPage * 9;
         for (int i = inFromPage; i < tmpPageCount; i++)
         {

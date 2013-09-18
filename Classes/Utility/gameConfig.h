@@ -69,6 +69,8 @@ const std::string g_propImagesPath = resRootPath+"img/prop/";
 const std::string g_plistPath = resRootPath+"plist/";
 const std::string g_chapterPath = resRootPath+"chapter/";
 
+const std::string g_eventBoxPath= resRootPath+"eventbox/";
+
 //注意 编辑器中使用大小 -1--就代表 T形按钮 100%
 const int g_custom_font_size[] = {
     10,             //0  空值,不能使用这个参数

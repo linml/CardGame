@@ -117,6 +117,8 @@ void CEventBoxLayer::initEventBoxLayer(CEventBoxData *inEventBoxData)
     loadResource();
     int titleId = inEventBoxData->getTitleId();
     int describleId = inEventBoxData->getDictionaryId();
+    
+    
     const char * title = "你完蛋了！";
     const char * describle = "今天早上你从家里走出来的时候，踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！";
     const char * iconString ="baoxiang_1.png";
@@ -210,14 +212,14 @@ void CEventBoxLayer::handlerTouch()
         // continue exploration
         if(m_pTarget && m_pSkipSelector)
         {
-            (m_pTarget->*m_pSkipSelector)(NULL);
+            (m_pTarget->*m_pSkipSelector)(this);
         }
     }else
     {
         // open
         if (m_pTarget && m_pOpenSelector)
         {
-            (m_pTarget->*m_pOpenSelector)(NULL);
+            (m_pTarget->*m_pOpenSelector)(this);
         }
     }
  //   removeFromParentAndCleanup(true);

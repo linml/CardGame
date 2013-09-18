@@ -31,6 +31,7 @@ bool CAsgardLayer::init()
         CC_BREAK_IF(!CCLayer::init());
         
         initArsgard();
+        createAndUpdateLabel();
         bRet = true;
     } while (0);
     return bRet;
@@ -73,9 +74,102 @@ void CAsgardLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     }
 
 }
+
 void CAsgardLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
     
+}
+
+void CAsgardLayer::createAndUpdateLabel()
+{
+    //HP，体力，金币，现金币，领导力，等级
+    //username
+    CCSize wndSize=CCDirector::sharedDirector()->getWinSize();
+    if (!getChildByTag(1000001))
+    {
+        CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 25);
+        addChild(labelttf,3,1000001);
+        labelttf->setPosition(ccp(100, 500));
+        labelttf->setString(CCUserDefault::sharedUserDefault()->getStringForKey("name").c_str());
+    }
+    char data[30];
+    // usercoin 金币
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000002);
+        if (!getChildByTag(1000002))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 25);
+            addChild(labelttf,3,1000002);
+            labelttf->setPosition(ccp(300, 500));
+        }
+        sprintf(data, "金币:%d",SinglePlayer::instance()->getCoin());
+        labelttf->setString(data);
+        
+    }
+    //user exp;现金币
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000003);
+        if (!getChildByTag(1000003))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 25);
+            addChild(labelttf,3,1000003);
+            labelttf->setPosition(ccp(500, 500));
+        }
+        sprintf(data, "现金:%d",SinglePlayer::instance()->getPlayerPrice());
+        labelttf->setString(data);
+    }
+    
+    //user 体力
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000004);
+        if (!getChildByTag(1000004))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 25);
+            addChild(labelttf,3,1000004);
+            labelttf->setPosition(ccp(700, 500));
+        }
+        sprintf(data, "体力:%d",SinglePlayer::instance()->getPlayerEnergy());
+        labelttf->setString(data);
+    }
+    
+    //user 领导力
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000005);
+        if (!getChildByTag(1000005))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 25);
+            addChild(labelttf,3,1000005);
+            labelttf->setPosition(ccp(900, 500));
+        }
+        sprintf(data, "领导力:%d",SinglePlayer::instance()->getRVC());
+        labelttf->setString(data);
+    }
+    // 等级
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000006);
+        if (!getChildByTag(1000006))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 25);
+            addChild(labelttf,3,1000006);
+            labelttf->setPosition(ccp(900, 600));
+        }
+        sprintf(data, "等级:%d",SinglePlayer::instance()->getPlayerLevel());
+        labelttf->setString(data);
+    }
+    
+    // 体力
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000007);
+        if (!getChildByTag(1000007))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 25);
+            addChild(labelttf,3,1000007);
+            labelttf->setPosition(ccp(700, 600));
+        }
+        sprintf(data, "神力:%d",SinglePlayer::instance()->getPlayerHp());
+        labelttf->setString(data);
+    }
+
 }
 
 

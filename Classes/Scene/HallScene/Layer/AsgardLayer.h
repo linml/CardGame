@@ -47,6 +47,7 @@ public:
 protected:
     void initArsgard();
     void handlerTouch();
+    void createAndUpdateLabel();
     
     void callBack(float dt);
 protected:

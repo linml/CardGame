@@ -11,14 +11,14 @@
 
 #include "cocos2d.h"
 #include "LayoutLayer.h"
+#include "CEventBoxConfigData.h"
 
 using namespace cocos2d;
 
 class CEventBoxRewordLayer : public CCLayer
 {
-public:
-    
-    CREATE_FUNC(CEventBoxRewordLayer);
+public:    
+    static CEventBoxRewordLayer *create(CEventBoxData *inEventBoxData, int inType = 1);
 public:
     
     CEventBoxRewordLayer();
@@ -26,19 +26,19 @@ public:
     void setHanlder(CCObject *inTarget, SEL_CallFuncO inCanfirmSelector);
     
 public:
-    virtual bool init();
+    virtual bool init(CEventBoxData *inEventBoxData,int inType);
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     
 protected:
-    void initEventBoxRewordLayer();
+    void initEventBoxRewordLayer(CEventBoxData *inEventBoxData,int inType);
     void handlerTouch();
     void loadResource();
     
     
-    void createReWordDialog();
+    void createReWordDialog(CEventBoxData *inEventBoxData);
     void createConfirmDialog();
 protected:
     

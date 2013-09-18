@@ -87,6 +87,7 @@ void CPtTask::setPropItems(const char* inJsonString)
 CTaskConfigData::CTaskConfigData()
 {
     m_pTaskConfigData = CCDictionary::createWithContentsOfFile(CSTR_FILEPTAH(resRootPath, "task_config.plist"));
+    m_pTaskConfigData->retain();
     m_nCurrentTaskId = -1;
     m_pCurrentTask = NULL;
 }
@@ -115,13 +116,13 @@ CPtTask * CTaskConfigData::getTaskById(int inId)
         {
             CPtTask *tmpTask = CPtTask::create();
             
-            tmpTask->setTaskId(GameTools::intForKey("task_id", tmpDic ));
+            tmpTask->setTaskId(GameTools::intForKey("mission_id", tmpDic ));
             tmpTask->setTaskType(GameTools::intForKey("type", tmpDic));
             tmpTask->setTargetId(GameTools::intForKey("target_id", tmpDic));
             tmpTask->setTargetNum(GameTools::intForKey("num", tmpDic));
             tmpTask->setPreTaskId(GameTools::intForKey("pre_task", tmpDic));
             tmpTask->setChapterId(GameTools::intForKey("chapter_id", tmpDic));
-            tmpTask->setSectionId(GameTools::intForKey("pard_id", tmpDic));
+            tmpTask->setSectionId(GameTools::intForKey("part_id", tmpDic));
             tmpTask->setTaskTipId(GameTools::intForKey("task_tags", tmpDic));
     
             

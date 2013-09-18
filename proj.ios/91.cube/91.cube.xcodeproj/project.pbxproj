@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F1EF63317E946F600103854 /* CEventBoxConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F1EF62E17E946F600103854 /* CEventBoxConfigData.cpp */; };
+		6F1EF63417E946F600103854 /* CEventConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F1EF63017E946F600103854 /* CEventConfigData.cpp */; };
+		6F1EF63517E946F600103854 /* CSceneConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F1EF63117E946F600103854 /* CSceneConfigData.cpp */; };
+		6F1EF63A17E9473900103854 /* CEventBoxDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F1EF63617E9473900103854 /* CEventBoxDialog.cpp */; };
+		6F1EF63B17E9473900103854 /* CEventBoxReward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F1EF63717E9473900103854 /* CEventBoxReward.cpp */; };
 		6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F34AE8E1760945F00A6433C /* LoadingScene.cpp */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
 		6F49CA7317D884EA0094874E /* CGameRoleAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA6F17D884EA0094874E /* CGameRoleAnimation.cpp */; };
@@ -323,6 +328,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F1EF62E17E946F600103854 /* CEventBoxConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventBoxConfigData.cpp; sourceTree = "<group>"; };
+		6F1EF62F17E946F600103854 /* CEventBoxConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventBoxConfigData.h; sourceTree = "<group>"; };
+		6F1EF63017E946F600103854 /* CEventConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventConfigData.cpp; sourceTree = "<group>"; };
+		6F1EF63117E946F600103854 /* CSceneConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneConfigData.cpp; sourceTree = "<group>"; };
+		6F1EF63217E946F600103854 /* CSceneConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneConfigData.h; sourceTree = "<group>"; };
+		6F1EF63617E9473900103854 /* CEventBoxDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventBoxDialog.cpp; sourceTree = "<group>"; };
+		6F1EF63717E9473900103854 /* CEventBoxReward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventBoxReward.cpp; sourceTree = "<group>"; };
+		6F1EF63817E9473900103854 /* CEventBoxReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventBoxReward.h; sourceTree = "<group>"; };
+		6F1EF63917E9473900103854 /* CEventBoxDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventBoxDialog.h; sourceTree = "<group>"; };
+		6F1EF63C17E9475E00103854 /* CEventConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventConfigData.h; sourceTree = "<group>"; };
 		6F34AE8E1760945F00A6433C /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
 		6F34AE8F1760945F00A6433C /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
@@ -1269,6 +1284,10 @@
 		8E6CE593176EEF1E00CF5C0D /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				6F1EF63617E9473900103854 /* CEventBoxDialog.cpp */,
+				6F1EF63717E9473900103854 /* CEventBoxReward.cpp */,
+				6F1EF63817E9473900103854 /* CEventBoxReward.h */,
+				6F1EF63917E9473900103854 /* CEventBoxDialog.h */,
 				8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */,
 				8E6CE595176EEF1E00CF5C0D /* CConfirmLayer.h */,
 			);
@@ -1397,6 +1416,12 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6F1EF63C17E9475E00103854 /* CEventConfigData.h */,
+				6F1EF62E17E946F600103854 /* CEventBoxConfigData.cpp */,
+				6F1EF62F17E946F600103854 /* CEventBoxConfigData.h */,
+				6F1EF63017E946F600103854 /* CEventConfigData.cpp */,
+				6F1EF63117E946F600103854 /* CSceneConfigData.cpp */,
+				6F1EF63217E946F600103854 /* CSceneConfigData.h */,
 				6FB7E44D17DEEA3C004DF409 /* CTriggerConfigData.cpp */,
 				6FB7E44E17DEEA3D004DF409 /* CTriggerConfigData.h */,
 				6FB7E44F17DEEA3E004DF409 /* CTaskConfigData.cpp */,
@@ -2898,6 +2923,11 @@
 				6FB7E45117DEEA40004DF409 /* CTriggerConfigData.cpp in Sources */,
 				6FB7E45217DEEA40004DF409 /* CTaskConfigData.cpp in Sources */,
 				6F5E8A5B17E152E0003A3B3A /* CPtExpandableListView.cpp in Sources */,
+				6F1EF63317E946F600103854 /* CEventBoxConfigData.cpp in Sources */,
+				6F1EF63417E946F600103854 /* CEventConfigData.cpp in Sources */,
+				6F1EF63517E946F600103854 /* CSceneConfigData.cpp in Sources */,
+				6F1EF63A17E9473900103854 /* CEventBoxDialog.cpp in Sources */,
+				6F1EF63B17E9473900103854 /* CEventBoxReward.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

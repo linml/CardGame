@@ -1,14 +1,14 @@
 10
 
 dir
-1381
+1413
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Panel
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-11T11:56:39.996218Z
-1319
+2013-09-18T02:06:54.364060Z
+1384
 phileas
 has-props
 
@@ -477,40 +477,6 @@ phileas
 
 5804
 
-CGamesCard.cpp
-file
-
-
-
-
-2013-08-12T09:27:48.000000Z
-11b57b78b8da9bca1ce55ad99f37a5bb
-2013-08-12T10:27:29.337965Z
-940
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13852
-
 CGameDialogLayer.cpp
 file
 
@@ -548,6 +514,40 @@ merlin
 GameControl
 dir
 
+CGamesCard.cpp
+file
+
+
+
+
+2013-08-12T09:27:48.000000Z
+11b57b78b8da9bca1ce55ad99f37a5bb
+2013-08-12T10:27:29.337965Z
+940
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13852
+
 CPtButtonWidget.h
 file
 
@@ -584,19 +584,15 @@ phileas
 
 LoadingScene.cpp
 file
-1382
-
-
-
-2013-09-17T09:10:33.000000Z
-83eec24e97af9d2de089a9404720f3c8
-2013-09-17T09:46:05.468594Z
-1382
-merlin
 
 
 
 
+2013-09-18T02:07:08.000000Z
+18a9220b3f8034c2ce7f5d3d30349e27
+2013-09-18T02:06:54.364060Z
+1384
+phileas
 
 
 
@@ -614,7 +610,11 @@ merlin
 
 
 
-3714
+
+
+
+
+3674
 
 CPtBatterArray.h
 file
@@ -1026,7 +1026,7 @@ phileas
 
 CPtBatterArray.cpp
 file
-1382
+
 
 
 

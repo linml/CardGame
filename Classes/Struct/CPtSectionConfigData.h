@@ -15,6 +15,9 @@
 #include "CSingleton.h"
 
 #define INVALID 0
+#define BASEVALUE 300000
+#define INTERVALVALUE 100
+
 using namespace cocos2d;
 
 typedef struct

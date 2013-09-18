@@ -37,6 +37,8 @@ const vector<int>& CPtSection::getTriggers()
 
 CPtSectionConfigData* CPtSectionConfigData::create(int inChapterId)
 {
+
+    inChapterId = (inChapterId -BASEVALUE )/100+1;
     CCDictionary * tmp = NULL;
     char buff[150]={0};
     sprintf(buff, "%s_%d.plist", CSTR_FILEPTAH(g_chapterPath, "partlist"), inChapterId);
@@ -89,9 +91,8 @@ void CPtSectionConfigData::loadSectionDataByChapter(cocos2d::CCDictionary *inSec
             tmpSection->setEndBounsMoney(GameTools::intForKey("endbouns_money",tmpValue));
             tmpSection->setTaskId(GameTools::intForKey("mission_id", tmpValue));
             tmpSection->setRandomEventId(GameTools::intForKey("randomevent_id", tmpValue));
-            
-          //  tmpSection->setTriggerId(GameTools::intForKey("trigger_id", tmpValue));
             tmpSection->setTriggers(GameTools::valueForKey("trigger_id", tmpValue));
+            
             m_pIdToSequence->setObject(CCInteger::create(tmpSection->getSequence()),tmpSection->getSectionId());
             m_pSectionsInChapter->setObject(tmpSection, tmpSection->getSequence());
             
@@ -256,23 +257,23 @@ CPtChapterConfigData::~CPtChapterConfigData()
 }
 
 /*
- * @param inMaxId start from 1
+ * @param inMaxId start from 300000, 间隔 100 
  */
 
 CCArray * CPtChapterConfigData::getOpenChapter(int inMaxId)
 {
     
     
-    if (inMaxId > m_pChapters->count())
+    if ((inMaxId-BASEVALUE)/INTERVALVALUE + 1 > m_pChapters->count())
     {
         return NULL;
     }else
     {
         CCArray *array = CCArray::create();
         CPtChapter * chapter = NULL;
-        for (int i = 1; i <= inMaxId ; i++)
+        for (int i = BASEVALUE; i <= inMaxId ; i+=INTERVALVALUE)
         {
-          chapter = (CPtChapter*) m_pChapters->objectForKey(i);
+            chapter = (CPtChapter*) m_pChapters->objectForKey(i);
             if (chapter)
             {
                 array->addObject(chapter);

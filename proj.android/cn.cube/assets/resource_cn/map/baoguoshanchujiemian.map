@@ -78,7 +78,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{451,181}</string>
+                <string>{450,181}</string>
                 <key>z</key>
                 <integer>20</integer>
                 <key>tag</key>
@@ -91,7 +91,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{499,181}</string>
+                <string>{497,181}</string>
                 <key>z</key>
                 <integer>25</integer>
                 <key>tag</key>
@@ -104,7 +104,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{547,181}</string>
+                <string>{544,181}</string>
                 <key>z</key>
                 <integer>30</integer>
                 <key>tag</key>
@@ -117,7 +117,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{595,181}</string>
+                <string>{591,181}</string>
                 <key>z</key>
                 <integer>35</integer>
                 <key>tag</key>
@@ -130,7 +130,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{259,229}</string>
+                <string>{259,228}</string>
                 <key>z</key>
                 <integer>45</integer>
                 <key>tag</key>
@@ -143,7 +143,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{307,229}</string>
+                <string>{306,228}</string>
                 <key>z</key>
                 <integer>50</integer>
                 <key>tag</key>
@@ -156,7 +156,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{355,229}</string>
+                <string>{353,228}</string>
                 <key>z</key>
                 <integer>55</integer>
                 <key>tag</key>
@@ -169,7 +169,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{403,229}</string>
+                <string>{400,228}</string>
                 <key>z</key>
                 <integer>60</integer>
                 <key>tag</key>
@@ -182,7 +182,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{451,229}</string>
+                <string>{447,228}</string>
                 <key>z</key>
                 <integer>65</integer>
                 <key>tag</key>
@@ -195,7 +195,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{499,229}</string>
+                <string>{494,228}</string>
                 <key>z</key>
                 <integer>70</integer>
                 <key>tag</key>
@@ -208,7 +208,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{547,229}</string>
+                <string>{541,228}</string>
                 <key>z</key>
                 <integer>75</integer>
                 <key>tag</key>
@@ -221,7 +221,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{595,229}</string>
+                <string>{588,228}</string>
                 <key>z</key>
                 <integer>80</integer>
                 <key>tag</key>
@@ -234,7 +234,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{259,277}</string>
+                <string>{259,275}</string>
                 <key>z</key>
                 <integer>90</integer>
                 <key>tag</key>
@@ -247,7 +247,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{307,277}</string>
+                <string>{306,275}</string>
                 <key>z</key>
                 <integer>95</integer>
                 <key>tag</key>
@@ -260,7 +260,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{355,277}</string>
+                <string>{353,275}</string>
                 <key>z</key>
                 <integer>100</integer>
                 <key>tag</key>
@@ -273,7 +273,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{403,277}</string>
+                <string>{400,275}</string>
                 <key>z</key>
                 <integer>105</integer>
                 <key>tag</key>
@@ -286,7 +286,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{451,277}</string>
+                <string>{447,275}</string>
                 <key>z</key>
                 <integer>110</integer>
                 <key>tag</key>
@@ -299,7 +299,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{499,277}</string>
+                <string>{494,275}</string>
                 <key>z</key>
                 <integer>115</integer>
                 <key>tag</key>
@@ -312,7 +312,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{547,277}</string>
+                <string>{541,275}</string>
                 <key>z</key>
                 <integer>120</integer>
                 <key>tag</key>
@@ -325,7 +325,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{595,277}</string>
+                <string>{588,275}</string>
                 <key>z</key>
                 <integer>125</integer>
                 <key>tag</key>
@@ -338,7 +338,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{643,181}</string>
+                <string>{644,181}</string>
                 <key>z</key>
                 <integer>135</integer>
                 <key>tag</key>
@@ -351,7 +351,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{643,229}</string>
+                <string>{644,228}</string>
                 <key>z</key>
                 <integer>140</integer>
                 <key>tag</key>
@@ -364,7 +364,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{643,277}</string>
+                <string>{644,275}</string>
                 <key>z</key>
                 <integer>145</integer>
                 <key>tag</key>
@@ -377,7 +377,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{259,325}</string>
+                <string>{259,322}</string>
                 <key>z</key>
                 <integer>150</integer>
                 <key>tag</key>
@@ -390,7 +390,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{307,325}</string>
+                <string>{306,322}</string>
                 <key>z</key>
                 <integer>155</integer>
                 <key>tag</key>
@@ -403,7 +403,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{355,325}</string>
+                <string>{353,322}</string>
                 <key>z</key>
                 <integer>160</integer>
                 <key>tag</key>
@@ -416,7 +416,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{403,325}</string>
+                <string>{400,322}</string>
                 <key>z</key>
                 <integer>165</integer>
                 <key>tag</key>
@@ -429,7 +429,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{451,325}</string>
+                <string>{447,322}</string>
                 <key>z</key>
                 <integer>170</integer>
                 <key>tag</key>
@@ -442,7 +442,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{499,325}</string>
+                <string>{494,322}</string>
                 <key>z</key>
                 <integer>175</integer>
                 <key>tag</key>
@@ -455,7 +455,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{547,325}</string>
+                <string>{541,322}</string>
                 <key>z</key>
                 <integer>180</integer>
                 <key>tag</key>
@@ -468,7 +468,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{595,325}</string>
+                <string>{586,322}</string>
                 <key>z</key>
                 <integer>185</integer>
                 <key>tag</key>
@@ -481,7 +481,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{643,325}</string>
+                <string>{644,322}</string>
                 <key>z</key>
                 <integer>195</integer>
                 <key>tag</key>
@@ -533,7 +533,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{691,323}</string>
+                <string>{691,322}</string>
                 <key>z</key>
                 <integer>215</integer>
                 <key>tag</key>
@@ -546,7 +546,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{259,373}</string>
+                <string>{259,369}</string>
                 <key>z</key>
                 <integer>220</integer>
                 <key>tag</key>
@@ -559,7 +559,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{307,373}</string>
+                <string>{306,369}</string>
                 <key>z</key>
                 <integer>225</integer>
                 <key>tag</key>
@@ -572,7 +572,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{355,373}</string>
+                <string>{352,369}</string>
                 <key>z</key>
                 <integer>230</integer>
                 <key>tag</key>
@@ -585,7 +585,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{403,372}</string>
+                <string>{399,369}</string>
                 <key>z</key>
                 <integer>235</integer>
                 <key>tag</key>
@@ -598,7 +598,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{451,372}</string>
+                <string>{446,369}</string>
                 <key>z</key>
                 <integer>240</integer>
                 <key>tag</key>
@@ -611,7 +611,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{499,372}</string>
+                <string>{493,369}</string>
                 <key>z</key>
                 <integer>245</integer>
                 <key>tag</key>
@@ -624,7 +624,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{547,373}</string>
+                <string>{540,369}</string>
                 <key>z</key>
                 <integer>250</integer>
                 <key>tag</key>
@@ -637,7 +637,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{595,371}</string>
+                <string>{587,369}</string>
                 <key>z</key>
                 <integer>255</integer>
                 <key>tag</key>
@@ -650,7 +650,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{643,371}</string>
+                <string>{644,369}</string>
                 <key>z</key>
                 <integer>260</integer>
                 <key>tag</key>
@@ -663,7 +663,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{691,371}</string>
+                <string>{691,369}</string>
                 <key>z</key>
                 <integer>265</integer>
                 <key>tag</key>
@@ -676,7 +676,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{262,388}</string>
+                <string>{259,388}</string>
                 <key>z</key>
                 <integer>270</integer>
                 <key>tag</key>
@@ -715,7 +715,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{388,386}</string>
+                <string>{388,388}</string>
                 <key>z</key>
                 <integer>285</integer>
                 <key>tag</key>
@@ -741,7 +741,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{472,386}</string>
+                <string>{472,388}</string>
                 <key>z</key>
                 <integer>295</integer>
                 <key>tag</key>
@@ -754,7 +754,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{511,385}</string>
+                <string>{510,388}</string>
                 <key>z</key>
                 <integer>300</integer>
                 <key>tag</key>
@@ -767,7 +767,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{555,386}</string>
+                <string>{555,388}</string>
                 <key>z</key>
                 <integer>305</integer>
                 <key>tag</key>
@@ -780,7 +780,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{600,387}</string>
+                <string>{600,388}</string>
                 <key>z</key>
                 <integer>310</integer>
                 <key>tag</key>
@@ -793,7 +793,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{635,390}</string>
+                <string>{635,388}</string>
                 <key>z</key>
                 <integer>315</integer>
                 <key>tag</key>
@@ -806,7 +806,7 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{673,387}</string>
+                <string>{673,388}</string>
                 <key>z</key>
                 <integer>320</integer>
                 <key>tag</key>
@@ -819,11 +819,115 @@
                 <key>mapSpriteName</key>
                 <string>Label_2_02.png</string>
                 <key>pos</key>
-                <string>{694,388}</string>
+                <string>{691,388}</string>
                 <key>z</key>
                 <integer>325</integer>
                 <key>tag</key>
                 <integer>65</integer>
+            </dict>
+            <key>mapSprite62</key>
+            <dict>
+                <key>spriteName</key>
+                <string>cuowutishi</string>
+                <key>mapSpriteName</key>
+                <string>Label_2_02.png</string>
+                <key>pos</key>
+                <string>{290,181}</string>
+                <key>z</key>
+                <integer>330</integer>
+                <key>tag</key>
+                <integer>66</integer>
+            </dict>
+            <key>mapSprite63</key>
+            <dict>
+                <key>spriteName</key>
+                <string>cuowutishi</string>
+                <key>mapSpriteName</key>
+                <string>Label_2_02.png</string>
+                <key>pos</key>
+                <string>{333,181}</string>
+                <key>z</key>
+                <integer>335</integer>
+                <key>tag</key>
+                <integer>67</integer>
+            </dict>
+            <key>mapSprite64</key>
+            <dict>
+                <key>spriteName</key>
+                <string>cuowutishi</string>
+                <key>mapSpriteName</key>
+                <string>Label_2_02.png</string>
+                <key>pos</key>
+                <string>{388,181}</string>
+                <key>z</key>
+                <integer>340</integer>
+                <key>tag</key>
+                <integer>68</integer>
+            </dict>
+            <key>mapSprite65</key>
+            <dict>
+                <key>spriteName</key>
+                <string>cuowutishi</string>
+                <key>mapSpriteName</key>
+                <string>Label_2_02.png</string>
+                <key>pos</key>
+                <string>{621,181}</string>
+                <key>z</key>
+                <integer>345</integer>
+                <key>tag</key>
+                <integer>69</integer>
+            </dict>
+            <key>mapSprite66</key>
+            <dict>
+                <key>spriteName</key>
+                <string>cuowutishi</string>
+                <key>mapSpriteName</key>
+                <string>Label_2_02.png</string>
+                <key>pos</key>
+                <string>{623,223}</string>
+                <key>z</key>
+                <integer>350</integer>
+                <key>tag</key>
+                <integer>70</integer>
+            </dict>
+            <key>mapSprite67</key>
+            <dict>
+                <key>spriteName</key>
+                <string>cuowutishi</string>
+                <key>mapSpriteName</key>
+                <string>Label_2_02.png</string>
+                <key>pos</key>
+                <string>{624,268}</string>
+                <key>z</key>
+                <integer>355</integer>
+                <key>tag</key>
+                <integer>71</integer>
+            </dict>
+            <key>mapSprite68</key>
+            <dict>
+                <key>spriteName</key>
+                <string>cuowutishi</string>
+                <key>mapSpriteName</key>
+                <string>Label_2_02.png</string>
+                <key>pos</key>
+                <string>{619,305}</string>
+                <key>z</key>
+                <integer>360</integer>
+                <key>tag</key>
+                <integer>72</integer>
+            </dict>
+            <key>mapSprite69</key>
+            <dict>
+                <key>spriteName</key>
+                <string>cuowutishi</string>
+                <key>mapSpriteName</key>
+                <string>Label_2_02.png</string>
+                <key>pos</key>
+                <string>{618,345}</string>
+                <key>z</key>
+                <integer>365</integer>
+                <key>tag</key>
+                <integer>73</integer>
             </dict>
         </dict>
         <key>kuang</key>

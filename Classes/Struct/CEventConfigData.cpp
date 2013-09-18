@@ -56,8 +56,9 @@ CEventDataConfig::~CEventDataConfig()
 
 CEventData* CEventDataConfig::getEventById(int inId)
 {
+    CCLog("the eventId : %d", inId);
     map<int, CEventData*>:: iterator i = m_cAllEvents.end();
-    if (inId >= 0 && inId < m_cAllEvents.size())
+    if (inId >= 0)
     {
         i = m_cAllEvents.find(inId);
     }
@@ -85,31 +86,21 @@ void CEventDataConfig::loadEventConfigData()
         /*
          *	
          <key>event_id</key>
-         <string>2</string>
+         <string>200000</string>
          <key>event_name</key>
-         <string>ming2</string>
+         <string>测试战斗事件1</string>
          <key>event_tips</key>
-         <string>miao2</string>
+         <string>200000</string>
          <key>event_type</key>
-         <string>2</string>
+         <string>1</string>
          <key>effect</key>
-         <string>baba</string>
+         <string>baga.plist</string>
          <key>soundeffects</key>
-         <string>babab.wav</string>
+         <string>wfwf.wav</string>
          <key>back_step</key>
          <string>1</string>
          <key>hp</key>
          <string>10</string>
-         <key>parameter_1</key>
-         <string>1012</string>
-         <key>parameter_2</key>
-         <string>1012</string>
-         <key>parameter_3</key>
-         <string>1012</string>
-         <key>parameter_4</key>
-         <string>1012</string>
-         <key>parameter_5</key>
-         <string>1012</string>
          */
         if (tmp)
         {
@@ -122,11 +113,6 @@ void CEventDataConfig::loadEventConfigData()
             data->setSoundEffect(GameTools::valueForKey("soundeffects", tmp));
             data->setBackStep(GameTools::intForKey("back_step", tmp));
             data->setCostHP(GameTools::intForKey("hp", tmp));
-            data->setParamOne(GameTools::intForKey("parameter_1", tmp));
-            data->setParamTwo(GameTools::intForKey("parameter_2", tmp));
-            data->setParamThree(GameTools::intForKey("parameter_3", tmp));
-            data->setParamFouth(GameTools::intForKey("parameter_4", tmp));
-            data->setParamFive(GameTools::intForKey("parameter_5", tmp));
             data->retain();
             m_cAllEvents.insert(map<int, CEventData*>::value_type(data->getEventId(), data));
         }
@@ -223,12 +209,33 @@ CSpecialEvent * CSpecialEventConfigData::getSpecialEventById(int inId)
                  */
                 tmpEvent->setSpecialEventId(GameTools::intForKey("special_id", tmp));
                 
-                int inPosition =  0, inEventId;
+                int inEventId = 0, inWordId = 0;
+                const char * inPic = NULL;
+                inEventId = GameTools::intForKey("left_event_id", tmp);
+                inWordId = GameTools::intForKey("left_word", tmp);
+                inPic = GameTools::valueForKey("left_pic", tmp);
+                tmpEvent->setLeftEvent(0, inEventId, inWordId, inPic);
                 
+                inEventId = GameTools::intForKey("mid_event_id", tmp);
+                inWordId = GameTools::intForKey("mid_word", tmp);
+                inPic = GameTools::valueForKey("mid_pic", tmp);
+                tmpEvent->setLeftEvent(1, inEventId, inWordId, inPic);
+            
+                inEventId = GameTools::intForKey("right_event_id", tmp);
+                inWordId = GameTools::intForKey("right_word", tmp);
+                inPic = GameTools::valueForKey("right_pic", tmp);
+                tmpEvent->setLeftEvent(2, inEventId, inWordId, inPic);
+                
+                tmpEvent->retain();
+                CC_SAFE_RELEASE(m_pCurrentSpecialEvent);
+                m_pCurrentSpecialEvent = tmpEvent;
+            }else
+            {
+                return NULL;
             }
         }
         
-        CC_SAFE_RELEASE(m_pCurrentSpecialEvent);
+        
         
     }
     return m_pCurrentSpecialEvent;

@@ -16,6 +16,7 @@
 #include "LayoutLayer.h"
 #include "CPtListViewWidget.h"
 #include "CPtTableItem.h"
+#include "gameStruct.h"
 
 #include "CPtExpandableListView.h"
 using namespace cocos2d;
@@ -46,7 +47,7 @@ class CBiforestLayer : public CCLayerColor , public CCTableViewDelegate
     
 public:
     CREATE_FUNC(CBiforestLayer);
-    
+    static  EVENTDATA dispatchEventWithType(CCDictionary *inDict);
 public:
     CBiforestLayer();
     virtual ~CBiforestLayer();
@@ -60,38 +61,24 @@ public:
     virtual void tableCellTouched(CCTableView* table, CCTableViewCell* cell);
     virtual void scrollViewDidScroll(CCScrollView* view){};
     virtual void scrollViewDidZoom(CCScrollView* view){};
+    
 
 protected:
     void initBiforest();
     void handlerTouch();
     
-   
-    void initLeftPanel(int inMaxChapterId);
-    void initRightPanel(int inMaxChapterId);
-    
-    void updatePanel(int inCurrentId, bool inChapterEnable);
-    
-    void updateRightPanel(int inCurrentId, bool inChapterEnable);
+    void initRightPanel(int inMaxCurrentIndex);
     void updateRightPanelUI();
-    
-    void updateLeftPanel(int inCurrentId, bool inChapterEnable);
-    void updateLeftPanelUI();
-    
-    
     void updatePanel(int inChapterId, int inSectionId);
     
     void getChapters(int inMaxChapterId);
-    void getSections(int inSelectedChapterId, int inMaxSectionId = -1);
+    void getSections(int inSelectedChapterIndex, int inMaxSectionId = -1);
     
     
-    void backChapter();
     CCArray *getChapterItem();
     CCArray *getSectionItem();
     CCNode *createItemView(const char* const inTitle);
-    
-    void setSelect(CCNode *node);
-    
-    
+        
     // test connect server:
     bool canGoSection();
     void onClickGoSection();
@@ -99,13 +86,14 @@ protected:
     void onParseGoSectionMsgByDictionary(CCDictionary * inDataDictionary);
     
 
+
     
     // load image resource:
     void loadResource();
     
     // test with expandableListView:
     CPtExpandableListView *m_pListView;
-    void test();
+    void initPanel();
     
     CCNode* createItemViewByType(const char* inTitle, ITEM_TYPE inType = PARENT_TYPE);
     void setNormal(CCObject *pObject);
@@ -123,6 +111,7 @@ protected:
     int m_nCurrentSectionId;
     
     int m_nCurrentSectionIndex;
+    int m_nCurrentChaptetIndex;
     
     int m_nTouchTag;
     bool m_bSectionTouchEnable;

@@ -94,9 +94,11 @@
 //保存进度:
 #define STR_URL_SAVE_PROGRESS(UID)   URL_FACTORY("api.php?m=Part&a=recordPart&uid=",UID) 
 
-//获取下个事件
-#define STR_URL_NEXT_EVENT(UID)      URL_FACTORY("api.php?m=Part&a=commonEvent&uid=",UID) 
+//获取具体事件
+#define STR_URL_NEXT_EVENT(UID)      URL_FACTORY("api.php?m=Part&a=startEvent&uid=",UID) 
 
+//结束事件：
+#define STR_URL_FINISH_EVENT(UID)   URL_FACTORY("api.php?m=Part&a=finishEvent&uid=",UID)
 //系统初始化
 
 #define STR_URL_GAMEINIT(UID)       URL_FACTORY("api.php?m=GameBegin&a=init&uid=",UID)

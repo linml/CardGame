@@ -16,13 +16,142 @@
 #include "PtHttpURL.h"
 #include "PtHttpClient.h"
 #include "CGameStoryLayer.h"
+#include "CPtTool.h"
 
-// test:
-//int g_nLevle = 0;
-//int g_array[3]={0};
+
+
 int g_index = -1;
 
 SECTION_DATA CExploration::s_SectionData ;
+
+int CExploration::s_CurrentEventId = -1;
+
+void CExploration::setCurrentEvnetId(int inEventId)
+{
+    s_CurrentEventId = inEventId;
+}
+int  CExploration::getCurrentEventId()
+{
+    return s_CurrentEventId;
+}
+
+
+int CExploration::getCurrentChapterId()
+{
+    return s_SectionData.sectionInfo->getChapterId();
+}
+int CExploration::getCurrentSectionId()
+{
+    return s_SectionData.sectionInfo->getSectionId();
+}
+int CExploration::getCurrentTaskId()
+{
+    return s_SectionData.sectionInfo->getTaskId();
+}
+
+void CExploration::setNextEventByDict(CCDictionary *inEventInfo)
+{
+    if (inEventInfo)
+    {
+        EVENTDATA eventData =  CBiforestLayer::dispatchEventWithType(inEventInfo);
+        setEvents(eventData);
+    }
+    else
+    {
+        EVENTDATA eventData;
+        setEvents(eventData);
+    }
+
+}
+void CExploration::setRewardsByDict(CCDictionary *inReward)
+{
+    CCDictionary * addDict = NULL;
+    CCDictionary * decDict = NULL;
+    if (inReward)
+    {
+        addDict = (CCDictionary*) inReward->objectForKey("add");
+        decDict = (CCDictionary*) inReward->objectForKey("dec");
+        
+        if (addDict)
+        {
+            // add
+            int coin = GameTools::intForKey("coin", addDict);
+            int hp = GameTools:: intForKey("hp", addDict);
+            int energy = GameTools::intForKey("energy", addDict);
+            int exp = GameTools::intForKey("exp", addDict);
+        }
+        if(decDict)
+        {
+            //dec
+            int coin = GameTools::intForKey("coin", decDict);
+            int hp = GameTools:: intForKey("hp", decDict);
+            int energy = GameTools::intForKey("energy", decDict);
+            int exp = GameTools::intForKey("exp", decDict);
+            
+        }
+        
+    }
+    
+}
+
+
+void CExploration::resetStaticInfo()
+{
+    s_CurrentEventId = NULL;
+    s_SectionData.currentStep = -1;
+    s_SectionData.sectionInfo = NULL;
+}
+
+void CExploration::setSectionData(int inCurrentStep, const EVENTDATA &inEventData, CPtSection * inSectionData)
+{
+    s_SectionData.currentStep = inCurrentStep;
+    s_SectionData.eventData = inEventData;
+    if(inSectionData)
+    {
+        s_SectionData.sectionInfo = inSectionData;
+    }
+}
+
+void CExploration::setExplorationInfo(CPtSection * inSectionData)
+{
+    s_SectionData.sectionInfo = inSectionData;
+}
+
+void CExploration::setEvents(const EVENTDATA& inEventData)
+{
+    s_SectionData.eventData = inEventData;
+}
+
+void CExploration::addCurrentStep()
+{
+    s_SectionData.currentStep++;
+}
+int CExploration::getCurrentStep()
+{
+    return s_SectionData.currentStep;
+}
+void CExploration::setCurrentStep( const int & inCurrentStep)
+{
+    if (inCurrentStep == 0)
+    {
+        setCurrentStep(s_SectionData.sectionInfo->getMaxStep()+1);
+    }else
+    {
+        s_SectionData.currentStep = inCurrentStep;
+    }
+
+}
+
+const EVENTDATA & CExploration::getEventData()
+{
+    return s_SectionData.eventData;
+}
+CPtSection * CExploration::getExplorationSectionInfo()
+{
+    return s_SectionData.sectionInfo;
+}
+
+
 
 CCScene* CExploration::scene()
 {
@@ -37,7 +166,7 @@ CCScene* CExploration::scene()
 
 CExploration::CExploration()
 {
-    initData();
+ 
 }
 
 CExploration::~CExploration()
@@ -55,6 +184,7 @@ bool CExploration::init()
 {
     bool bRet = false;
     do {
+        initData();
         CC_BREAK_IF(!CCLayer::init());
         // todo:
         CC_BREAK_IF(!initExploration());
@@ -82,20 +212,22 @@ bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     // todo:
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    if (m_nTouchTag != -1)
+    if (m_nTouchTag == -1)
     {
-        switch (m_nTouchTag)
+        for (int i = 0; i < 3; i++)
         {
-            case 3001:
-            case 3002:
-            case 3003:
-                m_pBtn[m_nTouchTag-3001]->setPress();
-                break;
-            default:
-                break;
+            if (CPtTool::isInNode(m_pBtn[i], pTouch))
+            {
+                m_nTouchTag = 3001+i;
+                m_pBtn[i]->setPress();
+                return true;
+            }
         }
-        
-        return true;
+       
+    }
+    else
+    {
+        return  true;
     }
     return false;
 
@@ -127,8 +259,17 @@ void CExploration::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         handlerTouch();
         
     }
-   // else
+    else
     {
+        for (int i = 0; i < 3; i++)
+        {
+            if (CPtTool::isInNode(m_pBtn[i], pTouch) && m_nTouchTag == 3001+i)
+            {
+                handlerTouch();
+                break;
+            }
+        }
+        
         switch (m_nTouchTag)
         {
             case 3001:
@@ -139,7 +280,7 @@ void CExploration::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             default:
                 break;
         }
-        
+
     }
     
     
@@ -160,12 +301,15 @@ void CExploration::initData()
     for (int i = 0; i < 3; i++)
     {
         m_pBtn[i] = NULL;
+        m_aEvents[i] = NULL;
     }
     m_pTouchSprite = NULL;
     m_pProgress = NULL;
+
     
     m_pPlayer = SinglePlayer::instance();
-  //  m_pTrigger = SingleTriggerConfig::instance()->getTriggerById(s_SectionData.sectionInfo->getTriggerId());
+    m_pEventData = SingleEventDataConfig::instance();
+    m_pEventBoxData = SingleEventBoxes::instance();
     m_pTriggers = CCArray::create();
     m_pTriggers->retain();
     getTriggers();
@@ -257,7 +401,12 @@ bool CExploration::initExploration()
         // bottom buttons:
         
         char buffer[10] = {0};
-        sprintf(buffer, "%d/%d",s_SectionData.currentStep, s_SectionData.sectionInfo->getMaxStep());
+        int maxStep = s_SectionData.sectionInfo->getMaxStep();
+        CCLog("");
+        int currentStep = getCurrentStep();
+        currentStep = currentStep >= maxStep ? maxStep : currentStep;
+        CCLog("%d, %d", currentStep, maxStep);
+        sprintf(buffer, "%d/%d",currentStep, maxStep);
         btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "mission.png"));
         btnActivity->setPosition(ccp(size.width/2, btnActivity->getContentSize().height/2 +15.0f));
         pLabel = CCLabelTTF::create(buffer, "Scissor Cuts", 20);
@@ -343,7 +492,7 @@ bool CExploration::initExploration()
             m_pBtn[i]->setAnchorPoint(CCPointZero);
             m_pBtn[i]->setPosition(ccp(120+290*i, 370));
             outLayer->addChild(m_pBtn[i], 3001+i, 200);
-            Utility::addTouchRect(3001+i, m_pBtn[i], m_cTouches);
+           // Utility::addTouchRect(3001+i, m_pBtn[i], m_cTouches);
         }
        
         
@@ -356,9 +505,13 @@ bool CExploration::initExploration()
         // init arrows:
         
       //  randonArrows(s_SectionData.currentStep);
-        
+        updateEventData();
         initEvent();
+        updateBtn();
+        
+        createOrUpdatePlayerData();
        // handlerTrigger();
+        scheduleOnce(schedule_selector(CExploration::goSection),1.0f);
         bRet = true;
     } while (0);
     
@@ -389,22 +542,6 @@ void CExploration:: initEvent()
 void CExploration::handlerTouch()
 {
     
-    
-//    if (s_SectionData.currentStep == s_SectionData.sectionInfo->getMaxStep())
-//    {
-//        if (m_nTouchTag == CENTER_TOUCH_TAG)
-//        {
-//            CCLog("CExploration:: center.. break");
-//            attachConfirm();
-//        }else if(m_nTouchTag == 2008)
-//        {
-//            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
-//            
-//        }
-//            
-//        return;
-//        
-//    }
     if (m_nTouchTag > 3000) {
         m_pBtn[m_nTouchTag-3001]->setEnd();
     }
@@ -444,20 +581,20 @@ void CExploration::handlerTouch()
     }
 }
 
+/*
+ * @note: event type: 0-7:
+ * 0:空事件 1:普通战斗 2: 精英战斗 3: Boss战斗 4: 商人 5: 拥兵 6:宝箱，陷阱 7: 神坛
+ */
+
 void CExploration::handlerEvent()
 {
     if (m_nWhichEvent>= 0 || m_nWhichEvent < 3)
     {
-        int eventType = s_SectionData.eventId[m_nWhichEvent];
-        if (eventType == EMPTY_EVENT)
-        {
-            // add step:
-            if (s_SectionData.currentStep == s_SectionData.sectionInfo->getMaxStep()+1)
-            {
-                return;
-            }
-            onSendEventRequest();
-        }
+        m_nEventType= m_aEvents[m_nWhichEvent]->getEventType(); // s_SectionData.eventData.eventId[m_nWhichEvent];
+        setCurrentEvnetId(m_aEvents[m_nWhichEvent]->getEventId());
+        CCLog("event type: %d", m_nEventType);
+
+        onSendEventRequest();
     }
     
 }
@@ -467,12 +604,6 @@ void CExploration::handlerSuccess()
     // add 
     s_SectionData.currentStep++;
 //    s_SectionData.currentStep >= s_SectionData.sectionInfo->getMaxStep()? s_SectionData.sectionInfo->getMaxStep() : s_SectionData.currentStep;
-    
-    if (s_SectionData.currentStep == s_SectionData.sectionInfo->getMaxStep()+1)
-    {
-        scheduleOnce(schedule_selector(CExploration::callBack),0.0f);
-        return;
-    }
     updateUI();
 }
 
@@ -494,63 +625,141 @@ void CExploration::handlerTrigger()
     }
 }
 
-//void CExploration::randonArrows(const int inLevle)
-//{
-//    
-//    char buffer[50] = {};
-//    
-//    int wordInex = 0;
-//    srand(time(0));
-//    
-//    if (inLevle >= 0 && inLevle < 9)
-//    {
-//        for (int i = 0; i < 3; i++)
-//        {
-//            m_pBtn[i]->setType(rand()%4);
-//            wordInex = (rand()%30)+1;
-//            sprintf(buffer, "%d", wordInex);
-//            g_array[i] = m_pBtn[i]->getType();
-//            m_pBtn[i]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
-//        }
-//        
-//        
-//    }else if(g_nLevle == 9)
-//    {
-//        m_pBtn[0]->setVisible(false);
-//        m_pBtn[2]->setVisible(false);
-//        m_pBtn[1]->setType(1);
-//        g_array[1] = m_pBtn[1]->getType();
-//        
-//        wordInex = (rand()%30)+1;
-//        sprintf(buffer, "%d", wordInex);
-//        m_pBtn[1]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
-//    }
-//    
-//    
-//}
+
+void CExploration::createOrUpdatePlayerData()
+{
+    
+    //HP，体力，金币，现金币，领导力，等级
+    //username
+    CCSize wndSize=CCDirector::sharedDirector()->getWinSize();
+    if (!getChildByTag(1000001))
+    {
+        CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 20);
+        addChild(labelttf,0,1000001);
+        labelttf->setPosition(ccp(50, 200));
+        labelttf->setString(CCUserDefault::sharedUserDefault()->getStringForKey("name").c_str());
+    }
+    char data[30];
+    // usercoin 金币
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000002);
+        if (!getChildByTag(1000002))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 20);
+            addChild(labelttf,0,1000002);
+            labelttf->setPosition(ccp(200, 200));
+        }
+        sprintf(data, "金币:%d",SinglePlayer::instance()->getCoin());
+        labelttf->setString(data);
+       
+    }
+    //user exp;现金币
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000003);
+        if (!getChildByTag(1000003))
+        {
+           labelttf=CCLabelTTF::create("", "Arial", 20);
+            addChild(labelttf,0,1000003);
+            labelttf->setPosition(ccp(350, 200));
+        }
+        sprintf(data, "现金:%d",SinglePlayer::instance()->getPlayerPrice());
+        labelttf->setString(data);
+    }
+    
+    //user 体力
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000004);
+        if (!getChildByTag(1000004))
+        {
+           labelttf=CCLabelTTF::create("", "Arial", 20);
+            addChild(labelttf,0,1000004);
+            labelttf->setPosition(ccp(500, 200));
+        }
+        sprintf(data, "体力:%d",SinglePlayer::instance()->getPlayerEnergy());
+        labelttf->setString(data);
+    }
+    
+    //user 领导力
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000005);
+        if (!getChildByTag(1000005))
+        {
+           labelttf=CCLabelTTF::create("", "Arial", 20);
+            addChild(labelttf,0,1000005);
+            labelttf->setPosition(ccp(650, 200));
+        }
+        sprintf(data, "领导力:%d",SinglePlayer::instance()->getRVC());
+        labelttf->setString(data);
+    }
+    // 等级
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000006);
+        if (!getChildByTag(1000006))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 20);
+            addChild(labelttf,0,1000006);
+            labelttf->setPosition(ccp(800, 200));
+        }
+        sprintf(data, "等级:%d",SinglePlayer::instance()->getPlayerLevel());
+        labelttf->setString(data);
+    }
+    
+    // 体力
+    {
+        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000007);
+        if (!getChildByTag(1000007))
+        {
+            labelttf=CCLabelTTF::create("", "Arial", 20);
+            addChild(labelttf,1,1000007);
+            labelttf->setPosition(ccp(900, 200));
+        }
+        sprintf(data, "神力:%d",SinglePlayer::instance()->getPlayerHp());
+        labelttf->setString(data);
+    }
+    
+}
+
 
 void CExploration::attachConfirm()
 {
-//    CCNode *node = NULL;
-//    node = getChildByTag(100);
-//    if(node)
-//    {
-//        CCLog("the ...");
-//      //  removeChild(node, true);
-//        node->setVisible(false);
-//        CConfirmLayer *layer = CConfirmLayer::create();
-//        this->addChild(layer, 5, 10);
-//    }
-//    
     
+    CCNode *node = NULL;
+    node = getChildByTag(100);
+    
+    if(node)
+    {
+        node->removeFromParentAndCleanup(true);
+        CConfirmLayer *layer = CConfirmLayer::create();
+        this->addChild(layer, 5, 10);
+    }
+    
+}
+
+void CExploration::updateBtn()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        if (m_aEvents[i])
+        {
+            m_pBtn[i]->setVisible(true);
+        }else
+        {
+            m_pBtn[i]->setVisible(false);
+        }
+    }
 }
 
 // ui:
 
 void CExploration::updateUI()
 {
+    int maxStep = s_SectionData.sectionInfo->getMaxStep();
+    CCLog("");
+    int currentStep = getCurrentStep();
+    currentStep = currentStep >= maxStep ? maxStep : currentStep;
+    CCLog("%d, %d", currentStep, maxStep);
     char buffer[10] = {0};
-    sprintf(buffer, "%d/%d",s_SectionData.currentStep, s_SectionData.sectionInfo->getMaxStep());
+    sprintf(buffer, "%d/%d",currentStep, maxStep);
     m_pProgress->setString(buffer);
     handlerTrigger();
 }
@@ -611,14 +820,151 @@ void CExploration::onParseSaveMsgByDictionary(CCDictionary *pResultDict)
      backHall();
 }
 
-//模块 ：api.php?m=Part&a=commonEvent&uid=194(用户ID)&sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)&chapter_id=1(章)&part_id=1(节)&step=1(小节中第几步)
+
+//cube.games.com/api.php?m=Part&a=finishEvent&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&chapter_id=1&part_id=1&step=1&event_id=1&type=1&task_id=300001
+void CExploration::onFishEventRequest(int inType)
+{
+    int taskId = s_SectionData.sectionInfo->getTaskId();
+    m_bCanTouch = false;
+    char buffer[200]={0};
+    CPtSection*  m_pSection = s_SectionData.sectionInfo;
+    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d&event_id=%d&type=%d&task_id=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(), getCurrentStep()-1, getCurrentEventId(),inType,taskId);
+    
+    ADDHTTPREQUESTPOSTDATA(STR_URL_FINISH_EVENT(196),"finishEvent", "finishEvent",buffer, callfuncO_selector(CExploration::onReceiveFishEventRequestMsg));
+    
+}
+void CExploration::onReceiveFishEventRequestMsg(CCObject * pObject)
+{
+    m_bCanTouch = true;
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "finishEvent");
+    char *buffer = (char *)pObject;
+    if (buffer)
+    {
+        CCLog("CExploration::onReceiveFishEventRequestMsg--->%s", buffer);
+        CCDictionary *tmpDict = PtJsonUtility::JsonStringParse(buffer);
+        onParseFishEventRequestMsg(tmpDict);
+        delete [] buffer;
+    }else
+    {
+        CCLog("server: error!---");
+    }
+   
+    
+}
+void CExploration::onParseFishEventRequestMsg(CCDictionary * pResultDict)
+{
+    if (pResultDict)
+    {
+        int code = GameTools::intForKey("code", pResultDict);
+        if (code == 0)
+        {
+            CCLog("success");
+            CCDictionary *tmp =(CCDictionary*) pResultDict->objectForKey("result");
+            dispatchParaseFinishEvent(tmp, m_nEventType);
+        }
+        else
+        {
+            CCLog("result code: %d", code);
+        }
+    }
+}
+
+/*
+ * @param: inType:
+ */
+
+void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
+{
+    CCAssert(pResult, "result null");
+    
+    int nexstep = GameTools::intForKey("next_step", pResult);
+    setCurrentStep(nexstep);
+
+    
+    
+    
+    CCDictionary *eventInfo =(CCDictionary*) pResult->objectForKey("event_info");
+    if (eventInfo)
+    {
+         setNextEventByDict(eventInfo);
+         updateEventData();
+         updateBtn();
+    }else
+    {
+        EVENTDATA eventData;
+        setEvents(eventData);
+    }
+    if (inType == 6)
+    {
+        CEventBoxData * inEvenBoxData = m_pEventBoxData->getEventBoxDataById(getCurrentEventId());
+        CCLog("the currenEventId %d", getCurrentEventId());
+        if (inEvenBoxData&&inEvenBoxData->getBoxType() == 0)
+        {
+            if (m_nEventBoxSelectType == 0)
+            {
+                CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData, 0);
+                layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
+                setInsiable();
+                addChild(layer);
+                return;
+            }else
+            {
+                
+            }
+            
+        }
+        else
+        {
+            CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData, 1);
+            layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
+            setInsiable();
+            addChild(layer);
+            return;
+        }
+       
+    }
+    
+    getBiforest();
+}
+
+/*
+ *  1 - 7:
+ */
+void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
+{
+    char buffer[20] = {0};
+    sprintf(buffer, "%d", getCurrentEventId());
+
+    if (inType == 6)
+    {
+        //宝箱：
+        int eventBoxId = GameTools::intForKey(buffer, pEventInfo);
+        CCLog("the eventBoxId-- %d", eventBoxId);
+        hanlderEventBox(eventBoxId);
+        
+    }else if(inType >= 1 && inType <= 3)
+    {
+        // fight
+        CCDictionary * tmp  = (CCDictionary*) pEventInfo->objectForKey(buffer);
+        m_pPlayer->onFightInterScene();
+        m_pPlayer->parseNpcCard(tmp);
+        handlerFightEvent(inType);
+
+    }else if(inType == 0)
+    {
+        handlerEmptyEvent();
+    }
+    
+}
+
+// http://cube.games.com/api.php?m=Part&a=startEvent&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&chapter_id=1&part_id=1&step=1&event_id=1 go event
 void CExploration::onSendEventRequest()
 {
     // constructor post data:
     CPtSection *m_pSection = s_SectionData.sectionInfo;
-
+    
     char buffer[200]={0};
-    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(),  s_SectionData.currentStep);
+    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d&event_id=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(),  s_SectionData.currentStep, getCurrentEventId());
 
     ADDHTTPREQUESTPOSTDATA(STR_URL_NEXT_EVENT(196),"nextEvent", "nextEvent",buffer, callfuncO_selector(CExploration::onReceiveEventRequetMsg));
     m_bCanTouch =false;
@@ -628,11 +974,14 @@ void CExploration::onReceiveEventRequetMsg(CCObject *pObject)
     m_bCanTouch = true;
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "nextEvent");
     char *buffer = (char*) pObject;
+    
+    CCLog("buffer: %s", buffer);
     if (buffer)
     {
         CCDictionary *tmp = PtJsonUtility::JsonStringParse(buffer);
         if (tmp)
         {
+            handlerSuccess();
             onParseEventRequestMsg(tmp);
         }
       
@@ -647,13 +996,18 @@ void CExploration::onParseEventRequestMsg(CCDictionary *pResultDict)
     int result = GameTools::intForKey("code", pResultDict);
     if (result == 0)
     {
-        //success:
-        handlerSuccess();
+        CCDictionary * tmp = (CCDictionary*) pResultDict->objectForKey("result");
+        CCAssert(tmp, "result not null");
+        tmp = (CCDictionary*) tmp->objectForKey("event_info");
+        dispatchParaseEvent(tmp, m_nEventType);
     }else
     {
         CCLog("error: code: %d", result);
     }
 }
+
+
+
 
 void CExploration::backHall()
 {
@@ -697,5 +1051,152 @@ void CExploration::callBack(float dt)
 void CExploration::addForwordReword()
 {
     
+    
+}
+
+void CExploration::requestCallBack(float dt)
+{
+    onFishEventRequest(1);
+}
+
+void CExploration::goSection(float dt)
+{
+    getBiforest();
+}
+/*
+ * @brief: 分发事件
+ * @param inEventId:
+ *
+ */
+void CExploration::dispatchEventByEventId(const int &inEventId)
+{
+
+}
+
+void CExploration::updateEventData()
+{
+    for (int i = 0 ; i < 3 ; i++)
+    {
+        if (s_SectionData.eventData.eventId[i] == 0)
+        {
+            m_aEvents[i] = NULL;
+        }else
+        {
+            m_aEvents[i] = m_pEventData->getEventById(s_SectionData.eventData.eventId[i]);
+        }
+    }
+}
+
+void CExploration::handlerEmptyEvent()
+{
+    onFishEventRequest(1);
+}
+/*
+ * @param inType: 1 - 3:
+ *
+ */
+
+void CExploration::handlerFightEvent(int inType)
+{
+    m_bCanTouch = false;
+    attachConfirm();
+    
+}
+
+/*
+ * 
+ */
+void CExploration::hanlderEventBox(int inEventBoxId)
+{
+    CEventBoxData * eventBoxData = m_pEventBoxData->getEventBoxDataById(inEventBoxId);
+    CCAssert(eventBoxData, "assert ...");
+    createEventBoxDialogByType(eventBoxData ,eventBoxData->getBoxType());
+    CCLog("the eventBox type : %d ", eventBoxData->getBoxType());
+}
+
+/*
+ * @param inType 1-4
+ */
+
+void CExploration::createEventBoxDialogByType(int inEventBoxId, int inType)
+{
+    CCLayer *layer = NULL;
+    if (inType == 1)
+    {
+        layer = CEventBoxLayer::create(inEventBoxId);
+    }else
+    {
+        scheduleOnce(schedule_selector(CExploration::requestCallBack),0.0f);
+    }
+}
+
+void CExploration::createEventBoxDialogByType(CEventBoxData *inEventBoxData, int inType)
+{
+  
+    if (inType == 1)
+    {
+        CEventBoxLayer* layer = CEventBoxLayer::create(inEventBoxData);
+        layer->setHanlder(this, callfuncO_selector(CExploration::onOpenCallBack), callfuncO_selector(CExploration::onCancleCallback));
+        setInsiable();
+        addChild(layer);
+    }else
+    {
+       scheduleOnce(schedule_selector(CExploration::requestCallBack),0.0f);
+    }
+    
+}
+
+void CExploration::setVisiable()
+{
+    CCNode *node = getChildByTag(100);
+    if (node)
+    {
+        node->setVisible(true);
+    }
+}
+void CExploration::setInsiable()
+{
+    CCNode *node = getChildByTag(100);
+    if (node)
+    {
+        node->setVisible(false);
+    }
+}
+
+void CExploration:: onCancleCallback(CCObject *pObject)
+{
+    CCNode * node = (CCNode*) pObject;
+    node->removeFromParentAndCleanup(true);
+    setVisiable();
+    m_nEventBoxSelectType = 0;
+    onFishEventRequest(0);
+    
+}
+void CExploration:: onCanfirmCallback(CCObject *pObject)
+{
+    CCNode * node = (CCNode*) pObject;
+    int type = (int)node->getUserData();
+    node->removeFromParentAndCleanup(true);
+    setVisiable();
+    getBiforest();
+}
+
+void CExploration::onOpenCallBack(CCObject* pObject)
+{
+    CCNode * node = (CCNode*) pObject;
+    node->removeFromParentAndCleanup(true);
+    setVisiable();
+    m_nEventBoxSelectType = 1;
+    onFishEventRequest(1);
+    
+}
+
+void CExploration::getBiforest()
+{
+    if (s_SectionData.currentStep > s_SectionData.sectionInfo->getMaxStep())
+    {
+        scheduleOnce(schedule_selector(CExploration::callBack),0.0f);
+        return;
+    }
     
 }

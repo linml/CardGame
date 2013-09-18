@@ -469,6 +469,7 @@ void CGamePlayer::loadRival(int  usid,int  troops)
 void CGamePlayer::loadNpcCardTeam(int zhang, int jie, int bu, int dijige)
 {
     isLoadFightTeam=0;
+    
 #ifdef AAAAFOROSMACHINE
    
 #else
@@ -519,13 +520,13 @@ void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
     {
         return ;
     }
-//    CCArray *vKeyArrayresult=dictresult->allKeys();
-//    for (int i=0; i<vKeyArrayresult->count(); i++)
-//    {
-//        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
-//        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
-//        if(cardDirector)
-//        {
+    CCArray *vKeyArrayresult=dictresult->allKeys();
+    for (int i=0; i<vKeyArrayresult->count(); i++)
+    {
+        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+        if(cardDirector)
+        {
             DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
             m_hashmapMonsterCard.resize(5);
             if(dictresult)
@@ -555,8 +556,9 @@ void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
                 m_getRandom_data.push_back(strtemp->intValue());
             }
             
-//        }
-//    }
+        }
+    }
+    isLoadFightTeam=true;
 
 }
 
@@ -707,6 +709,26 @@ int CGamePlayer::getPlayerExp()
 int CGamePlayer::getPlayerLevel()
 {
     return m_gGamePlayerData->m_ilevel;
+}
+
+int CGamePlayer::getPlayerHp()
+{
+    return m_gGamePlayerData->m_iHp;
+}
+
+int CGamePlayer::getPlayerEnergy()  //体力
+{
+    return m_gGamePlayerData->m_ienergy;
+}
+
+int CGamePlayer::setPlayerHp(int iValue)
+{
+      return  m_gGamePlayerData->m_iHp +=iValue;
+}
+
+int CGamePlayer::setPlayerEnergy(int iValue)
+{
+    return  m_gGamePlayerData->m_ienergy +=iValue;
 }
 
 void CGamePlayer::addPlayerPrice(int inAddPrice)

@@ -215,6 +215,12 @@ void CFightingCardLayerScene::animationSchudel(float t)
 
 void CFightingCardLayerScene::winDialog()
 {
+    
+    if(!m_pSFightData->getHuiFang())
+    {
+        m_pSFightData->setFightResult(1);
+    }
+    
    // int tmp = 1;
     FightResultConfirm * resultConfirm = new FightResultConfirm();
     resultConfirm->setUserData((void*)m_pSFightData);
@@ -225,6 +231,10 @@ void CFightingCardLayerScene::winDialog()
 }
 void CFightingCardLayerScene::loseDialog()
 {
+    if(!m_pSFightData->getHuiFang())
+    {
+        m_pSFightData->setFightResult(0);
+    }
    // int tmp = 0;
     FightResultConfirm * resultConfirm = new FightResultConfirm();
     resultConfirm->setUserData((void*)m_pSFightData);
@@ -1105,6 +1115,16 @@ bool CFightingCardLayerScene::initHitText()
 }
 void CFightingCardLayerScene::resetCardPosition()
 {
+    for (int i=0; i<m_vFightHero.size();i++ ) {
+        if(m_vFightHero[i])
+            m_vFightHero[i]->removeAllChildrenWithCleanup(true);
+    }
+    for (int i=0; i<m_vMonsterHero.size();i++ ) {
+        if(m_vMonsterHero[i])
+            m_vMonsterHero[i]->removeAllChildrenWithCleanup(true);
+    }
+    
+    
     for (int i=0; i<m_vFightingCard.size(); i++)
     {
         if(i!=m_vFightingCard.size()-1 &&m_vFightingCard[i])

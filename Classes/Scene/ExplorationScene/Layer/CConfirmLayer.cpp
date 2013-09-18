@@ -77,39 +77,6 @@ void CConfirmLayer::initConfirm()
     
     m_cMaps->getElementByTags("2,1")->setVisible(false);
     m_cMaps->getElementByTags("2,2")->setVisible(false);
-
-    //
-    
-//    if (g_array[g_index] == 0 || g_array[g_index] == 1 || g_nLevle == 9)
-//    {
-//        m_bFight = true;
-//        m_cMaps->getElementByTags("2")->setVisible(false);
-//        m_cMaps->getElementByTags("3")->setVisible(true);
-//        
-//        CCNode * node = m_cMaps->getElementByTags("3,0,0");
-//        
-//        if (node)
-//        {
-//            CCSprite* enemy = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "red_wolf_1.png"));
-//            enemy->setAnchorPoint(CCPointZero);
-//            enemy->setPosition(ccp(65,25));
-//            node->addChild(enemy);
-//        }
-//       
-//        
-//    }else if(g_array[g_index] == 2 || g_array[g_index] == 3)
-//    {
-//         m_bFight = false;
-//         m_cMaps->getElementByTags("3")->setVisible(false);
-//         m_cMaps->getElementByTags("2")->setVisible(true);
-//        if (g_array[g_index] == 2)
-//        {
-//             m_cMaps->getElementByTags("2,2")->setVisible(true);
-//        }else
-//        {
-//            m_cMaps->getElementByTags("2,1")->setVisible(true);
-//        }
-//    }
     
    }
 
@@ -117,45 +84,16 @@ void CConfirmLayer::initConfirm()
 void CConfirmLayer::handlerTouch()
 {
     
-    if (m_bFight)
-    {
+ 
         switch (m_nTouchTag)
         {
             case 2002:
-                if (CExploration::s_SectionData.currentStep  == CExploration::s_SectionData.sectionInfo->getMaxStep())
-                {
-                  //  g_nLevle = 0;
-                }else
-                {
-                  //  g_nLevle++;
-                }
-            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_FIGHTSCENE);
+                SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_FIGHTSCENE);
                 removeFromParentAndCleanup(true);
                 break;
             default:
                 break;
         }
 
-    }else
-    {
-        switch (m_nTouchTag)
-        {
-            case 2001:
-                if (CExploration::s_SectionData.currentStep == CExploration::s_SectionData.sectionInfo->getMaxStep())
-                {
-                    // back: chapter:
-                }else
-                {
-                    CExploration::s_SectionData.currentStep++;
-                }
-                CCDirector::sharedDirector()->replaceScene(CExploration::scene());
-             //   SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_EXPLORATIONSCENE);
-                removeFromParentAndCleanup(true);
-                break;
-            default:
-                break;
-        }
-
-    }
     
 }

@@ -73,14 +73,14 @@ void LoadingScene::doScheule()
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
         m_clFightLogic=new CFightingCardLayerLogic();
-        SinglePlayer::instance()->onFightInterScene();
+      
         int Uid=0;
         do {
             Uid=rand()%4+194;
         } while (Uid==atoi(SinglePlayer::instance()->getUserId()));
         SinglePlayer::instance()->setFightUid(Uid);
         //SinglePlayer::instance()->loadRival(Uid,3); //在阵容 进去的界面应该算这个值得啊
-        SinglePlayer::instance()->loadNpcCardTeam(1, 1, 1, 1);
+        //SinglePlayer::instance()->loadNpcCardTeam(1, 1, 1, 1);
     }
     else if(targetScene_==EN_CURRSCENE_CARDSETTINGSCENE)
     {
@@ -95,15 +95,15 @@ void LoadingScene::update(float delta) {
     if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
     {
         //loading the  例子效果
-        if(SinglePlayer::instance()->isLoadFightTeam)
-        {
+//        if(SinglePlayer::instance()->isLoadFightTeam)
+//        {
             this->unscheduleAllSelectors();
             if(m_clFightLogic)
             {
                 m_clFightLogic->initFightLogic(0);
             }
             schedule(schedule_selector(LoadingScene::fightlogic));
-      }
+    //  }
     }
     else 
     {
