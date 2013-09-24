@@ -9,15 +9,29 @@
 #include "SGamePlayerData.h"
 #include "CGamePlayerStruct.h"
 #include "gameTools.h"
+#include "gameStruct.h"
+
+#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE,__TYPECLASSNAME__) \
+{\
+for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
+__TYPECLASSNAME__ *temp=*it; \
+delete temp; \
+temp=NULL; \
+} \
+VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+CEmrysClearVectorMemory< __TYPECLASSNAME__ *> tempClear(VECTORARRAY) ; \
+tempClear.clearVector(); \
+}
+
 CGamePlayerData::CGamePlayerData()
 {
     m_icoin=0;
     m_icash=0;
     m_iexp=0;
     m_ilevel=0;
-    m_ienergy=0; //精力
+    m_iAp=0; //精力
     m_iVipScore=0;
-    m_ienergy_update_time=0;
+    m_iAp_update_time=0;
     m_iupdate_time=0;
     m_create_time=0;
     m_guide_step=0;
@@ -25,16 +39,101 @@ CGamePlayerData::CGamePlayerData()
     m_friend_count=0;
     m_sLevelPlayer=NULL;
     m_irvc=0;
+    m_iGp=0;
     m_nOpenGridCount = 9;
 }
+void CGamePlayerData::clearPlayerData()
+{
+    map<int ,SLevelPlayer *>::iterator it;
+    for(it=m_gvPlayerLevel.begin();it!=m_gvPlayerLevel.end();++it)
+    {
+        if(it->second)
+        {
+            delete it->second;
+            it->second=NULL;
+        }
+    }
+    m_gvPlayerLevel.erase(m_gvPlayerLevel.begin(),m_gvPlayerLevel.end());
+}
+int CGamePlayerData::getGpMax()
+{
+    return m_sLevelPlayer->m_iGp_max;
+}
+int CGamePlayerData::getApMax()
+{
+    return m_sLevelPlayer->m_iAp_max;
+}
+
+int CGamePlayerData::getExpMax()
+{
+    return m_sLevelPlayer->m_iExp_max;
+}
+
+void CGamePlayerData::logicValue(int &OutValue,int inValue, char logicChar)
+{
+    switch (logicChar) {
+        case '+':
+            OutValue+=inValue;
+            break;
+            case '-':
+            OutValue-=inValue;
+            break;
+            case '*':
+            OutValue *=inValue;
+            break;
+            case '/':
+            CCAssert(inValue!=0, "FUCK  U input zero Value");
+            OutValue-=inValue;
+            break;
+        default:
+            break;
+    }
+    
+}
+
+
+
+
+int CGamePlayerData::appendGp(int iValue)
+{
+    m_iGp += iValue;
+    if(m_iGp<=0)
+    {
+        m_iGp=0;
+    }
+    else if(m_iGp>m_sLevelPlayer->m_iGp_max)
+    {
+        m_iGp=m_sLevelPlayer->m_iGp_max;
+
+    }
+    return m_iGp;
+}
+
+
+int CGamePlayerData::appendAp(int  iValue)
+{
+     m_iAp +=iValue;
+    if (m_iAp<0) {
+        m_iAp=0;
+    }
+    else if(m_iAp>m_sLevelPlayer->m_iAp_max){
+        m_iAp=m_sLevelPlayer->m_iAp_max;
+    }
+    return m_iAp;
+}
+
+
 void CGamePlayerData::decodeDictnory(CCDictionary *dict)
 {
     m_icoin=GameTools::intForKey("coin", dict);
     m_icash=GameTools::intForKey("cash", dict);
     m_iexp=GameTools::intForKey("exp", dict);
     m_ilevel=GameTools::intForKey("level", dict);
-    m_ienergy=GameTools::intForKey("energy", dict); //体力
-    m_ienergy_update_time=GameTools::intForKey("energy_update_time", dict);
+    this->m_sLevelPlayer=m_gvPlayerLevel[m_ilevel];
+    CCAssert(this->m_sLevelPlayer!=NULL, "FUCH FUWUDUAN 传递一个 配置表里面没有的等级");
+    
+    m_iAp=GameTools::intForKey("ap", dict); //体力
+    m_iAp_update_time=GameTools::intForKey("ap_update_time", dict);
     m_iVipScore=GameTools::intForKey("vip_score", dict);
     m_irvc=GameTools::intForKey("leader", dict);
     m_iupdate_time=GameTools::intForKey("update_time",dict);
@@ -44,13 +143,11 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_friend_count=GameTools::intForKey("friend_max",dict);
     m_susername=GameTools::valueForKey("username", dict);
     m_nOpenGridCount = GameTools::intForKey("max_bag", dict);
-    m_iHp=GameTools::intForKey("hp", dict);
+    m_iGp=GameTools::intForKey("gp", dict);
     
 }
-void CGamePlayerData::setLevelConfig(SLevelPlayer * pSlevel)
-{
-    this->m_sLevelPlayer=pSlevel;
-}
+
+
 CGamePlayerData::~CGamePlayerData()
 {
     

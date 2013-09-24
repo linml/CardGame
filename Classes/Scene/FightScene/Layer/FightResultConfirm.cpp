@@ -16,7 +16,7 @@
 #include "PtHttpURL.h"
 #include "PtHttpClient.h"
 #include "PtJsonUtility.h"
-
+#include "gameMiddle.h"
 FightResultConfirm::FightResultConfirm()
 {
 
@@ -47,14 +47,6 @@ bool FightResultConfirm::init()
         sprite->setPosition(ccp(500,650));
         //添加一个战斗回放的效果
         bRet = true;
-        int  value=(int)getUserData();
-        if(value==1)
-        {
-             PtSoundTool::playSysSoundEffect("fight_win.mp3");
-        }
-        else{
-             PtSoundTool::playSysSoundEffect("fight_failed.mp3");
-        }
         
         setTouchMode(kCCTouchesOneByOne);
         setTouchPriority(-INT_MAX);
@@ -143,19 +135,42 @@ void FightResultConfirm::callBackData(cocos2d::CCObject *object)
                 CCAssert(pResult, "result null");
                 CCDictionary *tmp = (CCDictionary*) pResult->objectForKey("event_info");
                 CExploration::setNextEventByDict(tmp);
+                tmp = (CCDictionary*) pResult->objectForKey("reward");
+                CCDictionary* reward=NULL;
+                if (tmp)
+                {
+                    reward = CExploration::setRewardsByDict(tmp);
+                    handlerEventReward(reward);
+   
+                }else
+                {
+                   
+                    handlerEventReward(NULL);
+                }
+                if(((CCString *) pResult->objectForKey("info"))->intValue()==1)
+                {
+                    m_nResult->setFightResult(1);
+                    PtSoundTool::playSysSoundEffect("fight_win.mp3");
+                }
+                else{
+                    m_nResult->setFightResult(0);
+                    PtSoundTool::playSysSoundEffect("fight_failed.mp3");
+                }
                 int nextStep = GameTools::intForKey("next_step", pResult);
+              
                 CExploration::setCurrentStep(nextStep);
+            }else
+            {
+                test_print(code);
             }
         }
         
+    }else
+    {
+        test_print("server: no response");
     }
     
-    CCNode * node = m_cMaps->getElementByTags("2,0,0");
-    if(node && node->getChildByTag(912))
-    {
-        ((CCLabelTTF *)(node->getChildByTag(912)))->setString("测试数据0");
-    }    
-    setTouchEnabled(true);
+   
     
 }
 
@@ -204,52 +219,69 @@ void FightResultConfirm::initFightResultConfirm()
      m_cMaps->getElementByTags("2,1")->setVisible(false);
      m_cMaps->getElementByTags("2,2")->setVisible(false);
      m_cMaps->getElementByTags("3")->setVisible(false);
-    
-//    string word ;
-//    if (m_nResult == 1)
-//    {
-//         word = Utility::getWordWithFile("word.plist", "win");
-//        Utility::getWordWithFile("word.plist", "option");
-//        
-//    }
-//    else
-//    {
-//        word = Utility::getWordWithFile("word.plist", "lose");
-//    }
- 
-   
-//    CCLabelTTF* pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
-//    pLabel->setPosition(ccp(240,140));
-//   
-//    CCNode * node = m_cMaps->getElementByTags("2,0,0");
-//    if(node)
-//    {
-//        CCLog("exist,%s", word.c_str());
-//        node->addChild(pLabel);
-//    }
-    
+        
 }
 
 void FightResultConfirm::handlerTouch()
 {
-//    CCLog("FightResultConfirm:%d, %d",  m_nTouchTag, m_nResult);
-//    if (m_nTouchTag == 2001)
-//    {
-//        if (g_nLevle == 9 && m_nResult == 1)
-//        {
-//            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
-//            g_nLevle = 0;
-//
-//            
-//        }else
-//        {
-//            if (m_nResult == 1)
-//            {
-//                g_nLevle++;
-//            }
-              SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
-//        }
-//        CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-//    }
-  }
+    if (m_nTouchTag == 2001)
+    {
+        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
+    }
+
+}
+
+void FightResultConfirm::handlerEventReward(CCDictionary * inAllReward)
+{
+    char tips[200] = {0};
+    sprintf(tips, "没有奖励：");
+    if (inAllReward)
+    {
+     
+     
+        CReward * addReward = (CReward*)inAllReward->objectForKey(EVENTREWARD_ADD);
+        CReward * decReward = (CReward*) inAllReward->objectForKey(EVENTREWARD_DEC);
+        if (addReward)
+        {
+            addReward->excuteReward(ADD);
+            sprintf(tips, "add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", addReward->getEnergy(), addReward->getHP(), addReward->getExp(),
+                    addReward->getCoin(), addReward->getCash(), addReward->getCardCount(), addReward->getPropCount());
+           // addReward->getRewardContent(tips, 200);
+        }
+        if (decReward)
+        {
+            char buffer[60] = {0};
+            decReward->excuteReward(DEC);
+//            decReward->getRewardContent(buffer, 60);
+            sprintf(buffer, "dec: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", decReward->getEnergy(), decReward->getHP(), decReward->getExp(),
+                    decReward->getCoin(), decReward->getCash(), decReward->getCardCount(), decReward->getPropCount());
+
+            strcat(tips, buffer);
+        }
+    
+        // print:
+        
+    }
+    test_print(tips);
+}
+
+// test:
+
+void FightResultConfirm::test_print(int code)
+{
+    char buffer[30] = {0};
+    sprintf(buffer, "fight result error code : %d", code);    
+    test_print(buffer);
+}
+
+void FightResultConfirm::test_print(const char * inMsg)
+{
+    CCNode * node = m_cMaps->getElementByTags("2,0,0");
+    if(node && node->getChildByTag(912))
+    {
+        ((CCLabelTTF *)(node->getChildByTag(912)))->setString(inMsg);
+    }
+    setTouchEnabled(true);
+}
+
 

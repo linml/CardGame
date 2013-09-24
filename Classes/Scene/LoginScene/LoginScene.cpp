@@ -150,7 +150,6 @@ void CLoginScene::doLogin()
         fgets(achPassword, 64, file);
     }
     fclose(file);
-    CCLog("password is %s",Pt_AES::sharePtAESTool("cube")->DecryptString(achData));
     sprintf(achData, "name=%s&password=%s",strAccount.c_str(),achPassword);
     ADDHTTPREQUESTPOSTDATA(STR_URL_LOGIN,
                            "CALLBACK_CLoginScene_doLogin",
@@ -247,6 +246,7 @@ bool CLoginScene::initLogin()
         // set layer touche enable
         setTouchEnabled(true);
         setTouchMode(kCCTouchesOneByOne);
+        //setTouchPriority(-1);
         
         maps->getTouchRects(touchRect);
         bRet = true;

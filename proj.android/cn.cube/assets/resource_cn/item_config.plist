@@ -16,7 +16,7 @@
 			<string>1</string>
 			<key>coin</key>
 			<string>0</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>10</string>
 			<key>use_id</key>
 			<string>100001</string>
@@ -47,7 +47,7 @@
 			<string>1</string>
 			<key>coin</key>
 			<string>0</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>20</string>
 			<key>use_id</key>
 			<string>100004</string>
@@ -78,7 +78,7 @@
 			<string>2</string>
 			<key>coin</key>
 			<string>0</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>100005</string>
@@ -109,7 +109,7 @@
 			<string>4</string>
 			<key>coin</key>
 			<string>0</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -140,7 +140,7 @@
 			<string>3</string>
 			<key>coin</key>
 			<string>0</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>100</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -171,7 +171,7 @@
 			<string>2</string>
 			<key>coin</key>
 			<string>0</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -202,7 +202,7 @@
 			<string>4</string>
 			<key>coin</key>
 			<string>0</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -233,7 +233,7 @@
 			<string>3</string>
 			<key>coin</key>
 			<string>2000</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -264,7 +264,7 @@
 			<string>3</string>
 			<key>coin</key>
 			<string>2000</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -295,7 +295,7 @@
 			<string>3</string>
 			<key>coin</key>
 			<string>2000</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -326,7 +326,7 @@
 			<string>3</string>
 			<key>coin</key>
 			<string>2000</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -357,7 +357,7 @@
 			<string>3</string>
 			<key>coin</key>
 			<string>2000</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
@@ -388,7 +388,7 @@
 			<string>3</string>
 			<key>coin</key>
 			<string>2000</string>
-			<key>price</key>
+			<key>cash</key>
 			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>

@@ -132,7 +132,6 @@ namespace PtMapUtility {
                 createNodeWithScript(father, nodeType, nodeData);
             }
         }
-         CCLOG("m_sPlistFileaaa");
         for (int i = 0; i < vNodeName->count(); i++) {
 
 			CCString* key=(CCString*)vNodeName->objectAtIndex(i);

@@ -17,6 +17,7 @@
 #include "PtHttpClient.h"
 #include "CGameStoryLayer.h"
 #include "CPtTool.h"
+#include "gameMiddle.h"
 
 
 
@@ -25,6 +26,8 @@ int g_index = -1;
 SECTION_DATA CExploration::s_SectionData ;
 
 int CExploration::s_CurrentEventId = -1;
+
+CCDictionary * CExploration::s_Rewards = NULL;
 
 void CExploration::setCurrentEvnetId(int inEventId)
 {
@@ -63,10 +66,22 @@ void CExploration::setNextEventByDict(CCDictionary *inEventInfo)
     }
 
 }
-void CExploration::setRewardsByDict(CCDictionary *inReward)
+
+/*
+ * @param inReward: --- key reward
+ * @return allRewards: it create retain is 1 and add to autorelease:
+ *
+ */
+
+CCDictionary* CExploration::setRewardsByDict(CCDictionary *inReward)
 {
+    CCDictionary* array = CCDictionary::create();
     CCDictionary * addDict = NULL;
     CCDictionary * decDict = NULL;
+    CReward * reward = NULL;
+    
+    CReward * taskReward =  NULL;
+    CReward * sectionReward = NULL;
     if (inReward)
     {
         addDict = (CCDictionary*) inReward->objectForKey("add");
@@ -75,23 +90,178 @@ void CExploration::setRewardsByDict(CCDictionary *inReward)
         if (addDict)
         {
             // add
-            int coin = GameTools::intForKey("coin", addDict);
-            int hp = GameTools:: intForKey("hp", addDict);
-            int energy = GameTools::intForKey("energy", addDict);
-            int exp = GameTools::intForKey("exp", addDict);
+            CCDictionary * tmp = (CCDictionary*) addDict->objectForKey("event");
+            if (tmp)
+            {
+                // event reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, EVENTREWARD_ADD);
+
+            }
+            tmp =  (CCDictionary*) addDict->objectForKey("chapter");
+            if (tmp)
+            {
+                // chpater reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, CHAPTERREWARD_ADD);
+                setChapterReward(reward);
+            }
+            
+            tmp = (CCDictionary*) addDict->objectForKey("part");
+            if (tmp)
+            {
+                // part reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, SECTIONREWARD_ADD);
+                sectionReward = reward;
+            }
+            
+            tmp = (CCDictionary*) addDict->objectForKey("task");
+            
+            if (tmp)
+            {
+                // task reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, TASKREWARD_ADD);
+                taskReward = reward;
+    
+            }
+            
+            
+            tmp = (CCDictionary*) addDict->objectForKey("step");
+            if (tmp)
+            {
+                //step reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, FORWARDREWARD_ADD);
+                
+            }
+            
+            if (sectionReward || taskReward)
+            {
+                CReward * task = CReward::create(sectionReward, taskReward);
+                setTaskAndSectionReward(task);
+            }
+
+            
+            
         }
         if(decDict)
         {
             //dec
-            int coin = GameTools::intForKey("coin", decDict);
-            int hp = GameTools:: intForKey("hp", decDict);
-            int energy = GameTools::intForKey("energy", decDict);
-            int exp = GameTools::intForKey("exp", decDict);
+
+            
+            CCDictionary * tmp = (CCDictionary*) decDict->objectForKey("event");
+            if (tmp)
+            {
+                // event reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, EVENTREWARD_DEC);
+            }
+            
+            tmp =  (CCDictionary*) decDict->objectForKey("chapter");
+            if (tmp)
+            {
+                // chpater reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, CHAPTERREWARD_DEC);
+            }
+            
+            tmp = (CCDictionary*) decDict->objectForKey("part");
+            if (tmp)
+            {
+                // part reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, SECTIONREWARD_DEC);
+            }
+            
+            tmp = (CCDictionary*) decDict->objectForKey("task");
+            if (tmp)
+            {
+                // task reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, TASKREWARD_DEC);
+                
+            }
+            
+            
+            tmp = (CCDictionary*) decDict->objectForKey("step");
+            if (tmp)
+            {
+                //step reward:
+                reward = CReward::create(tmp);
+                array->setObject(reward, FORWARDREWARD_DEC);
+                
+            }
+            
+           
             
         }
         
     }
     
+    return array;
+    
+}
+
+
+/*
+ * @return null 没有章奖励
+ */
+CReward * CExploration::getChapterReward()
+{
+    CReward * reward  = NULL;
+    if (s_Rewards)
+    {
+        reward = (CReward*)(s_Rewards->objectForKey(CHAPTERREWARD_ADD));
+        // delete chapter reward from reward deque:
+        if (reward)
+        {
+            s_Rewards->removeObjectForKey(CHAPTERREWARD_ADD);
+        }
+    }
+    return reward;
+    
+}
+
+/*
+ * @return null 没有节和任务奖励
+ */
+CReward *CExploration::getTaskAndSectionReward()
+{
+    CReward * reward  = NULL;
+    if (s_Rewards)
+    {
+        reward = (CReward*)(s_Rewards->objectForKey(SECTIONREWARD_ADD));
+        // delete section and task rewards from reward deque:
+        if (reward)
+        {
+            s_Rewards->removeObjectForKey(SECTIONREWARD_ADD);
+        }
+    }
+    return reward;
+}
+
+
+void CExploration::setChapterReward(CReward * inChapterReward)
+{
+    if (s_Rewards == NULL)
+    {
+        s_Rewards = CCDictionary::create();
+        s_Rewards->retain();
+    }
+    
+    s_Rewards->setObject(inChapterReward, CHAPTERREWARD_ADD);
+    
+}
+void CExploration::setTaskAndSectionReward(CReward *inTaskAndSectionReward)
+{
+    if (s_Rewards == NULL)
+    {
+        s_Rewards = CCDictionary::create();
+        s_Rewards->retain();
+    }
+    s_Rewards->setObject(inTaskAndSectionReward, SECTIONREWARD_ADD);
 }
 
 
@@ -146,6 +316,7 @@ const EVENTDATA & CExploration::getEventData()
 {
     return s_SectionData.eventData;
 }
+
 CPtSection * CExploration::getExplorationSectionInfo()
 {
     return s_SectionData.sectionInfo;
@@ -196,8 +367,6 @@ bool CExploration::init()
 void CExploration::onEnter()
 {
     CCLayer::onEnter();
-    handlerTrigger();
-    
 }
 bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -404,6 +573,7 @@ bool CExploration::initExploration()
         int maxStep = s_SectionData.sectionInfo->getMaxStep();
         CCLog("");
         int currentStep = getCurrentStep();
+        currentStep--;
         currentStep = currentStep >= maxStep ? maxStep : currentStep;
         CCLog("%d, %d", currentStep, maxStep);
         sprintf(buffer, "%d/%d",currentStep, maxStep);
@@ -510,7 +680,7 @@ bool CExploration::initExploration()
         updateBtn();
         
         createOrUpdatePlayerData();
-       // handlerTrigger();
+        addTaskAndSectionReward();
         scheduleOnce(schedule_selector(CExploration::goSection),1.0f);
         bRet = true;
     } while (0);
@@ -612,14 +782,18 @@ void CExploration::handlerTrigger()
     if (m_pTriggers)
     {
         CPtTrigger *trigger = NULL;
-        for (int i = 0; i < m_pTriggers->count(); i++)
+      //  for (int i = 0; i < m_pTriggers->count(); i++)
         {
-            trigger = (CPtTrigger*)m_pTriggers->objectAtIndex(i);
-            if (trigger && trigger->getTriggerStep() == s_SectionData.currentStep)
+           // trigger = (CPtTrigger*)m_pTriggers->objectAtIndex(i);
+            if (s_SectionData.eventData.type == 1 && s_SectionData.eventData.storyId != -1)
             {
-                CGameStoryLayer::CreateStoryLayer(trigger->getStoryId(), this);// CCDirector::sharedDirector()->getRunningScene());
-                break;
+                CGameStoryLayer::CreateStoryLayer(s_SectionData.eventData.storyId, this);
             }
+//            if (trigger && trigger->getTriggerStep() == s_SectionData.currentStep)
+//            {
+//                CGameStoryLayer::CreateStoryLayer(trigger->getStoryId(), this);// CCDirector::sharedDirector()->getRunningScene());
+//                break;
+//            }
         }
      
     }
@@ -662,7 +836,7 @@ void CExploration::createOrUpdatePlayerData()
             addChild(labelttf,0,1000003);
             labelttf->setPosition(ccp(350, 200));
         }
-        sprintf(data, "现金:%d",SinglePlayer::instance()->getPlayerPrice());
+        sprintf(data, "现金:%d",SinglePlayer::instance()->getPlayerCash());
         labelttf->setString(data);
     }
     
@@ -675,7 +849,7 @@ void CExploration::createOrUpdatePlayerData()
             addChild(labelttf,0,1000004);
             labelttf->setPosition(ccp(500, 200));
         }
-        sprintf(data, "体力:%d",SinglePlayer::instance()->getPlayerEnergy());
+        sprintf(data, "体力:%d",SinglePlayer::instance()->getPlayerAp());
         labelttf->setString(data);
     }
     
@@ -713,7 +887,7 @@ void CExploration::createOrUpdatePlayerData()
             addChild(labelttf,1,1000007);
             labelttf->setPosition(ccp(900, 200));
         }
-        sprintf(data, "神力:%d",SinglePlayer::instance()->getPlayerHp());
+        sprintf(data, "神力:%d",SinglePlayer::instance()->getPlayerGp());
         labelttf->setString(data);
     }
     
@@ -756,12 +930,12 @@ void CExploration::updateUI()
     int maxStep = s_SectionData.sectionInfo->getMaxStep();
     CCLog("");
     int currentStep = getCurrentStep();
+    currentStep--;
     currentStep = currentStep >= maxStep ? maxStep : currentStep;
     CCLog("%d, %d", currentStep, maxStep);
     char buffer[10] = {0};
     sprintf(buffer, "%d/%d",currentStep, maxStep);
     m_pProgress->setString(buffer);
-    handlerTrigger();
 }
 
 
@@ -816,6 +990,7 @@ void CExploration::onParseSaveMsgByDictionary(CCDictionary *pResultDict)
     }else
     {
         CCLog("error: code: %d", result);
+        test_print(result);
     }
      backHall();
 }
@@ -825,10 +1000,16 @@ void CExploration::onParseSaveMsgByDictionary(CCDictionary *pResultDict)
 void CExploration::onFishEventRequest(int inType)
 {
     int taskId = s_SectionData.sectionInfo->getTaskId();
+    int evenId = getCurrentEventId();
+    if (evenId == -1)
+    {
+        test_print("event id error");
+        return;
+    }
     m_bCanTouch = false;
     char buffer[200]={0};
     CPtSection*  m_pSection = s_SectionData.sectionInfo;
-    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d&event_id=%d&type=%d&task_id=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(), getCurrentStep()-1, getCurrentEventId(),inType,taskId);
+    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d&event_id=%d&type=%d&task_id=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(), getCurrentStep()-1, evenId,inType,taskId);
     
     ADDHTTPREQUESTPOSTDATA(STR_URL_FINISH_EVENT(196),"finishEvent", "finishEvent",buffer, callfuncO_selector(CExploration::onReceiveFishEventRequestMsg));
     
@@ -865,12 +1046,13 @@ void CExploration::onParseFishEventRequestMsg(CCDictionary * pResultDict)
         else
         {
             CCLog("result code: %d", code);
+            test_print(code);
         }
     }
 }
 
 /*
- * @param: inType:
+ * @param: inType: event type
  */
 
 void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
@@ -891,18 +1073,33 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
          updateBtn();
     }else
     {
+        if (nexstep != 0)
+        {
+            test_print("finish event: eventinfo null");
+        }
         EVENTDATA eventData;
         setEvents(eventData);
     }
     if (inType == 6)
     {
-        CEventBoxData * inEvenBoxData = m_pEventBoxData->getEventBoxDataById(getCurrentEventId());
-        CCLog("the currenEventId %d", getCurrentEventId());
-        if (inEvenBoxData&&inEvenBoxData->getBoxType() == 0)
+    
+        CCDictionary * inRewards = (CCDictionary*) pResult->objectForKey("reward");
+        if (inRewards)
         {
-            if (m_nEventBoxSelectType == 0)
+            inRewards =  setRewardsByDict(inRewards);
+            addEventReward(inRewards);
+        }
+        else
+        {
+            CCLog("event reward : null");
+        }
+        CEventBoxData * inEvenBoxData = m_pEventBoxData->getEventBoxDataById(m_nCurrentEventBoxId);
+        CCLog("the currenEventId %d", m_nCurrentEventBoxId);
+        if (inEvenBoxData&&inEvenBoxData->getBoxType() == 1)
+        {
+            if (m_nEventBoxSelectType == EVENT_SUCCESS)
             {
-                CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData, 0);
+                CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData, GET_BOX);
                 layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
                 setInsiable();
                 addChild(layer);
@@ -915,7 +1112,12 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
         }
         else
         {
-            CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData, 1);
+            if (inEvenBoxData == NULL)
+            {
+                test_print("eventbox id error:");
+                return;
+            }
+            CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData);
             layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
             setInsiable();
             addChild(layer);
@@ -923,7 +1125,7 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
         }
        
     }
-    
+    addTaskAndSectionReward();
     getBiforest();
 }
 
@@ -932,6 +1134,13 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
  */
 void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
 {
+    if(pEventInfo == NULL)
+    {
+        test_print("event_info null");
+        return;
+    }
+
+
     char buffer[20] = {0};
     sprintf(buffer, "%d", getCurrentEventId());
 
@@ -939,6 +1148,7 @@ void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
     {
         //宝箱：
         int eventBoxId = GameTools::intForKey(buffer, pEventInfo);
+        m_nCurrentEventBoxId = eventBoxId;
         CCLog("the eventBoxId-- %d", eventBoxId);
         hanlderEventBox(eventBoxId);
         
@@ -962,6 +1172,19 @@ void CExploration::onSendEventRequest()
 {
     // constructor post data:
     CPtSection *m_pSection = s_SectionData.sectionInfo;
+    if (m_pPlayer->getPlayerAp() < m_pSection->getAP() || m_pPlayer->getPlayerGp() <= 0)
+    {
+        CCLog("体力or神力不够");
+        Middle::showAlertView("体力or神力不够");
+        return;
+    }
+    
+    //
+    int eventId = getCurrentEventId();
+    if (eventId == -1)
+    {
+        test_print("event Id  == fail");
+    }
     
     char buffer[200]={0};
     sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d&event_id=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(),  s_SectionData.currentStep, getCurrentEventId());
@@ -981,7 +1204,6 @@ void CExploration::onReceiveEventRequetMsg(CCObject *pObject)
         CCDictionary *tmp = PtJsonUtility::JsonStringParse(buffer);
         if (tmp)
         {
-            handlerSuccess();
             onParseEventRequestMsg(tmp);
         }
       
@@ -996,13 +1218,18 @@ void CExploration::onParseEventRequestMsg(CCDictionary *pResultDict)
     int result = GameTools::intForKey("code", pResultDict);
     if (result == 0)
     {
-        CCDictionary * tmp = (CCDictionary*) pResultDict->objectForKey("result");
-        CCAssert(tmp, "result not null");
-        tmp = (CCDictionary*) tmp->objectForKey("event_info");
+        handlerSuccess();
+        CCDictionary * result = (CCDictionary*) pResultDict->objectForKey("result");
+        CCAssert(result, "result not null");
+        CCDictionary* tmp = (CCDictionary*) result->objectForKey("reward");
+        CCDictionary *reward = setRewardsByDict(tmp);
+        addForwordReword(reward);
+        tmp = (CCDictionary*) result->objectForKey("event_info");
         dispatchParaseEvent(tmp, m_nEventType);
     }else
     {
         CCLog("error: code: %d", result);
+        test_print(result);
     }
 }
 
@@ -1048,15 +1275,75 @@ void CExploration::callBack(float dt)
 }
 
 
-void CExploration::addForwordReword()
+void CExploration::addForwordReword(CCDictionary * inAllRewards)
 {
+    if (inAllRewards)
+    {
+        CReward * reward = (CReward*) inAllRewards->objectForKey(FORWARDREWARD_ADD);
+        if(reward)
+        {
+            reward->printContent();
+            reward->excuteReward(ADD);
+            reward->printContent();
+        }
+        reward = (CReward*) inAllRewards->objectForKey(FORWARDREWARD_DEC);
+        if (reward)
+        {
+            reward->printContent();
+            reward->excuteReward(DEC);
+            reward->printContent();
+        }
+        
+    }
+    createOrUpdatePlayerData();
     
-    
+}
+
+void CExploration::addEventReward(CCDictionary *inAllRewards)
+{
+    if (inAllRewards)
+    {
+        CReward * reward = (CReward*) inAllRewards->objectForKey(EVENTREWARD_ADD);
+        if(reward)
+        {
+            reward->printContent();
+            reward->excuteReward(ADD);
+            reward->printContent();
+        }
+        reward = (CReward*) inAllRewards->objectForKey(EVENTREWARD_DEC);
+        if (reward)
+        {
+            reward->printContent();
+            reward->excuteReward(DEC);
+            reward->printContent();
+        }
+        
+    }
+    createOrUpdatePlayerData();
+}
+
+void CExploration::addTaskAndSectionReward(char *bufer)
+{
+   CReward * taskAndSection =  getTaskAndSectionReward();
+   if (taskAndSection)
+    {
+        char tips[200] = {0};
+        if (bufer)
+        {
+            bufer = tips;
+        }
+        taskAndSection->excuteReward(ADD);
+        sprintf(tips, "task or section reward add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", taskAndSection->getEnergy(), taskAndSection->getHP(), taskAndSection->getExp(),
+                taskAndSection->getCoin(), taskAndSection->getCash(), taskAndSection->getCardCount(), taskAndSection->getPropCount());
+        
+        Middle::showAlertView(tips);
+    }
+
 }
 
 void CExploration::requestCallBack(float dt)
 {
-    onFishEventRequest(1);
+    onFishEventRequest(EVENT_SUCCESS);
 }
 
 void CExploration::goSection(float dt)
@@ -1090,6 +1377,7 @@ void CExploration::updateEventData()
 void CExploration::handlerEmptyEvent()
 {
     onFishEventRequest(1);
+    test_print("空事件： 没有奖励！");
 }
 /*
  * @param inType: 1 - 3:
@@ -1100,7 +1388,7 @@ void CExploration::handlerFightEvent(int inType)
 {
     m_bCanTouch = false;
     attachConfirm();
-    
+    handlerTrigger();
 }
 
 /*
@@ -1112,6 +1400,7 @@ void CExploration::hanlderEventBox(int inEventBoxId)
     CCAssert(eventBoxData, "assert ...");
     createEventBoxDialogByType(eventBoxData ,eventBoxData->getBoxType());
     CCLog("the eventBox type : %d ", eventBoxData->getBoxType());
+    handlerTrigger();
 }
 
 /*
@@ -1168,8 +1457,8 @@ void CExploration:: onCancleCallback(CCObject *pObject)
     CCNode * node = (CCNode*) pObject;
     node->removeFromParentAndCleanup(true);
     setVisiable();
-    m_nEventBoxSelectType = 0;
-    onFishEventRequest(0);
+    m_nEventBoxSelectType = EVENT_FAILURE;
+    onFishEventRequest(EVENT_FAILURE);
     
 }
 void CExploration:: onCanfirmCallback(CCObject *pObject)
@@ -1186,8 +1475,8 @@ void CExploration::onOpenCallBack(CCObject* pObject)
     CCNode * node = (CCNode*) pObject;
     node->removeFromParentAndCleanup(true);
     setVisiable();
-    m_nEventBoxSelectType = 1;
-    onFishEventRequest(1);
+    m_nEventBoxSelectType = EVENT_SUCCESS;
+    onFishEventRequest(EVENT_SUCCESS);
     
 }
 
@@ -1199,4 +1488,17 @@ void CExploration::getBiforest()
         return;
     }
     
+}
+
+
+void CExploration::test_print(int code)
+{
+    char buffer[120] = {0};
+    sprintf(buffer, "the error : code : %d", code);
+    Middle::showAlertView(buffer);
+    
+}
+void CExploration::test_print(const char * inMsg)
+{
+    Middle::showAlertView(inMsg);
 }

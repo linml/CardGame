@@ -56,7 +56,7 @@ bool CPtPropConfigData::getPropDataById(const int &inPropId)
         m_nPropType  = prop->getPropType();    
         m_nUnLockLevel = prop->getUnLockLevel();
         m_nUseDelete = prop->getUseDelete(); 
-        m_nPrice =  prop->getPrice(); 
+        m_nPrice =  prop->getCash();
         m_nUseId = prop->getUseId();
         m_nSellCoin = prop->getSellCoin(); 
         m_nCoin = prop->getCoin(); 
@@ -138,7 +138,7 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
             prop->setPropType(GameTools::intForKey("type", tmpValue));
             prop->setUnLockLevel(GameTools::intForKey("unlock_level", tmpValue));
             prop->setUseDelete(GameTools::intForKey("use_delete", tmpValue));
-            prop->setPrice(GameTools::intForKey("price", tmpValue));
+            prop->setCash(GameTools::intForKey("cash", tmpValue));
             prop->setUseId(GameTools::intForKey("use_id", tmpValue));
             prop->setSellCoin(GameTools::intForKey("sell_coin", tmpValue));
             prop->setCoin(GameTools::intForKey("coin",tmpValue));

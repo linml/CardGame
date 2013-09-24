@@ -95,7 +95,21 @@ struct SECTION_DATA
 
 
 
-
+template <class T>
+class CEmrysClearVectorMemory {
+public:
+    CEmrysClearVectorMemory(vector<T > &clearData)
+    {
+        this->m_clearData=clearData;
+    }
+    void clearVector()
+    {
+        vector<T >tempZero;
+        m_clearData.swap(tempZero);
+    }
+private:
+    vector<T >m_clearData;
+};
 
 
 

@@ -53,9 +53,9 @@ public:
     int m_ifdelay; //是否需要延迟
     int m_irandom; //是否需要随机值
     
-    int  m_ishowtime;       //条件和消耗逻辑
-    int  m_iMutex; //条件或消耗参数值
-    int  m_iMutex_level; //条件或消耗参数值
+    int m_ishowtime;       //条件和消耗逻辑
+    int m_iMutex; //条件或消耗参数值
+    int m_iMutex_level; //条件或消耗参数值
     
     int m_iParameter_1;        //条件和消耗逻辑
     int m_iParameter_2;  //条件或消耗参数值

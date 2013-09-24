@@ -858,7 +858,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                 else if(pCardBufferRefactor->m_iKeepTime>0)
                 {
                     pCardBufferRefactor->m_iKeepTime--;
-                    appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
+                    appendAnimation(AtkIndex, DefIndex, 300, -200, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
 
                 }
             }

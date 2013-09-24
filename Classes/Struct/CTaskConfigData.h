@@ -21,7 +21,7 @@ typedef struct
 {
     int exp = 0;
     int coin = 0;
-    int rmb = 0;
+    int cash = 0;
     
 } STaskReword;
 

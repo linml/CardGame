@@ -81,6 +81,7 @@ private:
     void showVectorBuffer();
     void createKuaiJin();
     void resetCardPosition();
+    void clearAllHeroTexiao();
 
     
     //

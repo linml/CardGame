@@ -115,13 +115,12 @@ void CEventBoxLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 void CEventBoxLayer::initEventBoxLayer(CEventBoxData *inEventBoxData)
 {
     loadResource();
-    int titleId = inEventBoxData->getTitleId();
-    int describleId = inEventBoxData->getDictionaryId();
     
     
-    const char * title = "你完蛋了！";
+    const char * title = inEventBoxData->getTitle().c_str();
     const char * describle = "今天早上你从家里走出来的时候，踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！";
     const char * iconString ="baoxiang_1.png";
+    CCLog("the describle: %s", describle);
 
 
     m_nTouchTag = -1;
@@ -163,7 +162,7 @@ void CEventBoxLayer::initEventBoxLayer(CEventBoxData *inEventBoxData)
     }
     
     // set describle:
-    label = CCLabelTTF::create(describle, "Arial", 15, CCSizeMake(300, 0), kCCTextAlignmentLeft);
+    label = CCLabelTTF::create(Utility::getWordWithFile("dictionary.plist", inEventBoxData->getDictionaryKey().c_str()).c_str(), "Arial", 15, CCSizeMake(300, 0), kCCTextAlignmentLeft);
     label->setColor(ccc3(0, 0, 0));
     label->setAnchorPoint(ccp(0, 1));
     label->setPosition(ccp(point.x+ 110, point.y-10));

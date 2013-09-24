@@ -26,7 +26,7 @@ public:
     CC_SYNTHESIZE(int, m_nUnLockLevel, UnLockLevel);
     CC_SYNTHESIZE(int, m_nUseDelete, UseDelete);
     CC_SYNTHESIZE(int, m_nCoin, Coin);
-    CC_SYNTHESIZE(int, m_nPrice, Price);
+    CC_SYNTHESIZE(int, m_nCash, Cash);
     CC_SYNTHESIZE(int, m_nUseId, UseId);
     CC_SYNTHESIZE(int, m_nSellCoin, SellCoin);
     CC_SYNTHESIZE(std::string, m_strIconName, IconName);

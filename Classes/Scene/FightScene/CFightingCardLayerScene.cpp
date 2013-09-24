@@ -202,6 +202,7 @@ void CFightingCardLayerScene::animationSchudel(float t)
         CCLog("end animation");
         m_enWinStatus=SinglePlayer::instance()->getWinOrLoseStatus();
         CPtTool::logMemoryInfo();
+        clearAllHeroTexiao();
         if(m_enWinStatus==EN_GAMEFIGHTSTATUS_WIN)
         {
             winDialog();
@@ -336,6 +337,7 @@ void CFightingCardLayerScene::clearUpVectorBuffer()
             removeChild(m_rightBuffer[i],true)  ;
         }
     }
+    
     m_leftBuffer.erase(m_leftBuffer.begin(), m_leftBuffer.end());
     m_leftBuffer.clear();
     m_rightBuffer.erase(m_rightBuffer.begin(), m_rightBuffer.end());
@@ -1113,7 +1115,8 @@ bool CFightingCardLayerScene::initHitText()
     labelTTf2->setVisible(false);
     return true;
 }
-void CFightingCardLayerScene::resetCardPosition()
+
+void CFightingCardLayerScene::clearAllHeroTexiao()
 {
     for (int i=0; i<m_vFightHero.size();i++ ) {
         if(m_vFightHero[i])
@@ -1123,8 +1126,12 @@ void CFightingCardLayerScene::resetCardPosition()
         if(m_vMonsterHero[i])
             m_vMonsterHero[i]->removeAllChildrenWithCleanup(true);
     }
-    
-    
+}
+
+void CFightingCardLayerScene::resetCardPosition()
+{
+   
+    //clearAllHeroTexiao();
     for (int i=0; i<m_vFightingCard.size(); i++)
     {
         if(i!=m_vFightingCard.size()-1 &&m_vFightingCard[i])

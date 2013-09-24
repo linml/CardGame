@@ -27,9 +27,9 @@ public:
     virtual ~CEventBoxData(){};
     virtual bool init();
     CC_SYNTHESIZE(int, m_nBoxId, BoxId);
-    CC_SYNTHESIZE(int, m_nDictionaryId, DictionaryId);
+    CC_SYNTHESIZE(string, m_sDictionaryKey, DictionaryKey);
     CC_SYNTHESIZE(int, m_nType, BoxType);
-    CC_SYNTHESIZE(int, m_nTitleId, TitleId);
+    CC_SYNTHESIZE(string, m_sTitle, Title);
     CC_SYNTHESIZE(string, m_sPlist, Plist);
     CC_SYNTHESIZE(string, m_sPic, IconPic);
     

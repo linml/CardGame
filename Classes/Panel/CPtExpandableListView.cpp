@@ -178,7 +178,7 @@ int CPtExpandableListViewItemList::getAllItemCount()
             
         }
     }
-    CCLog("the count: %d", count);
+   // CCLog("the count: %d", count);
     return count;
 }
 

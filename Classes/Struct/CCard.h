@@ -91,7 +91,7 @@ public:
     int m_iCurrEngry; //当前卡牌的怒气值
     int m_iEngryMax ; //当前卡牌的最大怒气值得
     int m_iMaxExp;    //卡牌该等级的max exp
-    int m_User_Card_ID; //卡牌在卡牌背包里面的id
+    int m_User_Card_ID; //卡牌在卡牌背包里面的id card_item_id
     int m_iCurrLevel; //当前卡牌的等级
     int m_iCurrExp;   //当前卡牌拥有的exp
     bool isDead;     //卡牌是否已经死亡

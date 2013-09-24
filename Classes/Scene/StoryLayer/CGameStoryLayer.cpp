@@ -18,7 +18,7 @@ CGameStoryLayer::CGameStoryLayer()
     wndSize=CCDirector::sharedDirector()->getWinSize();
     m_pRoleAnimation=new  CGameRoleAnimation;
     isKuaiJingZhuangTai=false;
-    setTouchPriority(-9);
+    setTouchPriority(-40001);
     CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath,"Skip_Normal.png"));
     CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath,"Skip_Pressed.png"));
     
@@ -74,6 +74,7 @@ bool CGameStoryLayer::initCreateStory(int storyId, cocos2d::CCNode *node, int zo
     isCaneTouch=false;
     schedule(schedule_selector(CGameStoryLayer::updateTimeToShow));
     setTouchEnabled(true);
+    setTouchPriority(-40001);
     return true;
 }
 
@@ -252,7 +253,6 @@ void CGameStoryLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
         ((CCSprite *)getChildByTag(1000))->setTexture(CCTextureCache::sharedTextureCache()->textureForKey(CSTR_FILEPTAH(g_mapImagesPath,"Skip_Normal.png")));
     }
 }
-
 void CGameStoryLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     if(getChildByTag(1000)->boundingBox().containsPoint(pTouch->getLocation()))
@@ -281,7 +281,7 @@ void CGameStoryLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         
         if(!isKuaiJingZhuangTai)
         {
-              PtSoundTool::playSysSoundEffect("UI_click.wav");
+            PtSoundTool::playSysSoundEffect("UI_click.wav");
             endTalk();
         }
     }

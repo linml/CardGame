@@ -74,7 +74,6 @@ public:
     CC_SYNTHESIZE(int, isLoadEndCardTeam, LoadEndCardTeam);
 
 public:
-    void initPlayerStatusZero();
     //获得服务端的数据并init下数据
     void getSeverPlayerInfo(CCObject *object);
 
@@ -84,6 +83,10 @@ public: //读取卡包的信息
     bool isCardBagContainUserCardList(vector<int>User_CardId);
     int  isLoadCardBagEnd;
     void decodeCardDictAppendCardBag(CCDictionary *dict);
+    void appendCardToCardBag(const int &inCardItemId, const int &inCardId, int inSuit, int inLevel = 1, int inExp = 0);
+    void subCardByUserId(const int &inUserId);
+    void subCardByIndex(const int inIdex);
+    void subCardByIterator(vector<CFightCard*>::iterator inIterator);
     CFightCard *findFightCardByCard_User_ID(int  carduserid);
 public:
     //系统初始化信息
@@ -169,24 +172,41 @@ protected:
 // play info:
 public:
     int getCoin();          //金币
-    int getPlayerPrice();  //现金
+    int getPlayerCash();  //现金
     int getRVC();          //领导力
     int getPlayerExp();    //经验
     int getPlayerLevel();  //等级
-    int getPlayerHp();     //神力
-    int getPlayerEnergy();  //体力
+    int getPlayerGp();     //神力
+    int getPlayerAp();  //体力
     
-    int setPlayerHp(int iValue); //神力
-    int setPlayerEnergy(int iValue);
     
-    void addPlayerPrice(int inAddPrice);
-    void subPlayerPrice(int inSubPrice);
+    int getGpMax();
+    int getApMax();
+    int getExpMax();
+    
+    int setPlayerGp(int iValue); //神力
+    int setPlayerAp(int iValue);
+  
+    void addPlayerGp(int inAddHp);
+    void subPlayerGp(int inSubHp);
+    
+    void addPlayerAp(int inAddEnergy);
+    void subPlayerAp(int inSubEnergy);
+      
+    void addPlayerCash(int iValue);
+    void subPlayerCash(int iValue);
+
     
     void addPalyerExp(int inAddExp);
     void subPlayerExp(int inSubExp);
     
     void addRVC(const int &inAddValue);
+    
     void addCoin(const int &inAddValue);
+    void subCoin(const int &inSubValue);
+    
+    
+    
     void ReduceRVC(const int &inReduceRVC);
     void ReduceCoin(const int &inReduceCoin);
     
@@ -197,7 +217,6 @@ protected:
     bool m_bLoadProps;
 private:
     map<int, CCard *>m_hashmapAllCard;
-    vector<SLevelPlayer *>m_gvPlayerLevel;
     map<int ,CSkillData *>m_vSkillInfo;
     vector< CImapact * >m_vImpactInfo;
     map<int ,CCard *>m_hashmapNpcAllCard;

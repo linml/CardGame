@@ -328,9 +328,11 @@ void CCardSellLayer::removeCardInCardBag()
             CCLog("index:%d",index);
             arrayBag->removeObjectAtIndex(index);
             std::vector<CFightCard*>::iterator j = r_CardBag.begin()+index;
+            delete *j;
             r_CardBag.erase(j);
         }
-
+ 
+        
         m_pCardBag->reload();
         clearPanel();
    }

@@ -554,6 +554,7 @@ void CCardEnhanceLayer:: save()
         CCLog("index:%d",index);
         array->removeObjectAtIndex(index);
         std::vector<CFightCard*>::iterator j = r_CardBag.begin()+index;
+        delete *j;
         r_CardBag.erase(j);
     }
     

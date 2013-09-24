@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>160B72DB-54B4-4118-B91A-385DDB43C3F4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>91.cube</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>97464BDE-4344-4F48-B9D6-04D862DA16B8</key>
+		<string>ssh://github.com/linminglu/paidemo.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>proj.ios/91.cube/91.cube.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>97464BDE-4344-4F48-B9D6-04D862DA16B8</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/linminglu/paidemo.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>97464BDE-4344-4F48-B9D6-04D862DA16B8</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>97464BDE-4344-4F48-B9D6-04D862DA16B8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CubeCOCO</string>
+		</dict>
+	</array>
+</dict>
+</plist>

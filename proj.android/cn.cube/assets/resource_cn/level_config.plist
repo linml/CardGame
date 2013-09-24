@@ -9,13 +9,13 @@
 			<key>card_max</key>
 			<string>150</string>
 			<key>leader_max</key>
-			<string>25</string>
+			<string>40</string>
 			<key>friend_max</key>
 			<string>20</string>
-			<key>mp_max</key>
-			<string>120</string>
-			<key>hp_max</key>
-			<string>100</string>
+			<key>ap_max</key>
+			<string>1200</string>
+			<key>gp_max</key>
+			<string>10000</string>
 			<key>exp_max</key>
 			<string>100</string>
 		</dict>
@@ -26,13 +26,13 @@
 			<key>card_max</key>
 			<string>151</string>
 			<key>leader_max</key>
-			<string>26</string>
+			<string>40</string>
 			<key>friend_max</key>
 			<string>20</string>
-			<key>mp_max</key>
-			<string>120</string>
-			<key>hp_max</key>
-			<string>101</string>
+			<key>ap_max</key>
+			<string>1200</string>
+			<key>gp_max</key>
+			<string>10100</string>
 			<key>exp_max</key>
 			<string>278</string>
 		</dict>
@@ -43,12 +43,12 @@
 			<key>card_max</key>
 			<string>152</string>
 			<key>leader_max</key>
-			<string>27</string>
+			<string>40</string>
 			<key>friend_max</key>
 			<string>21</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>102</string>
 			<key>exp_max</key>
 			<string>486</string>
@@ -60,12 +60,12 @@
 			<key>card_max</key>
 			<string>153</string>
 			<key>leader_max</key>
-			<string>28</string>
+			<string>40</string>
 			<key>friend_max</key>
 			<string>21</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>103</string>
 			<key>exp_max</key>
 			<string>742</string>
@@ -80,9 +80,9 @@
 			<string>29</string>
 			<key>friend_max</key>
 			<string>21</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>104</string>
 			<key>exp_max</key>
 			<string>1030</string>
@@ -97,9 +97,9 @@
 			<string>30</string>
 			<key>friend_max</key>
 			<string>22</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>105</string>
 			<key>exp_max</key>
 			<string>1485</string>
@@ -114,9 +114,9 @@
 			<string>31</string>
 			<key>friend_max</key>
 			<string>22</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>106</string>
 			<key>exp_max</key>
 			<string>2078</string>
@@ -131,9 +131,9 @@
 			<string>32</string>
 			<key>friend_max</key>
 			<string>22</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>107</string>
 			<key>exp_max</key>
 			<string>2717</string>
@@ -148,9 +148,9 @@
 			<string>33</string>
 			<key>friend_max</key>
 			<string>23</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>108</string>
 			<key>exp_max</key>
 			<string>3392</string>
@@ -165,9 +165,9 @@
 			<string>34</string>
 			<key>friend_max</key>
 			<string>23</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>109</string>
 			<key>exp_max</key>
 			<string>4414</string>
@@ -182,9 +182,9 @@
 			<string>35</string>
 			<key>friend_max</key>
 			<string>23</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>110</string>
 			<key>exp_max</key>
 			<string>5490</string>
@@ -199,9 +199,9 @@
 			<string>36</string>
 			<key>friend_max</key>
 			<string>24</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>111</string>
 			<key>exp_max</key>
 			<string>6621</string>
@@ -216,9 +216,9 @@
 			<string>37</string>
 			<key>friend_max</key>
 			<string>24</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>112</string>
 			<key>exp_max</key>
 			<string>7805</string>
@@ -233,9 +233,9 @@
 			<string>38</string>
 			<key>friend_max</key>
 			<string>24</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>113</string>
 			<key>exp_max</key>
 			<string>9454</string>
@@ -250,9 +250,9 @@
 			<string>39</string>
 			<key>friend_max</key>
 			<string>25</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>114</string>
 			<key>exp_max</key>
 			<string>11182</string>
@@ -267,9 +267,9 @@
 			<string>40</string>
 			<key>friend_max</key>
 			<string>25</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>115</string>
 			<key>exp_max</key>
 			<string>12978</string>
@@ -284,9 +284,9 @@
 			<string>41</string>
 			<key>friend_max</key>
 			<string>25</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>116</string>
 			<key>exp_max</key>
 			<string>15315</string>
@@ -301,9 +301,9 @@
 			<string>42</string>
 			<key>friend_max</key>
 			<string>26</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>117</string>
 			<key>exp_max</key>
 			<string>17741</string>
@@ -318,9 +318,9 @@
 			<string>43</string>
 			<key>friend_max</key>
 			<string>26</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>118</string>
 			<key>exp_max</key>
 			<string>20762</string>
@@ -335,9 +335,9 @@
 			<string>44</string>
 			<key>friend_max</key>
 			<string>26</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>119</string>
 			<key>exp_max</key>
 			<string>23890</string>
@@ -352,9 +352,9 @@
 			<string>45</string>
 			<key>friend_max</key>
 			<string>27</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>120</string>
 			<key>exp_max</key>
 			<string>27666</string>
@@ -369,9 +369,9 @@
 			<string>46</string>
 			<key>friend_max</key>
 			<string>27</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>121</string>
 			<key>exp_max</key>
 			<string>31569</string>
@@ -386,9 +386,9 @@
 			<string>47</string>
 			<key>friend_max</key>
 			<string>27</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>122</string>
 			<key>exp_max</key>
 			<string>36000</string>
@@ -403,9 +403,9 @@
 			<string>48</string>
 			<key>friend_max</key>
 			<string>28</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>123</string>
 			<key>exp_max</key>
 			<string>40722</string>
@@ -420,9 +420,9 @@
 			<string>49</string>
 			<key>friend_max</key>
 			<string>28</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>124</string>
 			<key>exp_max</key>
 			<string>46077</string>
@@ -437,9 +437,9 @@
 			<string>50</string>
 			<key>friend_max</key>
 			<string>28</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>125</string>
 			<key>exp_max</key>
 			<string>52536</string>
@@ -454,9 +454,9 @@
 			<string>51</string>
 			<key>friend_max</key>
 			<string>29</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>126</string>
 			<key>exp_max</key>
 			<string>59461</string>
@@ -471,9 +471,9 @@
 			<string>52</string>
 			<key>friend_max</key>
 			<string>29</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>127</string>
 			<key>exp_max</key>
 			<string>67692</string>
@@ -488,9 +488,9 @@
 			<string>53</string>
 			<key>friend_max</key>
 			<string>29</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>128</string>
 			<key>exp_max</key>
 			<string>76501</string>
@@ -505,9 +505,9 @@
 			<string>54</string>
 			<key>friend_max</key>
 			<string>30</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>129</string>
 			<key>exp_max</key>
 			<string>86218</string>
@@ -522,9 +522,9 @@
 			<string>55</string>
 			<key>friend_max</key>
 			<string>30</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>130</string>
 			<key>exp_max</key>
 			<string>97171</string>
@@ -539,9 +539,9 @@
 			<string>56</string>
 			<key>friend_max</key>
 			<string>30</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>131</string>
 			<key>exp_max</key>
 			<string>108756</string>
@@ -556,9 +556,9 @@
 			<string>57</string>
 			<key>friend_max</key>
 			<string>31</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>132</string>
 			<key>exp_max</key>
 			<string>121605</string>
@@ -573,9 +573,9 @@
 			<string>58</string>
 			<key>friend_max</key>
 			<string>31</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>133</string>
 			<key>exp_max</key>
 			<string>135474</string>
@@ -590,9 +590,9 @@
 			<string>59</string>
 			<key>friend_max</key>
 			<string>31</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>134</string>
 			<key>exp_max</key>
 			<string>150502</string>
@@ -607,9 +607,9 @@
 			<string>60</string>
 			<key>friend_max</key>
 			<string>32</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>135</string>
 			<key>exp_max</key>
 			<string>166889</string>
@@ -624,9 +624,9 @@
 			<string>61</string>
 			<key>friend_max</key>
 			<string>32</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>136</string>
 			<key>exp_max</key>
 			<string>184103</string>
@@ -641,9 +641,9 @@
 			<string>62</string>
 			<key>friend_max</key>
 			<string>32</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>137</string>
 			<key>exp_max</key>
 			<string>202852</string>
@@ -658,9 +658,9 @@
 			<string>63</string>
 			<key>friend_max</key>
 			<string>33</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>138</string>
 			<key>exp_max</key>
 			<string>223382</string>
@@ -675,9 +675,9 @@
 			<string>64</string>
 			<key>friend_max</key>
 			<string>33</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>139</string>
 			<key>exp_max</key>
 			<string>245741</string>
@@ -692,9 +692,9 @@
 			<string>65</string>
 			<key>friend_max</key>
 			<string>33</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>140</string>
 			<key>exp_max</key>
 			<string>269861</string>
@@ -709,9 +709,9 @@
 			<string>66</string>
 			<key>friend_max</key>
 			<string>34</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>141</string>
 			<key>exp_max</key>
 			<string>295647</string>
@@ -726,9 +726,9 @@
 			<string>67</string>
 			<key>friend_max</key>
 			<string>34</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>142</string>
 			<key>exp_max</key>
 			<string>323494</string>
@@ -743,9 +743,9 @@
 			<string>68</string>
 			<key>friend_max</key>
 			<string>34</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>143</string>
 			<key>exp_max</key>
 			<string>353175</string>
@@ -760,9 +760,9 @@
 			<string>69</string>
 			<key>friend_max</key>
 			<string>35</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>144</string>
 			<key>exp_max</key>
 			<string>385365</string>
@@ -777,9 +777,9 @@
 			<string>70</string>
 			<key>friend_max</key>
 			<string>35</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>145</string>
 			<key>exp_max</key>
 			<string>418859</string>
@@ -794,9 +794,9 @@
 			<string>71</string>
 			<key>friend_max</key>
 			<string>35</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>146</string>
 			<key>exp_max</key>
 			<string>455319</string>
@@ -811,9 +811,9 @@
 			<string>72</string>
 			<key>friend_max</key>
 			<string>36</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>147</string>
 			<key>exp_max</key>
 			<string>492972</string>
@@ -828,9 +828,9 @@
 			<string>73</string>
 			<key>friend_max</key>
 			<string>36</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>120</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>148</string>
 			<key>exp_max</key>
 			<string>533719</string>
@@ -845,9 +845,9 @@
 			<string>74</string>
 			<key>friend_max</key>
 			<string>36</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>149</string>
 			<key>exp_max</key>
 			<string>576185</string>
@@ -862,9 +862,9 @@
 			<string>75</string>
 			<key>friend_max</key>
 			<string>37</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>150</string>
 			<key>exp_max</key>
 			<string>621733</string>
@@ -879,9 +879,9 @@
 			<string>76</string>
 			<key>friend_max</key>
 			<string>37</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>151</string>
 			<key>exp_max</key>
 			<string>668867</string>
@@ -896,9 +896,9 @@
 			<string>77</string>
 			<key>friend_max</key>
 			<string>37</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>152</string>
 			<key>exp_max</key>
 			<string>719168</string>
@@ -913,9 +913,9 @@
 			<string>78</string>
 			<key>friend_max</key>
 			<string>38</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>153</string>
 			<key>exp_max</key>
 			<string>771455</string>
@@ -930,9 +930,9 @@
 			<string>79</string>
 			<key>friend_max</key>
 			<string>38</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>154</string>
 			<key>exp_max</key>
 			<string>826512</string>
@@ -947,9 +947,9 @@
 			<string>80</string>
 			<key>friend_max</key>
 			<string>38</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>155</string>
 			<key>exp_max</key>
 			<string>884028</string>
@@ -964,9 +964,9 @@
 			<string>81</string>
 			<key>friend_max</key>
 			<string>39</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>156</string>
 			<key>exp_max</key>
 			<string>944631</string>
@@ -981,9 +981,9 @@
 			<string>82</string>
 			<key>friend_max</key>
 			<string>39</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>157</string>
 			<key>exp_max</key>
 			<string>1006974</string>
@@ -998,9 +998,9 @@
 			<string>83</string>
 			<key>friend_max</key>
 			<string>39</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>158</string>
 			<key>exp_max</key>
 			<string>1073239</string>
@@ -1015,9 +1015,9 @@
 			<string>85</string>
 			<key>friend_max</key>
 			<string>40</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>160</string>
 			<key>exp_max</key>
 			<string>1141408</string>
@@ -1032,9 +1032,9 @@
 			<string>87</string>
 			<key>friend_max</key>
 			<string>40</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>160</string>
 			<key>exp_max</key>
 			<string>1213554</string>
@@ -1049,9 +1049,9 @@
 			<string>89</string>
 			<key>friend_max</key>
 			<string>40</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>161</string>
 			<key>exp_max</key>
 			<string>1287615</string>
@@ -1066,9 +1066,9 @@
 			<string>91</string>
 			<key>friend_max</key>
 			<string>41</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>162</string>
 			<key>exp_max</key>
 			<string>1365338</string>
@@ -1083,9 +1083,9 @@
 			<string>93</string>
 			<key>friend_max</key>
 			<string>41</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>163</string>
 			<key>exp_max</key>
 			<string>1445177</string>
@@ -1100,9 +1100,9 @@
 			<string>95</string>
 			<key>friend_max</key>
 			<string>41</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>164</string>
 			<key>exp_max</key>
 			<string>1529376</string>
@@ -1117,9 +1117,9 @@
 			<string>97</string>
 			<key>friend_max</key>
 			<string>42</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>165</string>
 			<key>exp_max</key>
 			<string>1615822</string>
@@ -1134,9 +1134,9 @@
 			<string>99</string>
 			<key>friend_max</key>
 			<string>42</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>166</string>
 			<key>exp_max</key>
 			<string>1705972</string>
@@ -1151,9 +1151,9 @@
 			<string>101</string>
 			<key>friend_max</key>
 			<string>42</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>167</string>
 			<key>exp_max</key>
 			<string>1798517</string>
@@ -1168,9 +1168,9 @@
 			<string>103</string>
 			<key>friend_max</key>
 			<string>43</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>168</string>
 			<key>exp_max</key>
 			<string>1895611</string>
@@ -1185,9 +1185,9 @@
 			<string>105</string>
 			<key>friend_max</key>
 			<string>43</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>169</string>
 			<key>exp_max</key>
 			<string>1995398</string>
@@ -1202,9 +1202,9 @@
 			<string>107</string>
 			<key>friend_max</key>
 			<string>43</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>170</string>
 			<key>exp_max</key>
 			<string>2099027</string>
@@ -1219,9 +1219,9 @@
 			<string>109</string>
 			<key>friend_max</key>
 			<string>44</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>171</string>
 			<key>exp_max</key>
 			<string>2205334</string>
@@ -1236,9 +1236,9 @@
 			<string>111</string>
 			<key>friend_max</key>
 			<string>44</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>172</string>
 			<key>exp_max</key>
 			<string>2316180</string>
@@ -1253,9 +1253,9 @@
 			<string>113</string>
 			<key>friend_max</key>
 			<string>44</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>173</string>
 			<key>exp_max</key>
 			<string>2429606</string>
@@ -1270,9 +1270,9 @@
 			<string>115</string>
 			<key>friend_max</key>
 			<string>45</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>174</string>
 			<key>exp_max</key>
 			<string>2547628</string>
@@ -1287,9 +1287,9 @@
 			<string>117</string>
 			<key>friend_max</key>
 			<string>45</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>175</string>
 			<key>exp_max</key>
 			<string>2668504</string>
@@ -1304,9 +1304,9 @@
 			<string>119</string>
 			<key>friend_max</key>
 			<string>45</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>176</string>
 			<key>exp_max</key>
 			<string>2793417</string>
@@ -1321,9 +1321,9 @@
 			<string>121</string>
 			<key>friend_max</key>
 			<string>46</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>177</string>
 			<key>exp_max</key>
 			<string>2921796</string>
@@ -1338,9 +1338,9 @@
 			<string>123</string>
 			<key>friend_max</key>
 			<string>46</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>178</string>
 			<key>exp_max</key>
 			<string>3055101</string>
@@ -1355,9 +1355,9 @@
 			<string>125</string>
 			<key>friend_max</key>
 			<string>46</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>179</string>
 			<key>exp_max</key>
 			<string>3190983</string>
@@ -1372,9 +1372,9 @@
 			<string>127</string>
 			<key>friend_max</key>
 			<string>47</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>180</string>
 			<key>exp_max</key>
 			<string>3332120</string>
@@ -1389,9 +1389,9 @@
 			<string>129</string>
 			<key>friend_max</key>
 			<string>47</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>181</string>
 			<key>exp_max</key>
 			<string>3476043</string>
@@ -1406,9 +1406,9 @@
 			<string>131</string>
 			<key>friend_max</key>
 			<string>47</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>182</string>
 			<key>exp_max</key>
 			<string>3625092</string>
@@ -1423,9 +1423,9 @@
 			<string>133</string>
 			<key>friend_max</key>
 			<string>48</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>183</string>
 			<key>exp_max</key>
 			<string>3777547</string>
@@ -1440,9 +1440,9 @@
 			<string>135</string>
 			<key>friend_max</key>
 			<string>48</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>184</string>
 			<key>exp_max</key>
 			<string>3935055</string>
@@ -1457,9 +1457,9 @@
 			<string>137</string>
 			<key>friend_max</key>
 			<string>48</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>185</string>
 			<key>exp_max</key>
 			<string>4095528</string>
@@ -1474,9 +1474,9 @@
 			<string>139</string>
 			<key>friend_max</key>
 			<string>49</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>186</string>
 			<key>exp_max</key>
 			<string>4261870</string>
@@ -1491,9 +1491,9 @@
 			<string>141</string>
 			<key>friend_max</key>
 			<string>49</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>187</string>
 			<key>exp_max</key>
 			<string>4430684</string>
@@ -1508,9 +1508,9 @@
 			<string>143</string>
 			<key>friend_max</key>
 			<string>49</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>188</string>
 			<key>exp_max</key>
 			<string>4605684</string>
@@ -1525,9 +1525,9 @@
 			<string>145</string>
 			<key>friend_max</key>
 			<string>50</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>189</string>
 			<key>exp_max</key>
 			<string>4783763</string>
@@ -1542,9 +1542,9 @@
 			<string>147</string>
 			<key>friend_max</key>
 			<string>50</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>190</string>
 			<key>exp_max</key>
 			<string>4967531</string>
@@ -1559,9 +1559,9 @@
 			<string>149</string>
 			<key>friend_max</key>
 			<string>50</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>191</string>
 			<key>exp_max</key>
 			<string>5154622</string>
@@ -1576,9 +1576,9 @@
 			<string>151</string>
 			<key>friend_max</key>
 			<string>51</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>192</string>
 			<key>exp_max</key>
 			<string>5347578</string>
@@ -1593,9 +1593,9 @@
 			<string>153</string>
 			<key>friend_max</key>
 			<string>51</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>193</string>
 			<key>exp_max</key>
 			<string>5543753</string>
@@ -1610,9 +1610,9 @@
 			<string>155</string>
 			<key>friend_max</key>
 			<string>52</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>194</string>
 			<key>exp_max</key>
 			<string>5746237</string>
@@ -1627,9 +1627,9 @@
 			<string>157</string>
 			<key>friend_max</key>
 			<string>52</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>195</string>
 			<key>exp_max</key>
 			<string>5952077</string>
@@ -1644,9 +1644,9 @@
 			<string>159</string>
 			<key>friend_max</key>
 			<string>53</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>196</string>
 			<key>exp_max</key>
 			<string>6163512</string>
@@ -1661,9 +1661,9 @@
 			<string>161</string>
 			<key>friend_max</key>
 			<string>53</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>197</string>
 			<key>exp_max</key>
 			<string>6379284</string>
@@ -1678,9 +1678,9 @@
 			<string>163</string>
 			<key>friend_max</key>
 			<string>54</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>198</string>
 			<key>exp_max</key>
 			<string>6601265</string>
@@ -1695,9 +1695,9 @@
 			<string>165</string>
 			<key>friend_max</key>
 			<string>55</string>
-			<key>mp_max</key>
+			<key>ap_max</key>
 			<string>150</string>
-			<key>hp_max</key>
+			<key>gp_max</key>
 			<string>200</string>
 			<key>exp_max</key>
 			<string>6827465</string>

@@ -51,6 +51,11 @@ public:
 protected:
     void initFightResultConfirm();
     void handlerTouch();
+    
+    void handlerEventReward(CCDictionary * inAllReward);
+    // test:
+    void test_print(int code);
+    void test_print(const char * inMsg);
 protected:
     SFightResultData * m_nResult;
     int m_nTouchTag;

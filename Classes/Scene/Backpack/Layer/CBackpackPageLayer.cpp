@@ -620,7 +620,7 @@ bool CBackpackPageLayer::canOpenGrid()
     }
     
     int price = ((openGrid - 9)/3 -1) * 9 + 6;
-    if (price >= player->getPlayerPrice())
+    if (price >= player->getPlayerCash())
     {
         bRet = true;
     }
@@ -646,7 +646,7 @@ void CBackpackPageLayer::openGrid()
         openGrid -= 3;
     }
     int price = ((openGrid - 9)/3 -1) * 9 + 6;
-    player->subPlayerPrice(price);
+    player->subPlayerCash(price);
     
     // update ui
     openGridUI();

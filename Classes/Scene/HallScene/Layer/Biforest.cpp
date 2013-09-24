@@ -190,7 +190,7 @@ void CBiforestLayer::initBiforest()
     // set touch
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
-    setTouchPriority(GOLDPLACE_TOUCH_PRORITY-1);
+    setTouchPriority(GOLDPLACE_TOUCH_PRORITY-7);
     
     
     int array[] = {2,0,1};

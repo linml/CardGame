@@ -15,6 +15,7 @@
 #include "CSkillData.h"
 #include "PtActionUtility.h"
 #include "CFightCardBufferData.h"
+#include "gameMiddle.h"
 
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
 {\
@@ -83,6 +84,7 @@ bool  CFightingCardLayerLogic::loadFromServerTest(int  loadTeamIndex)
     }
     else
     {
+        Middle::showAlertView("读取阵容信息有错误,最大可能是初始化没读取到阵容信息");
         return false;
     }
 }

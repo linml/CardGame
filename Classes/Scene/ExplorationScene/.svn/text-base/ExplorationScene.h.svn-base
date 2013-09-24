@@ -23,6 +23,7 @@
 #include "CEventBoxReward.h"
 #include "CEventBoxDialog.h"
 #include "CEventConfigData.h"
+#include "CReward.h"
 
 
 using namespace cocos2d;
@@ -30,6 +31,9 @@ using namespace cocos2d;
 #define LEFT_TOUCH_TAG (3001)
 #define CENTER_TOUCH_TAG (LEFT_TOUCH_TAG+1)
 #define RIGHT_TOUCH_TAG (CENTER_TOUCH_TAG+1)
+
+#define EVENT_SUCCESS 1
+#define EVENT_FAILURE 0
 
 
 class CExploration : public CCLayer
@@ -57,12 +61,20 @@ public:
     static int getCurrentSectionId(); //节ID
     static int getCurrentTaskId(); //任务ID
     static void setNextEventByDict(CCDictionary *inEventInfo);
-    static void setRewardsByDict(CCDictionary *inReward);
+    static CCDictionary* setRewardsByDict(CCDictionary *inReward);
+    
+ 
+    static CReward *getChapterReward();
+    static CReward *getTaskAndSectionReward();
+    
+protected:
+    static void setChapterReward(CReward * inChapterReward);
+    static void setTaskAndSectionReward(CReward *inTaskAndSectionReward);
     
 protected:
     static int s_CurrentEventId;
+    static CCDictionary *s_Rewards; // save task reward & chapter reward & section reward:
     
- 
 public:
     CExploration();
     virtual ~CExploration();
@@ -98,8 +110,10 @@ protected:
     void requestCallBack(float dt);
     void goSection(float dt);
     
-    // reword:
-    void addForwordReword();
+    // rewords:
+    void addForwordReword(CCDictionary * inAllRewards); // 前进奖励
+    void addTaskAndSectionReward(char *bufer = NULL);
+    void addEventReward(CCDictionary *inAllRewards);
     
     void getTriggers();
     
@@ -120,14 +134,24 @@ protected:
     void setInsiable();
     
     void getBiforest();
+    
+    
+    // test:
+    
+    void test_print(int code);
+    void test_print(const char * inMsg);
+    void createTaskAndSectionReward();
+
+
 protected:
     bool m_bCanTouch;
     bool m_bLoadTaskInfo;
     
     int m_nWhichEvent;
     int m_nTouchTag;
-    
     int m_nEventType;
+    int m_nCurrentEventBoxId;
+    
     CPtButtonWidget* m_pBtn[3];
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;

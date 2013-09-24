@@ -66,6 +66,12 @@
 		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
 		8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */; };
 		8E6CE59B176EFFD400CF5C0D /* FightResultConfirm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE599176EFFD400CF5C0D /* FightResultConfirm.cpp */; };
+		8EA82EC817E1BAFC0063CDA9 /* CPtExpandableListView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EA82EC617E1BAFC0063CDA9 /* CPtExpandableListView.cpp */; };
+		8EA82ECB17E1C27F0063CDA9 /* CEventBoxDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EA82EC917E1C27F0063CDA9 /* CEventBoxDialog.cpp */; };
+		8EC9B4BA17E2A3D800200073 /* CEventBoxConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9B4B417E2A3D800200073 /* CEventBoxConfigData.cpp */; };
+		8EC9B4BB17E2A3D800200073 /* CEventConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9B4B617E2A3D800200073 /* CEventConfigData.cpp */; };
+		8EC9B4BC17E2A3D800200073 /* CSceneConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9B4B817E2A3D800200073 /* CSceneConfigData.cpp */; };
+		8EC9B4BF17E3156300200073 /* CEventBoxReward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8EC9B4BD17E3156300200073 /* CEventBoxReward.cpp */; };
 		9F095D2017D8724300CE32B3 /* gameMiddle.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9F095D1F17D8724300CE32B3 /* gameMiddle.mm */; };
 		9F095D2317D8726200CE32B3 /* RegisterLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F095D2117D8726200CE32B3 /* RegisterLayer.cpp */; };
 		9F095D2717D8728C00CE32B3 /* CGameEmailTableView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F095D2517D8728C00CE32B3 /* CGameEmailTableView.cpp */; };
@@ -444,6 +450,18 @@
 		8E6CE595176EEF1E00CF5C0D /* CConfirmLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CConfirmLayer.h; sourceTree = "<group>"; };
 		8E6CE599176EFFD400CF5C0D /* FightResultConfirm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FightResultConfirm.cpp; sourceTree = "<group>"; };
 		8E6CE59A176EFFD400CF5C0D /* FightResultConfirm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FightResultConfirm.h; sourceTree = "<group>"; };
+		8EA82EC617E1BAFC0063CDA9 /* CPtExpandableListView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtExpandableListView.cpp; sourceTree = "<group>"; };
+		8EA82EC717E1BAFC0063CDA9 /* CPtExpandableListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtExpandableListView.h; sourceTree = "<group>"; };
+		8EA82EC917E1C27F0063CDA9 /* CEventBoxDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventBoxDialog.cpp; sourceTree = "<group>"; };
+		8EA82ECA17E1C27F0063CDA9 /* CEventBoxDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventBoxDialog.h; sourceTree = "<group>"; };
+		8EC9B4B417E2A3D800200073 /* CEventBoxConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventBoxConfigData.cpp; sourceTree = "<group>"; };
+		8EC9B4B517E2A3D800200073 /* CEventBoxConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventBoxConfigData.h; sourceTree = "<group>"; };
+		8EC9B4B617E2A3D800200073 /* CEventConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventConfigData.cpp; sourceTree = "<group>"; };
+		8EC9B4B717E2A3D800200073 /* CEventConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventConfigData.h; sourceTree = "<group>"; };
+		8EC9B4B817E2A3D800200073 /* CSceneConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneConfigData.cpp; sourceTree = "<group>"; };
+		8EC9B4B917E2A3D800200073 /* CSceneConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneConfigData.h; sourceTree = "<group>"; };
+		8EC9B4BD17E3156300200073 /* CEventBoxReward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEventBoxReward.cpp; sourceTree = "<group>"; };
+		8EC9B4BE17E3156300200073 /* CEventBoxReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEventBoxReward.h; sourceTree = "<group>"; };
 		9F095D1E17D8724300CE32B3 /* gameMiddle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameMiddle.h; sourceTree = "<group>"; };
 		9F095D1F17D8724300CE32B3 /* gameMiddle.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = gameMiddle.mm; sourceTree = "<group>"; };
 		9F095D2117D8726200CE32B3 /* RegisterLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RegisterLayer.cpp; sourceTree = "<group>"; };
@@ -1266,8 +1284,12 @@
 		8E6CE593176EEF1E00CF5C0D /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				8EA82EC917E1C27F0063CDA9 /* CEventBoxDialog.cpp */,
+				8EA82ECA17E1C27F0063CDA9 /* CEventBoxDialog.h */,
 				8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */,
 				8E6CE595176EEF1E00CF5C0D /* CConfirmLayer.h */,
+				8EC9B4BD17E3156300200073 /* CEventBoxReward.cpp */,
+				8EC9B4BE17E3156300200073 /* CEventBoxReward.h */,
 			);
 			path = Layer;
 			sourceTree = "<group>";
@@ -1394,6 +1416,12 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				8EC9B4B417E2A3D800200073 /* CEventBoxConfigData.cpp */,
+				8EC9B4B517E2A3D800200073 /* CEventBoxConfigData.h */,
+				8EC9B4B617E2A3D800200073 /* CEventConfigData.cpp */,
+				8EC9B4B717E2A3D800200073 /* CEventConfigData.h */,
+				8EC9B4B817E2A3D800200073 /* CSceneConfigData.cpp */,
+				8EC9B4B917E2A3D800200073 /* CSceneConfigData.h */,
 				6FB7E44D17DEEA3C004DF409 /* CTriggerConfigData.cpp */,
 				6FB7E44E17DEEA3D004DF409 /* CTriggerConfigData.h */,
 				6FB7E44F17DEEA3E004DF409 /* CTaskConfigData.cpp */,
@@ -1464,6 +1492,8 @@
 		9F801315175493D400EEC0BC /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				8EA82EC617E1BAFC0063CDA9 /* CPtExpandableListView.cpp */,
+				8EA82EC717E1BAFC0063CDA9 /* CPtExpandableListView.h */,
 				9F095D2817D8730A00CE32B3 /* CFileReadWrite.cpp */,
 				9F095D2917D8730A00CE32B3 /* CFileReadWrite.h */,
 				9F095D2A17D8730A00CE32B3 /* CGameDialogLayer.cpp */,
@@ -2892,6 +2922,12 @@
 				6FB7E44C17DEC34D004DF409 /* CGameNpcCard.cpp in Sources */,
 				6FB7E45117DEEA40004DF409 /* CTriggerConfigData.cpp in Sources */,
 				6FB7E45217DEEA40004DF409 /* CTaskConfigData.cpp in Sources */,
+				8EA82EC817E1BAFC0063CDA9 /* CPtExpandableListView.cpp in Sources */,
+				8EA82ECB17E1C27F0063CDA9 /* CEventBoxDialog.cpp in Sources */,
+				8EC9B4BA17E2A3D800200073 /* CEventBoxConfigData.cpp in Sources */,
+				8EC9B4BB17E2A3D800200073 /* CEventConfigData.cpp in Sources */,
+				8EC9B4BC17E2A3D800200073 /* CSceneConfigData.cpp in Sources */,
+				8EC9B4BF17E3156300200073 /* CEventBoxReward.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

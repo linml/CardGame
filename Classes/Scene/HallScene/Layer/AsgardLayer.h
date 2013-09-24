@@ -48,6 +48,7 @@ protected:
     void initArsgard();
     void handlerTouch();
     void createAndUpdateLabel();
+    void createChapterReward();
     
     void callBack(float dt);
 protected:

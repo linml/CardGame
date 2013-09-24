@@ -113,7 +113,7 @@ void CEventBoxRewordLayer::initEventBoxRewordLayer(CEventBoxData *inEventBoxData
     this->setUserData((void*) inType);
     loadResource();
     
-    if (inType == 0)
+    if (inType == GET_BOX)
     {
         createConfirmDialog();
     }else
@@ -143,13 +143,14 @@ void CEventBoxRewordLayer:: handlerTouch()
 void CEventBoxRewordLayer::loadResource()
 {
       CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "different_state.plist"), CSTR_FILEPTAH(g_mapImagesPath, "different_state.png"));
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "dialog_bg.plist"), CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
+       CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "dialog_bg.plist"), CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
 }
 
 void CEventBoxRewordLayer:: createReWordDialog(CEventBoxData *inEventBoxData)
 {
+    //CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath,"dialog_bg.plist"));
     CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
-    CCSpriteBatchNode * bathNode = CCSpriteBatchNode::createWithTexture(texture, 5);
+    CCSpriteBatchNode * bathNode = CCSpriteBatchNode::createWithTexture(texture);
     
     CCSprite * top = CCSprite::createWithSpriteFrameName("dialog_top.png");
     CCSprite * mid = CCSprite::createWithSpriteFrameName("dialog_mid.png");
@@ -177,8 +178,11 @@ void CEventBoxRewordLayer:: createReWordDialog(CEventBoxData *inEventBoxData)
     this->addChild(bathNode);
     
 
-    char * title = "基础事件描述";
-    char * describle = "捡到一个小袋子，被下了禁制，不知道里面藏了什么好东西！需要注入15点神力才能开启";
+//    char * title = "基础事件描述";
+//    char * describle = "捡到一个小袋子，被下了禁制，不知道里面藏了什么好东西！需要注入15点神力才能开启";
+    const char * title = inEventBoxData->getTitle().c_str();
+    const char * describle = Utility::getWordWithFile("dictionary.plist", inEventBoxData->getDictionaryKey().c_str()).c_str(); // "今天早上你从家里走出来的时候，踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！";
+    CCLog("the describle: %s", describle);
     CCPoint point = top->getPosition();
     CCLabelTTF * label = CCLabelTTF::create(title, "Arial", 18);
     label->setColor(ccc3(0, 240, 255));
@@ -186,16 +190,16 @@ void CEventBoxRewordLayer:: createReWordDialog(CEventBoxData *inEventBoxData)
     label->setPosition(ccp(point.x+ 180, point.y+ 70));
     addChild(label);
 
-    label =  CCLabelTTF::create(describle, "Arial", 15, CCSizeMake(300, 0), kCCTextAlignmentLeft);
+    label =  CCLabelTTF::create(Utility::getWordWithFile("dictionary.plist", inEventBoxData->getDictionaryKey().c_str()).c_str(), "Arial", 15, CCSizeMake(300, 0), kCCTextAlignmentLeft);
     label->setColor(ccc3(126, 60, 30));
     label->setAnchorPoint(ccp(0,1));
     label->setPosition(ccp(point.x+150, point.y));
     addChild(label);
     
-    char *icon1 = "baoxiang_2.png";
-    char *icon2 = "baoxiang_3.png";
+  const  char *icon1 = "baoxiang_2.png";
+  const   char *icon2 = "baoxiang_3.png";
+  texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_eventBoxPath, icon1));
     
-    texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_eventBoxPath, icon1));
     CCSprite * icon = CCSprite::createWithTexture(texture);
     icon->setAnchorPoint(CCPointZero);
     icon->setPosition(ccp(point.x+50, point.y- 80));

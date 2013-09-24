@@ -12,6 +12,7 @@
 #include "TaskLayer.h"
 #include "CCardSettingScene.h"
 #include "SceneManager.h"
+#include "ExplorationScene.h"
 
 
 CAsgardLayer::CAsgardLayer()
@@ -115,7 +116,7 @@ void CAsgardLayer::createAndUpdateLabel()
             addChild(labelttf,3,1000003);
             labelttf->setPosition(ccp(500, 500));
         }
-        sprintf(data, "现金:%d",SinglePlayer::instance()->getPlayerPrice());
+        sprintf(data, "现金:%d",SinglePlayer::instance()->getPlayerCash());
         labelttf->setString(data);
     }
     
@@ -128,7 +129,7 @@ void CAsgardLayer::createAndUpdateLabel()
             addChild(labelttf,3,1000004);
             labelttf->setPosition(ccp(700, 500));
         }
-        sprintf(data, "体力:%d",SinglePlayer::instance()->getPlayerEnergy());
+        sprintf(data, "体力:%d",SinglePlayer::instance()->getPlayerAp());
         labelttf->setString(data);
     }
     
@@ -166,12 +167,28 @@ void CAsgardLayer::createAndUpdateLabel()
             addChild(labelttf,3,1000007);
             labelttf->setPosition(ccp(700, 600));
         }
-        sprintf(data, "神力:%d",SinglePlayer::instance()->getPlayerHp());
+        sprintf(data, "神力:%d",SinglePlayer::instance()->getPlayerGp());
         labelttf->setString(data);
     }
 
 }
 
+// test:
+#include "gameMiddle.h"
+void CAsgardLayer::createChapterReward()
+{
+    
+      CReward* chapter =  CExploration::getChapterReward();
+     if (chapter)
+     {
+         char tips[200] = {0};
+         chapter->excuteReward(ADD);
+         sprintf(tips, "chapter reward add: ap: %d, gp: %d exp:%d, coin: %d, cash: %d card count: %d, prop count: %d", chapter->getEnergy(), chapter->getHP(), chapter->getExp(),
+                     chapter->getCoin(), chapter->getCash(), chapter->getCardCount(), chapter->getPropCount());
+
+         Middle::showAlertView(tips);
+     }
+}
 
 void CAsgardLayer::initArsgard()
 {
@@ -189,6 +206,7 @@ void CAsgardLayer::initArsgard()
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(GOLDPLACE_TOUCH_PRORITY);
+    createChapterReward();
    
 }
 

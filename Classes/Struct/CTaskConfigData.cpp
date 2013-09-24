@@ -27,11 +27,11 @@ CPtTask::~CPtTask()
     
 }
 
-void CPtTask::setTaskReword(int inExp, int inCoin, int inRmb)
+void CPtTask::setTaskReword(int inExp, int inCoin, int inCash)
 {
     m_sTaskReword.exp = inExp;
     m_sTaskReword.coin = inCoin;
-    m_sTaskReword.rmb = inRmb;
+    m_sTaskReword.cash = inCash;
 }
 
 STaskReword CPtTask::getTaskReword()
@@ -128,8 +128,8 @@ CPtTask * CTaskConfigData::getTaskById(int inId)
             
             int exp = GameTools::intForKey("exp", tmpDic);
             int coin = GameTools::intForKey("coin", tmpDic);
-            int rmb = GameTools::intForKey("rmb", tmpDic);
-            tmpTask->setTaskReword(exp, coin, rmb);
+            int cash = GameTools::intForKey("cash", tmpDic);
+            tmpTask->setTaskReword(exp, coin, cash);
             tmpTask->setCardIds(GameTools::valueForKey("card_ids", tmpDic));
             tmpTask->setPropItems(GameTools::valueForKey("items", tmpDic));
 

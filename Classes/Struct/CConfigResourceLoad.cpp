@@ -52,7 +52,13 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_ileve_max = g_aMaxLevel[index];
         //CCLog("the %i card's next card id: %d", card->m_icard_id, card->m_ccard_next);
         // change end:
+        if(hashmapAllCard[key->intValue()])
+        {
+            delete hashmapAllCard[key->intValue()];
+            hashmapAllCard[key->intValue()]=NULL;
+         }
         hashmapAllCard[key->intValue()]=card;
+
     }
     cout<<"card plist size ="<<hashmapAllCard.size()<<endl;
     if(hashmapAllCard.size()>0)
@@ -100,6 +106,11 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
         int index = card->m_sicard_star -1;
         index = abs(index) > 7 ? 7: abs(index);
         card->m_ileve_max = g_aMaxLevel[index];
+        if(hashMapNpcCardAll[key->intValue()])
+        {
+            delete  hashMapNpcCardAll[key->intValue()];
+            hashMapNpcCardAll[key->intValue()]=NULL;
+        }
         hashMapNpcCardAll[key->intValue()]=card;
     }
     cout<<"card plist size ="<<hashMapNpcCardAll.size()<<endl;
@@ -113,7 +124,7 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
 
 
 
-bool CConfigResourceLoad::loadPlayerLevelInfo(vector<SLevelPlayer *> *vPlayerLevel, const char *playerFileName)
+bool CConfigResourceLoad::loadPlayerLevelInfo(map<int ,SLevelPlayer *> &vPlayerLevel, const char *playerFileName)
 {
     
     CCDictionary *directory = CCDictionary::createWithContentsOfFile(playerFileName);
@@ -127,12 +138,17 @@ bool CConfigResourceLoad::loadPlayerLevelInfo(vector<SLevelPlayer *> *vPlayerLev
         playerLevel->m_iCard_max=GameTools::intForKey("card_max", playerDictionary);
         playerLevel->m_iLeader_max=GameTools::intForKey("leader_max", playerDictionary);
         playerLevel->m_iFriend_max=GameTools::intForKey("friend_max",playerDictionary); //好友上线
-        playerLevel->m_iHP_max=GameTools::intForKey("hp_max",playerDictionary);
-        playerLevel->m_iMp_max=GameTools::intForKey("mp_max",playerDictionary);
+        playerLevel->m_iGp_max=GameTools::intForKey("gp_max",playerDictionary);
+        playerLevel->m_iAp_max=GameTools::intForKey("ap_max",playerDictionary);
         playerLevel->m_iExp_max=GameTools::intForKey("exp_max", playerDictionary);
-        vPlayerLevel->push_back(playerLevel);
+        if ( vPlayerLevel[playerLevel->m_iLevel])
+        {
+            delete   vPlayerLevel[playerLevel->m_iLevel];
+            vPlayerLevel[playerLevel->m_iLevel]=NULL;
+        }
+        vPlayerLevel[playerLevel->m_iLevel]=playerLevel;
     }
-    if(vPlayerLevel->size()>0)
+    if(vPlayerLevel.size()>0)
     {
         return true;
     }
@@ -175,7 +191,10 @@ bool CConfigResourceLoad::loadSkillLogicInfo(map<int,CSkillData *> &vSkillTable,
         skill->effect_plist=GameTools::valueForKey("effect_plist", skillDirector);
         skill->m_skillName=GameTools::valueForKey("skill_name", skillDirector);
         skill->m_skillTrip=GameTools::valueForKey("skill_tips", skillDirector);
-
+        if (vSkillTable[skill->skill_id]) {
+            delete vSkillTable[skill->skill_id];
+            vSkillTable[skill->skill_id]=NULL;
+        }
         vSkillTable[skill->skill_id]=skill;
     }
     return true;

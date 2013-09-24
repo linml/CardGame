@@ -128,10 +128,7 @@ void CFightCard::updateFight(CCard *card, int level /*=1*/)
         //CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
         
         m_iMaxExp = SingleLevleConfigData::instance()->getLevelExp(level+1);
-      
-        
-    
-        
+  
     }
     else
     {

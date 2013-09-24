@@ -9,6 +9,7 @@
 #include "CGameEmailData.h"
 #include "CPtTool.h"
 #include <time.h>
+#include "CPtPropConfigData.h"
 CGameEmailData::CGameEmailData()
 {
     //mktime(<#struct tm *#>)
@@ -54,7 +55,7 @@ void CGameEmailData::decodeJsonData(std::string str)
 {
     
 }
-#include "CPtPropConfigData.h"
+
 string CGameEmailData::getFirstItemsPng()
 {
     map<int, int>::iterator it=m_mapDataProp.begin();

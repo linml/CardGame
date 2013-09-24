@@ -24,7 +24,7 @@ class CConfigResourceLoad :public CCObject
 {
 public:
     bool loadCardInfo(map<int,CCard *> &hashmapAllCard,const char *fileName);
-    bool loadPlayerLevelInfo(vector<SLevelPlayer *>*vPlayerLevel,const char *fileName);
+    bool loadPlayerLevelInfo(map <int ,SLevelPlayer *> &vPlayerLevel,const char *fileName);
     bool loadSkillLogicInfo(map<int, CSkillData *> &vPlayerLevel,const char *fileName);
     bool loadEffectLogicInfo(vector<CImapact *> &vPlayerLevel,const char *fileName);
     bool loadNPCCardInfo(map<int ,CCard *>&hashMapNpcCardAll,const char *fileName);

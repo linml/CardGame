@@ -15,10 +15,13 @@
 
 using namespace cocos2d;
 
+#define GET_BOX 0
+#define IGNORE_BOX 1
+
 class CEventBoxRewordLayer : public CCLayer
 {
 public:    
-    static CEventBoxRewordLayer *create(CEventBoxData *inEventBoxData, int inType = 1);
+    static CEventBoxRewordLayer *create(CEventBoxData *inEventBoxData, int inType = IGNORE_BOX);
 public:
     
     CEventBoxRewordLayer();
