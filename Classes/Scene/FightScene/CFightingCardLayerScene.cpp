@@ -521,6 +521,23 @@ void CFightingCardLayerScene::actionHelpSprite(const char *fightName,CCSprite *p
     pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
 }
 
+void CFightingCardLayerScene::showSkillHpText(cocos2d::CCSprite *pFightSprite, cocos2d::CCSprite *pMonsterSprite2, int skillid, CAnimationSpriteGameFight *fightAnimation)
+{
+    if(pFightSprite && fightAnimation && (fightAnimation->m_iSubHp!=0 || fightAnimation->m_iAddHp!=0))
+    {
+//        if (fightAnimation->m_iSubHp!=0 || fightAnimation->m_iAddHp!=0)
+//        {
+            CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::showHpAnimation));
+            CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingCardLayerScene::AnimaitonEnd));
+            pFightSprite->runAction(CCSequence::create(callback,CCDelayTime::create(0.6),endAnimation,NULL));
+//        }
+    }
+    else{
+        AnimaitonEnd();
+    }
+        
+}
+
 void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation)
 {
     if(pFightSprite ==pMonsterSprite2)
@@ -640,7 +657,8 @@ void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fight
             //显示扣血的函数
             break;
         case EN_ANIMATIONTYPE_BUFFER:
-            showSkill(pFight,NULL,fightAnimation->m_iSKillId, fightAnimation);
+            CCLog("====>%d,%d",fightAnimation->m_iAddHp,fightAnimation->m_iSubHp);
+            showSkillHpText(pFight,NULL,fightAnimation->m_iSKillId, fightAnimation);
             break;
         case EN_ANIMATIONTYPE_STATUS:
             showSkill(pFight,NULL,fightAnimation->m_iSKillId,fightAnimation);

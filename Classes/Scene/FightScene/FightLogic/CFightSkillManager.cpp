@@ -845,7 +845,6 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                 isNeedAddIterator=false;
             }
             else{
-                
                 if(pCardBufferRefactor->m_iEffect_time>0)
                 {
                     pCardBufferRefactor->m_iEffect_time--;
@@ -858,7 +857,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                 else if(pCardBufferRefactor->m_iKeepTime>0)
                 {
                     pCardBufferRefactor->m_iKeepTime--;
-                    appendAnimation(AtkIndex, DefIndex, 300, -200, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
+                    appendAnimation(AtkIndex, DefIndex, pCardBufferRefactor->m_iHp, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enatkindex);
 
                 }
             }
