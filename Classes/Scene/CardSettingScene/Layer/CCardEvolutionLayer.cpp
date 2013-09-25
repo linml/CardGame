@@ -15,7 +15,7 @@
 #include "PtHttpURL.h"
 CCardEvolutionLayer::CCardEvolutionLayer()
 {
-    
+    m_bPropEnough = false;
     m_cMaps = NULL;
     m_pSaveButton = NULL;
     m_pSrcCard = NULL;
@@ -26,7 +26,7 @@ CCardEvolutionLayer::CCardEvolutionLayer()
     m_pStarData = SingleStarConfigData::instance();
     m_pPropConfigData = SinglePropConfigData::instance();
     m_nTouchTag = -1;
-    m_nCostConin = 0;
+    m_nCostCoin = 0;
     m_nAddAtk = 0;
     m_nAddRvc = 0;
     m_nAddDef = 0;
@@ -173,7 +173,7 @@ void CCardEvolutionLayer:: updateData()
     // update data:
     if (m_pSrcCard && m_pDesCard)
     {
-        m_nCostConin = m_pStarData->getConstConin(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
+        m_nCostCoin = m_pStarData->getConstConin(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
         m_nAddRvc =m_pDesCard->getCardData()->m_pCard->m_icard_leadership - m_pSrcCard->getCardData()->m_pCard->m_icard_leadership ;
         m_nAddAtk =m_pDesCard->getCardData()->m_attack - m_pSrcCard->getCardData()->m_attack ;
         m_nAddDef =m_pDesCard->getCardData()->m_defend - m_pSrcCard->getCardData()->m_defend ;
@@ -181,7 +181,7 @@ void CCardEvolutionLayer:: updateData()
     }
     else
     {
-        m_nCostConin = 0;
+        m_nCostCoin = 0;
         m_nAddAtk = 0;
         m_nAddRvc = 0;
         m_nAddDef = 0;
@@ -204,12 +204,12 @@ void CCardEvolutionLayer:: updateTexture()
     char buff[30]={0};
     // update view
     // conin:
-    if (m_nCostConin == 0)
+    if (m_nCostCoin == 0)
     {
         label[4]->setString("");
     }else
     {
-        sprintf(buff, "%d", m_nCostConin);
+        sprintf(buff, "%d", m_nCostCoin);
         label[4]->setString(buff);
     }
     
@@ -229,27 +229,57 @@ void CCardEvolutionLayer:: updateTexture()
     // update prop icon:
     
     CCArray * array = SingleStarConfigData::instance()->getPropArrays(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
-    for (int i = 0; i < array->count(); i++)
+    if (array)
     {
-        PropItem * item = (PropItem*)array->objectAtIndex(i);
-        if(m_pPropConfigData->getPropDataById(item->propId))
+        
+        m_bPropEnough = true;
+        int hasCount = 0;
+        char buff[10] = {0};
+        PropItem * item = NULL;
+        CCLabelTTF *tip = NULL;
+        for (int i = 0; i < array->count(); i++)
         {
-            CCLog("%s", m_pPropConfigData->getIconName().c_str());
-            CCSprite * sprite = CCSprite::create(CSTR_FILEPTAH(g_propImagesPath, m_pPropConfigData->getIconName().c_str()));
-            if (sprite)
+            item = (PropItem*)array->objectAtIndex(i);
+            if(m_pPropConfigData->getPropDataById(item->propId))
             {
-                sprite->setAnchorPoint(CCPointZero);
-                m_pPropBg[i]->addChild(sprite);
+                hasCount = m_pPlayer->getPropCountFromBag(item->propId);
+                sprintf(buff, "%d/%d", hasCount, item->propCount);
+                tip = CCLabelTTF::create(buff, "arial", 11);
+                if (hasCount < item->propCount)
+                {
+                    m_bPropEnough = false;
+                    tip->setColor(ccRED);
+                }else
+                {
+                    tip->setColor(ccGREEN);
+                }
+                tip->setPosition(ccp(5,5));
+                
+                
+                
+                CCLog("%s", m_pPropConfigData->getIconName().c_str());
+                CCSprite * sprite = CCSprite::create(CSTR_FILEPTAH(g_propImagesPath, m_pPropConfigData->getIconName().c_str()));
+                if (sprite)
+                {
+                    sprite->setAnchorPoint(CCPointZero);
+                    m_pPropBg[i]->addChild(sprite);
+                    m_pPropBg[i]->addChild(tip);
+                }
+                
             }
-          
+            
         }
-    
+
+    }else
+    {
+        CCLog("no props array:");
     }
-    
+        
 }
 
 void CCardEvolutionLayer::clearProps()
 {
+    m_bPropEnough = false;
     for (int i = 0 ; i < 5; i++)
     {
         if (m_pPropBg[i])
@@ -259,9 +289,11 @@ void CCardEvolutionLayer::clearProps()
     }
     
 }
+
 void CCardEvolutionLayer:: save()
 {
-    // change the finght
+    saveData();
+    // change the fight
     if (m_pSrcCard && m_pDesCard && m_pFightCard)
     {
     
@@ -295,7 +327,28 @@ void CCardEvolutionLayer:: save()
     }
     
 }
-void  CCardEvolutionLayer::saveOnClick()
+
+void CCardEvolutionLayer::saveData()
+{
+    // sub: coin：
+    CCLog("the sub before: %d", m_pPlayer->getCoin());
+    m_pPlayer->subCoin(m_nCostCoin);
+    CCLog("the sub after: %d", m_pPlayer->getCoin());
+    // sub prop:
+    CCArray * array = SingleStarConfigData::instance()->getPropArrays(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
+    if (array)
+    {
+        PropItem *propItem = NULL;
+        for (int i = 0; i < array->count(); i++)
+        {
+            propItem = (PropItem*) array->objectAtIndex(i);
+            m_pPlayer->subProp(propItem->propId, propItem->propCount);
+        }
+    }
+    
+}
+
+void CCardEvolutionLayer::saveOnClick()
 {
     CSaveConfirmLayer * layer = CSaveConfirmLayer::create();
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
@@ -313,7 +366,7 @@ void  CCardEvolutionLayer::saveOnClick()
          * 4. 顶级
          */
         
-        if (m_pPlayer->getCoin() < m_nCostConin)
+        if (m_pPlayer->getCoin() < m_nCostCoin)
         {
             // 金币不足
             layer->setResultCode(6);
@@ -331,6 +384,9 @@ void  CCardEvolutionLayer::saveOnClick()
             layer->setResultCode(8);
             //级别不够
             return;
+        }else if(m_bPropEnough == false)
+        {
+            layer->setResultCode(11);
         }
 
         // send message to server:
@@ -350,8 +406,7 @@ void  CCardEvolutionLayer::saveOnClick()
     
         ADDHTTPREQUESTPOSTDATA(STR_URL_UPGRADE_CARD(194),"cardEvolution","evolution", buff, callfuncO_selector(CCardEvolutionLayer::receiveCallBack));
       //  #define STR_URL_UPGRADE_CARD(UID)   URL_FACTORY("api.php?m=Card&a=cardUpGrade&uid=",UID)
-        // test:
-       // save();
+      
     }else
     {
         layer->setResultCode(10);
@@ -398,7 +453,7 @@ void CCardEvolutionLayer::addCard(CPtDisPlayCard *inCard)
 
             // remove:
             removeCard();
-            // test:
+            // test:
         
         }
         // src card:

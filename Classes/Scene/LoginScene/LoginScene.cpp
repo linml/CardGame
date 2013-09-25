@@ -246,7 +246,6 @@ bool CLoginScene::initLogin()
         // set layer touche enable
         setTouchEnabled(true);
         setTouchMode(kCCTouchesOneByOne);
-        //setTouchPriority(-1);
         
         maps->getTouchRects(touchRect);
         bRet = true;

@@ -334,7 +334,7 @@ void CCardEnhanceLayer::updateData()
         if (tmp)
         {
             m_nCurrentExp += tmp->getCardData()->getSupportValue(1);
-            m_nCostConin += tmp->getCardData()->getCostConin();
+            m_nCostConin += tmp->getCardData()->getCostCoin();
         }
     }
     
@@ -523,7 +523,8 @@ bool CCardEnhanceLayer::verifyConin()
 void CCardEnhanceLayer:: save()
 {
        // save data:
-    m_pPlayer->ReduceCoin(m_nCostConin);
+    CCLog("sub coin: %d", m_nCostConin);
+    m_pPlayer->subCoin(m_nCostConin);
     m_nCostConin = 0;
     
     vector<CFightCard *> &r_CardBag = m_pPlayer->getCardBagVector();

@@ -47,6 +47,8 @@ namespace CPtTool
     
     CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize);
     
+    int getSellPrice(int baseValue, int levelValue, int starValue);
+
 };
 
 

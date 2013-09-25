@@ -31,6 +31,8 @@ bool CRegisterLayer::init()
     
     m_Parent = NULL;
     
+    this->setTouchEnabled(true);
+    this->setTouchMode(kCCTouchesOneByOne);
     CCLayerColor* bg= CCLayerColor::create(ccc4(0, 0, 0, 230));
     this->addChild(bg,-1);
     
@@ -187,6 +189,8 @@ void  CRegisterLayer::doRegiter()
     memset(pass, 0, 64);
     string strPassword = m_pEditPassword->getText();
     Pt_AES::sharePtAESTool("cube")->EncryptString(strPassword.c_str(),pass);
+    unsigned char tempData[64]="";
+     
     sprintf(achData, "name=%s&password=%s",m_pEditEMail->getText(),pass);
     ADDHTTPREQUESTPOSTDATA(STR_URL_REGISTER,
                            "CALLBACK_CRegisterLayer_doRegiter",
@@ -223,4 +227,9 @@ void CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)
         CCNotificationCenter::sharedNotificationCenter()->postNotification(REGITER_SUCCESS,NULL);
         removeFromParentAndCleanup(true);
     }
+}
+
+bool CRegisterLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+    return true;
 }

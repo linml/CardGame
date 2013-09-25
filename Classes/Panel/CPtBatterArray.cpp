@@ -588,6 +588,7 @@ int  CPtBattleArray::resortFightCard()
         
         if (m_pCardArray[i])
         {
+            m_pCardArray[i]->setLive();
             if (next != i)
             {
                 m_pCardArray[next] = m_pCardArray[i];

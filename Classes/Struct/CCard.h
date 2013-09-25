@@ -69,7 +69,7 @@ public:
     virtual int  getAddValue(int level, int type); //如果是怪物信息的话 这边调用的方式是不一样的 直接返回子类的
     int  getNeedValue(int level, int type);
     int  getSupportValue(int type);
-    int  getCostConin();
+    int  getCostCoin();
     
     void setInBattleArray(const int &inType);
     int  getInWhichBattleArray();

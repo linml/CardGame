@@ -47,6 +47,7 @@ private:
     void runLoginScene();
     void runHallScene(int inOpenType = 0);
     void runCardSettingScene();
+    void runSceneAnimation(CCScene *tagerScene);
     //test
 public:
     void runTest();

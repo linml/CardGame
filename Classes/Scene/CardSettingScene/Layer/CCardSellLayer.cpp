@@ -108,7 +108,6 @@ void CCardSellLayer::initSelll()
     // init left
     CCArray * array = CCArray::create();
     m_pSellPackage = CPtListViewWidget::create(array, CCSizeMake(476, 450), kCCScrollViewDirectionVertical , CCSizeMake(5, 2) , 3);
-    //m_pSellPackage->setBackGround(CCLayerColor::create(ccc4(125,125, 25, 125)));
     ((TableView *)(m_pSellPackage->getTableView()))->setDelayMode(true);
     m_pSellPackage->setAnchorPoint(CCPointZero);
     m_pSellPackage->setPosition(ccp(40, 140));
@@ -134,7 +133,6 @@ void CCardSellLayer::saveOnClick()
         CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
         return;
     }
- //   layer->setResultCode(0);
     // send message to server:
     char buff[500]={0};
     char param[200]={0};
@@ -167,6 +165,7 @@ void CCardSellLayer::saveOnClick()
 
 void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)
 {
+    static int i = 0;
     // if result is zero save data
     char *buffer = (char *) pSender;
     CCLog("callback: %s", buffer);
@@ -174,38 +173,50 @@ void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)
     CSaveConfirmLayer * layer = (CSaveConfirmLayer*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(2000);
     if(!buffer)
     {
-        
-        CCLog("send again sell request");
-        char buff[1000]={0};
-        char param[200]={0};
-        char p[20]={0};
-        int index = 0;
-//xianbei modify        sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
-        sprintf(buff, "&sig=%s&item_ids=[",STR_USER_SIG);
-        
-        
-        CCArray * array = m_pSellPackage->getItems();
-        CPtBattleArrayItem * tmp = NULL;
-        
-        for (int i = 0; i < array->count(); i++)
+        if(i==3)
         {
-            tmp = (CPtBattleArrayItem*)(array->objectAtIndex(i));
-            if (tmp && tmp->getDisplayView())
+            i = 0;
+            layer->setResultCode(200);
+            return;
+        }else
+        {
+           
+            i++;
+            
+            CCLog("send again sell request");
+            char buff[1000]={0};
+            char param[200]={0};
+            char p[20]={0};
+            int index = 0;
+            //xianbei modify        sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
+            sprintf(buff, "&sig=%s&item_ids=[",STR_USER_SIG);
+            
+            
+            CCArray * array = m_pSellPackage->getItems();
+            CPtBattleArrayItem * tmp = NULL;
+            
+            for (int i = 0; i < array->count(); i++)
             {
-                index =  ((CPtDisPlayCard*)(tmp->getDisplayView()))->getCardData()->m_User_Card_ID;
-                sprintf(p, "%d,",index);
-                strcat(param, p);
+                tmp = (CPtBattleArrayItem*)(array->objectAtIndex(i));
+                if (tmp && tmp->getDisplayView())
+                {
+                    index =  ((CPtDisPlayCard*)(tmp->getDisplayView()))->getCardData()->m_User_Card_ID;
+                    sprintf(p, "%d,",index);
+                    strcat(param, p);
+                }
             }
+            
+            CCLog("%s", param);
+            strncat(buff, param, strlen(param)-1);
+            strcat(buff, "]");
+            
+            ADDHTTPREQUESTPOSTDATA(STR_URL_SELL_CARD(194),"cardsell","sell",buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
+            delete [] buffer;
+            return;
+
         }
-        
-        CCLog("%s", param);
-        strncat(buff, param, strlen(param)-1);
-        strcat(buff, "]");
-        
-        ADDHTTPREQUESTPOSTDATA(STR_URL_SELL_CARD(194),"cardsell","sell",buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
-        delete [] buffer;
-        return;
     }
+    i = 0;
     CCDictionary* dic = PtJsonUtility::JsonStringParse(buffer);
     
     int result = GameTools::intForKey("code", dic);
@@ -230,10 +241,17 @@ void CCardSellLayer::receiveCallBack(cocos2d::CCObject *pSender)
 void CCardSellLayer::save()
 {
     // save data:
+    saveData();
     removeCardInCardBag();
     clearCoin();
 }
-
+void CCardSellLayer::saveData()
+{
+    CCLog("sell before : %d", m_pPlayer->getCoin());
+    m_pPlayer->addCoin(m_nConin);
+    CCLog("sell after : %d", m_pPlayer->getCoin());
+    
+}
 void CCardSellLayer::resetData()
 {
     // reset data:

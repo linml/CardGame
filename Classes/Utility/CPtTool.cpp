@@ -591,6 +591,11 @@ namespace CPtTool
         scrollView->setContentOffset(ccp(0, scrollView->getViewSize().height-pSize.height));
         return scrollView;
     }
+    
+   int getSellPrice(int baseValue, int levelValue, int starValue)
+   {
+       return baseValue + (int)(levelValue*42*starValue/5);
+   }
 
 };
 

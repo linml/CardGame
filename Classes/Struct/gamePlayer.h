@@ -149,6 +149,8 @@ public:
     void updateProps();
     bool getLoadPropEnd(){return  m_bLoadProps;};
     bool addGridBySys();
+    
+    int getPropCountFromBag(int inPropId);
 protected:
     int isCanAddToBackPack(map<int, int> &tmpProps, map<int, int> &inAddProps , int inUserGridCount);
     void mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps);    
@@ -200,15 +202,15 @@ public:
     void addPalyerExp(int inAddExp);
     void subPlayerExp(int inSubExp);
     
-    void addRVC(const int &inAddValue);
+    
     
     void addCoin(const int &inAddValue);
     void subCoin(const int &inSubValue);
     
     
-    
-    void ReduceRVC(const int &inReduceRVC);
-    void ReduceCoin(const int &inReduceCoin);
+    void addRVC(const int &inAddValue);
+    void subRVC(const int &insubRVC);
+
     
 protected:
     CGamePlayerData *m_gGamePlayerData;

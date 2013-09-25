@@ -845,6 +845,13 @@ void CGamePlayer::addRVC(const int &inAddValue)
 {
     m_gGamePlayerData->m_irvc += inAddValue;
 }
+
+void CGamePlayer::subRVC(const int &inSubRVC)
+{
+    m_gGamePlayerData->m_irvc -= inSubRVC;
+    m_gGamePlayerData->m_irvc  =  m_gGamePlayerData->m_irvc >= 0 ? m_gGamePlayerData->m_irvc : 0;
+}
+
 void CGamePlayer::addCoin(const int &inAddValue)
 {
     m_gGamePlayerData->m_icoin += inAddValue;
@@ -857,14 +864,8 @@ void CGamePlayer::subCoin(const int &inSubValue)
     m_gGamePlayerData->m_icoin  =  m_gGamePlayerData->m_icoin >= 0 ? m_gGamePlayerData->m_icoin : 0;
 }
 
-void CGamePlayer::ReduceRVC(const int &inReduceRVC)
-{
-    m_gGamePlayerData->m_irvc -= inReduceRVC;
-}
-void CGamePlayer::ReduceCoin(const int &inReduceCoin)
-{
-    m_gGamePlayerData->m_icoin  -= inReduceCoin;
-}
+
+
 
 
 void CGamePlayer::appendCFightCardFightingBuffer(CFightCardFightingBuffer *data)
@@ -992,6 +993,8 @@ void CGamePlayer:: parsePropsInfo(CCObject *pObject)
     }
     
 }
+
+
 /*
  * @breif: 获取可以添加到背包的邮件队列
  * @param: inEmailDatas: 要判断的邮件队列
@@ -1007,6 +1010,22 @@ void CGamePlayer::updateProps()
             m_vProps.erase(i);
         }
     }
+}
+
+/*
+ * @breif 或取背包中该道具ID的数目
+ * @param inPropID 道具ID
+ * @return prop count
+ */
+int CGamePlayer::getPropCountFromBag(int inPropId)
+{
+    int count = 0;
+    map<int, int>::iterator i = m_vProps.find(inPropId);
+    if (i!= m_vProps.end())
+    {
+        count = i->second;
+    }
+    return count;
 }
 
 bool CGamePlayer::addGridBySys()

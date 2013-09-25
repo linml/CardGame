@@ -103,7 +103,7 @@ void FightResultConfirm::postHttpNpc()
 {
    
     
-    int taskId =CExploration::getCurrentTaskId();
+    int taskId = SinglePlayer::instance()->getCurrentTaskId() == CExploration::getCurrentTaskId() ? CExploration::getCurrentTaskId() : 0;
     int eventId=CExploration::getCurrentEventId(); //事件ID
     int chapterId=CExploration::getCurrentChapterId(); //章ID
     int sectionId=CExploration::getCurrentSectionId(); //节ID

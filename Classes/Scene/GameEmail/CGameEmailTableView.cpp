@@ -817,11 +817,19 @@ void CGameEmailTableView::dialogCancelButtonSetFunc(cocos2d::CCObject *object)
 
 void CGameEmailTableView::dialogOkButtonSetFunc(cocos2d::CCObject *object)
 {
+    this->runAction(CCSequence::create(CCEaseBounceInOut::create(CCScaleTo::create(0.2, 0.1)),CCCallFunc::create(this, callfunc_selector(CGameEmailTableView::runCallExitEmailLayerAndCallBagLayer)),NULL));
+}
+
+void CGameEmailTableView::runCallExitEmailLayer()
+{
+    removeFromParentAndCleanup(true);
+    //CCNotificationCenter::sharedNotificationCenter()->postNotification("CAONIMAXIANSHIBEIBAO");
+}
+void CGameEmailTableView::runCallExitEmailLayerAndCallBagLayer()
+{
     removeFromParentAndCleanup(true);
     CCNotificationCenter::sharedNotificationCenter()->postNotification("CAONIMAXIANSHIBEIBAO");
 }
-
-
 
 void CGameEmailTableView::getAllEmailItem()
 {
@@ -916,7 +924,7 @@ void CGameEmailTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         CCLog("aaaaaaa4");
         if(m_tempTouchNode==node)
         {
-            removeFromParentAndCleanup(true);
+             this->runAction(CCSequence::create(CCEaseBounceInOut::create(CCScaleTo::create(0.2, 0.01)),CCCallFunc::create(this, callfunc_selector(CGameEmailTableView::runCallExitEmailLayer)),NULL));
         }
     }
     else if(getChildByTag(7)->boundingBox().containsPoint(touchPoint))

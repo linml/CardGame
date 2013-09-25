@@ -318,7 +318,10 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
                             item->setDelegateLayer(m_pDelegateLayer);
                             m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->addObject(item);
                             m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
-                            m_pDelegateLayer->m_pSellPanel->addCoin(displace->getCardData()->m_pCard->m_icard_price);
+                           // m_pDelegateLayer->m_pSellPanel->addCoin(displace->getCardData()->m_pCard->m_icard_price);
+                            CFightCard* priceCard =  displace->getCardData();
+                            int coin = CPtTool::getSellPrice(priceCard->m_pCard->m_icard_price, priceCard->m_iCurrLevel, priceCard->m_pCard->m_sicard_star);
+                            m_pDelegateLayer->m_pSellPanel->addCoin(coin);
                             if (m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->count() <= 3)
                             {
                               
@@ -366,7 +369,9 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
                     
                     m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->removeObjectAtIndex(sindex);
                     m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
-                    m_pDelegateLayer->m_pSellPanel->subCoin(displace->getCardData()->m_pCard->m_icard_price);
+                    CFightCard* priceCard =  displace->getCardData();
+                    int coin = CPtTool::getSellPrice(priceCard->m_pCard->m_icard_price, priceCard->m_iCurrLevel, priceCard->m_pCard->m_sicard_star);
+                    m_pDelegateLayer->m_pSellPanel->subCoin(coin);
                     
                     return;
                 }

@@ -99,6 +99,7 @@ void CSaveConfirmLayer::initConfirm()
  *        4. 3: 领导力不够
  *        5. 4: 没有材料卡或被强化的卡
  *        6. 5: 金币不够
+ *        7. 11: 材料不够
  */
 
 void CSaveConfirmLayer::setResultCode(int inCode, bool delay)
@@ -182,6 +183,8 @@ void CSaveConfirmLayer::updateText()
         case 10:
             sprintf(buff, "%s", "没有卡片被进化");
             break;
+        case 11:
+            sprintf(buff, "%s", "材料不够");
         case 200:
             sprintf(buff, "服务器响应失败");
             break;

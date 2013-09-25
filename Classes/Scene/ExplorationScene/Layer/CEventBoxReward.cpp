@@ -143,12 +143,11 @@ void CEventBoxRewordLayer:: handlerTouch()
 void CEventBoxRewordLayer::loadResource()
 {
       CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "different_state.plist"), CSTR_FILEPTAH(g_mapImagesPath, "different_state.png"));
-       CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "dialog_bg.plist"), CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "dialog_bg.plist"), CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
 }
 
 void CEventBoxRewordLayer:: createReWordDialog(CEventBoxData *inEventBoxData)
 {
-    //CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath,"dialog_bg.plist"));
     CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
     CCSpriteBatchNode * bathNode = CCSpriteBatchNode::createWithTexture(texture);
     
@@ -198,8 +197,8 @@ void CEventBoxRewordLayer:: createReWordDialog(CEventBoxData *inEventBoxData)
     
   const  char *icon1 = "baoxiang_2.png";
   const   char *icon2 = "baoxiang_3.png";
-  texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_eventBoxPath, icon1));
     
+    texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_eventBoxPath, icon1));
     CCSprite * icon = CCSprite::createWithTexture(texture);
     icon->setAnchorPoint(CCPointZero);
     icon->setPosition(ccp(point.x+50, point.y- 80));

@@ -224,7 +224,7 @@ int CPtLevelConfigData::getCurrentLevel(int exp, int star,  int beginLevel)
 
 /*
  * @param inLevel: 从 level_up_config.plist中获取level的inType值,当level大于level_up_config.plist中的最大值时，取最大值
- * @param inType: 1: conin, 2: exp
+ * @param inType: 1: coin, 2: exp
  */
 int CPtLevelConfigData::getValeWithLevel(int inLevel, int inType)
 {

@@ -374,7 +374,23 @@ bool CHallScene::initHall(int inType)
 void CHallScene::createEmailLayer()
 {
     CGameEmailTableView *gameEmailLayer=CGameEmailTableView::CreateEmailLayer();
-    addChild(gameEmailLayer,900);
+    gameEmailLayer->setScale(0.01);
+    gameEmailLayer->setTouchEnabled(false);
+    addChild(gameEmailLayer,900,88888);
+    gameEmailLayer->runAction(CCSequence::create(CCEaseBounceOut::create(CCScaleTo::create(0.8, 1.0)),CCCallFuncND::create(this, callfuncND_selector(CHallScene::setHallSceneLayerCanTouch), (void*)getChildByTag(88888)),NULL));
+    
+}
+void CHallScene::setHallSceneLayerCanTouch(void *tag)
+{
+    CCNode *node=static_cast<CCNode *>(tag);
+    switch (node->getTag()) {
+        case 88888:
+            ((CGameEmailTableView *)getChildByTag(88888))->setTouchEnabled(true);
+            break;
+            
+        default:
+            break;
+    }
     
 }
 void CHallScene::handlerTouch()

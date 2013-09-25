@@ -805,13 +805,13 @@ void CExploration::createOrUpdatePlayerData()
 {
     
     //HP，体力，金币，现金币，领导力，等级
-    //username
+    //username 180
     CCSize wndSize=CCDirector::sharedDirector()->getWinSize();
     if (!getChildByTag(1000001))
     {
         CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 20);
         addChild(labelttf,0,1000001);
-        labelttf->setPosition(ccp(50, 200));
+        labelttf->setPosition(ccp(350, 140));
         labelttf->setString(CCUserDefault::sharedUserDefault()->getStringForKey("name").c_str());
     }
     char data[30];
@@ -822,20 +822,20 @@ void CExploration::createOrUpdatePlayerData()
         {
             labelttf=CCLabelTTF::create("", "Arial", 20);
             addChild(labelttf,0,1000002);
-            labelttf->setPosition(ccp(200, 200));
+            labelttf->setPosition(ccp(450, 140));
         }
         sprintf(data, "金币:%d",SinglePlayer::instance()->getCoin());
         labelttf->setString(data);
-       
+        
     }
     //user exp;现金币
     {
         CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000003);
         if (!getChildByTag(1000003))
         {
-           labelttf=CCLabelTTF::create("", "Arial", 20);
+            labelttf=CCLabelTTF::create("", "Arial", 20);
             addChild(labelttf,0,1000003);
-            labelttf->setPosition(ccp(350, 200));
+            labelttf->setPosition(ccp(350, 180));
         }
         sprintf(data, "现金:%d",SinglePlayer::instance()->getPlayerCash());
         labelttf->setString(data);
@@ -846,9 +846,9 @@ void CExploration::createOrUpdatePlayerData()
         CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000004);
         if (!getChildByTag(1000004))
         {
-           labelttf=CCLabelTTF::create("", "Arial", 20);
+            labelttf=CCLabelTTF::create("", "Arial", 20);
             addChild(labelttf,0,1000004);
-            labelttf->setPosition(ccp(500, 200));
+            labelttf->setPosition(ccp(500, 180));
         }
         sprintf(data, "体力:%d",SinglePlayer::instance()->getPlayerAp());
         labelttf->setString(data);
@@ -859,9 +859,9 @@ void CExploration::createOrUpdatePlayerData()
         CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000005);
         if (!getChildByTag(1000005))
         {
-           labelttf=CCLabelTTF::create("", "Arial", 20);
+            labelttf=CCLabelTTF::create("", "Arial", 20);
             addChild(labelttf,0,1000005);
-            labelttf->setPosition(ccp(650, 200));
+            labelttf->setPosition(ccp(650, 180));
         }
         sprintf(data, "领导力:%d",SinglePlayer::instance()->getRVC());
         labelttf->setString(data);
@@ -873,7 +873,7 @@ void CExploration::createOrUpdatePlayerData()
         {
             labelttf=CCLabelTTF::create("", "Arial", 20);
             addChild(labelttf,0,1000006);
-            labelttf->setPosition(ccp(800, 200));
+            labelttf->setPosition(ccp(550, 140));
         }
         sprintf(data, "等级:%d",SinglePlayer::instance()->getPlayerLevel());
         labelttf->setString(data);
@@ -885,13 +885,12 @@ void CExploration::createOrUpdatePlayerData()
         if (!getChildByTag(1000007))
         {
             labelttf=CCLabelTTF::create("", "Arial", 20);
-            addChild(labelttf,1,1000007);
-            labelttf->setPosition(ccp(900, 200));
+            addChild(labelttf,0,1000007);
+            labelttf->setPosition(ccp(650, 140));
         }
         sprintf(data, "神力:%d",SinglePlayer::instance()->getPlayerGp());
         labelttf->setString(data);
     }
-    
 }
 
 
@@ -1000,7 +999,8 @@ void CExploration::onParseSaveMsgByDictionary(CCDictionary *pResultDict)
 //cube.games.com/api.php?m=Part&a=finishEvent&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&chapter_id=1&part_id=1&step=1&event_id=1&type=1&task_id=300001
 void CExploration::onFishEventRequest(int inType)
 {
-    int taskId = s_SectionData.sectionInfo->getTaskId();
+    int taskId = m_pPlayer->getCurrentTaskId() == s_SectionData.sectionInfo->getTaskId() ? s_SectionData
+    .sectionInfo->getTaskId() : 0;
     int evenId = getCurrentEventId();
     if (evenId == -1)
     {
@@ -1464,6 +1464,7 @@ void CExploration:: onCanfirmCallback(CCObject *pObject)
     int type = (int)node->getUserData();
     node->removeFromParentAndCleanup(true);
     setVisiable();
+    addTaskAndSectionReward();
     getBiforest();
 }
 

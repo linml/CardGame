@@ -47,6 +47,7 @@ protected:
     void updateData();
     void updateTexture();
     void save();
+    void saveData();
     void saveOnClick();
     void receiveCallBack(CCObject *pSender);
     

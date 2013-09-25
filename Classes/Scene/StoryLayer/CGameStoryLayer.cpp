@@ -18,7 +18,6 @@ CGameStoryLayer::CGameStoryLayer()
     wndSize=CCDirector::sharedDirector()->getWinSize();
     m_pRoleAnimation=new  CGameRoleAnimation;
     isKuaiJingZhuangTai=false;
-    setTouchPriority(-40001);
     CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath,"Skip_Normal.png"));
     CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath,"Skip_Pressed.png"));
     

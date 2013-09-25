@@ -46,8 +46,9 @@ protected:
     void updateTexture();
     void save();
     void saveOnClick();
+    void saveData();
     void receiveCallBack(CCObject *pSender);
-    
+   
     void clearProps();
 protected:
 
@@ -68,8 +69,9 @@ protected:
     CPtPropConfigData * m_pPropConfigData;
     
     
+    bool m_bPropEnough;
     int m_nTouchTag;
-    int m_nCostConin;
+    int m_nCostCoin;
     int m_nAddAtk;
     int m_nAddRvc;
     int m_nAddDef;

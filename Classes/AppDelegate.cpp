@@ -15,6 +15,7 @@
 #include "MemoryGameCollabLayer.h"
 #include "CGameEmailManager.h"
 #include "CPtTool.h"
+#include "Pt_AES.h"
 
 USING_NS_CC;
 
@@ -34,27 +35,20 @@ bool AppDelegate::applicationDidFinishLaunching()
 	CCDirector *pDirector = CCDirector::sharedDirector();
 	pDirector->setOpenGLView(CCEGLView::sharedOpenGLView());
 
-    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(1024, 768,kResolutionShowAll);
+    CCEGLView::sharedOpenGLView()->setDesignResolutionSize(1024, 768,kResolutionExactFit);
 
     pDirector->setProjection(kCCDirectorProjection2D);
 
 	// turn on display FPS
 	pDirector->setDisplayStats(true);
     
-    pDirector->setProjection(kCCDirectorProjection2D);
+    Pt_AES::sharePtAESTool("0123456789abcdef");
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	pDirector->setAnimationInterval(1.0 / 60);
-   // const char *tempdata=CPtTool::readFileName(std::string("resource_cn/emailmsg.txt").c_str()).c_str();
-   // G_GAMESINGEMAIL::instance()->decodeEmap(tempdata);
-   // CCLOG("%s",G_GAMESINGEMAIL::instance()->getJsonData().c_str());
-   // CCLOG("==%d", G_GAMESINGEMAIL::instance()->getCurrentEmailMapMaxMsgId());
-   // CCLOG("===%d",G_GAMESINGEMAIL::instance()->getCurrentEmailUnreadCount());
-    
    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
- //   pDirector->runWithScene(HelloWorld::scene());
-  //  CCScene *scene=CCScene::create();
-  // SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_FIGHTSCENE);
+
+//    pDirector->runWithScene(HelloWorld::scene());
 
     return true;
 }

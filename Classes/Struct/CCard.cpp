@@ -294,9 +294,9 @@ int CFightCard:: getAddValue(int level, int type)
 }
 
 /*
- * @brief : 以该卡作为材料卡所需要消耗的金币
+ * @brief : 以该卡作为材料卡所需要消耗的金币, 向下取整
  */
-int  CFightCard::getCostConin()
+int  CFightCard::getCostCoin()
 {
     int result = 0;
     int value = SingleLevleConfigData::instance()->getValeWithLevel(m_iCurrLevel+1, 1);

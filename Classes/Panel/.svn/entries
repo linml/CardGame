@@ -1,14 +1,14 @@
 10
 
 dir
-1491
+1519
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Panel
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-18T02:06:54.364060Z
-1384
+2013-09-25T01:25:43.087100Z
+1507
 phileas
 has-props
 
@@ -477,40 +477,6 @@ phileas
 
 5804
 
-CGamesCard.cpp
-file
-
-
-
-
-2013-08-12T09:27:48.000000Z
-11b57b78b8da9bca1ce55ad99f37a5bb
-2013-08-12T10:27:29.337965Z
-940
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13852
-
 CGameDialogLayer.cpp
 file
 
@@ -547,6 +513,40 @@ merlin
 
 GameControl
 dir
+
+CGamesCard.cpp
+file
+
+
+
+
+2013-08-12T09:27:48.000000Z
+11b57b78b8da9bca1ce55ad99f37a5bb
+2013-08-12T10:27:29.337965Z
+940
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13852
 
 CPtButtonWidget.h
 file
@@ -1030,11 +1030,11 @@ file
 
 
 
-2013-09-17T09:27:42.000000Z
-03bf2407e8d02781493d8f270820dc7b
-2013-09-17T09:46:05.468594Z
-1382
-merlin
+2013-09-25T07:48:25.000000Z
+6d621d6a8b3995f0da0257c5eb416574
+2013-09-25T01:25:43.087100Z
+1507
+phileas
 
 
 
@@ -1056,7 +1056,7 @@ merlin
 
 
 
-41813
+41853
 
 CFileReadWrite.cpp
 file

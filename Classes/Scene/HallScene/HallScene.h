@@ -45,6 +45,7 @@ protected:
     void handlerTouch();
     void createEmailLayer();
     void showBackBag();
+    void setHallSceneLayerCanTouch(void *tag);
     void showBackNotice(CCObject *object);
 protected:
     int m_nTouchTag;

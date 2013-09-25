@@ -78,6 +78,8 @@ private:
     void decodeSingleRecvEmail(char *data);
     void showDialogBagFull(CCObject *obect);
     void setGunDongTiaoPtr();
+    void runCallExitEmailLayerAndCallBagLayer();
+    void runCallExitEmailLayer();
     
     void dialogOkButtonSetFunc(CCObject *object);
     void dialogCancelButtonSetFunc(CCObject *object);

@@ -1,14 +1,14 @@
 10
 
 dir
-1491
+1519
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/FightScene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-23T10:18:24.683172Z
-1480
+2013-09-25T02:01:28.339103Z
+1508
 phileas
 has-props
 
@@ -31,7 +31,7 @@ dir
 
 CFightingCardLayerScene.cpp
 file
-1497
+
 
 
 
@@ -102,7 +102,7 @@ dir
 
 CFightingCardLayerScene.h
 file
-1497
+
 
 
 

@@ -30,6 +30,8 @@ public:
     
     void onReceiveRegiterMsg(CCObject *pOject);
     
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    
     void* m_Parent;
 private:
     CCEditBox* m_pEditName;

@@ -23,6 +23,7 @@
 
 SceneManager::SceneManager()
 {
+    srand(time(0));
     m_currscene=EN_CURRSCENE_NONE;
 }
 void SceneManager::runMapScene()
@@ -39,7 +40,7 @@ void SceneManager::runMapScene()
         pScene->addChild(mapLayer);
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+           runSceneAnimation(pScene);
         }
         else{
             pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
@@ -61,7 +62,7 @@ void SceneManager::runCreateCardScene()
         scene->addChild(cardfactory);
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,scene));
+            runSceneAnimation(scene);
         }
         else
         {
@@ -132,7 +133,7 @@ void SceneManager::runLoginScene()
         
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+             runSceneAnimation(pScene);
         }
         else
         {
@@ -152,7 +153,7 @@ void SceneManager::runHallScene(int inOpenType)
         
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+             runSceneAnimation(pScene);
         }
         else
         {
@@ -173,7 +174,7 @@ void SceneManager::runCardSettingScene()
         
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+              pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
         }
         else
         {
@@ -195,7 +196,7 @@ void SceneManager::runTaskScene()
         pScene->addChild(taskscene);
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
+             runSceneAnimation(pScene);
         }
         else
         {
@@ -213,7 +214,7 @@ void SceneManager::runFightScene()
         CCDirector *pDirector=CCDirector::sharedDirector();
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,CFightingCardLayerScene::scene()));
+             runSceneAnimation(CFightingCardLayerScene::scene());
         }
         else
         {
@@ -253,7 +254,7 @@ void SceneManager::runEvolutionScene()
         CCDirector *pDirector=CCDirector::sharedDirector();
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,CEvolutionLayer::scene()));
+            runSceneAnimation(CEvolutionLayer::scene());
         }
         else
         {
@@ -270,12 +271,31 @@ void SceneManager::runExplorationScene()
         CCDirector *pDirector=CCDirector::sharedDirector();
         if(pDirector->getRunningScene())
         {
-            pDirector->replaceScene(CCTransitionFade::create(1.0f,CExploration::scene()));
+            runSceneAnimation(CExploration::scene());
         }
         else
         {
             pDirector->runWithScene(CCTransitionFade::create(1.0f,CExploration::scene()));
         }
+    }
+}
+
+void SceneManager::runSceneAnimation(CCScene *tagerScene)
+{
+    int iSceneIndex=rand()%3+1;
+    CCDirector * pDirector=CCDirector::sharedDirector();
+    switch (iSceneIndex) {
+        case 1:
+            pDirector->replaceScene(CCTransitionFade::create(1.0f,tagerScene));
+            break;
+        case 2:
+            pDirector->replaceScene(CCTransitionShrinkGrow::create(1.0, tagerScene));
+        case 3:
+            pDirector->replaceScene(CCTransitionSplitRows::create(1.0, tagerScene));
+        case 4:
+            pDirector->replaceScene(CCTransitionSplitCols::create(1.0, tagerScene));
+        default:
+            break;
     }
 }
 
