@@ -902,6 +902,7 @@ void CExploration::attachConfirm()
     
     if(node)
     {
+//        removeChild(node, true);
         node->removeFromParentAndCleanup(true);
         CConfirmLayer *layer = CConfirmLayer::create();
         this->addChild(layer, 5, 10);
