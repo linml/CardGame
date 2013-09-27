@@ -306,7 +306,7 @@ bool CGameEmailTableView::loadPlistFile()
 
 void CGameEmailTableView::creaetEmailTableView()
 {
-    initView(ccp(200,150), CCSizeMake(800, 400),0, CCSizeMake(800, 100), CCSizeMake(600, 120));
+    initView(ccp(200,150), CCSizeMake(650, 400),0, CCSizeMake(650, 100), CCSizeMake(600, 120));
     
 }
 
@@ -334,8 +334,15 @@ void CGameEmailTableView::createRecvAllButton()
     }
 }
 
+void CGameEmailTableView::createColorLayer()
+{
+    CCLayerColor *color=CCLayerColor::create(ccc4(0, 0, 0, 200));//, <#GLfloat width#>, <#GLfloat height#>)
+    addChild(color,0);
+}
+
 bool CGameEmailTableView::initCreate()
 {
+    createColorLayer();
     loadPlistFile();
     createRecvAllButton();
     creaetEmailTableView();
@@ -369,14 +376,18 @@ bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSize ce
     m_tableViewSize = s;
     m_tableViewPoint = p;
     
+   
     
     tableView = CEmrysTableView::Create(this, s,this);
     tableView->setDirection(kCCScrollViewDirectionVertical);
     tableView->setPosition(p);
     tableView->setDelegate(this);
-    tableView->setTouchPriority(-8);
+    tableView->setTouchPriority(-125);
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
     this->addChild(tableView,2,77777);
+    
+  
+    
     return true;
 }
 bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSprite*cellImage , int cellgap){
@@ -482,8 +493,6 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
                 int valueZorder=Utility::getNodeByTag(cell, "1,0,0")->getZOrder()+1;
                 Utility::getNodeByTag(cell, "1,0,0")->addChild(sprite,valueZorder);
                 sprite->setPosition(ccp(rect.width/2,rect.height/2));
-                
-                
             }
         }
     }

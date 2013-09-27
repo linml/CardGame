@@ -1,14 +1,14 @@
 10
 
 dir
-1422
+1560
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-18T09:42:54.869659Z
-1417
+2013-09-24T06:22:51.365234Z
+1489
 phileas
 has-props
 
@@ -32,10 +32,10 @@ file
 
 
 
-2013-09-18T09:43:26.000000Z
-c2d93a43ebada54c83ff22f3b98bb8cc
-2013-09-18T09:42:54.869659Z
-1417
+2013-09-27T08:55:14.000000Z
+2f723910f83db82fadf87a6c17a8e23d
+2013-09-24T06:20:13.981307Z
+1488
 phileas
 
 
@@ -58,11 +58,11 @@ phileas
 
 
 
-1818
+12808
 
 task_config.plist
 file
-1452
+
 
 
 
@@ -278,7 +278,7 @@ merlin
 
 npccardteam.txt
 file
-1434
+
 
 
 
@@ -381,40 +381,6 @@ phileas
 uiScript
 dir
 
-shoushang_l.plist
-file
-
-
-
-
-2013-08-13T07:35:17.000000Z
-692cfca7cc64af9cb3466013eeea0cd7
-2013-08-13T09:32:24.972476Z
-962
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-596
-
 team.txt
 file
 
@@ -449,16 +415,16 @@ merlin
 
 513
 
-event_box_config.plist
+shoushang_l.plist
 file
-1452
 
 
 
-2013-09-23T03:24:56.000000Z
-2ed88f7c5f1a52a80cd91d65712e8ef6
-2013-09-23T03:32:52.513848Z
-1452
+
+2013-08-13T07:35:17.000000Z
+692cfca7cc64af9cb3466013eeea0cd7
+2013-08-13T09:32:24.972476Z
+962
 merlin
 
 
@@ -481,7 +447,41 @@ merlin
 
 
 
-1971
+596
+
+event_box_config.plist
+file
+
+
+
+
+2013-09-27T08:55:14.000000Z
+4d5cc0f5fcf1a25192e849ba9dc32a05
+2013-09-23T10:18:24.683172Z
+1480
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1885
 
 skill_effect_config.plist
 file
@@ -554,9 +554,6 @@ merlin
 word
 dir
 
-img
-dir
-
 card_star_level_up_config.plist
 file
 
@@ -591,9 +588,15 @@ phileas
 
 5320
 
+img
+dir
+
+map
+dir
+
 item_config.plist
 file
-1452
+
 
 
 
@@ -624,9 +627,6 @@ merlin
 
 
 9361
-
-map
-dir
 
 100000_l.plist
 file
@@ -664,7 +664,7 @@ merlin
 
 level_config.plist
 file
-1434
+
 
 
 
@@ -764,40 +764,6 @@ merlin
 
 1643
 
-trigger.plist
-file
-
-
-
-
-2013-09-11T01:24:32.000000Z
-63e8b977f513533e343e4dc31f8dfaba
-2013-09-10T09:03:06.788306Z
-1290
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-632
-
 skill_config.plist
 file
 
@@ -831,6 +797,40 @@ phileas
 
 
 22000
+
+trigger.plist
+file
+
+
+
+
+2013-09-11T01:24:32.000000Z
+63e8b977f513533e343e4dc31f8dfaba
+2013-09-10T09:03:06.788306Z
+1290
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+632
 
 npc_config.plist
 file
@@ -1051,10 +1051,10 @@ file
 
 
 
-2013-09-18T02:07:14.000000Z
-2afa8f9382df312a74e003f2c121e818
-2013-09-18T02:06:54.364060Z
-1384
+2013-09-27T08:55:14.000000Z
+3d3d84316b0c4e67f7b1bcfb2b5a3775
+2013-09-24T06:20:13.981307Z
+1488
 phileas
 
 
@@ -1077,7 +1077,7 @@ phileas
 
 
 
-827
+1044
 
 action
 dir

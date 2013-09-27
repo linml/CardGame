@@ -1,7 +1,7 @@
 10
 
 dir
-1519
+1542
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Utility
 svn://merlin@192.168.2.3/sdp
 
@@ -470,20 +470,15 @@ has-props
 
 PtHttpClient.h
 file
+1555
 
 
 
-
-2013-09-11T11:49:36.000000Z
-df11f1f4a7a2696c5c2bbff07e34f4ee
-2013-09-11T11:32:41.403325Z
-1317
-wood
-
-
-
-
-
+2013-09-27T07:56:41.000000Z
+7b6d7eac7a9190b1731a7a218655288f
+2013-09-27T08:07:40.610078Z
+1555
+merlin
 
 
 
@@ -500,7 +495,12 @@ wood
 
 
 
-2554
+
+
+
+
+
+2634
 
 CPtTool.h
 file
@@ -1017,20 +1017,15 @@ has-props
 
 PtHttpClient.cpp
 file
+1555
 
 
 
-
-2013-09-11T11:49:36.000000Z
-d9c945e6a7b925de321feb74472b6bf9
-2013-09-11T11:32:41.403325Z
-1317
-wood
-
-
-
-
-
+2013-09-27T08:05:23.000000Z
+e98088aee4e7b52392bdabde19a8b58a
+2013-09-27T08:07:40.610078Z
+1555
+merlin
 
 
 
@@ -1047,7 +1042,12 @@ wood
 
 
 
-4335
+
+
+
+
+
+4430
 
 CPtTool.cpp
 file

@@ -13,6 +13,7 @@
 #include "cocos-ext.h"
 #include "PtHttpURL.h"
 #include <queue>
+#include "CPanelGameLog.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -48,9 +49,12 @@ inf.m_RequestType=CCHttpRequest::kHttpPost;\
 inf.m_pSelector = NOTIFICATIONTAG;\
 inf.m_pchTag = HTTPREQUESTTAG;\
 inf.m_pchData = __POSTSTR__;\
+appendFileLog(URL); \
+appendFileLog(__POSTSTR__); \
 CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
 CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector.c_str(), NULL);\
 }
+
 
 
 typedef struct STC_HTTPINF {

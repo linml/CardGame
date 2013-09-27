@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include "CSingleton.h"
+#include "CPtTool.h"
 using namespace cocos2d;
 
 class CPtLevelConfigData : public CCObject
@@ -47,6 +48,8 @@ public:
     int getLevelExp(int level);
     int getCurrentLevel(int exp, int star, int beginLevel=1);
     int getValeWithLevel(int inLevel, int inType);
+    
+    int getTopExpByStar(int inLevel, int inStar);
     
 };
 

@@ -113,13 +113,19 @@ void CEventBoxRewordLayer::initEventBoxRewordLayer(CEventBoxData *inEventBoxData
     this->setUserData((void*) inType);
     loadResource();
     
+    m_nType = inType;
     if (inType == GET_BOX)
     {
         createConfirmDialog();
-    }else
+    }else if(inType == IGNORE_BOX)
     {
         createReWordDialog(inEventBoxData);
     }
+    else
+    {
+        createEmptyDialog();
+    }
+
 
     
     setTouchEnabled(true);
@@ -134,10 +140,12 @@ void CEventBoxRewordLayer:: handlerTouch()
         // continue exploration
         if(m_pTarget && m_pConfirmSelector)
         {
+            
             (m_pTarget->*m_pConfirmSelector)(this);
         }
+
     }
-    //   removeFromParentAndCleanup(true);
+    
 }
 
 void CEventBoxRewordLayer::loadResource()
@@ -312,4 +320,78 @@ void CEventBoxRewordLayer::createConfirmDialog()
     array[1]= 5, array[2] = 8;
     m_cMaps->getElementByTags(array, 2)->removeAllChildrenWithCleanup(true);
     
+}
+
+void CEventBoxRewordLayer::createEmptyDialog()
+{
+    CCTexture2D * texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_mapImagesPath, "dialog_bg.png"));
+    CCSpriteBatchNode * bathNode = CCSpriteBatchNode::createWithTexture(texture, 5);
+    
+    CCSprite * top = CCSprite::createWithSpriteFrameName("dialog_top.png");
+    CCSprite * mid = CCSprite::createWithSpriteFrameName("dialog_mid.png");
+    CCSprite * bottom = CCSprite::createWithSpriteFrameName("dialog_bottom.png");
+    bottom->setPosition(ccp(280, 250));
+    bottom->setAnchorPoint(CCPointZero);
+    top->setAnchorPoint(CCPointZero);
+    mid->setAnchorPoint(CCPointZero);
+    CCSize size1 = bottom->boundingBox().size;
+    mid->setPosition(ccp(bottom->getPositionX(), bottom->getPositionY()+size1.height-1));
+    bathNode->addChild(mid);
+    CCSize size2 = mid->boundingBox().size;
+    int count = 2;
+    for (int i = 1; i < 2; i++)
+    {
+        mid = CCSprite::createWithSpriteFrameName("dialog_mid.png");
+        mid->setAnchorPoint(CCPointZero);
+        mid->setPosition(ccp(bottom->getPositionX(), bottom->getPositionY()+size1.height+i*size2.height-i-1));
+        bathNode->addChild(mid);
+    }
+    
+    top->setPosition(ccp(mid->getPositionX(), mid->getPositionY()+size2.height-count));
+    bathNode->addChild(top);
+    bathNode->addChild(bottom);
+    this->addChild(bathNode);
+    
+    
+    char * title = "空事件";
+    char * describle = "快去洗洗手，啥都没捞到了！";
+   
+    CCLog("the describle: %s", describle);
+    CCPoint point = top->getPosition();
+    CCLabelTTF * label = CCLabelTTF::create(title, "Arial", 18);
+    label->setColor(ccc3(0, 240, 255));
+    label->setAnchorPoint(ccp(0, 1));
+    label->setPosition(ccp(point.x+ 200, point.y+70));
+    addChild(label);
+    
+    label =  CCLabelTTF::create(describle, "Arial", 15, CCSizeMake(300, 0), kCCTextAlignmentLeft);
+    label->setColor(ccc3(126, 60, 30));
+    label->setAnchorPoint(ccp(0,1));
+    label->setPosition(ccp(point.x+150, point.y));
+    addChild(label);
+    
+    // btn:
+    
+    CCSpriteFrameCache* cach = CCSpriteFrameCache::sharedSpriteFrameCache();
+    CCSpriteFrame * frame  = cach->spriteFrameByName("Use_Normal.png");
+    m_cTouchSpriteFrameRect[0] = frame->getRect();
+    
+    point = bottom->getPosition();
+    const char * name="确定";
+    CCSprite *node = CCSprite::createWithSpriteFrame(frame);
+    node->setPosition(ccp(point.x+ 180, point.y + 25));
+    node->setAnchorPoint(CCPointZero);
+    label = CCLabelTTF::create(name, "Arial", 18);
+    CCSize size =  node->boundingBox().size;
+    label->setPosition(ccp(size.width/2, size.height/2));
+    label->setColor(ccc3(126, 60, 30));
+    node->addChild(label);
+    
+    m_pBtn = node;
+    
+    frame  = cach->spriteFrameByName("Use_Pressed.png");
+    m_cTouchSpriteFrameRect[1] = frame->getRect();
+    
+    addChild(node);
+
 }

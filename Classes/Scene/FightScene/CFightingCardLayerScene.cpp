@@ -56,6 +56,10 @@ CCScene *CFightingCardLayerScene::scene()
 CFightingCardLayerScene::CFightingCardLayerScene()
 {
     m_pSFightData=new SFightResultData();
+    if(SinglePlayer::instance()->getFightKuaijin())
+    {
+        CCDirector::sharedDirector()->getScheduler()->setTimeScale(2.0);
+    }
 }
 
 CFightingCardLayerScene::~CFightingCardLayerScene()
@@ -162,10 +166,12 @@ void CFightingCardLayerScene::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         if((int)(CCDirector::sharedDirector()->getScheduler()->getTimeScale()+0.0005)==1)
         {
             CCDirector::sharedDirector()->getScheduler()->setTimeScale(2.0);
+            SinglePlayer::instance()->setFightKuaijin(true);
         }
         else
         {
             CCDirector::sharedDirector()->getScheduler()->setTimeScale(1.0);
+            SinglePlayer::instance()->setFightKuaijin(false);
         }
     }
 }
@@ -520,7 +526,7 @@ void CFightingCardLayerScene::actionHelpSprite(const char *fightName,CCSprite *p
     pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,CCDelayTime::create(0.6),endAnimation,NULL));
     pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
 }
-
+/*
 void CFightingCardLayerScene::showSkillHpText(cocos2d::CCSprite *pFightSprite, cocos2d::CCSprite *pMonsterSprite2, int skillid, CAnimationSpriteGameFight *fightAnimation)
 {
     if(pFightSprite && fightAnimation && (fightAnimation->m_iSubHp!=0 || fightAnimation->m_iAddHp!=0))
@@ -537,7 +543,7 @@ void CFightingCardLayerScene::showSkillHpText(cocos2d::CCSprite *pFightSprite, c
     }
         
 }
-
+*/
 void CFightingCardLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSpriteGameFight *fightAnimation)
 {
     if(pFightSprite ==pMonsterSprite2)
@@ -658,7 +664,8 @@ void CFightingCardLayerScene::skillAnimationSwf(CAnimationSpriteGameFight *fight
             break;
         case EN_ANIMATIONTYPE_BUFFER:
             CCLog("====>%d,%d",fightAnimation->m_iAddHp,fightAnimation->m_iSubHp);
-            showSkillHpText(pFight,NULL,fightAnimation->m_iSKillId, fightAnimation);
+             showSkill(pFight,pMonster,fightAnimation->m_iSKillId, fightAnimation);
+//            showSkillHpText(pFight,NULL,fightAnimation->m_iSKillId, fightAnimation);
             break;
         case EN_ANIMATIONTYPE_STATUS:
             showSkill(pFight,NULL,fightAnimation->m_iSKillId,fightAnimation);

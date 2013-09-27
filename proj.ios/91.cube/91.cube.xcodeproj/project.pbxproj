@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F109A3F17F567F2004E1B39 /* CPanelGameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */; };
 		6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F34AE8E1760945F00A6433C /* LoadingScene.cpp */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
 		6F49CA7317D884EA0094874E /* CGameRoleAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA6F17D884EA0094874E /* CGameRoleAnimation.cpp */; };
@@ -328,6 +329,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanelGameLog.cpp; sourceTree = "<group>"; };
+		6F109A3E17F567F2004E1B39 /* CPanelGameLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPanelGameLog.h; sourceTree = "<group>"; };
 		6F34AE8E1760945F00A6433C /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
 		6F34AE8F1760945F00A6433C /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
@@ -1519,6 +1522,8 @@
 				6FB379E6177D1E9F00C2DB35 /* CGamesCard.h */,
 				6FB983AC17AF510200DCB630 /* CGameCardBuffer.cpp */,
 				6FB983AD17AF510200DCB630 /* CGameCardBuffer.h */,
+				6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */,
+				6F109A3E17F567F2004E1B39 /* CPanelGameLog.h */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -2783,6 +2788,7 @@
 				9FC6F28B17460BFF0091BE98 /* CCParticleSystemQuadLoader.cpp in Sources */,
 				9FC6F28C17460BFF0091BE98 /* CCScale9SpriteLoader.cpp in Sources */,
 				9FC6F28D17460BFF0091BE98 /* CCScrollViewLoader.cpp in Sources */,
+				6F109A3F17F567F2004E1B39 /* CPanelGameLog.cpp in Sources */,
 				9FC6F28E17460BFF0091BE98 /* CCSpriteLoader.cpp in Sources */,
 				9FC6F28F17460BFF0091BE98 /* CCControl.cpp in Sources */,
 				9FC6F29017460BFF0091BE98 /* CCControlButton.cpp in Sources */,
@@ -2990,7 +2996,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 明炉 林 (6738Y24AX3)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3029,6 +3035,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos7.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
 				WRAPPER_EXTENSION = app;
@@ -3039,7 +3046,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 明炉 林 (6738Y24AX3)";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = 91.cube/Prefix.pch;
@@ -3076,6 +3083,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos7.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VALID_ARCHS = armv7;

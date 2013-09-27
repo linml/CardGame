@@ -120,6 +120,91 @@
 		<string>对话5</string>
 		<key>600201</key>
 		<string>对话6</string>
+		<key>940001</key>
+		<string>花费25点神力开启宝箱</string>
+		<key>940002</key>
+		<string>获得奖励</string>
+		<key>940003</key>
+		<string>损失250金币，获得奖励</string>
+		<key>940004</key>
+		<string>纯伤害，现在为空</string>
+		<key>600001</key>
+		<string>哎~~~ 大忽悠！大忽悠！</string>
+		<key>600002</key>
+		<string>喊啥大忽悠，当大伙面，别叫我艺名行不行？</string>
+		<key>600003</key>
+		<string>孩儿他爸</string>
+		<key>600004</key>
+		<string>哎</string>
+		<key>600005</key>
+		<string>要我说这个拐就别卖啦！</string>
+		<key>600006</key>
+		<string>你别说那话，不卖了，做这副拐又搭工又搭料，一天一宿没睡觉，不卖不赔了吗？</string>
+		<key>600007</key>
+		<string>这满大街都是腿脚好的，谁买你那玩意啊？</string>
+		<key>600008</key>
+		<string>这啥话，你还不知道我强项，还叫我大忽悠呢。我能把正的忽悠正邪了，能把奸人忽悠乜了，小两口过的挺好，我给他忽悠分别了。今天卖拐，一双好腿我能给他忽悠瘸了！</string>
+		<key>600009</key>
+		<string>哈哈，你可拉倒吧</string>
+		<key>600010</key>
+		<string>信不信？</string>
+		<key>600011</key>
+		<string>我就不信人家好好的腿你就能给人忽悠瘸了？</string>
+		<key>600012</key>
+		<string>这就是我强项。</string>
+		<key>600101</key>
+		<string>你能信吗？</string>
+		<key>600102</key>
+		<string>你得说出来呀。</string>
+		<key>600103</key>
+		<string>在最近的一段时间内，感觉没感觉到你的浑身某个部位，跟过去不一样了。你想，你使劲想~~~，你说实话</string>
+		<key>600104</key>
+		<string>我没觉着哪儿不一样，我就觉着我这脸越来越大呀？</string>
+		<key>600105</key>
+		<string>对了，这不是主要病症！你知道你的脸为什么大吗？</string>
+		<key>600106</key>
+		<string>为啥？</string>
+		<key>600107</key>
+		<string>是你的末梢神经坏死把上边憋大了。</string>
+		<key>600108</key>
+		<string>那是哪憋的呢？</string>
+		<key>600109</key>
+		<string>腰部以下~~~ 脚往上~~~</string>
+		<key>600110</key>
+		<string>腿呀？</string>
+		<key>600111</key>
+		<string>对头！</string>
+		<key>600201</key>
+		<string>不对，我腿没啥病！</string>
+		<key>600202</key>
+		<dict>
+			<key>没病？你腿就有病！</key>
+			<string>nim</string>
+		</dict>
+		<key>600203</key>
+		<string>啥病呀</string>
+		<key>600204</key>
+		<string>走两步！走两步！没病走两步！你想看病吗，看病就走两步！</string>
+		<key>600205</key>
+		<string>行行~~~ 走两步走走走两步走两步走两步~~~</string>
+		<key>600206</key>
+		<string>停！你鞋没毛病吧？</string>
+		<key>600207</key>
+		<string>有啥毛病呀？</string>
+		<key>600208</key>
+		<string>一跟高一跟低？</string>
+		<key>600209</key>
+		<string>这是旅游鞋死跟地！</string>
+		<key>600210</key>
+		<string>对头，就是是你的腿有病，有一条腿短！</string>
+		<key>600211</key>
+		<string>没那个事儿！我要一条腿长，一条腿短的话，那卖裤子人就告诉我了！</string>
+		<key>600212</key>
+		<string>卖裤子的告诉你你还买裤子么，谁像我这么实惠呀？</string>
+		<key>600213</key>
+		<string>是</string>
+		<key>600214</key>
+		<string>这样吧，我给你调调。信不信，你的腿随着我的手往高抬，能抬多高抬多高，我让你往下落你就随便使劲往下落，好不好？信不信？腿指定有病，右腿短！来，起来！</string>
 	</dict>
 </plist>
 

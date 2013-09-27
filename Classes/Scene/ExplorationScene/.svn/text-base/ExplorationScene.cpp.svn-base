@@ -744,7 +744,6 @@ void CExploration::handlerTouch()
             
             break;
         case 2001:
-             SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_FIGHTSCENE);
             break;
         default:
             break;
@@ -1125,7 +1124,15 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
             return;
         }
        
+    }else if(inType == 0)
+    {
+        // create empty:
+        CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(NULL, EMPTY_EVENT);
+        layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
+        setInsiable();
+        addChild(layer);
     }
+   
     addTaskAndSectionReward();
     getBiforest();
 }
@@ -1374,7 +1381,7 @@ void CExploration::updateEventData()
 void CExploration::handlerEmptyEvent()
 {
     onFishEventRequest(1);
-    test_print("空事件： 没有奖励！");
+   
 }
 /*
  * @param inType: 1 - 3:
@@ -1403,18 +1410,6 @@ void CExploration::hanlderEventBox(int inEventBoxId)
 /*
  * @param inType 1-4
  */
-
-void CExploration::createEventBoxDialogByType(int inEventBoxId, int inType)
-{
-    CCLayer *layer = NULL;
-    if (inType == 1)
-    {
-        layer = CEventBoxLayer::create(inEventBoxId);
-    }else
-    {
-        scheduleOnce(schedule_selector(CExploration::requestCallBack),0.0f);
-    }
-}
 
 void CExploration::createEventBoxDialogByType(CEventBoxData *inEventBoxData, int inType)
 {

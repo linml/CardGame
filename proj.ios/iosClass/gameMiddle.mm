@@ -8,6 +8,7 @@
 
 #include "gameMiddle.h"
 #import <MessageUI/MessageUI.h>
+#include <string>
 
 namespace Middle {
     void showAlertView(const char* pchMsgData)
@@ -16,4 +17,15 @@ namespace Middle {
         [v show];
         [v release];
     }
+    
+    string getAppDocumentPath()
+    {
+        // save to document folder
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        std::string strRet = [documentsDirectory UTF8String];
+        strRet.append("/");
+        return strRet;
+    }
+
 }

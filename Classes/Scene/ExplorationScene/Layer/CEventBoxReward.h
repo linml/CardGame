@@ -17,7 +17,7 @@ using namespace cocos2d;
 
 #define GET_BOX 0
 #define IGNORE_BOX 1
-
+#define EMPTY_EVENT 2
 class CEventBoxRewordLayer : public CCLayer
 {
 public:    
@@ -43,10 +43,12 @@ protected:
     
     void createReWordDialog(CEventBoxData *inEventBoxData);
     void createConfirmDialog();
+    void createEmptyDialog();
 protected:
     
     LayoutLayer *m_cMaps;    
     int m_nTouchTag;
+    int m_nType;
     bool m_bMove;
     
     CCSprite * m_pBtn;

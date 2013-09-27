@@ -67,6 +67,7 @@ public:
     void selector_update(float _dt);
 private:
     bool initCreate();
+    void createColorLayer();
     bool loadPlistFile();
     void createRecvAllButton();
     void creaetEmailTableView();

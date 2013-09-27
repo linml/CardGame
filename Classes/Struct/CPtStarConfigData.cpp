@@ -81,7 +81,8 @@ bool CPtStarConfigData::updateWithCardId(const int &inCardId)
             int tmpId = 0;
             int tmpNum = 0;
             m_nCoin = GameTools::intForKey("coin", tmp);
-            for (int i= 1; i <6 ; i++)
+            int count  = 0;
+            for (int i= 1; i <8 && count < 5 ; i++)
             {
                
                 sprintf(buff, "item_%d",i);
@@ -90,6 +91,7 @@ bool CPtStarConfigData::updateWithCardId(const int &inCardId)
                 tmpNum = GameTools::intForKey(buff, tmp);
                 if (tmpId != 0 && tmpNum != 0)
                 {
+                    count++;
                     PropItem * item = new PropItem();
                     item->autorelease();
                     item->propId = tmpId;

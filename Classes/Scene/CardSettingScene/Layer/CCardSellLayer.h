@@ -43,8 +43,6 @@ protected:
     void addCardAction(const int& inIndex, CPtDisPlayCard * inCard);
     void removeCardAction(const int& inIndex);
     
-    void updateSell();
-    void updateData();
     void updateTexture();
     void save();
     void saveData();
@@ -64,7 +62,7 @@ protected:
     CC_SYNTHESIZE_READONLY(CPtListViewWidget*, m_pSellPackage, SellPackage);
 
 
-    int m_nConin;
+    int m_nCoin;
     CCLabelTTF *m_pConinlabel;
     
 

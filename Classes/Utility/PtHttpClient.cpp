@@ -98,6 +98,7 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
 
     if (!response->isSucceed())
     {
+        appendFileLog("FUCK 服务端， 返回一个NULL数据");
         CCLog("response failed");
         CCLog("error buffer: %s", response->getErrorBuffer());
         CCNotificationCenter::sharedNotificationCenter()->postNotification(MSG_HTTPCLIENT,NULL);
@@ -113,6 +114,7 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
     {
         pchData[i]=(*buffer)[i];
     }
+    appendFileLog(pchData);
     CCNotificationCenter::sharedNotificationCenter()->postNotification(MSG_HTTPCLIENT, (CCObject*)pchData);    
 }
 

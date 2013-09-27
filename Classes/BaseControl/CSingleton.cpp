@@ -52,6 +52,6 @@ void CResGuard::Unguard()
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM ==CC_PLATFORM_ANDROID
     pthread_mutex_unlock(&m_cs);
 #elif CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
-    EnterCriticalSection(&m_cs);
+    LeaveCriticalSection(&m_cs);
 #endif
 }

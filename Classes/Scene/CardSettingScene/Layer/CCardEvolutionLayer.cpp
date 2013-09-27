@@ -365,6 +365,9 @@ void CCardEvolutionLayer::saveOnClick()
          * 3. 领导力
          * 4. 顶级
          */
+        int index = m_pSrcCard->getCardData()->m_pCard->m_sicard_star;
+        index--;
+        int needLevel = g_aMaxLevel[index];
         
         if (m_pPlayer->getCoin() < m_nCostCoin)
         {
@@ -379,7 +382,7 @@ void CCardEvolutionLayer::saveOnClick()
             layer->setResultCode(7);
             return;
         }
-        else if(m_pSrcCard->getCardData()->m_iCurrLevel != g_aMaxLevel[m_pSrcCard->getCardData()->m_pCard->m_sicard_star])
+        else if(m_pSrcCard->getCardData()->m_iCurrLevel != needLevel)
         {
             layer->setResultCode(8);
             //级别不够

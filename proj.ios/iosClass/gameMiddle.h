@@ -9,8 +9,12 @@
 #ifndef _1_cube_gameMiddle_h
 #define _1_cube_gameMiddle_h
 
+#include <string>
+using namespace std;
+
 namespace Middle {
     void showAlertView(const char* pchMsgData);
+    string getAppDocumentPath();
 } 
 
 #endif

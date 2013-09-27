@@ -21,7 +21,7 @@
 #include "Pt_AES.h"
 #include "gameMiddle.h"
 #include "Pt_AES.h"
-
+#include "CPanelGameLog.h"
 
 // implement of the CLoginScene:
 
@@ -41,6 +41,7 @@ CCScene* CLoginScene::scene()
 
 CLoginScene::CLoginScene()
 {
+    initLogCreate("log.log");
     isTouchPlayerGame=false;
 }
 CLoginScene::~CLoginScene()

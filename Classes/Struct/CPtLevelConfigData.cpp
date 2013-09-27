@@ -199,7 +199,8 @@ int CPtLevelConfigData::getCurrentLevel(int exp, int star,  int beginLevel)
                     }
                     tmpValue = GameTools::intForKey("exp", tmp);
                     CCLog("%d", start_param);
-                    if (exp < tmpValue*start_param)
+                    // 向下取整：
+                    if (exp < (tmpValue*start_param))
                     {
                         result = i-1;
                         break;
@@ -258,4 +259,23 @@ int CPtLevelConfigData::getValeWithLevel(int inLevel, int inType)
 
     }
     return tmpValue;
+}
+/*
+ * 向下取整
+ */
+
+int CPtLevelConfigData::getTopExpByStar(int inLevel, int inStar)
+{
+    char buffer[30]={0};
+    sprintf(buffer, "%d",inLevel);
+    CCDictionary * tmp = (CCDictionary *) m_pConfigData->objectForKey(buffer);
+    if (tmp)
+    {
+                
+        sprintf(buffer, "star_param_%d", inStar);
+        float start_param = GameTools::floatForKey(buffer, tmp);
+        int tmpValue = GameTools::intForKey("exp", tmp);
+        return (((float)tmpValue)*start_param);
+    }
+    return 0;
 }

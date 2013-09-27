@@ -9,7 +9,7 @@
 			<key>story_name</key>
 			<string>测试情节1</string>
 			<key>dialoguelist_id</key>
-			<string>600101</string>
+			<string>600101,600102,600103,600104,600105,600106,600107,600108,600109,600110,600111</string>
 		</dict>
 		<key>600200</key>
 		<dict>
@@ -18,7 +18,7 @@
 			<key>story_name</key>
 			<string>测试情节2</string>
 			<key>dialoguelist_id</key>
-			<string>600201,600202,600203</string>
+			<string>600201,600202,600203,600204,600205,600206,600207,600208,600209,600210,600211,600212,600213,600214</string>
 		</dict>
 		<key>600000</key>
 		<dict>
@@ -27,7 +27,7 @@
 			<key>story_name</key>
 			<string>测试情节0</string>
 			<key>dialoguelist_id</key>
-			<string>600001,600002</string>
+			<string>600001,600002,600003,600004,600005,600006,600007,600008,600009,600010,600011,600012</string>
 		</dict>
 	</dict>
 </plist>

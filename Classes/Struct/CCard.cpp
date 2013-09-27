@@ -311,12 +311,13 @@ int  CFightCard::getCostCoin()
 int CFightCard::getSupportValue(int type)
 {
     
-   int result = 0;
-   int value =    SingleLevleConfigData::instance()->getValeWithLevel(m_iCurrLevel, 2);
+    int result = 0;
+    int value =  SingleLevleConfigData::instance()->getValeWithLevel(m_iCurrLevel, 2);
+    float star_param = SingleLevleConfigData::instance()->getStarParamter(m_pCard->m_sicard_star, m_iCurrLevel);
     switch (type)
     {
         case 1:
-            result = CPtTool::calSupportValue(m_pCard->m_icard_exp,value, 0.2);
+            result = CPtTool::calSupportValue(m_pCard->m_icard_exp,value, star_param,  0.2);
             break;
         default:
             break;

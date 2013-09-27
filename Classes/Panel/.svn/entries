@@ -1,7 +1,7 @@
 10
 
 dir
-1519
+1542
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Panel
 svn://merlin@192.168.2.3/sdp
 
@@ -204,6 +204,40 @@ phileas
 
 
 735
+
+CPanelGameLog.h
+file
+1555
+
+
+
+2013-09-27T07:45:03.000000Z
+daf7f7a133664df84be181af8366b70b
+2013-09-27T08:07:40.610078Z
+1555
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1554
 
 CPtExpandableListView.h
 file
@@ -511,9 +545,6 @@ merlin
 
 3248
 
-GameControl
-dir
-
 CGamesCard.cpp
 file
 
@@ -548,39 +579,8 @@ merlin
 
 13852
 
-CPtButtonWidget.h
-file
-
-
-
-
-2013-08-12T03:22:28.000000Z
-69ef48d0de7e013288e78b9e400df1d6
-2013-08-09T09:08:18.387852Z
-918
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-914
+GameControl
+dir
 
 LoadingScene.cpp
 file
@@ -615,6 +615,40 @@ phileas
 
 
 3674
+
+CPtButtonWidget.h
+file
+
+
+
+
+2013-08-12T03:22:28.000000Z
+69ef48d0de7e013288e78b9e400df1d6
+2013-08-09T09:08:18.387852Z
+918
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+914
 
 CPtBatterArray.h
 file
@@ -718,6 +752,40 @@ merlin
 
 550
 
+CPanelGameLog.cpp
+file
+1556
+
+
+
+2013-09-27T08:14:36.000000Z
+0fcb7f6562cf27c2500643d18139d010
+2013-09-27T08:15:29.882554Z
+1556
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4325
+
 CPtExpandableListView.cpp
 file
 
@@ -820,40 +888,6 @@ phileas
 
 2367
 
-CMyDictionary.cpp
-file
-
-
-
-
-2013-08-30T08:56:47.000000Z
-72c800294afc57dcfae42c7ef7c1004e
-2013-08-30T10:04:37.315539Z
-1136
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2439
-
 CPtEditBoxWidget.h
 file
 
@@ -887,6 +921,40 @@ phileas
 
 
 3754
+
+CMyDictionary.cpp
+file
+
+
+
+
+2013-08-30T08:56:47.000000Z
+72c800294afc57dcfae42c7ef7c1004e
+2013-08-30T10:04:37.315539Z
+1136
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2439
 
 CPtBarWidget.cpp
 file
@@ -956,40 +1024,6 @@ merlin
 
 1565
 
-CPtListViewWidget.h
-file
-
-
-
-
-2013-09-09T06:14:21.000000Z
-f722f8ef35b063584e92a9d7390c3943
-2013-09-06T10:30:42.348792Z
-1238
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-4311
-
 CPtButtonWidget.cpp
 file
 
@@ -1023,6 +1057,40 @@ phileas
 
 
 2235
+
+CPtListViewWidget.h
+file
+
+
+
+
+2013-09-09T06:14:21.000000Z
+f722f8ef35b063584e92a9d7390c3943
+2013-09-06T10:30:42.348792Z
+1238
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4311
 
 CPtBatterArray.cpp
 file

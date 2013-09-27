@@ -1,14 +1,14 @@
 10
 
 dir
-1422
+1560
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/word
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-18T02:06:54.364060Z
-1384
+2013-09-24T06:22:51.365234Z
+1489
 phileas
 has-props
 
@@ -32,10 +32,10 @@ file
 
 
 
-2013-09-18T02:07:14.000000Z
-45f060271fb56671ab3b6e4399b85a13
-2013-09-18T02:06:54.364060Z
-1384
+2013-09-27T08:55:14.000000Z
+c0998d884e057bd6c13ef758fd487b21
+2013-09-24T06:22:51.365234Z
+1489
 phileas
 
 
@@ -58,7 +58,7 @@ phileas
 
 
 
-4753
+8341
 
 string.plist
 file

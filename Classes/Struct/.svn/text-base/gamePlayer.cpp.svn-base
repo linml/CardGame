@@ -70,6 +70,7 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
     m_vvBattleArray.clear();
     m_gGamePlayerData=new CGamePlayerData();
     loadGamesConfig();
+    m_bFightKuaijin=false;
 }
 
 CGamePlayer::~CGamePlayer()
@@ -234,6 +235,10 @@ CImapact *CGamePlayer::getEffectTableByEffectId(int effectId)
 
 CSkillData *CGamePlayer::getSkillBySkillId(int skillId)
 {
+    if(skillId==0)
+    {
+        return NULL;
+    }
     return m_vSkillInfo[skillId];
 }
 
@@ -782,23 +787,21 @@ int CGamePlayer::setPlayerAp(int iValue)
 
 void CGamePlayer::addPlayerGp(int inAddHp)
 {
-    CCLOG("the curent gp: %d", m_gGamePlayerData->m_iGp);
+
     m_gGamePlayerData->logicValue(m_gGamePlayerData->m_iGp,inAddHp,'+');
     if(m_gGamePlayerData->m_iGp>m_gGamePlayerData->getGpMax())
     {
         m_gGamePlayerData->m_iGp=m_gGamePlayerData->getGpMax();
     }
-    CCLOG("the curent gp: %d", m_gGamePlayerData->m_iGp);
+
 }
 void CGamePlayer::subPlayerGp(int inSubHp)
 {
-    CCLOG("the curent gp: %d", m_gGamePlayerData->m_iGp);
     m_gGamePlayerData->logicValue(m_gGamePlayerData->m_iGp,inSubHp,'-');
     if(m_gGamePlayerData->m_iGp<0)
     {
         m_gGamePlayerData->m_iGp=0;
     }
-    CCLOG("the curent gp: %d", m_gGamePlayerData->m_iGp);
 }
 
 void CGamePlayer::addPlayerAp(int inAddEnergy)
@@ -1027,6 +1030,8 @@ int CGamePlayer::getPropCountFromBag(int inPropId)
     }
     return count;
 }
+
+
 
 bool CGamePlayer::addGridBySys()
 {
@@ -1337,7 +1342,16 @@ void CGamePlayer::onParseTaskInfoByDictionary(CCDictionary *inDataDictionary)
     {
         // success:
         CCDictionary * tmp = (CCDictionary*)inDataDictionary->objectForKey("result");
-        tmp = (CCDictionary*)tmp->objectForKey("task_info");
+       
+        CCObject * object = tmp->objectForKey("task_info");
+        string taskStrType=typeid(*object).name();
+        if (taskStrType.find("CCDictionary")==std::string::npos)
+        {
+            m_nCurrentTaskId = 0;
+            setTopMaxChapterAndSection();
+            return;
+        }
+        tmp = (CCDictionary*) object;
         CCArray * keys = NULL;
         if (tmp)
         {
@@ -1353,8 +1367,6 @@ void CGamePlayer::onParseTaskInfoByDictionary(CCDictionary *inDataDictionary)
                 }
             }
         }
-        //        m_nMaxSectionId= GameTools::intForKey("part_id", tmp);
-        //        m_nMaxChapterId = GameTools::intForKey("chapter_id", tmp);
     }else
     {
         CCLog("error:CGamePalyer::onReceiveGoSectionMsg error code: %d ", result);
@@ -1387,6 +1399,12 @@ void CGamePlayer::setChapterAndSectionByTask()
         m_nMaxChapterId = task->getChapterId();
         m_nMaxSectionId = task->getSectionId();
     }
+}
+
+void CGamePlayer::setTopMaxChapterAndSection()
+{
+    m_nMaxChapterId = 300100;
+    m_nMaxSectionId = 300109;
 }
 
 /*

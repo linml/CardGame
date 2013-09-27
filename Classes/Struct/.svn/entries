@@ -1,14 +1,14 @@
 10
 
 dir
-1519
+1563
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-24T10:25:05.394793Z
-1505
+2013-09-27T08:32:15.323428Z
+1559
 phileas
 has-props
 
@@ -69,11 +69,11 @@ file
 
 
 
-2013-09-13T09:03:07.000000Z
-c5b04b1503fd42a7575000efbaa7c7a6
-2013-09-16T06:33:56.349365Z
-1356
-merlin
+2013-09-27T10:14:56.000000Z
+6065a97b34b5e17706a1b6dc9a79f451
+2013-09-27T01:43:15.771898Z
+1543
+phileas
 
 
 
@@ -95,7 +95,7 @@ merlin
 
 
 
-1681
+1757
 
 CPtStarConfigData.h
 file
@@ -375,10 +375,10 @@ file
 
 
 
-2013-09-25T07:48:25.000000Z
-26cf0b627a1371c2a59ac1822b8ae110
-2013-09-24T10:25:05.394793Z
-1505
+2013-09-27T10:14:56.000000Z
+de204fe598336d1c7d73b1ab109a57ad
+2013-09-27T01:43:15.771898Z
+1543
 phileas
 
 
@@ -401,7 +401,7 @@ phileas
 
 
 
-10946
+11072
 
 CEventBoxConfigData.cpp
 file
@@ -471,40 +471,6 @@ merlin
 
 849
 
-CSkillData.h
-file
-
-
-
-
-2013-09-22T07:03:07.000000Z
-f6dfb4ed8ca33b37aac7bd35f02417f5
-2013-09-23T03:13:23.271876Z
-1448
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2207
-
 CConfigResourceLoad.cpp
 file
 
@@ -538,6 +504,40 @@ merlin
 
 
 11619
+
+CSkillData.h
+file
+
+
+
+
+2013-09-22T07:03:07.000000Z
+f6dfb4ed8ca33b37aac7bd35f02417f5
+2013-09-23T03:13:23.271876Z
+1448
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2207
 
 Craftsmanship
 dir
@@ -644,40 +644,6 @@ merlin
 
 1551
 
-CSceneConfigData.h
-file
-
-
-
-
-2013-09-18T02:07:08.000000Z
-ea23a11f7f2fd80657e3fc19b39eb0c6
-2013-09-18T02:06:54.364060Z
-1384
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1207
-
 CAnimationSpriteGameFight.cpp
 file
 
@@ -711,6 +677,40 @@ merlin
 
 
 1074
+
+CSceneConfigData.h
+file
+
+
+
+
+2013-09-18T02:07:08.000000Z
+ea23a11f7f2fd80657e3fc19b39eb0c6
+2013-09-18T02:06:54.364060Z
+1384
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1207
 
 CFightCardBufferData.h
 file
@@ -780,40 +780,6 @@ merlin
 
 2224
 
-gamePlayer.h
-file
-
-
-
-
-2013-09-25T07:48:26.000000Z
-f9c4a7a5f0db4edd6ecdceb390ea1f67
-2013-09-24T10:25:05.394793Z
-1505
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7624
-
 CTriggerConfigData.h
 file
 
@@ -847,6 +813,40 @@ phileas
 
 
 991
+
+gamePlayer.h
+file
+1564
+
+
+
+2013-09-27T10:14:56.000000Z
+7027b1520c2d21e8fedda075e6162b45
+2013-09-27T10:15:51.599919Z
+1564
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7728
 
 CReward.h
 file
@@ -882,40 +882,6 @@ phileas
 
 1825
 
-CPtLevelConfigData.cpp
-file
-
-
-
-
-2013-09-25T07:48:26.000000Z
-74fb136e4dd01823e4ed55e78a74ade1
-2013-09-24T10:25:05.394793Z
-1505
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6974
-
 CGamePlayerStruct.cpp
 file
 
@@ -950,16 +916,16 @@ merlin
 
 118
 
-CPtStarConfigData.cpp
+CPtLevelConfigData.cpp
 file
 
 
 
 
-2013-08-12T10:24:37.000000Z
-82b70583976b7b72e34d7e72f45b3329
-2013-08-12T07:43:58.370431Z
-931
+2013-09-27T10:14:56.000000Z
+7159064393b27b14a7d5fb4258e0092e
+2013-09-27T01:43:15.771898Z
+1543
 phileas
 
 
@@ -982,7 +948,7 @@ phileas
 
 
 
-2304
+7523
 
 CPtSectionConfigData.h
 file
@@ -1017,6 +983,40 @@ phileas
 
 
 4273
+
+CPtStarConfigData.cpp
+file
+
+
+
+
+2013-09-27T10:14:56.000000Z
+d52f7b5fa09d2ee96558c3127419687b
+2013-09-27T01:43:15.771898Z
+1543
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2374
 
 AnimationLogic.h
 file
@@ -1700,15 +1700,37 @@ merlin
 
 gamePlayer.cpp
 file
+1564
+
+
+
+2013-09-27T10:15:25.000000Z
+1484cd38e96273e75c444e14984d84e9
+2013-09-27T10:15:51.599919Z
+1564
+merlin
 
 
 
 
 
-1a95e6e266805f2c816af4553903f320
-2013-09-24T10:25:05.394793Z
-1505
-phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+42563
 
 CTriggerConfigData.cpp
 file

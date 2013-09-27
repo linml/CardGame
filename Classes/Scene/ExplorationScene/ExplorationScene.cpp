@@ -230,6 +230,7 @@ CReward * CExploration::getChapterReward()
 CReward *CExploration::getTaskAndSectionReward()
 {
     CReward * reward  = NULL;
+//    reward->retainCount(); //0
     if (s_Rewards)
     {
         reward = (CReward*)(s_Rewards->objectForKey(SECTIONREWARD_ADD));
@@ -744,7 +745,6 @@ void CExploration::handlerTouch()
             
             break;
         case 2001:
-             SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_FIGHTSCENE);
             break;
         default:
             break;
@@ -1102,6 +1102,7 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
             if (m_nEventBoxSelectType == EVENT_SUCCESS)
             {
                 CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData, GET_BOX);
+//                CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CExploration::onCanfirmCallback), "onCanfirmCallback", layer);
                 layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
                 setInsiable();
                 addChild(layer);
@@ -1120,13 +1121,23 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
                 return;
             }
             CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData);
+           //  CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CExploration::onCanfirmCallback), "onCanfirmCallback", layer);
             layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
             setInsiable();
             addChild(layer);
             return;
         }
        
+    }else if(inType == 0)
+    {
+        // create empty:
+        CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(NULL, EMPTY_EVENT);
+        // CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CExploration::onCanfirmCallback), "onCanfirmCallback", layer);
+        layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
+        setInsiable();
+        addChild(layer);
     }
+   
     addTaskAndSectionReward();
     getBiforest();
 }
@@ -1249,6 +1260,7 @@ void CExploration::backHall()
 
 void CExploration::onReceiveTaskInfo(CCObject *pObject)
 {
+    CCLog("%x",this);
     m_bLoadTaskInfo = true;
     char *buff = (char*) pObject;
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "getNextTaskInfo");
@@ -1257,6 +1269,7 @@ void CExploration::onReceiveTaskInfo(CCObject *pObject)
         CCDictionary * tmp = PtJsonUtility::JsonStringParse(buff);
         SinglePlayer::instance()->onParseTaskInfoByDictionary(tmp);
         delete [] buff;
+        buff=NULL;
     }
     SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
 
@@ -1269,8 +1282,7 @@ void CExploration::hanlderLoadTaskInfo()
     m_bLoadTaskInfo = false;
     char buffer[200]={0}; 
     sprintf(buffer, "sig=%s",STR_USER_SIG);
-    
-    CCLog("%s", buffer);
+    CCLog("%s,%x", buffer,this);
     ADDHTTPREQUESTPOSTDATA(STR_URL_TASK(196),"getNextTaskInfo", "getNextTaskInfo",buffer, callfuncO_selector(CExploration::onReceiveTaskInfo));
 
 }
@@ -1320,21 +1332,17 @@ void CExploration::addEventReward(CCDictionary *inAllRewards)
     createOrUpdatePlayerData();
 }
 
-void CExploration::addTaskAndSectionReward(char *bufer)
+void CExploration::addTaskAndSectionReward()
 {
    CReward * taskAndSection =  getTaskAndSectionReward();
    if (taskAndSection)
     {
-        char tips[200] = {0};
-        if (bufer)
-        {
-            bufer = tips;
-        }
+        char tips[200] ={0};
         taskAndSection->excuteReward(ADD);
         sprintf(tips, "task or section reward add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", taskAndSection->getEnergy(), taskAndSection->getHP(), taskAndSection->getExp(),
                 taskAndSection->getCoin(), taskAndSection->getCash(), taskAndSection->getCardCount(), taskAndSection->getPropCount());
-        
-        Middle::showAlertView(tips);
+        //CCMessageBox(tips, "info");
+       // Middle::showAlertView(tips);
     }
 
 }
@@ -1375,7 +1383,7 @@ void CExploration::updateEventData()
 void CExploration::handlerEmptyEvent()
 {
     onFishEventRequest(1);
-    test_print("空事件： 没有奖励！");
+   
 }
 /*
  * @param inType: 1 - 3:
@@ -1404,18 +1412,6 @@ void CExploration::hanlderEventBox(int inEventBoxId)
 /*
  * @param inType 1-4
  */
-
-void CExploration::createEventBoxDialogByType(int inEventBoxId, int inType)
-{
-    CCLayer *layer = NULL;
-    if (inType == 1)
-    {
-        layer = CEventBoxLayer::create(inEventBoxId);
-    }else
-    {
-        scheduleOnce(schedule_selector(CExploration::requestCallBack),0.0f);
-    }
-}
 
 void CExploration::createEventBoxDialogByType(CEventBoxData *inEventBoxData, int inType)
 {
@@ -1461,12 +1457,18 @@ void CExploration:: onCancleCallback(CCObject *pObject)
 }
 void CExploration:: onCanfirmCallback(CCObject *pObject)
 {
-    CCNode * node = (CCNode*) pObject;
-    int type = (int)node->getUserData();
-    node->removeFromParentAndCleanup(true);
-    setVisiable();
+    CCLog("ccpoBJECT:%x,pObject=%x",this,pObject);
     addTaskAndSectionReward();
     getBiforest();
+    CCNode * rmnode = (CCNode*) pObject;
+    removeChild(rmnode, true);
+    setVisiable();
+    //this->runAction(CCCallFuncND::create(this, callfuncND_selector(CExploration::deleteReWordLayer), (void *)pObject));
+}
+void CExploration::deleteReWordLayer(CCNode *node, void *pObject)
+{
+    //CCMessageBox("aa", "1123");
+   
 }
 
 void CExploration::onOpenCallBack(CCObject* pObject)
@@ -1483,7 +1485,8 @@ void CExploration::getBiforest()
 {
     if (s_SectionData.currentStep > s_SectionData.sectionInfo->getMaxStep())
     {
-        scheduleOnce(schedule_selector(CExploration::callBack),0.0f);
+        CCLog("======>");
+        scheduleOnce(schedule_selector(CExploration::callBack),0.5f);
         return;
     }
     

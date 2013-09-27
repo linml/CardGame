@@ -127,7 +127,6 @@ protected:
     void handlerFightEvent(int inType);
     void hanlderEventBox(int eventBoxId);
     
-    void createEventBoxDialogByType(int inEventBoxId,int inType);
     void createEventBoxDialogByType(CEventBoxData *inEventBoxData, int inType);
     
     void setVisiable();

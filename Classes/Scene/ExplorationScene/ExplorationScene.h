@@ -97,6 +97,7 @@ protected:
     void handlerTrigger();
     void updateBtn();
     void attachConfirm();
+
     void createOrUpdatePlayerData();
 
     void updateUI();
@@ -112,7 +113,7 @@ protected:
     
     // rewords:
     void addForwordReword(CCDictionary * inAllRewards); // 前进奖励
-    void addTaskAndSectionReward(char *bufer = NULL);
+    void addTaskAndSectionReward();
     void addEventReward(CCDictionary *inAllRewards);
     
     void getTriggers();
@@ -127,7 +128,6 @@ protected:
     void handlerFightEvent(int inType);
     void hanlderEventBox(int eventBoxId);
     
-    void createEventBoxDialogByType(int inEventBoxId,int inType);
     void createEventBoxDialogByType(CEventBoxData *inEventBoxData, int inType);
     
     void setVisiable();
@@ -189,6 +189,7 @@ protected:
     
     void onCancleCallback(CCObject *pObject);
     void onCanfirmCallback(CCObject *pObject);
+    void deleteReWordLayer(CCNode* node,void *pObject);
 
     void onOpenCallBack(CCObject* pObject);
 };

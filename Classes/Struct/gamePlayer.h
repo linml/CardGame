@@ -169,7 +169,9 @@ public:
 protected:
     void onReceiveTaskInfo(CCObject *pObject);
     void setChapterAndSectionByTask();
-    
+
+    // test:
+    void setTopMaxChapterAndSection();
 
 // play info:
 public:
@@ -235,6 +237,7 @@ protected:
     CC_SYNTHESIZE(bool, m_bLoadTaskInfo, LoadTaskInfo);
     CC_SYNTHESIZE(int , m_iCurrentBattleTeam, CurrentBattleTeam) ;  //!< 当前的选择 战斗的阵容
     CC_SYNTHESIZE(EN_GAMEFIGHTSTATUS, m_enWinStatus, WinOrLoseStatus);
+    CC_SYNTHESIZE(bool, m_bFightKuaijin, FightKuaijin);
     vector<SEveryATKData*>m_vHpAngry;
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
 

@@ -1,15 +1,15 @@
 10
 
 dir
-1519
+1542
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/ExplorationScene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-09-25T07:50:07.037499Z
-1519
-merlin
+2013-09-25T09:15:39.383448Z
+1529
+phileas
 has-props
 
 
@@ -32,33 +32,11 @@ file
 
 
 
-2013-09-25T07:48:25.000000Z
-033d035f02b138efa02ae3d97a40decf
-2013-09-25T07:50:07.037499Z
-1519
-merlin
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-41242
+4073caf7a1e9846cc9086ce62c1f97a4
+2013-09-25T09:15:39.383448Z
+1529
+phileas
 
 ExplorationScene.h
 file
@@ -66,10 +44,10 @@ file
 
 
 
-2013-09-24T07:12:05.000000Z
-d8b5d797e526e3d2a9400315c304b144
-2013-09-24T06:20:13.981307Z
-1488
+2013-09-27T01:20:40.000000Z
+9711a388d2626a5a5d90f9979d7135ca
+2013-09-25T09:15:39.383448Z
+1529
 phileas
 
 
@@ -92,7 +70,7 @@ phileas
 
 
 
-5633
+5567
 
 Layer
 dir

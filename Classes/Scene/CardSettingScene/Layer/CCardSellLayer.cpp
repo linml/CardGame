@@ -21,7 +21,7 @@ CCardSellLayer::CCardSellLayer()
     m_nTouchTag = -1;
     m_pPlayer = SinglePlayer::instance();
     m_cMaps = NULL;
-    m_nConin = 0;
+    m_nCoin = 0;
     m_pConinlabel = NULL;
  
 }
@@ -248,47 +248,33 @@ void CCardSellLayer::save()
 void CCardSellLayer::saveData()
 {
     CCLog("sell before : %d", m_pPlayer->getCoin());
-    m_pPlayer->addCoin(m_nConin);
+    m_pPlayer->addCoin(m_nCoin);
     CCLog("sell after : %d", m_pPlayer->getCoin());
     
-}
-void CCardSellLayer::resetData()
-{
-    // reset data:
-}
-
-void CCardSellLayer::updateSell()
-{
-    
-}
-
-void CCardSellLayer::updateData()
-{
-   
 }
 
 void CCardSellLayer::updateTexture()
 {
     char buff[50] = {0};
-    sprintf(buff, "%d", m_nConin);
+    sprintf(buff, "%d", m_nCoin);
     m_pConinlabel->setString(buff);
 }
 
 void CCardSellLayer::addCoin(int conin)
 {
-    m_nConin += conin;
-    m_nConin = m_nConin >=0 ? m_nConin:0;
+    m_nCoin += conin;
+    m_nCoin = m_nCoin >=0 ? m_nCoin:0;
     updateTexture();
 }
-void CCardSellLayer::subCoin(int conin)
+void CCardSellLayer::subCoin(int coin)
 {
-    m_nConin -= conin;
-    m_nConin = m_nConin >=0 ? m_nConin:0;
+    m_nCoin -= coin;
+    m_nCoin = m_nCoin >=0 ? m_nCoin:0;
     updateTexture();
 }
 void CCardSellLayer::clearCoin()
 {
-    m_nConin = 0;
+    m_nCoin = 0;
     updateTexture();
 }
 void CCardSellLayer::restCardFlag()
