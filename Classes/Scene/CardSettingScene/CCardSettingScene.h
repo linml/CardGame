@@ -21,13 +21,15 @@ using namespace std;
 class CCardSettingScene : public CCLayer
 {
 public:
-    static CCScene *scene();
+    static CCScene *scene(int inLastSceneTag = 0);
     CREATE_FUNC(CCardSettingScene);
     static CCDictionary *s_pBattleArrayCards;
     
 public:
     CCardSettingScene();
     virtual ~CCardSettingScene ();
+    void setLastSceneTag(int inLastSceneTag);
+    
 public:
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -39,15 +41,16 @@ public:
 protected:
     void initCCardSetting();
     void handlerTouch();
+    void onClickBack();
     
 protected:
     int m_nTouchTag;
+    int m_nLastSceneTag; // 0--> hall 1--> exploration
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
     int m_nCurrentTableId;
     CBattleArrayLayer *m_pCardSetting;
     CCSprite * m_pBackBtn;
-    
     CCSprite * m_pTabButton[4];
 // test: network;
     void callback(float dt);

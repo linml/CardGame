@@ -14,6 +14,7 @@
 #include "PtJsonUtility.h"
 #include "CDeletePropLayer.h"
 #include "CGameDialogLayer.h"
+#include "gameMiddle.h"
 
 CBackpackPageLayer * CBackpackPageLayer::create()
 {
@@ -620,9 +621,13 @@ bool CBackpackPageLayer::canOpenGrid()
     }
     
     int price = ((openGrid - 9)/3 -1) * 9 + 6;
-    if (price >= player->getPlayerCash())
+    if (price < player->getPlayerCash())
     {
         bRet = true;
+    }
+    else
+    {
+        Middle::showAlertView("钱不够");
     }
     return bRet;
 }

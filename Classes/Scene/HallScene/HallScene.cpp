@@ -16,6 +16,7 @@
 #include "CBackpackContainerLayer.h"
 #include "CGameEmailTableView.h"
 #include "CGameEmailManager.h"
+#include "SceneManager.h"
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
 
@@ -187,7 +188,7 @@ void CHallScene::showBackNotice(cocos2d::CCObject *object)
 
 void CHallScene::showBackBag()
 {
-       CCLayer * layer = CBackpackContainerLayer::create();
+    CCLayer * layer = CBackpackContainerLayer::create();
     addChild(layer, 1000);
     CCLog("backpack...");
 }
@@ -399,7 +400,7 @@ void CHallScene::setHallSceneLayerCanTouch(void *tag)
 }
 void CHallScene::handlerTouch()
 {
-    CCLayer * layer = NULL;
+    //CCLayer * layer = NULL;
     CCLog("touch tag : %d", m_nTouchTag);
     if (m_nTouchTag != -1) {
         Utility::handleBtnCallBack(m_touchSprite, this, NULL);
@@ -419,7 +420,7 @@ void CHallScene::handlerTouch()
             
             break;
         case 2005:
-            
+            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_CARDSETTINGSCENE);
             break;
         case 2006:
             // backpack-->

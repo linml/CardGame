@@ -46,6 +46,26 @@ CEventBoxData* CEventBoxConfigData::getEventBoxDataById(int inId)
 void CEventBoxConfigData::loadDataFromFile()
 {
     CCDictionary * tmp = CCDictionary::createWithContentsOfFile(CSTR_FILEPTAH(resRootPath, "event_box_config.plist"));
+    /*
+     *<key>box_id</key>
+     <string>980001</string>
+     <key>name</key>
+     <string>神力宝箱</string>
+     <key>dictionary_id</key>
+     <string>940001</string>
+     <key>type</key>
+     <string>1</string>
+     <key>gp</key>
+     <string>25</string>
+     <key>coin</key>
+     <string>0</string>
+     <key>cash</key>
+     <string>0</string>
+     <key>pic</key>
+     <string>b.png</string>
+     <key>plist</key>
+     <string>plist</string>
+     */
     
     if (tmp)
     {
@@ -59,6 +79,7 @@ void CEventBoxConfigData::loadDataFromFile()
             eventData->setBoxId(GameTools::intForKey("box_id", elementValue)); //宝箱ID
             eventData->setDictionaryKey(GameTools::valueForKey("dictionary_id", elementValue));//宝箱描述字典ID
             eventData->setBoxType(GameTools::intForKey("type", elementValue));//宝箱类类型 1: 可忽略， 2－4: 不可忽略
+            eventData->setGP(GameTools::intForKey("gp", elementValue));
             eventData->setTitle(GameTools::valueForKey("name", elementValue));//宝箱名字
             eventData->setIconPic(GameTools::valueForKey("pic", elementValue));//宝箱的logo图标或特效的作用主体
             eventData->setPlist(GameTools::valueForKey("plist", elementValue));//开启改宝箱的特效

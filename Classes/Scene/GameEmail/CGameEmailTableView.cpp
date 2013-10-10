@@ -19,6 +19,7 @@
 #include "PtHttpURL.h"
 #include "PtJsonUtility.h"
 #include "CGameDialogLayer.h"
+#include "CReward.h"
 
 
 CEmrysTableView::CEmrysTableView():CCTableView()
@@ -648,23 +649,23 @@ void CGameEmailTableView::decodeSingleRecvEmail(char *object)
     else
     {
         CCDictionary *dictresult=(CCDictionary *)dict->objectForKey("result");
-        //获取 coin
-        int  coin=((CCString *)dictresult->objectForKey("coin"))->intValue();
-        //获取items
-        //获取 经验
-        int  exp=((CCString *)dictresult->objectForKey("exp"))->intValue();
-        map<int , int>mapitems;
-        CCDictionary *emailItemDirector=(CCDictionary *)(dictresult->objectForKey("item"));
-        if(emailItemDirector)
+        CCDictionary * tmp = (CCDictionary*) dictresult->objectForKey("reward");
+        if (tmp)
         {
-            CCDictElement* pElement = NULL;
-            CCDICT_FOREACH(emailItemDirector, pElement)
-            {
-                const char* pchKey = pElement->getStrKey();
-                mapitems[atoi(pchKey)]=GameTools::intForKey(pchKey, emailItemDirector);
+            CReward *reward =NULL;
+            if (tmp->objectForKey("add") &&((CCDictionary*)tmp->objectForKey("add"))->objectForKey("inbox") ) {
+                reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("add"))->objectForKey("inbox"));
+                reward->excuteReward(ADD);
+                
             }
+            else if(tmp->objectForKey("dec") &&((CCDictionary*)tmp->objectForKey("dec"))->objectForKey("inbox"))
+            {
+                reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("dec"))->objectForKey("inbox"));
+                reward->excuteReward(DEC);
+            }
+            
         }
-        SinglePlayer::instance()->receiveEmail(mapitems,exp, coin);
+
         
         CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
         vector<int >livetable;
@@ -709,29 +710,27 @@ bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
         if (m_enhttpStatus==EN_EMAILHTTPREQUEST_GETSINGLEITEM  ||
             m_enhttpStatus==EN_EMAILHTTPREQUEST_GETALLEMAIL )
         {
-            //与 单个领取里面代码重复 得重构
-            //获取 coin
-            int  coin=((CCString *)dictresult->objectForKey("coin"))->intValue();
-            //获取items
-            //获取 经验
-            int  exp=((CCString *)dictresult->objectForKey("exp"))->intValue();
-            map<int , int>mapitems;
-            CCDictionary *emailItemDirector=(CCDictionary *)(dictresult->objectForKey("items"));
-            if(emailItemDirector)
+            CCDictionary * tmp = (CCDictionary*) dictresult->objectForKey("reward");
+            if (tmp)
             {
-                CCDictElement* pElement = NULL;
-                CCDICT_FOREACH(emailItemDirector, pElement)
+                CReward *reward =NULL;
+                if (tmp->objectForKey("add") &&((CCDictionary*)tmp->objectForKey("add"))->objectForKey("inbox") )
                 {
-                    const char* pchKey = pElement->getStrKey();
-                    mapitems[atoi(pchKey)]=GameTools::intForKey(pchKey, emailItemDirector);
+                                    reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("add"))->objectForKey("inbox"));
+                                    reward->excuteReward(ADD);
+
                 }
+                else if(tmp->objectForKey("dec") &&((CCDictionary*)tmp->objectForKey("dec"))->objectForKey("inbox"))
+                {
+                    reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("dec"))->objectForKey("inbox"));
+                    reward->excuteReward(DEC);
+                }
+          
             }
-            SinglePlayer::instance()->receiveEmail(mapitems,exp, coin);
-            
-            
             CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
             vector<int >livetable;
-            for (int i=0; i<array->count();i++) {
+            for (int i=0; i<array->count();i++)
+            {
                 CCString * cocosstr=(CCString *)array->objectAtIndex(i);
                 livetable.push_back(atoi(cocosstr->m_sString.c_str()));
             }
@@ -761,6 +760,7 @@ bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
         }
         return true;
     }
+
 }
 
 void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)

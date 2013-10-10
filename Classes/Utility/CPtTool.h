@@ -34,7 +34,7 @@ namespace CPtTool
     int getSuitResult(const int suit[], const int sequence[], const int len);
     
     int calulate(int card_base_value, int config_value, int star, float correct_value_1, float star_parameter, float correct_value_2,float correct_parameter);
-    int calSupportValue(int base_value, int currentValue, float ractor);
+    int calSupportValue(int base_value,int currentValue, float starParam, float ractor);
     bool getSuit(const int &number, int &outSuit, int &outSequence);
     bool memoryInfo(vm_statistics_data_t *vmStats) ;
     
@@ -48,6 +48,8 @@ namespace CPtTool
     CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize);
     
     int getSellPrice(int baseValue, int levelValue, int starValue);
+    
+    int ceil(float inSrc);
 
 };
 

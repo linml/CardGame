@@ -101,6 +101,7 @@ void CFightCard::updateFight(CCard *card, int level /*=1*/)
         m_iHp=m_iCurrHp;
         m_attack=card->m_icard_attack;
         m_defend=card->m_icard_defend;
+
         
         
         if (level == 1)
@@ -128,6 +129,7 @@ void CFightCard::updateFight(CCard *card, int level /*=1*/)
         //CCLog("local: %d, %d, %d", m_iHp, m_attack, m_defend);
         
         m_iMaxExp = SingleLevleConfigData::instance()->getLevelExp(level+1);
+        m_iCurrLevel = level;
   
     }
     else
@@ -214,10 +216,10 @@ void CFightCard::appendHp(int iAddHp)
 
 void CFightCard::updateCard(int level)
 {
-    if (m_iCurrLevel >= level)
-    {
-        return;
-    }
+//    if (m_iCurrLevel >= level)
+//    {
+//        return;
+//    }
     
     if(level > 1)
     {
@@ -306,6 +308,7 @@ int  CFightCard::getCostCoin()
 }
 
 /*
+ * @breif: 该卡作为材料卡提供的经验值
  * @param:  1: exp
  */
 int CFightCard::getSupportValue(int type)

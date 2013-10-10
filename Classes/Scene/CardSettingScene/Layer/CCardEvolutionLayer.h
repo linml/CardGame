@@ -48,8 +48,9 @@ protected:
     void saveOnClick();
     void saveData();
     void receiveCallBack(CCObject *pSender);
-   
     void clearProps();
+    
+    bool EnoughRvc();
 protected:
 
     LayoutLayer *m_cMaps;

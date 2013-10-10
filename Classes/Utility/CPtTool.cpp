@@ -446,9 +446,9 @@ namespace CPtTool
         return result;
     };
     
-    int calSupportValue(int base_value,int currentValue, float ractor)
+    int calSupportValue(int base_value,int currentValue, float starParam, float ractor)
     {
-        return (int)(((base_value+ currentValue*ractor))+1.5)-1;
+        return (int)((base_value+ currentValue*ractor*starParam));
     }
     bool getSuit(const int &number, int &outSuit, int &outSequence)
     {
@@ -596,6 +596,15 @@ namespace CPtTool
    {
        return baseValue + (int)(levelValue*42*starValue/5);
    }
+    
+    int ceil(float inSrc)
+    {
+        
+        int result = inSrc;
+        float tmp = (float)result;
+        result = tmp == inSrc ? result: result+1;
+        return result;
+    }
 
 };
 

@@ -18,7 +18,7 @@
 #include "CGameStoryLayer.h"
 #include "CPtTool.h"
 #include "gameMiddle.h"
-
+#include "CBackpackContainerLayer.h"
 
 
 int g_index = -1;
@@ -126,7 +126,7 @@ CCDictionary* CExploration::setRewardsByDict(CCDictionary *inReward)
                 taskReward = reward;
     
             }
-            
+
             
             tmp = (CCDictionary*) addDict->objectForKey("step");
             if (tmp)
@@ -230,7 +230,6 @@ CReward * CExploration::getChapterReward()
 CReward *CExploration::getTaskAndSectionReward()
 {
     CReward * reward  = NULL;
-//    reward->retainCount(); //0
     if (s_Rewards)
     {
         reward = (CReward*)(s_Rewards->objectForKey(SECTIONREWARD_ADD));
@@ -348,7 +347,6 @@ CExploration::~CExploration()
         m_cMaps->release();
     }
     
-    CC_SAFE_RELEASE(m_pTriggers);
 }
 
 
@@ -480,22 +478,8 @@ void CExploration::initData()
     m_pPlayer = SinglePlayer::instance();
     m_pEventData = SingleEventDataConfig::instance();
     m_pEventBoxData = SingleEventBoxes::instance();
-    m_pTriggers = CCArray::create();
-    m_pTriggers->retain();
-    getTriggers();
 }
 
-void CExploration::getTriggers()
-{
-    CPtTriggerConfigData * triggerData =  SingleTriggerConfig::instance();
-    const vector<int>& triggerIds = s_SectionData.sectionInfo->getTriggers();
-    CPtTrigger * trigger = NULL;
-    for (int i = 0; i < triggerIds.size(); i++)
-    {
-        trigger =  triggerData->getTriggerById(triggerIds.at(i));
-        m_pTriggers->addObject(trigger);
-    }
-}
 
 bool CExploration::initExploration()
 {
@@ -663,7 +647,6 @@ bool CExploration::initExploration()
             m_pBtn[i]->setAnchorPoint(CCPointZero);
             m_pBtn[i]->setPosition(ccp(120+290*i, 370));
             outLayer->addChild(m_pBtn[i], 3001+i, 200);
-           // Utility::addTouchRect(3001+i, m_pBtn[i], m_cTouches);
         }
        
         
@@ -675,14 +658,13 @@ bool CExploration::initExploration()
         
         // init arrows:
         
-      //  randonArrows(s_SectionData.currentStep);
         updateEventData();
         initEvent();
         updateBtn();
         
         createOrUpdatePlayerData();
         addTaskAndSectionReward();
-        scheduleOnce(schedule_selector(CExploration::goSection),1.0f);
+        getBiforest();
         bRet = true;
     } while (0);
     
@@ -705,7 +687,7 @@ void CExploration:: initEvent()
         m_pBtn[i]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
     }
         
-        
+    
       
 
 }
@@ -739,8 +721,16 @@ void CExploration::handlerTouch()
             // to do:
             break;
             
+        case 2005:
+            // card setting:
+            showCardSetting();
+            break;
+        case 2006:
+            // show backpack;
+            CCLog("1--------");
+            showBackPack();
+            break;
         case 2008:
-            //CCDirector::sharedDirector()->replaceScene(CCTransitionFade::create(1.0f, CHallScene::scene()));
             onSaveSectionProgress();
             
             break;
@@ -773,31 +763,15 @@ void CExploration::handlerSuccess()
 {
     // add 
     s_SectionData.currentStep++;
-//    s_SectionData.currentStep >= s_SectionData.sectionInfo->getMaxStep()? s_SectionData.sectionInfo->getMaxStep() : s_SectionData.currentStep;
     updateUI();
 }
-//{"code":0,"result":{"event_info":{"special_id":{"left":"200007","mid":"0","right":"200005","special_event_id":"380001"},"story_id":"600100"},"next_step":5,"reward":{"add":{"event":{"card":null}}}}}
 void CExploration::handlerTrigger()
 {
-    if (m_pTriggers)
+    if (getCurrentTaskId()== m_pPlayer->getCurrentTaskId() && s_SectionData.eventData.type == 1 && s_SectionData.eventData.storyId > 0)
     {
-        CPtTrigger *trigger = NULL;
-      //  for (int i = 0; i < m_pTriggers->count(); i++)
-        {
-           // trigger = (CPtTrigger*)m_pTriggers->objectAtIndex(i);
-             //CGameStoryLayer::CreateStoryLayer(600100, this);
-            if (s_SectionData.eventData.type == 1 && s_SectionData.eventData.storyId != -1)
-            {
-                CGameStoryLayer::CreateStoryLayer(s_SectionData.eventData.storyId, this);
-            }
-//            if (trigger && trigger->getTriggerStep() == s_SectionData.currentStep)
-//            {
-//                CGameStoryLayer::CreateStoryLayer(trigger->getStoryId(), this);// CCDirector::sharedDirector()->getRunningScene());
-//                break;
-//            }
-        }
-     
+        CGameStoryLayer::CreateStoryLayer(s_SectionData.eventData.storyId, this);
     }
+
 }
 
 
@@ -902,7 +876,6 @@ void CExploration::attachConfirm()
     
     if(node)
     {
-//        removeChild(node, true);
         node->removeFromParentAndCleanup(true);
         CConfirmLayer *layer = CConfirmLayer::create();
         this->addChild(layer, 5, 10);
@@ -1102,7 +1075,6 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
             if (m_nEventBoxSelectType == EVENT_SUCCESS)
             {
                 CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData, GET_BOX);
-//                CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CExploration::onCanfirmCallback), "onCanfirmCallback", layer);
                 layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
                 setInsiable();
                 addChild(layer);
@@ -1121,7 +1093,6 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
                 return;
             }
             CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(inEvenBoxData);
-           //  CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CExploration::onCanfirmCallback), "onCanfirmCallback", layer);
             layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
             setInsiable();
             addChild(layer);
@@ -1132,7 +1103,6 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
     {
         // create empty:
         CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(NULL, EMPTY_EVENT);
-        // CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CExploration::onCanfirmCallback), "onCanfirmCallback", layer);
         layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
         setInsiable();
         addChild(layer);
@@ -1208,13 +1178,9 @@ void CExploration::onSendEventRequest()
 void CExploration::onReceiveEventRequetMsg(CCObject *pObject)
 {
     m_bCanTouch = true;
-  //  {"code":0,"result":{"event_info":{"special_id":{"left":"200007","mid":"0","right":"200005","special_event_id":"380001"},"story_id":"600100"},"next_step":5,"reward":{"add":{"event":{"card":null}}}}}
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "nextEvent");
     char *buffer = (char*) pObject;
 
-
-    //string std= "{\"code\":0,\"result\":{\"event_info\":{\"special_id\":{\"left\":\"200007\",\"mid\":\"0\",\"right\":\"200005\",\"special_event_id\":\"380001\"},\"story_id\":\"600100\"},\"next_step\":5,\"reward\":{\"add\":{\"event\":{\"card\":null}}}}}";
-    
     CCLog("buffer: %s", buffer);
     if (buffer)
     {
@@ -1258,39 +1224,7 @@ void CExploration::backHall()
      SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
 }
 
-void CExploration::onReceiveTaskInfo(CCObject *pObject)
-{
-    CCLog("%x",this);
-    m_bLoadTaskInfo = true;
-    char *buff = (char*) pObject;
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "getNextTaskInfo");
-    if (buff)
-    {
-        CCDictionary * tmp = PtJsonUtility::JsonStringParse(buff);
-        SinglePlayer::instance()->onParseTaskInfoByDictionary(tmp);
-        delete [] buff;
-        buff=NULL;
-    }
-    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
 
-
-
-    
-}
-void CExploration::hanlderLoadTaskInfo()
-{
-    m_bLoadTaskInfo = false;
-    char buffer[200]={0}; 
-    sprintf(buffer, "sig=%s",STR_USER_SIG);
-    CCLog("%s,%x", buffer,this);
-    ADDHTTPREQUESTPOSTDATA(STR_URL_TASK(196),"getNextTaskInfo", "getNextTaskInfo",buffer, callfuncO_selector(CExploration::onReceiveTaskInfo));
-
-}
-
-void CExploration::callBack(float dt)
-{
-    hanlderLoadTaskInfo();
-}
 
 
 void CExploration::addForwordReword(CCDictionary * inAllRewards)
@@ -1337,25 +1271,18 @@ void CExploration::addTaskAndSectionReward()
    CReward * taskAndSection =  getTaskAndSectionReward();
    if (taskAndSection)
     {
-        char tips[200] ={0};
+        char tips[200] = {0};
         taskAndSection->excuteReward(ADD);
         sprintf(tips, "task or section reward add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", taskAndSection->getEnergy(), taskAndSection->getHP(), taskAndSection->getExp(),
                 taskAndSection->getCoin(), taskAndSection->getCash(), taskAndSection->getCardCount(), taskAndSection->getPropCount());
-        //CCMessageBox(tips, "info");
-       // Middle::showAlertView(tips);
+        
+        Middle::showAlertView(tips);
     }
 
 }
 
-void CExploration::requestCallBack(float dt)
-{
-    onFishEventRequest(EVENT_SUCCESS);
-}
 
-void CExploration::goSection(float dt)
-{
-    getBiforest();
-}
+
 /*
  * @brief: 分发事件
  * @param inEventId:
@@ -1424,7 +1351,8 @@ void CExploration::createEventBoxDialogByType(CEventBoxData *inEventBoxData, int
         addChild(layer);
     }else
     {
-       scheduleOnce(schedule_selector(CExploration::requestCallBack),0.0f);
+       //scheduleOnce(schedule_selector(CExploration::requestCallBack),0.0f);
+       onFishEventRequest(EVENT_SUCCESS);
     }
     
 }
@@ -1457,27 +1385,32 @@ void CExploration:: onCancleCallback(CCObject *pObject)
 }
 void CExploration:: onCanfirmCallback(CCObject *pObject)
 {
-    CCLog("ccpoBJECT:%x,pObject=%x",this,pObject);
+    CCNode * node = (CCNode*) pObject;
+    node->removeFromParentAndCleanup(true);
+    setVisiable();
     addTaskAndSectionReward();
     getBiforest();
-    CCNode * rmnode = (CCNode*) pObject;
-    removeChild(rmnode, true);
-    setVisiable();
-    //this->runAction(CCCallFuncND::create(this, callfuncND_selector(CExploration::deleteReWordLayer), (void *)pObject));
-}
-void CExploration::deleteReWordLayer(CCNode *node, void *pObject)
-{
-    //CCMessageBox("aa", "1123");
-   
 }
 
 void CExploration::onOpenCallBack(CCObject* pObject)
 {
-    CCNode * node = (CCNode*) pObject;
+    CEventBoxLayer * node = (CEventBoxLayer*) pObject;
+    if (node)
+    {
+        if (node->getGPEnough())
+        {
+            m_nEventBoxSelectType = EVENT_SUCCESS;
+
+        }else
+        {
+            m_nEventBoxSelectType = EVENT_FAILURE;
+        }
+       
+        
+    }
     node->removeFromParentAndCleanup(true);
     setVisiable();
-    m_nEventBoxSelectType = EVENT_SUCCESS;
-    onFishEventRequest(EVENT_SUCCESS);
+    onFishEventRequest(m_nEventBoxSelectType);
     
 }
 
@@ -1485,13 +1418,41 @@ void CExploration::getBiforest()
 {
     if (s_SectionData.currentStep > s_SectionData.sectionInfo->getMaxStep())
     {
-        CCLog("======>");
-        scheduleOnce(schedule_selector(CExploration::callBack),0.5f);
+       // scheduleOnce(schedule_selector(CExploration::callBack),0.0f);
+        if (getCurrentTaskId() == m_pPlayer->getCurrentTaskId())
+        {
+            CPtTask* task = SingleTaskConfig::instance()->getTaskById(getCurrentTaskId());
+            CCAssert(task, "task is null");
+            // type 1: 通关， 2: 杀怪 3: 寻物
+            if(task->getTaskType() == 1)
+            {
+                m_pPlayer->addTaskOperator(1, NULL);
+                if (m_pPlayer->isSuccessFinishTask())
+                {
+                    m_pPlayer->postCompleteTask(getCurrentTaskId(), this, callfuncO_selector(CExploration::taskCompleteCallback), "CALLBACK_CEXPLORATION_COMPLATETASK");
+                    return;
+                }
+                
+            }
+           
+        }
+        SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
         return;
     }
     
 }
 
+void CExploration::showBackPack()
+{
+    CCLayer * layer = CBackpackContainerLayer::create();
+    addChild(layer, 1000);
+    CCLog("backpack...");
+}
+
+void CExploration::showCardSetting()
+{
+    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_CARDSETTINGSCENE, 1);
+}
 
 void CExploration::test_print(int code)
 {
@@ -1503,4 +1464,97 @@ void CExploration::test_print(int code)
 void CExploration::test_print(const char * inMsg)
 {
     Middle::showAlertView(inMsg);
+}
+
+
+void CExploration::taskCompleteCallback(CCObject* pObject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CEXPLORATION_COMPLATETASK");
+    if (!pObject)
+    {
+        CCMessageBox("服务端传输NULL数据Complatetask", "ERROR");
+    }
+    //判断code 是否等于0  如果等于0 代表校验成功， 之后执行doin
+    int codeValue=0;
+    char *buff=(char *)pObject;
+    CCDictionary *tmp= PtJsonUtility::JsonStringParse(buff);
+    delete [] buff;
+    
+    if (tmp)
+    {
+        codeValue  = GameTools::intForKey("code", tmp);
+    }
+    if(!codeValue)
+    {
+        //获得info的答案。
+        if (GameTools::intForKey("info", tmp)==0)
+        {
+            addTask();
+            return;
+        }else
+        {
+            CCLog("任务完成验证失败");
+        }
+    }else
+    {
+        CCLog("error code: %d", codeValue);
+    }
+  
+    
+}
+void CExploration::taskAddCallback(CCObject* pObject)
+{
+    
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CEXPLORATION_ADDTASK");
+    if (!pObject)
+    {
+        CCMessageBox("服务端传输NULL数据Complatetask", "ERROR");
+    }
+    int codeValue=0;
+    char *buff=(char *)pObject;
+    CCDictionary *tmp= PtJsonUtility::JsonStringParse(buff);
+    delete [] buff;
+    buff=NULL;
+    if (tmp)
+    {
+        codeValue  = GameTools::intForKey("code", tmp);
+    }
+    
+    if (!codeValue) {
+        //获得info的答案。
+        if (GameTools::intForKey("info", tmp)==0)
+        {
+            goSection();
+            return;
+        }
+    }
+    char messageData[100];
+    sprintf(messageData, "服务端说不能添加本地的当前任务 出错CODE::%d",codeValue);
+    CCMessageBox(messageData,"ALTER");
+}
+
+void CExploration::addTask()
+{
+    int value=m_pPlayer->getCurrentTaskId();
+    CPtTask *pttask=SingleTaskConfig::instance()->getNextByPreTask(value);
+    if (pttask)
+    {
+        m_pPlayer->setCurrentTaskId(pttask->getTaskId());
+        m_pPlayer->postAddTask(m_pPlayer->getCurrentTaskId(), this, callfuncO_selector(CExploration::taskAddCallback), "CALLBACK_CEXPLORATION_ADDTASK");
+    }
+    else
+    {
+        goSection();
+    }
+   
+}
+
+
+void CExploration::goSection()
+{
+    scheduleOnce(schedule_selector(CExploration::callback), 1.0f);
+}
+void CExploration::callback(float dt)
+{
+    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
 }

@@ -342,10 +342,15 @@ void CCardEnhanceLayer::updateData()
     if (m_pSelectCard)
     {
         int  exp = m_pSelectCard->getCardData()->m_iCurrExp;
-        exp += m_nCurrentExp;
+        m_nCurrentExp += exp;
+        exp = m_nCurrentExp;
         int currentLevel = m_pSelectCard->getCardData()->m_iCurrLevel;
         int level = m_pLevelConfig->getCurrentLevel(exp,m_pSelectCard->getCardData()->m_pCard->m_sicard_star ,currentLevel);
-        level = level >= m_pSelectCard->getCardData()->m_pCard->m_ileve_max ? m_pSelectCard->getCardData()->m_pCard->m_ileve_max:level;
+        if (level >= m_pSelectCard->getCardData()->m_pCard->m_ileve_max)
+        {
+            level = m_pSelectCard->getCardData()->m_pCard->m_ileve_max;
+            m_nCurrentExp = m_pLevelConfig->getTopExpByStar(level, m_pSelectCard->getCardData()->m_pCard->m_sicard_star);
+        }
         CCLog("current-----: %d, level: %d, currentLevel: %d", exp, level, m_nCurrentLevel);
         if (level >= currentLevel )
         {
@@ -355,11 +360,10 @@ void CCardEnhanceLayer::updateData()
             m_nAddDef =tmp->getAddValue(level, 2)- tmp->m_defend;
             m_nAddHp  = tmp->getAddValue(level, 3) - tmp->m_iHp;
             m_nAddRvc = tmp->getAddValue(level, 4) - 0;
-            m_nCurrentLevel = level;
-            
             // cclog
             CCLog("%d %d", tmp->getAddValue(level, 1), tmp->m_attack);
         }
+        m_nCurrentLevel = level;
        
        
     }else
@@ -371,6 +375,7 @@ void CCardEnhanceLayer::updateData()
         m_nAddRvc = 0;
         m_nCostConin = 0;
     }
+    CCLog("the current exp: %d", m_nCurrentExp);
 
 }
 void CCardEnhanceLayer::updateTexture()
@@ -564,7 +569,7 @@ void CCardEnhanceLayer:: save()
     {
         m_pSelectCard->updateToLevel(m_nCurrentLevel);
         m_pSelectCard->getInCardBagPointer()->updateToLevel(m_nCurrentLevel);
-    
+        m_pSelectCard->setUpExpTo(m_nCurrentExp);
     }
     m_pCardBag->reload();
  
@@ -576,11 +581,19 @@ void CCardEnhanceLayer::saveOnClick()
     CSaveConfirmLayer * layer =  CSaveConfirmLayer::create();
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
 
+    int index = m_pSelectCard->getCardData()->m_pCard->m_sicard_star;
+    index--;
+    int needLevel = g_aMaxLevel[index];
+    if (m_pSelectCard->getCardData()->m_iCurrLevel >= needLevel)
+    {
+        layer->setResultCode(12);
+        return;
+    }
+    
     if (m_pSelectCard == 0 || m_nCostConin == 0)
     {
       //  CCLog("没有材料卡或被强化的卡");
         layer->setResultCode(5);
-        CCLog("22333");
         return;
     }
     bool bRet =verifyConin();

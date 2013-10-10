@@ -212,7 +212,6 @@ void CAsgardLayer::initArsgard()
 
 void CAsgardLayer::handlerTouch()
 {
-    CCLayer * layer = NULL;
     CCLog("CAsgardLayer m_nTag : %d ", m_nTouchTag);
     if(m_nTouchTag != -1)
     {
@@ -221,8 +220,8 @@ void CAsgardLayer::handlerTouch()
     switch (m_nTouchTag) {
         case GLADSHEIM_TOUCH_TAG:
             // to do:
-            layer = CTaskLayer::create();
-            this->getParent()->addChild(layer, 30000, 6002);
+//            layer = CTaskLayer::create();
+//            this->getParent()->addChild(layer, 30000, 6002);
             break;
             
         case VALHALLA_TOUCH_TAG:
@@ -244,23 +243,8 @@ void CAsgardLayer::handlerTouch()
     }
 }
 
-void CAsgardLayer::callBack(float dt)
-{
-
-    if(SinglePlayer::instance()->getLoadTaskInfo())
-    {
-        m_bLoadTaskInfo = true;
-        createBiforestLayer();
-        this->unschedule(schedule_selector(CAsgardLayer::callBack));
-    }
-
-}
 
 void CAsgardLayer::onClickBiforest()
 {
-    m_bLoadTaskInfo = false;
-    SinglePlayer::instance()->onGetTaskInfo();
-    schedule(schedule_selector(CAsgardLayer::callBack), 0.2);
-    
-    
+    createBiforestLayer();
 }

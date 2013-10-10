@@ -30,7 +30,7 @@ class CGamePlayer : cocos2d::CCObject
 {
  public:
     CGamePlayer();
-    ~CGamePlayer();
+    virtual ~CGamePlayer();
     void loadGamesConfig();
     void onExitGameApp();
 public:
@@ -93,6 +93,7 @@ public:
     void onGameBegin();
     void onGameBeginCallBack(CCObject *object);
     void parseJsonUserInfo(CCDictionary *dict);
+    void parseTaskInfo(CCDictionary *dict);
 
 public: //读取 卡队列的信息
     void loadCardTeamInfoCallBackByDict(CCDictionary *dictresult);
@@ -158,20 +159,17 @@ protected:
     
 // 探索信息:
 public:
-    int getMaxChapterId(){return m_nMaxChapterId ;};
-    int getMaxSectionid(){return m_nMaxSectionId;};
+    int  getMaxChapterId(){return m_nMaxChapterId ;};
+    int  getMaxSectionid(){return m_nMaxSectionId;};
     void setCurrentTaskId(int inTaskId);
-    int getCurrentTaskId(){return m_nCurrentTaskId;};
-    void openChapterAndSection(int inChapterId, int inSectionId){ m_nMaxChapterId = inChapterId, m_nMaxSectionId = inSectionId;};
-    // now is chapter and section:
-    void onGetTaskInfo();
-    void onParseTaskInfoByDictionary(CCDictionary *inDataDictionary);
+    int  getCurrentTaskId(){return m_nCurrentTaskId;};
+    void openChapterAndSection(int inChapterId, int inSectionId){ m_nMaxChapterId = inChapterId; m_nMaxSectionId = inSectionId;};
+
 protected:
-    void onReceiveTaskInfo(CCObject *pObject);
+
     void setChapterAndSectionByTask();
 
     // test:
-    void setTopMaxChapterAndSection();
 
 // play info:
 public:
@@ -212,13 +210,37 @@ public:
     
     void addRVC(const int &inAddValue);
     void subRVC(const int &insubRVC);
-
+    
+    void addTaskOperator(int taskType,std::vector<int> *targetIdVector);
+    void subTaskOperator(int taskType,std::vector<int> *targetIdVector);
+    bool isSuccessFinishTask();
+    int  getCurrentTaskType();
+    void getNextTaskInfo();
+    void setInitCurrentTaskTargetNumber(int number); //程序启动的时候 需要载入当前任务进度
+    /**
+     @paramid1 taskid  当前完成的任务ID
+     @paramid2 object  调用某个layer的类
+     @paramid3 selector 回调函数 ，同上个参数一样类中
+     @strcallback 回调字符串
+     */
+    void postCompleteTask(int taskId, CCObject *object, SEL_CallFuncO selector,const char *strCallback);
+    /**
+     
+     */
+    void postAddTask(int taskNextId, CCObject *object, SEL_CallFuncO selector,const char *strCallback); //当本地
+private:
+    void setTaskTotalNumberOnFinishSectionTask(int Value);
+    
+public:
+    // 或取当前阵容的全部领导力
+    int getAllRvcBattlerArray(const int& inType);
     
 protected:
     CGamePlayerData *m_gGamePlayerData;
     map<int, CPtProp*> &m_rAllProps; // 静态配置中道具信息
     map<int, int> m_vProps;          // 用户道具列表
     bool m_bLoadProps;
+    
 private:
     map<int, CCard *>m_hashmapAllCard;
     map<int ,CSkillData *>m_vSkillInfo;
@@ -228,6 +250,8 @@ private:
     string m_strUid;
     std::vector<int >m_getRandom_data;
     int m_currRandRomIndex;
+    //添加当前任务的判断值得
+    CPtTaskLogic *m_pTaskLogic;
 protected:
     int m_nCurrentTaskId;
     int m_nMaxChapterId;
@@ -240,6 +264,7 @@ protected:
     CC_SYNTHESIZE(bool, m_bFightKuaijin, FightKuaijin);
     vector<SEveryATKData*>m_vHpAngry;
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
+    
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

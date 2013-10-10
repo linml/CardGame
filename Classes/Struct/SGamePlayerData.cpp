@@ -129,8 +129,10 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_icash=GameTools::intForKey("cash", dict);
     m_iexp=GameTools::intForKey("exp", dict);
     m_ilevel=GameTools::intForKey("level", dict);
+    
     this->m_sLevelPlayer=m_gvPlayerLevel[m_ilevel];
-    CCAssert(this->m_sLevelPlayer!=NULL, "FUCH FUWUDUAN 传递一个 配置表里面没有的等级");
+    
+    CCAssert(this->m_sLevelPlayer!=NULL, "FUCH FUWUDUAN 传递一个配置表里面没有的等级");
     
     m_iAp=GameTools::intForKey("ap", dict); //体力
     m_iAp_update_time=GameTools::intForKey("ap_update_time", dict);

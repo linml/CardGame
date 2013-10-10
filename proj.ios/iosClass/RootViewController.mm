@@ -64,7 +64,11 @@
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
-
+//NS_AVAILABLE_IOS(7_0); hide statusBar in Ios7 OS
+- (BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 - (void)dealloc {
     [super dealloc];

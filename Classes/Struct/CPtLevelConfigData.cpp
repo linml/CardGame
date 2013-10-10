@@ -200,7 +200,7 @@ int CPtLevelConfigData::getCurrentLevel(int exp, int star,  int beginLevel)
                     tmpValue = GameTools::intForKey("exp", tmp);
                     CCLog("%d", start_param);
                     // 向下取整：
-                    if (exp < (tmpValue*start_param))
+                    if (exp < (int)(tmpValue*start_param))
                     {
                         result = i-1;
                         break;

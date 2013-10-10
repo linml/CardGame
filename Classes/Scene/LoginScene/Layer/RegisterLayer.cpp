@@ -144,7 +144,7 @@ void CRegisterLayer::menuCancelCallback(CCObject* pSender)
 void CRegisterLayer::menuRegisterCallback(CCObject* pSender)
 {
     
-    const char* pchData = m_pEditName->getText();
+    //const char* pchData = m_pEditName->getText();
     if(!m_pEditName->getText()||!strcmp(m_pEditName->getText(), ""))
     {
         Middle::showAlertView("昵称不能为空！");

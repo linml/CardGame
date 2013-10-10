@@ -353,8 +353,8 @@ void CEventBoxRewordLayer::createEmptyDialog()
     this->addChild(bathNode);
     
     
-    char * title = "空事件";
-    char * describle = "快去洗洗手，啥都没捞到了！";
+   const char * title = "空事件";
+   const char * describle = "快去洗洗手，啥都没捞到了！";
    
     CCLog("the describle: %s", describle);
     CCPoint point = top->getPosition();

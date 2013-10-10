@@ -365,7 +365,11 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
     }
     array[0] = 1, array[1] = 1, array[2] = 8;
     m_pCloseButton = (CCSprite*) m_cMaps->getElementByTags(array, 3);
-    Utility::addTouchRect(8, m_pCloseButton, m_cTouches);
+//    Utility::addTouchRect(8, m_pCloseButton, m_cTouches);
+    CCRect rect = Utility::getNodeTouchRect(m_pCloseButton) ;
+    rect.size.width *= 1.6;
+    rect.size.height *= 1.6;
+    Utility::addTouchRect(rect, 8, m_pCloseButton, m_cTouches);
   
     updatePageContent(m_nPageCount);
     updateIndicators(m_nPageCount);

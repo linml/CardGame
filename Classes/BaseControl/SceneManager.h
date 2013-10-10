@@ -1,4 +1,4 @@
-﻿//
+//
 //  SceneManager.h
 //  en.cube
 //
@@ -46,7 +46,7 @@ private:
     void runFightScene();
     void runLoginScene();
     void runHallScene(int inOpenType = 0);
-    void runCardSettingScene();
+    void runCardSettingScene(int inLastSceneTag = 0);
     void runSceneAnimation(CCScene *tagerScene);
     //test
 public:

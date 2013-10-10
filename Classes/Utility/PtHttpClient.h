@@ -56,6 +56,22 @@ CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf
 }
 
 
+#define ADDHTTPREQUESTPOSTDATABYOWNCCCLASS(URL,NOTIFICATIONTAG,HTTPREQUESTTAG,__POSTSTR__,__CCOBJECTPOINT__,CALLBACK)\
+{\
+stcRequestInf inf;\
+inf.m_pchURL = URL; \
+cout<<inf.m_pchURL<<endl; \
+inf.m_RequestType=CCHttpRequest::kHttpPost;\
+inf.m_pSelector = NOTIFICATIONTAG;\
+inf.m_pchTag = HTTPREQUESTTAG;\
+inf.m_pchData = __POSTSTR__;\
+appendFileLog(URL); \
+appendFileLog(__POSTSTR__); \
+CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
+CCNotificationCenter::sharedNotificationCenter()->addObserver(__CCOBJECTPOINT__,CALLBACK, inf.m_pSelector.c_str(), NULL);\
+}
+
+
 
 typedef struct STC_HTTPINF {
     string m_pchURL;

@@ -35,15 +35,18 @@ public:
 protected:
     void initEventBoxLayer(CEventBoxData *inEventBoxData);
     void handlerTouch();
-
     void loadResource();
+    
+    // test:
+    void testUpdateString();
 protected:
+    
     
     LayoutLayer *m_cMaps;
     vector<TouchRect> m_cTouches;
    
+    CCLabelTTF *tips;
     int m_nTouchTag;
- 
     bool m_bMove;
     
     CCSprite * m_pBtn[2];
@@ -52,6 +55,8 @@ protected:
     SEL_CallFuncO m_pOpenSelector;
     SEL_CallFuncO m_pSkipSelector;
     CCObject *m_pTarget;
+    
+    CC_SYNTHESIZE(bool, m_bGPEnough, GPEnough);
 };
 
 

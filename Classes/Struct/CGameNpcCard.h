@@ -29,9 +29,6 @@ private:
     int m_iNpcAttack;
     int m_iNpcDefine;
     int m_iNpcHp;
-
-
-
 };
 
 #endif /* defined(___1_cube__CGameNpcCard__) */

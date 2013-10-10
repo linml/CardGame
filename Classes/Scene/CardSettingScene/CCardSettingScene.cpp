@@ -13,12 +13,13 @@
 #include "Utility.h"
 CCDictionary * CCardSettingScene::s_pBattleArrayCards = NULL;
 
-CCScene* CCardSettingScene::scene()
+CCScene* CCardSettingScene::scene(int inLastSceneTag)
 {
     CCScene *scene = CCScene::create();
     CCardSettingScene *layer = CCardSettingScene::create();
     if (layer)
     {
+        layer->setLastSceneTag(inLastSceneTag);
         scene->addChild(layer);
     }
     return scene;
@@ -26,6 +27,7 @@ CCScene* CCardSettingScene::scene()
 
 CCardSettingScene::CCardSettingScene()
 {
+    m_nLastSceneTag = 0;
     if (s_pBattleArrayCards == NULL)
     {
         s_pBattleArrayCards = CCDictionary::create();
@@ -49,6 +51,11 @@ CCardSettingScene::~CCardSettingScene()
         s_pBattleArrayCards->release();
         s_pBattleArrayCards = NULL;
     }
+}
+
+void CCardSettingScene::setLastSceneTag(int inLastSceneTag)
+{
+    m_nLastSceneTag = inLastSceneTag;
 }
 
 bool CCardSettingScene::init()
@@ -255,7 +262,7 @@ void CCardSettingScene::handlerTouch()
             break;
             
         case 3006:
-            SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+            onClickBack();
             break;
         default:
             return;
@@ -282,16 +289,18 @@ void CCardSettingScene::handlerTouch()
  
 }
 
+void CCardSettingScene::onClickBack()
+{
+    if (m_nLastSceneTag == 0)
+    {
+        SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE);
+    }else
+    {
+         SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_EXPLORATIONSCENE);
+    }
 
-// test:
-//void CCardSettingScene::load()
-//{
-//
-//    CGamePlayer* m_pGamePlayer = SinglePlayer::instance();
-//    m_pGamePlayer->loadGamesConfig();
-//    m_pGamePlayer->loadServerCardBag();
-//    this->schedule(schedule_selector(CCardSettingScene::callback));
-//}
+}
+
 
 void CCardSettingScene::callback(float dt)
 {

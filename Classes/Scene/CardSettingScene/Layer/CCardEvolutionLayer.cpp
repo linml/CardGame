@@ -301,10 +301,10 @@ void CCardEvolutionLayer:: save()
         if (index >= 0)
         {
             //save card in BattleArray:
-        int t = m_pSrcCard->getCardData()->m_User_Card_ID;
-        vector<CFightCard *> &tmpVect = m_pPlayer->getCardBattleArray().at(index);
-             for (int i = 0; i< tmpVect.size(); i++)
-             {
+            int t = m_pSrcCard->getCardData()->m_User_Card_ID;
+            vector<CFightCard *> &tmpVect = m_pPlayer->getCardBattleArray().at(index);
+            for (int i = 0; i< tmpVect.size(); i++)
+            {
                  CCLog("user id: %d",tmpVect.at(i)->m_User_Card_ID );
                  if (tmpVect.at(i) && tmpVect.at(i)->m_User_Card_ID == t)
                  {
@@ -349,7 +349,7 @@ void CCardEvolutionLayer::saveData()
 }
 
 void CCardEvolutionLayer::saveOnClick()
-{
+{    
     CSaveConfirmLayer * layer = CSaveConfirmLayer::create();
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
     int cardItemId = 0;
@@ -390,7 +390,15 @@ void CCardEvolutionLayer::saveOnClick()
         }else if(m_bPropEnough == false)
         {
             layer->setResultCode(11);
+            return;
         }
+        
+        if (EnoughRvc()== false)
+        {
+            layer->setResultCode(13);
+            return;
+        }
+        // 领导力不够：
 
         // send message to server:
         //    api.php?m=Card&a=cardUpGrade&uid=194(用户ID)
@@ -403,7 +411,7 @@ void CCardEvolutionLayer::saveOnClick()
     
         char buff[500]={0};
 //xianbei modify        sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&&type=1&info=\"{\"card_id\":\"%d_%d\",\"other\":\"\"}",cardItemId, cardGroup);
-        sprintf(buff, "sig=%s&&type=1&info=\"{\"card_id\":\"%d_%d\",\"other\":\"\"}",STR_USER_SIG, cardItemId, cardGroup);
+        sprintf(buff, "sig=%s&type=1&info={\"card_id\":\"%d_%d\",\"other\":\"\"}",STR_USER_SIG, cardItemId, cardGroup);
     
         CCLog("%s",buff);
     
@@ -522,3 +530,27 @@ void CCardEvolutionLayer::removeCard()
   
 }
 
+bool CCardEvolutionLayer::EnoughRvc()
+{
+    bool bRet = false;
+    do {
+        if(m_pSrcCard && m_pDesCard)
+        {
+            int battleArrayIndex =  m_pSrcCard->getCardData()->getInWhichBattleArray();
+            if (battleArrayIndex > 0)
+            {
+                battleArrayIndex--;
+                int changedValue =  m_pPlayer->getAllRvcBattlerArray(battleArrayIndex);
+                changedValue += m_nAddAtk;
+                if (changedValue > m_pPlayer->getRVC())
+                {
+                    break;
+                }
+                
+            }
+           
+        }
+        bRet = true;
+    } while (0);
+    return bRet;
+}

@@ -71,6 +71,11 @@ protected:
     bool initLogin();
     bool handleTouchSpritePool(CCPoint point);
     bool isTouchPlayerGame;
+    void doingCheckComplateTask();
+    void dointAddTask();
+    void dealWithCompleteTask(CCObject *object);
+    void dealWithAddTask(CCObject *object);
+    
 protected:
     bool m_bLogoOver;
     LayoutLayer *maps;

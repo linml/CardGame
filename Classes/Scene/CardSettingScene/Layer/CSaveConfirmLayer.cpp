@@ -100,6 +100,8 @@ void CSaveConfirmLayer::initConfirm()
  *        5. 4: 没有材料卡或被强化的卡
  *        6. 5: 金币不够
  *        7. 11: 材料不够
+ *        8. 12: 已经强化到顶级，请去进化
+ *        9. 13: 阵容中的卡进化后，领导力不够， 请去卸卡
  */
 
 void CSaveConfirmLayer::setResultCode(int inCode, bool delay)
@@ -144,7 +146,7 @@ void CSaveConfirmLayer::updateText()
     {
         return;
     }
-    char buff[50] = {0};
+    char buff[200] = {0};
     switch (inCode)
     {
         case 0:
@@ -185,6 +187,13 @@ void CSaveConfirmLayer::updateText()
             break;
         case 11:
             sprintf(buff, "%s", "材料不够");
+            break;
+        case 12:
+            sprintf(buff, "%s"," 已经强化到顶级，请去进化");
+            break;
+        case 13:
+            sprintf(buff, "%s", "阵容中的卡进化后，领导力不够\n请去卸卡");
+            break;
         case 200:
             sprintf(buff, "服务器响应失败");
             break;

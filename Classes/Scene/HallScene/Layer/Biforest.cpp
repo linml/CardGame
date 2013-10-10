@@ -64,7 +64,6 @@ CBiforestLayer::CBiforestLayer()
     m_bChapterMode = true;
     
     m_nMaxChapterId = SinglePlayer::instance()->getMaxChapterId();
-    CCLog("m_nMaxChapterId==%d",m_nMaxChapterId);
     m_nMaxSectionId = SinglePlayer::instance()->getMaxSectionid();
     selectNode = NULL;
     m_pListView = NULL;
@@ -372,7 +371,11 @@ void CBiforestLayer::handlerTouch()
             break;
         case 2005:
             //如果是场景切换 请调用scenemanage
-            onClickGoSection();
+            if (m_pGoBtn && m_pGoBtn->isVisible())
+            {
+                onClickGoSection();
+            }
+
             break;
             
         default:
@@ -443,7 +446,9 @@ void CBiforestLayer::onParseGoSectionMsgByDictionary(CCDictionary * inDataDictio
          CExploration::setCurrentStep(GameTools::intForKey("step", tmp));
          EVENTDATA eventData =  dispatchEventWithType((CCDictionary*)tmp->objectForKey("event_info"));
          CExploration::setEvents(eventData);
-         CExploration::setExplorationInfo((CPtSection*) ((CPtChapter*)m_pChapters->objectAtIndex(m_nCurrentChaptetIndex))->getSections()->getSectionById(m_nCurrentSectionId));
+         CPtSection* tempPtSection= (CPtSection*)((CPtChapter*)m_pChapters->objectAtIndex(m_nCurrentChaptetIndex))->getSections()->getSectionById(m_nCurrentSectionId);
+         CExploration::setExplorationInfo(tempPtSection);
+        
          SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
         // success:
     }else

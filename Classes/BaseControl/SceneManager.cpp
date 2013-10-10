@@ -103,7 +103,7 @@ void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene ,int inParam)
             runFightScene();
             break;
         case EN_CURRSCENE_CARDSETTINGSCENE:
-            runCardSettingScene();
+            runCardSettingScene(inParam);
         default:
             break;
     }
@@ -163,18 +163,18 @@ void SceneManager::runHallScene(int inOpenType)
 
 }
 
-void SceneManager::runCardSettingScene()
+void SceneManager::runCardSettingScene(int inLastSceneTag)
 {
     if(m_currscene!=EN_CURRSCENE_CARDSETTINGSCENE)
     {
         m_currscene=EN_CURRSCENE_CARDSETTINGSCENE;
         CCDirector *pDirector=CCDirector::sharedDirector();
         
-        CCScene *pScene = CCardSettingScene::scene();
+        CCScene *pScene = CCardSettingScene::scene(inLastSceneTag);
         
         if(pDirector->getRunningScene())
         {
-              pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
+              pDirector->replaceScene(CCTransitionFade::create(1.0f,pScene));
         }
         else
         {
@@ -282,7 +282,7 @@ void SceneManager::runExplorationScene()
 
 void SceneManager::runSceneAnimation(CCScene *tagerScene)
 {
-    int iSceneIndex=rand()%3+1;
+    int iSceneIndex=1;
     CCDirector * pDirector=CCDirector::sharedDirector();
     switch (iSceneIndex) {
         case 1:

@@ -49,8 +49,7 @@ protected:
     void handlerTouch();
     void createOrUpdatePlayerData();
     void createChapterReward();
-    
-    void callBack(float dt);
+
 protected:
     
     bool m_bLoadTaskInfo;

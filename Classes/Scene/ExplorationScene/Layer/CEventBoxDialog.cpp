@@ -9,6 +9,7 @@
 #include "CEventBoxDialog.h"
 #include "gameConfig.h"
 #include "CPtTool.h"
+#include "gamePlayer.h"
 
 
 
@@ -42,6 +43,9 @@ CEventBoxLayer::CEventBoxLayer()
     m_pSkipSelector = NULL;
     m_pOpenSelector = NULL;
     m_pTarget = NULL;
+    m_bGPEnough = true;
+
+    tips = NULL;
 }
 CEventBoxLayer::~CEventBoxLayer()
 {
@@ -116,6 +120,10 @@ void CEventBoxLayer::initEventBoxLayer(CEventBoxData *inEventBoxData)
 {
     loadResource();
     
+    if (inEventBoxData && inEventBoxData->getBoxType() == 1)
+    {
+        m_bGPEnough = SinglePlayer::instance()->getPlayerGp() >= inEventBoxData->getGP() ? true : false;
+    }
     
     const char * title = inEventBoxData->getTitle().c_str();
     const char * describle = "今天早上你从家里走出来的时候，踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！踩到狗屎了！";
@@ -167,6 +175,8 @@ void CEventBoxLayer::initEventBoxLayer(CEventBoxData *inEventBoxData)
     label->setAnchorPoint(ccp(0, 1));
     label->setPosition(ccp(point.x+ 110, point.y-10));
     parent->addChild(label);
+    
+    tips = label;
     // touch event:
     
     const char * name="继续探险";
@@ -218,6 +228,7 @@ void CEventBoxLayer::handlerTouch()
         // open
         if (m_pTarget && m_pOpenSelector)
         {
+            testUpdateString();
             (m_pTarget->*m_pOpenSelector)(this);
         }
     }
@@ -228,4 +239,13 @@ void CEventBoxLayer::handlerTouch()
 void CEventBoxLayer::loadResource()
 {
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "different_state.plist"), CSTR_FILEPTAH(g_mapImagesPath, "different_state.png"));
+}
+
+void CEventBoxLayer::testUpdateString()
+{
+    if (!m_bGPEnough &&tips)
+    {
+        tips->setString("神力不够");
+    }
+    
 }

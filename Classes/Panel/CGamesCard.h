@@ -33,6 +33,7 @@ public:
     void updateCard(CFightCard *card);
     void setLogo(const int &inType);
     void setGameStatus();
+    void setUpExpTo(int inExp);
 protected:
     void hideNodeByTag(int tag);
     void setLive(CCNode *node);

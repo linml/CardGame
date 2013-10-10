@@ -152,7 +152,19 @@ void FightResultConfirm::callBackData(cocos2d::CCObject *object)
                     m_nResult->setFightResult(1);
                     PtSoundTool::playSysSoundEffect("fight_win.mp3");
                 }
-                else{
+                else
+                {
+                    //如果是失败的话 记录战斗的怪物信息;
+                    char dataMoster[200];
+                    int iLenStr=0;
+                    CGamePlayer *pGamePlayer=SinglePlayer::instance();
+                    for (int i=0; i<pGamePlayer->m_hashmapMonsterCard.size(); i++) {
+                        if (pGamePlayer->m_hashmapMonsterCard[i]) {
+                            iLenStr=sprintf(&dataMoster[iLenStr], " monter: %d",pGamePlayer->m_hashmapMonsterCard[i]->m_pCard->m_icard_id);
+                        }
+                    }
+                    appendFileLog(dataMoster);
+                    //
                     m_nResult->setFightResult(0);
                     PtSoundTool::playSysSoundEffect("fight_failed.mp3");
                 }

@@ -425,14 +425,6 @@ void CGamesCard::createHero(const char *str)
 
 bool CGamesCard::initBg(CFightCard *card)
 {
-//    char data[20];
-//    sprintf(data, "%s_%0.2d.png",card->m_scard_groud.c_str(),(int)card->m_ccard_color);
-//    if(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(card->m_scard_groud.c_str())==NULL)
-//    {
-////
-//        return false;
-//    }
-//    initWithFile(data);
     return true;
 }
 
@@ -461,7 +453,7 @@ void CGamesCard::updateToLevel(const int & inLevel)
 {
     CFightCard *card = m_pCardData;
     m_pCardData->updateCard(inLevel);
-    m_pCardData->m_iCurrLevel = inLevel;
+    m_pCardData->m_iCurrLevel = inLevel; 
     updateData(card->m_attack, card->m_iHp, card->m_pCard->m_icard_leadership, card->m_defend);
 }
 
@@ -470,7 +462,7 @@ void CGamesCard:: updateCard(CFightCard *card)
     removeAllChildrenWithCleanup(true);
 
     m_pCardData->updateFight(card->m_pCard, card->m_iCurrLevel);
-    initBg(card);
+    m_pCardData->m_iCurrExp = SingleLevleConfigData::instance()->getTopExpByStar(card->m_iCurrLevel, card->m_pCard->m_sicard_star);
     createBackground(card->m_pCard->m_scard_ground.c_str());
     createHero(card->m_pCard->m_scard_resources.c_str());
     createStart(card->m_pCard->m_sicard_star);
@@ -503,6 +495,11 @@ void CGamesCard::setGameStatus()
         hideNodeByTag(CARDDEFTAG);
         hideNodeByTag(CARDHPTAG);
     
+}
+
+void CGamesCard::setUpExpTo(int inExp)
+{
+    m_pCardData->m_iCurrExp = inExp;
 }
 
 /*

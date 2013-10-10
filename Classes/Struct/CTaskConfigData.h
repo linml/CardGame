@@ -68,8 +68,24 @@ protected:
     CC_SYNTHESIZE(int, m_nTaskTipId, TaskTipId); //任务描述字典ID
     CC_SYNTHESIZE(int, m_nChapterId, ChapterId); //任务指定的章
     CC_SYNTHESIZE(int, m_nSectionId, SectionId); //任务指定的节
-    
     CC_PROPERTY_READONLY(STaskReword, m_sTaskReword, TaskReword);
+    
+    
+};
+
+class  CPtTaskLogic
+{
+public:
+    CPtTaskLogic();
+    ~CPtTaskLogic();
+    void setInitDataByCPtTask(CPtTask *ptTask);
+    void addTaskOperator(int taskType,  vector<int > *targetIdVector);
+    void subTaskOperator(int taskType,  vector<int > *targetIdVector);
+public:
+    CC_SYNTHESIZE(int , m_iPtTaskType, PtTaskType);
+    CC_SYNTHESIZE(int , m_iPtTaskTargetID, PtTaskTargetID);
+    CC_SYNTHESIZE(int , m_iPtTaskTotalNumber, PtTaskTotalNumber);
+    CC_SYNTHESIZE(int , m_iPtTaskCurrentNumber, PtTaskCurrentNumber);
 };
 
 class CTaskConfigData : public CCObject
@@ -78,12 +94,16 @@ class CTaskConfigData : public CCObject
 public:
     CTaskConfigData();
     virtual ~CTaskConfigData();
-    
     CPtTask *getTaskById(int inId);
+    CPtTask *getNextByPreTask(int inId);
+    int getMaxTaskId(){return m_nMaxTaskId;}
 protected:
     int m_nCurrentTaskId;
     CCDictionary *m_pTaskConfigData;
     CPtTask *m_pCurrentTask;
+    int m_nMaxTaskId;
+    int m_nMinTaskId;
+
     
 };
 

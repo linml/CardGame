@@ -93,7 +93,89 @@ void CLoginScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 {
     
 }
+void CLoginScene::doingCheckComplateTask()
+{
+    CGamePlayer *gamePlayer=SinglePlayer::instance();
+    gamePlayer->postCompleteTask(gamePlayer->getCurrentTaskId(), this, callfuncO_selector(CLoginScene::dealWithCompleteTask), "CALLBACK_CLOGINSCENE_COMPLATETASK");
+}
+void CLoginScene::dointAddTask()
+{
+    CGamePlayer *gamePlayer=SinglePlayer::instance();
+    int value=gamePlayer->getCurrentTaskId();
+    CCLog("get Value %d",value);
+    CPtTask *pttask=SingleTaskConfig::instance()->getNextByPreTask(value);
+    CCLog("pttask->getTaskId() %d",pttask->getTaskId());
+    gamePlayer->setCurrentTaskId(pttask->getTaskId());
+    gamePlayer->postAddTask(gamePlayer->getCurrentTaskId(), this, callfuncO_selector(CLoginScene::dealWithAddTask), "CALLBACK_CLOGINSCENE_ADDTASK");
+}
 
+void CLoginScene::dealWithCompleteTask(CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CLOGINSCENE_COMPLATETASK");
+    if (!object) {
+        CCMessageBox("服务端传输NULL数据Complatetask", "ERROR");
+    }
+    //判断code 是否等于0  如果等于0 代表校验成功， 之后执行doin
+    int codeValue=0;
+    char *buff=(char *)object;
+    CCDictionary *tmp= PtJsonUtility::JsonStringParse(buff);
+    delete [] buff;
+
+    if (tmp)
+    {
+        codeValue  = GameTools::intForKey("code", tmp);
+    }
+    if(!codeValue)
+    {
+        CCDictionary *resualt=(CCDictionary*)(tmp->objectForKey("result"));
+        //获得info的答案。
+        if (resualt)
+        {
+            if(GameTools::intForKey("info", resualt)==1)
+            {
+                dointAddTask();
+                return;
+            }
+        }
+    }
+    char messageData[100];
+    sprintf(messageData, "在初始化的时候服务端校验任务完成过不去,不能玩游戏 谢谢CODE::%d",codeValue);
+    CCMessageBox(messageData,"ALTER");
+}
+
+void CLoginScene::dealWithAddTask(CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CLOGINSCENE_COMPLATETASK");
+    if (!object) {
+        CCMessageBox("服务端传输NULL数据Complatetask", "ERROR");
+    }
+    int codeValue=0;
+    char *buff=(char *)object;
+    CCDictionary *tmp= PtJsonUtility::JsonStringParse(buff);
+    delete [] buff;
+    buff=NULL;
+    if (tmp)
+    {
+        codeValue  = GameTools::intForKey("code", tmp);
+        if (!codeValue) {
+            CCDictionary *resualt=(CCDictionary*)(tmp->objectForKey("result"));
+            //获得info的答案。
+            if (resualt)
+            {
+                if(GameTools::intForKey("info", resualt)==1)
+                   {
+                       playGame();
+                       return;
+                   }
+            }
+        }
+    }
+
+    
+    char messageData[100];
+    sprintf(messageData, "服务端说不能添加本地的当前任务 出错CODE::%d",codeValue);
+    CCMessageBox(messageData,"ALTER");
+}
 
 bool CLoginScene::handleTouchSpritePool(CCPoint point)
 {
@@ -352,28 +434,53 @@ void CLoginScene::scheudoLoadGameConfig()
 
 void CLoginScene::addFunctionInitGames(float t)
 {
+    CGamePlayer *pGamePlayer=SinglePlayer::instance();
     if(!isLoadEndConfig)
     {
         setText("loading  config");
-        SinglePlayer::instance();
         isLoadEndConfig=true;
     }
     else
     {
         if (!isGameInit) {
             setText("onGameInit");
-            SinglePlayer::instance()->onGameBegin();
+            pGamePlayer->onGameBegin();
             isGameInit=true;
         }
         else{
-            if(SinglePlayer::instance()->getGameInitStatus()!=0)
+            if(pGamePlayer->getGameInitStatus()!=0)
             {
                 setText("game init ok");
                 unschedule(schedule_selector(CLoginScene::addFunctionInitGames));
-                if(SinglePlayer::instance()->getGameInitStatus()==1)
+                if(pGamePlayer->getGameInitStatus()==1)
                 {
                     setText("SetGameInit info");
-                    playGame();
+                    if (pGamePlayer->getCurrentTaskId()!=0)
+                    {
+                        //先判断当前的任务是否完成 如果完成了 需要调用校验 然后添加新的任务 最后才执行play
+                        if (!SinglePlayer::instance()->isSuccessFinishTask())
+                        {
+                            playGame();
+                        }
+                        else
+                        {
+                            int value=SinglePlayer::instance()->getCurrentTaskId();
+                            if (SinglePlayer::instance()->getCurrentTaskId()==SingleTaskConfig::instance()->getMaxTaskId())
+                            {
+                                playGame();
+                                CCLog("完成了所有的任务了，恭喜");
+                            }
+                            else
+                            {
+                                doingCheckComplateTask();
+                            }
+                            //当前任务是完成的任务。
+                        }
+
+                    }
+                    else{
+                        dointAddTask();
+                    }
                     
                 }
                 else

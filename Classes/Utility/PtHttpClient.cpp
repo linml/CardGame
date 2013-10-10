@@ -121,11 +121,10 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
 void CPtHttpClient::notificationMsgRecevice(CCObject* obj)
 {
 //    PtJsonUtility::JsonStringParse((char*)obj);
-    CCLog("the queue size: %d", m_qRequestInf.size());
     stcRequestInf inf = m_qRequestInf.front();
-    CCLog("the queue size: %d", m_qRequestInf.size());
-    CCNotificationCenter::sharedNotificationCenter()->postNotification(inf.m_pSelector.c_str(), (CCObject*)obj);
     m_qRequestInf.pop();
+    CCNotificationCenter::sharedNotificationCenter()->postNotification(inf.m_pSelector.c_str(), (CCObject*)obj);
+  
     m_bIsSending = false;
     CCLog("the queue size: %d", m_qRequestInf.size());
     if(!m_qRequestInf.empty())

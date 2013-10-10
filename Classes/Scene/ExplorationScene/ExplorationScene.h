@@ -49,7 +49,7 @@ public:
     static void setExplorationInfo(CPtSection * inSectionData);
     static void setEvents(const EVENTDATA& inEventData);
     static void addCurrentStep();
-    static int getCurrentStep(); //步
+    static int  getCurrentStep(); //步
     static void setCurrentStep( const int & inCurrentStep);
     static const EVENTDATA &getEventData();
     static CPtSection *getExplorationSectionInfo();
@@ -103,20 +103,13 @@ protected:
     void updateUI();
     
     void backHall();
-    
-    void onReceiveTaskInfo(CCObject *pObject);
-    void hanlderLoadTaskInfo();
-    
-    void callBack(float dt);
-    void requestCallBack(float dt);
-    void goSection(float dt);
+
     
     // rewords:
     void addForwordReword(CCDictionary * inAllRewards); // 前进奖励
     void addTaskAndSectionReward();
     void addEventReward(CCDictionary *inAllRewards);
     
-    void getTriggers();
     
     void dispatchEventByEventId(const int &inEventId);
     
@@ -135,12 +128,22 @@ protected:
     
     void getBiforest();
     
+    void showBackPack();
+    void showCardSetting();
     
     // test:
+    
+    void taskCompleteCallback(CCObject* pObject);
+    void taskAddCallback(CCObject* pObject);
+    
+    void addTask();
     
     void test_print(int code);
     void test_print(const char * inMsg);
     void createTaskAndSectionReward();
+    
+    void goSection();
+    void callback(float dt);
 
 
 protected:
@@ -157,7 +160,6 @@ protected:
     vector<TouchRect> m_cTouches;
     CCSprite * m_pTouchSprite;
     CCLabelTTF * m_pProgress;
-    CCArray *m_pTriggers;
     
     CGamePlayer *m_pPlayer;
     

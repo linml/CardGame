@@ -85,8 +85,6 @@
 
 #define STR_URL_EMAILGETITEMS(UID)  URL_FACTORY("api.php?m=Inbox&a=getItems&uid=",UID)
 
-//获取任务:(暂时为最大章和最大节)
-#define STR_URL_TASK(UID)            URL_FACTORY("api.php?m=Task&a=getTasks&uid=",UID)   //URL_FACTORY("api.php?m=Part&a=getPart&uid=",UID)
 
 //进入迷宫（既选中小节后进入）
 #define STR_URL_GOSECTION(UID)      URL_FACTORY("api.php?m=Part&a=getPartEvent&uid=",UID) 
@@ -102,5 +100,9 @@
 //系统初始化
 
 #define STR_URL_GAMEINIT(UID)       URL_FACTORY("api.php?m=GameBegin&a=init&uid=",UID)
+//完成任务求验证的HTTP
+#define STR_URL_COMPLATETASK(UID)   URL_FACTORY("api.php?m=Task&a=completeTask&uid=",UID)
+//本地读取任务后需要告诉服务端当前本地接的任务
+#define STR_URL_ADDTASK(UID)        URL_FACTORY("api.php?m=Task&a=addTask&uid=",UID)
 
 #endif
