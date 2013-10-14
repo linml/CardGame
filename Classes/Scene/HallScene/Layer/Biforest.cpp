@@ -448,7 +448,6 @@ void CBiforestLayer::onParseGoSectionMsgByDictionary(CCDictionary * inDataDictio
          CExploration::setEvents(eventData);
          CPtSection* tempPtSection= (CPtSection*)((CPtChapter*)m_pChapters->objectAtIndex(m_nCurrentChaptetIndex))->getSections()->getSectionById(m_nCurrentSectionId);
          CExploration::setExplorationInfo(tempPtSection);
-        
          SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
         // success:
     }else

@@ -722,7 +722,7 @@
                 <key>z</key>
                 <integer>20</integer>
                 <key>tag</key>
-                <integer>4</integer>
+                <integer>0</integer>
             </dict>
             <key>mapSprite1</key>
             <dict>
@@ -735,7 +735,33 @@
                 <key>z</key>
                 <integer>40</integer>
                 <key>tag</key>
-                <integer>8</integer>
+                <integer>1</integer>
+            </dict>
+            <key>mapSprite2</key>
+            <dict>
+                <key>spriteName</key>
+                <string>chongzhijiemian</string>
+                <key>mapSpriteName</key>
+                <string>jieshouanniu_Normal.png</string>
+                <key>pos</key>
+                <string>{788,59}</string>
+                <key>z</key>
+                <integer>45</integer>
+                <key>tag</key>
+                <integer>2</integer>
+            </dict>
+            <key>mapSprite3</key>
+            <dict>
+                <key>spriteName</key>
+                <string>chongzhijiemian</string>
+                <key>mapSpriteName</key>
+                <string>jieshouanniu_Normal.png</string>
+                <key>pos</key>
+                <string>{672,59}</string>
+                <key>z</key>
+                <integer>50</integer>
+                <key>tag</key>
+                <integer>3</integer>
             </dict>
         </dict>
         <key>dikuang</key>

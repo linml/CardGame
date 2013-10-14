@@ -112,6 +112,10 @@
 	<string>后台请不要发那多邮件，邮件都快爆了</string>
 	<key>caonima</key>
 	<string>背包已经满了点个垃圾点点点</string>
+	<key>quniudan</key>
+	<string>去扭蛋</string>
+	<key>quchongzhi</key>
+	<string>去充值</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

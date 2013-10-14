@@ -15,7 +15,6 @@
 		6F3AC848180BC1C2007B8756 /* CStructShopSellItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3AC846180BC1C2007B8756 /* CStructShopSellItem.cpp */; };
 		6F3AC84B180BC7A6007B8756 /* CStructShopInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3AC849180BC7A6007B8756 /* CStructShopInfo.cpp */; };
 		6F3AC84F180BE245007B8756 /* CSceneGameShopLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3AC84D180BE245007B8756 /* CSceneGameShopLayer.cpp */; };
-		6F3ACB99180BF78F007B8756 /* shangdianjiemian.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6F3ACB98180BF78F007B8756 /* shangdianjiemian.plist */; };
 		6F3EFCBD17536D6700765322 /* CEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */; };
 		6F49CA7317D884EA0094874E /* CGameRoleAnimation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA6F17D884EA0094874E /* CGameRoleAnimation.cpp */; };
 		6F49CA7417D884EA0094874E /* CGameStoryLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA7117D884EA0094874E /* CGameStoryLayer.cpp */; };
@@ -351,7 +350,6 @@
 		6F3AC84A180BC7A6007B8756 /* CStructShopInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CStructShopInfo.h; sourceTree = "<group>"; };
 		6F3AC84D180BE245007B8756 /* CSceneGameShopLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneGameShopLayer.cpp; sourceTree = "<group>"; };
 		6F3AC84E180BE245007B8756 /* CSceneGameShopLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneGameShopLayer.h; sourceTree = "<group>"; };
-		6F3ACB98180BF78F007B8756 /* shangdianjiemian.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = shangdianjiemian.plist; path = ../../proj.android/cn.cube/assets/resource_cn/uiScript/shangdianjiemian.plist; sourceTree = "<group>"; };
 		6F3EFCBB17536D6700765322 /* CEvolutionLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEvolutionLayer.cpp; sourceTree = "<group>"; };
 		6F3EFCBC17536D6700765322 /* CEvolutionLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEvolutionLayer.h; sourceTree = "<group>"; };
 		6F49CA6F17D884EA0094874E /* CGameRoleAnimation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameRoleAnimation.cpp; sourceTree = "<group>"; };
@@ -1602,7 +1600,6 @@
 		9FC6ED771746084F0091BE98 = {
 			isa = PBXGroup;
 			children = (
-				6F3ACB98180BF78F007B8756 /* shangdianjiemian.plist */,
 				6F28A6E81807F52200225C09 /* Default-568h@2x.png */,
 				9FC6ED961746084F0091BE98 /* 91.cube */,
 				9FC6ED851746084F0091BE98 /* Frameworks */,
@@ -2646,7 +2643,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F3ACB99180BF78F007B8756 /* shangdianjiemian.plist in Resources */,
 				9FC6ED991746084F0091BE98 /* CloseNormal.png in Resources */,
 				9FC6ED9B1746084F0091BE98 /* CloseSelected.png in Resources */,
 				9FC6ED9D1746084F0091BE98 /* Default.png in Resources */,
