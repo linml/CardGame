@@ -8,55 +8,57 @@
 
 #include "CGlobalSchedule.h"
 #define SCHEDULE CCDirector::sharedDirector()->getScheduler()
-CGlobalSchedule* CGlobalSchedule::m_pSchedule = NULL;
 
-CGlobalSchedule::CGlobalSchedule(float fInterval, float fDelay) {
-    CCLog("GlobalSchedule()");
-    
-    CCAssert(!m_pSchedule, "以定义，不能重复定义");
-    
-    SCHEDULE->scheduleSelector(
-                               schedule_selector(CGlobalSchedule::globalUpdate), this, fInterval,
-                               false,
-                               kCCRepeatForever, fDelay);
-    
-    m_pSchedule = this;
+CGlobalSchedule::CGlobalSchedule(int TagValue) {
+    setTag(TagValue);
+    m_bTimerStatus=EN_GLOBALTIMER_NONE;
 }
 
 CGlobalSchedule::~CGlobalSchedule()
 {
     CCLog("GlobalSchedule().~()");
+    if (m_bTimerStatus==EN_GLOBALTIMER_RUNNING || m_bTimerStatus==EN_GLOBALTIMER_PAUSE )
+    {
+        stop();
+    }
     
-    SCHEDULE->unscheduleSelector(
-                                 schedule_selector(CGlobalSchedule::globalUpdate), this);
 }
 
-void CGlobalSchedule::globalUpdate() {
+void CGlobalSchedule::globalUpdate(float t) {
     // 这里写全局定时器的逻辑处理代码
-    CCLog("global update");
+    //CCLog("global update %.2f,%x,%x",t,this,m_pSchedule);
 }
 
 void CGlobalSchedule::start(float fInterval, float fDelay) {
-    new CGlobalSchedule(fInterval, fDelay);
+    
+    if (m_bTimerStatus==EN_GLOBALTIMER_RUNNING || m_bTimerStatus==EN_GLOBALTIMER_PAUSE) {
+        stop();
+    }
+    
+    SCHEDULE->scheduleSelector(
+                               schedule_selector(CGlobalSchedule::globalUpdate), this, fInterval,
+                               false,
+                               kCCRepeatForever, fDelay);
+    this->m_bTimerStatus=EN_GLOBALTIMER_RUNNING;
 }
 
 void CGlobalSchedule::stop() {
-    CCLog("GlobalSchedule().clean()");
-    
-    CCAssert(m_pSchedule, "未定义");
-    CC_SAFE_DELETE(m_pSchedule);
+    this->m_bTimerStatus=EN_GLOBALTIMER_STOP;
+    unsigned long long timestamp = time(NULL);
+    struct tm *ptm = localtime((time_t*)&timestamp);
+    char tmp[100] = {0};
+    memset(tmp, 0x0, 100);
+    strftime(tmp, sizeof(tmp), "%Y-%m-%d %H:%M:%S", ptm);
+    CCLog("stop %x CGlobalSchedule %s",this,tmp);
+    SCHEDULE->unscheduleSelector(schedule_selector(CGlobalSchedule::globalUpdate), this);
 }
 
 void CGlobalSchedule::pause() {
-    CCLog("GlobalSchedule().pause()");
-    
-    CCAssert(m_pSchedule, "为定义");
-    SCHEDULE->pauseTarget(m_pSchedule);
+    this->m_bTimerStatus=EN_GLOBALTIMER_PAUSE;
+    SCHEDULE->pauseTarget(this);
 }
 
 void CGlobalSchedule::resume() {
-    CCLog("GlobalSchedule().resume()");
-    
-    CCAssert(m_pSchedule, " 未定义");
-    SCHEDULE->resumeTarget(m_pSchedule);
+        this->m_bTimerStatus=EN_GLOBALTIMER_RUNNING;
+        SCHEDULE->resumeTarget(this);
 }

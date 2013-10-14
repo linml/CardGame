@@ -165,7 +165,7 @@ void HBLabelPanel::addLabelTTF(const char* str,int fontSize,ccColor3B color,int 
 			else 
 				canSub.push_back(true);
 #else
-            if(mainStr[i]<0||mainStr[i]>254)
+            if(mainStr[i]<0 || (unsigned)mainStr[i]>254) //char的范围是-127<char<+127
 			{
 				canSub.push_back(true);
 				canSub.push_back(false);

@@ -23,6 +23,9 @@ class CSkillData;
 class SEveryATKData;
 class CFightCardFightingBuffer;
 class CGamePlayerData;
+class CGlobalUpdateAp;
+class CGlobalUpdateGp;
+class CStructShopInfo;
 
 #define OPENGGRIDLEVLE 20
 
@@ -228,8 +231,14 @@ public:
      
      */
     void postAddTask(int taskNextId, CCObject *object, SEL_CallFuncO selector,const char *strCallback); //当本地
+    bool isHaveSendComplate();
 private:
     void setTaskTotalNumberOnFinishSectionTask(int Value);
+public:
+    void sendUpdateGp();
+    void sendUpdateAp();
+    void decodeDataGp(CCObject *object);
+    void decodeDataAp(CCObject *object);
     
 public:
     // 或取当前阵容的全部领导力
@@ -258,12 +267,17 @@ protected:
     int m_nMaxSectionId;
     vector<CFightCard *>m_vCardBag;
     vector<vector<CFightCard*> >m_vvBattleArray;
-    CC_SYNTHESIZE(bool, m_bLoadTaskInfo, LoadTaskInfo);
+    CC_SYNTHESIZE(bool, m_bAllTaskCompleted, AllTaskCompleted);
     CC_SYNTHESIZE(int , m_iCurrentBattleTeam, CurrentBattleTeam) ;  //!< 当前的选择 战斗的阵容
     CC_SYNTHESIZE(EN_GAMEFIGHTSTATUS, m_enWinStatus, WinOrLoseStatus);
     CC_SYNTHESIZE(bool, m_bFightKuaijin, FightKuaijin);
     vector<SEveryATKData*>m_vHpAngry;
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
+    CGlobalUpdateAp  *m_pUpdateAp;
+    CGlobalUpdateGp  *m_pUpdateGp;   //其实用一个类就可以做的。
+    CStructShopInfo  *m_gameShop;
+protected:
+    void updatePlayerDataWithExp();
     
 
 };

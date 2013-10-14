@@ -86,6 +86,7 @@ public:
     CC_SYNTHESIZE(int , m_iPtTaskTargetID, PtTaskTargetID);
     CC_SYNTHESIZE(int , m_iPtTaskTotalNumber, PtTaskTotalNumber);
     CC_SYNTHESIZE(int , m_iPtTaskCurrentNumber, PtTaskCurrentNumber);
+    CC_SYNTHESIZE(int , m_iPtTaskCurrentStatus,PtTaskCurrentStatus);
 };
 
 class CTaskConfigData : public CCObject

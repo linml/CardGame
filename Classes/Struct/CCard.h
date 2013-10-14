@@ -24,8 +24,8 @@ class CCard
 {
 public:
     CCard();
-    virtual int getCardLevel(){};
-    virtual ~CCard(){};
+//    virtual int getCardLevel(){}
+    virtual ~CCard(){}
     int m_icard_id;
     string m_scard_name;
     int  m_ccard_next;  ///next id
@@ -39,6 +39,7 @@ public:
     int m_icard_attack; //攻击力
     int m_icard_defend; //防御力
     int m_icardhp;    //卡牌的总的HP
+    int m_icard_energyMax;
     int m_iusually_attack;
     int m_iskillLine; //怒气
     int m_iskillHelp; //拥护技能

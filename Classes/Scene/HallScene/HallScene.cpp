@@ -17,6 +17,7 @@
 #include "CGameEmailTableView.h"
 #include "CGameEmailManager.h"
 #include "SceneManager.h"
+#include "CSceneGameShopLayer.h"
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
 
@@ -288,7 +289,7 @@ bool CHallScene::initHall(int inType)
             this->addChild(btnActivity, 200, 2005);
             Utility::addTouchRect(2005, btnActivity, m_cTouches);
             
-            word = Utility::getWordWithFile("word.plist", "voltron");
+            word = Utility::getWordWithFile("word.plist", "mall");
             CCLog("word :%s",word.c_str());
             pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
             pLabel->setPosition(ccp(65,30));
@@ -420,7 +421,11 @@ void CHallScene::handlerTouch()
             
             break;
         case 2005:
-            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_CARDSETTINGSCENE);
+            if(!getChildByTag(17777))
+            {
+                addChild(CSceneGameShopLayer::create(),201,17777);
+            }
+           // SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_CARDSETTINGSCENE);
             break;
         case 2006:
             // backpack-->

@@ -42,17 +42,17 @@ bool AppDelegate::applicationDidFinishLaunching()
 
 	// turn on display FPS
 	pDirector->setDisplayStats(true);
-    
-    Pt_AES::sharePtAESTool("0123456789abcdef");
+    char keyData[]="0123456789abcdef";
+    Pt_AES::sharePtAESTool(keyData);
 
 	// set FPS. the default value is 1.0/60 if you don't call this
 	pDirector->setAnimationInterval(1.0 / 60);
     
-   // cout<<"sizeof"<<sizeof(pp)<<endl;
+    // cout<<"sizeof"<<sizeof(pp)<<endl;
     
    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
 
-//    pDirector->runWithScene(HelloWorld::scene());
+    //pDirector->runWithScene(HelloWorld::scene());
 
     return true;
 }

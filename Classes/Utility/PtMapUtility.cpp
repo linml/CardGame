@@ -97,7 +97,6 @@ namespace PtMapUtility {
             printf ("Invalid File Handle. Get Last Error reports %d ", GetLastError ());
         }
 #endif
-       
         CCDictionary* data = CCDictionary::createWithContentsOfFile(m_sPlistFile.c_str());
         
         
@@ -105,8 +104,8 @@ namespace PtMapUtility {
         CCDictElement *keyString = NULL;
          CCDICT_FOREACH(data, keyString)
          {
-         const char *xps =  keyString->getStrKey();
-         CCLog("dict:key %s", xps);
+             const char *xps =  keyString->getStrKey();
+             CCLog("dict:key %s", xps);
          }
         
         

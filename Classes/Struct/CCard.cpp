@@ -86,6 +86,7 @@ CFightCard::CFightCard(CCard *card,int level)
     updateFight(card, level);
     isDead=false;
     initFighting();
+    m_iEngryMax=card->m_icard_energyMax;
 }
 
 /*
@@ -198,6 +199,9 @@ void CFightCard::appendEngry(int iEngry)
     if(this->m_iCurrEngry<0)
     {
         m_iCurrEngry=0;
+    }else if(this->m_iCurrEngry >= this->m_iEngryMax)
+    {
+        this->m_iCurrEngry=this->m_iEngryMax;
     }
 }
 

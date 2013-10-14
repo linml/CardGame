@@ -111,7 +111,6 @@ protected:
     void addEventReward(CCDictionary *inAllRewards);
     
     
-    void dispatchEventByEventId(const int &inEventId);
     
     void updateEventData();
     

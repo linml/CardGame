@@ -188,9 +188,8 @@ void  CRegisterLayer::doRegiter()
     char pass[64] ="";
     memset(pass, 0, 64);
     string strPassword = m_pEditPassword->getText();
-    Pt_AES::sharePtAESTool("cube")->EncryptString(strPassword.c_str(),pass);
-    unsigned char tempData[64]="";
-     
+    char pKey[]="cube";
+    Pt_AES::sharePtAESTool(pKey)->EncryptString(strPassword.c_str(),pass);     
     sprintf(achData, "name=%s&password=%s",m_pEditEMail->getText(),pass);
     ADDHTTPREQUESTPOSTDATA(STR_URL_REGISTER,
                            "CALLBACK_CRegisterLayer_doRegiter",

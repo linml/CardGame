@@ -137,7 +137,7 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_iAp=GameTools::intForKey("ap", dict); //体力
     m_iAp_update_time=GameTools::intForKey("ap_update_time", dict);
     m_iVipScore=GameTools::intForKey("vip_score", dict);
-    m_irvc=GameTools::intForKey("leader", dict);
+    m_irvc= this->m_sLevelPlayer->m_iLeader_max; //GameTools::intForKey("leader", dict);
     m_iupdate_time=GameTools::intForKey("update_time",dict);
     m_create_time=GameTools::intForKey("create_time", dict);
     m_guide_step=GameTools::intForKey("guide_step", dict);

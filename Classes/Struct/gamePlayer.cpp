@@ -24,6 +24,9 @@
 #include "CGameNpcCard.h"
 #include "CPtTool.h"
 #include "gameMiddle.h"
+#include "CGlobalUpdateObject.h"
+#include "CStructShopInfo.h"
+
 
 //#define AAAAFOROSMACHINE 1
 
@@ -65,7 +68,7 @@ struct mk {
 CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getProps())
 {
     m_pTaskLogic=new CPtTaskLogic;
-    m_bLoadTaskInfo = false;
+    m_bAllTaskCompleted = false;
     m_nMaxSectionId = 1;
     m_nMaxSectionId = 1;
     m_nCurrentTaskId=0;
@@ -76,18 +79,23 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
     }
     m_vvBattleArray.clear();
     m_gGamePlayerData=new CGamePlayerData();
+    //loaditem表格;
+    m_gameShop=new CStructShopInfo;
     loadGamesConfig();
     m_bFightKuaijin=false;
-    
     if (!m_pTaskLogic)
     {
         CCLog("m_pTaskLogic == NULL");
         appendFileLog("m_pTaskLogic ISnULL");
     }
+    m_pUpdateAp=new CGlobalUpdateAp(1);
+    m_pUpdateGp=new CGlobalUpdateGp(2);
 }
 
 CGamePlayer::~CGamePlayer()
 {
+    CC_SAFE_DELETE(m_pUpdateGp);
+    CC_SAFE_DELETE(m_pUpdateAp);
     CC_SAFE_DELETE(m_pTaskLogic);
     onExitGameApp();
     if(m_gGamePlayerData)
@@ -104,6 +112,8 @@ void CGamePlayer::loadGamesConfig()
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
     loadNpcCard((resRootPath+"npc_config.plist").c_str());
+    SinglePropConfigData::instance();
+    G_SingleCConfigResourceLoad::instance()->loadShopSellItem(m_gameShop, (resRootPath+"shop.plist").c_str());
     G_FightSkillManager::instance()->initSkill();//加载列表
 }
 
@@ -791,12 +801,14 @@ int CGamePlayer::getPlayerAp()  //体力
 
 int CGamePlayer::setPlayerGp(int iValue)
 {
-    return m_gGamePlayerData->appendGp(iValue);
+     m_gGamePlayerData->m_iGp=iValue;
+     return m_gGamePlayerData->m_iGp;
 }
 
 int CGamePlayer::setPlayerAp(int iValue)
 {
-    return m_gGamePlayerData->appendAp(iValue);
+    m_gGamePlayerData->m_iAp=iValue;
+    return m_gGamePlayerData->m_iAp;
 }
 
 void CGamePlayer::addPlayerGp(int inAddHp)
@@ -904,6 +916,11 @@ void CGamePlayer::getNextTaskInfo()
             m_pTaskLogic->setInitDataByCPtTask(pttask);
         }
     }
+}
+
+bool CGamePlayer::isHaveSendComplate()
+{
+    return (m_pTaskLogic->getPtTaskCurrentStatus()==2 ? true:false);
 }
 
 void CGamePlayer::setInitCurrentTaskTargetNumber(int number)
@@ -1416,6 +1433,84 @@ void CGamePlayer::setChapterAndSectionByTask()
     }
 }
 
+void CGamePlayer::sendUpdateAp()
+{
+//      m_pUpdateAp->pause();
+//    if (getApMax()>getPlayerAp())
+//    {
+        //这种做法的时候 必须是服务端如果是满值的情况下必须在服务端满值的情况下 传值必须》1
+        m_pUpdateAp->stop();
+        string connectData="sig=";
+        connectData += m_strSig;
+        ADDHTTPREQUESTPOSTDATA(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataAp", "REQUEST_CGamePlayer_decodeDataAp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataAp));
+//    }
+//    else{
+//        m_pUpdateAp->resume();
+//    }
+}
+
+void CGamePlayer::sendUpdateGp()
+{
+//    m_pUpdateGp->pause();
+//    if (getGpMax()>getPlayerGp())
+//    {
+         m_pUpdateGp->stop();
+        string connectData="sig=";
+        connectData += m_strSig;
+        ADDHTTPREQUESTPOSTDATA(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataGp", "REQUEST_CGamePlayer_decodeDataGp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataGp));
+//    }
+//    else{
+//        m_pUpdateGp->resume();
+//    }
+}
+
+void CGamePlayer::decodeDataAp(cocos2d::CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_decodeDataAp");
+    if(!object)
+    {
+        CCMessageBox("fuck 服务端 传递AP的数据是NULL的", "error");
+        return;
+    }
+    char *strdata=(char *)object;
+    CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
+    delete []strdata;
+    if (GameTools::intForKey("code", dict)!=0) {
+        CCMessageBox("fuck 服务端 传递AP的数据是NULL的", "error");
+        return;
+    }
+    CCDictionary *result=(CCDictionary *)dict->objectForKey("result");
+    if(result)
+    {
+        CCDictionary *ap=(CCDictionary*)result->objectForKey("ap");
+        setPlayerAp(GameTools::intForKey("ap", ap));
+        m_pUpdateAp->start(GameTools::intForKey("lever_time", ap), 0.0f);
+    }
+    
+}
+
+void CGamePlayer::decodeDataGp(cocos2d::CCObject *object)
+{
+     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_decodeDataGp");
+    if(!object)
+    {
+        CCMessageBox("fuck 服务端 传递AP的数据是NULL的", "error");
+        return;
+    }
+    char *strdata=(char *)object;
+    CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
+    delete []strdata;
+    CCDictionary *result=(CCDictionary *)dict->objectForKey("result");
+    if(result)
+    {
+        CCDictionary *gp=(CCDictionary*)result->objectForKey("gp");
+        setPlayerGp(GameTools::intForKey("gp", gp));
+        m_pUpdateGp->start(GameTools::intForKey("lever_time", gp), 0.0f);
+    }
+
+    
+}
+
 
 /*
  * 获取玩家基本信息
@@ -1494,6 +1589,30 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             }
         }
         
+        //获得GP
+        teamStrType=typeid(*dictresult->objectForKey("gp")).name();
+        if(teamStrType.find("CCDictionary")!=std::string::npos)
+        {
+            CCDictionary *getGp=(CCDictionary *)dictresult->objectForKey("gp");
+            int value =GameTools::intForKey("lever_time", getGp);
+            if (m_pUpdateGp)
+            {
+                m_pUpdateGp->start(value, 0.0);
+            }
+        }
+        teamStrType=typeid(*dictresult->objectForKey("ap")).name();
+        if(teamStrType.find("CCDictionary")!=std::string::npos)
+        {
+            CCDictionary *getAp=(CCDictionary *)dictresult->objectForKey("ap");
+            int value =GameTools::intForKey("lever_time", getAp);
+            if (m_pUpdateAp)
+            {
+                m_pUpdateAp->start(value, 0.0);
+            }
+        }
+        
+        //获得AP
+        
         // 必须先加载user_info的信息，在加载阵容的信息
         teamStrType=typeid(*dictresult->objectForKey("user_info")).name();
         if(teamStrType.find("CCDictionary")!=std::string::npos)
@@ -1516,8 +1635,13 @@ void CGamePlayer::parseTaskInfo(CCDictionary *dict)
         CCString *key=(CCString *)array->objectAtIndex(i);
         CCDictionary *detail=(CCDictionary*)(dict->objectForKey(key->m_sString));
         CCLog("CURRENT TASK INFO IS %d",key->intValue());
+        if (key->intValue()==0)
+        {
+            continue;
+        }
         setCurrentTaskId(key->intValue());
         setInitCurrentTaskTargetNumber(GameTools::intForKey("num", detail));
+        m_pTaskLogic->setPtTaskCurrentStatus(GameTools::intForKey("status", detail));
         break;
     }
 
@@ -1566,4 +1690,14 @@ int CGamePlayer::getAllRvcBattlerArray(const int& inType)
         }
     }
     return allRvc;
+}
+
+
+/*
+ * @breif: 玩家exp增加， 当等级提升shi
+ */
+void CGamePlayer::updatePlayerDataWithExp()
+{
+    int exp = getPlayerExp();
+//    m_gGamePlayerData->
 }

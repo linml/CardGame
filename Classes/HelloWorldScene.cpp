@@ -93,7 +93,7 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
 
-    test(this);
+   // test(this);
     // add "HelloWorld" splash screen"
 
  //   CCSprite* pSprite = CCSprite::create("resource_cn/img/HelloWorld.png");
@@ -133,6 +133,7 @@ bool HelloWorld::init()
 //    addChild(sprite,0,200);
 //    sprite->setPosition(ccp(size.width*0.5,size.height*0.5));
 //   CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(30005,this);
+    
     return true;
 }
 

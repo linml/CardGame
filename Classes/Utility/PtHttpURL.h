@@ -105,4 +105,7 @@
 //本地读取任务后需要告诉服务端当前本地接的任务
 #define STR_URL_ADDTASK(UID)        URL_FACTORY("api.php?m=Task&a=addTask&uid=",UID)
 
+//定时更新数据请求
+#define STR_URL_UPDATEAPHP(UID)    URL_FACTORY("api.php?m=GameBegin&a=cron&uid=",UID)
+
 #endif

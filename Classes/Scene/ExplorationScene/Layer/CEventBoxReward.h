@@ -17,7 +17,7 @@ using namespace cocos2d;
 
 #define GET_BOX 0
 #define IGNORE_BOX 1
-#define EMPTY_EVENT 2
+#define EMPTY_EVENT_CEventBoxRewordLayer 2
 class CEventBoxRewordLayer : public CCLayer
 {
 public:    

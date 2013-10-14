@@ -13,6 +13,8 @@
 #include "CGamePlayerStruct.h"
 #include "CSkillData.h"
 #include "CGameNpcCard.h"
+#include "CStructShopInfo.h"
+#include "CStructShopSellItem.h"
 
 bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const char *cardFileName)
 {
@@ -36,6 +38,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_icard_defend=GameTools::intForKey("card_defend", cardDirector); //防御力
         card->m_icardhp=GameTools::intForKey("card_hp",cardDirector);// 卡牌的总的HP
         card->m_iusually_attack=GameTools::intForKey("usually_attack", cardDirector);
+        card->m_icard_energyMax=GameTools::intForKey("card_energy", cardDirector);
         card->m_iskillLine=GameTools::intForKey("skill_energy", cardDirector);
         card->m_iskillHelp=GameTools::intForKey("skill_help", cardDirector);
         card->m_iskillDead=GameTools::intForKey("skill_dead", cardDirector);
@@ -45,8 +48,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_scard_head=GameTools::valueForKey("card_head", cardDirector);
         card->m_scard_ground=GameTools::valueForKey("card_ground", cardDirector);
         card->m_scard_role=GameTools::valueForKey("card_role", cardDirector);
-        
-        // change by phileas:
+                // change by phileas:
         int index = card->m_sicard_star -1;
         index = abs(index) > 7 ? 7: abs(index);
         card->m_ileve_max = g_aMaxLevel[index];
@@ -92,6 +94,7 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
         card->m_icard_defend=GameTools::intForKey("defend", cardDirector); //防御力
         card->m_icardhp=GameTools::intForKey("hp",cardDirector);// 卡牌的总的HP
         card->m_iusually_attack=GameTools::intForKey("usually_attack", cardDirector);
+        card->m_icard_energyMax=GameTools::intForKey("card_energy", cardDirector);
         card->m_iskillLine=GameTools::intForKey("skill_energy", cardDirector);
         card->m_iskillHelp=GameTools::intForKey("skill_help", cardDirector);
         card->m_iskillDead=GameTools::intForKey("skill_dead", cardDirector);
@@ -240,4 +243,66 @@ bool CConfigResourceLoad::loadEffectLogicInfo(vector<CImapact *> &vImapactTable,
         vImapactTable.push_back(skillEffect);
     }
     return true;
+}
+
+bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char *fileName)
+{
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile(fileName);
+    if(directory)
+    {
+        CCArray *vKeyArray=directory->allKeys();
+        if(vKeyArray->count()!=0)
+        {
+            for (int i=0; i<vKeyArray->count(); i++)
+            {
+                CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
+                if(key->intValue()==1)
+                {
+                    CCDictionary *shopInfoDict=(CCDictionary*)(directory->objectForKey(key->m_sString));
+                    shopInfo->setShopId(key->intValue());
+                    shopInfo->setShopName(GameTools::valueForKey("shop_name", shopInfoDict));
+                    shopInfo->setShopType(GameTools::intForKey("type", shopInfoDict));
+                    shopInfo->setShopRondomNumber(GameTools::intForKey("rondom_num", shopInfoDict));
+                    shopInfo->setShopIsRondom(GameTools::boolForKey("is_rondom",shopInfoDict));
+                    shopInfo->setShopReloadTime(GameTools::intForKey("reload_num", shopInfoDict));
+                    for (int i=1; i<20; i++)
+                    {
+                        //解析20个商品的东西 我了个草。。。
+                        char getParam[20];
+                        sprintf(getParam, "item_id_%d",i);
+                        int itemKeyId=GameTools::intForKey(getParam, shopInfoDict);
+                        if(itemKeyId!=0)
+                        {
+                            
+                            sprintf(getParam, "item_num_%d",i);
+                            CStructShopSellItem *item=new CStructShopSellItem(itemKeyId);
+                            item->setGroupNum(GameTools::intForKey(getParam, shopInfoDict));
+                            sprintf(getParam, "limit_num_%d",i);
+
+                            int limitNumber=GameTools::intForKey(getParam, shopInfoDict);
+                            unsigned int maxNumber= (limitNumber==0 ? UINT_MAX:limitNumber);
+                            item->setItemSellMaxNum(maxNumber);
+                            sprintf(getParam, "price_%d",i);
+                            int oldValue=GameTools::intForKey(getParam, shopInfoDict) ;
+                            sprintf(getParam, "pripercent_%d",i);
+                            int price=oldValue* (GameTools::intForKey(getParam, shopInfoDict))*0.01;
+                            item->setOldValue(oldValue);
+                            item->setValue(price);
+                            if (shopInfo->mapShopItem[itemKeyId]) {
+                                CCLog("商品表里面的商品不能有重复的 策划有错误");
+                                delete  shopInfo->mapShopItem[itemKeyId];
+                                shopInfo->mapShopItem[itemKeyId]=NULL;
+                            }
+                            shopInfo->mapShopItem[itemKeyId]=item;
+                        }
+                    }
+                   
+                }
+            }
+            return true;
+        }
+    }
+    CCLog("商店配置表格有错误");
+    return false;
+
 }

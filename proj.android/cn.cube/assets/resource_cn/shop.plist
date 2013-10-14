@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1</key>
+	<dict>
+		<key>shop_id</key>
+		<string>1</string>
+		<key>shop_name</key>
+		<string>我的商店</string>
+		<key>type</key>
+		<string>1</string>
+		<key>is_rondom</key>
+		<string>0</string>
+		<key>reload_time</key>
+		<string>0</string>
+		<key>rondom_num</key>
+		<string>0</string>
+		<key>item_id_1</key>
+		<string>100001</string>
+		<key>item_num_1</key>
+		<string>10</string>
+		<key>limit_num_1</key>
+		<string>0</string>
+		<key>price_1</key>
+		<string>1000</string>
+		<key>percent_1</key>
+		<string>100</string>
+	</dict>
+</dict>
+</plist>

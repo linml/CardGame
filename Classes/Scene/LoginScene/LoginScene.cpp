@@ -96,7 +96,19 @@ void CLoginScene::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 void CLoginScene::doingCheckComplateTask()
 {
     CGamePlayer *gamePlayer=SinglePlayer::instance();
-    gamePlayer->postCompleteTask(gamePlayer->getCurrentTaskId(), this, callfuncO_selector(CLoginScene::dealWithCompleteTask), "CALLBACK_CLOGINSCENE_COMPLATETASK");
+    if (!gamePlayer->isHaveSendComplate()) {
+        gamePlayer->postCompleteTask(gamePlayer->getCurrentTaskId(), this, callfuncO_selector(CLoginScene::dealWithCompleteTask), "CALLBACK_CLOGINSCENE_COMPLATETASK");
+    }else
+    {
+        if(gamePlayer->getCurrentTaskId()==SingleTaskConfig::instance()->getMaxTaskId())
+        {
+            playGame();
+            CCLog("完成了所有的任务了");
+        }
+        else{
+            dointAddTask();
+        }
+    }
 }
 void CLoginScene::dointAddTask()
 {
@@ -133,7 +145,15 @@ void CLoginScene::dealWithCompleteTask(CCObject *object)
         {
             if(GameTools::intForKey("info", resualt)==1)
             {
-                dointAddTask();
+                if(SinglePlayer::instance()->getCurrentTaskId()==SingleTaskConfig::instance()->getMaxTaskId())
+                {
+                    playGame();
+                    CCLog("完成了所有的任务了");
+                }
+                else
+                {
+                    dointAddTask();
+                }
                 return;
             }
         }
@@ -465,8 +485,9 @@ void CLoginScene::addFunctionInitGames(float t)
                         else
                         {
                             int value=SinglePlayer::instance()->getCurrentTaskId();
-                            if (SinglePlayer::instance()->getCurrentTaskId()==SingleTaskConfig::instance()->getMaxTaskId())
+                            if (value==SingleTaskConfig::instance()->getMaxTaskId())
                             {
+                                SinglePlayer::instance()->setAllTaskCompleted(true);
                                 playGame();
                                 CCLog("完成了所有的任务了，恭喜");
                             }

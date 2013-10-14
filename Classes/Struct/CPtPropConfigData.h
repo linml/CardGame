@@ -23,16 +23,18 @@ public:
     CC_SYNTHESIZE(int , m_nPropId,PropId);
     CC_SYNTHESIZE(std::string, m_strPropName, PropName);
     CC_SYNTHESIZE(int, m_nPropType, PropType);
-    CC_SYNTHESIZE(int, m_nUnLockLevel, UnLockLevel);
-    CC_SYNTHESIZE(int, m_nUseDelete, UseDelete);
-    CC_SYNTHESIZE(int, m_nCoin, Coin);
+    CC_SYNTHESIZE(int, m_nUnLockLevel, UnLockLevel); //可能用到 的时候到达某个等级后显示该道具
+    CC_SYNTHESIZE(int, m_nUseDelete, UseDelete);    //使用跟删除
+    CC_SYNTHESIZE(int, m_nCoin, Coin);              //
     CC_SYNTHESIZE(int, m_nCash, Cash);
-    CC_SYNTHESIZE(int, m_nUseId, UseId);
+    CC_SYNTHESIZE(int, m_nUseId, UseId);            //!<
     CC_SYNTHESIZE(int, m_nSellCoin, SellCoin);
     CC_SYNTHESIZE(std::string, m_strIconName, IconName);
     CC_SYNTHESIZE(int, m_nLimitNum, LimitNum);
     CC_SYNTHESIZE(int, m_nIsOnly, IsOnlyNum);
-    CC_SYNTHESIZE(std::string, m_strTips, Tips);
+    CC_SYNTHESIZE(std::string, m_strTips, Tips);   //描述
+    //没有一个仓库存在多少个
+    //商店里面对应的金币或者cash的价格。 
 };
 
 class CPtPropConfigData : public CCObject

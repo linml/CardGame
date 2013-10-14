@@ -20,6 +20,7 @@ class CCard;
 class SLevelPlayer;
 class CImapact;
 class CSkillData;
+class CStructShopInfo;
 class CConfigResourceLoad :public CCObject
 {
 public:
@@ -28,6 +29,7 @@ public:
     bool loadSkillLogicInfo(map<int, CSkillData *> &vPlayerLevel,const char *fileName);
     bool loadEffectLogicInfo(vector<CImapact *> &vPlayerLevel,const char *fileName);
     bool loadNPCCardInfo(map<int ,CCard *>&hashMapNpcCardAll,const char *fileName);
+    bool loadShopSellItem(CStructShopInfo *shopInfo,const char *fileName);
 public:
     
 };

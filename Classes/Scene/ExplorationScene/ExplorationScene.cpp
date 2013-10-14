@@ -19,6 +19,7 @@
 #include "CPtTool.h"
 #include "gameMiddle.h"
 #include "CBackpackContainerLayer.h"
+#include "CPanelGamePlayerInfoLayer.h"
 
 
 int g_index = -1;
@@ -767,7 +768,7 @@ void CExploration::handlerSuccess()
 }
 void CExploration::handlerTrigger()
 {
-    if (getCurrentTaskId()== m_pPlayer->getCurrentTaskId() && s_SectionData.eventData.type == 1 && s_SectionData.eventData.storyId > 0)
+    if (!m_pPlayer->getAllTaskCompleted() && getCurrentTaskId()== m_pPlayer->getCurrentTaskId() && s_SectionData.eventData.type == 1 && s_SectionData.eventData.storyId > 0)
     {
         CGameStoryLayer::CreateStoryLayer(s_SectionData.eventData.storyId, this);
     }
@@ -778,94 +779,15 @@ void CExploration::handlerTrigger()
 void CExploration::createOrUpdatePlayerData()
 {
     
-    //HP，体力，金币，现金币，领导力，等级
-    //username 180
-    CCSize wndSize=CCDirector::sharedDirector()->getWinSize();
-    if (!getChildByTag(1000001))
+    CPanelGamePlayerInfoLayer *layer=NULL;
+    if(!getChildByTag(777111))
     {
-        CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 20);
-        addChild(labelttf,0,1000001);
-        labelttf->setPosition(ccp(350, 140));
-        labelttf->setString(CCUserDefault::sharedUserDefault()->getStringForKey("name").c_str());
+        CPanelGamePlayerInfoLayer *layer=CPanelGamePlayerInfoLayer::create();
+        addChild(layer,0,777111);
     }
-    char data[30];
-    // usercoin 金币
-    {
-        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000002);
-        if (!getChildByTag(1000002))
-        {
-            labelttf=CCLabelTTF::create("", "Arial", 20);
-            addChild(labelttf,0,1000002);
-            labelttf->setPosition(ccp(450, 140));
-        }
-        sprintf(data, "金币:%d",SinglePlayer::instance()->getCoin());
-        labelttf->setString(data);
-        
-    }
-    //user exp;现金币
-    {
-        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000003);
-        if (!getChildByTag(1000003))
-        {
-            labelttf=CCLabelTTF::create("", "Arial", 20);
-            addChild(labelttf,0,1000003);
-            labelttf->setPosition(ccp(350, 180));
-        }
-        sprintf(data, "现金:%d",SinglePlayer::instance()->getPlayerCash());
-        labelttf->setString(data);
-    }
-    
-    //user 体力
-    {
-        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000004);
-        if (!getChildByTag(1000004))
-        {
-            labelttf=CCLabelTTF::create("", "Arial", 20);
-            addChild(labelttf,0,1000004);
-            labelttf->setPosition(ccp(500, 180));
-        }
-        sprintf(data, "体力:%d",SinglePlayer::instance()->getPlayerAp());
-        labelttf->setString(data);
-    }
-    
-    //user 领导力
-    {
-        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000005);
-        if (!getChildByTag(1000005))
-        {
-            labelttf=CCLabelTTF::create("", "Arial", 20);
-            addChild(labelttf,0,1000005);
-            labelttf->setPosition(ccp(650, 180));
-        }
-        sprintf(data, "领导力:%d",SinglePlayer::instance()->getRVC());
-        labelttf->setString(data);
-    }
-    // 等级
-    {
-        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000006);
-        if (!getChildByTag(1000006))
-        {
-            labelttf=CCLabelTTF::create("", "Arial", 20);
-            addChild(labelttf,0,1000006);
-            labelttf->setPosition(ccp(550, 140));
-        }
-        sprintf(data, "等级:%d",SinglePlayer::instance()->getPlayerLevel());
-        labelttf->setString(data);
-    }
-    
-    // 体力
-    {
-        CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(1000007);
-        if (!getChildByTag(1000007))
-        {
-            labelttf=CCLabelTTF::create("", "Arial", 20);
-            addChild(labelttf,0,1000007);
-            labelttf->setPosition(ccp(650, 140));
-        }
-        sprintf(data, "神力:%d",SinglePlayer::instance()->getPlayerGp());
-        labelttf->setString(data);
-    }
-}
+    layer=(CPanelGamePlayerInfoLayer *)getChildByTag(777111);
+    layer->updateInfo();
+ }
 
 
 void CExploration::attachConfirm()
@@ -973,7 +895,7 @@ void CExploration::onParseSaveMsgByDictionary(CCDictionary *pResultDict)
 //cube.games.com/api.php?m=Part&a=finishEvent&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&chapter_id=1&part_id=1&step=1&event_id=1&type=1&task_id=300001
 void CExploration::onFishEventRequest(int inType)
 {
-    int taskId = m_pPlayer->getCurrentTaskId() == s_SectionData.sectionInfo->getTaskId() ? s_SectionData
+    int taskId = m_pPlayer->getCurrentTaskId() == s_SectionData.sectionInfo->getTaskId() && !m_pPlayer->getAllTaskCompleted() ? s_SectionData
     .sectionInfo->getTaskId() : 0;
     int evenId = getCurrentEventId();
     if (evenId == -1)
@@ -989,6 +911,7 @@ void CExploration::onFishEventRequest(int inType)
     ADDHTTPREQUESTPOSTDATA(STR_URL_FINISH_EVENT(196),"finishEvent", "finishEvent",buffer, callfuncO_selector(CExploration::onReceiveFishEventRequestMsg));
     
 }
+
 void CExploration::onReceiveFishEventRequestMsg(CCObject * pObject)
 {
     m_bCanTouch = true;
@@ -1007,6 +930,9 @@ void CExploration::onReceiveFishEventRequestMsg(CCObject * pObject)
    
     
 }
+/*
+ * @breif 解析事件完成后信息
+ */
 void CExploration::onParseFishEventRequestMsg(CCDictionary * pResultDict)
 {
     if (pResultDict)
@@ -1027,6 +953,7 @@ void CExploration::onParseFishEventRequestMsg(CCDictionary * pResultDict)
 }
 
 /*
+ * @breif 分发事件完成后的处理
  * @param: inType: event type
  */
 
@@ -1102,7 +1029,7 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
     }else if(inType == 0)
     {
         // create empty:
-        CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(NULL, EMPTY_EVENT);
+        CEventBoxRewordLayer* layer = CEventBoxRewordLayer::create(NULL, EMPTY_EVENT_CEventBoxRewordLayer);
         layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
         setInsiable();
         addChild(layer);
@@ -1113,7 +1040,8 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
 }
 
 /*
- *  1 - 7:
+ * @breif 分发获得具体事件
+ * @param inType  1 - 7:
  */
 void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
 {
@@ -1142,7 +1070,6 @@ void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
         m_pPlayer->onFightInterScene();
         m_pPlayer->parseNpcCard(tmp);
         handlerFightEvent(inType);
-
     }else if(inType == 0)
     {
         handlerEmptyEvent();
@@ -1150,6 +1077,9 @@ void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
     
 }
 
+/*
+ * @breif 发送startEvent请求
+ */
 // http://cube.games.com/api.php?m=Part&a=startEvent&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&chapter_id=1&part_id=1&step=1&event_id=1 go event
 void CExploration::onSendEventRequest()
 {
@@ -1175,6 +1105,10 @@ void CExploration::onSendEventRequest()
     ADDHTTPREQUESTPOSTDATA(STR_URL_NEXT_EVENT(196),"nextEvent", "nextEvent",buffer, callfuncO_selector(CExploration::onReceiveEventRequetMsg));
     m_bCanTouch =false;
 }
+
+/*
+ * @breif 接受startEvent 回调函数
+ */
 void CExploration::onReceiveEventRequetMsg(CCObject *pObject)
 {
     m_bCanTouch = true;
@@ -1217,7 +1151,9 @@ void CExploration::onParseEventRequestMsg(CCDictionary *pResultDict)
 }
 
 
-
+/*
+ * @breif 回城
+ */
 
 void CExploration::backHall()
 {
@@ -1226,6 +1162,7 @@ void CExploration::backHall()
 
 
 
+// 奖励函数
 
 void CExploration::addForwordReword(CCDictionary * inAllRewards)
 {
@@ -1284,14 +1221,8 @@ void CExploration::addTaskAndSectionReward()
 
 
 /*
- * @brief: 分发事件
- * @param inEventId:
- *
+ * @breif 更新事件信息
  */
-void CExploration::dispatchEventByEventId(const int &inEventId)
-{
-
-}
 
 void CExploration::updateEventData()
 {
@@ -1307,12 +1238,16 @@ void CExploration::updateEventData()
     }
 }
 
+/*
+ * @breif 处理空事件
+ */
 void CExploration::handlerEmptyEvent()
 {
     onFishEventRequest(1);
    
 }
 /*
+ * @breif 处理战斗事件
  * @param inType: 1 - 3:
  *
  */
@@ -1325,7 +1260,7 @@ void CExploration::handlerFightEvent(int inType)
 }
 
 /*
- * 
+ * @breif 处理宝箱事件
  */
 void CExploration::hanlderEventBox(int inEventBoxId)
 {
@@ -1337,6 +1272,7 @@ void CExploration::hanlderEventBox(int inEventBoxId)
 }
 
 /*
+ * @breif 创建宝箱事件界面
  * @param inType 1-4
  */
 
@@ -1357,6 +1293,7 @@ void CExploration::createEventBoxDialogByType(CEventBoxData *inEventBoxData, int
     
 }
 
+// 设置3个选择按钮的可见性
 void CExploration::setVisiable()
 {
     CCNode *node = getChildByTag(100);
@@ -1374,6 +1311,9 @@ void CExploration::setInsiable()
     }
 }
 
+/*
+ * @breif 关于宝箱事件的3个回调函数
+ */
 void CExploration:: onCancleCallback(CCObject *pObject)
 {
     CCNode * node = (CCNode*) pObject;
@@ -1414,13 +1354,19 @@ void CExploration::onOpenCallBack(CCObject* pObject)
     
 }
 
+/*
+ * @breif 判断是否通关，若是则调转的铁森林界面
+ */
+
 void CExploration::getBiforest()
 {
     if (s_SectionData.currentStep > s_SectionData.sectionInfo->getMaxStep())
     {
+        
        // scheduleOnce(schedule_selector(CExploration::callBack),0.0f);
-        if (getCurrentTaskId() == m_pPlayer->getCurrentTaskId())
+        if (m_pPlayer->getAllTaskCompleted() == false && getCurrentTaskId() == m_pPlayer->getCurrentTaskId())
         {
+            CCLog("..........");
             CPtTask* task = SingleTaskConfig::instance()->getTaskById(getCurrentTaskId());
             CCAssert(task, "task is null");
             // type 1: 通关， 2: 杀怪 3: 寻物
@@ -1436,11 +1382,15 @@ void CExploration::getBiforest()
             }
            
         }
-        SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
+        goSection();
         return;
     }
     
 }
+
+/*
+ * @breif 进入背包界面代码
+ */
 
 void CExploration::showBackPack()
 {
@@ -1449,6 +1399,9 @@ void CExploration::showBackPack()
     CCLog("backpack...");
 }
 
+/*
+ * @brief 进入卡牌设置界面代码
+ */
 void CExploration::showCardSetting()
 {
     SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_CARDSETTINGSCENE, 1);
@@ -1466,6 +1419,10 @@ void CExploration::test_print(const char * inMsg)
     Middle::showAlertView(inMsg);
 }
 
+
+/*
+ * @breif: 完成任务回调函数：验证成功，则添加下一个任务
+ */
 
 void CExploration::taskCompleteCallback(CCObject* pObject)
 {
@@ -1486,22 +1443,32 @@ void CExploration::taskCompleteCallback(CCObject* pObject)
     }
     if(!codeValue)
     {
+        CCDictionary *result=(CCDictionary*)(tmp->objectForKey("result"));
         //获得info的答案。
-        if (GameTools::intForKey("info", tmp)==0)
+        if (result)
         {
-            addTask();
-            return;
-        }else
-        {
-            CCLog("任务完成验证失败");
+            if(GameTools::intForKey("info", result)==1)
+            {
+                addTask();
+                return;
+                
+            }else
+            {
+                CCLog("任务完成验证失败");
+            }
         }
     }else
     {
         CCLog("error code: %d", codeValue);
     }
-  
+    
+
     
 }
+
+/*
+ * @breif 推送下一个任务回调函数
+ */
 void CExploration::taskAddCallback(CCObject* pObject)
 {
     
@@ -1520,12 +1487,16 @@ void CExploration::taskAddCallback(CCObject* pObject)
         codeValue  = GameTools::intForKey("code", tmp);
     }
     
-    if (!codeValue) {
-        //获得info的答案。
-        if (GameTools::intForKey("info", tmp)==0)
+    if (!codeValue)
+    {
+        CCDictionary *result=(CCDictionary*)(tmp->objectForKey("result"));
+        if (result)
         {
-            goSection();
-            return;
+            if(GameTools::intForKey("info", result)==1)
+            {
+                goSection();
+                return;
+            }
         }
     }
     char messageData[100];
@@ -1533,23 +1504,30 @@ void CExploration::taskAddCallback(CCObject* pObject)
     CCMessageBox(messageData,"ALTER");
 }
 
+/*
+ * @breif 添加下一个任务（若没有则标示，任务已经全部完成）
+ */
 void CExploration::addTask()
 {
     int value=m_pPlayer->getCurrentTaskId();
-    CPtTask *pttask=SingleTaskConfig::instance()->getNextByPreTask(value);
-    if (pttask)
+    CTaskConfigData * taskDatas = SingleTaskConfig::instance();
+    CPtTask *pttask=taskDatas->getNextByPreTask(value);
+    if (value != taskDatas->getMaxTaskId())
     {
         m_pPlayer->setCurrentTaskId(pttask->getTaskId());
         m_pPlayer->postAddTask(m_pPlayer->getCurrentTaskId(), this, callfuncO_selector(CExploration::taskAddCallback), "CALLBACK_CEXPLORATION_ADDTASK");
     }
     else
     {
+        m_pPlayer->setAllTaskCompleted(true);
         goSection();
     }
    
 }
 
-
+/*
+ * @breif 返回章节选择界面(临时性)
+ */
 void CExploration::goSection()
 {
     scheduleOnce(schedule_selector(CExploration::callback), 1.0f);

@@ -210,6 +210,9 @@ CTaskConfigData::~CTaskConfigData()
     CC_SAFE_RELEASE(m_pCurrentTask);
 }
 
+/*
+ * @note 无后续任务时，传最后一个任务
+ */
 CPtTask *CTaskConfigData::getNextByPreTask(int inId)
 {
     if (inId<0) {

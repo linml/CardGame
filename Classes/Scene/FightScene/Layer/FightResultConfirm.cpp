@@ -103,15 +103,17 @@ void FightResultConfirm::postHttpNpc()
 {
    
     
-    int taskId = SinglePlayer::instance()->getCurrentTaskId() == CExploration::getCurrentTaskId() ? CExploration::getCurrentTaskId() : 0;
+    int taskId = SinglePlayer::instance()->getCurrentTaskId() == CExploration::getCurrentTaskId() && !SinglePlayer::instance()->getAllTaskCompleted() ? CExploration::getCurrentTaskId() : 0;
     int eventId=CExploration::getCurrentEventId(); //事件ID
     int chapterId=CExploration::getCurrentChapterId(); //章ID
     int sectionId=CExploration::getCurrentSectionId(); //节ID
     int stepNumber=CExploration::getCurrentStep();
     int typeSuccess=m_nResult->getFightResult();
+    int troops = 1; // 默认 1阵容
     char buffer[200]={0};
+
     //    CPtSection*  m_pSection = s_SectionData.sectionInfo;
-    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d&event_id=%d&type=%d&task_id=%d",STR_USER_SIG, chapterId, sectionId, stepNumber-1, eventId,typeSuccess,taskId);
+    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&step=%d&event_id=%d&type=%d&task_id=%d&troops=%d",STR_USER_SIG, chapterId, sectionId, stepNumber-1, eventId,typeSuccess,taskId,troops);
     ADDHTTPREQUESTPOSTDATA(STR_URL_FINISH_EVENT(196),"CALLBACK_FightResultConfirm_finshEvent", "REQUEST_FightResultConfirm_finshEvent",buffer, callfuncO_selector(FightResultConfirm::callBackData));
 }
 
@@ -155,15 +157,15 @@ void FightResultConfirm::callBackData(cocos2d::CCObject *object)
                 else
                 {
                     //如果是失败的话 记录战斗的怪物信息;
-                    char dataMoster[200];
-                    int iLenStr=0;
-                    CGamePlayer *pGamePlayer=SinglePlayer::instance();
-                    for (int i=0; i<pGamePlayer->m_hashmapMonsterCard.size(); i++) {
-                        if (pGamePlayer->m_hashmapMonsterCard[i]) {
-                            iLenStr=sprintf(&dataMoster[iLenStr], " monter: %d",pGamePlayer->m_hashmapMonsterCard[i]->m_pCard->m_icard_id);
-                        }
-                    }
-                    appendFileLog(dataMoster);
+//                    char dataMoster[200];
+//                    int iLenStr=0;
+//                    CGamePlayer *pGamePlayer=SinglePlayer::instance();
+//                    for (int i=0; i<pGamePlayer->m_hashmapMonsterCard.size(); i++) {
+//                        if (pGamePlayer->m_hashmapMonsterCard[i]) {
+//                            iLenStr=sprintf(&dataMoster[iLenStr], " monter: %d",pGamePlayer->m_hashmapMonsterCard[i]->m_pCard->m_icard_id);
+//                        }
+//                    }
+//                    appendFileLog(dataMoster);
                     //
                     m_nResult->setFightResult(0);
                     PtSoundTool::playSysSoundEffect("fight_failed.mp3");
