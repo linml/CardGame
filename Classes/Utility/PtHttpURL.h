@@ -108,4 +108,7 @@
 //定时更新数据请求
 #define STR_URL_UPDATEAPHP(UID)    URL_FACTORY("api.php?m=GameBegin&a=cron&uid=",UID)
 
+//IAP请求
+#define STR_URL_IAPBUY(UID)         URL_FACTORY("api.php?m=recharge&a=checkRecharge&uid=",UID)
+
 #endif

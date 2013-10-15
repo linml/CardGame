@@ -284,16 +284,16 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
                             item->setItemSellMaxNum(maxNumber);
                             sprintf(getParam, "price_%d",i);
                             int oldValue=GameTools::intForKey(getParam, shopInfoDict) ;
-                            sprintf(getParam, "pripercent_%d",i);
-                            int price=oldValue* (GameTools::intForKey(getParam, shopInfoDict))*0.01;
+                            sprintf(getParam, "percent_%d",i);
+                            int price=(int)(oldValue* (GameTools::intForKey(getParam, shopInfoDict))*0.01);
                             item->setOldValue(oldValue);
                             item->setValue(price);
-                            if (shopInfo->mapShopItem[itemKeyId]) {
-                                CCLog("商品表里面的商品不能有重复的 策划有错误");
-                                delete  shopInfo->mapShopItem[itemKeyId];
-                                shopInfo->mapShopItem[itemKeyId]=NULL;
-                            }
-                            shopInfo->mapShopItem[itemKeyId]=item;
+//                            if (shopInfo->mapShopItem[itemKeyId]) {
+//                                CCLog("商品表里面的商品不能有重复的 策划有错误");
+//                                delete  shopInfo->mapShopItem[itemKeyId];
+//                                shopInfo->mapShopItem[itemKeyId]=NULL;
+//                            }
+                            shopInfo->mapShopItem.push_back(item);
                         }
                     }
                    

@@ -18,6 +18,8 @@
 #include "CGameEmailManager.h"
 #include "SceneManager.h"
 #include "CSceneGameShopLayer.h"
+#include "CPtRecharge.h"
+
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
 
@@ -193,6 +195,13 @@ void CHallScene::showBackBag()
     addChild(layer, 1000);
     CCLog("backpack...");
 }
+
+void CHallScene::showRechargeView()
+{
+    CPtRecharge* lRecharge = CPtRecharge::create();
+    addChild(lRecharge,10000);
+}
+
 // protectd method:
 bool CHallScene::initHall(int inType)
 {
@@ -432,7 +441,7 @@ void CHallScene::handlerTouch()
             showBackBag();
             break;
         case 2007:
-            
+            showRechargeView();
             break;
         case 2008:
             

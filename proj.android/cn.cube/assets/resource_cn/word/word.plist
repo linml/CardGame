@@ -116,6 +116,8 @@
 	<string>去扭蛋</string>
 	<key>quchongzhi</key>
 	<string>去充值</string>
+	<key>goumai</key>
+	<string>购买</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

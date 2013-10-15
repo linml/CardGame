@@ -44,6 +44,7 @@ public:
     int    m_friend_count;
     int    m_irvc;
     int    m_iGp;   //神力
+    bool   m_bFirstRecharge;
     struct SLevelPlayer *m_sLevelPlayer;
     int    m_nOpenGridCount;
     std::map<int ,SLevelPlayer *>m_gvPlayerLevel;

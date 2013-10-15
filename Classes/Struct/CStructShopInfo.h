@@ -11,12 +11,13 @@
 
 #include <iostream>
 #include <string.h>
+#include <vector>
 #include "cocos2d.h"
 using namespace std;
 using namespace cocos2d;
 
 class CStructShopSellItem ;
-typedef  std::map<int,CStructShopSellItem *> SHOPSELLITEMMAP;
+typedef  vector<CStructShopSellItem *> SHOPSELLITEMMAP;
 
 
 class CStructShopInfo
@@ -24,6 +25,9 @@ class CStructShopInfo
 public:
     CStructShopInfo();
     ~CStructShopInfo();
+    int getShopItemCount();
+    void clearShopItemData();
+    void logicShopItemNumber(int itemId,int nNowHaveNumber);
 public:
     CC_SYNTHESIZE(std::string , m_shop_name, ShopName);
     CC_SYNTHESIZE(int ,m_shop_id,ShopId);

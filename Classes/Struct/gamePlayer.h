@@ -26,6 +26,7 @@ class CGamePlayerData;
 class CGlobalUpdateAp;
 class CGlobalUpdateGp;
 class CStructShopInfo;
+class CStructShopSellItem;
 
 #define OPENGGRIDLEVLE 20
 
@@ -36,6 +37,7 @@ class CGamePlayer : cocos2d::CCObject
     virtual ~CGamePlayer();
     void loadGamesConfig();
     void onExitGameApp();
+    void clearShangchengData();
 public:
      CCard *getCardByCardId(int cardid);
      CSkillData *getPutongGongji(CFightCard *pCard);
@@ -183,7 +185,7 @@ public:
     int getPlayerLevel();  //等级
     int getPlayerGp();     //神力
     int getPlayerAp();  //体力
-    
+    bool getPlayrHadRecharged();//是否首充
     
     int getGpMax();
     int getApMax();
@@ -191,6 +193,8 @@ public:
     
     int setPlayerGp(int iValue); //神力
     int setPlayerAp(int iValue);
+    int setPlayerCash(int iValue);
+    bool setPlayrHadRecharged(bool var);
   
     void addPlayerGp(int inAddHp);
     void subPlayerGp(int inSubHp);
@@ -232,6 +236,8 @@ public:
      */
     void postAddTask(int taskNextId, CCObject *object, SEL_CallFuncO selector,const char *strCallback); //当本地
     bool isHaveSendComplate();
+    int getShopItemCount();
+    CStructShopSellItem *getShopItemById(int itemID);
 private:
     void setTaskTotalNumberOnFinishSectionTask(int Value);
 public:
@@ -278,7 +284,6 @@ protected:
     CStructShopInfo  *m_gameShop;
 protected:
     void updatePlayerDataWithExp();
-    
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

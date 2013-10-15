@@ -147,6 +147,9 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_nOpenGridCount = GameTools::intForKey("max_bag", dict);
     m_iGp=GameTools::intForKey("gp", dict);
     
+    //是否首充
+    m_bFirstRecharge=GameTools::intForKey("recharge", dict);;
+
 }
 
 

@@ -49,6 +49,7 @@ CGameButtonControl *CGameButtonControl::createButton(TEXTPOSTION textPosion,cons
 void CGameButtonControl::setFontColor(ccColor3B csColor)
 {
     m_cFontNormalColor=csColor;
+    ((CCLabelTTF *)getChildByTag(100))->setColor(m_cFontNormalColor);
 }
 
 CCLabelTTF *CGameButtonControl::getTextLabel()

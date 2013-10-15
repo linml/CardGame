@@ -124,9 +124,16 @@ void CGamePlayer::onExitGameApp()
     clearAllCard();
     clearAllNpcCard();
     clearPlayerTable();
+    clearShangchengData();
     
 }
-
+void CGamePlayer::clearShangchengData()
+{
+    if(m_gameShop)
+    {
+        m_gameShop->clearShopItemData();
+    }
+}
 void CGamePlayer::clearAllCard()
 {
     map<int ,CCard *>::iterator it;
@@ -799,6 +806,17 @@ int CGamePlayer::getPlayerAp()  //体力
     return m_gGamePlayerData->m_iAp;
 }
 
+bool CGamePlayer::getPlayrHadRecharged()
+{
+    return m_gGamePlayerData->m_bFirstRecharge;
+}
+
+bool CGamePlayer::setPlayrHadRecharged(bool var)
+{
+    m_gGamePlayerData->m_bFirstRecharge=var;
+    return var;
+}
+
 int CGamePlayer::setPlayerGp(int iValue)
 {
      m_gGamePlayerData->m_iGp=iValue;
@@ -810,6 +828,13 @@ int CGamePlayer::setPlayerAp(int iValue)
     m_gGamePlayerData->m_iAp=iValue;
     return m_gGamePlayerData->m_iAp;
 }
+
+int CGamePlayer::setPlayerCash(int iValue)
+{
+    m_gGamePlayerData->m_icash=iValue;
+    return m_gGamePlayerData->m_icash;
+}
+
 
 void CGamePlayer::addPlayerGp(int inAddHp)
 {
@@ -1511,7 +1536,15 @@ void CGamePlayer::decodeDataGp(cocos2d::CCObject *object)
     
 }
 
+CStructShopSellItem *CGamePlayer::getShopItemById(int itemID)
+{
+    return m_gameShop->mapShopItem[itemID];
+}
 
+int CGamePlayer::getShopItemCount()
+{
+    return m_gameShop->getShopItemCount();
+}
 /*
  * 获取玩家基本信息
  */
@@ -1625,6 +1658,7 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
     
         CCDictionary *getCardItem=(CCDictionary *)dictresult->objectForKey("card_team");
         loadCardTeamInfoCallBackByDict(getCardItem);
+        
     }
 }
 

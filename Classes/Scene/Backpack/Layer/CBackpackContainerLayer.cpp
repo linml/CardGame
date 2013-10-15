@@ -69,8 +69,10 @@ bool CBackpackContainerLayer::init(int inOpenNumber)
 {
     bool bRet = false;
     do {
+        int value =clock();
         CC_BREAK_IF(!CCLayer::init());
         initCBackpackContainerLayer(inOpenNumber);
+        CCLog("aaaaa====%f",(clock()-value)*1.0/CLOCKS_PER_SEC);
         bRet = true;
     } while (0);
     

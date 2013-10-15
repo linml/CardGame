@@ -11,6 +11,7 @@
 #include "CPanelGameLog.h"
 CStructShopSellItem::CStructShopSellItem(int itemId)
 {
+    m_nItemId=itemId;
     m_itemProp=SinglePropConfigData::instance()->getPropById(itemId);
     if (!m_itemProp) {
         CCLog("fuck服务端 传递本地没有数据的商城物品");

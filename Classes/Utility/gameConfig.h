@@ -5,6 +5,7 @@
 #include "PtSoundTool.h"
 #include "Utility.h"
 #include "PtActionUtility.h"
+#include "PtMapUtility.h"
 #include "cocos-ext.h"
 using namespace std;
 using namespace cocos2d;

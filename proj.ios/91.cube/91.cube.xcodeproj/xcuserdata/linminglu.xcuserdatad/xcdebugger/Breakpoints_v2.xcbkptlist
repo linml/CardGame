@@ -118,11 +118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "403430352.052846"
+            timestampString = "403513451.963359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "966"
-            endingLineNumber = "966"
+            startingLineNumber = "973"
+            endingLineNumber = "973"
             landmarkName = "CGamePlayer::isSuccessFinishTask()"
             landmarkType = "5">
          </BreakpointContent>
@@ -134,12 +134,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
-            timestampString = "403447038.235642"
+            timestampString = "403522921.740541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
+            startingLineNumber = "567"
+            endingLineNumber = "567"
             landmarkName = "CSceneGameShopLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Struct/gamePlayer.cpp"
+            timestampString = "403517366.745736"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1528"
+            endingLineNumber = "1528"
+            landmarkName = "CGamePlayer::getShopItemCount()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

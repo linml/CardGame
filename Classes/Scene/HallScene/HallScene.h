@@ -47,6 +47,7 @@ protected:
     void showBackBag();
     void setHallSceneLayerCanTouch(void *tag);
     void showBackNotice(CCObject *object);
+    void showRechargeView();
 protected:
     int m_nTouchTag;
     CCSprite* m_touchSprite;
