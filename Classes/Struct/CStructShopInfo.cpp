@@ -44,9 +44,9 @@ class ShopItem_eq
 {
 public:
     ShopItem_eq(const int& ss):s(ss){}
-    bool operator() (const CStructShopSellItem & c) const
+    bool operator() (const CStructShopSellItem * c) const
     {
-        return c.getItemID() == s;
+        return c->getItemID() == s;
     }
 private:
     int s;

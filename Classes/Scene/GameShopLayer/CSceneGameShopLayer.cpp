@@ -450,6 +450,15 @@ bool CSceneGameShopLayer::checkIsHaveEnoughCashForOneItem(int tagIdVector)
 
 bool CSceneGameShopLayer::checkIsHaveEnoughBagToSaveItem(int tagIdVector)
 {
+    return true;
+}
+void CSceneGameShopLayer::sendGetShopItemData()
+{
+    
+}
+
+void CSceneGameShopLayer::decodeShopItemData(CCObject *object)
+{
     
 }
 
@@ -660,6 +669,11 @@ void CSceneGameShopLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             ((CGameButtonControl *)m_tempTouchNode)->unselected();
         }
         m_tempTouchNode=NULL;
+        if (getChildByTag(8)->boundingBox().containsPoint(touchPoint)) {
+            removeFromParentAndCleanup(true);
+            CCNotificationCenter::sharedNotificationCenter()->postNotification("CHONGZHIJIEMIAN");
+            return;
+        }
     }
     else if (m_tempTouchNode==getChildByTag(7)||m_tempTouchNode==getChildByTag(8)) {
         ((CGameButtonControl *)m_tempTouchNode)->unselected();

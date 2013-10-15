@@ -70,6 +70,7 @@
 		6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24817964AF800E16CDE /* CFightSkillManager.cpp */; };
 		6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */; };
 		6FCA468B17F014B300346E6B /* CReward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCA468917F014B300346E6B /* CReward.cpp */; };
+		6FFD01BB180D4D8200ADE144 /* CPtRecharge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD01B9180D4D8200ADE144 /* CPtRecharge.cpp */; };
 		8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E13F18A17700F5F0050812F /* TaskLayer.cpp */; };
 		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
 		8E6CE597176EEF1E00CF5C0D /* CConfirmLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */; };
@@ -464,6 +465,8 @@
 		6FBBC24C17966FA400E16CDE /* CAnimationSpriteGameFight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAnimationSpriteGameFight.h; sourceTree = "<group>"; };
 		6FCA468917F014B300346E6B /* CReward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CReward.cpp; sourceTree = "<group>"; };
 		6FCA468A17F014B300346E6B /* CReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CReward.h; sourceTree = "<group>"; };
+		6FFD01B9180D4D8200ADE144 /* CPtRecharge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtRecharge.cpp; sourceTree = "<group>"; };
+		6FFD01BA180D4D8200ADE144 /* CPtRecharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtRecharge.h; sourceTree = "<group>"; };
 		8E13F18A17700F5F0050812F /* TaskLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskLayer.cpp; sourceTree = "<group>"; };
 		8E13F18B17700F5F0050812F /* TaskLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskLayer.h; sourceTree = "<group>"; };
 		8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ExplorationScene.cpp; sourceTree = "<group>"; };
@@ -1519,6 +1522,8 @@
 		9F801315175493D400EEC0BC /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				6FFD01B9180D4D8200ADE144 /* CPtRecharge.cpp */,
+				6FFD01BA180D4D8200ADE144 /* CPtRecharge.h */,
 				8EA82EC617E1BAFC0063CDA9 /* CPtExpandableListView.cpp */,
 				8EA82EC717E1BAFC0063CDA9 /* CPtExpandableListView.h */,
 				9F095D2817D8730A00CE32B3 /* CFileReadWrite.cpp */,
@@ -2915,6 +2920,7 @@
 				6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */,
 				6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */,
 				6F98CD2C179E154B00E77257 /* CEffectInterface.cpp in Sources */,
+				6FFD01BB180D4D8200ADE144 /* CPtRecharge.cpp in Sources */,
 				6FAD754417A269C700AB8D8E /* CCardSettingScene.cpp in Sources */,
 				6FAD754517A269C700AB8D8E /* CBattleArrayLayer.cpp in Sources */,
 				6FAD754617A269C700AB8D8E /* CCardEnhanceLayer.cpp in Sources */,

@@ -59,12 +59,14 @@ CHallScene::CHallScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::updateEmailNumber), "youjiangengxin", NULL);
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showBackNotice), "CAONIMAXIANSHIBEIBAO", NULL);
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showRechargeView), "CHONGZHIJIEMIAN", NULL);
 }
 
 CHallScene::~CHallScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "youjiangengxin");
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this,"CAONIMAXIANSHIBEIBAO");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CAONIMAXIANSHIBEIBAO");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CHONGZHIJIEMIAN");
     m_cplist->release();
     //clean the cache:
     HBSpriteCache::sharedHBSpriteCache()->purgesharedHBSpriteCache();
@@ -188,7 +190,10 @@ void CHallScene::showBackNotice(cocos2d::CCObject *object)
 {
     showBackBag();
 }
-
+void CHallScene::callBackToShowRechargeDialog(cocos2d::CCObject *object)
+{
+    showRechargeView();
+}
 void CHallScene::showBackBag()
 {
     CCLayer * layer = CBackpackContainerLayer::create();
