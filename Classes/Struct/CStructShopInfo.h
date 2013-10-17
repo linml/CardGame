@@ -28,6 +28,7 @@ public:
     int getShopItemCount();
     void clearShopItemData();
     void logicShopItemNumber(int itemId,int nNowHaveNumber);
+    void setRebackMaxNumber();
 public:
     CC_SYNTHESIZE(std::string , m_shop_name, ShopName);
     CC_SYNTHESIZE(int ,m_shop_id,ShopId);

@@ -338,11 +338,12 @@ CCScene* CExploration::scene()
 
 CExploration::CExploration()
 {
- 
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CExploration::levelUpCallBack), NOTIFYTAG_LEVELUP, NULL);
 }
 
 CExploration::~CExploration()
 {
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, NOTIFYTAG_LEVELUP);
     if (m_cMaps)
     {
         m_cMaps->release();
@@ -1074,6 +1075,11 @@ void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
     {
         handlerEmptyEvent();
     }
+    else if(inType == 4)
+    {
+        handlerSellerEvent(pEventInfo);
+        
+    }
     
 }
 
@@ -1085,6 +1091,7 @@ void CExploration::onSendEventRequest()
 {
     // constructor post data:
     CPtSection *m_pSection = s_SectionData.sectionInfo;
+    CCLog("the section ap: %d the current : %d", m_pSection->getAP(), m_pPlayer->getPlayerAp());
     if (m_pPlayer->getPlayerAp() < m_pSection->getAP() || m_pPlayer->getPlayerGp() <= 0)
     {
         CCLog("体力or神力不够");
@@ -1166,12 +1173,13 @@ void CExploration::backHall()
 
 void CExploration::addForwordReword(CCDictionary * inAllRewards)
 {
+    int flag = 0;
     if (inAllRewards)
     {
         CReward * reward = (CReward*) inAllRewards->objectForKey(FORWARDREWARD_ADD);
         if(reward)
         {
-            reward->excuteReward(ADD);
+          flag = reward->excuteReward(ADD);
         }
         reward = (CReward*) inAllRewards->objectForKey(FORWARDREWARD_DEC);
         if (reward)
@@ -1180,18 +1188,23 @@ void CExploration::addForwordReword(CCDictionary * inAllRewards)
         }
         
     }
+    if(REWARD_IS_LEVEL_UP_SUCCESS(flag))
+    {
+        SinglePlayer::instance()->updatePlayerDataWithExp();
+    }
     createOrUpdatePlayerData();
     
 }
 
 void CExploration::addEventReward(CCDictionary *inAllRewards)
 {
+    int flag = 0;
     if (inAllRewards)
     {
         CReward * reward = (CReward*) inAllRewards->objectForKey(EVENTREWARD_ADD);
         if(reward)
         {
-            reward->excuteReward(ADD);
+          flag= reward->excuteReward(ADD);
         }
         reward = (CReward*) inAllRewards->objectForKey(EVENTREWARD_DEC);
         if (reward)
@@ -1199,6 +1212,10 @@ void CExploration::addEventReward(CCDictionary *inAllRewards)
             reward->excuteReward(DEC);
         }
         
+    }
+    if(REWARD_IS_LEVEL_UP_SUCCESS(flag))
+    {
+        SinglePlayer::instance()->updatePlayerDataWithExp();
     }
     createOrUpdatePlayerData();
 }
@@ -1272,6 +1289,15 @@ void CExploration::hanlderEventBox(int inEventBoxId)
 }
 
 /*
+ * @breif 处理商人事件
+ * @param seller dictionary
+ */
+void CExploration::handlerSellerEvent(CCDictionary * inSellerDict)
+{
+    handlerEmptyEvent();
+}
+
+/*
  * @breif 创建宝箱事件界面
  * @param inType 1-4
  */
@@ -1292,6 +1318,15 @@ void CExploration::createEventBoxDialogByType(CEventBoxData *inEventBoxData, int
     }
     
 }
+
+// seller event:
+CCArray * CExploration::getShopItems(CCDictionary *inSellDict)
+{
+    CCArray * array = CCArray::create();
+    
+    return array;
+}
+
 
 // 设置3个选择按钮的可见性
 void CExploration::setVisiable()
@@ -1535,4 +1570,9 @@ void CExploration::goSection()
 void CExploration::callback(float dt)
 {
     SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
+}
+
+void CExploration::levelUpCallBack(cocos2d::CCObject *pObject)
+{
+    CCLog("display: ");
 }

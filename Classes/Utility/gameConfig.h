@@ -129,7 +129,8 @@ const ccColor3B g_custom_color[] = {
     
     {255,210,0},    //17 装备列表选中
     {0,0,0},    //18 black
-    {255,125,125} //19黄色
+    {255,125,125}, //19黄色
+    {255,0,0}
 };
 
 typedef struct TPlayTask {
@@ -259,5 +260,6 @@ enum ERROR_MSG {
     ERROR_MSG_SERVERDATA=5035
 };
 
+#define NOTIFYTAG_LEVELUP "NOTIFYTAG_LEVELUP"
 
 #endif

@@ -102,7 +102,7 @@ protected:
     
 //    CBackpackContainerLayer * m_pContainerHandler;
     multimap<int, int> * m_pGridData;
-    vector<multimap<int, int>::iterator> m_cGridDataIterator;
+    vector< multimap<int, int>::iterator > m_cGridDataIterator;
     
     PropItem m_cPropItem;
     

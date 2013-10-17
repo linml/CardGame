@@ -247,6 +247,7 @@ void FightResultConfirm::handlerTouch()
 
 void FightResultConfirm::handlerEventReward(CCDictionary * inAllReward)
 {
+    int flag  = 0;
     char tips[200] = {0};
     sprintf(tips, "没有奖励：");
     if (inAllReward)
@@ -257,10 +258,11 @@ void FightResultConfirm::handlerEventReward(CCDictionary * inAllReward)
         CReward * decReward = (CReward*) inAllReward->objectForKey(EVENTREWARD_DEC);
         if (addReward)
         {
-            addReward->excuteReward(ADD);
+            flag = addReward->excuteReward(ADD);
             sprintf(tips, "add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", addReward->getEnergy(), addReward->getHP(), addReward->getExp(),
                     addReward->getCoin(), addReward->getCash(), addReward->getCardCount(), addReward->getPropCount());
            // addReward->getRewardContent(tips, 200);
+           
         }
         if (decReward)
         {
@@ -277,6 +279,10 @@ void FightResultConfirm::handlerEventReward(CCDictionary * inAllReward)
         
     }
     test_print(tips);
+    if(REWARD_IS_LEVEL_UP_SUCCESS(flag))
+    {
+        SinglePlayer::instance()->updatePlayerDataWithExp();
+    }
 }
 
 // test:

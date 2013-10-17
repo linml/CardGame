@@ -44,6 +44,7 @@ namespace CPtTool
     double getDateIntermissionRebackMSC(time_t beforeTime,time_t afterTime);
     void getDataShijianChai(time_t befortime,time_t befortimeE,std::string &str);
     std::string  readFileName(const char *filename);
+    const char * stringForObjectValue(int seconds);
     
     CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize);
     

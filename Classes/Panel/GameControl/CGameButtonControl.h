@@ -26,6 +26,9 @@ public:
     virtual void unselected();
     CCLabelTTF *getTextLabel();
     void setFontColor(ccColor3B csColor);
+    void setEnable(bool flag);
+protected:
+    bool m_bIsCanTouch;
 private:
     ccColor3B  m_cFontNormalColor;
 protected:

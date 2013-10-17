@@ -886,13 +886,25 @@ void CGamePlayer::subPlayerCash(int iValue)
 
 
 
-void CGamePlayer::addPalyerExp(int inAddExp)
+bool CGamePlayer::addPalyerExp(int inAddExp)
 {
+    bool bRet = false;
     m_gGamePlayerData->m_iexp += inAddExp;
+    if(m_gGamePlayerData->m_iexp >= m_gGamePlayerData->m_sLevelPlayer->m_iExp_max)
+    {
+        bRet = true;
+    }
+    return bRet;
 }
+
 void CGamePlayer::subPlayerExp(int inSubExp)
 {
     m_gGamePlayerData->m_iexp -= inSubExp;
+}
+
+void CGamePlayer::setPlayerExp(int inExpValue)
+{
+    m_gGamePlayerData->m_iexp = inExpValue;
 }
 
 void CGamePlayer::addRVC(const int &inAddValue)
@@ -1040,18 +1052,6 @@ void CGamePlayer::onFightExitScene()
 }
 
 
-/*
- * @breif: 获取道具背包信息：
- */
-
-void CGamePlayer::loadPropsInfo()
-{
-    //xianbei delete
-    //  m_bLoadProps = false;
-    //  ADDHTTPREQUESTPOSTDATA(STR_URL_BAG_PROP(194), "loadProps", "loadProps","sig=2ac2b1e302c46976beaab20a68ef95" ,callfuncO_selector(CGamePlayer::parsePropsInfo));
-    
-}
-
 void CGamePlayer::parseProsInfoByDict(CCDictionary *tmpDictionary)
 {
     if (tmpDictionary)
@@ -1077,52 +1077,6 @@ void CGamePlayer::parseProsInfoByDict(CCDictionary *tmpDictionary)
     }
 }
 
-void CGamePlayer:: parsePropsInfo(CCObject *pObject)
-{
-    m_bLoadProps = true;
-    char *buffer = (char*) pObject;
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "loadProps");
-    // reset props package
-    m_vProps.clear();
-    
-    CCAssert(buffer!=NULL, "server Error");
-    
-    // parse data to m_vProps:
-    CCDictionary *tmpDictionary = PtJsonUtility::JsonStringParse(buffer);
-    delete [] buffer;
-    if (tmpDictionary)
-    {
-        int resultCode = GameTools::intForKey("code", tmpDictionary);
-        int propId = 0;
-        int propCount = 0;
-        
-        if (resultCode == 0)
-        {
-            tmpDictionary = (CCDictionary*) tmpDictionary->objectForKey("result");
-            
-            CCArray * items = tmpDictionary == NULL? NULL : (CCArray*) tmpDictionary->objectForKey("items");
-            
-            for (int i = 0;  items!= NULL && i < items->count(); i++)
-            {
-                tmpDictionary = (CCDictionary*) items->objectAtIndex(i);
-                
-                if (tmpDictionary)
-                {
-                    propId = GameTools::intForKey("item_id", tmpDictionary);
-                    propCount = GameTools::intForKey("num", tmpDictionary);
-                    m_vProps.insert(map<int,int>::value_type(propId, propCount));
-                }
-                
-            }
-            CCLog("prop %d",m_vProps.size());
-            
-        }else
-        {
-            CCLog("load prop error...");
-        }
-    }
-    
-}
 
 
 /*
@@ -1143,7 +1097,7 @@ void CGamePlayer::updateProps()
 }
 
 /*
- * @breif 或取背包中该道具ID的数目
+ * @breif 获取取背包中该道具ID的数目
  * @param inPropID 道具ID
  * @return prop count
  */
@@ -1158,6 +1112,41 @@ int CGamePlayer::getPropCountFromBag(int inPropId)
     return count;
 }
 
+/*
+ * @breif :获取该道具能填充的背包的最大添充数
+ * @param inPropId 道具ID
+ * @return int
+ */
+
+int CGamePlayer::getPropMaxCountAddToBag(int inPropId)
+{
+    CPtProp* prop = NULL;
+    int count = 0;
+    int useGridCount = getUseGridCount();
+    int restGridCount = getOpenGridCount()-useGridCount;
+    map<int, int>::iterator i = m_vProps.find(inPropId);
+    map<int, CPtProp*>::iterator propIterator = m_rAllProps.end();
+    propIterator  =  m_rAllProps.find(inPropId);
+    if (propIterator != m_rAllProps.end())
+    {
+        prop = propIterator->second;
+        CCAssert(prop, "the prop is null");
+        int limit = prop->getLimitNum();
+        if (i != m_vProps.end() && prop->getIsOnlyNum()!=1)
+        {
+            
+            int restNum = i->second%limit;
+            count += restNum != 0 ? limit-restNum : 0;
+        }
+        if (restGridCount>=0)
+        {
+            count += restGridCount*limit;
+        }
+    }
+    
+    CCLog("the %d prop 's max count : %d ", i->first, count);
+    return count;
+}
 
 
 bool CGamePlayer::addGridBySys()
@@ -1311,6 +1300,11 @@ int CGamePlayer::AddOpenGridCount(int inAddCount)
     m_nOpenGridCount += inAddCount;
     m_nOpenGridCount = m_nOpenGridCount < 0 ? 0 : (m_nOpenGridCount%3==0 ? m_nOpenGridCount : (m_nOpenGridCount/3)*3);
     return m_nOpenGridCount;
+}
+
+void CGamePlayer::setOpenGridCount(int inOpenGridCount)
+{
+    m_gGamePlayerData->m_nOpenGridCount = inOpenGridCount;
 }
 
 /*
@@ -1495,6 +1489,7 @@ void CGamePlayer::decodeDataAp(cocos2d::CCObject *object)
     if(!object)
     {
         CCMessageBox("fuck 服务端 传递AP的数据是NULL的", "error");
+        m_pUpdateAp->startOldTimer();
         return;
     }
     char *strdata=(char *)object;
@@ -1520,6 +1515,7 @@ void CGamePlayer::decodeDataGp(cocos2d::CCObject *object)
     if(!object)
     {
         CCMessageBox("fuck 服务端 传递AP的数据是NULL的", "error");
+        m_pUpdateGp->startOldTimer();
         return;
     }
     char *strdata=(char *)object;
@@ -1536,8 +1532,26 @@ void CGamePlayer::decodeDataGp(cocos2d::CCObject *object)
     
 }
 
+void CGamePlayer::setReBackXiangLiang()
+{
+    if(m_gameShop)
+{
+    m_gameShop->setRebackMaxNumber();
+}
+    
+}
+void CGamePlayer::setShopItemByItemId(int itemID,int nValue)
+{
+    if(m_gameShop)
+    {
+        m_gameShop->logicShopItemNumber(itemID, nValue);
+    }
+}
 CStructShopSellItem *CGamePlayer::getShopItemById(int itemID)
 {
+    if (itemID>m_gameShop->mapShopItem.size()) {
+        return NULL;
+    }
     return m_gameShop->mapShopItem[itemID];
 }
 
@@ -1545,6 +1559,12 @@ int CGamePlayer::getShopItemCount()
 {
     return m_gameShop->getShopItemCount();
 }
+
+string CGamePlayer::getShopName()
+{
+    return m_gameShop->getShopName();
+}
+
 /*
  * 获取玩家基本信息
  */
@@ -1733,5 +1753,87 @@ int CGamePlayer::getAllRvcBattlerArray(const int& inType)
 void CGamePlayer::updatePlayerDataWithExp()
 {
     int exp = getPlayerExp();
-//    m_gGamePlayerData->
+    int expMax = m_gGamePlayerData->getExpMax();
+    if (exp >= expMax)
+    {
+        // send request:
+        sendLeveleUpRequest();
+    }
+}
+
+
+// example: cube.games.com/api.php?m=GameBegin&a=checkLevelUp&uid=1000001&sig=2ac2b1e302c46976beaab20a68ef95
+void CGamePlayer::sendLeveleUpRequest()
+{
+      char buff[200]={0};
+      sprintf(buff,"sig=%s", getUserSig());
+      ADDHTTPREQUESTPOSTDATA(STR_URL_LEVEL_UP(196), "CALLBACK_CGamePlayer_sendLeveleUpRequest", "REQUEST_CGamePlayer_sendLeveleUpRequest",buff,callfuncO_selector(CGamePlayer::receiveLevelUpRequestMsg));
+}
+
+void CGamePlayer::receiveLevelUpRequestMsg(CCObject *pObject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_sendLeveleUpRequest");
+    char *buffer =(char*)pObject;
+    if (buffer)
+    {
+        CCDictionary * dict = PtJsonUtility::JsonStringParse(buffer);
+        parseLevelUpInfoByDict(dict);
+        delete [] buffer;
+    }
+}
+
+void CGamePlayer::parseLevelUpInfoByDict(CCDictionary *inDict)
+{
+    if (inDict)
+    {
+        int code = GameTools::intForKey("code", inDict);
+        if (code == 0)
+        {
+            CCDictionary *result = (CCDictionary *)inDict->objectForKey("result");
+            changePlayerInfoWithLevelUp(result);
+
+        }else
+        {
+            CCLog("server error code : %d", code);
+        }
+    }
+}
+
+void CGamePlayer::changePlayerInfoWithLevelUp(CCDictionary *inDict)
+{
+    if (inDict)
+    {
+        // save Data:
+        int level = GameTools::intForKey("level", inDict);
+        int exp = GameTools::intForKey("exp", inDict);
+        int gp = GameTools::intForKey("gp", inDict);
+        int ap = GameTools::intForKey("ap", inDict);
+        int grid = GameTools::intForKey("grid", inDict);
+        
+        levelUpData(level);
+        setPlayerExp(exp);
+        setPlayerAp(ap);
+        setPlayerGp(gp);
+        if (grid != 0)
+        {
+            setOpenGridCount(grid);
+        }
+       
+        // notify
+      //  CCNotificationCenter::sharedNotificationCenter()->postNotification(NOTIFYTAG_LEVELUP,NULL);
+        CCLog( "level up --> level : %d, exp: %d, gp: %d, ap : %d, grid : %d", level, exp, gp, ap, grid);
+        char buffTip[300]= {0};
+        sprintf(buffTip, "level up --> level : %d, exp: %d, gp: %d, ap : %d, grid : %d", level, exp, gp, ap, grid);
+        Middle::showAlertView(buffTip);
+        
+    }
+}
+
+void CGamePlayer::levelUpData(int level)
+{
+    if (level <= MAXLEVEL)
+    {
+        m_gGamePlayerData->m_sLevelPlayer = m_gGamePlayerData->m_gvPlayerLevel.at(level);
+        m_gGamePlayerData->m_ilevel = level;
+    }
 }

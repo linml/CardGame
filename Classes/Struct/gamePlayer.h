@@ -29,6 +29,7 @@ class CStructShopInfo;
 class CStructShopSellItem;
 
 #define OPENGGRIDLEVLE 20
+#define MAXLEVEL 100
 
 class CGamePlayer : cocos2d::CCObject
 {
@@ -144,19 +145,18 @@ public:
 // 道具背包:
 public:
     //读取道具背包信息
-    void loadPropsInfo();
-    void parsePropsInfo(CCObject *pObject);
     void parseProsInfoByDict(CCDictionary *dict);
  
     vector<int> getCanAddToBackPackEmals(vector<EMAIL_DATA> inEmailDatas);
     int getOpenGridCount();
     int AddOpenGridCount(int inAddCount);
+    void setOpenGridCount(int inOpenGridCount);
     int getUseGridCount();
     void updateProps();
-    bool getLoadPropEnd(){return  m_bLoadProps;};
     bool addGridBySys();
     
     int getPropCountFromBag(int inPropId);
+    int getPropMaxCountAddToBag(int inPropId);
 protected:
     int isCanAddToBackPack(map<int, int> &tmpProps, map<int, int> &inAddProps , int inUserGridCount);
     void mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps);    
@@ -206,8 +206,10 @@ public:
     void subPlayerCash(int iValue);
 
     
-    void addPalyerExp(int inAddExp);
+    bool addPalyerExp(int inAddExp);
     void subPlayerExp(int inSubExp);
+    
+    void setPlayerExp(int inExpValue);
     
     
     
@@ -237,7 +239,10 @@ public:
     void postAddTask(int taskNextId, CCObject *object, SEL_CallFuncO selector,const char *strCallback); //当本地
     bool isHaveSendComplate();
     int getShopItemCount();
+    string getShopName();
     CStructShopSellItem *getShopItemById(int itemID);
+    void  setShopItemByItemId(int itemID,int nNowValue);
+    void setReBackXiangLiang();
 private:
     void setTaskTotalNumberOnFinishSectionTask(int Value);
 public:
@@ -254,7 +259,6 @@ protected:
     CGamePlayerData *m_gGamePlayerData;
     map<int, CPtProp*> &m_rAllProps; // 静态配置中道具信息
     map<int, int> m_vProps;          // 用户道具列表
-    bool m_bLoadProps;
     
 private:
     map<int, CCard *>m_hashmapAllCard;
@@ -281,9 +285,19 @@ protected:
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
     CGlobalUpdateAp  *m_pUpdateAp;
     CGlobalUpdateGp  *m_pUpdateGp;   //其实用一个类就可以做的。
+
     CStructShopInfo  *m_gameShop;
-protected:
+    
+public:
     void updatePlayerDataWithExp();
+
+
+protected:
+    void sendLeveleUpRequest();
+    void receiveLevelUpRequestMsg(CCObject *pObject);
+    void parseLevelUpInfoByDict(CCDictionary *inDict);
+    void changePlayerInfoWithLevelUp(CCDictionary *inDict);
+    void levelUpData(int level);
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

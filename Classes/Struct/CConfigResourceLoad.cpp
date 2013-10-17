@@ -256,10 +256,8 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
             for (int i=0; i<vKeyArray->count(); i++)
             {
                 CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
-                if(key->intValue()==1)
-                {
-                    CCDictionary *shopInfoDict=(CCDictionary*)(directory->objectForKey(key->m_sString));
-                    shopInfo->setShopId(key->intValue());
+                 CCDictionary *shopInfoDict=(CCDictionary*)(directory->objectForKey(key->m_sString));
+                 shopInfo->setShopId(key->intValue());
                     shopInfo->setShopName(GameTools::valueForKey("shop_name", shopInfoDict));
                     shopInfo->setShopType(GameTools::intForKey("type", shopInfoDict));
                     shopInfo->setShopRondomNumber(GameTools::intForKey("rondom_num", shopInfoDict));
@@ -274,7 +272,7 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
                         if(itemKeyId!=0)
                         {
                             
-                            sprintf(getParam, "item_num_%d",i);
+                            sprintf(getParam, "team_num_%d",i);
                             CStructShopSellItem *item=new CStructShopSellItem(itemKeyId);
                             item->setGroupNum(GameTools::intForKey(getParam, shopInfoDict));
                             sprintf(getParam, "limit_num_%d",i);
@@ -282,6 +280,7 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
                             int limitNumber=GameTools::intForKey(getParam, shopInfoDict);
                             unsigned int maxNumber= (limitNumber==0 ? UINT_MAX:limitNumber);
                             item->setItemSellMaxNum(maxNumber);
+                            item->setMaxNumberBack(maxNumber);
                             sprintf(getParam, "price_%d",i);
                             int oldValue=GameTools::intForKey(getParam, shopInfoDict) ;
                             sprintf(getParam, "percent_%d",i);
@@ -296,8 +295,6 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
                             shopInfo->mapShopItem.push_back(item);
                         }
                     }
-                   
-                }
             }
             return true;
         }

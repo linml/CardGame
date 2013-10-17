@@ -566,6 +566,25 @@ namespace CPtTool
         out.close();
         return result;
     }
+    const char * stringForObjectValue(int seconds)
+    {
+        static char timerFormat[10];
+        
+        if (seconds<=0) {
+            sprintf(timerFormat, "00:00:00");
+        }
+        unsigned int tm_hour = seconds/3600;
+        unsigned int tm_minute = seconds%3600/60;
+        unsigned int tm_second = seconds%60;
+        if(tm_hour < 100){
+            sprintf(timerFormat, "%02d:%02d:%02d", tm_hour, tm_minute, tm_second);
+        }
+        else {
+            sprintf(timerFormat, "99:99:99");
+        }
+        
+        return timerFormat;
+    }
     
     CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize)
     {

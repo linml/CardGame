@@ -25,6 +25,8 @@ public:
     string getItemPng();
     bool isXiangLiangItem();
     bool isDazheItem();
+    int propID();
+    void setReback();
 private:
     CC_SYNTHESIZE(CPtProp *,m_itemProp,ShopSellItemPropData); //对应物品表里面的物品的类
     CC_SYNTHESIZE(unsigned int , m_iMaxNum, ItemSellMaxNum); //最大能够购买的组目
@@ -33,6 +35,7 @@ private:
     CC_SYNTHESIZE(int , m_iValue, Value);         //组单价 打折后的价格
     CC_SYNTHESIZE(int , m_iOldValue, OldValue);  //打折前的价格
     CC_SYNTHESIZE(int , m_nItemId, ItemID);
+    CC_SYNTHESIZE(int ,m_iMaxNumberBack,MaxNumberBack);
 };
 
 #endif /* defined(___1_cube__CStructShopSellItem__) */

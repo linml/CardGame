@@ -119,8 +119,12 @@ protected:
     void handlerEmptyEvent();
     void handlerFightEvent(int inType);
     void hanlderEventBox(int eventBoxId);
+    void handlerSellerEvent(CCDictionary * inSellerDict);
     
     void createEventBoxDialogByType(CEventBoxData *inEventBoxData, int inType);
+    
+    // seller event:
+    CCArray *getShopItems(CCDictionary *inSellDict);
     
     void setVisiable();
     void setInsiable();
@@ -129,6 +133,8 @@ protected:
     
     void showBackPack();
     void showCardSetting();
+    
+   
     
     // test:
     
@@ -143,6 +149,8 @@ protected:
     
     void goSection();
     void callback(float dt);
+    
+    void levelUpCallBack(CCObject *pObject);
 
 
 protected:

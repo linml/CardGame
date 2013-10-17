@@ -42,6 +42,14 @@ string CStructShopSellItem::getName()
     }
     return "NULL";
 }
+int CStructShopSellItem::propID()
+{
+    return m_itemProp->getPropId();
+}
+void CStructShopSellItem::setReback()
+{
+    m_iMaxNum=m_iMaxNumberBack;
+}
 
 string CStructShopSellItem::getItemPng()
 {

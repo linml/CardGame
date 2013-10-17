@@ -66,16 +66,12 @@
 #define STR_URL_FIGHT(UID)          URL_FACTORY("api.php?m=Fight&a=fight&uid=",UID)
 
 //获取道具背包
-#define STR_URL_BAG_PROP(UID)       URL_FACTORY("api.php?m=Item&a=getItem&uid=",UID)
 #define STR_URL_ADD_GRID(UID)       URL_FACTORY("api.php?m=bag&a=unlock&uid=",UID)
 
 
 //删除和使用道具
 #define STR_URL_DELETE_PROP(UID)    URL_FACTORY("api.php?m=Item&a=deleteItem&uid=",UID)
 #define STR_URL_USE_GRID(UID)       URL_FACTORY("api.php?m=Item&a=useItem&uid=",UID)
-//临时获取已开启的格子数:
-#define STR_URL_OPENGRID_NUM(UID)  URL_FACTORY("api.php?m=bag&a=maxbag&uid=",UID)
-
 
 
 //获取邮件
@@ -84,6 +80,9 @@
 #define STR_URL_EMAILREADSTATUS(UID) URL_FACTORY("api.php?m=Inbox&a=updateInboxStatus&uid=",UID)
 
 #define STR_URL_EMAILGETITEMS(UID)  URL_FACTORY("api.php?m=Inbox&a=getItems&uid=",UID)
+
+//玩家升级
+#define STR_URL_LEVEL_UP(UID)       URL_FACTORY("api.php?m=GameBegin&a=checkLevelUp&uid=",UID)
 
 
 //进入迷宫（既选中小节后进入）
@@ -106,9 +105,14 @@
 #define STR_URL_ADDTASK(UID)        URL_FACTORY("api.php?m=Task&a=addTask&uid=",UID)
 
 //定时更新数据请求
-#define STR_URL_UPDATEAPHP(UID)    URL_FACTORY("api.php?m=GameBegin&a=cron&uid=",UID)
+#define STR_URL_UPDATEAPHP(UID)     URL_FACTORY("api.php?m=GameBegin&a=cron&uid=",UID)
 
 //IAP请求
 #define STR_URL_IAPBUY(UID)         URL_FACTORY("api.php?m=recharge&a=checkRecharge&uid=",UID)
 
+//获取商城里面商店限量的物品已经购买的数量
+#define STR_URL_GETLIMITITEMS(UID)  URL_FACTORY("api.php?m=shop&a=getLimitItems&uid=",UID)
+
+//获取购买物品的信息结果
+#define STR_URL_GETSHOPBUY(UID)              URL_FACTORY("api.php?m=shop&a=buy&uid=",UID)
 #endif

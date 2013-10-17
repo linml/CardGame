@@ -20,6 +20,8 @@
 		<string>103003</string>
 		<key>max_step</key>
 		<string>20</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>501020</string>
 	</dict>
@@ -41,6 +43,8 @@
 		<string>103002</string>
 		<key>max_step</key>
 		<string>15</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>501010</string>
 	</dict>
@@ -62,6 +66,8 @@
 		<string>103004</string>
 		<key>max_step</key>
 		<string>22</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>501030</string>
 	</dict>
@@ -82,6 +88,8 @@
 		<key>scene_id</key>
 		<string>103005</string>
 		<key>max_step</key>
+		<string>10</string>
+		<key>ap</key>
 		<string>10</string>
 		<key>mission_id</key>
 		<string>501040</string>
@@ -104,6 +112,8 @@
 		<string>103006</string>
 		<key>max_step</key>
 		<string>10</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>501050</string>
 	</dict>
@@ -125,6 +135,8 @@
 		<string>103007</string>
 		<key>max_step</key>
 		<string>20</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>501060</string>
 	</dict>
@@ -146,6 +158,8 @@
 		<string>103008</string>
 		<key>max_step</key>
 		<string>15</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>501070</string>
 	</dict>
@@ -167,6 +181,8 @@
 		<string>103009</string>
 		<key>max_step</key>
 		<string>30</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>501080</string>
 	</dict>
@@ -188,6 +204,8 @@
 		<string>103010</string>
 		<key>max_step</key>
 		<string>30</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>501090</string>
 	</dict>

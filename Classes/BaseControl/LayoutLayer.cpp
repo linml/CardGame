@@ -29,9 +29,6 @@ LayoutLayer* LayoutLayer::create()
 
 bool LayoutLayer::initWithFile(CCNode *inParent, const char *pFileName)
 {
-    
-    
-    
     m_pParent = inParent;
     memset(m_pFileName, 0, sizeof(char)*300);
     sprintf(m_pFileName, "%s", pFileName);

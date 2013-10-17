@@ -87,25 +87,32 @@ bool CReward::merger(CReward * inReward1, CReward *inReward2)
 
 /*
  * @param inType: [0-1]---> 0:add , other:dec
+ * @
  */
-bool CReward::excuteReward(OPEARTORTYPE inType)
+int CReward::excuteReward(OPEARTORTYPE inType)
 {
+    int flag = REWARD_FAIL;
     if (m_bExecute)
     {
-        return false;
+        return flag;
     }else
     {
+        REWARD_SET_RESULTE_SUCCESS(flag);
         if (inType == ADD)
         {
             m_pPlayer= SinglePlayer::instance();
             m_pPlayer->addCoin(m_nCoin);
-            m_pPlayer->addPalyerExp(m_nExp);
+            bool leveUP = m_pPlayer->addPalyerExp(m_nExp);
             m_pPlayer->addPlayerCash(m_nCash);
             m_pPlayer->addPlayerAp(m_nEnergy);
             m_pPlayer->addPlayerGp(m_nHp);
-
             addCards();
             addProps();
+            
+            if (leveUP)
+            {
+                REWARD_SET_LEVEL_UP_SUCCESS(flag);
+            }
             
         }else if(inType == DEC)
         {
@@ -119,11 +126,11 @@ bool CReward::excuteReward(OPEARTORTYPE inType)
             
         }else
         {
-            return false ;
+            return flag ;
         }
         
         m_bExecute = true;
-        return m_bExecute;
+        return flag;
     }
 }
 

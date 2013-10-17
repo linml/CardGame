@@ -118,7 +118,7 @@ protected:
     CCArray *m_pTabs;
     
     // grid data struct:
-    std::multimap<int, int> m_cNumInGrid;
+    std::multimap<int, int> m_cNumInGrid; // all grid data
     
     
     

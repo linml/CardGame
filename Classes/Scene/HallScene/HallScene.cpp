@@ -59,14 +59,14 @@ CHallScene::CHallScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::updateEmailNumber), "youjiangengxin", NULL);
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showBackNotice), "CAONIMAXIANSHIBEIBAO", NULL);
-    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showRechargeView), "CHONGZHIJIEMIAN", NULL);
+    //CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showRechargeView), "CHONGZHIJIEMIAN", NULL);
 }
 
 CHallScene::~CHallScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "youjiangengxin");
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CAONIMAXIANSHIBEIBAO");
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CHONGZHIJIEMIAN");
+    //CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CHONGZHIJIEMIAN");
     m_cplist->release();
     //clean the cache:
     HBSpriteCache::sharedHBSpriteCache()->purgesharedHBSpriteCache();
@@ -275,7 +275,7 @@ bool CHallScene::initHall(int inType)
             this->addChild(btnActivity, 200, 2003);
             Utility::addTouchRect(2003, btnActivity, m_cTouches);
             
-            word = Utility::getWordWithFile("word.plist", "activity");
+            word = Utility::getWordWithFile("word.plist", "mall");
             CCLog("word :%s",word.c_str());
             pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
             pLabel->setPosition(ccp(65,30));
@@ -303,7 +303,7 @@ bool CHallScene::initHall(int inType)
             this->addChild(btnActivity, 200, 2005);
             Utility::addTouchRect(2005, btnActivity, m_cTouches);
             
-            word = Utility::getWordWithFile("word.plist", "mall");
+            word = Utility::getWordWithFile("word.plist", "voltron");
             CCLog("word :%s",word.c_str());
             pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
             pLabel->setPosition(ccp(65,30));
@@ -429,17 +429,17 @@ void CHallScene::handlerTouch()
             createEmailLayer();
             break;
         case 2003:
-            
+            if(!getChildByTag(17777))
+            {
+                addChild(CSceneGameShopLayer::create(),201,17777);
+            }
             break;
         case 2004:
             
             break;
         case 2005:
-            if(!getChildByTag(17777))
-            {
-                addChild(CSceneGameShopLayer::create(),201,17777);
-            }
-           // SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_CARDSETTINGSCENE);
+
+            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_CARDSETTINGSCENE);
             break;
         case 2006:
             // backpack-->

@@ -191,10 +191,14 @@ void CAsgardLayer::createChapterReward()
      if (chapter)
      {
          char tips[200] = {0};
-         chapter->excuteReward(ADD);
+         int flag = chapter->excuteReward(ADD);
          sprintf(tips, "chapter reward add: ap: %d, gp: %d exp:%d, coin: %d, cash: %d card count: %d, prop count: %d", chapter->getEnergy(), chapter->getHP(), chapter->getExp(),
                      chapter->getCoin(), chapter->getCash(), chapter->getCardCount(), chapter->getPropCount());
-
+         
+         if(REWARD_IS_LEVEL_UP_SUCCESS(flag))
+         {
+             SinglePlayer::instance()->updatePlayerDataWithExp();
+         }
          Middle::showAlertView(tips);
      }
 }

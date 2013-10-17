@@ -285,7 +285,6 @@ void CBackpackContainerLayer::initCBackpackContainerLayer(int inOpenNumber)
         m_pItems->addObject(item);
         item->setCurrentPageTag(i);
         item->setContainerHandler(this);
-        item->setContainerHandler(this);
         item->setPosition(ccp(-m_cContainerOffset.x+i*m_cContainerSize.width, -m_cContainerOffset.y));
          m_pContainer->addChild(item);
         if (i == m_nCurPage)
@@ -621,7 +620,7 @@ void CBackpackContainerLayer::updateTabContent(vector<multimap<int, int>::iterat
         // ...
         
     }
-    int pageCount = size/9 + size%9 == 0 ? 0 : 1;
+    int pageCount = size/9 + (size%9 == 0 ? 0 : 1);
     if (inFromPage != 0 && inFromPage >= pageCount)
     {
         return;
@@ -765,6 +764,7 @@ void CBackpackContainerLayer::reLoadPage(int inFromPage)
     
     if (m_nCurrentTab == 0)
     {
+        
         int  inOpenNumber = SinglePlayer::instance()->getOpenGridCount();
         CCLog("the openCountNumber: %d", inOpenNumber);
         int tmpPageCount = inOpenNumber/9+ 1 ;
@@ -772,23 +772,37 @@ void CBackpackContainerLayer::reLoadPage(int inFromPage)
         
         // add backpackpage to container:
         multimap<int, int>::iterator mapIterator  = m_cNumInGrid.begin();
+
         multimap<int, int>::iterator mapIteratorEnd = mapIterator;
     
+        int count = inFromPage*9;
+
+        for (; count > 0; )
+        {
+            mapIterator++;
+            count--;
+
+        }
+        mapIteratorEnd = mapIterator;
 
         inOpenNumber -= inFromPage * 9;
+        CCLog("the has data grid count : %d, %d", m_cNumInGrid.size(), dataIterators.size());
         for (int i = inFromPage; i < tmpPageCount; i++)
         {
+            CCLog("the openGrid: %d", inOpenNumber);
             item = (CBackpackPageLayer *)m_pItems->objectAtIndex(i);
             
             if (inOpenNumber-9 >= 0)
             {
-                if (dataIterators.size() > 9)
-                {
-                    mapIteratorEnd = dataIterators.at(9);
-                }else
-                {
-                    mapIteratorEnd = m_cNumInGrid.end();
-                }
+                int j =0;
+                do {
+                    if (mapIteratorEnd == m_cNumInGrid.end())
+                    {
+                        break;
+                    }
+                    j++;
+                    mapIteratorEnd++;
+                } while (j < 9);
                 
                 inOpenNumber -= 9;
                 item->updatePageContent(mapIterator, mapIteratorEnd, 9);
@@ -801,8 +815,43 @@ void CBackpackContainerLayer::reLoadPage(int inFromPage)
             }else
             {
                 item->updatePageContent(mapIterator, m_cNumInGrid.end(), inOpenNumber);
+                mapIterator = m_cNumInGrid.end();
                 inOpenNumber = 0;
             }
+
+            
+//            if (inOpenNumber-9 >= 0)
+//            {
+////                if (dataIterators.size() > 9)
+////                {
+////                    mapIteratorEnd = dataIterators.at(9);
+////                }else
+////                {
+////                    mapIteratorEnd = m_cNumInGrid.end();
+////                }
+//                int j = 0;
+//                mapIteratorEnd = mapIterator;
+//                do {
+//                    if (mapIteratorEnd == m_cNumInGrid.end())
+//                    {
+//                        break;
+//                    }
+//                    j++;
+//                    mapIteratorEnd++;
+//                } while (j < 9);
+//                inOpenNumber -= 9;
+//                item->updatePageContent(mapIterator, mapIteratorEnd, 9);
+//                mapIterator = mapIteratorEnd;
+//            }
+//            else if(inOpenNumber == 0)
+//            {
+//                CCLog("the openNumber %d", inOpenNumber);
+//                item->updatePageContent(mapIterator, m_cNumInGrid.end(), 0);
+//            }else
+//            {
+//                item->updatePageContent(mapIterator, m_cNumInGrid.end(), inOpenNumber);
+//                inOpenNumber = 0;
+//            }
             
         }
         updateUI(tmpPageCount,false);

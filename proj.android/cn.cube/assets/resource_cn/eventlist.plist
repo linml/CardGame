@@ -2,25 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
-		<key>200000</key>
-		<dict>
-			<key>event_id</key>
-			<string>200000</string>
-			<key>event_name</key>
-			<string>测试战斗事件1</string>
-			<key>event_tips</key>
-			<string>200000</string>
-			<key>event_type</key>
-			<string>1</string>
-			<key>effect</key>
-			<string>baga.plist</string>
-			<key>soundeffects</key>
-			<string>wfwf.wav</string>
-			<key>back_step</key>
-			<string>1</string>
-			<key>hp</key>
-			<string>10</string>
-		</dict>
 		<key>200001</key>
 		<dict>
 			<key>event_id</key>
@@ -37,7 +18,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>1</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>20</string>
 		</dict>
 		<key>200002</key>
@@ -56,7 +37,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>1</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>10</string>
 		</dict>
 		<key>200003</key>
@@ -75,7 +56,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>1</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>10</string>
 		</dict>
 		<key>200004</key>
@@ -94,7 +75,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>1</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>30</string>
 		</dict>
 		<key>200005</key>
@@ -113,7 +94,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>0</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>10</string>
 		</dict>
 		<key>200006</key>
@@ -132,7 +113,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>0</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>10</string>
 		</dict>
 		<key>200007</key>
@@ -151,7 +132,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>0</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>10</string>
 		</dict>
 		<key>200008</key>
@@ -170,7 +151,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>0</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>10</string>
 		</dict>
 		<key>200009</key>
@@ -189,8 +170,46 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>0</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>0</string>
+		</dict>
+		<key>200080</key>
+		<dict>
+			<key>event_id</key>
+			<string>200080</string>
+			<key>event_name</key>
+			<string>测试商人</string>
+			<key>event_tips</key>
+			<string>200080</string>
+			<key>event_type</key>
+			<string>4</string>
+			<key>effect</key>
+			<string>baga.plist</string>
+			<key>soundeffects</key>
+			<string>wwf.wav</string>
+			<key>back_step</key>
+			<string>0</string>
+			<key>gp</key>
+			<string>0</string>
+		</dict>
+		<key>200000</key>
+		<dict>
+			<key>event_id</key>
+			<string>200000</string>
+			<key>event_name</key>
+			<string>测试战斗事件1</string>
+			<key>event_tips</key>
+			<string>200000</string>
+			<key>event_type</key>
+			<string>1</string>
+			<key>effect</key>
+			<string>baga.plist</string>
+			<key>soundeffects</key>
+			<string>wfwf.wav</string>
+			<key>back_step</key>
+			<string>1</string>
+			<key>gp</key>
+			<string>10</string>
 		</dict>
 		<key>200010</key>
 		<dict>
@@ -208,7 +227,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>1</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>15</string>
 		</dict>
 		<key>200011</key>
@@ -227,7 +246,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>1</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>15</string>
 		</dict>
 		<key>200012</key>
@@ -246,7 +265,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>1</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>15</string>
 		</dict>
 		<key>200013</key>
@@ -265,7 +284,7 @@
 			<string>wfwf.wav</string>
 			<key>back_step</key>
 			<string>1</string>
-			<key>hp</key>
+			<key>gp</key>
 			<string>15</string>
 		</dict>
 	</dict>

@@ -40,6 +40,16 @@ void CStructShopInfo::clearShopItemData()
     DELETE_POINT_VECTOR(mapShopItem, vector<CStructShopSellItem *> ,CStructShopSellItem);
 }
 
+void CStructShopInfo::setRebackMaxNumber()
+{
+    vector<CStructShopSellItem *>::iterator iter;
+    for (iter=mapShopItem.begin(); iter!=mapShopItem.end(); iter++)
+    {
+        (*iter)->setReback();
+    }
+    
+}
+
 class ShopItem_eq
 {
 public:

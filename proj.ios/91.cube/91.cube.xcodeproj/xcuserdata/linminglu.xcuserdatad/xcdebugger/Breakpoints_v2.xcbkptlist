@@ -9,121 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/CTaskConfigData.cpp"
-            timestampString = "403003582.792472"
+            filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
+            timestampString = "403669722.862947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
-            landmarkName = "CTaskConfigData::getNextByPreTask(int inId)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CTaskConfigData::getNextByPreTask(int)"
-                  moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Struct/CTaskConfigData.cpp"
-                  timestampString = "403001655.229752"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CTaskConfigData::getNextByPreTask(int)"
-                  moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Struct/CTaskConfigData.cpp"
-                  timestampString = "403001655.230052"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "2418">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CTaskConfigData::getNextByPreTask(int)"
-                  moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Struct/CTaskConfigData.cpp"
-                  timestampString = "403001655.230268"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "2478">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/LoginScene/LoginScene.cpp"
-            timestampString = "403249956.903344"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "CLoginScene::dointAddTask()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/LoginScene/LoginScene.cpp"
-            timestampString = "403249956.903344"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "487"
-            endingLineNumber = "487"
-            landmarkName = "CLoginScene::addFunctionInitGames(float t)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/LoginScene/LoginScene.cpp"
-            timestampString = "403249956.903344"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "480"
-            endingLineNumber = "480"
-            landmarkName = "CLoginScene::addFunctionInitGames(float t)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "403513451.963359"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "973"
-            endingLineNumber = "973"
-            landmarkName = "CGamePlayer::isSuccessFinishTask()"
+            startingLineNumber = "719"
+            endingLineNumber = "719"
+            landmarkName = "CSceneGameShopLayer::removeScrollView()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -134,12 +26,92 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
-            timestampString = "403525051.771615"
+            timestampString = "403669722.862947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "576"
-            endingLineNumber = "576"
-            landmarkName = "CSceneGameShopLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)"
+            startingLineNumber = "716"
+            endingLineNumber = "716"
+            landmarkName = "CSceneGameShopLayer::removeScrollView()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
+            timestampString = "403669722.862947"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "467"
+            endingLineNumber = "467"
+            landmarkName = "CSceneGameShopLayer::selectorUpdateTime(float t)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
+            timestampString = "403669722.862947"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "713"
+            endingLineNumber = "713"
+            landmarkName = "CSceneGameShopLayer::removeScrollView()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
+            timestampString = "403669722.862947"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "623"
+            endingLineNumber = "623"
+            landmarkName = "CSceneGameShopLayer::sendGetShopItemData()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
+            timestampString = "403669722.862947"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "872"
+            endingLineNumber = "872"
+            landmarkName = "CSceneGameShopLayer::decodeShopItemSell(CCObject *object)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
+            timestampString = "403669722.862947"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "832"
+            endingLineNumber = "832"
+            landmarkName = "CSceneGameShopLayer::decodeShopItemSell(CCObject *object)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -150,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "403517366.745736"
+            timestampString = "403617121.0843"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1528"
-            endingLineNumber = "1528"
-            landmarkName = "CGamePlayer::getShopItemCount()"
+            startingLineNumber = "1376"
+            endingLineNumber = "1376"
+            landmarkName = "CGamePlayer::addProp(int inPropId, int inAddNum)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

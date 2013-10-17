@@ -275,9 +275,9 @@ void CBackpackPageLayer::handlerTouch()
         char buffer[100] = {0};
         std::string s = SinglePropConfigData::instance()->getPropById(item->propId)->getPropName();
         sprintf(buffer, "你确定要使用%s道具吗?", s.c_str());
-        CPtDialog * dialog = CPtDialog::create(buffer, this, callfuncO_selector(CBackpackPageLayer::onClickUseProp), NULL, item, NULL);
+        CPtDialog * dialog = CPtDialog::create(buffer, this, NULL ,callfuncO_selector(CBackpackPageLayer::onClickUseProp),NULL, item);
 
-        CCDirector::sharedDirector()->getRunningScene()->addChild(dialog, 100, 10000);
+        CCDirector::sharedDirector()->getRunningScene()->addChild(dialog, 20000, 10000);
         
     }else if (m_nTouchTag >= DeleteTag)
     {
@@ -292,7 +292,7 @@ void CBackpackPageLayer::handlerTouch()
         item->propCount = it->second;
         CDeletePropLayer * layer = CDeletePropLayer::create(item);
         layer->setHanlder(this, callfuncO_selector(CBackpackPageLayer::onClickDeleteProp), NULL);
-        CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 100, 10000);
+        CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 20000, 10000);
     }
     
 }

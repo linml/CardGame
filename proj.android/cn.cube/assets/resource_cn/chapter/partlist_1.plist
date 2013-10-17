@@ -20,6 +20,8 @@
 		<string>103001</string>
 		<key>max_step</key>
 		<string>10</string>
+		<key>ap</key>
+		<string>10</string>
 		<key>mission_id</key>
 		<string>500000</string>
 	</dict>

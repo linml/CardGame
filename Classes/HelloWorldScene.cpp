@@ -151,21 +151,29 @@ PropItem item;
 #include "Biforest.h"
 #include "CEventBoxDialog.h"
 #include "CEventBoxReward.h"
+#include "CGameRechargeTip.h"
+#include "CGameArrageBackpackTip.h"
+#include "CSceneGameShopLayer.h"
+#include "CGameRechargeLayer.h"
 void test(CCNode *pSender)
 {
-    
+  
    // CBattleArrayLayer *layer = CBattleArrayLayer::create();
    // CCardSettingScene *layer = CCardSettingScene::create();
     //CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
    // pSender->addChild(layer);
-  // CPtDialog * dialog = CPtDialog::create();
+   CPtDialog * layer = CPtDialog::create();
+  //  CGameRechargeTip * layer = CGameRechargeTip::create();
+  //  CGameArrageBackpackTip *layer = CGameArrageBackpackTip::create();
     
 //    item.propId = 100001;
 //    item.propCount = 20;
 //    CDeletePropLayer * layer = CDeletePropLayer::create(&item);
 //    CBiforestLayer *layer = CBiforestLayer::create();
-    CEventBoxLayer *layer = CEventBoxLayer::create(1);
-  //  CEventBoxRewordLayer *layer = CEventBoxRewordLayer::create();
+   // CEventBoxLayer *layer = CEventBoxLayer::create(1);
+ //   CEventBoxRewordLayer *layer = CEventBoxRewordLayer::create(NULL, 3);
+   // CGameRechargeLayer * layer = CGameRechargeLayer::create(NULL);
+  //  CSceneGameShopLayer * layer = CSceneGameShopLayer::create();
     pSender->addChild(layer);
 
 }

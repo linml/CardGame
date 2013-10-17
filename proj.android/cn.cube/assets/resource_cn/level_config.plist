@@ -9,13 +9,13 @@
 			<key>card_max</key>
 			<string>150</string>
 			<key>leader_max</key>
-			<string>40</string>
+			<string>25</string>
 			<key>friend_max</key>
 			<string>20</string>
 			<key>ap_max</key>
-			<string>1200</string>
+			<string>120</string>
 			<key>gp_max</key>
-			<string>10000</string>
+			<string>100</string>
 			<key>exp_max</key>
 			<string>100</string>
 		</dict>
@@ -26,13 +26,13 @@
 			<key>card_max</key>
 			<string>151</string>
 			<key>leader_max</key>
-			<string>40</string>
+			<string>26</string>
 			<key>friend_max</key>
 			<string>20</string>
 			<key>ap_max</key>
-			<string>1200</string>
+			<string>120</string>
 			<key>gp_max</key>
-			<string>10100</string>
+			<string>101</string>
 			<key>exp_max</key>
 			<string>278</string>
 		</dict>
@@ -43,7 +43,7 @@
 			<key>card_max</key>
 			<string>152</string>
 			<key>leader_max</key>
-			<string>40</string>
+			<string>27</string>
 			<key>friend_max</key>
 			<string>21</string>
 			<key>ap_max</key>
@@ -60,7 +60,7 @@
 			<key>card_max</key>
 			<string>153</string>
 			<key>leader_max</key>
-			<string>40</string>
+			<string>28</string>
 			<key>friend_max</key>
 			<string>21</string>
 			<key>ap_max</key>

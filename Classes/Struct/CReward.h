@@ -34,6 +34,17 @@ enum OPEARTORTYPE
     DEC = 1
 };
 
+#define REWARD_RESULTE_MASK     0x0001
+#define REWARD_LEVEL_UP_MASK    0x0002
+#define REWARD_FAIL 0x0000
+
+#define REWARD_IS_RESULTE_SUCCESS(flag) (((flag)&REWARD_RESULTE_MASK) != REWARD_FAIL)
+#define REWARD_IS_LEVEL_UP_SUCCESS(flag) (((flag)&REWARD_LEVEL_UP_MASK) != REWARD_FAIL)
+
+#define REWARD_SET_RESULTE_SUCCESS(flag)  (flag|=REWARD_RESULTE_MASK)
+#define REWARD_SET_LEVEL_UP_SUCCESS(flag) (flag|=REWARD_LEVEL_UP_MASK)
+
+
 class CReward : public CCObject
 {
 public:
@@ -43,7 +54,7 @@ public:
     CReward();
     virtual ~CReward();
     virtual bool initWithDictionary(CCDictionary * inReward);
-    bool excuteReward(OPEARTORTYPE inType);
+    int excuteReward(OPEARTORTYPE inType);
     
     bool merger(CReward * inReward1, CReward *inReward2);
     int getCoin();

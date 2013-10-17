@@ -177,10 +177,7 @@
 		<key>600201</key>
 		<string>不对，我腿没啥病！</string>
 		<key>600202</key>
-		<dict>
-			<key>没病？你腿就有病！</key>
-			<string>nim</string>
-		</dict>
+		<string>没病？你腿就有病！</string>
 		<key>600203</key>
 		<string>啥病呀</string>
 		<key>600204</key>
@@ -205,6 +202,12 @@
 		<string>是</string>
 		<key>600214</key>
 		<string>这样吧，我给你调调。信不信，你的腿随着我的手往高抬，能抬多高抬多高，我让你往下落你就随便使劲往下落，好不好？信不信？腿指定有病，右腿短！来，起来！</string>
+		<key>800101</key>
+		<string/>
+		<key>800102</key>
+		<string>我们没有办法，拿着道具抵工资！原价都是一百多、两百多、三百多的道具，统统二十块！统统二十块！！</string>
+		<key>800103</key>
+		<string>王老板！你不是人！我们辛辛苦苦给你干了大半年，你不发工资！你还我血汗钱！还我血汗钱！</string>
 	</dict>
 </plist>
 

@@ -70,6 +70,9 @@
 		6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24817964AF800E16CDE /* CFightSkillManager.cpp */; };
 		6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */; };
 		6FCA468B17F014B300346E6B /* CReward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCA468917F014B300346E6B /* CReward.cpp */; };
+		6FDE76CD180E7F0B004DFDA8 /* CGameRechargeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */; };
+		6FDE76D3180E802D004DFDA8 /* CGameArrageBackpackTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76CF180E802D004DFDA8 /* CGameArrageBackpackTip.cpp */; };
+		6FDE76D4180E802D004DFDA8 /* CGameRechargeTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76D1180E802D004DFDA8 /* CGameRechargeTip.cpp */; };
 		6FFD01BB180D4D8200ADE144 /* CPtRecharge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD01B9180D4D8200ADE144 /* CPtRecharge.cpp */; };
 		8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E13F18A17700F5F0050812F /* TaskLayer.cpp */; };
 		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
@@ -465,6 +468,12 @@
 		6FBBC24C17966FA400E16CDE /* CAnimationSpriteGameFight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAnimationSpriteGameFight.h; sourceTree = "<group>"; };
 		6FCA468917F014B300346E6B /* CReward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CReward.cpp; sourceTree = "<group>"; };
 		6FCA468A17F014B300346E6B /* CReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CReward.h; sourceTree = "<group>"; };
+		6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameRechargeLayer.cpp; sourceTree = "<group>"; };
+		6FDE76CC180E7F0B004DFDA8 /* CGameRechargeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameRechargeLayer.h; sourceTree = "<group>"; };
+		6FDE76CF180E802D004DFDA8 /* CGameArrageBackpackTip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameArrageBackpackTip.cpp; sourceTree = "<group>"; };
+		6FDE76D0180E802D004DFDA8 /* CGameArrageBackpackTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameArrageBackpackTip.h; sourceTree = "<group>"; };
+		6FDE76D1180E802D004DFDA8 /* CGameRechargeTip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameRechargeTip.cpp; sourceTree = "<group>"; };
+		6FDE76D2180E802D004DFDA8 /* CGameRechargeTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameRechargeTip.h; sourceTree = "<group>"; };
 		6FFD01B9180D4D8200ADE144 /* CPtRecharge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtRecharge.cpp; sourceTree = "<group>"; };
 		6FFD01BA180D4D8200ADE144 /* CPtRecharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtRecharge.h; sourceTree = "<group>"; };
 		8E13F18A17700F5F0050812F /* TaskLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskLayer.cpp; sourceTree = "<group>"; };
@@ -1133,6 +1142,7 @@
 		6F3AC84C180BE22E007B8756 /* GameShopLayer */ = {
 			isa = PBXGroup;
 			children = (
+				6FDE76CA180E7F0B004DFDA8 /* Layer */,
 				6F3AC84D180BE245007B8756 /* CSceneGameShopLayer.cpp */,
 				6F3AC84E180BE245007B8756 /* CSceneGameShopLayer.h */,
 			);
@@ -1301,6 +1311,26 @@
 				6FB0B79E1793CE43006D12F7 /* CFightingCardLayerLogic.h */,
 			);
 			path = FightScene;
+			sourceTree = "<group>";
+		};
+		6FDE76CA180E7F0B004DFDA8 /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */,
+				6FDE76CC180E7F0B004DFDA8 /* CGameRechargeLayer.h */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
+		6FDE76CE180E802D004DFDA8 /* TipLayer */ = {
+			isa = PBXGroup;
+			children = (
+				6FDE76CF180E802D004DFDA8 /* CGameArrageBackpackTip.cpp */,
+				6FDE76D0180E802D004DFDA8 /* CGameArrageBackpackTip.h */,
+				6FDE76D1180E802D004DFDA8 /* CGameRechargeTip.cpp */,
+				6FDE76D2180E802D004DFDA8 /* CGameRechargeTip.h */,
+			);
+			path = TipLayer;
 			sourceTree = "<group>";
 		};
 		8E6CE590176EEF1E00CF5C0D /* ExplorationScene */ = {
@@ -1522,6 +1552,7 @@
 		9F801315175493D400EEC0BC /* Panel */ = {
 			isa = PBXGroup;
 			children = (
+				6FDE76CE180E802D004DFDA8 /* TipLayer */,
 				6FFD01B9180D4D8200ADE144 /* CPtRecharge.cpp */,
 				6FFD01BA180D4D8200ADE144 /* CPtRecharge.h */,
 				8EA82EC617E1BAFC0063CDA9 /* CPtExpandableListView.cpp */,
@@ -2713,11 +2744,13 @@
 				9FC6F21417460BFF0091BE98 /* CCZone.cpp in Sources */,
 				9FC6F21517460BFF0091BE98 /* cocos2d.cpp in Sources */,
 				9FC6F21617460BFF0091BE98 /* CCGrabber.cpp in Sources */,
+				6FDE76CD180E7F0B004DFDA8 /* CGameRechargeLayer.cpp in Sources */,
 				9FC6F21717460BFF0091BE98 /* CCGrid.cpp in Sources */,
 				9FC6F21817460BFF0091BE98 /* aabb.c in Sources */,
 				9FC6F21B17460BFF0091BE98 /* mat4stack.c in Sources */,
 				9FC6F21C17460BFF0091BE98 /* matrix.c in Sources */,
 				9FC6F21D17460BFF0091BE98 /* mat3.c in Sources */,
+				6FDE76D3180E802D004DFDA8 /* CGameArrageBackpackTip.cpp in Sources */,
 				9FC6F21E17460BFF0091BE98 /* mat4.c in Sources */,
 				9FC6F21F17460BFF0091BE98 /* neon_matrix_impl.c in Sources */,
 				9FC6F22017460BFF0091BE98 /* plane.c in Sources */,
@@ -2951,6 +2984,7 @@
 				9F095D3A17D8730A00CE32B3 /* CMyDictionary.cpp in Sources */,
 				9F095D3B17D8730A00CE32B3 /* CPtSliderWidget.cpp in Sources */,
 				9F095D3C17D8730A00CE32B3 /* CButtonControl.cpp in Sources */,
+				6FDE76D4180E802D004DFDA8 /* CGameRechargeTip.cpp in Sources */,
 				9F095D3D17D8730A00CE32B3 /* CGameButtonControl.cpp in Sources */,
 				9F095D4B17D8736A00CE32B3 /* CGameEmailData.cpp in Sources */,
 				9F095D4C17D8736A00CE32B3 /* CGameEmailManager.cpp in Sources */,
@@ -2984,7 +3018,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 明炉 林 (6738Y24AX3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 明炉 林 (6738Y24AX3)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -3006,6 +3041,7 @@
 					"\"$(PROJECT_NAME)/libs/cocos2dx/platform/ios\"",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				PROVISIONING_PROFILE = "F32C032B-CD35-4C68-85B0-DC074F243DCE";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3015,7 +3051,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: 明炉 林 (6738Y24AX3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 明炉 林 (6738Y24AX3)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -3035,6 +3072,7 @@
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "F32C032B-CD35-4C68-85B0-DC074F243DCE";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3070,7 +3108,7 @@
 					"\"$(PROJECT_NAME)/../../../libs/PtTool\"",
 				);
 				INFOPLIST_FILE = 91.cube/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/91.cube/libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -3082,7 +3120,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F32C032B-CD35-4C68-85B0-DC074F243DCE";
 				SDKROOT = iphoneos7.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
@@ -3118,7 +3156,7 @@
 					"\"$(PROJECT_NAME)/../../../libs/PtTool\"",
 				);
 				INFOPLIST_FILE = 91.cube/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/91.cube/libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -3130,7 +3168,7 @@
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "F32C032B-CD35-4C68-85B0-DC074F243DCE";
 				SDKROOT = iphoneos7.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

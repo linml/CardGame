@@ -34,12 +34,20 @@ void CGlobalSchedule::start(float fInterval, float fDelay) {
     if (m_bTimerStatus==EN_GLOBALTIMER_RUNNING || m_bTimerStatus==EN_GLOBALTIMER_PAUSE) {
         stop();
     }
-    
+    m_nInterval=fInterval;
     SCHEDULE->scheduleSelector(
                                schedule_selector(CGlobalSchedule::globalUpdate), this, fInterval,
                                false,
                                kCCRepeatForever, fDelay);
     this->m_bTimerStatus=EN_GLOBALTIMER_RUNNING;
+}
+void CGlobalSchedule::startOldTimer()
+{
+    if(m_nInterval==0)
+    {
+        m_nInterval=5;
+    }
+    start(m_nInterval, 0.0);
 }
 
 void CGlobalSchedule::stop() {

@@ -15,6 +15,7 @@ using namespace std;
 CGameButtonControl::CGameButtonControl():CButtonControl()
 {
     m_cFontNormalColor=FONTNORMALCOLOR;
+    m_bIsCanTouch=true;
 }
 
 CGameButtonControl::~CGameButtonControl()
@@ -45,7 +46,17 @@ CGameButtonControl *CGameButtonControl::createButton(TEXTPOSTION textPosion,cons
 //{
 //    
 //}
-
+void CGameButtonControl::setEnable(bool flag)
+{
+    if (!flag) {
+        ((CCLabelTTF *)getChildByTag(100))->setColor(ccc3(150,150,150));
+        m_bIsCanTouch=false;
+    }
+    else
+    {
+        m_bIsCanTouch=true;
+    }
+}
 void CGameButtonControl::setFontColor(ccColor3B csColor)
 {
     m_cFontNormalColor=csColor;
@@ -94,22 +105,28 @@ bool CGameButtonControl::init(TEXTPOSTION textPosion,const char *text,const char
 
 void CGameButtonControl::selected()
 {
-    if(getChildByTag(100))
+    if(m_bIsCanTouch)
     {
+        if(getChildByTag(100))
+        {
         //CCLabelBMFont *label=(CCLabelBMFont *)getChildByTag(GAMEBUTTONLABELTAG);
-        CCLabelTTF *label=(CCLabelTTF*)getChildByTag(100);
-        label->setColor(FONTSELECTCOLOR);
+            CCLabelTTF *label=(CCLabelTTF*)getChildByTag(100);
+            label->setColor(FONTSELECTCOLOR);
+        }
+        setDisplayFrame(m_pSelectFrame);
     }
-    setDisplayFrame(m_pSelectFrame);
 }
 
 void CGameButtonControl::unselected()
 {
-    if(getChildByTag(100))
-    {
-        //CCLabelBMFont *label=(CCLabelBMFont *)getChildByTag(GAMEBUTTONLABELTAG);
-        CCLabelTTF *label=(CCLabelTTF*)getChildByTag(100);
-        label->setColor(m_cFontNormalColor);
+    if (m_bIsCanTouch) {
+        if(getChildByTag(100))
+        {
+            //CCLabelBMFont *label=(CCLabelBMFont *)getChildByTag(GAMEBUTTONLABELTAG);
+            CCLabelTTF *label=(CCLabelTTF*)getChildByTag(100);
+            label->setColor(m_cFontNormalColor);
+        }
+        setDisplayFrame(m_pNormalFrame );
     }
-    setDisplayFrame(m_pNormalFrame );
+   
 }
