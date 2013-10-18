@@ -198,6 +198,8 @@ void CPtRecharge::onReceiveIAPBuyMsg(CCObject *pOject)
         ttfCash->setString(ConvertToString(GameTools::intForKey("cash", dic_info)).c_str());
 
     }
+    delete []data; //POST出来的数据是NEW出来的。 需要自己去删除下。 MERLIN
+    data=NULL;
     setTouchEnabled(true);
 }
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6F109A3F17F567F2004E1B39 /* CPanelGameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */; };
+		6F22EE201810D4E20062666F /* CDrawCardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F22EE1E1810D4E20062666F /* CDrawCardLayer.cpp */; };
 		6F28A6E418079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F28A6E218079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp */; };
 		6F28A6E71807EAEE00225C09 /* CGlobalUpdateObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F28A6E51807EAEE00225C09 /* CGlobalUpdateObject.cpp */; };
 		6F28A6E91807F52200225C09 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F28A6E81807F52200225C09 /* Default-568h@2x.png */; };
@@ -341,6 +342,8 @@
 /* Begin PBXFileReference section */
 		6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanelGameLog.cpp; sourceTree = "<group>"; };
 		6F109A3E17F567F2004E1B39 /* CPanelGameLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPanelGameLog.h; sourceTree = "<group>"; };
+		6F22EE1E1810D4E20062666F /* CDrawCardLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDrawCardLayer.cpp; sourceTree = "<group>"; };
+		6F22EE1F1810D4E20062666F /* CDrawCardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDrawCardLayer.h; sourceTree = "<group>"; };
 		6F28A6E218079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanelGamePlayerInfoLayer.cpp; sourceTree = "<group>"; };
 		6F28A6E318079D1700225C09 /* CPanelGamePlayerInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPanelGamePlayerInfoLayer.h; sourceTree = "<group>"; };
 		6F28A6E51807EAEE00225C09 /* CGlobalUpdateObject.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGlobalUpdateObject.cpp; sourceTree = "<group>"; };
@@ -1139,6 +1142,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F22EE1D1810D4CA0062666F /* DrawCardLayer */ = {
+			isa = PBXGroup;
+			children = (
+				6F22EE1E1810D4E20062666F /* CDrawCardLayer.cpp */,
+				6F22EE1F1810D4E20062666F /* CDrawCardLayer.h */,
+			);
+			path = DrawCardLayer;
+			sourceTree = "<group>";
+		};
 		6F3AC84C180BE22E007B8756 /* GameShopLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -1601,6 +1613,7 @@
 		9F801316175493D400EEC0BC /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				6F22EE1D1810D4CA0062666F /* DrawCardLayer */,
 				6F3AC84C180BE22E007B8756 /* GameShopLayer */,
 				6F49CA6D17D884EA0094874E /* StoryLayer */,
 				9F095D5117D8738F00CE32B3 /* Backpack */,
@@ -2896,6 +2909,7 @@
 				9F55A123174B0F710068E44A /* MapLayerData.cpp in Sources */,
 				9F55A124174B0F710068E44A /* PtMapUtility.cpp in Sources */,
 				9F55A125174B0F710068E44A /* PtSoundTool.cpp in Sources */,
+				6F22EE201810D4E20062666F /* CDrawCardLayer.cpp in Sources */,
 				9F55A126174B0F710068E44A /* Utility.cpp in Sources */,
 				9F55A127174B0F710068E44A /* WordCache.cpp in Sources */,
 				6F3AC84F180BE245007B8756 /* CSceneGameShopLayer.cpp in Sources */,
@@ -3108,7 +3122,7 @@
 					"\"$(PROJECT_NAME)/../../../libs/PtTool\"",
 				);
 				INFOPLIST_FILE = 91.cube/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/91.cube/libs/cocos2dx/platform/third_party/ios/libraries\"",
@@ -3156,7 +3170,7 @@
 					"\"$(PROJECT_NAME)/../../../libs/PtTool\"",
 				);
 				INFOPLIST_FILE = 91.cube/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/91.cube/libs/cocos2dx/platform/third_party/ios/libraries\"",

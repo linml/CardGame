@@ -621,14 +621,12 @@ void CBackpackContainerLayer::updateTabContent(vector<multimap<int, int>::iterat
         
     }
     int pageCount = size/9 + (size%9 == 0 ? 0 : 1);
-    if (inFromPage != 0 && inFromPage >= pageCount)
-    {
-        return;
-    }
+    pageCount += inFromPage;
+    
     CBackpackPageLayer *itemPage = NULL;
     updateUI(pageCount, inFirstPage);
     vector<multimap<int, int>::iterator>::iterator beginIterator = tmpVector.begin();
-    for (int i  = inFromPage; i <pageCount; i++)
+    for (int i  = inFromPage; i < pageCount; i++)
     {
         itemPage = (CBackpackPageLayer*) m_pItems->objectAtIndex(i);
         if (size < 9)
@@ -656,6 +654,7 @@ void CBackpackContainerLayer::goAllTab()
     int  inOpenNumber = SinglePlayer::instance()->getOpenGridCount();
     CCLog("the openCountNumber: %d", inOpenNumber);
     int tmpPageCount = inOpenNumber/9+ 1 ;
+    tmpPageCount = tmpPageCount <= 5 ? tmpPageCount : 5;
     CBackpackPageLayer * item  = NULL;
 
     // add backpackpage to container:
@@ -768,6 +767,7 @@ void CBackpackContainerLayer::reLoadPage(int inFromPage)
         int  inOpenNumber = SinglePlayer::instance()->getOpenGridCount();
         CCLog("the openCountNumber: %d", inOpenNumber);
         int tmpPageCount = inOpenNumber/9+ 1 ;
+        tmpPageCount = tmpPageCount <= 5 ? tmpPageCount : 5;
         CBackpackPageLayer * item  = NULL;
         
         // add backpackpage to container:

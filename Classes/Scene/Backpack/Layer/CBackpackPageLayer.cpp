@@ -658,6 +658,9 @@ void CBackpackPageLayer::openGrid()
     
     // play sound effect:
     PtSoundTool::playSysSoundEffect("UI_click.wav");
+    char buffer[300] = {0};
+    sprintf(buffer, "消耗金币: %d", price);
+    CCMessageBox( buffer, "开格子");
    
 }
 void CBackpackPageLayer::openGridUI()
@@ -796,8 +799,7 @@ void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
                 CCDirector::sharedDirector()->getRunningScene()->removeChildByTag(10000, true);
                 if (it->second == 0)
                 {
-//                    int array[2] = {1,index};
-//                    clearItem(m_cMaps->getElementByTags(array,2));
+//                  
                     reloadPage(it, m_cGridDataIterator.begin()+index);
                 }
 
@@ -843,8 +845,8 @@ void CBackpackPageLayer::onReceiveDeletProp(CCObject *pObject)
                 CCDirector::sharedDirector()->getRunningScene()->removeChildByTag(10000, true);
                 if (it->second == 0)
                 {
-//                    int array[2] = {1,index};
-//                    clearItem(m_cMaps->getElementByTags(array,2));
+                    int array[2] = {1,index};
+                    clearItem(m_cMaps->getElementByTags(array,2));
                     reloadPage(it, m_cGridDataIterator.begin()+index);
                 }
 

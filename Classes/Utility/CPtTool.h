@@ -46,6 +46,8 @@ namespace CPtTool
     std::string  readFileName(const char *filename);
     const char * stringForObjectValue(int seconds);
     
+    //int getResultDict(char *data,CCDictionary *outResultDict);
+    
     CCScrollView *getScrollWord(const char *inText, CCSize viewSize, ccColor3B wordColor, const char *fontName, int fontSize);
     
     int getSellPrice(int baseValue, int levelValue, int starValue);

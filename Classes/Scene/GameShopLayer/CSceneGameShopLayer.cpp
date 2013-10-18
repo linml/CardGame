@@ -26,6 +26,8 @@
 #include "PtJsonUtility.h"
 
 #include "CPtRecharge.h"
+
+#include "CDrawCardLayer.h"
 const int tagNodeBall = 1002;
 const int tagScrollView=1003;
 
@@ -332,6 +334,14 @@ bool CSceneGameShopItem::init(CStructShopSellItem *item)
         laycolor->setAnchorPoint(ccp(0.5,0.5));
         laycolor->setPosition(ccp(-60,-40));
         
+    }
+    if (m_pItem->getGroupNum()>1)
+    {
+        sprintf(priceData, "x%d",m_pItem->getGroupNum());
+        CCLabelTTF *labelGroup=CCLabelTTF::create(priceData, "Arial", 25);
+        addChild(labelGroup,1,22);
+        labelGroup->setPosition(ccp(-40,-20));
+        labelGroup->setColor(g_custom_color[9]);
     }
     CCSprite *zuanshidazhenow=CCSprite::createWithSpriteFrameName("zuanshi.png");
     addChild(zuanshidazhenow,1,16);
@@ -1168,6 +1178,11 @@ void CSceneGameShopLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 10000000);
             //removeFromParentAndCleanup(true);
            // CCNotificationCenter::sharedNotificationCenter()->postNotification("CHONGZHIJIEMIAN");
+            return;
+        }
+        if (getChildByTag(7)->boundingBox().containsPoint(touchPoint)) {
+            CDrawCardLayer * layer = CDrawCardLayer::create();
+            CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 10000001);
             return;
         }
     }

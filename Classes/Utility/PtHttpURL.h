@@ -115,4 +115,9 @@
 
 //获取购买物品的信息结果
 #define STR_URL_GETSHOPBUY(UID)              URL_FACTORY("api.php?m=shop&a=buy&uid=",UID)
+
+//获取扭蛋的时间
+#define STR_URL_GETCARDRANDOM(UID)     URL_FACTORY("api.php?m=Card&a=getCardRandom&uid=",UID)
+//获取扭蛋卡牌
+#define STR_URL_CARDRANDOM(UID)        URL_FACTORY("api.php?m=Card&a=cardRadnom&uid=",UID)
 #endif

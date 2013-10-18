@@ -566,6 +566,8 @@ namespace CPtTool
         out.close();
         return result;
     }
+    
+    
     const char * stringForObjectValue(int seconds)
     {
         static char timerFormat[10];
