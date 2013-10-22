@@ -1834,6 +1834,9 @@ void CGamePlayer::levelUpData(int level)
     if (level <= MAXLEVEL)
     {
         m_gGamePlayerData->m_sLevelPlayer = m_gGamePlayerData->m_gvPlayerLevel.at(level);
+        m_gGamePlayerData->m_irvc = m_gGamePlayerData->m_sLevelPlayer->m_iLeader_max;
         m_gGamePlayerData->m_ilevel = level;
+      
+        
     }
 }

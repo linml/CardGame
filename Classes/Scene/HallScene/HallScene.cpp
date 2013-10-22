@@ -19,6 +19,7 @@
 #include "SceneManager.h"
 #include "CSceneGameShopLayer.h"
 #include "CPtRecharge.h"
+#include "CDrawCardLayer.h"
 
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
@@ -59,13 +60,15 @@ CHallScene::CHallScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::updateEmailNumber), "youjiangengxin", NULL);
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showBackNotice), "CAONIMAXIANSHIBEIBAO", NULL);
-    //CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showRechargeView), "CHONGZHIJIEMIAN", NULL);
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showRechargeView), "CHONGZHIJIEMIAN", NULL);
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showNiuDanJieMian), "NIUDANJIEMIAN", NULL);
 }
 
 CHallScene::~CHallScene()
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "youjiangengxin");
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CAONIMAXIANSHIBEIBAO");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this,  "NIUDANJIEMIAN");
     //CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CHONGZHIJIEMIAN");
     m_cplist->release();
     //clean the cache:
@@ -199,6 +202,13 @@ void CHallScene::showBackBag()
     CCLayer * layer = CBackpackContainerLayer::create();
     addChild(layer, 1000);
     CCLog("backpack...");
+}
+
+
+void CHallScene::showNiuDanJieMian()
+{
+    CDrawCardLayer * layer = CDrawCardLayer::create();
+    addChild(layer, 10000);
 }
 
 void CHallScene::showRechargeView()

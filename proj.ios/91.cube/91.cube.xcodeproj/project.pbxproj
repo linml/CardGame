@@ -30,6 +30,7 @@
 		6F8E60FA178424BD00AF5111 /* CPtScrollWordsWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E60F6178424BD00AF5111 /* CPtScrollWordsWidget.cpp */; };
 		6F8E60FB178424BD00AF5111 /* CPtTableItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E60F8178424BD00AF5111 /* CPtTableItem.cpp */; };
 		6F98CD2C179E154B00E77257 /* CEffectInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F98CD2A179E154B00E77257 /* CEffectInterface.cpp */; };
+		6FA496BD18165DE800D48944 /* CPanelLoadingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA496BB18165DE800D48944 /* CPanelLoadingLayer.cpp */; };
 		6FA6AFB2174F6A1D00608A73 /* CBaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */; };
 		6FA6AFB3174F6A1D00608A73 /* CSingleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAC174F6A1D00608A73 /* CSingleton.cpp */; };
 		6FA6AFB4174F6A1D00608A73 /* PuzzleStruct.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAE174F6A1D00608A73 /* PuzzleStruct.cpp */; };
@@ -385,6 +386,8 @@
 		6F8E60F9178424BD00AF5111 /* CPtTableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtTableItem.h; sourceTree = "<group>"; };
 		6F98CD2A179E154B00E77257 /* CEffectInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterface.cpp; sourceTree = "<group>"; };
 		6F98CD2B179E154B00E77257 /* CEffectInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterface.h; sourceTree = "<group>"; };
+		6FA496BB18165DE800D48944 /* CPanelLoadingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanelLoadingLayer.cpp; sourceTree = "<group>"; };
+		6FA496BC18165DE800D48944 /* CPanelLoadingLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPanelLoadingLayer.h; sourceTree = "<group>"; };
 		6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBaseLayer.cpp; sourceTree = "<group>"; };
 		6FA6AFAB174F6A1D00608A73 /* CBaseLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBaseLayer.h; sourceTree = "<group>"; };
 		6FA6AFAC174F6A1D00608A73 /* CSingleton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSingleton.cpp; sourceTree = "<group>"; };
@@ -1606,6 +1609,8 @@
 				6F109A3E17F567F2004E1B39 /* CPanelGameLog.h */,
 				6F28A6E218079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp */,
 				6F28A6E318079D1700225C09 /* CPanelGamePlayerInfoLayer.h */,
+				6FA496BB18165DE800D48944 /* CPanelLoadingLayer.cpp */,
+				6FA496BC18165DE800D48944 /* CPanelLoadingLayer.h */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -2952,6 +2957,7 @@
 				9FFE8E5B17815A9700DF7D47 /* HBLabelPanel.cpp in Sources */,
 				9FFE8E8F1781A03F00DF7D47 /* json_reader.cpp in Sources */,
 				9FFE8E901781A03F00DF7D47 /* json_value.cpp in Sources */,
+				6FA496BD18165DE800D48944 /* CPanelLoadingLayer.cpp in Sources */,
 				9FFE8E921781A03F00DF7D47 /* json_writer.cpp in Sources */,
 				9FD3F91F17827BD0006C7039 /* CCard.cpp in Sources */,
 				9FD3F92617827DD6006C7039 /* CGamesCard.cpp in Sources */,

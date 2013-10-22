@@ -49,7 +49,10 @@ CGameButtonControl *CGameButtonControl::createButton(TEXTPOSTION textPosion,cons
 void CGameButtonControl::setEnable(bool flag)
 {
     if (!flag) {
-        ((CCLabelTTF *)getChildByTag(100))->setColor(ccc3(150,150,150));
+        if (getChildByTag(100)) {
+            ((CCLabelTTF *)getChildByTag(100))->setColor(ccc3(150,150,150));
+        }
+        
         m_bIsCanTouch=false;
     }
     else
@@ -60,7 +63,10 @@ void CGameButtonControl::setEnable(bool flag)
 void CGameButtonControl::setFontColor(ccColor3B csColor)
 {
     m_cFontNormalColor=csColor;
-    ((CCLabelTTF *)getChildByTag(100))->setColor(m_cFontNormalColor);
+    if (getChildByTag(100)) {
+        ((CCLabelTTF *)getChildByTag(100))->setColor(m_cFontNormalColor);
+    }
+
 }
 
 CCLabelTTF *CGameButtonControl::getTextLabel()
@@ -77,27 +83,31 @@ bool CGameButtonControl::init(TEXTPOSTION textPosion,const char *text,const char
     setSelectFrame(frame);
     setAnchorPoint(ccp(0.5,0.5));
     initWithSpriteFrame(m_pNormalFrame);
-    CCLabelTTF *label=CCLabelTTF::create(text, "Arial", 15);
-    addChild(label,1,100);
-    label->setColor(m_cFontNormalColor);
-    CCSize contextSize=getContentSize();
-    switch (textPosion) {
-        case TEXTOP :
-            label->setPosition(ccp(contextSize.width/2,contextSize.height/2+10));
-            break;
-        case TEXTMID :
-            label->setPosition(ccp(contextSize.width/2,contextSize.height/2));
-            break;
-        case TEXTBOTTOM:
-            label->setPosition(ccp(contextSize.width/2,-contextSize.height/2-10));
-            break;
-        case TEXTLEFT:
-            label->setPosition(ccp(contextSize.width/2-20,contextSize.height/2));
-            break;
-        case TEXTRIGHT :
-            break;
-        default:
-            break;
+    CCLog("text:%s",text);
+    if(strlen(text)>0)
+    {
+        CCLabelTTF *label=CCLabelTTF::create(text, "Arial", 15);
+        addChild(label,1,100);
+        label->setColor(m_cFontNormalColor);
+        CCSize contextSize=getContentSize();
+        switch (textPosion) {
+            case TEXTOP :
+                label->setPosition(ccp(contextSize.width/2,contextSize.height/2+10));
+                break;
+            case TEXTMID :
+                label->setPosition(ccp(contextSize.width/2,contextSize.height/2));
+                break;
+            case TEXTBOTTOM:
+                label->setPosition(ccp(contextSize.width/2,-contextSize.height/2-10));
+                break;
+            case TEXTLEFT:
+                label->setPosition(ccp(contextSize.width/2-20,contextSize.height/2));
+                break;
+            case TEXTRIGHT :
+                break;
+            default:
+                break;
+        }
     }
     //添加色
     return true;

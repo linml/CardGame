@@ -8,12 +8,9 @@
 
 #ifndef ___1_cube__CBackpackContainerLayer__
 #define ___1_cube__CBackpackContainerLayer__
-
-#include <multimap.h>
-
 #include "cocos2d.h"
 #include "cocos-ext.h"
-
+#include <map>
 #include "CBattleArrayLayer.h"
 #include "CBackpackPageLayer.h"
 #include "LayoutLayer.h"

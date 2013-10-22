@@ -1177,12 +1177,15 @@ void CSceneGameShopLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             CPtRecharge * layer = CPtRecharge::create();
             CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 10000000);
             //removeFromParentAndCleanup(true);
-           // CCNotificationCenter::sharedNotificationCenter()->postNotification("CHONGZHIJIEMIAN");
+           // CCNotificationCenter::sharedNotificationCenter()->postNotification("QUNIUDAN");
             return;
         }
         if (getChildByTag(7)->boundingBox().containsPoint(touchPoint)) {
-            CDrawCardLayer * layer = CDrawCardLayer::create();
-            CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 10000001);
+            removeFromParentAndCleanup(true);
+             CCNotificationCenter::sharedNotificationCenter()->postNotification("NIUDANJIEMIAN");
+
+            //CDrawCardLayer * layer = CDrawCardLayer::create();
+            //CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 10000001);
             return;
         }
     }

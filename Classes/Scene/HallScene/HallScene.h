@@ -49,6 +49,7 @@ protected:
     void showBackNotice(CCObject *object);
     void callBackToShowRechargeDialog(CCObject *object);
     void showRechargeView();
+    void showNiuDanJieMian();
 protected:
     int m_nTouchTag;
     CCSprite* m_touchSprite;

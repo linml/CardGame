@@ -119,5 +119,6 @@
 //获取扭蛋的时间
 #define STR_URL_GETCARDRANDOM(UID)     URL_FACTORY("api.php?m=Card&a=getCardRandom&uid=",UID)
 //获取扭蛋卡牌
-#define STR_URL_CARDRANDOM(UID)        URL_FACTORY("api.php?m=Card&a=cardRadnom&uid=",UID)
+#define STR_URL_CARDRANDOM(UID)        URL_FACTORY("api.php?m=Card&a=cardRandom&uid=",UID)
+
 #endif

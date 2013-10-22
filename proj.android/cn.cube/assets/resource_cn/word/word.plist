@@ -118,6 +118,10 @@
 	<string>去充值</string>
 	<key>goumai</key>
 	<string>购买</string>
+	<key>fanhui</key>
+	<string>返回</string>
+	<key>qushangcheng</key>
+	<string>去商城</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

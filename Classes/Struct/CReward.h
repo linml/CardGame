@@ -83,7 +83,7 @@ protected:
     int m_nEnergy; //神力
     int m_nExp;
     int m_nCash;
-    CCDictionary *m_pCards; // key-> card_item_id, value-> card_id+suit
+    CCDictionary *m_pCards; // key-> card_item_id, value-> card_id
     CCDictionary *m_pProps;
     
     CGamePlayer *m_pPlayer;
