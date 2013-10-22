@@ -1007,3 +1007,5 @@ void CGameEmailTableView::scrollBar(CCTableView* table)
     CCLog("h:%f,barTopPosY %f");
     bar->setPosition(ccp(bar->getPosition().x, h));
 }
+
+

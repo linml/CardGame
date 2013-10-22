@@ -41,6 +41,8 @@ CGamePlayerData::CGamePlayerData()
     m_irvc=0;
     m_iGp=0;
     m_nOpenGridCount = 9;
+    m_sLevelPlayer=NULL;
+   
 }
 void CGamePlayerData::clearPlayerData()
 {
@@ -67,6 +69,11 @@ int CGamePlayerData::getApMax()
 int CGamePlayerData::getExpMax()
 {
     return m_sLevelPlayer->m_iExp_max;
+}
+
+void CGamePlayerData::settestInit(int level)
+{
+    m_sLevelPlayer=m_gvPlayerLevel[level];
 }
 
 void CGamePlayerData::logicValue(int &OutValue,int inValue, char logicChar)

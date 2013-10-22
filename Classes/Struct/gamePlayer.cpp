@@ -82,6 +82,9 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
     //loaditem表格;
     m_gameShop=new CStructShopInfo;
     loadGamesConfig();
+    if ( m_gGamePlayerData->m_sLevelPlayer==NULL) {
+        m_gGamePlayerData->settestInit(1);
+    }
     m_bFightKuaijin=false;
     if (!m_pTaskLogic)
     {
@@ -542,7 +545,8 @@ void CGamePlayer::loadNpcCardTeam(int zhang, int jie, int bu, int dijige)
     isLoadFightTeam=0;
     
 #ifdef AAAAFOROSMACHINE
-   
+    const  char *data=readFileName((resRootPath +"team.txt").c_str()).c_str();
+    CCDictionary *dirct=PtJsonUtility::JsonStringParse(data);
 #else
     const  char *data=CPtTool::readFileName((resRootPath +"npccardteam.txt").c_str()).c_str();
     char *datat=new char [strlen(data+1)];

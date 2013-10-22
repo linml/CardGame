@@ -27,6 +27,7 @@ public:
     int getGpMax();
     int getApMax();
     int getExpMax();
+    void settestInit(int level);
     void logicValue(int &Value,int inValue, char logicChar);
 public:
     std::string m_susername;

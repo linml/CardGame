@@ -11,6 +11,7 @@
 #include "CGameCardBuffer.h"
 #include "CBackpackContainerLayer.h"
 #include "CGameStoryLayer.h"
+#include "CDrawCardLayer.h"
 
 
 using namespace cocos2d;
@@ -92,6 +93,10 @@ bool HelloWorld::init()
 
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
+    
+    CDrawCardLayer *layer=CDrawCardLayer::create();
+    addChild(layer,0);
+    //layer->setPosition(ccp(size.width*0.5,size.height*0.5));
 
    // test(this);
     // add "HelloWorld" splash screen"

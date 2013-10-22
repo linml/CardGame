@@ -50,9 +50,9 @@ bool AppDelegate::applicationDidFinishLaunching()
     
     // cout<<"sizeof"<<sizeof(pp)<<endl;
     
-   SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
+ //  SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
 
-    //pDirector->runWithScene(HelloWorld::scene());
+    pDirector->runWithScene(HelloWorld::scene());
  //   pDirector->runWithScene(HelloWorld::scene());
 
     return true;
