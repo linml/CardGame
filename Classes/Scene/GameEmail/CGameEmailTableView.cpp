@@ -314,7 +314,7 @@ void CGameEmailTableView::creaetEmailTableView()
 void CGameEmailTableView::showDialogBagFull(cocos2d::CCObject *obect)
 {
     string word = Utility::getWordWithFile("word.plist", "caonima");
-    CPtDialog *ptDialog=CPtDialog::create(word.c_str() , this , callfuncO_selector(CGameEmailTableView::dialogOkButtonSetFunc), callfuncO_selector(CGameEmailTableView::dialogCancelButtonSetFunc), NULL, NULL);
+    CPtDialog *ptDialog=CPtDialog::create(word.c_str() , this , this, callfuncO_selector(CGameEmailTableView::dialogOkButtonSetFunc), callfuncO_selector(CGameEmailTableView::dialogCancelButtonSetFunc), NULL, NULL);
     addChild(ptDialog,1000,10000);
 }
 
@@ -1007,5 +1007,3 @@ void CGameEmailTableView::scrollBar(CCTableView* table)
     CCLog("h:%f,barTopPosY %f");
     bar->setPosition(ccp(bar->getPosition().x, h));
 }
-
-

@@ -160,6 +160,31 @@ PropItem item;
 #include "CGameArrageBackpackTip.h"
 #include "CSceneGameShopLayer.h"
 #include "CGameRechargeLayer.h"
+#include "CSellerDialog.h"
+#include "gameStruct.h"
+void testInit(SELLER_DATA &rSellData)
+{
+    rSellData.sellerId = 800103;
+    rSellData.sellerShops[0].propId = 200002;
+    rSellData.sellerShops[0].teamNum = 1;
+    rSellData.sellerShops[0].limitNum = 5;
+    rSellData.sellerShops[0].price = 20;
+
+    
+    rSellData.sellerShops[1].propId = 200006;
+    rSellData.sellerShops[1].teamNum = 1;
+    rSellData.sellerShops[1].limitNum = 0;
+    rSellData.sellerShops[1].price = 20;
+    
+    rSellData.sellerShops[2].propId = 200005;
+    rSellData.sellerShops[2].teamNum = 1;
+    rSellData.sellerShops[2].limitNum = 0;
+    rSellData.sellerShops[2].price = 20;
+
+    
+    rSellData.priceType = 1;
+    
+}
 void test(CCNode *pSender)
 {
   
@@ -167,7 +192,7 @@ void test(CCNode *pSender)
    // CCardSettingScene *layer = CCardSettingScene::create();
     //CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
    // pSender->addChild(layer);
-   CPtDialog * layer = CPtDialog::create();
+//   CPtDialog * layer = CPtDialog::create();
   //  CGameRechargeTip * layer = CGameRechargeTip::create();
   //  CGameArrageBackpackTip *layer = CGameArrageBackpackTip::create();
     
@@ -179,6 +204,9 @@ void test(CCNode *pSender)
  //   CEventBoxRewordLayer *layer = CEventBoxRewordLayer::create(NULL, 3);
    // CGameRechargeLayer * layer = CGameRechargeLayer::create(NULL);
   //  CSceneGameShopLayer * layer = CSceneGameShopLayer::create();
+    SELLER_DATA inSellData;
+    testInit(inSellData);
+    CSellerDialog * layer = CSellerDialog::create(inSellData);
     pSender->addChild(layer);
 
 }

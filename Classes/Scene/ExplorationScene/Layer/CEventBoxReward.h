@@ -52,7 +52,8 @@ protected:
     bool m_bMove;
     
     CCSprite * m_pBtn;
-    CCRect m_cTouchSpriteFrameRect[2];
+   // CCRect m_cTouchSpriteFrameRect[2];
+    CCSpriteFrame* m_pState[2];
     SEL_CallFuncO m_pConfirmSelector;
     CCObject *m_pTarget;
 };

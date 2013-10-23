@@ -584,7 +584,7 @@ bool CSceneGameShopLayer::checkIsHaveEnoughCashForOneItem(CStructShopSellItem *i
     if(inRechargeItem)
     {
         CCLog("物品单价:%d,玩家金额:%d", inRechargeItem->getValue(),m_pPlayer->getPlayerCash());
-        if (inRechargeItem->getValue() <= m_pPlayer->getPlayerCash())
+        if (inRechargeItem->getValue() <= getPlayerMoneyByType())//m_pPlayer->getPlayerCash())
         {
             return true;
         }
@@ -622,6 +622,21 @@ int CSceneGameShopLayer::checkRechargeItemState(CStructShopSellItem * inRecharge
     }
     
     return ENOUGH_EVERYTHING;
+}
+
+
+int CSceneGameShopLayer::getPlayerMoneyByType()
+{
+    int total = 0;
+    if (m_pPlayer->getShopType() == 1)
+    {
+       total = m_pPlayer->getPlayerCash();
+    }else
+    {
+        total = m_pPlayer->getCoin();
+    }
+    return total;
+    
 }
 
 void CSceneGameShopLayer::sendGetShopItemData()
@@ -769,7 +784,7 @@ void CSceneGameShopLayer::onClickPurchase(int inTagId)
         {
             CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CSceneGameShopLayer::sendSendBuyItemData), "CGameRechargeLayercallback_layer", NULL);
             touchIndexCell=inTagId;
-            layer = CGameRechargeLayer::create(pItem);
+            layer = CGameRechargeLayer::create(pItem, m_pPlayer->getShopType());
         }else
         {
             CCMessageBox("校验错误", "购买错误提升");
@@ -1168,7 +1183,7 @@ void CSceneGameShopLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         PtSoundTool::playSysSoundEffect("UI_click.wav");
         if (m_tempTouchNode!=node && m_tempTouchNode)
         {
-            if (dynamic_cast<CGameButtonControl *>(m_tempTouchNode)) {
+            if (m_tempTouchNode&&m_tempTouchNode!=Utility::getNodeByTag(this, "1,1,1")) {
                 ((CGameButtonControl *)m_tempTouchNode)->unselected();
             }
         }

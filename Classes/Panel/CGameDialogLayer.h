@@ -24,12 +24,14 @@ class CPtDialog :public cocos2d::CCLayerColor
 {
 public:
     CREATE_FUNC(CPtDialog);
-    static CPtDialog* create(std::string inTipContent, CCObject *inTarget, SEL_CallFuncO  inLeftSelector, SEL_CallFuncO  inRightSelector, CCObject *inLeftParam, CCObject *inRightParam);
+    static CPtDialog* create(std::string inTipContent, CCObject *inLeftTarget, CCObject *inRightTarget, SEL_CallFuncO  inLeftSelector, SEL_CallFuncO  inRightSelector, CCObject *inLeftParam, CCObject *inRightParam);
 public:
     CPtDialog();
     virtual ~CPtDialog();
     
-    void setDialog(std::string inTipContent, CCObject *inTarget, SEL_CallFuncO  inLeftSelector, SEL_CallFuncO  inRightSelector, CCObject *inLeftParam, CCObject *inRightParam);
+    void setDialog(std::string inTipContent,CCObject *inLeftTarget, CCObject *inRightTarget, SEL_CallFuncO  inLeftSelector, SEL_CallFuncO  inRightSelector, CCObject *inLeftParam, CCObject *inRightParam);
+    void setLeftHandler(CCObject *inLeftTarget,SEL_CallFuncO  inLeftSelector,  CCObject *inLeftParam = NULL);
+    void setRightHandler(CCObject *inRightTarget,SEL_CallFuncO  inRightSelector,CCObject *inRightParam = NULL);
     void setButtonText(std::string inLeftText, std::string inRightText);
 public:
     virtual bool init();
@@ -48,7 +50,8 @@ protected:
     CCLabelTTF *m_pTip;
     CCLabelTTF *m_pLeft;
     CCLabelTTF *m_pRight;
-    CCObject *m_pHandler;
+    CCObject *m_pLeftHandler;
+    CCObject *m_pRightHandler;
     SEL_CallFuncO m_pRightSelector;
     SEL_CallFuncO m_pLeftSelector;
     CCObject * m_pRightParam;

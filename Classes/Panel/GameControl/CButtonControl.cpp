@@ -8,10 +8,11 @@
 
 #include "CButtonControl.h"
 
-CButtonControl::CButtonControl():m_bIsEnabled(false),m_bIsSelected(false)
+CButtonControl::CButtonControl():m_bIsEnabled(true),m_bIsSelected(false)
 {
     m_pNormalFrame=NULL;
     m_pSelectFrame=NULL;
+    m_pDisableFrame = NULL;
 }
 
 CButtonControl::~CButtonControl()
@@ -63,5 +64,19 @@ void CButtonControl::setSelectFrame(cocos2d::CCSpriteFrame *var)
     if(var!=NULL)
     {
         m_pSelectFrame=var;
+    }
+}
+
+
+CCSpriteFrame * CButtonControl::getDisableFrame()
+{
+    return m_pDisableFrame;
+}
+
+void CButtonControl::setDisableFrame(cocos2d::CCSpriteFrame *var)
+{
+    if (var)
+    {
+        m_pDisableFrame = var;
     }
 }

@@ -30,10 +30,10 @@ CCRect CGameButtonControl::rect()
 }
 
 
-CGameButtonControl *CGameButtonControl::createButton(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng)
+CGameButtonControl *CGameButtonControl::createButton(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng, const char *disablePng/*=NULL*/)
 {
     CGameButtonControl *game=new CGameButtonControl();
-    if(!game || !game->init(textPosion, text, normalPng, selectPng))
+    if(!game || !game->init(textPosion, text, normalPng, selectPng, disablePng))
     {
         delete  game;
         return  NULL;
@@ -74,13 +74,20 @@ CCLabelTTF *CGameButtonControl::getTextLabel()
     return (CCLabelTTF *)getChildByTag(100);
 }
 
-bool CGameButtonControl::init(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng)
+bool CGameButtonControl::init(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng,const char *disablePng/*=NULL*/)
 {
     CCSpriteFrame *frame=CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(normalPng);
     assert(frame!=NULL);
     setNormalFrame(frame);
     frame=CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(selectPng);
     setSelectFrame(frame);
+    if (disablePng)
+    {
+         frame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(disablePng);
+         setDisableFrame(frame);
+    }
+   
+    
     setAnchorPoint(ccp(0.5,0.5));
     initWithSpriteFrame(m_pNormalFrame);
     CCLog("text:%s",text);
@@ -139,4 +146,22 @@ void CGameButtonControl::unselected()
         setDisplayFrame(m_pNormalFrame );
     }
    
+}
+
+void CGameButtonControl::setDisable()
+{
+    if (m_bIsEnabled)
+    {
+        m_bIsEnabled = false;
+        if (m_pDisableFrame)
+        {
+            setDisplayFrame(m_pDisableFrame);
+        }
+
+    }
+}
+
+bool CGameButtonControl::getEnable()
+{
+    return m_bIsEnabled;
 }

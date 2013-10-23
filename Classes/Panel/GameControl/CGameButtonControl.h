@@ -20,18 +20,21 @@ public:
     CGameButtonControl();
     ~CGameButtonControl();
     CCRect rect();
-    static CGameButtonControl *createButton(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng);
+    static CGameButtonControl *createButton(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng, const char *disablePng=NULL);
     //static CGameButtonControl *createButton(TEXTPOSTION textPosion,cocos2d::CCLabelTTF *labelttf,const char *normalPng,const char *selectPng);
     virtual void selected();
     virtual void unselected();
     CCLabelTTF *getTextLabel();
     void setFontColor(ccColor3B csColor);
     void setEnable(bool flag);
+    
+    void setDisable();
+    bool getEnable();
 protected:
     bool m_bIsCanTouch;
 private:
     ccColor3B  m_cFontNormalColor;
 protected:
-    bool init(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng);
+    bool init(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng,const char *disablePng=NULL);
 };
 #endif /* defined(___1_cube__CGameButtonControl__) */

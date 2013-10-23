@@ -94,6 +94,22 @@ struct SECTION_DATA
 };
 
 
+#define SELLERSHOPCOUNT 3
+struct SELLER_SHOP
+{
+    int propId;
+    int teamNum;
+    int limitNum;
+    int price;
+    
+};
+
+struct SELLER_DATA
+{
+    int sellerId;
+    SELLER_SHOP sellerShops[SELLERSHOPCOUNT];
+    int priceType; // 1---> cash, 2, coin
+};
 
 template <class T>
 class CEmrysClearVectorMemory {

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F08A3E11817948D0081C499 /* CGameArrangeCardBag.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F08A3DF1817948D0081C499 /* CGameArrangeCardBag.cpp */; };
+		6F08A4681817D8D70081C499 /* CSellerDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F08A4621817D8D70081C499 /* CSellerDialog.cpp */; };
+		6F08A4691817D8D70081C499 /* CSellerShopDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F08A4641817D8D70081C499 /* CSellerShopDialog.cpp */; };
+		6F08A46A1817D8D70081C499 /* CTaskAndSectionReward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F08A4661817D8D70081C499 /* CTaskAndSectionReward.cpp */; };
+		6F08A46D1817D9900081C499 /* CCShake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F08A46B1817D9900081C499 /* CCShake.cpp */; };
+		6F08A4701817DA9A0081C499 /* CPtSellerConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F08A46E1817DA990081C499 /* CPtSellerConfigData.cpp */; };
 		6F109A3F17F567F2004E1B39 /* CPanelGameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */; };
 		6F22EE201810D4E20062666F /* CDrawCardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F22EE1E1810D4E20062666F /* CDrawCardLayer.cpp */; };
 		6F28A6E418079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F28A6E218079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp */; };
@@ -341,6 +347,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F08A3DF1817948D0081C499 /* CGameArrangeCardBag.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameArrangeCardBag.cpp; sourceTree = "<group>"; };
+		6F08A3E01817948D0081C499 /* CGameArrangeCardBag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameArrangeCardBag.h; sourceTree = "<group>"; };
+		6F08A4621817D8D70081C499 /* CSellerDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSellerDialog.cpp; sourceTree = "<group>"; };
+		6F08A4631817D8D70081C499 /* CSellerDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSellerDialog.h; sourceTree = "<group>"; };
+		6F08A4641817D8D70081C499 /* CSellerShopDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSellerShopDialog.cpp; sourceTree = "<group>"; };
+		6F08A4651817D8D70081C499 /* CSellerShopDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSellerShopDialog.h; sourceTree = "<group>"; };
+		6F08A4661817D8D70081C499 /* CTaskAndSectionReward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTaskAndSectionReward.cpp; sourceTree = "<group>"; };
+		6F08A4671817D8D70081C499 /* CTaskAndSectionReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTaskAndSectionReward.h; sourceTree = "<group>"; };
+		6F08A46B1817D9900081C499 /* CCShake.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCShake.cpp; sourceTree = "<group>"; };
+		6F08A46C1817D9900081C499 /* CCShake.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCShake.h; sourceTree = "<group>"; };
+		6F08A46E1817DA990081C499 /* CPtSellerConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtSellerConfigData.cpp; sourceTree = "<group>"; };
+		6F08A46F1817DA990081C499 /* CPtSellerConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtSellerConfigData.h; sourceTree = "<group>"; };
 		6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanelGameLog.cpp; sourceTree = "<group>"; };
 		6F109A3E17F567F2004E1B39 /* CPanelGameLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPanelGameLog.h; sourceTree = "<group>"; };
 		6F22EE1E1810D4E20062666F /* CDrawCardLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDrawCardLayer.cpp; sourceTree = "<group>"; };
@@ -1344,6 +1362,8 @@
 				6FDE76D0180E802D004DFDA8 /* CGameArrageBackpackTip.h */,
 				6FDE76D1180E802D004DFDA8 /* CGameRechargeTip.cpp */,
 				6FDE76D2180E802D004DFDA8 /* CGameRechargeTip.h */,
+				6F08A3DF1817948D0081C499 /* CGameArrangeCardBag.cpp */,
+				6F08A3E01817948D0081C499 /* CGameArrangeCardBag.h */,
 			);
 			path = TipLayer;
 			sourceTree = "<group>";
@@ -1361,6 +1381,12 @@
 		8E6CE593176EEF1E00CF5C0D /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				6F08A4621817D8D70081C499 /* CSellerDialog.cpp */,
+				6F08A4631817D8D70081C499 /* CSellerDialog.h */,
+				6F08A4641817D8D70081C499 /* CSellerShopDialog.cpp */,
+				6F08A4651817D8D70081C499 /* CSellerShopDialog.h */,
+				6F08A4661817D8D70081C499 /* CTaskAndSectionReward.cpp */,
+				6F08A4671817D8D70081C499 /* CTaskAndSectionReward.h */,
 				8EA82EC917E1C27F0063CDA9 /* CEventBoxDialog.cpp */,
 				8EA82ECA17E1C27F0063CDA9 /* CEventBoxDialog.h */,
 				8E6CE594176EEF1E00CF5C0D /* CConfirmLayer.cpp */,
@@ -1484,6 +1510,8 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6F08A46E1817DA990081C499 /* CPtSellerConfigData.cpp */,
+				6F08A46F1817DA990081C499 /* CPtSellerConfigData.h */,
 				6FCA468917F014B300346E6B /* CReward.cpp */,
 				6FCA468A17F014B300346E6B /* CReward.h */,
 				8EC9B4B417E2A3D800200073 /* CEventBoxConfigData.cpp */,
@@ -1611,6 +1639,8 @@
 				6F28A6E318079D1700225C09 /* CPanelGamePlayerInfoLayer.h */,
 				6FA496BB18165DE800D48944 /* CPanelLoadingLayer.cpp */,
 				6FA496BC18165DE800D48944 /* CPanelLoadingLayer.h */,
+				6F08A46B1817D9900081C499 /* CCShake.cpp */,
+				6F08A46C1817D9900081C499 /* CCShake.h */,
 			);
 			path = Panel;
 			sourceTree = "<group>";
@@ -2750,6 +2780,7 @@
 				9FC6F20817460BFF0091BE98 /* CCDirector.cpp in Sources */,
 				9FC6F20917460BFF0091BE98 /* CCDrawingPrimitives.cpp in Sources */,
 				9FC6F20A17460BFF0091BE98 /* CCScheduler.cpp in Sources */,
+				6F08A4701817DA9A0081C499 /* CPtSellerConfigData.cpp in Sources */,
 				9FC6F20B17460BFF0091BE98 /* CCAffineTransform.cpp in Sources */,
 				9FC6F20C17460BFF0091BE98 /* CCArray.cpp in Sources */,
 				9FC6F20D17460BFF0091BE98 /* CCAutoreleasePool.cpp in Sources */,
@@ -2762,6 +2793,7 @@
 				9FC6F21417460BFF0091BE98 /* CCZone.cpp in Sources */,
 				9FC6F21517460BFF0091BE98 /* cocos2d.cpp in Sources */,
 				9FC6F21617460BFF0091BE98 /* CCGrabber.cpp in Sources */,
+				6F08A4691817D8D70081C499 /* CSellerShopDialog.cpp in Sources */,
 				6FDE76CD180E7F0B004DFDA8 /* CGameRechargeLayer.cpp in Sources */,
 				9FC6F21717460BFF0091BE98 /* CCGrid.cpp in Sources */,
 				9FC6F21817460BFF0091BE98 /* aabb.c in Sources */,
@@ -2785,6 +2817,7 @@
 				9FC6F22B17460BFF0091BE98 /* CCLabelTTF.cpp in Sources */,
 				9FC6F22C17460BFF0091BE98 /* CCLayer.cpp in Sources */,
 				9FC6F22D17460BFF0091BE98 /* CCScene.cpp in Sources */,
+				6F08A46D1817D9900081C499 /* CCShake.cpp in Sources */,
 				9FC6F22E17460BFF0091BE98 /* CCTransition.cpp in Sources */,
 				9FC6F22F17460BFF0091BE98 /* CCTransitionPageTurn.cpp in Sources */,
 				9FC6F23017460BFF0091BE98 /* CCTransitionProgress.cpp in Sources */,
@@ -2862,6 +2895,7 @@
 				9FC6F27717460BFF0091BE98 /* CCBAnimationManager.cpp in Sources */,
 				9FC6F27817460BFF0091BE98 /* CCBFileLoader.cpp in Sources */,
 				9FC6F27917460BFF0091BE98 /* CCBKeyframe.cpp in Sources */,
+				6F08A4681817D8D70081C499 /* CSellerDialog.cpp in Sources */,
 				9FC6F27A17460BFF0091BE98 /* CCBReader.cpp in Sources */,
 				9FC6F27B17460BFF0091BE98 /* CCBSequence.cpp in Sources */,
 				9FC6F27C17460BFF0091BE98 /* CCBSequenceProperty.cpp in Sources */,
@@ -2979,6 +3013,7 @@
 				6FAD754617A269C700AB8D8E /* CCardEnhanceLayer.cpp in Sources */,
 				6FAD754D17A26A0000AB8D8E /* CPtBatterArray.cpp in Sources */,
 				6FAD754E17A26A0000AB8D8E /* CPtEditBoxWidget.cpp in Sources */,
+				6F08A46A1817D8D70081C499 /* CTaskAndSectionReward.cpp in Sources */,
 				6FAD754F17A26A0000AB8D8E /* CPtBarWidget.cpp in Sources */,
 				6FAD755317A26A3800AB8D8E /* CPtTool.cpp in Sources */,
 				6FAD755617A26A6100AB8D8E /* CPtLevelConfigData.cpp in Sources */,
@@ -3026,6 +3061,7 @@
 				6F28A6E71807EAEE00225C09 /* CGlobalUpdateObject.cpp in Sources */,
 				8EC9B4BA17E2A3D800200073 /* CEventBoxConfigData.cpp in Sources */,
 				8EC9B4BB17E2A3D800200073 /* CEventConfigData.cpp in Sources */,
+				6F08A3E11817948D0081C499 /* CGameArrangeCardBag.cpp in Sources */,
 				8EC9B4BC17E2A3D800200073 /* CSceneConfigData.cpp in Sources */,
 				8EC9B4BF17E3156300200073 /* CEventBoxReward.cpp in Sources */,
 			);

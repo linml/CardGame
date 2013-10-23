@@ -508,7 +508,10 @@ void CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)
     isLoadEndCardTeam=true;
 }
 
-
+bool CGamePlayer::cardBagIsMoreThanConfig()
+{
+    return m_vCardBag.size()>=m_gGamePlayerData->getCardBagMax();
+}
 
 CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
 {
@@ -805,6 +808,12 @@ int CGamePlayer::getExpMax()
 {
     return m_gGamePlayerData->getExpMax();
 }
+
+int CGamePlayer::getFriendly()
+{
+    return m_gGamePlayerData->m_nFriendly;
+}
+
 int CGamePlayer::getPlayerAp()  //体力
 {
     return m_gGamePlayerData->m_iAp;
@@ -1136,8 +1145,13 @@ int CGamePlayer::getPropMaxCountAddToBag(int inPropId)
         prop = propIterator->second;
         CCAssert(prop, "the prop is null");
         int limit = prop->getLimitNum();
-        if (i != m_vProps.end() && prop->getIsOnlyNum()!=1)
+        if (i != m_vProps.end())
         {
+            if (prop->getIsOnlyNum()==1)
+            {
+                count = 0;
+                return count;
+            }
             
             int restNum = i->second%limit;
             count += restNum != 0 ? limit-restNum : 0;
@@ -1283,7 +1297,7 @@ void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
         {
             if(propData->getPropById(i->first)->getIsOnlyNum() == 1)
             {
-                
+                // is only replace:a
             }
             else
             {
@@ -1380,6 +1394,12 @@ void CGamePlayer::addProp(int inPropId, int inAddNum)
     map<int, int>::iterator it =  m_vProps.find(inPropId);
     if (it != m_vProps.end())
     {
+        map<int, CPtProp*>::iterator pt= m_rAllProps.find(inPropId);
+        if (pt != m_rAllProps.end() && pt->second->getIsOnlyNum() == 1)
+        {
+            return;
+        }
+        
         it->second += inAddNum;
     }else
     {
@@ -1562,6 +1582,11 @@ CStructShopSellItem *CGamePlayer::getShopItemById(int itemID)
 int CGamePlayer::getShopItemCount()
 {
     return m_gameShop->getShopItemCount();
+}
+
+int CGamePlayer::getShopType()
+{
+    return m_gameShop->getShopType();
 }
 
 string CGamePlayer::getShopName()

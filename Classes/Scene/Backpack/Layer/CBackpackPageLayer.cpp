@@ -275,7 +275,7 @@ void CBackpackPageLayer::handlerTouch()
         char buffer[100] = {0};
         std::string s = SinglePropConfigData::instance()->getPropById(item->propId)->getPropName();
         sprintf(buffer, "你确定要使用%s道具吗?", s.c_str());
-        CPtDialog * dialog = CPtDialog::create(buffer, this, NULL ,callfuncO_selector(CBackpackPageLayer::onClickUseProp),NULL, item);
+        CPtDialog * dialog = CPtDialog::create(buffer, this,NULL, NULL ,callfuncO_selector(CBackpackPageLayer::onClickUseProp),NULL, item);
 
         CCDirector::sharedDirector()->getRunningScene()->addChild(dialog, 20000, 10000);
         

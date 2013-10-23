@@ -32,7 +32,7 @@ bool CGameArrageBackpackTip::init()
 
 void CGameArrageBackpackTip::initCGameArrageBackpackTip()
 {
-    setDialog("背包满了！快去收拾收腾个地吧",this,callfuncO_selector(CGameArrageBackpackTip::onArrageCallBack), callfuncO_selector(CGameArrageBackpackTip::onCancelCallBack),NULL, NULL);
+    setDialog("背包满了！快去收拾收腾个地吧",this,this,callfuncO_selector(CGameArrageBackpackTip::onArrageCallBack), callfuncO_selector(CGameArrageBackpackTip::onCancelCallBack),NULL, NULL);
     setButtonText("整理", "取消");
 }
 

@@ -120,11 +120,11 @@ protected:
     void handlerFightEvent(int inType);
     void hanlderEventBox(int eventBoxId);
     void handlerSellerEvent(CCDictionary * inSellerDict);
-    
+    void handlerFinishSellerEvent();
     void createEventBoxDialogByType(CEventBoxData *inEventBoxData, int inType);
     
     // seller event:
-    CCArray *getShopItems(CCDictionary *inSellDict);
+    SELLER_DATA getShopItems(CCDictionary *inSellDict);
     
     void setVisiable();
     void setInsiable();
@@ -134,6 +134,7 @@ protected:
     void showBackPack();
     void showCardSetting();
     
+    void onCloseSellerEventCallback(CCObject *pObject);
    
     
     // test:
@@ -175,6 +176,8 @@ protected:
     CEventBoxConfigData *m_pEventBoxData;
     
     int m_nEventBoxSelectType; // 0---> cancle 1---> confirm
+    
+    SELLER_DATA m_sSellerData;  // use in seller event;
     
 // connect server:
     

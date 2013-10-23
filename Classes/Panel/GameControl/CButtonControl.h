@@ -37,6 +37,7 @@ protected:
     bool m_bIsEnabled;
     CC_PROPERTY(CCSpriteFrame*,m_pNormalFrame,NormalFrame);
     CC_PROPERTY(CCSpriteFrame* ,m_pSelectFrame,SelectFrame);
+    CC_PROPERTY(CCSpriteFrame*, m_pDisableFrame, DisableFrame);
 };
 
 #endif /* defined(___1_cube__CButtonControl__) */

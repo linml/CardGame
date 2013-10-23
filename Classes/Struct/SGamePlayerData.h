@@ -27,6 +27,7 @@ public:
     int getGpMax();
     int getApMax();
     int getExpMax();
+    int getCardBagMax();
     void settestInit(int level);
     void logicValue(int &Value,int inValue, char logicChar);
 public:
@@ -46,6 +47,7 @@ public:
     int    m_irvc;
     int    m_iGp;   //神力
     bool   m_bFirstRecharge;
+    int     m_nFriendly;
     struct SLevelPlayer *m_sLevelPlayer;
     int    m_nOpenGridCount;
     std::map<int ,SLevelPlayer *>m_gvPlayerLevel;

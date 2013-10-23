@@ -12,12 +12,12 @@
 #include "LayoutLayer.h"
 #include "PtMapUtility.h"
 
-CPtDialog* CPtDialog::create(std::string inTipContent, CCObject *inTarget, SEL_CallFuncO  inLeftSelector, SEL_CallFuncO  inRightSelector, CCObject *inLeftParam, CCObject *inRightParam)
+CPtDialog* CPtDialog::create(std::string inTipContent, CCObject *inLeftTarget, CCObject *inRightTarget, SEL_CallFuncO  inLeftSelector, SEL_CallFuncO  inRightSelector, CCObject *inLeftParam, CCObject *inRightParam)
 {
     CPtDialog * dialog = create();
     if (dialog)
     {
-        dialog->setDialog(inTipContent, inTarget, inLeftSelector, inRightSelector,inLeftParam, inRightParam);
+        dialog->setDialog(inTipContent, inLeftTarget, inRightTarget, inLeftSelector, inRightSelector,inLeftParam, inRightParam);
     }
 
     return dialog;
@@ -26,7 +26,7 @@ CPtDialog* CPtDialog::create(std::string inTipContent, CCObject *inTarget, SEL_C
 CPtDialog::CPtDialog()
 {
     m_nTouchTag = -1;
-    m_pHandler = NULL;
+    m_pLeftHandler = m_pRightHandler = NULL;
     m_pLeftSelector = NULL;
     m_pRightSelector = NULL;
     m_pLeftParam = NULL;
@@ -49,17 +49,29 @@ CPtDialog::~CPtDialog()
    
 }
 
-void CPtDialog::setDialog(std::string inTipContent, CCObject *inTarget, SEL_CallFuncO  inLeftSelector, SEL_CallFuncO  inRightSelector, CCObject *inLeftParam, CCObject *inRightParam)
+void CPtDialog::setDialog(std::string inTipContent, CCObject *inLeftTarget, CCObject *inRightTarget, SEL_CallFuncO  inLeftSelector, SEL_CallFuncO  inRightSelector, CCObject *inLeftParam, CCObject *inRightParam)
 {
     if (m_pTip)
     {
         m_pTip->setString(inTipContent.c_str());
     }
-    m_pHandler = inTarget;
-    m_pLeftSelector = inLeftSelector;
+   
+    setLeftHandler(inLeftTarget, inLeftSelector, inLeftParam);
+    setRightHandler(inRightTarget, inRightSelector, inRightParam);
+}
+
+void CPtDialog::setLeftHandler(CCObject *inLeftTarget,SEL_CallFuncO  inLeftSelector,  CCObject *inLeftParam /*= NULL*/)
+{
+     m_pLeftHandler = inLeftTarget;
+     m_pLeftSelector = inLeftSelector;
+     m_pLeftParam = inLeftParam;
+}
+void CPtDialog:: setRightHandler(CCObject *inRightTarget,SEL_CallFuncO  inRightSelector,CCObject *inRightParam /*= NULL*/)
+{
+    m_pRightHandler = inRightTarget;
     m_pRightSelector =inRightSelector;
-    m_pLeftParam = inLeftParam;
     m_pRightParam = inRightParam;
+    
 }
 
 void CPtDialog::setButtonText(std::string inLeftText, std::string inRightText)
@@ -204,18 +216,18 @@ void CPtDialog::handlerTouch()
   
     if (m_nTouchTag == RIGHT_TAG)
     {
-        if (m_pHandler && m_pRightSelector)
+        if (m_pRightHandler && m_pRightSelector)
         {
 
-            (m_pHandler->*m_pRightSelector)(m_pRightParam);
+            (m_pRightHandler->*m_pRightSelector)(m_pRightParam);
            
         }
         removeFromParentAndCleanup(true);
     }else if(m_nTouchTag == LEFT_TAG)
     {
-        if (m_pHandler && m_pLeftSelector)
+        if (m_pLeftHandler && m_pLeftSelector)
         {
-            (m_pHandler->*m_pLeftSelector)(m_pLeftParam);
+            (m_pLeftHandler->*m_pLeftSelector)(m_pLeftParam);
             
         }
         removeFromParentAndCleanup(true);

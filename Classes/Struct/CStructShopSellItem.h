@@ -36,6 +36,7 @@ private:
     CC_SYNTHESIZE(int , m_iOldValue, OldValue);  //打折前的价格
     CC_SYNTHESIZE(int , m_nItemId, ItemID);
     CC_SYNTHESIZE(int ,m_iMaxNumberBack,MaxNumberBack);
+    CC_SYNTHESIZE(int, m_nPriceType, PriceType); // 1--> cash 2-->coin
 };
 
 #endif /* defined(___1_cube__CStructShopSellItem__) */

@@ -128,6 +128,7 @@ protected:
     bool checkIsHaveEnoughCashForOneItem(CStructShopSellItem *inRechargeItem);
     bool checkIshaveEounghBackpackGridWithItem(CStructShopSellItem *inRechargeItem);
     int checkRechargeItemState(CStructShopSellItem * inRechargeItem);
+    int getPlayerMoneyByType();
     
     void onClickPurchase(int inTagId);
     // change end:

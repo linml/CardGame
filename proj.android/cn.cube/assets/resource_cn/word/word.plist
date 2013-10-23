@@ -122,6 +122,14 @@
 	<string>返回</string>
 	<key>qushangcheng</key>
 	<string>去商城</string>
+	<key>chouyici</key>
+	<string>抽一次</string>
+	<key>choushiyici</key>
+	<string>抽十一次</string>
+	<key>niudanstrfriend</key>
+	<string>每次抽取需消耗%d友情点</string>
+	<key>niudanstrcash</key>
+	<string>抽取一次需要消耗%d个钻石,抽取十一次需要消耗%d钻石</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

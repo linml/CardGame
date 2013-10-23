@@ -15,8 +15,12 @@
 #include "CPanelLoadingLayer.h"
 #include "gameStruct.h"
 #include "CGamesCard.h"
+#include "CGameRechargeTip.h"
+#include "CGameArrangeCardBag.h"
+#include "CCShake.h"
 
-const int g_niudanjiage=1; //钻石抽单价
+const int g_niudanjiage=300; //钻石抽单价
+const int g_niudanyouqingjiage=200;
 
 CDrawCardLayer::CDrawCardLayer()
 {
@@ -29,17 +33,43 @@ CDrawCardLayer::CDrawCardLayer()
 
 CDrawCardLayer::~CDrawCardLayer()
 {
+    CEmrysClearVectorMemory< CFightCard  *> tempClear(m_vectorGetCardList) ;
+    tempClear.clearVector();
+    CEmrysClearVectorMemory< CGameButtonControl   *> tempClear2(touchVector) ;
+    tempClear2.clearVector();
    CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath,"niudanchouka.plist"));
 }
 
 void CDrawCardLayer::createBackGround()
 {
-    //CCLayerColor *layercolor=CCLayerColor::create(ccc4(0,0,0,200));
-    //addChild(layercolor,0);
     CCSprite *bgSprite=CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath,"niudanbeijing.png"));
     addChild(bgSprite,0);
     bgSprite->setPosition(ccp(size.width*0.5,size.height*0.5));
     
+}
+
+void CDrawCardLayer::createJiantou()
+{
+    CCSprite *sprite=CCSprite::createWithSpriteFrameName("zuoN.png");
+    addChild(sprite,4,51);
+    sprite->setPosition(ccp(180,size.height*0.5));
+    sprite=CCSprite::createWithSpriteFrameName("youN.png");
+    addChild(sprite,4,52);
+    sprite->setPosition(ccp(size.width*0.5+320,size.height*0.5));
+}
+
+void CDrawCardLayer::removeJiantouAndClearVector()
+{
+    m_vectorGetCardList.clear();
+    CEmrysClearVectorMemory< CFightCard  *> tempClear(m_vectorGetCardList) ;
+    tempClear.clearVector();
+    for (int i=51; i<=52; i++)
+    {
+        if (getChildByTag(i)) {
+            removeChildByTag(i, true);
+        }
+    }
+   
 }
 void CDrawCardLayer::removeLoadingLayer()
 {
@@ -53,16 +83,14 @@ void CDrawCardLayer::createTopButton()
 {
     float scenemidPointx=size.width*0.5;
     float scenemidPointy=size.height*0.5+228;
-    string word = Utility::getWordWithFile("word.plist", "fanhui");
-    CGameButtonControl *fanhuiButton=CGameButtonControl::createButton(TEXTMID, word.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
-    addChild(fanhuiButton,1,100);
-    fanhuiButton->setPosition(ccp(scenemidPointx+180, scenemidPointy));
-    word = Utility::getWordWithFile("word.plist", "qushangcheng");
-    
+    CGameButtonControl *gameQuitButton=CGameButtonControl::createButton(TEXTMID, "", "QuitButton_Normal.png", "QuitButton_Actived.png");
+    addChild(gameQuitButton,2,100);
+    gameQuitButton->setPosition(ccp(scenemidPointx+300, scenemidPointy));
+    string word = Utility::getWordWithFile("word.plist", "qushangcheng");
     CGameButtonControl *qushangcheng=CGameButtonControl::createButton(TEXTMID, word.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
     addChild(qushangcheng,1,101);
-    qushangcheng->setPosition(ccp(scenemidPointx+300, scenemidPointy));
-    touchVector.push_back(fanhuiButton);
+    qushangcheng->setPosition(ccp(scenemidPointx+180, scenemidPointy));
+    touchVector.push_back(gameQuitButton);
     touchVector.push_back(qushangcheng);
 }
 
@@ -82,7 +110,6 @@ void CDrawCardLayer::createBackYingLing()
         putongyingling->setPosition(ccp(size.width *0.5-400,size.height*0.5));
     }
     if (!getChildByTag(104)) {
-        
         CGameButtonControl *jueshiyingling=CGameButtonControl::createButton(TEXTMID, "", "juesejitain.png", "juesejitaip.png");
         addChild(jueshiyingling,1,104);
         jueshiyingling->setOpacity(0);
@@ -106,6 +133,7 @@ bool CDrawCardLayer::init()
     createTopButton();
     createLoadingLayer();
     setTouchEnabled(true);
+    m_enLayerStatus=EN_NIUDANLAYER_CHOOSETYPE;
     m_httpStatus=EN_NIUDANHTTPSTATUS_INIT;
     setTouchPriority(-9);
     scheduleOnce(schedule_selector(CDrawCardLayer::initSendGetData), 0.5);
@@ -114,49 +142,58 @@ bool CDrawCardLayer::init()
 
 void CDrawCardLayer::clearSelectFreeItemLayer()
 {
-    //删除100 101两个。
-    if (getChildByTag(101)) {
-        removeChildByTag(101, true);
+    if (m_enLayerStatus==EN_NIUDANLAYER_CHOOSETYPE) {
+        bool flag=true;
+        //删除100 101两个。
+        if (getChildByTag(101)) {
+            flag=true;
+            removeChildByTag(101, true);
+        }
+        if (getChildByTag(100)) {
+            removeChildByTag(100, true);
+        }
+        if (getChildByTag(103)) {
+            removeChildByTag(103, true);
+        }
+        if (getChildByTag(104)) {
+            removeChildByTag(104, true);
+        }
+        if (getChildByTag(11)) {
+            removeChildByTag(11, true);
+        }
+        if (getChildByTag(12)) {
+            removeChildByTag(12, true);
+        }
+        if(flag)
+        {
+            touchVector.clear();
+        }
+        m_enLayerStatus=EN_NIUDANLAYER_ENDGETCARD;
     }
-    if (getChildByTag(100)) {
-        removeChildByTag(100, true);
-    }
-    if (getChildByTag(103)) {
-        removeChildByTag(103, true);
-    }
-    if (getChildByTag(104)) {
-        removeChildByTag(104, true);
-    }
-    if (getChildByTag(11)) {
-        removeChildByTag(11, true);
-    }
-    if (getChildByTag(12)) {
-        removeChildByTag(12, true);
-    }
-    touchVector.clear();
-}
+ }
 
 void CDrawCardLayer::createGoldAndCash()
 {
     char data[40];
     if (!getChildByTag(21)) {
         CCSprite *goldsprite=CCSprite::createWithSpriteFrameName("jinbi.png");
-        addChild(goldsprite,1,22);
-        goldsprite->setPosition(ccp(200,size.height+240));
+        addChild(goldsprite,3,22);
+        goldsprite->setPosition(ccp(200,size.height*0.5+225));
+        
         CCLabelTTF *goldlabel=CCLabelTTF::create("", "Arial", 15);
-        addChild(goldlabel,1,21);
-        goldlabel->setPosition(ccp(250,size.height+240));
+        addChild(goldlabel,3,21);
+        goldlabel->setPosition(ccp(250,size.height*0.5+225));
     }
     sprintf(data, "%d",m_tempGamePlayer->getCoin());
     ((CCLabelTTF *)getChildByTag(21))->setString(data);
     if (!getChildByTag(23))
     {
         CCSprite *cashsprite=CCSprite::createWithSpriteFrameName("zuanshiniudan.png");
-        addChild(cashsprite,1,24);
-        cashsprite->setPosition(ccp(size.width+200,size.height+240));
+        addChild(cashsprite,3,24);
+        cashsprite->setPosition(ccp(size.width*0.5+150,size.height*0.5+225));
         CCLabelTTF *cashlabel=CCLabelTTF::create("", "Arial", 15);
-        addChild(cashlabel,1,23);
-        cashlabel->setPosition(ccp(size.width+200,size.height+240));
+        addChild(cashlabel,3,23);
+        cashlabel->setPosition(ccp(size.width*0.5+180,size.height*0.5+225));
     }
      sprintf(data, "%d",m_tempGamePlayer->getPlayerCash());
      ((CCLabelTTF *)getChildByTag(23))->setString(data);
@@ -164,15 +201,11 @@ void CDrawCardLayer::createGoldAndCash()
 
 void CDrawCardLayer::createGetCardLayer(EN_NIUDANTYPE  tempEntype)
 {
+
     clearSelectFreeItemLayer();
     createTableView();
-    if (tempEntype==EN_NIUDANTYPE_FRIEND) {
-        
-    }
-    else if(tempEntype==EN_NIUDANTYPE_CASH)
-    {
-        
-    }
+    createGoldAndCash();
+    createNiudanButton(tempEntype);
 }
 
 void CDrawCardLayer::scrollViewDidScroll(CCScrollView* view)
@@ -228,6 +261,9 @@ void CDrawCardLayer::updateButton()
 //和下面的那个 代码可以重构
 void CDrawCardLayer::createLabelFriendAndUpdate()
 {
+    if (m_enLayerStatus!=EN_NIUDANLAYER_CHOOSETYPE) {
+        return;
+    }
     if (!getChildByTag(11)) {
         CCLabelTTF *label=CCLabelTTF::create("", "Arial", 15);
         label->setColor(ccc3(0, 255, 0));
@@ -250,6 +286,9 @@ void CDrawCardLayer::createLabelFriendAndUpdate()
 
 void CDrawCardLayer::createLabelCashAndUpdate()
 {
+    if (m_enLayerStatus!=EN_NIUDANLAYER_CHOOSETYPE) {
+        return;
+    }
     if (!getChildByTag(12)) {
         CCLabelTTF *label=CCLabelTTF::create("", "Arial", 15);
         label->setColor(ccc3(0, 255, 0));
@@ -270,8 +309,14 @@ void CDrawCardLayer::createLabelCashAndUpdate()
 }
 void CDrawCardLayer::hideLable()
 {
-    getChildByTag(11)->setVisible(false);
-    getChildByTag(12)->setVisible(false);
+    if(getChildByTag(11))
+    {
+        getChildByTag(11)->setVisible(false);
+    }
+    if (getChildByTag(12)) {
+        getChildByTag(12)->setVisible(false);
+    }
+
 }
 void CDrawCardLayer::decodeParseFriendDraw(CCObject *object)
 {
@@ -317,10 +362,33 @@ void CDrawCardLayer::showCardData(CCDictionary *dict)
 
 void CDrawCardLayer::sendGetCardRandom(EN_NIUDANTYPE entype, int number,bool isFree)
 {
-    CEmrysClearVectorMemory< CFightCard  *> tempClear(m_vectorGetCardList) ;
-    tempClear.clearVector();
+    if(m_tempGamePlayer->cardBagIsMoreThanConfig())
+    {
+        CCLayer *layer=CGameArrangeCardBag::create();
+        addChild(layer,1000);
+        m_httpStatus=EN_NIUDANHTTPSTATUS_END;
+        return;
+    }
+    if (!isFree) {
+        //判断对应的东西是否够
+        if (entype==EN_NIUDANTYPE_CASH) {
+            if (m_tempGamePlayer->getPlayerCash() < number * g_niudanjiage) {
+                CCLayer * layer = CGameRechargeTip::create();
+                addChild(layer,1000);
+                m_httpStatus=EN_NIUDANHTTPSTATUS_END;
+                return;
+            }
+        }
+    }
+    
+    m_httpStatus=EN_NIUDANHTTPSTATUS_RUNNINT;
+ #ifndef DDEBUG__
+    removeJiantouAndClearVector();
     m_enSaveSendValue=entype;
-#ifdef DDEBUG__
+    if (getChildByTag(77777))
+    {
+        removeChildByTag(77777, true);
+    }
     createLoadingLayer();
     string postStrdata="sig=";
     postStrdata+=SinglePlayer::instance()->getUserSig();
@@ -356,9 +424,9 @@ void CDrawCardLayer::decodeGetCardRandom(CCObject *object)
         if (resultdict) {
             //更新下 数据  然后添加卡包数据。 最后调用更新界面数据 最后
             //更新下数据
-            //unschedule(schedule_selector(CDrawCardLayer::updateDiamondTimer));
-            //unschedule(schedule_selector(CDrawCardLayer::updateFriendTimer));
-            //startUpdateCashAndFriendly(resultdict);
+            unschedule(schedule_selector(CDrawCardLayer::updateDiamondTimer));
+            unschedule(schedule_selector(CDrawCardLayer::updateFriendTimer));
+            startUpdateCashAndFriendly(resultdict);
             //添加卡牌
             CCDictionary * tmp = (CCDictionary*) resultdict->objectForKey("reward");
             if (tmp)
@@ -369,9 +437,17 @@ void CDrawCardLayer::decodeGetCardRandom(CCObject *object)
                     reward->excuteReward(ADD);
                     
                 }
-                showCardData(reward->getCards());
+                if (reward&&reward->getCards()) {
+                   showCardData(reward->getCards());
+                }
+              
+                if (tmp->objectForKey("dec") &&((CCDictionary*)tmp->objectForKey("dec"))->objectForKey("card_item") ) {
+                    reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("dec"))->objectForKey("card_item"));
+                    reward->excuteReward(DEC);
+                }
+                this->runAction(CCSequence::create(CCShake::create(2.0,3.0),CCCallFunc::create(this,callfunc_selector(CDrawCardLayer::createTexiao)),NULL));
                 //显示卡牌数据
-                createGetCardLayer(m_enSaveSendValue);
+                //createGetCardLayer(m_enSaveSendValue);
                 
 
             }
@@ -404,21 +480,16 @@ bool CDrawCardLayer::getScanData(const char *value,CCDictionary *dict,ScanDrawVa
 
 void CDrawCardLayer::moveOutEyeSize()
 {
-    for(vector<CGameButtonControl *>::iterator it=touchVector.begin(); it!=touchVector.end(); )
-    {
-        if(*it == getChildByTag(103)||*it == getChildByTag(104))
-        {
-            it = touchVector.erase(it); //不能写成arr.erase(it);
-        }
-        else
-        {
-            ++it;
-        }
-    }
     CCNode *node=getChildByTag(103);
-    node->runAction(CCSpawn::create(CCMoveBy::create(0.2, ccp(-200,0)),CCFadeOut::create(0.2),NULL));
+    if(node)
+    {
+        node->runAction(CCSpawn::create(CCMoveBy::create(0.2, ccp(-200,0)),CCFadeOut::create(0.2),NULL));
+    }
     node=getChildByTag(104);
-    node->runAction(CCSpawn::create(CCMoveBy::create(0.2, ccp(+200,0)),CCFadeOut::create(0.2),NULL));
+    if(node)
+    {
+        node->runAction(CCSpawn::create(CCMoveBy::create(0.2, ccp(+200,0)),CCFadeOut::create(0.2),NULL));
+    }
 }
 
 bool CDrawCardLayer::touchNumberAndType(int number, EN_NIUDANTYPE typeTouch,bool isFree)
@@ -441,18 +512,20 @@ bool CDrawCardLayer::touchNumberAndType(int number, EN_NIUDANTYPE typeTouch,bool
         }
     }
     else{
-        
-        //先移动走两个按钮
-        //添加两个按钮移动到
+        moveOutEyeSize();
+        clearSelectFreeItemLayer();
+        hideLable();
+        createGoldAndCash();
+        createNiudanButton(typeTouch);
     }
-    
+    return true;
 }
 
 
 
 void CDrawCardLayer::initSendGetData(float t)
 {
-#ifdef DDEBUG__
+#ifndef DDEBUG__
 //开始读取服务器的 友情点数时间和 钻石 各免费时间
     string postStrdata="sig=";
     postStrdata+=SinglePlayer::instance()->getUserSig();
@@ -512,7 +585,7 @@ bool CDrawCardLayer::sendGetDataHttp(EN_NIUDANTYPE type)
     }else{
         return  false;
     }
-        CCLog("sendHttpToFriendGetValue %d",m_stempScanData[0].m_nCount);
+        CCLog("sendHttp Value %d",pData->m_nCount);
         //开始读取服务器的 友情点数时间和 钻石 各免费时间
         string postStrdata="sig=";
         postStrdata+=SinglePlayer::instance()->getUserSig();
@@ -520,20 +593,134 @@ bool CDrawCardLayer::sendGetDataHttp(EN_NIUDANTYPE type)
     return true;
 }
 
-void CDrawCardLayer::createTableView()
+void CDrawCardLayer::rebackFirstLayer()
 {
-   CCTableView* tableView = CCTableView::create(this,CCSizeMake(600, 700));
-    tableView->setDirection(kCCScrollViewDirectionHorizontal);
-    tableView->setPosition(ccp(200,300));
-    tableView->setDelegate(this);
-    tableView->setTouchPriority(-125);
-    tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
-    addChild(tableView,10,77777);
-
+    removeJiantouAndClearVector();
+    if (getChildByTag(52)) {
+        removeChildByTag(52, true);
+    }
+    if(getChildByTag(77777))
+    {
+        removeChildByTag(77777, true);
+    }
+    
+    for (int i=105; i<=108; i++) {
+        if (getChildByTag(i)) {
+            removeChildByTag( i, true);
+        }
+    }
+    for (int i=21; i<=24; i++) {
+        if (getChildByTag(i)) {
+            removeChildByTag( i, true);
+        }
+    }
+    if (getChildByTag(200)) {
+        removeChildByTag(200, true);
+    }
+    touchVector.clear();
+    createBackYingLing();
+    createTopButton();
+    m_enLayerStatus=EN_NIUDANLAYER_CHOOSETYPE;
+    createLabelFriendAndUpdate();
+    createLabelCashAndUpdate();
 }
 
+void CDrawCardLayer::createTexiao()
+{
+       createGetCardLayer(m_enSaveSendValue);
+      m_httpStatus=EN_NIUDANHTTPSTATUS_END;;
+    
+}
+void CDrawCardLayer::createNiudanButton(EN_NIUDANTYPE entype)
+{
+    if (!getChildByTag(200)) {
+       string word = Utility::getWordWithFile("word.plist", "fanhui");
+        CGameButtonControl *fanhuiButton=CGameButtonControl::createButton(TEXTMID, word.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
+        addChild(fanhuiButton,1,200);
+        fanhuiButton->setPosition(ccp(size.width*0.5+300, size.height*0.5+228));
+        touchVector.push_back(fanhuiButton);
+    }
+    if (entype==EN_NIUDANTYPE_CASH) {
+        if (!getChildByTag(52)) {
+            string everyZuanshi=Utility::getWordWithFile("word.plist", "niudanstrcash");
+            char data[100];
+            sprintf(data, everyZuanshi.c_str(),g_niudanjiage,g_niudanjiage*11);
+            CCLabelTTF *labelttf=CCLabelTTF::create(data, "Arial", 15);
+            labelttf->setPosition(ccp(size.width*0.5,size.height *0.5-200));
+            addChild(labelttf,2,52);
+            
+        }
+        if (!getChildByTag(105))
+        {
+            
+            string everyZuanshi= Utility::getWordWithFile("word.plist", "chouyici");
+            CGameButtonControl *chouquyici=CGameButtonControl::createButton(TEXTMID, everyZuanshi.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
+            addChild(chouquyici,2,105);
+            chouquyici->setPosition(ccp(size.width*0.5-200, size.height*0.5-230));
+            touchVector.push_back(chouquyici);
+        }
+        if (!getChildByTag(106))
+        {
+            string everyshiyishi= Utility::getWordWithFile("word.plist", "choushiyici");
+            CGameButtonControl *chouqushiyici=CGameButtonControl::createButton(TEXTMID, everyshiyishi.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
+            addChild(chouqushiyici,2,106);
+            chouqushiyici->setPosition(ccp(size.width*0.5+200, size.height*0.5-230));
+            touchVector.push_back(chouqushiyici);
+        }
+    }
+    else{
+        if (!getChildByTag(107))
+        {
+             string everyZuanshi= Utility::getWordWithFile("word.plist", "chouyici");
+             CGameButtonControl *chouquyici=CGameButtonControl::createButton(TEXTMID, everyZuanshi.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
+            addChild(chouquyici,2,107);
+            chouquyici->setPosition(ccp(size.width*0.5-200, size.height*0.5-230));
+            touchVector.push_back(chouquyici);
+        }
+        if (!getChildByTag(108))
+        {
+            CGameButtonControl *chouqushiyici=CGameButtonControl::createButton(TEXTMID, "123", "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
+            addChild(chouqushiyici,2,108);
+            chouqushiyici->setPosition(ccp(size.width*0.5+200, size.height*0.5-230));
+            updateFriendButton();
+            touchVector.push_back(chouqushiyici);
+            
+        }
+        else{
+            updateFriendButton();
+        }
+        if (!getChildByTag(52)) {
+            string everyZuanshi=Utility::getWordWithFile("word.plist", "niudanstrfriend");
+            char data[100];
+            sprintf(data, everyZuanshi.c_str(),g_niudanyouqingjiage);
+            CCLabelTTF *labelttf=CCLabelTTF::create(data, "Arial", 15);
+            labelttf->setPosition(ccp(size.width*0.5,size.height *0.5-200));
+            addChild(labelttf,2,52);
+            
+        }
+    }
+}
 
-
+void CDrawCardLayer::updateFriendButton()
+{
+    if (getChildByTag(108)) {
+        int value=m_tempGamePlayer->getFriendly();
+        if (value>10*g_niudanyouqingjiage) {
+           m_nBackValue=value=10;
+        }
+        else{
+           m_nBackValue=value=m_tempGamePlayer->getFriendly()/g_niudanyouqingjiage;
+        }
+        if (value==0) {
+            m_nBackValue=value=1;
+            ((CGameButtonControl *)getChildByTag(107))->setEnable(false);
+            ((CGameButtonControl *)getChildByTag(108))->setEnable(false);
+        }
+        char data[20];
+        sprintf(data, "抽取%d次",value);
+        ((CGameButtonControl *)getChildByTag(108))->getTextLabel()->setString(data);
+    }
+}
 
 void CDrawCardLayer::decodeGetData(cocos2d::CCObject *object, EN_NIUDANTYPE type)
 {
@@ -551,7 +738,7 @@ void CDrawCardLayer::decodeGetData(cocos2d::CCObject *object, EN_NIUDANTYPE type
     {
         pData=&m_stempScanData[1];
         callStr="CALLBACK_CDrawCardLayer_sendHttpToCashGetValue";
-        valueStr="Cash";
+        valueStr="cash";
         schFunction=schedule_selector(CDrawCardLayer::updateDiamondTimer);
     }
     else
@@ -580,6 +767,14 @@ void CDrawCardLayer::decodeGetData(cocos2d::CCObject *object, EN_NIUDANTYPE type
                 {
                     CCMessageBox("返回没有扭蛋信息 服务端错误", "服务端错误");
                 }
+                if (type==EN_NIUDANTYPE_CASH) {
+                    createLabelCashAndUpdate();
+                }
+                else if(type==EN_NIUDANTYPE_FRIEND)
+                {
+                    createLabelFriendAndUpdate();
+                }
+
             }
         }
         if(pData->m_nNextTimer>0)
@@ -701,6 +896,9 @@ void CDrawCardLayer::dealWithTag(int tag)
 {
 
     switch (tag) {
+        case 200:
+            rebackFirstLayer();
+            break;
         case 100:
             removeFromParentAndCleanup(true);
             break;
@@ -728,6 +926,24 @@ void CDrawCardLayer::dealWithTag(int tag)
                touchNumberAndType(1, EN_NIUDANTYPE_CASH, false);
             }
             break;
+        case 105:
+            sendGetCardRandom(EN_NIUDANTYPE_CASH,1,false);
+            break;
+        case 106:
+            sendGetCardRandom(EN_NIUDANTYPE_CASH,11,false);
+            break;
+        case 107:
+            if(g_niudanyouqingjiage*1 <= m_tempGamePlayer->getFriendly())
+            {
+                sendGetCardRandom(EN_NIUDANTYPE_FRIEND,1,false);
+            }
+            break;
+        case 108:
+            if(m_nBackValue!=0&&g_niudanyouqingjiage*m_nBackValue <= m_tempGamePlayer->getFriendly())
+            {
+                sendGetCardRandom(EN_NIUDANTYPE_FRIEND,m_nBackValue, false);
+            }
+            break;
         default:
             break;
     }
@@ -739,17 +955,44 @@ void CDrawCardLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 }
 CCSize CDrawCardLayer::cellSizeForTable(CCTableView *table)
 {
-    return CCSizeMake(800, 400);
+    return CCSizeMake(300, 200);
 }
 
-CCTableViewCell* CDrawCardLayer::tableCellAtIndex(CCTableView *table, unsigned int idx)
+void CDrawCardLayer::createTableView()
 {
+    if(m_vectorGetCardList.size()>0)
+    {
+        float width=2.0;
+        if (m_vectorGetCardList.size()==1) {
+            width=1.0;
+        }
+        CCTableView* tableView = CCTableView::create(this,CCSizeMake(width*300, 200));
+        tableView->setDirection(kCCScrollViewDirectionHorizontal);
+        tableView->setAnchorPoint(ccp(0.5, 0.5));
+        if (m_vectorGetCardList.size()==1) {
+            tableView->setPosition(ccp(size.width*0.5-150,size.height*0.5-100));
+        }
+        else{
+            tableView->setPosition(ccp(220,300));
+            createJiantou();
+        }
+        tableView->setDelegate(this);
+        tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
+        tableView->setTouchPriority(-125);
+        addChild(tableView,1,77777);
+    }
+}
+
+
+CCTableViewCell* CDrawCardLayer::tableCellAtIndex(CCTableView *table, unsigned int idx)
+{table->dequeueCell();
     CCTableViewCell* cell = table->cellAtIndex(idx);
     if (!cell) {
         cell = new CCTableViewCell();
         cell->autorelease();
         initCellItem(cell, idx);
     }
+    //cell->setPosition(ccp(300,0));
     return cell;
 
 }
@@ -763,6 +1006,9 @@ void CDrawCardLayer::initCellItem(CCTableViewCell*cell, unsigned int idx)
         {
             CGamesCard *gameCard=CGamesCard::Create(m_vectorGetCardList[idx]);
             cell->addChild(gameCard, 2, 1000+idx);
+//            gameCard->setAnchorPoint(CCPointZero);
+            gameCard->setPosition(ccp(100, 100));
+            
         }
     }
 }
@@ -771,6 +1017,7 @@ unsigned int CDrawCardLayer::numberOfCellsInTableView(CCTableView *table)
 {
     return m_vectorGetCardList.size();
 }
+
 void CDrawCardLayer::tableCellTouched(CCTableView* table, CCTableViewCell* cell)
 {
     int value =cell->getIdx();

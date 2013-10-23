@@ -12,11 +12,11 @@
 #include "CPtPropConfigData.h"
 #include "gamePlayer.h"
 
-CGameRechargeLayer* CGameRechargeLayer::create(CStructShopSellItem *inShopItem)
+CGameRechargeLayer* CGameRechargeLayer::create(CStructShopSellItem *inShopItem ,int priceType /*= 1*/)
 {
     CGameRechargeLayer *pRet = new CGameRechargeLayer();
     if (pRet && pRet->init(inShopItem))
-    {
+    {   pRet->setPriceType(priceType);
         pRet->autorelease();
         return pRet;
     }
@@ -34,6 +34,7 @@ CGameRechargeLayer::CGameRechargeLayer()
     m_nMaxCount = 0 ;
     m_nCurrentCount = 1;
     m_nCashPerItem = 0;
+    m_nPropId = 0;
     
     m_pNumberLabel = NULL;
     m_cMaps = NULL;
@@ -179,6 +180,7 @@ void CGameRechargeLayer::initCGameRechargeLayer(CStructShopSellItem *item)
     m_nCashPerItem = item->getValue();
     CPtProp* propItem = item->getShopSellItemPropData();
     std::string str =  propItem->getIconName();
+    m_nPropId = propItem->getPropId();
   
     m_nTouchTag = -1;
     m_cMaps = LayoutLayer::create();
@@ -224,7 +226,14 @@ void CGameRechargeLayer::initCGameRechargeLayer(CStructShopSellItem *item)
     
     // cash tip:
     memset(buff, 0, sizeof(buff));
-    sprintf(buff, "你所消耗的现金币: %d", m_nCurrentCount*m_nCashPerItem);
+    if (m_nPriceType == 1)
+    {
+        sprintf(buff, "你所消耗的现金币: %d", m_nCurrentCount*m_nCashPerItem);
+    }else
+    {
+        sprintf(buff, "你所消耗的金币: %d", m_nCurrentCount*m_nCashPerItem);
+    }
+   
     m_pCash = CCLabelTTF::create(buff, "Arial", 15);
     m_pCash->setPosition(ccp(-30, -30));
     m_pCash ->setColor(ccc3(126, 60, 30));
@@ -291,6 +300,12 @@ void CGameRechargeLayer::handlerTouch()
 {
     if (m_nTouchTag == 2)
     {
+        if (m_pTarget && m_pConfirmSelector)
+        {
+            (m_pTarget->*m_pConfirmSelector)(this);
+            removeFromParentAndCleanup(true);
+            return;
+        }
         // confirm
         int* integer = new int(m_nCurrentCount);
         CCNotificationCenter::sharedNotificationCenter()->postNotification("CGameRechargeLayercallback_layer", (CCObject*)integer);
@@ -370,7 +385,7 @@ int CGameRechargeLayer::getMaxCount(CStructShopSellItem* inItem)
         maxGroupsCanInBackPack /= countInGroup;
         count = maxGroup >= maxGroupsCanInBackPack ? maxGroupsCanInBackPack : maxGroup;
         CCLog("the count %d", maxGroupsCanInBackPack);
-        int cash = player->getPlayerCash();
+        int cash = m_nPriceType == 1 ? player->getPlayerCash() : player->getCoin();
         maxGroupsCanInBackPack = cash/cashPerGroup;
         count = count >= maxGroupsCanInBackPack ? maxGroupsCanInBackPack : count;
     }

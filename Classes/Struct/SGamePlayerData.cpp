@@ -41,7 +41,7 @@ CGamePlayerData::CGamePlayerData()
     m_irvc=0;
     m_iGp=0;
     m_nOpenGridCount = 9;
-    m_sLevelPlayer=NULL;
+    m_nFriendly=0;
    
 }
 void CGamePlayerData::clearPlayerData()
@@ -69,6 +69,11 @@ int CGamePlayerData::getApMax()
 int CGamePlayerData::getExpMax()
 {
     return m_sLevelPlayer->m_iExp_max;
+}
+
+int CGamePlayerData::getCardBagMax()
+{
+    return m_sLevelPlayer->m_iCard_max;
 }
 
 void CGamePlayerData::settestInit(int level)
@@ -136,7 +141,7 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_icash=GameTools::intForKey("cash", dict);
     m_iexp=GameTools::intForKey("exp", dict);
     m_ilevel=GameTools::intForKey("level", dict);
-    
+    m_nFriendly=GameTools::intForKey("friendly", dict);    
     this->m_sLevelPlayer=m_gvPlayerLevel[m_ilevel];
     
     CCAssert(this->m_sLevelPlayer!=NULL, "FUCH FUWUDUAN 传递一个配置表里面没有的等级");

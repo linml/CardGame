@@ -84,7 +84,7 @@ public:
     STATICEFFICEFUNCTION(effect_11);
     
 public:
-  static  void appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex,int effectPlistId=0);
+    static  void appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex,int effectPlistId=0);
     static  void appendBuffIcon(CFightCard *fightCard,CFightCard *monster,EN_ATKFIGHT_INDEX enAtkFightIndex);
     static  void addSkillBuffer(CFightCard *pMonster,CCardBufferStatusRefactor *buffer);
     static  void dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex );//处理自身的buffer

@@ -20,6 +20,7 @@
 #include "gameMiddle.h"
 #include "CBackpackContainerLayer.h"
 #include "CPanelGamePlayerInfoLayer.h"
+#include "CSellerDialog.h"
 
 
 int g_index = -1;
@@ -665,7 +666,7 @@ bool CExploration::initExploration()
         updateBtn();
         
         createOrUpdatePlayerData();
-        addTaskAndSectionReward();
+        
         getBiforest();
         bRet = true;
     } while (0);
@@ -1034,9 +1035,12 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
         layer->setHanlder(this, callfuncO_selector(CExploration::onCanfirmCallback));
         setInsiable();
         addChild(layer);
+    }else if(inType == 4)
+    {
+        handlerFinishSellerEvent();
+        return;
     }
    
-    addTaskAndSectionReward();
     getBiforest();
 }
 
@@ -1295,6 +1299,21 @@ void CExploration::hanlderEventBox(int inEventBoxId)
 void CExploration::handlerSellerEvent(CCDictionary * inSellerDict)
 {
     handlerEmptyEvent();
+    m_sSellerData = getShopItems(inSellerDict);
+}
+
+void CExploration::handlerFinishSellerEvent()
+{
+    if (m_sSellerData.sellerId == 0)
+    {
+        CCMessageBox("没有该商人号", "商人事件错误");
+        return;
+    }else
+    {
+        CSellerDialog * layer = CSellerDialog::create(m_sSellerData);
+        layer->setCloseHandler(this, callfuncO_selector(CExploration::onCloseSellerEventCallback));
+        addChild(layer,200000);
+    }
 }
 
 /*
@@ -1320,11 +1339,49 @@ void CExploration::createEventBoxDialogByType(CEventBoxData *inEventBoxData, int
 }
 
 // seller event:
-CCArray * CExploration::getShopItems(CCDictionary *inSellDict)
+SELLER_DATA CExploration::getShopItems(CCDictionary *inSellDict)
 {
-    CCArray * array = CCArray::create();
+    int sellerId = 0;
+    SELLER_DATA sellerData;
+    if (inSellDict)
+    {
+        CCArray *allKeys = inSellDict->allKeys();
+        CCAssert(allKeys, "seller event detail null");
+        CCString* key = (CCString*) allKeys->objectAtIndex(0);
+        if (key)
+        {
+            CCDictionary *element =(CCDictionary*) inSellDict->objectForKey(key->getCString());
+            allKeys = element->allKeys();
+            CCAssert(allKeys, "seller  detail null");
+            key = (CCString*)allKeys->objectAtIndex(0);
+            if (key)
+            {
+                sellerId = key->intValue();
+                sellerData.sellerId = sellerId;
+                element = (CCDictionary*) element->objectForKey(key->getCString());
+                sellerData.priceType = GameTools::intForKey("type", element);
+                
+                element = (CCDictionary*)element->objectForKey("items"); // key==items
+                CCDictElement *eleValue = NULL;
+                CCDictionary *tmpDict = NULL;
+                int i = 0;
+                CCDICT_FOREACH(element, eleValue)
+                {
+                    tmpDict = (CCDictionary*) eleValue->getObject();
+                    SELLER_SHOP shopItem;
+                    shopItem.propId = GameTools::intForKey("item_id", tmpDict);
+                    shopItem.price = GameTools::intForKey("price", tmpDict);
+                    shopItem.limitNum = GameTools::intForKey("limit_num", tmpDict);
+                    shopItem.teamNum = GameTools::intForKey("team_num", tmpDict);
+                    sellerData.sellerShops[i++] = shopItem;
+                }
+            }
     
-    return array;
+            
+        }
+    }
+   return sellerData;
+  
 }
 
 
@@ -1363,7 +1420,6 @@ void CExploration:: onCanfirmCallback(CCObject *pObject)
     CCNode * node = (CCNode*) pObject;
     node->removeFromParentAndCleanup(true);
     setVisiable();
-    addTaskAndSectionReward();
     getBiforest();
 }
 
@@ -1386,6 +1442,13 @@ void CExploration::onOpenCallBack(CCObject* pObject)
     node->removeFromParentAndCleanup(true);
     setVisiable();
     onFishEventRequest(m_nEventBoxSelectType);
+    
+}
+
+void CExploration::onCloseSellerEventCallback(CCObject *pObject)
+{
+    
+    getBiforest();
     
 }
 
@@ -1417,8 +1480,12 @@ void CExploration::getBiforest()
             }
            
         }
+        addTaskAndSectionReward();
         goSection();
         return;
+    }else
+    {
+        addTaskAndSectionReward();
     }
     
 }
@@ -1485,6 +1552,20 @@ void CExploration::taskCompleteCallback(CCObject* pObject)
             if(GameTools::intForKey("info", result)==1)
             {
                 addTask();
+                // add task reward:
+                CCDictionary *rewardDict =(CCDictionary*) result->objectForKey("reward");
+                rewardDict = rewardDict == NULL ? NULL : ((CCDictionary*)rewardDict->objectForKey("add"));
+                rewardDict = rewardDict == NULL ? NULL : ((CCDictionary*)rewardDict->objectForKey("task"));
+                if (rewardDict)
+                {
+                    CReward *taskReward = CReward::create(rewardDict);
+                    CReward *sectionReward = getTaskAndSectionReward();
+                    CReward *taskSectionReward = CReward::create(taskReward, sectionReward);
+                    setTaskAndSectionReward(taskSectionReward);
+                }
+              
+                addTaskAndSectionReward();
+                
                 return;
                 
             }else

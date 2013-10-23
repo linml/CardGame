@@ -70,11 +70,14 @@ private:
     void createGetCardLayer(EN_NIUDANTYPE  tempEntype);
     bool checkIsCanDoDrawCard(EN_NIUDANTYPE entype);
     void sendGetCardRandom(EN_NIUDANTYPE entype,int number,bool isFree);
+    void rebackFirstLayer();
 
     bool getScanData(const char *value,CCDictionary *dict,ScanDrawValue &rebackValue);
     bool touchNumberAndType(int number, EN_NIUDANTYPE typeTouch,bool isFree);
     void moveOutEyeSize();
     void createTableView();
+    void createNiudanButton(EN_NIUDANTYPE entype);
+    void createTexiao();
 protected:
     CCSize cellSizeForTable(CCTableView *table) ;
     CCTableViewCell* tableCellAtIndex(CCTableView *table, unsigned int idx) ;
@@ -85,6 +88,8 @@ protected:
     void  initCellItem(CCTableViewCell*cell, unsigned int idx);
 
 private:
+    void createJiantou();
+    void removeJiantouAndClearVector();
     void createBackGround();
     void createBackYingLing();
     void createLoadingLayer();
@@ -98,12 +103,9 @@ private:
     void createLabelCashAndUpdate();
     void hideLable();
     void showCardData(CCDictionary *dict);
-    
     void clearSelectFreeItemLayer();
     void createGoldAndCash();
-    
-    
-
+    void updateFriendButton();
 public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
@@ -122,6 +124,8 @@ private:
     CCSize size;
     EN_NIUDANTYPE m_enSaveSendValue;
     std::vector<CFightCard*>m_vectorGetCardList;
+    int m_nBackValue;
+    EN_NIUDANLAYER m_enLayerStatus;
 };
 
 #endif /* defined(___1_cube__CDrawCardLayer__) */

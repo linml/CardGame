@@ -22,6 +22,7 @@
 #include "gameMiddle.h"
 #include "Pt_AES.h"
 #include "CPanelGameLog.h"
+#include "CReward.h"
 
 // implement of the CLoginScene:
 
@@ -143,6 +144,15 @@ void CLoginScene::dealWithCompleteTask(CCObject *object)
         //获得info的答案。
         if (resualt)
         {
+            CCDictionary *rewardDict =(CCDictionary*) resualt->objectForKey("reward");
+            rewardDict = rewardDict == NULL ? NULL : ((CCDictionary*)rewardDict->objectForKey("add"));
+            rewardDict = rewardDict == NULL ? NULL : ((CCDictionary*)rewardDict->objectForKey("task"));
+            if (rewardDict)
+            {
+                CReward *taskReward = CReward::create(rewardDict);
+                taskReward->excuteReward(ADD);
+            }
+
             if(GameTools::intForKey("info", resualt)==1)
             {
                 if(SinglePlayer::instance()->getCurrentTaskId()==SingleTaskConfig::instance()->getMaxTaskId())

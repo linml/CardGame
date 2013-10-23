@@ -78,7 +78,8 @@ bool CEventBoxLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         if (CPtTool::isInNode(m_pBtn[i], pTouch))
         {
             m_nTouchTag = i;
-            m_pBtn[i]->setTextureRect(m_cTouchSpriteFrameRect[1]);
+           // m_pBtn[i]->setTextureRect(m_cTouchSpriteFrameRect[1]);
+            m_pBtn[i]->setDisplayFrame(m_pState[1]);
             break;
         }
     }
@@ -96,7 +97,8 @@ void CEventBoxLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         {
             if (m_nTouchTag == i)
             {
-                m_pBtn[m_nTouchTag]->setTextureRect(m_cTouchSpriteFrameRect[0]);
+              //  m_pBtn[m_nTouchTag]->setTextureRect(m_cTouchSpriteFrameRect[0]);
+                m_pBtn[m_nTouchTag]->setDisplayFrame(m_pState[0]);
                 handlerTouch();
                 return;
             }
@@ -104,7 +106,8 @@ void CEventBoxLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     }
     if (m_nTouchTag != -1)
     {
-        m_pBtn[m_nTouchTag]->setTextureRect(m_cTouchSpriteFrameRect[0]);
+        //m_pBtn[m_nTouchTag]->setTextureRect(m_cTouchSpriteFrameRect[0]);
+         m_pBtn[m_nTouchTag]->setDisplayFrame(m_pState[0]);
     }
     
     // reset:
@@ -191,7 +194,8 @@ void CEventBoxLayer::initEventBoxLayer(CEventBoxData *inEventBoxData)
     node->addChild(label);
     CCSpriteFrameCache* cach = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCSpriteFrame * frame  = cach->spriteFrameByName("Use_Normal.png");
-    m_cTouchSpriteFrameRect[0] = frame->getRect();
+//    m_cTouchSpriteFrameRect[0] = frame->getRect();
+    m_pState[0]=frame;
     node->setDisplayFrame(frame);
     m_pBtn[0] = node;
     
@@ -206,7 +210,8 @@ void CEventBoxLayer::initEventBoxLayer(CEventBoxData *inEventBoxData)
     node->addChild(label);
     node->setDisplayFrame(frame);
     frame  = cach->spriteFrameByName("Use_Pressed.png");
-    m_cTouchSpriteFrameRect[1] = frame->getRect();
+//    m_cTouchSpriteFrameRect[1] = frame->getRect();
+    m_pState[1] = frame;
     m_pBtn[1] = node;
     
     array[1]= 5, array[2] = 8;

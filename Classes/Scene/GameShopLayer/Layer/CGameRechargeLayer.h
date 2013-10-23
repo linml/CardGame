@@ -24,7 +24,7 @@ class CGameRechargeLayer : public CCLayer
 {
 public:
     
-    static CGameRechargeLayer* create(CStructShopSellItem *inShopItem);
+    static CGameRechargeLayer* create(CStructShopSellItem *inShopItem, int priceType = 1);
 public:
     
     CGameRechargeLayer();
@@ -37,6 +37,9 @@ public:
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    
+    int getPropId(){return m_nPropId;};
+    int getBuyNum(){return m_nCurrentCount;};
     
 protected:
     void initCGameRechargeLayer(CStructShopSellItem *item);
@@ -61,8 +64,8 @@ protected:
     int m_nCurrentCount;
     int m_nPropId;
     int m_nType;
-    
     int m_nCashPerItem;
+
     bool m_bLongPress;
     bool m_bCanDrag;
     
@@ -75,6 +78,9 @@ protected:
     SEL_CallFuncO m_pConfirmSelector;
     SEL_CallFuncO m_pCancelSelector;
     CCObject *m_pTarget;
+    
+    
+    CC_SYNTHESIZE(int , m_nPriceType, PriceType);
 };
 
 

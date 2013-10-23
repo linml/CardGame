@@ -28,7 +28,6 @@ protected:
     void initCGameRechargeTip();
     
     void onRechargeCallBack(CCObject *pObject);
-    void onCancelCallBack(CCObject *pObject);
     
 };
 

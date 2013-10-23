@@ -94,6 +94,7 @@ public: //读取卡包的信息
     void subCardByIndex(const int inIdex);
     void subCardByIterator(vector<CFightCard*>::iterator inIterator);
     CFightCard *findFightCardByCard_User_ID(int  carduserid);
+    bool cardBagIsMoreThanConfig();
 public:
     //系统初始化信息
     void onGameBegin();
@@ -185,11 +186,13 @@ public:
     int getPlayerLevel();  //等级
     int getPlayerGp();     //神力
     int getPlayerAp();  //体力
+    int getFriendly(); //友情点
     bool getPlayrHadRecharged();//是否首充
     
     int getGpMax();
     int getApMax();
     int getExpMax();
+    
     
     int setPlayerGp(int iValue); //神力
     int setPlayerAp(int iValue);
@@ -239,6 +242,7 @@ public:
     void postAddTask(int taskNextId, CCObject *object, SEL_CallFuncO selector,const char *strCallback); //当本地
     bool isHaveSendComplate();
     int getShopItemCount();
+    int getShopType(); // priceType
     string getShopName();
     CStructShopSellItem *getShopItemById(int itemID);
     void  setShopItemByItemId(int itemID,int nNowValue);

@@ -729,29 +729,29 @@ void CPtBattleArray::updateCardSuitKind()
 {
     //
     
-    m_nSuitAtk = 0;
-    m_nSuitDef = 0;
-    
-    int array[5]={0};
-    int len = 0;
-    getSuitArray(array, len);
-    int outSuit, outSequence;
-    for (int i = 0; i < 5; i++)
-    {
-        if (i >= len && m_pSuitLogo[i])
-        {
-            m_aSuitArray[i] = -1;
-            m_aSequenceArray[i] = -1;
-            m_pSuitLogo[i]->removeAllChildrenWithCleanup(true);
-            return;
-        }
-        if(CPtTool::getSuit(array[i], outSuit, outSequence))
-        {
-            m_aSuitArray[i] = outSuit;
-            m_aSequenceArray[i] = outSequence;
-           createSuitLogo(outSuit, outSequence, i);
-        }
-    }
+//    m_nSuitAtk = 0;
+//    m_nSuitDef = 0;
+//    
+//    int array[5]={0};
+//    int len = 0;
+//    getSuitArray(array, len);
+//    int outSuit, outSequence;
+//    for (int i = 0; i < 5; i++)
+//    {
+//        if (i >= len && m_pSuitLogo[i])
+//        {
+//            m_aSuitArray[i] = -1;
+//            m_aSequenceArray[i] = -1;
+//            m_pSuitLogo[i]->removeAllChildrenWithCleanup(true);
+//            return;
+//        }
+//        if(CPtTool::getSuit(array[i], outSuit, outSequence))
+//        {
+//            m_aSuitArray[i] = outSuit;
+//            m_aSequenceArray[i] = outSequence;
+//           createSuitLogo(outSuit, outSequence, i);
+//        }
+//    }
   
 //    for (int i = 0; i < CARDCOUNT-1; i++)
 //    {

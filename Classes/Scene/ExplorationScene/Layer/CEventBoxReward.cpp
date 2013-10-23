@@ -34,6 +34,7 @@ CEventBoxRewordLayer::CEventBoxRewordLayer()
     m_cMaps = NULL;
     m_pTarget = NULL;
     m_pConfirmSelector = NULL;
+    m_pState[0] = m_pState[1] = NULL;
 }
 
 CEventBoxRewordLayer::~CEventBoxRewordLayer()
@@ -68,8 +69,8 @@ bool CEventBoxRewordLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     if (CPtTool::isInNode(m_pBtn, pTouch))
     {
         m_nTouchTag = 0;
-        m_pBtn->setTextureRect(m_cTouchSpriteFrameRect[1]);
-
+      //  m_pBtn->setTextureRect(m_cTouchSpriteFrameRect[1]);
+        m_pBtn->setDisplayFrame(m_pState[1]);
     }
        
 
@@ -83,7 +84,8 @@ void CEventBoxRewordLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     if (m_nTouchTag == 0 )
     {
-        m_pBtn->setTextureRect(m_cTouchSpriteFrameRect[0]);
+      //  m_pBtn->setTextureRect(m_cTouchSpriteFrameRect[0]);
+        m_pBtn->setDisplayFrame(m_pState[0]);
     }
 
     if (CPtTool::isInNode(m_pBtn, pTouch))
@@ -225,8 +227,8 @@ void CEventBoxRewordLayer:: createReWordDialog(CEventBoxData *inEventBoxData)
     
     CCSpriteFrameCache* cach = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCSpriteFrame * frame  = cach->spriteFrameByName("Use_Normal.png");
-    m_cTouchSpriteFrameRect[0] = frame->getRect();
-    
+//    m_cTouchSpriteFrameRect[0] = frame->getRect();
+    m_pState[0] = frame;
     
     const char * name="确定";
     CCSprite *node = CCSprite::createWithSpriteFrame(frame);
@@ -241,7 +243,8 @@ void CEventBoxRewordLayer:: createReWordDialog(CEventBoxData *inEventBoxData)
     m_pBtn = node;
     
     frame  = cach->spriteFrameByName("Use_Pressed.png");
-    m_cTouchSpriteFrameRect[1] = frame->getRect();
+//    m_cTouchSpriteFrameRect[1] = frame->getRect();
+    m_pState[1] = frame;
 
     addChild(node);
 }
@@ -304,7 +307,8 @@ void CEventBoxRewordLayer::createConfirmDialog()
     node->addChild(label);
     CCSpriteFrameCache* cach = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCSpriteFrame * frame  = cach->spriteFrameByName("Use_Normal.png");
-    m_cTouchSpriteFrameRect[0] = frame->getRect();
+  //  m_cTouchSpriteFrameRect[0] = frame->getRect();
+    m_pState[0] = frame;
     node->setDisplayFrame(frame);
     m_pBtn = node;
     
@@ -315,7 +319,8 @@ void CEventBoxRewordLayer::createConfirmDialog()
     node->removeFromParentAndCleanup(true);
     
     frame  = cach->spriteFrameByName("Use_Pressed.png");
-    m_cTouchSpriteFrameRect[1] = frame->getRect();
+//    m_cTouchSpriteFrameRect[1] = frame->getRect();
+    m_pState[1] = frame;
     
     array[1]= 5, array[2] = 8;
     m_cMaps->getElementByTags(array, 2)->removeAllChildrenWithCleanup(true);
@@ -374,8 +379,8 @@ void CEventBoxRewordLayer::createEmptyDialog()
     
     CCSpriteFrameCache* cach = CCSpriteFrameCache::sharedSpriteFrameCache();
     CCSpriteFrame * frame  = cach->spriteFrameByName("Use_Normal.png");
-    m_cTouchSpriteFrameRect[0] = frame->getRect();
-    
+  //  m_cTouchSpriteFrameRect[0] = frame->getRect();
+    m_pState[0] = frame;
     point = bottom->getPosition();
     const char * name="确定";
     CCSprite *node = CCSprite::createWithSpriteFrame(frame);
@@ -390,7 +395,8 @@ void CEventBoxRewordLayer::createEmptyDialog()
     m_pBtn = node;
     
     frame  = cach->spriteFrameByName("Use_Pressed.png");
-    m_cTouchSpriteFrameRect[1] = frame->getRect();
+ //   m_cTouchSpriteFrameRect[1] = frame->getRect();
+    m_pState[1] = frame;
     
     addChild(node);
 

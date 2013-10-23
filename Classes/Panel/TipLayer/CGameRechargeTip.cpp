@@ -36,7 +36,7 @@ bool CGameRechargeTip::init()
 
 void CGameRechargeTip::initCGameRechargeTip()
 {
-    setDialog("没钱了！快来坑爹去吧",this,callfuncO_selector(CGameRechargeTip::onRechargeCallBack), callfuncO_selector(CGameRechargeTip::onCancelCallBack),NULL, NULL);
+    setDialog("没钱了！快来坑爹去吧",this,NULL,callfuncO_selector(CGameRechargeTip::onRechargeCallBack), NULL,NULL, NULL);
     setButtonText("充值", "取消");
 }
 
@@ -46,7 +46,4 @@ void CGameRechargeTip::onRechargeCallBack(CCObject *pObject)
     CCLog("go to recharge");
     CPtRecharge * layer = CPtRecharge::create();
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 10000000);
-}
-void CGameRechargeTip::onCancelCallBack(CCObject *pObject)
-{
 }
