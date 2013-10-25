@@ -16,6 +16,7 @@ CGameButtonControl::CGameButtonControl():CButtonControl()
 {
     m_cFontNormalColor=FONTNORMALCOLOR;
     m_bIsCanTouch=true;
+    m_bIsEnabled=true;
 }
 
 CGameButtonControl::~CGameButtonControl()
@@ -157,7 +158,6 @@ void CGameButtonControl::setDisable()
         {
             setDisplayFrame(m_pDisableFrame);
         }
-
     }
 }
 

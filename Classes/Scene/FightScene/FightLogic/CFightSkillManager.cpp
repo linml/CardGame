@@ -459,13 +459,15 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
                 CCLog("pSkill->parameter_3================>%d",pSkill->parameter_3);
                 CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
                 CCLog("apppppend%d",totoalanimation++);
-                //显示回合？
+                //显示调用特效表。 如果发现有酒后或的特效
                 string effectPliststr=SinglePlayer::instance()->getBufferPlistByEffectId(pImpact->m_ieffect_id);
                 if(effectPliststr.empty())
                 {
+                    CCLog("effectid==%d,%d",m_animationVector.size(),pImpact->m_ieffect_id);
                     m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,effectPliststr));
                 }
-                else{
+                else
+                {
                     m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,pImpact->m_ieffect_id,effectPliststr));
                 }
                 CCLog("pSkill->parameter_4================>%s",pImpact->m_sEffectFile.c_str());
