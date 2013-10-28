@@ -162,6 +162,8 @@ PropItem item;
 #include "CGameRechargeLayer.h"
 #include "CSellerDialog.h"
 #include "gameStruct.h"
+#include "CAltarDialog.h"
+#include "CGameBufferTip.h"
 void testInit(SELLER_DATA &rSellData)
 {
     rSellData.sellerId = 800103;
@@ -188,25 +190,27 @@ void testInit(SELLER_DATA &rSellData)
 void test(CCNode *pSender)
 {
   
-   // CBattleArrayLayer *layer = CBattleArrayLayer::create();
-   // CCardSettingScene *layer = CCardSettingScene::create();
-    //CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
-   // pSender->addChild(layer);
-//   CPtDialog * layer = CPtDialog::create();
-  //  CGameRechargeTip * layer = CGameRechargeTip::create();
-  //  CGameArrageBackpackTip *layer = CGameArrageBackpackTip::create();
+    // CBattleArrayLayer *layer = CBattleArrayLayer::create();
+    // CCardSettingScene *layer = CCardSettingScene::create();
+    // CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
+    // pSender->addChild(layer);
+    // CPtDialog * layer = CPtDialog::create();
+    // CGameRechargeTip * layer = CGameRechargeTip::create();
+    // CGameArrageBackpackTip *layer = CGameArrageBackpackTip::create();
     
-//    item.propId = 100001;
-//    item.propCount = 20;
-//    CDeletePropLayer * layer = CDeletePropLayer::create(&item);
-//    CBiforestLayer *layer = CBiforestLayer::create();
-   // CEventBoxLayer *layer = CEventBoxLayer::create(1);
- //   CEventBoxRewordLayer *layer = CEventBoxRewordLayer::create(NULL, 3);
-   // CGameRechargeLayer * layer = CGameRechargeLayer::create(NULL);
-  //  CSceneGameShopLayer * layer = CSceneGameShopLayer::create();
-    SELLER_DATA inSellData;
-    testInit(inSellData);
-    CSellerDialog * layer = CSellerDialog::create(inSellData);
+    // item.propId = 100001;
+    // item.propCount = 20;
+    // CDeletePropLayer * layer = CDeletePropLayer::create(&item);
+    // CBiforestLayer *layer = CBiforestLayer::create();
+    // CEventBoxLayer *layer = CEventBoxLayer::create(1);
+    // CEventBoxRewordLayer *layer = CEventBoxRewordLayer::create(NULL, 3);
+    // CGameRechargeLayer * layer = CGameRechargeLayer::create(NULL);
+    // CSceneGameShopLayer * layer = CSceneGameShopLayer::create();
+    // SELLER_DATA inSellData;
+    // testInit(inSellData);
+    // CSellerDialog * layer = CSellerDialog::create(inSellData);
+    // CAltarDialogLayer *layer = CAltarDialogLayer::create(0);
+    CGameBufferTipLayer *layer = CGameBufferTipLayer::create(0);
     pSender->addChild(layer);
 
 }

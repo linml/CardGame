@@ -26,6 +26,7 @@ bool CPanelLoadingLayer::init()
     //labelttf->setPosition(ccp(size.width *0.5, size.height *0.5));
     setTouchPriority(-999);
     setTouchEnabled(true);
+    setTouchMode(kCCTouchesOneByOne);
     return true;
 }
 
@@ -33,9 +34,11 @@ bool CPanelLoadingLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     return true;
 }
-void CPanelLoadingLayer::registerWithTouchDispatcher(void)
+void CPanelLoadingLayer::onEnter()
 {
+    CCLayer::onEnter();
     CCDirector::sharedDirector()->getTouchDispatcher()->addStandardDelegate(this, getTouchPriority());
+
 }
 void CPanelLoadingLayer::onExit()
 {

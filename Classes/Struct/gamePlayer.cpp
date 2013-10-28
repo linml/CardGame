@@ -1133,6 +1133,10 @@ int CGamePlayer::getPropCountFromBag(int inPropId)
 
 int CGamePlayer::getPropMaxCountAddToBag(int inPropId)
 {
+    if (inPropId >= EXPID && inPropId < NOPROPIDEND)
+    {
+        return  0;
+    }
     CPtProp* prop = NULL;
     int count = 0;
     int useGridCount = getUseGridCount();
@@ -1221,7 +1225,7 @@ int CGamePlayer::isCanAddToBackPack(map<int, int> &tmpProps, map<int, int>& inAd
         
         key = i->first;
         // filter exp and coin:
-        if (key == EXPID || key == COINSID)
+        if(i->first >= EXPID && i->first < NOPROPIDEND) //(key == EXPID || key == COINSID)
         {
             continue;
         }
@@ -1285,7 +1289,7 @@ void CGamePlayer::mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps)
     CPtPropConfigData *propData =   SinglePropConfigData::instance();
     for (map<int, int>::iterator i = inAddProps.begin(); i != inAddProps.end(); i++)
     {
-        if (i->first == EXPID || i->first == COINSID)
+        if(i->first >= EXPID && i->first < NOPROPIDEND) //(i->first == EXPID || i->first == COINSID)
         {
             continue;
         }
@@ -1341,6 +1345,11 @@ int CGamePlayer::getUseGridCount()
     for (map<int, int>::iterator i = allProps.begin(); i != allProps.end(); i++)
     {
         keyId = i->first;
+        if (keyId >= EXPID && keyId < NOPROPIDEND)
+        {
+            continue;
+        }
+        
         itemCount = i->second;
         tmp =  m_rAllProps.at(keyId);
         CCAssert(tmp!=NULL, "key is null!");
@@ -1391,6 +1400,10 @@ void CGamePlayer::receiveEmail(map<int, int> inProps, int inAddPlayerExp, int in
 
 void CGamePlayer::addProp(int inPropId, int inAddNum)
 {
+    if (inPropId >= EXPID && inPropId < NOPROPIDEND)
+    {
+        return;
+    }
     map<int, int>::iterator it =  m_vProps.find(inPropId);
     if (it != m_vProps.end())
     {

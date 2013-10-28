@@ -11,15 +11,18 @@
 
 #include "cocos2d.h"
 #include "CSingleton.h"
+#include <string>
 using namespace cocos2d;
 
 #define EXPID 900000
 #define COINSID 900001
+#define NOPROPIDEND 900100
 
 class CPtProp : public CCObject
 {
 public:
 
+    std::string getTips();
     CC_SYNTHESIZE(int , m_nPropId,PropId);
     CC_SYNTHESIZE(std::string, m_strPropName, PropName);
     CC_SYNTHESIZE(int, m_nPropType, PropType);
@@ -32,7 +35,9 @@ public:
     CC_SYNTHESIZE(std::string, m_strIconName, IconName);
     CC_SYNTHESIZE(int, m_nLimitNum, LimitNum);
     CC_SYNTHESIZE(int, m_nIsOnly, IsOnlyNum);
-    CC_SYNTHESIZE(std::string, m_strTips, Tips);   //描述
+    CC_SYNTHESIZE(std::string, m_stTipKey, TipKey);
+    
+    //描述
     //没有一个仓库存在多少个
     //商店里面对应的金币或者cash的价格。 
 };
@@ -53,6 +58,8 @@ public:
     
     map<int, CPtProp*> &getProps(){return m_pAllProps;};
     
+    bool isCanGoBackPackById(int inPropId){return (inPropId >= EXPID && inPropId < NOPROPIDEND);};
+    
     CC_SYNTHESIZE_READONLY(std::string, m_strPropName, PropName);
     CC_SYNTHESIZE_READONLY(int, m_nPropType, PropType);
     CC_SYNTHESIZE_READONLY(int, m_nUnLockLevel, UnLockLevel);
@@ -64,13 +71,13 @@ public:
     CC_SYNTHESIZE_READONLY(std::string, m_strIconName, IconName);
     CC_SYNTHESIZE_READONLY(int, m_nLimitNum, LimitNum);
     CC_SYNTHESIZE_READONLY(int, m_nIsOnly, IsOnlyNum);
-    CC_SYNTHESIZE_READONLY(std::string, m_strTips, Tips);
+    CC_SYNTHESIZE_READONLY(std::string, m_sTipKey, TipKey);
     
 protected:
     void loadPropToMap(CCDictionary *inConfigData);
 protected:
     int m_nPropId;
-    map<int, CPtProp*> m_pAllProps;
+    map<int, CPtProp*> m_pAllProps; // 所有道具出了经验和金币以外
     
     std::string m_sExpIcon;
     std::string m_sCoinIcon;

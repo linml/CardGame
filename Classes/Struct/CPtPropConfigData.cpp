@@ -8,6 +8,13 @@
 
 #include "CPtPropConfigData.h"
 #include "gameConfig.h"
+#include "Utility.h"
+
+std::string CPtProp::getTips()
+{
+  return  Utility::getWordWithFile("dictionary.plist", getTipKey().c_str());
+}
+
 
 CPtPropConfigData::CPtPropConfigData()
 {
@@ -63,7 +70,7 @@ bool CPtPropConfigData::getPropDataById(const int &inPropId)
         m_strIconName = prop->getIconName(); 
         m_nLimitNum = prop->getLimitNum();
         m_nIsOnly = prop->getIsOnlyNum(); 
-        m_strTips = prop->getTips(); 
+        m_sTipKey = prop->getTipKey();
         
         m_nPropId = inPropId;
         return true;
@@ -145,7 +152,7 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
             prop->setIconName(GameTools::valueForKey("icon", tmpValue));
             prop->setLimitNum(GameTools::intForKey("limit_num", tmpValue));
             prop->setIsOnlyNum(GameTools::intForKey("is_only", tmpValue));
-            prop->setTips(GameTools::valueForKey("tips", tmpValue));
+            prop->setTipKey(GameTools::valueForKey("tips", tmpValue));
             m_pAllProps.insert(map<int, CPtProp*>::value_type (keyId, prop));
         }
     }

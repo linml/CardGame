@@ -156,6 +156,11 @@ int CReward::getExp()
 {
     return m_nExp;
 }
+int CReward::getFriendly()
+{
+    return m_nFriendly;
+}
+
 int CReward::getCardCount()
 {
     return m_pCards == NULL ? 0 : m_pCards->count(); 
@@ -182,6 +187,7 @@ void CReward::initData()
     m_nEnergy = 0;
     m_nExp = 0;
     m_nCash = 0;
+    m_nFriendly = 0;
     m_pCards = NULL;
     m_pProps = NULL;
     m_bExecute = false;
@@ -236,6 +242,7 @@ void CReward::parseDict(cocos2d::CCDictionary *inReward)
         m_nEnergy = GameTools::intForKey("ap", inReward);
         m_nExp = GameTools::intForKey("exp", inReward);
         m_nCash = GameTools::intForKey("cash", inReward);
+        m_nFriendly = GameTools::intForKey("friendly", inReward);
         
         m_pCards = (CCDictionary*)inReward->objectForKey("card");
         m_pProps = (CCDictionary*)inReward->objectForKey("item");
@@ -337,8 +344,9 @@ void CReward::printContent()
 
 void CReward::getRewardContent(char * outString, const int leng)
 {
-    memset(outString, 0, sizeof(char)*leng);
-    sprintf(outString,"Coin: %d --- HP: %d --- Energy: %d --- EXP: %d, card count: %d, prop count: %d", m_nCoin, m_nHp, m_nEnergy, m_nExp
+    memset(outString, 0, leng);
+
+    snprintf(outString,leng,"Coin: %d --- HP: %d --- Energy: %d --- EXP: %d, card count: %d, prop count: %d", m_nCoin, m_nHp, m_nEnergy, m_nExp
             
             ,m_pCards == NULL ? 0 : m_pCards->count(), m_pProps == NULL ? 0 : m_pProps->count());
 }

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
+            timestampString = "404651836.661164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "942"
-            endingLineNumber = "942"
+            startingLineNumber = "944"
+            endingLineNumber = "944"
             landmarkName = "CDrawCardLayer::dealWithTag(int tag)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
+            timestampString = "404651836.661164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "861"
-            endingLineNumber = "861"
+            startingLineNumber = "863"
+            endingLineNumber = "863"
             landmarkName = "CDrawCardLayer::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)"
             landmarkType = "5">
             <Locations>
@@ -86,11 +86,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
+            timestampString = "404651836.661164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "367"
-            endingLineNumber = "367"
+            startingLineNumber = "369"
+            endingLineNumber = "369"
             landmarkName = "CDrawCardLayer::sendGetCardRandom(EN_NIUDANTYPE entype, int number,bool isFree)"
             landmarkType = "5">
          </BreakpointContent>
@@ -102,11 +102,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
+            timestampString = "404651836.661164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "377"
-            endingLineNumber = "377"
+            startingLineNumber = "379"
+            endingLineNumber = "379"
             landmarkName = "CDrawCardLayer::sendGetCardRandom(EN_NIUDANTYPE entype, int number,bool isFree)"
             landmarkType = "5">
          </BreakpointContent>
@@ -118,11 +118,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
+            timestampString = "404651836.661164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "832"
-            endingLineNumber = "832"
+            startingLineNumber = "834"
+            endingLineNumber = "834"
             landmarkName = "CDrawCardLayer::getTouchButton(CCPoint point)"
             landmarkType = "5">
          </BreakpointContent>
@@ -134,11 +134,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
+            timestampString = "404651836.661164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "374"
+            endingLineNumber = "374"
             landmarkName = "CDrawCardLayer::sendGetCardRandom(EN_NIUDANTYPE entype, int number,bool isFree)"
             landmarkType = "5">
          </BreakpointContent>
@@ -150,7 +150,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
+            timestampString = "404651836.661164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
@@ -226,11 +226,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
+            timestampString = "404651836.661164"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "993"
-            endingLineNumber = "993"
+            startingLineNumber = "995"
+            endingLineNumber = "995"
             landmarkName = "CDrawCardLayer::tableCellAtIndex(CCTableView *table, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>

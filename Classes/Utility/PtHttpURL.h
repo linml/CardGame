@@ -75,7 +75,7 @@
 
 
 //获取邮件
-#define STR_URL_EMAIL(UID)          URL_FACTORY("api.php?m=Email&a=getEmail&uid=",UID) 
+#define STR_URL_EMAIL(UID)           URL_FACTORY("api.php?m=Email&a=getEmail&uid=",UID)
 //修改邮件未读或者已读表示
 #define STR_URL_EMAILREADSTATUS(UID) URL_FACTORY("api.php?m=Inbox&a=updateInboxStatus&uid=",UID)
 
@@ -89,10 +89,10 @@
 #define STR_URL_GOSECTION(UID)      URL_FACTORY("api.php?m=Part&a=getPartEvent&uid=",UID) 
 
 //保存进度:
-#define STR_URL_SAVE_PROGRESS(UID)   URL_FACTORY("api.php?m=Part&a=recordPart&uid=",UID) 
+#define STR_URL_SAVE_PROGRESS(UID)  URL_FACTORY("api.php?m=Part&a=recordPart&uid=",UID)
 
 //获取具体事件
-#define STR_URL_NEXT_EVENT(UID)      URL_FACTORY("api.php?m=Part&a=startEvent&uid=",UID) 
+#define STR_URL_NEXT_EVENT(UID)     URL_FACTORY("api.php?m=Part&a=startEvent&uid=",UID)
 
 //结束事件：
 #define STR_URL_FINISH_EVENT(UID)   URL_FACTORY("api.php?m=Part&a=finishEvent&uid=",UID)
@@ -114,11 +114,11 @@
 #define STR_URL_GETLIMITITEMS(UID)  URL_FACTORY("api.php?m=shop&a=getLimitItems&uid=",UID)
 
 //获取购买物品的信息结果
-#define STR_URL_GETSHOPBUY(UID)              URL_FACTORY("api.php?m=shop&a=buy&uid=",UID)
+#define STR_URL_GETSHOPBUY(UID)     URL_FACTORY("api.php?m=shop&a=buy&uid=",UID)
 
 //获取扭蛋的时间
-#define STR_URL_GETCARDRANDOM(UID)     URL_FACTORY("api.php?m=Card&a=getCardRandom&uid=",UID)
+#define STR_URL_GETCARDRANDOM(UID)  URL_FACTORY("api.php?m=Card&a=getCardRandom&uid=",UID)
 //获取扭蛋卡牌
-#define STR_URL_CARDRANDOM(UID)        URL_FACTORY("api.php?m=Card&a=cardRandom&uid=",UID)
+#define STR_URL_CARDRANDOM(UID)     URL_FACTORY("api.php?m=Card&a=cardRandom&uid=",UID)
 
 #endif

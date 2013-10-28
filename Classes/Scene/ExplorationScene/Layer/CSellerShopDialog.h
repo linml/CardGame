@@ -37,23 +37,29 @@ public:
 protected:
     void handlerTouch(CCTouch *pTouch);
     
-    void initCSellerShopUI(int inSellerType,const char *inSellerName=NULL);
-    CCNode *createShopItem(const SELLER_SHOP &shopItem, const int &inIndex);
+    void initCSellerShopUI(const char *inSellerName=NULL);
+    CCNode *createShopItem(const SELLER_SHOP &shopItem, int inIndex);
     int getPalyerMoney(); // 获取玩家的金币或现金币－－－ 通过 m_sSellData 的priceType
     void onClickBuyBtn(int inIndex);
+    void onClickExtract(int inIndex);
     void onClickClose();
     void loadResouce();
     
     void onSendBuyRequest(CCObject *pObject);
     void onReceiveBuyRequest(CCObject *pObject);
     void onHandlerBuySuccess(CCDictionary *inResultDict);
+    void onHandlerBuyProp(CCDictionary *inResultDict);
+    void onHandlerExtractCard(CCDictionary *inResultDict);
     
     void updateLimitNum(CCLabelTTF * inLimitLabel, int inLimitNumber);
     void updateTotalNum();
 protected:
+    int m_nSellerType;
     int m_nTouchTag;
     int m_nShopId;
+    int m_nSelectPropId;
     int m_nLimitCount;
+    
     SELLER_DATA m_sSellData;
     CPtPropConfigData *m_pPropData;
     CGameButtonControl *m_pBuyBtn[3];

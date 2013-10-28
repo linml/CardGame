@@ -62,6 +62,7 @@ public:
     int getEnergy();
     int getExp();
     int getCash();
+    int getFriendly();
     int getCardCount();
     int getPropCount();
     CCDictionary * getCards();
@@ -83,7 +84,8 @@ protected:
     int m_nEnergy; //神力
     int m_nExp;
     int m_nCash;
-    CCDictionary *m_pCards; // key-> card_item_id, value-> card_id
+    int m_nFriendly;
+    CCDictionary *m_pCards; // key-> card_item_id, value-> card_id+suit
     CCDictionary *m_pProps;
     
     CGamePlayer *m_pPlayer;

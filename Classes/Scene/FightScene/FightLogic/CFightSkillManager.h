@@ -82,11 +82,13 @@ public:
     STATICEFFICEFUNCTION(effect_9);
     STATICEFFICEFUNCTION(effect_10);
     STATICEFFICEFUNCTION(effect_11);
+    STATICEFFICEFUNCTION(effect_21);
+    STATICEFFICEFUNCTION(effect_24);
     
 public:
     static  void appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex,int effectPlistId=0);
     static  void appendBuffIcon(CFightCard *fightCard,CFightCard *monster,EN_ATKFIGHT_INDEX enAtkFightIndex);
-    static  void addSkillBuffer(CFightCard *pMonster,CCardBufferStatusRefactor *buffer);
+    //static  void addSkillBuffer(CFightCard *pMonster,CCardBufferStatusRefactor *buffer);
     static  void dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enatkindex );//处理自身的buffer
     
     //进入程序初始化，加载函数map表格

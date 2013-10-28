@@ -30,12 +30,12 @@ public:
     int m_iEngry;
     int m_iAtk;
     int m_iDef;
-    int m_iEffectid;
-    int m_iMutex;
-    int m_iMutexLevel;
-    int m_iNeedAddBack;
-    int m_iKeepTime;
-    int m_iEffect_time;
+    int m_iEffectid;    //效果ID
+    int m_iMutex;       //是否互斥
+    int m_iMutexLevel;  //等级
+    int m_iNeedAddBack; //是否需要返
+    int m_iKeepTime;    //是否是持续次数
+    int m_iEffect_time; //是否是影响次数
     
     string m_sbfferFile;
     

@@ -15,19 +15,24 @@
 #include "CEffectInterface.h"
 #include "CEffectInterFaceOneRefactor.h"
 #include "CEffectInterFaceElevenRefactor.h"
+#include "CEffectInterFaceTwentyOneRefactor.h"
+#include "CEffectInterFaceTwentyFourRefactor.h"
 #include "CFightCardBufferData.h"
+#include "gameStruct.h"
 #include <vector>
 using namespace std;
 static  int totoalanimation=0;
 
 #include "CAnimationSpriteGameFight.h"
-#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE) \
+#define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE,_ITEMTYPE_) \
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
 delete *it; \
 *it=NULL; \
 } \
 VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
+CEmrysClearVectorMemory< _ITEMTYPE_ *> tempClear(VECTORARRAY) ; \
+tempClear.clearVector(); \
 }
 
 
@@ -648,6 +653,22 @@ void CFightSkillManager::effect_11(CFightCard *pCard,CFightCard *pMonterCard,CSk
     effect=NULL;
 }
 
+void CFightSkillManager::effect_21(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
+{
+    CEffectInterface *effect=new CEffectInterFaceTwentyOneRefactor();
+    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+    delete effect;
+    effect=NULL;
+}
+
+void CFightSkillManager::effect_24(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
+{
+    CEffectInterface *effect=new CEffectInterFaceTwentyFourRefactor();
+    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+    delete effect;
+    effect=NULL;
+}
+
 bool CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>fightCard,vector<CFightCard *>monsterCard,int FightIndex,int MonstIndex,EN_SEND_SKILL enskill,EN_ATKFIGHT_INDEX enAtkFightIndex)
 {
     if(pCard)
@@ -731,7 +752,7 @@ void CFightSkillManager::appendBuffIcon(CFightCard *fightCard,CFightCard *monste
 
 void CFightSkillManager::clearAnimationList()
 {
-    DELETE_POINT_VECTOR(m_animationVector, vector<CAnimationSpriteGameFight *>);
+    DELETE_POINT_VECTOR(m_animationVector, vector<CAnimationSpriteGameFight *>,CAnimationSpriteGameFight);
     m_animationVector.clear();
     
 }
@@ -770,6 +791,8 @@ void CFightSkillManager::initSkill()
     m_vEffictManager["9"] =&CFightSkillManager::effect_9;
     m_vEffictManager["10"]=&CFightSkillManager::effect_10;
     m_vEffictManager["11"]=&CFightSkillManager::effect_11;
+    m_vEffictManager["21"]=&CFightSkillManager::effect_21;
+    m_vEffictManager["24"]=&CFightSkillManager::effect_24;
 }
 
 

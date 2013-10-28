@@ -14,15 +14,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>coin</key>
-			<string>0</string>
-			<key>cash</key>
-			<string>10</string>
 			<key>use_id</key>
 			<string>100001</string>
 			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_007.png</string>
@@ -31,7 +25,7 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>补充体力</string>
+			<string>999991</string>
 		</dict>
 		<key>100004</key>
 		<dict>
@@ -45,15 +39,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>coin</key>
-			<string>0</string>
-			<key>cash</key>
-			<string>20</string>
 			<key>use_id</key>
-			<string>100004</string>
-			<key>use_scene</key>
 			<string>0</string>
-			<key>sell_coin</key>
+			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_008.png</string>
@@ -62,7 +50,7 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>1小时内的经验获取提升5%</string>
+			<string>999991</string>
 		</dict>
 		<key>100005</key>
 		<dict>
@@ -76,15 +64,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>2</string>
-			<key>coin</key>
-			<string>0</string>
-			<key>cash</key>
-			<string>0</string>
 			<key>use_id</key>
-			<string>100005</string>
-			<key>use_scene</key>
 			<string>0</string>
-			<key>sell_coin</key>
+			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_010.png</string>
@@ -93,38 +75,7 @@
 			<key>is_only</key>
 			<string>1</string>
 			<key>tips</key>
-			<string>打开获得新手物品</string>
-		</dict>
-		<key>300001</key>
-		<dict>
-			<key>item_id</key>
-			<string>300001</string>
-			<key>name</key>
-			<string>妈妈的手绢</string>
-			<key>type</key>
-			<string>2</string>
-			<key>unlock_level</key>
-			<string>1</string>
-			<key>use_delete</key>
-			<string>4</string>
-			<key>coin</key>
-			<string>0</string>
-			<key>cash</key>
-			<string>0</string>
-			<key>use_id</key>
-			<string>0</string>
-			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
-			<string>0</string>
-			<key>icon</key>
-			<string>icon_011.png</string>
-			<key>limit_num</key>
-			<string>1</string>
-			<key>is_only</key>
-			<string>1</string>
-			<key>tips</key>
-			<string>将妈妈的手绢送到爸爸的工地</string>
+			<string>999991</string>
 		</dict>
 		<key>100009</key>
 		<dict>
@@ -138,15 +89,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>coin</key>
-			<string>0</string>
-			<key>cash</key>
-			<string>100</string>
 			<key>use_id</key>
 			<string>0</string>
 			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_009.png</string>
@@ -155,69 +100,7 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>在副本中使用，以回到主城</string>
-		</dict>
-		<key>900001</key>
-		<dict>
-			<key>item_id</key>
-			<string>900001</string>
-			<key>name</key>
-			<string>单位金币</string>
-			<key>type</key>
-			<string>5</string>
-			<key>unlock_level</key>
-			<string>1</string>
-			<key>use_delete</key>
-			<string>2</string>
-			<key>coin</key>
-			<string>0</string>
-			<key>cash</key>
-			<string>0</string>
-			<key>use_id</key>
-			<string>0</string>
-			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
-			<string>0</string>
-			<key>icon</key>
-			<string>icon_001.png</string>
-			<key>limit_num</key>
-			<string>0</string>
-			<key>is_only</key>
-			<string>0</string>
-			<key>tips</key>
-			<string>用于金币发放</string>
-		</dict>
-		<key>900000</key>
-		<dict>
-			<key>item_id</key>
-			<string>900000</string>
-			<key>name</key>
-			<string>单位经验</string>
-			<key>type</key>
-			<string>4</string>
-			<key>unlock_level</key>
-			<string>1</string>
-			<key>use_delete</key>
-			<string>4</string>
-			<key>coin</key>
-			<string>0</string>
-			<key>cash</key>
-			<string>0</string>
-			<key>use_id</key>
-			<string>0</string>
-			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
-			<string>0</string>
-			<key>icon</key>
-			<string>icon_010.png</string>
-			<key>limit_num</key>
-			<string>0</string>
-			<key>is_only</key>
-			<string>0</string>
-			<key>tips</key>
-			<string>用于经验奖励发放</string>
+			<string>999991</string>
 		</dict>
 		<key>200001</key>
 		<dict>
@@ -231,15 +114,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>coin</key>
-			<string>2000</string>
-			<key>cash</key>
-			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
 			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_001.png</string>
@@ -248,7 +125,7 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>进化材料用于进化</string>
+			<string>999991</string>
 		</dict>
 		<key>200002</key>
 		<dict>
@@ -262,15 +139,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>coin</key>
-			<string>2000</string>
-			<key>cash</key>
-			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
 			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_002.png</string>
@@ -279,7 +150,7 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>进化材料用于进化</string>
+			<string>999991</string>
 		</dict>
 		<key>200003</key>
 		<dict>
@@ -293,15 +164,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>coin</key>
-			<string>2000</string>
-			<key>cash</key>
-			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
 			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_003.png</string>
@@ -310,7 +175,7 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>进化材料用于进化</string>
+			<string>999991</string>
 		</dict>
 		<key>200004</key>
 		<dict>
@@ -324,15 +189,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>coin</key>
-			<string>2000</string>
-			<key>cash</key>
-			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
 			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_004.png</string>
@@ -341,7 +200,7 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>进化材料用于进化</string>
+			<string>999991</string>
 		</dict>
 		<key>200005</key>
 		<dict>
@@ -355,15 +214,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>coin</key>
-			<string>2000</string>
-			<key>cash</key>
-			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
 			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_005.png</string>
@@ -372,7 +225,7 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>进化材料用于进化</string>
+			<string>999991</string>
 		</dict>
 		<key>200006</key>
 		<dict>
@@ -386,15 +239,9 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>coin</key>
-			<string>2000</string>
-			<key>cash</key>
-			<string>0</string>
 			<key>use_id</key>
 			<string>0</string>
 			<key>use_scene</key>
-			<string>0</string>
-			<key>sell_coin</key>
 			<string>0</string>
 			<key>icon</key>
 			<string>icon_006.png</string>
@@ -403,7 +250,982 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>进化材料用于进化</string>
+			<string>999991</string>
+		</dict>
+		<key>300001</key>
+		<dict>
+			<key>item_id</key>
+			<string>300001</string>
+			<key>name</key>
+			<string>妈妈的手绢</string>
+			<key>type</key>
+			<string>2</string>
+			<key>unlock_level</key>
+			<string>1</string>
+			<key>use_delete</key>
+			<string>4</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_011.png</string>
+			<key>limit_num</key>
+			<string>1</string>
+			<key>is_only</key>
+			<string>1</string>
+			<key>tips</key>
+			<string>999991</string>
+		</dict>
+		<key>900000</key>
+		<dict>
+			<key>item_id</key>
+			<string>900000</string>
+			<key>name</key>
+			<string>单位经验</string>
+			<key>type</key>
+			<string>4</string>
+			<key>unlock_level</key>
+			<string>1</string>
+			<key>use_delete</key>
+			<string>4</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_010.png</string>
+			<key>limit_num</key>
+			<string>0</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>999991</string>
+		</dict>
+		<key>900001</key>
+		<dict>
+			<key>item_id</key>
+			<string>900001</string>
+			<key>name</key>
+			<string>单位金币</string>
+			<key>type</key>
+			<string>5</string>
+			<key>unlock_level</key>
+			<string>1</string>
+			<key>use_delete</key>
+			<string>2</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_001.png</string>
+			<key>limit_num</key>
+			<string>0</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>999991</string>
+		</dict>
+		<key>900004</key>
+		<dict>
+			<key>item_id</key>
+			<string>900004</string>
+			<key>name</key>
+			<string>扩展卡包</string>
+			<key>type</key>
+			<string>4</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>4</string>
+			<key>use_id</key>
+			<string>907020</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_006.png</string>
+			<key>limit_num</key>
+			<string>0</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>900004</string>
+		</dict>
+		<key>900005</key>
+		<dict>
+			<key>item_id</key>
+			<string>900005</string>
+			<key>name</key>
+			<string>商人卡包</string>
+			<key>type</key>
+			<string>4</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>4</string>
+			<key>use_id</key>
+			<string>907040</string>
+			<key>use_scene</key>
+			<string>1</string>
+			<key>icon</key>
+			<string>icon_006.png</string>
+			<key>limit_num</key>
+			<string>0</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>900005</string>
+		</dict>
+		<key>900006</key>
+		<dict>
+			<key>item_id</key>
+			<string>900006</string>
+			<key>name</key>
+			<string>商人卡包2</string>
+			<key>type</key>
+			<string>4</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>4</string>
+			<key>use_id</key>
+			<string>907041</string>
+			<key>use_scene</key>
+			<string>1</string>
+			<key>icon</key>
+			<string>icon_006.png</string>
+			<key>limit_num</key>
+			<string>0</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>900006</string>
+		</dict>
+		<key>900007</key>
+		<dict>
+			<key>item_id</key>
+			<string>900007</string>
+			<key>name</key>
+			<string>商人卡包3</string>
+			<key>type</key>
+			<string>4</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>4</string>
+			<key>use_id</key>
+			<string>907042</string>
+			<key>use_scene</key>
+			<string>1</string>
+			<key>icon</key>
+			<string>icon_006.png</string>
+			<key>limit_num</key>
+			<string>0</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>900007</string>
+		</dict>
+		<key>901000</key>
+		<dict>
+			<key>item_id</key>
+			<string>901000</string>
+			<key>name</key>
+			<string>幸运药水</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907000</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_010.png</string>
+			<key>limit_num</key>
+			<string>99</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901000</string>
+		</dict>
+		<key>901001</key>
+		<dict>
+			<key>item_id</key>
+			<string>901001</string>
+			<key>name</key>
+			<string>小体力药水</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907001</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_001.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901001</string>
+		</dict>
+		<key>901002</key>
+		<dict>
+			<key>item_id</key>
+			<string>901002</string>
+			<key>name</key>
+			<string>大体力药水</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907002</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_010.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901002</string>
+		</dict>
+		<key>901006</key>
+		<dict>
+			<key>item_id</key>
+			<string>901006</string>
+			<key>name</key>
+			<string>小神力药水</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907006</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_009.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901006</string>
+		</dict>
+		<key>901007</key>
+		<dict>
+			<key>item_id</key>
+			<string>901007</string>
+			<key>name</key>
+			<string>大神力药水</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907007</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_001.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901007</string>
+		</dict>
+		<key>901009</key>
+		<dict>
+			<key>item_id</key>
+			<string>901009</string>
+			<key>name</key>
+			<string>医保卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907054</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_010.png</string>
+			<key>limit_num</key>
+			<string>10</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901009</string>
+		</dict>
+		<key>901011</key>
+		<dict>
+			<key>item_id</key>
+			<string>901011</string>
+			<key>name</key>
+			<string>初级经验书</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907011</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_002.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901011</string>
+		</dict>
+		<key>901012</key>
+		<dict>
+			<key>item_id</key>
+			<string>901012</string>
+			<key>name</key>
+			<string>中级经验卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907012</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_003.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901012</string>
+		</dict>
+		<key>901016</key>
+		<dict>
+			<key>item_id</key>
+			<string>901016</string>
+			<key>name</key>
+			<string>银行卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907016</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_005.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901016</string>
+		</dict>
+		<key>901031</key>
+		<dict>
+			<key>item_id</key>
+			<string>901031</string>
+			<key>name</key>
+			<string>金币透支卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907031</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_009.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901031</string>
+		</dict>
+		<key>901032</key>
+		<dict>
+			<key>item_id</key>
+			<string>901032</string>
+			<key>name</key>
+			<string>经验透支卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907032</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_001.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901032</string>
+		</dict>
+		<key>901033</key>
+		<dict>
+			<key>item_id</key>
+			<string>901033</string>
+			<key>name</key>
+			<string>双倍金币卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907033</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_002.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901033</string>
+		</dict>
+		<key>901034</key>
+		<dict>
+			<key>item_id</key>
+			<string>901034</string>
+			<key>name</key>
+			<string>双倍经验卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907034</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_003.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901034</string>
+		</dict>
+		<key>901035</key>
+		<dict>
+			<key>item_id</key>
+			<string>901035</string>
+			<key>name</key>
+			<string>额外金币卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907035</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_004.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901035</string>
+		</dict>
+		<key>901036</key>
+		<dict>
+			<key>item_id</key>
+			<string>901036</string>
+			<key>name</key>
+			<string>额外经验卡</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>1</string>
+			<key>use_id</key>
+			<string>907036</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_005.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901036</string>
+		</dict>
+		<key>901051</key>
+		<dict>
+			<key>item_id</key>
+			<string>901051</string>
+			<key>name</key>
+			<string>扭蛋券</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>4</string>
+			<key>use_id</key>
+			<string>907051</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_008.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901051</string>
+		</dict>
+		<key>901052</key>
+		<dict>
+			<key>item_id</key>
+			<string>901052</string>
+			<key>name</key>
+			<string>探路镜</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>2</string>
+			<key>use_scene</key>
+			<string>1</string>
+			<key>icon</key>
+			<string>icon_011.png</string>
+			<key>limit_num</key>
+			<string>20</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901052</string>
+		</dict>
+		<key>901053</key>
+		<dict>
+			<key>item_id</key>
+			<string>901053</string>
+			<key>name</key>
+			<string>任意门</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>3</string>
+			<key>use_scene</key>
+			<string>1</string>
+			<key>icon</key>
+			<string>icon_007.png</string>
+			<key>limit_num</key>
+			<string>10</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901053</string>
+		</dict>
+		<key>901054</key>
+		<dict>
+			<key>item_id</key>
+			<string>901054</string>
+			<key>name</key>
+			<string>笑忘书</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>4</string>
+			<key>use_scene</key>
+			<string>1</string>
+			<key>icon</key>
+			<string>icon_005.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901054</string>
+		</dict>
+		<key>901080</key>
+		<dict>
+			<key>item_id</key>
+			<string>901080</string>
+			<key>name</key>
+			<string>新手礼包</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>2</string>
+			<key>use_id</key>
+			<string>1</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_008.png</string>
+			<key>limit_num</key>
+			<string>1</string>
+			<key>is_only</key>
+			<string>1</string>
+			<key>tips</key>
+			<string>901080</string>
+		</dict>
+		<key>901081</key>
+		<dict>
+			<key>item_id</key>
+			<string>901081</string>
+			<key>name</key>
+			<string>10级礼包</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>10</string>
+			<key>use_delete</key>
+			<string>2</string>
+			<key>use_id</key>
+			<string>1</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_011.png</string>
+			<key>limit_num</key>
+			<string>1</string>
+			<key>is_only</key>
+			<string>1</string>
+			<key>tips</key>
+			<string>901081</string>
+		</dict>
+		<key>901082</key>
+		<dict>
+			<key>item_id</key>
+			<string>901082</string>
+			<key>name</key>
+			<string>20级礼包</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>20</string>
+			<key>use_delete</key>
+			<string>2</string>
+			<key>use_id</key>
+			<string>1</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_007.png</string>
+			<key>limit_num</key>
+			<string>1</string>
+			<key>is_only</key>
+			<string>1</string>
+			<key>tips</key>
+			<string>901082</string>
+		</dict>
+		<key>901083</key>
+		<dict>
+			<key>item_id</key>
+			<string>901083</string>
+			<key>name</key>
+			<string>30级礼包</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>30</string>
+			<key>use_delete</key>
+			<string>2</string>
+			<key>use_id</key>
+			<string>1</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_010.png</string>
+			<key>limit_num</key>
+			<string>1</string>
+			<key>is_only</key>
+			<string>1</string>
+			<key>tips</key>
+			<string>901083</string>
+		</dict>
+		<key>901084</key>
+		<dict>
+			<key>item_id</key>
+			<string>901084</string>
+			<key>name</key>
+			<string>40级礼包</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>40</string>
+			<key>use_delete</key>
+			<string>2</string>
+			<key>use_id</key>
+			<string>1</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_001.png</string>
+			<key>limit_num</key>
+			<string>1</string>
+			<key>is_only</key>
+			<string>1</string>
+			<key>tips</key>
+			<string>901084</string>
+		</dict>
+		<key>901085</key>
+		<dict>
+			<key>item_id</key>
+			<string>901085</string>
+			<key>name</key>
+			<string>50级礼包</string>
+			<key>type</key>
+			<string>1</string>
+			<key>unlock_level</key>
+			<string>50</string>
+			<key>use_delete</key>
+			<string>2</string>
+			<key>use_id</key>
+			<string>1</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_010.png</string>
+			<key>limit_num</key>
+			<string>1</string>
+			<key>is_only</key>
+			<string>1</string>
+			<key>tips</key>
+			<string>901085</string>
+		</dict>
+		<key>901301</key>
+		<dict>
+			<key>item_id</key>
+			<string>901301</string>
+			<key>name</key>
+			<string>材料1</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_001.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901301</string>
+		</dict>
+		<key>901302</key>
+		<dict>
+			<key>item_id</key>
+			<string>901302</string>
+			<key>name</key>
+			<string>材料2</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_010.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901302</string>
+		</dict>
+		<key>901303</key>
+		<dict>
+			<key>item_id</key>
+			<string>901303</string>
+			<key>name</key>
+			<string>材料3</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_009.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901303</string>
+		</dict>
+		<key>901304</key>
+		<dict>
+			<key>item_id</key>
+			<string>901304</string>
+			<key>name</key>
+			<string>材料4</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_001.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901304</string>
+		</dict>
+		<key>901305</key>
+		<dict>
+			<key>item_id</key>
+			<string>901305</string>
+			<key>name</key>
+			<string>材料5</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_002.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901305</string>
+		</dict>
+		<key>901306</key>
+		<dict>
+			<key>item_id</key>
+			<string>901306</string>
+			<key>name</key>
+			<string>材料6</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_003.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901306</string>
+		</dict>
+		<key>901307</key>
+		<dict>
+			<key>item_id</key>
+			<string>901307</string>
+			<key>name</key>
+			<string>材料7</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
+			<string>0</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>use_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_004.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901307</string>
 		</dict>
 	</dict>
 </plist>

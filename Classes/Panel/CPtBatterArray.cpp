@@ -1141,11 +1141,11 @@ void CPtBattleArray::save()
         }
     }
     
-    char buffer[200]={0};
+    char tmpBuffer[200]={0};
 //xianbei modify    sprintf(buffer, "sig=2ac2b1e302c46976beaab20a68ef95&troops=%d&card_color_id=%d&card_team_param={"
 //            ,inTag,suit);
-    sprintf(buffer, "sig=%s&troops=%d&card_color_id=%d&card_team_param={",STR_USER_SIG, inTag,suit);
-            string std = buffer;
+    sprintf(tmpBuffer, "sig=%s&troops=%d&card_color_id=%d&card_team_param={",STR_USER_SIG, inTag,suit);
+    string buffer(tmpBuffer);// = buffer;
     bool flag = true;
     for (int i = 0; i < 5; i++)
     {
@@ -1154,24 +1154,25 @@ void CPtBattleArray::save()
         {
             if (flag)
             {
-                sprintf(buffer, "\"%d\":\"%d\"", i+1, array[i]);
+                sprintf(tmpBuffer, "\"%d\":\"%d\"", i+1, array[i]);
                 flag = false;
             }
             else
             {
-                sprintf(buffer, ",\"%d\":\"%d\"", i+1, array[i]);
+                sprintf(tmpBuffer, ",\"%d\":\"%d\"", i+1, array[i]);
             }
 
             
-            std = std + buffer;
+          //  std = std + buffer;
+            buffer.append(tmpBuffer);
         }
         
     }
-    std = std+"}";
+//    std = std+"}";
+    buffer.append("}");
     
 
-    ADDHTTPREQUESTPOSTDATA(STR_URL_SAVE_TEAM(194), "helloworld1","ehll", std.c_str(), callfuncO_selector(CPtBattleArray::callBack));
-    CCLog("suit: %d, %s, %s", suit, buffer, std.c_str());
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SAVE_TEAM(194), "helloworld1","ehll", buffer.c_str(), callfuncO_selector(CPtBattleArray::callBack));
    // define STR_URL_SAVE_TEAM(UID)      URL_FACTORY("api.php?m=Card&a=saveCardTeam&uid=",UID)
 }
 

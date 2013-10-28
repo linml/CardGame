@@ -175,7 +175,8 @@ void CDrawCardLayer::clearSelectFreeItemLayer()
 void CDrawCardLayer::createGoldAndCash()
 {
     char data[40];
-    if (!getChildByTag(21)) {
+    if (!getChildByTag(21))
+    {
         CCSprite *goldsprite=CCSprite::createWithSpriteFrameName("jinbi.png");
         addChild(goldsprite,3,22);
         goldsprite->setPosition(ccp(200,size.height*0.5+225));
@@ -184,7 +185,8 @@ void CDrawCardLayer::createGoldAndCash()
         addChild(goldlabel,3,21);
         goldlabel->setPosition(ccp(250,size.height*0.5+225));
     }
-    sprintf(data, "%d",m_tempGamePlayer->getCoin());
+    
+    sprintf(data, "%d",m_tempGamePlayer->getFriendly());
     ((CCLabelTTF *)getChildByTag(21))->setString(data);
     if (!getChildByTag(23))
     {

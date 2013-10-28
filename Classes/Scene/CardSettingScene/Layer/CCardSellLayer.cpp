@@ -134,16 +134,13 @@ void CCardSellLayer::saveOnClick()
         return;
     }
     // send message to server:
-    char buff[500]={0};
-    char param[200]={0};
+    char buff [200]={0};
     char p[20]={0};
     int index = 0;
+    
 //xianbei modify    sprintf(buff, "&sig=2ac2b1e302c46976beaab20a68ef95&item_ids=[");
     sprintf(buff, "&sig=%s&item_ids=[",STR_USER_SIG);
-   
-
-    
-
+    std::string  buffer(buff);
     for (int i = 0; i < array->count(); i++)
     {
         tmp = (CPtBattleArrayItem*)(array->objectAtIndex(i));
@@ -151,15 +148,13 @@ void CCardSellLayer::saveOnClick()
         {
             index =  ((CPtDisPlayCard*)(tmp->getDisplayView()))->getCardData()->m_User_Card_ID;
             sprintf(p, "%d,",index);
-            strcat(param, p);
+            buffer.append(p);
         }
     }
-
-    CCLog("%s", param);
-    strncat(buff, param, strlen(param)-1);
-    strcat(buff, "]");
+    buffer.append("]");
+    CCLog("the buffer: %s", buffer.c_str());
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SELL_CARD(194),"cardsell","sell",buffer.c_str(), callfuncO_selector(CCardSellLayer::receiveCallBack));
     
-    ADDHTTPREQUESTPOSTDATA(STR_URL_SELL_CARD(194),"cardsell","sell",buff, callfuncO_selector(CCardSellLayer::receiveCallBack));
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
 }
 

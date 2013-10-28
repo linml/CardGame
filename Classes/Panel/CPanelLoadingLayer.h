@@ -25,7 +25,7 @@ public:
     bool init();
 protected:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
-    virtual void registerWithTouchDispatcher(void);
+    virtual void onEnter(void);
     void onExit();
 };
 

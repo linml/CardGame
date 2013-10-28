@@ -22,7 +22,8 @@ public:
     int skill_type;      //技能类型
     int skill_logic;
     //技能逻辑ID 根据策划定义 该ID 可以指定 以下的parameter_1 ,parameter_2,parameter_3,parameter_4代表的是否是standarimpact.plist里面的ID;
-    
+   
+    //该地方 应该重构成数组
     int cost_func_1;       //条件和消耗逻辑
     int cost_parameter_1; //条件或消耗参数值
     int cost_parameter_p_1; //条件或消耗参数值
@@ -31,6 +32,7 @@ public:
     int cost_parameter_2;  //条件或消耗参数值
     int cost_parameter_p_2;  //条件或消耗参数值
     
+    //该地方 应该重构成数组
     int parameter_1;        //参数值 || 效果ID
     int parameter_2;        //参数值 || 效果ID
     int parameter_3;        //参数值 || 效果ID

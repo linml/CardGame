@@ -20,6 +20,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>20</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200002</key>
 		<dict>
@@ -39,6 +41,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>10</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200003</key>
 		<dict>
@@ -58,6 +62,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>10</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200004</key>
 		<dict>
@@ -77,6 +83,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>30</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200005</key>
 		<dict>
@@ -96,6 +104,8 @@
 			<string>0</string>
 			<key>gp</key>
 			<string>10</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200006</key>
 		<dict>
@@ -115,6 +125,8 @@
 			<string>0</string>
 			<key>gp</key>
 			<string>10</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200007</key>
 		<dict>
@@ -134,6 +146,8 @@
 			<string>0</string>
 			<key>gp</key>
 			<string>10</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200008</key>
 		<dict>
@@ -153,6 +167,8 @@
 			<string>0</string>
 			<key>gp</key>
 			<string>10</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200009</key>
 		<dict>
@@ -171,6 +187,8 @@
 			<key>back_step</key>
 			<string>0</string>
 			<key>gp</key>
+			<string>0</string>
+			<key>event_pic</key>
 			<string>0</string>
 		</dict>
 		<key>200080</key>
@@ -191,6 +209,71 @@
 			<string>0</string>
 			<key>gp</key>
 			<string>0</string>
+			<key>event_pic</key>
+			<string>0</string>
+		</dict>
+		<key>200041</key>
+		<dict>
+			<key>event_id</key>
+			<string>200041</string>
+			<key>event_name</key>
+			<string>神坛+血</string>
+			<key>event_tips</key>
+			<string>200041</string>
+			<key>event_type</key>
+			<string>7</string>
+			<key>effect</key>
+			<string>baga.plist</string>
+			<key>soundeffects</key>
+			<string>wfwf.wav</string>
+			<key>back_step</key>
+			<string>0</string>
+			<key>gp</key>
+			<string>0</string>
+			<key>event_pic</key>
+			<string>b.png</string>
+		</dict>
+		<key>200042</key>
+		<dict>
+			<key>event_id</key>
+			<string>200042</string>
+			<key>event_name</key>
+			<string>神坛-攻</string>
+			<key>event_tips</key>
+			<string>200042</string>
+			<key>event_type</key>
+			<string>7</string>
+			<key>effect</key>
+			<string>baga.plist</string>
+			<key>soundeffects</key>
+			<string>wfwf.wav</string>
+			<key>back_step</key>
+			<string>0</string>
+			<key>gp</key>
+			<string>0</string>
+			<key>event_pic</key>
+			<string>c.png</string>
+		</dict>
+		<key>200043</key>
+		<dict>
+			<key>event_id</key>
+			<string>200043</string>
+			<key>event_name</key>
+			<string>神坛-防</string>
+			<key>event_tips</key>
+			<string>200043</string>
+			<key>event_type</key>
+			<string>7</string>
+			<key>effect</key>
+			<string>baga.plist</string>
+			<key>soundeffects</key>
+			<string>wfwf.wav</string>
+			<key>back_step</key>
+			<string>0</string>
+			<key>gp</key>
+			<string>0</string>
+			<key>event_pic</key>
+			<string>d.png</string>
 		</dict>
 		<key>200000</key>
 		<dict>
@@ -210,6 +293,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>10</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200010</key>
 		<dict>
@@ -229,6 +314,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>15</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200011</key>
 		<dict>
@@ -248,6 +335,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>15</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200012</key>
 		<dict>
@@ -267,6 +356,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>15</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 		<key>200013</key>
 		<dict>
@@ -286,6 +377,8 @@
 			<string>1</string>
 			<key>gp</key>
 			<string>15</string>
+			<key>event_pic</key>
+			<string>0</string>
 		</dict>
 	</dict>
 </plist>

@@ -22,7 +22,7 @@ public:
     virtual ~CEffectInterface();
     virtual void logicFightingCardByFightAndMonster(CFightCard *pCard,CFightCard *pMonster,CImapact *pImapact)=0;
 protected:
-    void dealWithBufferAndImmediately(CFightCard *pCard,CFightCard *pMonster,CImapact *pImapact,std::string bufferfile="");
+   virtual  void dealWithBufferAndImmediately(CFightCard *pCard,CFightCard *pMonster,CImapact *pImapact,std::string bufferfile="");
     int iChangeShanghaiHp;
     int iChangeatk;
     int iChangedef;

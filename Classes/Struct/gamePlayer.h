@@ -294,14 +294,14 @@ protected:
     
 public:
     void updatePlayerDataWithExp();
-
-
 protected:
     void sendLeveleUpRequest();
     void receiveLevelUpRequestMsg(CCObject *pObject);
     void parseLevelUpInfoByDict(CCDictionary *inDict);
     void changePlayerInfoWithLevelUp(CCDictionary *inDict);
     void levelUpData(int level);
+public:
+    //list<int>m_vPlayerBufferList;
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

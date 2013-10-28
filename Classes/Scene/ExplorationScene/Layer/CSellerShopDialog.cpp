@@ -51,6 +51,8 @@ CSellerShopDialog::CSellerShopDialog()
     m_nLimitCount = 0;
     m_pCloseHandler = NULL;
     m_pCloseSelector = NULL;
+    m_nSellerType = 1;
+    m_nSelectPropId = 0;
 }
 
 CSellerShopDialog::~CSellerShopDialog()
@@ -117,7 +119,14 @@ void CSellerShopDialog::handlerTouch(CCTouch *pTouch)
     {
         if (m_pBuyBtn[i]->getEnable()&&CPtTool::isInNode(m_pBuyBtn[i], pTouch) && m_nTouchTag == i)
         {
-            onClickBuyBtn(i);
+            if (m_nSellerType ==  1)
+            {
+                onClickBuyBtn(i);
+            }else if(m_nSellerType == 2)
+            {
+                onClickExtract(i);
+            }
+        
             break;
         }
     }
@@ -130,6 +139,7 @@ bool CSellerShopDialog::initCSellerShopDialog(SELLER_DATA inSellData, int inSell
 {
     m_sSellData = inSellData;
     m_nShopId = inShopId;
+    m_nSellerType = inSellerType;
     bool bRet = false;
     
     do
@@ -137,7 +147,7 @@ bool CSellerShopDialog::initCSellerShopDialog(SELLER_DATA inSellData, int inSell
         CC_BREAK_IF(!CCLayerColor::initWithColor(ccc4(125, 125, 125, 200)));
         char buff[100]={0};
         sprintf(buff, "%s的商店",inSellerName.c_str());
-        initCSellerShopUI(inSellerType, buff);
+        initCSellerShopUI(buff);
         bRet = true;
     } while (0);
     return bRet;
@@ -150,7 +160,7 @@ void CSellerShopDialog::setCloseHandler(CCObject *inTarget, SEL_CallFuncO inSele
     
 }
 
-void CSellerShopDialog::initCSellerShopUI(int inSellerType, const char *inSellerName)
+void CSellerShopDialog::initCSellerShopUI(const char *inSellerName)
 {
     // create currency spriteframe:
     if (m_sSellData.priceType == 1)
@@ -181,8 +191,7 @@ void CSellerShopDialog::initCSellerShopUI(int inSellerType, const char *inSeller
     shopName->setPosition(ccp(bgSize.width/2, bgSize.height-45));
     sellerShopBg->addChild(shopName);
     
-    if(inSellerType == 1)
-    {
+    
         // 道具商人
         CCNode * node = NULL;
         for (int i = 0; i < 3; i++)
@@ -192,13 +201,7 @@ void CSellerShopDialog::initCSellerShopUI(int inSellerType, const char *inSeller
             node->setPosition(ccp(nodeSize.width/2+i*nodeSize.width+ 45, nodeSize.height/2+60));
             sellerShopBg->addChild(node);
         }
-        
-    }
-    else if(inSellerType == 2)
-    {
-        // 卡牌伤人
-        
-    }
+    
     
     // add player's cash or coin:
     CCSprite * currency = CCSprite::createWithSpriteFrame(m_pCurrency);
@@ -223,8 +226,9 @@ void CSellerShopDialog::initCSellerShopUI(int inSellerType, const char *inSeller
     
 }
 
-CCNode * CSellerShopDialog::createShopItem(const SELLER_SHOP &shopItem, const int &inIndex )
+CCNode * CSellerShopDialog::createShopItem(const SELLER_SHOP &shopItem, int inIndex)
 {
+    
     CCNode *node = CCNode::create();
     CPtProp * item = m_pPropData->getPropById(shopItem.propId);
     if (item)
@@ -248,22 +252,25 @@ CCNode * CSellerShopDialog::createShopItem(const SELLER_SHOP &shopItem, const in
     itemPng->setPosition(ccp(-70,8));
     char priceData[40];
     
-    if(shopItem.limitNum != 0)
+    if (m_nSellerType == 1)
     {
-        CCSprite *xianliang=CCSprite::createWithSpriteFrameName("xianggou.png");
-        node->addChild(xianliang,1,13);
-        xianliang->setPosition(ccp(-110, 60));
-        //设置一个限量的比例
-        int value=shopItem.limitNum;
-        sprintf(priceData, "现货供应量:%d",value);
-        CCLabelTTF *xianglianggeshu=CCLabelTTF::create(priceData, "Arial", 15);
-        node->addChild(xianglianggeshu,1,21);
-        xianglianggeshu->setAnchorPoint(ccp(0, 0));
-        xianglianggeshu->setPosition(ccp(-120, -90));
-        xianglianggeshu->setColor(g_custom_color[17]);
-        m_pLimitLabel[inIndex] = xianglianggeshu;
+        if(shopItem.limitNum != 0)
+        {
+            CCSprite *xianliang=CCSprite::createWithSpriteFrameName("xianggou.png");
+            node->addChild(xianliang,1,13);
+            xianliang->setPosition(ccp(-110, 60));
+            //设置一个限量的比例
+            int value=shopItem.limitNum;
+            sprintf(priceData, "现货供应量:%d",value);
+            CCLabelTTF *xianglianggeshu=CCLabelTTF::create(priceData, "Arial", 15);
+            node->addChild(xianglianggeshu,1,21);
+            xianglianggeshu->setAnchorPoint(ccp(0, 0));
+            xianglianggeshu->setPosition(ccp(-120, -90));
+            xianglianggeshu->setColor(g_custom_color[17]);
+            m_pLimitLabel[inIndex] = xianglianggeshu;
+        }
     }
-    
+       
    
     CCSprite *zuanshidazhenow= CCSprite::createWithSpriteFrame(m_pCurrency); //CCSprite::createWithSpriteFrameName("zuanshi.png");
     node->addChild(zuanshidazhenow,1,16);
@@ -273,8 +280,15 @@ CCNode * CSellerShopDialog::createShopItem(const SELLER_SHOP &shopItem, const in
     node->addChild(labelttfnew,1,17);
     labelttfnew->setPosition(ccp(110, -40));
     labelttfnew->setColor(g_custom_color[13]);
+    string word;
+    if (m_nSellerType == 1)
+    {
+       word = Utility::getWordWithFile("word.plist", "goumai");
+    }else if(m_nSellerType == 2)
+    {
+        word = "抽取";
+    }
     
-    string word = Utility::getWordWithFile("word.plist", "goumai");
     CGameButtonControl *pGamebutton=CGameButtonControl::createButton(TEXTMID, word.c_str(), "normal.png", "pressed.png","disabled.png");
     node->addChild(pGamebutton,1,20);
     pGamebutton->setFontColor(g_custom_color[17]);
@@ -357,6 +371,39 @@ void CSellerShopDialog::onClickBuyBtn(int inIndex)
     
 }
 
+void CSellerShopDialog::onClickExtract(int inIndex)
+{
+    if (inIndex>= 0 && inIndex < 3)
+    {
+        const SELLER_SHOP &shop = m_sSellData.sellerShops[inIndex];
+        CStructShopSellItem shopSellItem = CStructShopSellItem(shop.propId);
+        shopSellItem.setOldValue(shop.price);
+        shopSellItem.setValue(shop.price);
+        m_nSelectPropId = shop.propId;
+        if (shop.price > getPalyerMoney())
+        {
+            //money 不够
+            //  1--> cash
+            //  2--> coin
+            if (m_sSellData.priceType == 1)
+            {
+                CGameRechargeTip *layer = CGameRechargeTip::create();
+                addChild(layer, 1000);
+            }else
+            {
+                CCMessageBox("王老板，游戏币不够", "Tip");
+            }
+            
+            return;
+        }else
+        {
+            onSendBuyRequest(NULL);
+        }
+    }
+  
+    
+}
+
 void CSellerShopDialog::onClickClose()
 {
     if (m_pCloseHandler && m_pCloseSelector)
@@ -378,6 +425,7 @@ void CSellerShopDialog::onSendBuyRequest(CCObject *pObject)
         int shopId = m_nShopId;
         int propId = layer->getPropId();
         int num = layer->getBuyNum();
+        int sellerType = m_nSellerType;
         if (m_nTouchTag>=0 && m_nTouchTag <3)
         {
           m_nLimitCount = m_sSellData.sellerShops[m_nTouchTag].limitNum;
@@ -393,22 +441,37 @@ void CSellerShopDialog::onSendBuyRequest(CCObject *pObject)
         }
         
         
-        CCLog("seller event : shopId--> %d, propId--> %d, buy number---> %d", shopId, propId, num);
+        CCLog("seller event : shopId--> %d, propId--> %d, buy number---> %d,", shopId, propId, num);
         
         char buf[200]={0};
-        sprintf(buf, "&sig=%s&shop_id=%d&item_id=%d&num=%d",m_pPlayer->getUserSig(),shopId, propId, num);
+        sprintf(buf, "&sig=%s&shop_id=%d&item_id=%d&num=%d&seller_shop_type=%d",m_pPlayer->getUserSig(),shopId, propId, num,sellerType);
+        CCLog("send data : %s", buf);
         ADDHTTPREQUESTPOSTDATA(STR_URL_GETSHOPBUY(194), "CALLBACK_CSellerShopDialog_onSendBuyRequest", "REQUEST_CSellerShopDialog_onSendBuyRequest",buf,callfuncO_selector(CSellerShopDialog::onReceiveBuyRequest));
 
     }
     else
     {
-        CCMessageBox("CSellerShopDialog error", "ERROR");
+//        CCMessageBox("功能尚未开放", "请稍后!");
+//        return;
+        int shopId = m_nShopId;
+        int num = 1;
+        int propId = m_nSelectPropId;
+        int sellerType = m_nSellerType;
+        CCLog("seller event : shopId--> %d, propId--> %d, buy number---> %d", shopId, propId, num);
+        
+        char buf[200]={0};
+        sprintf(buf, "&sig=%s&shop_id=%d&item_id=%d&num=%d&seller_shop_type=%d",m_pPlayer->getUserSig(),shopId, propId, num,sellerType);
+        CCLog("send data : %s", buf);
+        ADDHTTPREQUESTPOSTDATA(STR_URL_GETSHOPBUY(194), "CALLBACK_CSellerShopDialog_onSendBuyRequest", "REQUEST_CSellerShopDialog_onSendBuyRequest",buf,callfuncO_selector(CSellerShopDialog::onReceiveBuyRequest));
+       
     }
 
 }
 
 void CSellerShopDialog::onReceiveBuyRequest(CCObject *pObject)
 {
+    static int i = 0;
+    CCLog("the i: %d", i++);
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CSellerShopDialog_onSendBuyRequest");
   
     const char *buffer = (char*) pObject;
@@ -453,6 +516,17 @@ void CSellerShopDialog::onReceiveBuyRequest(CCObject *pObject)
 
 void CSellerShopDialog::onHandlerBuySuccess(CCDictionary *inResultDict)
 {
+    if (m_nSellerType == 1)
+    {
+        onHandlerBuyProp(inResultDict);
+    }else if(m_nSellerType == 2)
+    {
+        onHandlerExtractCard(inResultDict);
+    }
+}
+
+void CSellerShopDialog::onHandlerBuyProp(CCDictionary *inResultDict)
+{
     if (m_nLimitCount == -1)
     {
         m_pBuyBtn[m_nTouchTag]->setDisable();
@@ -482,6 +556,37 @@ void CSellerShopDialog::onHandlerBuySuccess(CCDictionary *inResultDict)
         
     }
 
+}
+void CSellerShopDialog::onHandlerExtractCard(CCDictionary *inResultDict)
+{
+    CCDictionary *rewardDict=NULL;
+    
+    rewardDict = (CCDictionary*)inResultDict->objectForKey("reward");
+    if(rewardDict)
+    {
+        CReward *reward =NULL;
+        CReward *addReward =NULL;
+        if (rewardDict->objectForKey("add") && ((CCDictionary*)rewardDict->objectForKey("add"))->objectForKey("event") )
+        {
+            // add card:
+            addReward = CReward::create((CCDictionary *)((CCDictionary*)rewardDict->objectForKey("add"))->objectForKey("event"));
+            addReward->excuteReward(ADD);
+            
+        }
+        if(rewardDict->objectForKey("dec") &&((CCDictionary*)rewardDict->objectForKey("dec"))->objectForKey("shop"))
+        {
+            reward = CReward::create((CCDictionary *)((CCDictionary*)rewardDict->objectForKey("dec"))->objectForKey("shop"));
+            reward->excuteReward(DEC);
+    
+            reward = CReward::create(reward, addReward);  
+            char buffer[200] = {0};
+            reward->getRewardContent(buffer, 200);
+            CCMessageBox(buffer, "卡牌商人tip");
+        }
+        
+    }
+
+    
 }
 
 void CSellerShopDialog::updateLimitNum(CCLabelTTF * inLimitLabel, int inLimitNumber)

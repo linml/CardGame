@@ -78,11 +78,13 @@ public:
     bool isHaveBufferRefactor(int prameid);
     void appendEngry(int iEngry);
     void appendHp(int iHp);
+    //判断卡牌身上带的互斥的逻辑ID
     bool appendBufferData(CCardBufferStatusRefactor *buffer);
     bool hasAssistantSkill();
     void setNegativeToZero();
     void subAtk(int value);
     void subDef(int value);
+    void dealWithPlayerBuffer(int effectId);
 public:
     int m_iCurrHp;  //当前HP
     int m_iHp;      //当前总的HP
