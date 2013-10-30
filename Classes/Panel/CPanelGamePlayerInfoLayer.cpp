@@ -30,7 +30,7 @@ void CPanelGamePlayerInfoLayer::updateInfo()
         CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 20);
         addChild(labelttf,0,1000001);
         labelttf->setPosition(ccp(350, 140));
-        labelttf->setString(CCUserDefault::sharedUserDefault()->getStringForKey("name").c_str());
+        labelttf->setString(SinglePlayer::instance()->getPlayerName());
     }
     char data[30];
     // usercoin 金币

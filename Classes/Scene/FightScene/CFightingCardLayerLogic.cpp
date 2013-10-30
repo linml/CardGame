@@ -28,7 +28,7 @@ VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 
 CFightingCardLayerLogic::CFightingCardLayerLogic()
 {
-   
+    m_tempGamePlayer=SinglePlayer::instance();
 }
 
 CFightingCardLayerLogic::~CFightingCardLayerLogic()
@@ -39,7 +39,7 @@ CFightingCardLayerLogic::~CFightingCardLayerLogic()
 
 bool CFightingCardLayerLogic::loadFromCardTeamTest()
 {
-    CGamePlayer *tempSinglePlayer=SinglePlayer::instance();
+    CGamePlayer *tempSinglePlayer=m_tempGamePlayer;
     if(tempSinglePlayer->m_hashmapMonsterCard.size()==0)
     {
         return false;
@@ -61,14 +61,14 @@ bool CFightingCardLayerLogic::loadFromCardTeamTest()
 
 bool  CFightingCardLayerLogic::loadFromServerTest(int  loadTeamIndex)
 {
-    CGamePlayer *tempSinglePlayer=SinglePlayer::instance();
+    CGamePlayer *tempSinglePlayer=m_tempGamePlayer;
     tempSinglePlayer->backUpFightTeam(loadTeamIndex);
     if(tempSinglePlayer->getLoadEndCardTeam() &&
        tempSinglePlayer->getCardBattleArray().size()>0&&
        loadTeamIndex<tempSinglePlayer->getCardBattleArray().size()&&
        tempSinglePlayer->getCardBattleArray()[loadTeamIndex].size()>0)
     {
-        for (int i=0; i<SinglePlayer::instance()->getCardBattleArray()[loadTeamIndex].size();i++)
+        for (int i=0; i<m_tempGamePlayer->getCardBattleArray()[loadTeamIndex].size();i++)
         {
             if(tempSinglePlayer->getCardBattleArray()[loadTeamIndex][i])
             {
@@ -114,7 +114,7 @@ bool CFightingCardLayerLogic::logicFighting()
     else
     {
         m_enWinStatus=winStatus;
-        SinglePlayer::instance()->setWinOrLoseStatus(winStatus);
+        m_tempGamePlayer->setWinOrLoseStatus(winStatus);
         CCLog("winStatus:%d",(int)winStatus);
         return  true;
     }
@@ -126,7 +126,7 @@ void CFightingCardLayerLogic::loadAnimatePlist()
     for (int i= 0; i<skillManager->m_animationVector.size(); i++) {
         if(skillManager->m_animationVector[i])
         {
-            CSkillData *pSkilldata=SinglePlayer::instance()->getSkillBySkillId(skillManager->m_animationVector[i]->m_iSKillId);
+            CSkillData *pSkilldata=m_tempGamePlayer->getSkillBySkillId(skillManager->m_animationVector[i]->m_iSKillId);
             if(pSkilldata)
             {
                 bool  needInsert=true;
@@ -388,7 +388,7 @@ void CFightingCardLayerLogic::appendUpdateBuffer()
 {
     if(m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.size()==0&& m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.size()==0)
     {
-        SinglePlayer::instance()->appendCFightCardFightingBuffer(NULL);
+        m_tempGamePlayer->appendCFightCardFightingBuffer(NULL);
         return;
     }
     CFightCardFightingBuffer *fightBuffer=new CFightCardFightingBuffer;
@@ -401,7 +401,7 @@ void CFightingCardLayerLogic::appendUpdateBuffer()
     {
         fightBuffer->append((*itAfter)->m_iEffectid, (*itAfter)->m_iKeepTime, false);
     }
-    SinglePlayer::instance()->appendCFightCardFightingBuffer(fightBuffer);
+    m_tempGamePlayer->appendCFightCardFightingBuffer(fightBuffer);
 
 }
 
@@ -436,7 +436,7 @@ void CFightingCardLayerLogic::appendHpAngryUpdate()
     }
     if(pEveryAtk)
     {
-        SinglePlayer::instance()->appendAtkData(pEveryAtk);
+        m_tempGamePlayer->appendAtkData(pEveryAtk);
     }
     
 }
@@ -482,6 +482,17 @@ EN_ATKFIGHT_INDEX   CFightingCardLayerLogic::getHuiHeIndex()
     return m_enHuiheIndex;
 }
 
+void CFightingCardLayerLogic::dealWithShenTanBuffer(CFightCard *pFightCard)
+{
+    CFightSkillManager *tempFightSkillManager=G_FightSkillManager::instance();
+    //计算玩家身上的buffer
+    for (list<int >::iterator it=m_tempGamePlayer->m_vPlayerBufferList.begin(); it!=m_tempGamePlayer->m_vPlayerBufferList.end(); it++)
+    {
+        tempFightSkillManager->initBeginFightStatus(pFightCard, *it);
+    }
+}
+
+
 void CFightingCardLayerLogic::initFightLogic(int  loadTeamIndex)
 {
     loadFromServerTest(loadTeamIndex);//读取当前卡牌阵容，
@@ -491,13 +502,21 @@ void CFightingCardLayerLogic::initFightLogic(int  loadTeamIndex)
     m_enHuiheIndex=EN_ATKFIGHT_INDEX_NONE;
     m_iFightCardIndex=0;
     m_iMonsterCardIndex=0;
-    for (int i=0; i<m_vFightingCard.size(); i++) {
+    bool isSelect=false;
+    for (int i=0; i<m_vFightingCard.size(); i++)
+    {
         if(m_vFightingCard[i])
         {
-            m_iFightCardIndex=i;
-            break;
+            //处理神坛技能buffer
+            dealWithShenTanBuffer(m_vFightingCard[i]);
+            if(!isSelect)
+            {
+                isSelect=true;
+                m_iFightCardIndex=i;
+            }
         }
     }
+
     for (int i=0; i<m_vMonsterCard.size(); i++) {
         if(m_vMonsterCard[i])
         {

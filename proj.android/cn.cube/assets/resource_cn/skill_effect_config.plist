@@ -360,7 +360,7 @@
 		<key>parameter_tips_3</key>
 		<string>卡牌生命值提升</string>
 		<key>parameter_3</key>
-		<string>0</string>
+		<string>50000</string>
 		<key>parameter_tips_4</key>
 		<string>卡牌攻击力提升%</string>
 		<key>parameter_4</key>

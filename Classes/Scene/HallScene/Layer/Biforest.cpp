@@ -17,6 +17,7 @@
 #include "PtHttpURL.h"
 #include "PtHttpClient.h"
 #include "PtJsonUtility.h"
+#include "CPlayerBufferManager.h"
 
 // implement class of CPtBookItem
 
@@ -448,6 +449,7 @@ void CBiforestLayer::onParseGoSectionMsgByDictionary(CCDictionary * inDataDictio
          CExploration::setEvents(eventData);
          CPtSection* tempPtSection= (CPtSection*)((CPtChapter*)m_pChapters->objectAtIndex(m_nCurrentChaptetIndex))->getSections()->getSectionById(m_nCurrentSectionId);
          CExploration::setExplorationInfo(tempPtSection);
+         CPlayerBufferManager::getInstance()->clearAllAltarBufferes();
          SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
         // success:
     }else

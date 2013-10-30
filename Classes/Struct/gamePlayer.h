@@ -97,7 +97,7 @@ public: //读取卡包的信息
     bool cardBagIsMoreThanConfig();
 public:
     //系统初始化信息
-    void onGameBegin();
+    void onGameBegin(const char* pchNickname);
     void onGameBeginCallBack(CCObject *object);
     void parseJsonUserInfo(CCDictionary *dict);
     void parseTaskInfo(CCDictionary *dict);
@@ -111,6 +111,7 @@ public:
     void parseRival(CCObject *object);
     void parseNpcCard(CCObject *object);
     void parseNpcCard(CCDictionary *resultDictresult);
+    void parseRandomData(CCArray* inRandowArray);
     int  isLoadFightTeam;
     //战斗时候调用的随机值得。
     void randRomIndexAdd();
@@ -188,6 +189,7 @@ public:
     int getPlayerAp();  //体力
     int getFriendly(); //友情点
     bool getPlayrHadRecharged();//是否首充
+    const char* getPlayerName();//获取玩家昵称
     
     int getGpMax();
     int getApMax();
@@ -301,7 +303,7 @@ protected:
     void changePlayerInfoWithLevelUp(CCDictionary *inDict);
     void levelUpData(int level);
 public:
-    //list<int>m_vPlayerBufferList;
+    list<int>m_vPlayerBufferList;
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

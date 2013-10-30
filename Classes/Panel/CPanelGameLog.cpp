@@ -176,7 +176,6 @@ void closeLogCreate(const char *filename)
     }
     
 }
-
 void appendFileLog(const char *szString,...)
 {
     if(m_gpGameLog)

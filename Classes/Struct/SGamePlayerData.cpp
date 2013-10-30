@@ -161,6 +161,8 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     
     //是否首充
     m_bFirstRecharge=GameTools::intForKey("recharge", dict);;
+    
+    CCUserDefault::sharedUserDefault()->setStringForKey("name",m_susername);
 
 }
 

@@ -26,6 +26,8 @@
 
 // implement of the CLoginScene:
 
+string g_serverUrl = "";
+
 CCScene* CLoginScene::scene()
 {
     CCScene *scene = CCScene::create();
@@ -220,8 +222,41 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             
             break;
         case BUTTON_PLAY_TAG:
+            if (!strcmp(SinglePlayer::instance()->getUserSig(),"")) {
+                Middle::showAlertView("尚未登录，请先登录");
+            }
+            else if(!m_pEditName->getText()||!strcmp(m_pEditName->getText(), ""))
+            {
+                Middle::showAlertView(m_pEditName->getText());
+                Middle::showAlertView("昵称不能为空！");
+            }
+            else if(m_pEditName->getText() && strchr(m_pEditName->getText(),' '))
+            {
+                Middle::showAlertView("昵称不能含空格！");
+            }
+            else if(m_nSelectServerId == -1)
+            {
+                Middle::showAlertView("为选择服务器！");
+            }
+            else
+            {
+                CCUserDefault::sharedUserDefault()->setStringForKey(vSerInf[m_nSelectServerId].m_strName.c_str(),m_pEditName->getText());
+                scheudoLoadGameConfig();
+            }
+            break;
+        case 2000:
+//            CCUserDefault::sharedUserDefault()->setStringForKey("account", "");
+//            remove(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str());
+//            Middle::showAlertView("清除账号信息");
+            CCUserDefault::sharedUserDefault()->setStringForKey("account", "");
+            vSerInf.clear();
+            m_serverTable->reloadData();
+            // CCUserDefault::sharedUserDefault()->flush();
+            CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CLoginScene::notificationRegiterRecevice), REGITER_SUCCESS, NULL);
+            addChild(CRegisterLayer::create(this),10000);
+            break;
+        case 2100:
             strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
-            //            strPassword = CCUserDefault::sharedUserDefault()->getStringForKey("password");
             if(strAccount != ""  )
             {
                 doLogin();
@@ -232,12 +267,8 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
                 addChild(CRegisterLayer::create(this),10000);
             }
             break;
-        case 2000:
-            CCUserDefault::sharedUserDefault()->setStringForKey("account", "");
-            remove(CCUserDefault::sharedUserDefault()->getXMLFilePath().c_str());
-            Middle::showAlertView("清除账号信息");
-            CCUserDefault::sharedUserDefault()->setStringForKey("account", "");
-            // CCUserDefault::sharedUserDefault()->flush();
+            break;
+        case 1000://选择服务器
             break;
         default:
             break;
@@ -263,12 +294,31 @@ void CLoginScene::doLogin()
         fgets(achPassword, 64, file);
     }
     fclose(file);
-    sprintf(achData, "name=%s&password=%s",strAccount.c_str(),achPassword);
+    
+    sprintf(achData, "name=%s&password=%s",strAccount.c_str(),
+            Pt_AES::sharePtAESTool()->getStringMD5(Pt_AES::sharePtAESTool()->DecryptString(achPassword)));
     ADDHTTPREQUESTPOSTDATA(STR_URL_LOGIN,
                            "CALLBACK_CLoginScene_doLogin",
                            "REQUEST_CLoginScene_doLogin",
                            achData,
                            callfuncO_selector(CLoginScene::onReceiveLoginMsg));
+}
+
+void CLoginScene::doLogin(const char* usrName,const char* password)
+{
+    if (isTouchPlayerGame) {
+        return ;
+    }
+    CCLog("password : %s" , Pt_AES::sharePtAESTool()->DecryptString(password));
+    char achData[256]={};
+    memset(achData, 0, 256);
+    sprintf(achData, "name=%s&password=%s",usrName,password);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_LOGIN,
+                           "CALLBACK_CLoginScene_doLogin",
+                           "REQUEST_CLoginScene_doLogin",
+                           achData,
+                           callfuncO_selector(CLoginScene::onReceiveLoginMsg));
+
 }
 
 void CLoginScene::onReceiveLoginMsg(CCObject* obj)
@@ -287,7 +337,10 @@ void CLoginScene::onReceiveLoginMsg(CCObject* obj)
     {
         Middle::showAlertView("参数错误");
     }
-
+    else if(strstr(data,"SERVER_ERROR"))
+    {
+        Middle::showAlertView("服务器出错");
+    }
     else
     {
         CCDictionary* dic = (CCDictionary*)PtJsonUtility::JsonStringParse(data)->objectForKey("result");
@@ -296,7 +349,21 @@ void CLoginScene::onReceiveLoginMsg(CCObject* obj)
         CCString* sig = (CCString*)usrData->objectForKey("sig");
         SinglePlayer::instance()->setUserId(uid->m_sString);
         SinglePlayer::instance()->setUserSig(sig->m_sString);
-        scheudoLoadGameConfig();
+        CCArray* serverArr = (CCArray*)usrData->objectForKey("server_ids");
+        for (int i=0; i<serverArr->count(); i++) {
+            CCString* item = (CCString*)serverArr->objectAtIndex(i);
+            m_serverSet.insert(item->intValue());
+        }
+        getServerInf();
+        if(getChildByTag(361008))
+        {
+            removeChildByTag(361008, true);
+            char inf[256]="";
+            sprintf(inf, "登录(%s)",CCUserDefault::sharedUserDefault()->getStringForKey("account").c_str());
+            CCLabelTTF* account = (CCLabelTTF*)getChildByTag(12345);
+            account->setString(inf);
+
+        }
     }
     
 }
@@ -337,6 +404,7 @@ bool CLoginScene::initLogin()
         LogoLayer *logo = LogoLayer::create();
         this->addChild(logo, LOGO_ZORDER);;
         
+        m_nSelectServerId = CCUserDefault::sharedUserDefault()->getIntegerForKey("last_server_id");
         
         // note: remember release maps
         maps = LayoutLayer::create();
@@ -375,6 +443,48 @@ bool CLoginScene::initLogin()
         LogOut->setPosition(ccp(970,30));
         addChild(LogOut);
         Utility::addTouchRect(2000, LogOut, touchRect);
+        
+        CCLabelTTF* LogIn = CCLabelTTF::create();
+        char inf[256]="";
+        sprintf(inf, "登录(%s)",CCUserDefault::sharedUserDefault()->getStringForKey("account").c_str());
+        LogIn->setString(inf);
+        LogIn->setFontSize(24);
+        LogIn->setPosition(ccp(270,30));
+        LogIn->setTag(12345);
+        addChild(LogIn);
+        Utility::addTouchRect(2100, LogIn, touchRect);
+
+        
+        CCLabelTTF* SelectSeverTip = CCLabelTTF::create();
+        SelectSeverTip->setString("服务器:");
+        SelectSeverTip->setFontSize(24);
+        SelectSeverTip->setPosition(ccp(20,730));
+        SelectSeverTip->setAnchorPoint(ccp(0,0.5));
+        addChild(SelectSeverTip);
+//        Utility::addTouchRect(1000, SelectSever, touchRect);
+        m_serverTable=CCTableView::create(this, CCSizeMake(830, 100));
+        m_serverTable->setDirection(kCCScrollViewDirectionHorizontal);
+        m_serverTable->setPosition(ccp(100,5));
+        m_serverTable->setDelegate(this);
+//        m_serverTable->setVerticalFillOrder(kCCTableViewFillTopDown);
+        SelectSeverTip->addChild(m_serverTable);
+        
+        CCLabelTTF* pTTFName = CCLabelTTF::create();
+        pTTFName->setString("昵称 : ");
+        pTTFName->setFontSize(24);
+        pTTFName->setPosition(ccp(20,680));
+        pTTFName->setAnchorPoint(ccp(0,0.5));
+        addChild(pTTFName);
+        
+        // name
+        m_pEditName = CCEditBox::create(CCSizeMake(300, 40), CCScale9Sprite::create("resource_cn/img/tabButton_normal.png"));
+        m_pEditName->setPosition(ccp(250,680));
+        m_pEditName->setMaxLength(14);
+//        m_pEditName->setText("wood");
+        addChild(m_pEditName);
+        
+        
+
     } while (0);
     return bRet;
     
@@ -383,16 +493,21 @@ bool CLoginScene::initLogin()
 void CLoginScene::serverInf(CCDictionary* dic)
 {
     CCDictElement* ele = NULL;
+    CCDictionary* subDic0 = (CCDictionary*)dic->objectForKey("result");
+    CCDictionary* subDic1 = (CCDictionary*)subDic0->objectForKey("server_config");
     STC_SERVER_INF inf;
-    CCDICT_FOREACH(dic,ele)
+    CCDICT_FOREACH(subDic1,ele)
     {
         CCDictionary* item = (CCDictionary*)ele->getObject();
         inf.m_nSid = item->valueForKey("sid")->intValue();
         inf.m_strName = item->valueForKey("name")->m_sString;
         inf.m_strIp = item->valueForKey("ip")->m_sString;
         inf.m_bIsUse = item->valueForKey("is_use")->intValue();
-        vSerInf.push_back(inf);
+        if(!inf.m_bIsUse)
+            vSerInf.push_back(inf);
     }
+    
+    
     
 }
 
@@ -474,7 +589,15 @@ void CLoginScene::addFunctionInitGames(float t)
     {
         if (!isGameInit) {
             setText("onGameInit");
-            pGamePlayer->onGameBegin();
+            if(m_serverSet.find(vSerInf[m_nSelectServerId].m_nSid) != m_serverSet.end())
+            {
+                //已注册
+                pGamePlayer->onGameBegin("");
+            }
+            else
+            {
+                pGamePlayer->onGameBegin(m_pEditName->getText());
+            }
             isGameInit=true;
         }
         else{
@@ -512,11 +635,31 @@ void CLoginScene::addFunctionInitGames(float t)
                     else{
                         dointAddTask();
                     }
-                    
+//xianbei
+                    if (m_serverSet.find(vSerInf[m_nSelectServerId].m_nSid) == m_serverSet.end()) {
+                        char achData[256]="";
+                        sprintf(achData, "sig=%s&server_id=%d",SinglePlayer::instance()->getUserSig(),vSerInf[m_nSelectServerId].m_nSid);
+                        ADDHTTPREQUESTPOSTDATA(STR_URL_REGISTER_SERVER,
+                                               "CALLBACK_CLoginScene_RegisterServerInf",
+                                               "REQUEST_CLoginScene_RegisterServerInf",
+                                               achData,
+                                               callfuncO_selector(CLoginScene::onReceiveRegisterServerMsg));
+                    }
+                    CCUserDefault::sharedUserDefault()->setStringForKey(vSerInf[m_nSelectServerId].m_strName.c_str(),SinglePlayer::instance()->getPlayerName());
+
+                }
+                else if(pGamePlayer->getGameInitStatus()==1)
+                {
+                
                 }
                 else
                 {
-                    Middle::showAlertView("下载数据出错");
+                    string msg = "下载数据出错";
+                    if(pGamePlayer->getGameInitStatus()== 602)
+                    {
+                        msg = "昵称已被注册，请重新起名";
+                    }
+                    Middle::showAlertView(msg.c_str());
                     isTouchPlayerGame=false;
                     isGameInit=false;
                     isLoadCardBag=false;
@@ -533,11 +676,102 @@ void CLoginScene::addFunctionInitGames(float t)
     }
 }
 
+void CLoginScene::onReceiveRegisterServerMsg(CCObject* obj)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CLoginScene_RegisterServerInf");
+}
+
 void CLoginScene::notificationRegiterRecevice(CCObject* obj)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, REGITER_SUCCESS);
     Middle::showAlertView("注册成功");
-//    doLogin();
+    doLogin();
 }
+
+void CLoginScene::getServerInf()
+{    
+    char achData[256]={};
+    memset(achData, 0, 256);
+    sprintf(achData, "sig=%s",SinglePlayer::instance()->getUserSig());
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SERVER_LIST,
+                           "CALLBACK_CLoginScene_getServerInf",
+                           "REQUEST_CLoginScene_getServerInf",
+                           achData,
+                           callfuncO_selector(CLoginScene::onReceiveServerMsg));    
+}
+
+void CLoginScene::onReceiveServerMsg(CCObject* obj)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CLoginScene_getServerInf");
+    char* data = (char*)obj;
+    if(!data)
+    {
+        Middle::showAlertView("网络连接出错");
+    }
+    else
+    {
+        serverInf(PtJsonUtility::JsonStringParse(data));
+        m_serverTable->reloadData();
+        string pchServerIdName = CCUserDefault::sharedUserDefault()->getStringForKey(vSerInf[m_nSelectServerId].m_strName.c_str());
+        m_pEditName->setText(pchServerIdName.c_str());
+        g_serverUrl = vSerInf[m_nSelectServerId].m_strIp;
+    }
+
+}
+
+void CLoginScene::tableCellTouched(cocos2d::extension::CCTableView* table, cocos2d::extension::CCTableViewCell* cell)
+{
+    m_serverTable->reloadData();
+    CCLabelTTF *label = (CCLabelTTF*)cell->getChildByTag(123);
+    label->setFontSize(24);
+    m_nSelectServerId = cell->getIdx();
+    CCUserDefault::sharedUserDefault()->setIntegerForKey("last_server_id", m_nSelectServerId);
+    string pchServerIdName = CCUserDefault::sharedUserDefault()->getStringForKey(vSerInf[cell->getIdx()].m_strName.c_str());
+    m_pEditName->setText(pchServerIdName.c_str());
+    g_serverUrl = vSerInf[cell->getIdx()].m_strIp;
+
+}
+
+CCSize CLoginScene::cellSizeForTable(cocos2d::extension::CCTableView *table)
+{
+    return CCSizeMake(200, 100);
+}
+CCTableViewCell* CLoginScene::tableCellAtIndex(cocos2d::extension::CCTableView *table, unsigned int idx)
+{
+    CCTableViewCell *cell = table->dequeueCell();
+    if (!cell) {
+        cell = new CCTableViewCell();
+        cell->autorelease();
+        
+        CCLabelTTF *label = CCLabelTTF::create(vSerInf[idx].m_strName.c_str(), "Helvetica", 20.0);
+//        label->setPosition(CCPointZero);
+		label->setAnchorPoint(CCPointZero);
+        label->setTag(123);
+        cell->addChild(label);
+        if(idx == m_nSelectServerId)
+        {
+            label->setFontSize(24);
+        }
+        if(m_serverSet.find(vSerInf[idx].m_nSid) != m_serverSet.end())
+        {
+            label->setColor(ccc3(255, 255, 0));
+        }
+    }
+    else
+    {
+        CCLabelTTF *label = (CCLabelTTF*)cell->getChildByTag(123);
+        label->setString(vSerInf[idx].m_strName.c_str());
+        label->setFontSize(20);
+    }
+    
+    
+    return cell;
+
+}
+unsigned int CLoginScene::numberOfCellsInTableView(cocos2d::extension::CCTableView *table)
+{
+    return vSerInf.size();
+}
+
 
 

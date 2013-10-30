@@ -14,6 +14,7 @@
 #include "SceneManager.h"
 #include "ExplorationScene.h"
 #include "CPanelGamePlayerInfoLayer.h"
+#include "CSceneActionGameLayer.h"
 
 
 CAsgardLayer::CAsgardLayer()
@@ -144,9 +145,10 @@ void CAsgardLayer::handlerTouch()
     }
     switch (m_nTouchTag) {
         case GLADSHEIM_TOUCH_TAG:
-            // to do:
-//            layer = CTaskLayer::create();
-//            this->getParent()->addChild(layer, 30000, 6002);
+        {
+            CSceneActionGameLayer *active=CSceneActionGameLayer::create();
+            addChild(active,1000,20000);
+        }
             break;
             
         case VALHALLA_TOUCH_TAG:

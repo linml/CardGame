@@ -17,6 +17,7 @@
 #include "PtHttpClient.h"
 #include "PtJsonUtility.h"
 #include "gameMiddle.h"
+#include "CPlayerBufferManager.h"
 FightResultConfirm::FightResultConfirm()
 {
 
@@ -137,6 +138,7 @@ void FightResultConfirm::callBackData(cocos2d::CCObject *object)
                 CCAssert(pResult, "result null");
                 CCDictionary *tmp = (CCDictionary*) pResult->objectForKey("event_info");
                 CExploration::setNextEventByDict(tmp);
+                resetAltarBuffer(pResult->objectForKey("chapter_buff"));
                 tmp = (CCDictionary*) pResult->objectForKey("reward");
                 CCDictionary* reward=NULL;
                 if (tmp)
@@ -285,6 +287,32 @@ void FightResultConfirm::handlerEventReward(CCDictionary * inAllReward)
     }
 }
 
+
+void FightResultConfirm::resetAltarBuffer(CCObject* inBuffers)
+{
+    CPlayerBufferManager * bufferManager = CPlayerBufferManager::getInstance();
+    bufferManager->clearAllAltarBufferes();
+
+    std::string typeName = typeid(*inBuffers).name();
+    if(typeName.find("CCDictionary") != std::string::npos)
+    {
+        CCDictionary *dict = (CCDictionary*) inBuffers;
+        CCDictionary *tmpDict = NULL;
+        CCDictElement *element = NULL;
+        CCDICT_FOREACH(dict, element)
+
+        {
+            tmpDict = (CCDictionary*) element->getObject();
+            if(tmpDict)
+            {
+                int effectId = GameTools::intForKey("object_id", tmpDict);
+                ALTARBUFFERTYPE altarType = GameTools::intForKey("num_type", tmpDict) == 1 ? KEEPTIMES : KEEPTIME;
+                int keeptime  = GameTools::intForKey("num", tmpDict);
+                bufferManager->addAltarBufferById(effectId, altarType, keeptime);
+            }
+        }
+    }
+}
 // test:
 
 void FightResultConfirm::test_print(int code)

@@ -9,13 +9,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404651836.661164"
+            filePath = "../../Classes/Scene/ActionGameLayer/CSceneActionGameLayer.cpp"
+            timestampString = "404821415.670516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "944"
-            endingLineNumber = "944"
-            landmarkName = "CDrawCardLayer::dealWithTag(int tag)"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
+            landmarkName = "CSceneActionGameLayer::decodeHttpToGetAction(cocos2d::CCObject *object)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,56 +25,72 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404651836.661164"
+            filePath = "../../Classes/Scene/ActionGameLayer/CSceneActionGameLayer.cpp"
+            timestampString = "404821415.670516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "863"
-            endingLineNumber = "863"
-            landmarkName = "CDrawCardLayer::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
+            landmarkName = "CSceneActionGameLayer::decodeHttpToGetAction(cocos2d::CCObject *object)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/ActionGameLayer/Layer/CActionItemLayer.cpp"
+            timestampString = "404831760.866205"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "CActionItemLayer::createTips(CStructGameActionData *data)"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CDrawCardLayer::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  symbolName = "CActionItemLayer::createTips(CStructGameActionData*)"
                   moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-                  timestampString = "404199485.830489"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/ActionGameLayer/Layer/CActionItemLayer.cpp"
+                  timestampString = "404819845.582148"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "831"
-                  endingLineNumber = "831"
-                  offsetFromSymbolStart = "48">
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "38">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CDrawCardLayer::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  symbolName = "CActionItemLayer::createTips(CStructGameActionData*)"
                   moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-                  timestampString = "404199485.830959"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/ActionGameLayer/Layer/CActionItemLayer.cpp"
+                  timestampString = "404819845.582369"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "831"
-                  endingLineNumber = "831"
-                  offsetFromSymbolStart = "310">
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "2182">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CDrawCardLayer::ccTouchBegan(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  symbolName = "CActionItemLayer::createTips(CStructGameActionData*)"
                   moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-                  timestampString = "404199485.831347"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/ActionGameLayer/Layer/CActionItemLayer.cpp"
+                  timestampString = "404819845.582625"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "831"
-                  endingLineNumber = "831"
-                  offsetFromSymbolStart = "374">
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "2848">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -85,120 +101,56 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404651836.661164"
+            filePath = "../../libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+            timestampString = "404826015.534167"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
-            landmarkName = "CDrawCardLayer::sendGetCardRandom(EN_NIUDANTYPE entype, int number,bool isFree)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404651836.661164"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
-            landmarkName = "CDrawCardLayer::sendGetCardRandom(EN_NIUDANTYPE entype, int number,bool isFree)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404651836.661164"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "834"
-            endingLineNumber = "834"
-            landmarkName = "CDrawCardLayer::getTouchButton(CCPoint point)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404651836.661164"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "374"
-            endingLineNumber = "374"
-            landmarkName = "CDrawCardLayer::sendGetCardRandom(EN_NIUDANTYPE entype, int number,bool isFree)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404651836.661164"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
-            landmarkName = "CDrawCardLayer::createGoldAndCash()"
+            startingLineNumber = "631"
+            endingLineNumber = "631"
+            landmarkName = "CCScrollView::ccTouchMoved(CCTouch* touch, CCEvent* event)"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CDrawCardLayer::createGoldAndCash()"
+                  symbolName = "cocos2d::extension::CCScrollView::ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*)"
                   moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-                  timestampString = "404203765.23978"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+                  timestampString = "404826095.627287"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
-                  offsetFromSymbolStart = "54">
+                  startingLineNumber = "631"
+                  endingLineNumber = "631"
+                  offsetFromSymbolStart = "50">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CDrawCardLayer::createGoldAndCash()"
+                  symbolName = "cocos2d::extension::CCScrollView::ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*)"
                   moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-                  timestampString = "404203765.240061"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+                  timestampString = "404826095.627529"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
-                  offsetFromSymbolStart = "1238">
+                  startingLineNumber = "631"
+                  endingLineNumber = "631"
+                  offsetFromSymbolStart = "2140">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CDrawCardLayer::createGoldAndCash()"
+                  symbolName = "cocos2d::extension::CCScrollView::ccTouchMoved(cocos2d::CCTouch*, cocos2d::CCEvent*)"
                   moduleName = "91.cube"
-                  urlString = "file://localhost/Users/linminglu/Documents/CubeCOCO/Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-                  timestampString = "404203765.240274"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/libs/extensions/GUI/CCScrollView/CCScrollView.cpp"
+                  timestampString = "404826095.627709"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "155"
-                  endingLineNumber = "155"
-                  offsetFromSymbolStart = "1362">
+                  startingLineNumber = "631"
+                  endingLineNumber = "631"
+                  offsetFromSymbolStart = "2762">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -209,13 +161,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/GameShopLayer/CSceneGameShopLayer.cpp"
-            timestampString = "404201730.582221"
+            filePath = "../../Classes/Scene/ActionGameLayer/CSceneActionGameLayer.cpp"
+            timestampString = "404831139.422774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1058"
-            endingLineNumber = "1058"
-            landmarkName = "CSceneGameShopLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
+            landmarkName = "CSceneActionGameLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -225,29 +177,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404651836.661164"
+            filePath = "../../Classes/Scene/ActionGameLayer/CSceneActionGameLayer.cpp"
+            timestampString = "404831139.422774"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "995"
-            endingLineNumber = "995"
-            landmarkName = "CDrawCardLayer::tableCellAtIndex(CCTableView *table, unsigned int idx)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "404216494.11431"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "CDrawCardLayer::createJiantou()"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
+            landmarkName = "CSceneActionGameLayer::adjustScrollView(float distance)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

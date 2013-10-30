@@ -757,6 +757,26 @@ void CFightSkillManager::clearAnimationList()
     
 }
 
+void CFightSkillManager::initBeginFightStatus(CFightCard *pInitCard, int effectSkillId)
+{
+    CImapact *pImpact=SinglePlayer::instance()->findByImpactId(effectSkillId);
+    if (pImpact)
+    {
+        string loginIdString=ConvertToString(pImpact->m_ieffect_logic);
+        IteratorEffMapPfunc pt=m_vEffictManager.find(loginIdString.c_str());
+        if(pt!=m_vEffictManager.end())
+        {
+            pbEffFunc ptfunction=pt->second;
+            if(pInitCard&& pInitCard->m_iCurrHp>0) //攻击第一个 血量大于0的人 也就是主将
+            {
+                (*ptfunction)(pInitCard,NULL,NULL,pImpact,EN_ATKOBJECT_INITFIGHT);//攻击对象对方当个
+            }
+        }
+    }
+
+}
+
+
 void CFightSkillManager::initSkill()
 {
     

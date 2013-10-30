@@ -25,6 +25,8 @@ public:
     Pt_AES(char* key);
     ~Pt_AES();
     void setKey(char* key);
+    void EncryptFile(const char* fileInPath,const char* fileOutPath);
+    void DecryptFile(const char* fileInPath,const char* fileOutPath);
     void EncryptString(const char* plainText, char* cipherText);
     void DecryptString(const char* cipherText, char* plainText);
     const char* EncryptString(const char* plainText);

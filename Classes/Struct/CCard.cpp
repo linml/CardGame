@@ -248,7 +248,8 @@ void CFightCard::updateCard(int level)
 
 CFightCard::~CFightCard()
 {
-    
+    CCLog("CLEAR BUFFER PTR");
+    DELETE_POINT_VECTOR(m_vlistBuffer, list<CCardBufferStatusRefactor*>);
 }
 
 

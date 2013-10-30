@@ -12,6 +12,7 @@
 #include "CBackpackContainerLayer.h"
 #include "CGameStoryLayer.h"
 #include "CDrawCardLayer.h"
+#include "CSceneActionGameLayer.h"
 
 
 using namespace cocos2d;
@@ -94,11 +95,11 @@ bool HelloWorld::init()
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
     
-    CDrawCardLayer *layer=CDrawCardLayer::create();
-    addChild(layer,0);
+//    CDrawCardLayer *layer=CDrawCardLayer::create();
+//    addChild(layer,0);
     //layer->setPosition(ccp(size.width*0.5,size.height*0.5));
 
-   // test(this);
+    test(this);
     // add "HelloWorld" splash screen"
 
  //   CCSprite* pSprite = CCSprite::create("resource_cn/img/HelloWorld.png");
@@ -210,9 +211,10 @@ void test(CCNode *pSender)
     // testInit(inSellData);
     // CSellerDialog * layer = CSellerDialog::create(inSellData);
     // CAltarDialogLayer *layer = CAltarDialogLayer::create(0);
-    CGameBufferTipLayer *layer = CGameBufferTipLayer::create(0);
+    //CGameBufferTipLayer *layer = CGameBufferTipLayer::create(0);
+    //pSender->addChild(layer);
+    CSceneActionGameLayer *layer=CSceneActionGameLayer::create();
     pSender->addChild(layer);
-
 }
 
 

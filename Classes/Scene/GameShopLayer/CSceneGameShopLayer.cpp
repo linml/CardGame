@@ -450,7 +450,6 @@ bool CSceneGameShopLayer::createShopItem()
     m_pScrollView->setTouchEnabled(false);
     m_pScrollView->setPosition(ccp(80,0));
     CCLog("m_pScrollView::%f,%f",m_pScrollView->getAnchorPoint().x,m_pScrollView->getAnchorPoint().y);
-    
     addChild(m_pScrollView,2,tagScrollView);
     setCurPageBall();
     if (m_nUpdateTime!=-1)

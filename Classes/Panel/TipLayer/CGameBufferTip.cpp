@@ -10,6 +10,84 @@
 #include "gameConfig.h"
 #include "gamePlayer.h"
 #include "CPtTool.h"
+#include "CPtPropConfigData.h"
+#include "CGameButtonControl.h"
+#include "gamePlayer.h"
+#include "CSkillData.h"
+
+//implement class of CAltarBufferLogo
+CAltarBufferLogo * CAltarBufferLogo::create(AltarBuffer &inAltarBuffer)
+{
+    CAltarBufferLogo *logo = new CAltarBufferLogo(inAltarBuffer);
+    if (logo && logo->initCAltarBufferLog(inAltarBuffer.getSkillEffectId()))
+    {
+  
+        logo->autorelease();
+    }
+    else
+    {
+        CC_SAFE_RELEASE_NULL(logo);
+    }
+    return logo;
+}
+
+CAltarBufferLogo::CAltarBufferLogo(AltarBuffer &inAltarBuffer):m_rAltarBuffer(inAltarBuffer)
+{
+    m_pLogo = NULL;
+    m_pTime = NULL;
+}
+
+CAltarBufferLogo::~CAltarBufferLogo()
+{
+    
+}
+
+bool CAltarBufferLogo::initCAltarBufferLog(int inSkillEffectId)
+{
+    bool bRet = false;
+    do {
+        std::string icon = SinglePlayer::instance()->getBufferPngByEffectId(inSkillEffectId);
+        m_pLogo = CCSprite::create(icon.c_str());
+        addChild(m_pLogo);
+        m_pTime = CCLabelTTF::create("", "Arial", 13);
+        updateTime();
+        m_pTime->setPosition(ccp(0, -30));
+        addChild(m_pTime);
+        bRet = true;
+    } while (0);
+    return bRet;
+}
+
+void CAltarBufferLogo::updateTime(int inTime)
+{
+    char buffer[30]={0};
+    sprintf(buffer,"the time: %d", inTime);
+    if (m_pTime)
+    {
+        m_pTime->setString(buffer);
+    }
+    
+}
+
+void CAltarBufferLogo::updateTime()
+{
+    char buffer[30]={0};
+    if (m_rAltarBuffer.getAltarBufferType() == KEEPTIME)
+    {
+         sprintf(buffer,"the time: %d", m_rAltarBuffer.getKeep());
+    }else
+    {
+         sprintf(buffer,"the times: %d", m_rAltarBuffer.getKeep());
+    }
+   
+    if (m_pTime)
+    {
+        m_pTime->setString(buffer);
+    }
+
+}
+
+// implement class of CGameBufferTipLayer
 CGameBufferTipLayer * CGameBufferTipLayer::create(int inBufferKey)
 {
     CGameBufferTipLayer *layer = new CGameBufferTipLayer();
@@ -32,6 +110,8 @@ CGameBufferTipLayer::CGameBufferTipLayer()
     m_pCloseBtn = NULL;
     m_pCloseHandler = NULL;
     m_pCloseSelector = NULL;
+    m_pUseBtn = NULL;
+    m_pImapact = NULL;
 }
 
 CGameBufferTipLayer::~CGameBufferTipLayer()
@@ -48,6 +128,10 @@ bool CGameBufferTipLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     {
         m_nTouchTag = 2002;
         m_pCloseBtn->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("closeSelected.png"));
+    }else if(CPtTool::isInNode(m_pUseBtn, pTouch))
+    {
+        m_nTouchTag = 2001;
+        m_pUseBtn->selected();
     }
     return true;
 
@@ -92,19 +176,12 @@ void CGameBufferTipLayer::setCloseHanlder(CCObject *inTarget, SEL_CallFuncO inSe
 void CGameBufferTipLayer::initCGameBufferTipUI()
 {
     
-    const char * buffer = "王老板的钥匙一串，下次战斗卡牌血量提升10%"; // get from skill_effect_config.plist  file , key=parameter_10 int -> char * --> gettips from dictionary plist file:
+    m_pImapact = SinglePlayer::instance()->getEffectTableByEffectId(m_nBufferKey);
     CCSize winSize = CCDirector::sharedDirector()->getWinSize();
     CCSprite*bg = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "altar_bg.png"));
     CCSize bgSize = bg->getContentSize();
     bg->setPosition(ccp(winSize.width/2, winSize.height/2));
     addChild(bg);
-    
-    CCLabelTTF * tipLabel = CCLabelTTF::create(buffer, "Arial", 16);
-    tipLabel->setHorizontalAlignment(kCCTextAlignmentLeft);
-    tipLabel->setColor(ccc3(0, 0, 0));
-    tipLabel->setPosition(ccp(bgSize.width*0.6, bgSize.height*0.55));
-    tipLabel->setDimensions(CCSizeMake(bgSize.width*0.8, 0));
-    bg->addChild(tipLabel);
     
     CCSprite * cancelBtn = CCSprite::createWithSpriteFrameName("closeNormal.png");
     cancelBtn->setAnchorPoint(ccp(1,1));
@@ -112,6 +189,13 @@ void CGameBufferTipLayer::initCGameBufferTipUI()
     bg->addChild(cancelBtn);
     m_pCloseBtn = cancelBtn;
     
+    if (m_pImapact)
+    {
+        m_nTipId = m_pImapact->m_iParameter_10;
+        
+        createDebufferTipUI(bg);
+    }
+
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(CGAMEBUFFERTIPDIALOG_TOUCH_PRORITY);
@@ -119,19 +203,40 @@ void CGameBufferTipLayer::initCGameBufferTipUI()
     
 }
 
-void CGameBufferTipLayer::createBufferTipUI()
+void CGameBufferTipLayer::createBufferTipUI(CCSprite* inBg)
 {
-    
+    const char * buffer = "王老板的钥匙一串，下次战斗卡牌血量提升10%"; // get from skill_effect_config.plist  file , key=parameter_10 int -> char * --> gettips from dictionary plist file:
+    buffer = Utility::getWordWithFile("dictionary.plist", CCString::createWithFormat("%d",m_nTipId)->getCString()).c_str();
+    CCSize bgSize = inBg->getContentSize();
+    CCLabelTTF * tipLabel = CCLabelTTF::create(buffer, "Arial", 16);
+    tipLabel->setHorizontalAlignment(kCCTextAlignmentLeft);
+    tipLabel->setColor(ccc3(0, 0, 0));
+    tipLabel->setPosition(ccp(bgSize.width*0.6, bgSize.height*0.55));
+    tipLabel->setDimensions(CCSizeMake(bgSize.width*0.8, 0));
+    inBg->addChild(tipLabel);
 }
-void CGameBufferTipLayer::createDebufferTipUI()
+void CGameBufferTipLayer::createDebufferTipUI(CCSprite* inBg)
 {
+    const char * buffer = "王老板的钥匙一串，下次战斗卡牌血量提升10%"; // get from skill_effect_config.plist  file , key=parameter_10 int -> char * --> gettips from dictionary plist file:
+    int tipId =   SinglePlayer::instance()->getEffectTableByEffectId(m_nBufferKey)->m_iParameter_10;
+    buffer = Utility::getWordWithFile("dictionary.plist", CCString::createWithFormat("%d",tipId)->getCString()).c_str();
+    CCSize bgSize = inBg->getContentSize();
+    CCLabelTTF * tipLabel = CCLabelTTF::create(buffer, "Arial", 16);
+    tipLabel->setHorizontalAlignment(kCCTextAlignmentLeft);
+    tipLabel->setColor(ccc3(0, 0, 0));
+    tipLabel->setPosition(ccp(bgSize.width*0.6, bgSize.height*0.8));
+    tipLabel->setDimensions(CCSizeMake(bgSize.width*0.8, 0));
+    inBg->addChild(tipLabel);
     
-    
+    CCNode *node = createShopItem(901054);
+    node->setPosition(ccp(bgSize.width/2, bgSize.height*0.4));
+    inBg->addChild(node);
 }
 
 void CGameBufferTipLayer::loadResource()
 {
       CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "seller.plist"), CSTR_FILEPTAH(g_mapImagesPath, "seller.png"));
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "backpack.plist"), CSTR_FILEPTAH(g_mapImagesPath,"backpack.png"));
 }
 
 void CGameBufferTipLayer::handlerTouch(CCTouch* pTouch)
@@ -139,11 +244,17 @@ void CGameBufferTipLayer::handlerTouch(CCTouch* pTouch)
    if(m_nTouchTag == 2002)
     {
         m_pCloseBtn->setDisplayFrame(CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("closeNormal.png"));
+    }else if(m_nTouchTag == 2001)
+    {
+        m_pUseBtn->unselected();
     }
     
     if(CPtTool::isInNode(m_pCloseBtn, pTouch) && m_nTouchTag == 2002)
     {
         onClickClose();
+    }else if(CPtTool::isInNode(m_pUseBtn, pTouch) && m_nTouchTag == 2001)
+    {
+        onClickUse();
     }
     
 
@@ -155,5 +266,46 @@ void CGameBufferTipLayer:: onClickClose()
         (m_pCloseHandler->*m_pCloseSelector)(NULL);
     }
     removeFromParentAndCleanup(true);
+    
+}
+
+void CGameBufferTipLayer::onClickUse()
+{
+    // user prop:
+}
+
+CCNode * CGameBufferTipLayer::createShopItem(int inPropId)
+{
+    CPtPropConfigData* propData = SinglePropConfigData::instance();
+    CCNode *node = CCNode::create();
+    CPtProp * item = propData->getPropById(inPropId);
+    if (item)
+    {
+        CCSprite *sprite=CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "shangchengzixiang.png"));
+        node->addChild(sprite,0,1);
+        node->setContentSize(sprite->getContentSize());
+    }
+    
+    CCLabelTTF *labelTTF=CCLabelTTF::create(item->getPropName().c_str(), "Arial", 15);
+    node->addChild(labelTTF, 1, 10);
+    labelTTF->setPosition(ccp(0,85));
+    //    const CCSize& dimensions, CCTextAlignment hAlignment
+    CCLabelTTF *labelTTFTip=CCLabelTTF::create(item->getTips().c_str(), "Arial", 15,CCSizeMake(130, 100),kCCTextAlignmentLeft);
+    node->addChild(labelTTFTip, 1, 11);
+    labelTTFTip->setAnchorPoint(ccp(0,0.5));
+    labelTTFTip->setPosition(ccp(0,0));
+    
+    CCSprite *itemPng=CCSprite::create(CSTR_FILEPTAH(g_propImagesPath, item->getIconName().c_str()));
+    node->addChild(itemPng,1,12);
+    itemPng->setPosition(ccp(-70,8));
+
+    
+        
+    CGameButtonControl *pGamebutton=CGameButtonControl::createButton(TEXTMID, "使用", "normal.png", "pressed.png","disabled.png");
+    node->addChild(pGamebutton,1,20);
+    pGamebutton->setFontColor(g_custom_color[17]);
+    pGamebutton->setPosition(ccp(10,-80));
+    m_pUseBtn = pGamebutton;
+    return node;
     
 }

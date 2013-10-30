@@ -126,6 +126,7 @@ private:
     std::vector<CFightCard*>m_vectorGetCardList;
     int m_nBackValue;
     EN_NIUDANLAYER m_enLayerStatus;
+    float m_fPostionX;
 };
 
 #endif /* defined(___1_cube__CDrawCardLayer__) */

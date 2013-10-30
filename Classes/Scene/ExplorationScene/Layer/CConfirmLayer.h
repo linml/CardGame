@@ -37,7 +37,13 @@ public:
 protected:
     void initConfirm();
     void handlerTouch();
-
+    void onClickFight();
+    
+    void onSendRequest();
+    void onReceiveResponse(CCObject *pObject);
+    void onHandlerSuccess(CCDictionary* inResult);
+    
+    void setFightTeamBuffer(CCObject *inBuffers);
 protected:
     bool m_bFight;
     int m_nTouchTag;

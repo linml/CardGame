@@ -10,9 +10,29 @@
 #define ___1_cube__CGameBufferTip__
 
 #include "cocos2d.h"
+#include "CGameButtonControl.h"
+#include "CSkillData.h"
+#include "CPlayerBufferManager.h"
 using namespace cocos2d;
 
 #define CGAMEBUFFERTIPDIALOG_TOUCH_PRORITY 50000
+
+class CAltarBufferLogo : public CCNode
+{
+public:
+  static  CAltarBufferLogo *create(AltarBuffer& inAltarBuffer);
+public:
+    CAltarBufferLogo(AltarBuffer &inAltarBuffer);
+    ~CAltarBufferLogo();
+    bool initCAltarBufferLog(int inSkillEffectId);
+    void updateTime(int inTime);
+    void updateTime();
+    AltarBuffer &getBufferData(){return m_rAltarBuffer;};
+protected:
+    CCSprite * m_pLogo;
+    CCLabelTTF *m_pTime;
+    AltarBuffer &m_rAltarBuffer;
+};
 
 class CGameBufferTipLayer : public CCLayerColor
 {
@@ -34,21 +54,26 @@ public:
 protected:
     void initCGameBufferTipUI();
     
-    void createBufferTipUI();
-    void createDebufferTipUI();
+    void createBufferTipUI(CCSprite *inBg);
+    void createDebufferTipUI(CCSprite *inBg);
+    CCNode *createShopItem(int inPropId);
     void loadResource();
     void  handlerTouch(CCTouch* pTouch);
     void  onClickClose();
+    void  onClickUse();
 
 
 protected:
     int m_nTouchTag;
     int m_nBufferKey;
     int m_nBufferType;
+    int m_nTipId;
     CCSprite *m_pCloseBtn;
-    
+    CGameButtonControl *m_pUseBtn;
     CCObject *m_pCloseHandler;
     SEL_CallFuncO m_pCloseSelector;
+    CImapact* m_pImapact;
+    
     
 };
 

@@ -38,7 +38,7 @@
 		<key>wordFile</key>
 		<string>word.plist</string>
 	</dict>
-	<key>s_gladsheim</key>
+	<key>s_activity</key>
 	<dict>
 		<key>color</key>
 		<string>15</string>
@@ -47,7 +47,7 @@
 		<key>isChild</key>
 		<string>-1</string>
 		<key>key</key>
-		<string>gladsheim</string>
+		<string>activity</string>
 		<key>speOption</key>
 		<dict>
 			<key>offsetPos</key>

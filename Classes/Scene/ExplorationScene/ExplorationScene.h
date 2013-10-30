@@ -24,6 +24,7 @@
 #include "CEventBoxDialog.h"
 #include "CEventConfigData.h"
 #include "CReward.h"
+#include "CPlayerBufferManager.h"
 
 
 using namespace cocos2d;
@@ -97,6 +98,8 @@ protected:
     void handlerTrigger();
     void updateBtn();
     void attachConfirm();
+   
+    
 
     void createOrUpdatePlayerData();
 
@@ -123,6 +126,13 @@ protected:
     void handlerFinishSellerEvent();
     void createEventBoxDialogByType(CEventBoxData *inEventBoxData, int inType);
     
+    // altar event:
+    void handlerAltarEvent(CCDictionary *inEventInfo);
+    void handlerFinishAltarEvent();
+    void updateBuffers(float dt);
+    void createBuffers();
+    void handlerTouchBuffers(CCTouch *pTouch);
+
     // seller event:
     SELLER_DATA getShopItems(CCDictionary *inSellDict);
     
@@ -178,6 +188,10 @@ protected:
     int m_nEventBoxSelectType; // 0---> cancle 1---> confirm
     
     SELLER_DATA m_sSellerData;  // use in seller event;
+    
+    CPlayerBufferManager * m_pPlayerBufferManager;
+    CCDictionary *m_pBufferTips;
+    CCNode *m_pBufferTipContainer;
     
 // connect server:
     

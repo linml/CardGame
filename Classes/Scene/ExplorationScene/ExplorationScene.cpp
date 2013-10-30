@@ -21,6 +21,8 @@
 #include "CBackpackContainerLayer.h"
 #include "CPanelGamePlayerInfoLayer.h"
 #include "CSellerDialog.h"
+#include "CGameBufferTip.h"
+#include "CAltarDialog.h"
 
 
 int g_index = -1;
@@ -349,7 +351,7 @@ CExploration::~CExploration()
     {
         m_cMaps->release();
     }
-    
+    CC_SAFE_DELETE(m_pBufferTips);
 }
 
 
@@ -477,10 +479,12 @@ void CExploration::initData()
     m_pTouchSprite = NULL;
     m_pProgress = NULL;
 
-    
+    m_pBufferTips = new CCDictionary();
+    m_pBufferTipContainer = NULL;
     m_pPlayer = SinglePlayer::instance();
     m_pEventData = SingleEventDataConfig::instance();
     m_pEventBoxData = SingleEventBoxes::instance();
+    m_pPlayerBufferManager = CPlayerBufferManager::getInstance();
 }
 
 
@@ -515,8 +519,9 @@ bool CExploration::initExploration()
             
         }
         
-        
-        
+        createBuffers();
+
+        this->schedule(schedule_selector(CExploration::updateBuffers), 1);
         // add buttons:
         CCSprite *btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
         btnActivity->setAnchorPoint(CCPointZero);
@@ -807,6 +812,81 @@ void CExploration::attachConfirm()
     
 }
 
+void CExploration::updateBuffers(float dt)
+{
+    int subTime = (int) dt;
+    CCDictElement *element = NULL;
+    CAltarBufferLogo *tmpLogo = NULL;
+    int lastAddId = m_pPlayerBufferManager->getLastAddEffectId();
+    bool bHave = false;
+    int i = 0;
+    CCDICT_FOREACH(m_pBufferTips, element)
+    {
+        tmpLogo = (CAltarBufferLogo*)element->getObject();
+        if (tmpLogo)
+        {
+           int skilleffectId = tmpLogo->getBufferData().getSkillEffectId();
+            if (skilleffectId == lastAddId)
+            {
+                bHave = true;
+            }
+           if(tmpLogo->getBufferData().getAltarBufferType() == KEEPTIME)
+           {
+           
+               int result =  m_pPlayerBufferManager->subAltarBufferKeepTime(skilleffectId, subTime, false);
+               
+               if (result == 0)
+               {
+                   m_pBufferTips->removeObjectForKey(skilleffectId);
+                   tmpLogo->removeFromParentAndCleanup(true);
+                   m_pPlayerBufferManager->clearAltarBufferById(tmpLogo->getBufferData().getSkillEffectId());
+               }else
+               {
+                   tmpLogo->setPositionX(i*80);
+                   i++;
+                   tmpLogo->updateTime();
+               }
+           }else if(tmpLogo->getBufferData().getAltarBufferType() == KEEPTIMES)
+           {
+               tmpLogo->setPositionX(i*80);
+               i++;
+           }
+        }
+    }
+    if (lastAddId != -1 && !bHave)
+    {
+        vector<AltarBuffer> & allAltarBuffer = m_pPlayerBufferManager->getAllAltarBuffer();
+        for (int j = 0; j < allAltarBuffer.size(); j++)
+        {
+            if (allAltarBuffer.at(j).getSkillEffectId() == lastAddId)
+            {
+                tmpLogo = CAltarBufferLogo::create(allAltarBuffer.at(j));
+                tmpLogo->setPosition(ccp(i*80, -80));
+                m_pBufferTips->setObject(tmpLogo, lastAddId);
+                m_pBufferTipContainer->addChild(tmpLogo);
+                break;
+            }
+        }
+ 
+    }
+   
+}
+
+void CExploration::createBuffers()
+{
+    m_pBufferTipContainer = CCNode::create();
+    m_pBufferTipContainer->setPosition(ccp(80, 700));
+    addChild(m_pBufferTipContainer);
+    vector<AltarBuffer> &allAltarBuffer = m_pPlayerBufferManager->getAllAltarBuffer();
+    for (int i = 0; i  < allAltarBuffer.size(); i++)
+    {
+        CAltarBufferLogo *logo = CAltarBufferLogo::create(allAltarBuffer.at(i));
+        logo->setPosition(ccp(i*80, 0));
+        m_pBufferTipContainer->addChild(logo);
+        m_pBufferTips->setObject(logo, allAltarBuffer.at(i).getSkillEffectId());
+    }
+}
+
 void CExploration::updateBtn()
 {
     for (int i = 0; i < 3; i++)
@@ -1039,6 +1119,10 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
     {
         handlerFinishSellerEvent();
         return;
+    }else if(inType == 7)
+    {
+        handlerFinishAltarEvent();
+        return;
     }
    
     getBiforest();
@@ -1083,6 +1167,10 @@ void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
     {
         handlerSellerEvent(pEventInfo);
         
+    }else if(inType == 7)
+    {
+        //神坛
+        handlerAltarEvent(pEventInfo);
     }
     
 }
@@ -1335,6 +1423,36 @@ void CExploration::createEventBoxDialogByType(CEventBoxData *inEventBoxData, int
        //scheduleOnce(schedule_selector(CExploration::requestCallBack),0.0f);
        onFishEventRequest(EVENT_SUCCESS);
     }
+    
+}
+
+void CExploration::handlerAltarEvent(CCDictionary *inEventInfo)
+{
+    if(inEventInfo)
+    {
+        CCArray * allKeys = inEventInfo->allKeys();
+        if(allKeys && allKeys->count() > 0)
+        {
+            CCString * tmpKey = (CCString*) allKeys->objectAtIndex(0);
+            CCDictionary *tmpDict = (CCDictionary*) inEventInfo->objectForKey(tmpKey->getCString());
+            if(tmpDict)
+            {
+                int effectId = GameTools::intForKey("object_id", tmpDict);
+                ALTARBUFFERTYPE altarType = GameTools::intForKey("num_type", tmpDict) == 1 ? KEEPTIMES : KEEPTIME;
+                int keeptime  = GameTools::intForKey("num", tmpDict);
+                m_pPlayerBufferManager->addAltarBufferById(effectId, altarType, keeptime);
+                handlerEmptyEvent();
+            }
+        }
+    }
+}
+
+void CExploration::handlerFinishAltarEvent()
+{
+    CAltarDialogLayer *layer = CAltarDialogLayer::create(getCurrentEventId());
+    layer->setCloseHandler(this, callfuncO_selector(CExploration::onCloseSellerEventCallback));
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer);
+    
     
 }
 

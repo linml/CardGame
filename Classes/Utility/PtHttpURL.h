@@ -10,6 +10,7 @@
 #define _1_cube_PtHttpURL_h
 
 #include "gamePlayer.h"
+#include "gameConfig.h"
 
 //服务器地址
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -23,14 +24,16 @@
 #endif
 
 #define STR_USER_SIG SinglePlayer::instance()->getUserSig()
-#define URL_FACTORY(ADR,UID) (string(STR_URL_ADRESS)+string(ADR)+string(SinglePlayer::instance()->getUserId())).c_str()
+#define URL_FACTORY(ADR,UID) (g_serverUrl+"/"+string(ADR)+string(SinglePlayer::instance()->getUserId())).c_str()
 
 //登录
 #define STR_URL_LOGIN               "http://passport.games.com/gateway.php?m=Platform&a=login"//STR_URL_ADRESS"gateway.php?m=Platform&a=login"
 //注册
 #define STR_URL_REGISTER            "http://passport.games.com/gateway.php?m=Platform&a=register"//STR_URL_ADRESS"gateway.php?m=Platform&a=register"
 //服务器列表
-#define STR_URL_SERVER_LIST(UID)    URL_FACTORY("gateway.php?m=Platform&a=selectServer",UID)
+#define STR_URL_SERVER_LIST         (string("http://passport.games.com/gateway.php?m=Platform&a=selectServer&puid=")+string(SinglePlayer::instance()->getUserId())).c_str()
+//注册子服务器
+#define STR_URL_REGISTER_SERVER     (string("http://passport.games.com/gateway.php?m=Platform&a=addServerId&puid=")+string(SinglePlayer::instance()->getUserId())).c_str()
 //登录服务器
 #define STR_URL_SERVER_LOGIN(UID)   URL_FACTORY("api.php?m=GameBegin&a=init",UID)
 //公告
@@ -120,5 +123,12 @@
 #define STR_URL_GETCARDRANDOM(UID)  URL_FACTORY("api.php?m=Card&a=getCardRandom&uid=",UID)
 //获取扭蛋卡牌
 #define STR_URL_CARDRANDOM(UID)     URL_FACTORY("api.php?m=Card&a=cardRandom&uid=",UID)
+//设置准备大战的阵容
+#define STR_URL_SETFIGHTTEAM(UID)   URL_FACTORY("api.php?m=Fight&a=setTeam&uid=",UID)
+//获取活动
+#define STR_URL_ACTIVITY(UID)       URL_FACTORY("api.php?m=Activity&a=getNotice&uid=",UID)
+
+
+
 
 #endif

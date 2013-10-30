@@ -96,8 +96,9 @@ void CAltarDialogLayer::iniCAltarDialogUI()
     // CCAssert(eventData, "the event is null");
     
     const char *person = "shangren_01.png";
-    std::string stip ="王老板，带着他的小姨子跑了，抛弃了他的好基友机器猫,机器猫发动了技能，你的防御力降低， 战斗中小心了！" ;//Utility::getWordWithFile("dictionary", CCString::createWithFormat("%d", eventData->getEventTipId())->getCString());
-    
+    std::string stip = Utility::getWordWithFile("dictionary.plist", CCString::createWithFormat("%d", eventData->getEventTipId())->getCString());
+
+    //"王老板，带着他的小姨子跑了，抛弃了他的好基友机器猫,机器猫发动了技能，你的防御力降低， 战斗中小心了！" ;    
     
     CCSprite * bg = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "shangren_bg.png"));
     bg->setPosition(ccp(512, 388));

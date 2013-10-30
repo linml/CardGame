@@ -130,6 +130,10 @@
 	<string>每次抽取需消耗%d友情点</string>
 	<key>niudanstrcash</key>
 	<string>抽取一次需要消耗%d个钻石,抽取十一次需要消耗%d钻石</string>
+	<key>huodongshijian</key>
+	<string>活动时间</string>
+	<key>huodongneirong</key>
+	<string>活动内容</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

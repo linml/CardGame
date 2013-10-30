@@ -26,6 +26,8 @@
 #include "gameMiddle.h"
 #include "CGlobalUpdateObject.h"
 #include "CStructShopInfo.h"
+#include "CPlayerBufferManager.h"
+
 
 
 //#define AAAAFOROSMACHINE 1
@@ -128,6 +130,9 @@ void CGamePlayer::onExitGameApp()
     clearAllNpcCard();
     clearPlayerTable();
     clearShangchengData();
+    
+    CPlayerBufferManager::releaseBufferManager(); // 取出player身上的buff add by phileas
+
     
 }
 void CGamePlayer::clearShangchengData()
@@ -598,13 +603,13 @@ void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
     {
         return ;
     }
-    CCArray *vKeyArrayresult=dictresult->allKeys();
-    for (int i=0; i<vKeyArrayresult->count(); i++)
-    {
-        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
-        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
-        if(cardDirector)
-        {
+//    CCArray *vKeyArrayresult=dictresult->allKeys();
+//    for (int i=0; i<vKeyArrayresult->count(); i++)
+//    {
+//        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+//        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+//        if(cardDirector)
+//        {
             DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
             m_hashmapMonsterCard.resize(5);
             if(dictresult)
@@ -626,17 +631,33 @@ void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
                     }
                 }
             }
-            CCArray *vKeyArraytempBBB=(CCArray *)resultDictresult->objectForKey("random_data");
-            std::vector<int>().swap(m_getRandom_data);
-            m_currRandRomIndex=0;
-            for (int i=0; i<vKeyArraytempBBB->count(); i++) {
-                CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
-                m_getRandom_data.push_back(strtemp->intValue());
-            }
-            
+            parseRandomData((CCArray*)resultDictresult->objectForKey("random_data"));
+//            CCArray *vKeyArraytempBBB=(CCArray *)resultDictresult->objectForKey("random_data");
+//            std::vector<int>().swap(m_getRandom_data);
+//            m_currRandRomIndex=0;
+//            for (int i=0; i<vKeyArraytempBBB->count(); i++) {
+//                CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
+//                m_getRandom_data.push_back(strtemp->intValue());
+//            }
+    
+//        }
+//    }
+    isLoadFightTeam=true;
+
+}
+
+void CGamePlayer::parseRandomData(CCArray* inRandomArray)
+{
+    if(inRandomArray)
+    {
+        std::vector<int>().swap(m_getRandom_data);
+        m_currRandRomIndex=0;
+        for (int i=0; i<inRandomArray->count(); i++)
+        {
+            CCString* strtemp=   (CCString *)inRandomArray->objectAtIndex(i);
+            m_getRandom_data.push_back(strtemp->intValue());
         }
     }
-    isLoadFightTeam=true;
 
 }
 
@@ -822,6 +843,11 @@ int CGamePlayer::getPlayerAp()  //体力
 bool CGamePlayer::getPlayrHadRecharged()
 {
     return m_gGamePlayerData->m_bFirstRecharge;
+}
+
+const char* CGamePlayer::getPlayerName()
+{
+    return m_gGamePlayerData->m_susername.c_str();
 }
 
 bool CGamePlayer::setPlayrHadRecharged(bool var)
@@ -1632,13 +1658,13 @@ void CGamePlayer::setUserSig(string sig)
     m_strSig = sig;
 }
 
-void CGamePlayer::onGameBegin()
+void CGamePlayer::onGameBegin(const char* pchNickname)
 {
     //xianbei modify
     gameInitStatus=0;
     int getEmailMax=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail();
     char data[256];
-    sprintf(data, "&info={\"max_id\":%d,\"name\":\"%s\"}",getEmailMax,CCUserDefault::sharedUserDefault()->getStringForKey("name").c_str());
+    sprintf(data, "&info={\"max_id\":%d,\"name\":\"%s\"}",getEmailMax,pchNickname);
     string connectData="sig=";
     connectData += m_strSig;
     connectData+=data;

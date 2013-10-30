@@ -32,7 +32,7 @@ using namespace std;
 USING_NS_CC;
 
 
-class CLoginScene : public CCLayer
+class CLoginScene : public cocos2d::CCLayer,public cocos2d::extension::CCTableViewDataSource,public cocos2d::extension::CCTableViewDelegate
 {
 public:
     CREATE_FUNC(CLoginScene);
@@ -65,8 +65,20 @@ public:
     void notificationRegiterRecevice(CCObject* obj);
     
     void doLogin();
+    void doLogin(const char* usrName,const char* password);
     void onReceiveLoginMsg(CCObject* obj);
     
+    void getServerInf();
+    void onReceiveServerMsg(CCObject* obj);
+    void onReceiveRegisterServerMsg(CCObject* obj);
+    
+    virtual void tableCellTouched(cocos2d::extension::CCTableView* table, cocos2d::extension::CCTableViewCell* cell);
+    virtual cocos2d::CCSize cellSizeForTable(cocos2d::extension::CCTableView *table);
+    virtual cocos2d::extension::CCTableViewCell* tableCellAtIndex(cocos2d::extension::CCTableView *table, unsigned int idx);
+    virtual unsigned int numberOfCellsInTableView(cocos2d::extension::CCTableView *table);
+    virtual void scrollViewDidScroll(CCScrollView* view){};
+    virtual void scrollViewDidZoom(CCScrollView* view){};
+
 protected:
     bool initLogin();
     bool handleTouchSpritePool(CCPoint point);
@@ -86,6 +98,10 @@ protected:
     bool isLoadTeam;
     bool isGameInit;
     bool isLoadBackPack;
+    CCTableView* m_serverTable;
+    CCEditBox* m_pEditName;
+    set<int> m_serverSet;
+    int m_nSelectServerId;
     
 };
 

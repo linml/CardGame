@@ -973,8 +973,10 @@ void CDrawCardLayer::createTableView()
         tableView->setAnchorPoint(ccp(0.5, 0.5));
         if (m_vectorGetCardList.size()==1) {
             tableView->setPosition(ccp(size.width*0.5-150,size.height*0.5-100));
+            m_fPostionX=150.0f;
         }
         else{
+            m_fPostionX=100.0f;
             tableView->setPosition(ccp(220,300));
             createJiantou();
         }
@@ -1009,7 +1011,7 @@ void CDrawCardLayer::initCellItem(CCTableViewCell*cell, unsigned int idx)
             CGamesCard *gameCard=CGamesCard::Create(m_vectorGetCardList[idx]);
             cell->addChild(gameCard, 2, 1000+idx);
 //            gameCard->setAnchorPoint(CCPointZero);
-            gameCard->setPosition(ccp(100, 100));
+              gameCard->setPosition(ccp(m_fPostionX, 100));
             
         }
     }

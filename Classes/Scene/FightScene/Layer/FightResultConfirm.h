@@ -53,9 +53,11 @@ protected:
     void handlerTouch();
     
     void handlerEventReward(CCDictionary * inAllReward);
+    void resetAltarBuffer(CCObject* inBuffers);
     // test:
     void test_print(int code);
     void test_print(const char * inMsg);
+
 protected:
     SFightResultData * m_nResult;
     int m_nTouchTag;

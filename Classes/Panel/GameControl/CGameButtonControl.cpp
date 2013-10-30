@@ -98,7 +98,8 @@ bool CGameButtonControl::init(TEXTPOSTION textPosion,const char *text,const char
         addChild(label,1,100);
         label->setColor(m_cFontNormalColor);
         CCSize contextSize=getContentSize();
-        switch (textPosion) {
+        switch (textPosion)
+        {
             case TEXTOP :
                 label->setPosition(ccp(contextSize.width/2,contextSize.height/2+10));
                 break;

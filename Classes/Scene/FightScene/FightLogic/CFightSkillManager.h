@@ -108,6 +108,7 @@ public:
     //普通伤害计算
     void basicAtk(CFightCard *pFightCard,CFightCard *pMonstFight);
     void clearAnimationList();
+    void initBeginFightStatus(CFightCard *pInitCard,int effectSkillId);
 public:
    static vector<CAnimationSpriteGameFight *>m_animationVector;
    static vector<CFightCardBufferDataEveryFight *>m_animationBufferVector;

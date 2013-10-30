@@ -43,6 +43,7 @@ cerr << "PT Log :" << __FILE__ <<endl \
      << " at " << __TIME__ <<endl \
      << "        message : " << msg <<endl  \
 
+extern string g_serverUrl;
 
 const string g_sysSoundPath = resRootPath+"sound/sys_sound_effect/";//系统音效
 const string g_bgSoundPath = resRootPath+"sound/background/";//背景音乐
@@ -177,6 +178,7 @@ enum EN_ATKOBJECT {
     EN_ATKOBJECT_OWNTEAM,
     EN_ATKOBJECT_MONSTER,
     EN_ATKOBJECT_MONSTERTEAM,
+    EN_ATKOBJECT_INITFIGHT,
 };
 
 enum EN_SEND_SKILL

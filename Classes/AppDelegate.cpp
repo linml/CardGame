@@ -46,11 +46,11 @@ bool AppDelegate::applicationDidFinishLaunching()
     Pt_AES::sharePtAESTool(keyData);
 
 	// set FPS. the default value is 1.0/60 if you don't call this
-	pDirector->setAnimationInterval(1.0 / 60);
+ pDirector->setAnimationInterval(1.0 / 60);
    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
 
 
- //   pDirector->runWithScene(HelloWorld::scene());
+   //pDirector->runWithScene(HelloWorld::scene());
 
     return true;
 }

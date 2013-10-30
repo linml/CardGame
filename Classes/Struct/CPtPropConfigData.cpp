@@ -86,7 +86,7 @@ CPtProp * CPtPropConfigData::getPropById(const int &inPropId)
         bRet = false;
     }else
     {
-        prop = m_pAllProps.at(inPropId);
+        prop = m_pAllProps[inPropId];
         
     }
 

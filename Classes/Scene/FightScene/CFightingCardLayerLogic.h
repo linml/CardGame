@@ -26,6 +26,7 @@ class SEveryATKData;
 class CAnimationSpriteGameFight;
 class CFightCardFightingBuffer;
 class CCardBufferStatusRefactor;
+class CGamePlayer ;
 class CFightingCardLayerLogic :public CCObject
 {
 public:
@@ -56,6 +57,7 @@ private:
     void appendHpAngryUpdate();
     void appendUpdateBuffer();
     int  getNextFightCard(int index,bool isLeftFightTeam);
+    void dealWithShenTanBuffer(CFightCard *pFightCard);
    
 public:
     bool logicFighting();
@@ -69,6 +71,8 @@ private:
 private:
     list<CCardBufferStatusRefactor *> m_lpFightBuffer;
     list<CCardBufferStatusRefactor *> m_lpMonsterBuffer;
+private:
+    CGamePlayer *m_tempGamePlayer;
 };
 
 #endif /* defined(___1_cube__CFightingCardLayerLogic__) */

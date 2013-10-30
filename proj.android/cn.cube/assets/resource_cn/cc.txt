@@ -1,0 +1,1 @@
+{"code":0,"result":{"actiongame":{"10001":{"actionid":"10001","actionname":"狼王力量"},"10002":{"actionid":"10002","actionname":"狼王力量2"},"10003":{"actionid":"10003","actionname":"狼王力量3"}}}}
