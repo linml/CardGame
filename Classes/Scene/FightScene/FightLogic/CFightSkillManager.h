@@ -25,26 +25,26 @@ class CCardBufferStatusRefactor;
 class CFightCardBufferDataEveryFight;
 
 #define STATICCOSTTFUNCTION(FUNCTIONNAME) \
-static int FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonster,CSkillData *pData);
+static int FUNCTIONNAME(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pData);
 
 #define STATICEFFICEFUNCTION(FUNCTIONNAME) \
 static void FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
 
+#define STATICSKILLFUNCTION(FUNCTIONNAME) \
+static void FUNCTIONNAME(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
 
-
-typedef void (*pFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
-typedef int (*pbFunc) (CFightCard *pCard,CFightCard *pMonster,CSkillData *pData);
-typedef void (*pbEffFunc) (CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
+typedef void (*pFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk); //skill
+typedef int (*pbFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pData);  //cost;
+typedef void (*pbEffFunc) (CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject); //effect
 
 class CFightSkillManager
 {
-    typedef map<string, pbFunc> ::iterator IteratorMapPbFunc;
     typedef map<string,pFunc>::iterator    IteratorMapPfunc;
     typedef map<string,pbEffFunc>::iterator    IteratorEffMapPfunc;
 public:
     //每一种逻辑ID对应的costfunc 不同。
     static void logicSkill_Putong(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill);
-    static void logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid);
+    static void logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,bool isQunti=false,bool isDirenTuandui=true);//如果是团队的话 判断是给哪个团队加血
     static void logicSkill_1(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
     
     static void logicSkill_2(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
@@ -53,21 +53,13 @@ public:
     
     static void logicSkill_4(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
     
+    //STATICSKILLFUNCTION(logicSkill_5);
+    static bool getMougeZhongzuShuliang(vector<CFightCard *>MonsterCard,int ValueZhongZuLeixing,int count);
+    static bool checkIsManzuCostTiaojian(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,int costType,int costParam,int costParamP_n);
+    
     //定义一个costfunction 的函数
     //每一种的costfunction的ID  对应的需求不一样
-    STATICCOSTTFUNCTION(costFunc_0);
-    STATICCOSTTFUNCTION(costFunc_1);
-    STATICCOSTTFUNCTION(costFunc_2);
-    STATICCOSTTFUNCTION(costFunc_3);
-    STATICCOSTTFUNCTION(costFunc_4);
-    STATICCOSTTFUNCTION(costFunc_5);
-    STATICCOSTTFUNCTION(costFunc_6);
-    STATICCOSTTFUNCTION(costFunc_7);
-    STATICCOSTTFUNCTION(costFunc_8);
-    STATICCOSTTFUNCTION(costFunc_9);
-    
-
-    
+    STATICCOSTTFUNCTION(costFunc);
     
     //每一种的效果id 对应的参数值得又不一样
     STATICEFFICEFUNCTION(effect_0);

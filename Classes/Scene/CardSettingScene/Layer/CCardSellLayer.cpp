@@ -147,7 +147,14 @@ void CCardSellLayer::saveOnClick()
         if (tmp && tmp->getDisplayView())
         {
             index =  ((CPtDisPlayCard*)(tmp->getDisplayView()))->getCardData()->m_User_Card_ID;
-            sprintf(p, "%d,",index);
+            if (i == 0)
+            {
+                sprintf(p, "%d",index);
+            }else
+            {
+                sprintf(p, ",%d",index);
+            }
+            
             buffer.append(p);
         }
     }

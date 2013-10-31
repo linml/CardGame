@@ -10,6 +10,8 @@
 #define ___1_cube__CPlayerBufferManager__
 #include "cocos2d.h"
 #include <vector>
+#include "CGameTimerManager.h"
+class CGameTimerManager;
 using namespace cocos2d;
 using namespace std;
 
@@ -24,7 +26,10 @@ enum ALTARBUFFERTYPE
      KEEPNONE = 0,
      KEEPTIMES = 1, //时间
      KEEPTIME = 2 //次数
-    };
+};
+
+
+
 class AltarBuffer
 {
 public:
@@ -39,6 +44,9 @@ public:
     CC_SYNTHESIZE(int, m_nKeep, Keep); // 当AltarBufferType == KEEPTIME 时，表示为倒计的时间； 当 AltarBufferType == KEEPTIMES时，表示为遇到战斗的次数，无论成败都减1
 };
 
+typedef AltarBuffer PropBuffer;
+typedef ALTARBUFFERTYPE PROPBUFFERTYPE;
+
 /*
  * @class : this class is in single thread, no mutxt
  */
@@ -52,34 +60,40 @@ protected:
     static CPlayerBufferManager *s_pBufferManger;
     
 public:
-    void addBufferById(int inEffectId, int inKeepTime);
-    void subBufferById(int inEffectId);
-    int subBufferKeepTime(int inEffectId, int inSubTime);
-    int getBufferKeepTimeById(int inEffectId);
-    void clearPlayerBuffer();
+    void resetPropBufferByDict(CCDictionary *inPropBuffes);
     
+    void addPropBufferById(int inEffectId, PROPBUFFERTYPE inBufferType, int inKeepTime);
+    void clearPropBufferById(int inEffectId , bool bRemove = true);
+    
+    int subPropBufferKeepTime(int inEffectId, int inSubTime = 1, bool inRemoveZero = true);
+    int getPropBufferKeepTime(int inEffectId);
+    
+    bool hasPropBuffer();
+    map<int, PropBuffer>& getAllPropBuffer(){return m_cBufferContainer;};
     
     void addAltarBufferById(int inEffectId, ALTARBUFFERTYPE inBufferType, int inKeepTime);
-    void clearAltarBufferById(int inEffectId);
+    void clearAltarBufferById(int inEffectId , bool bRemove = true);
     
     int subAltarBufferKeepTime(int inEffectId, int inSubTime = 1, bool inRemoveZero = true);
     int getAltarBufferKeepTime(int inEffectId);
     
+    bool hasAltarPropBuffer(){return m_cAltarBuffercontainer.size()!= 0;};
     void clearAllAltarBufferes();
     vector<AltarBuffer> &getAllAltarBuffer(){return m_cAltarBuffercontainer;};
     ALTARBUFFERTYPE getAltarBufferTypeById(int inEffectId);
     
+    bool hasAnyBuffer(){return (m_cBufferContainer.size() != 0) || (m_cAltarBuffercontainer.size() != 0);};
 protected:
-    int m_nNewAddAltarBufferId;
     CPlayerBufferManager();
     ~CPlayerBufferManager();
     
     CC_SYNTHESIZE(int, m_nLastAddEffectId, LastAddEffectId);
+    CC_SYNTHESIZE(int, m_nLastAddPropEffectId, LastAddPropEffectId);
 
    
 protected:
    // map<int, int> m_cBufferContainer; // store buffer --> skill_effect_id & and keep time
-    vector<PLAYERBUFFERDATA> m_cBufferContainer;
+    map<int,PropBuffer> m_cBufferContainer;
     vector<AltarBuffer> m_cAltarBuffercontainer;
 };
 

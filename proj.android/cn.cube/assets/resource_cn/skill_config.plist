@@ -55,7 +55,7 @@
 		<key>effect_plist</key>
 		<string>resource_cn/100000</string>
 		<key>skill_tips</key>
-		<string>普通攻击</string>
+		<string>0</string>
 	</dict>
 	<key>100001</key>
 	<dict>
@@ -75,6 +75,8 @@
 		<string>120</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>kim</string>
 		<key>cost_func_2</key>
 		<string>2</string>
 		<key>cost_parameter_2</key>
@@ -108,7 +110,7 @@
 		<key>effect_plist</key>
 		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>化身为一道剑刃飓风，以无与伦比的速度向敌方主卡投掷三把匕首</string>
+		<string>0</string>
 	</dict>
 	<key>100002</key>
 	<dict>
@@ -163,7 +165,7 @@
 		<key>effect_plist</key>
 		<string>resource_cn/100004</string>
 		<key>skill_tips</key>
-		<string>吹响战斗的号角，发出震耳的咆哮，使我方主卡进入获得鼓舞，增加15点怒气</string>
+		<string>0</string>
 	</dict>
 	<key>100003</key>
 	<dict>
@@ -216,9 +218,9 @@
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>resource_cn/100000</string>
+		<string>resource_cn/100004</string>
 		<key>skill_tips</key>
-		<string>对目标投掷石块，若敌方因此技能而死亡，则回复25点怒气</string>
+		<string>0</string>
 	</dict>
 	<key>100004</key>
 	<dict>
@@ -273,502 +275,2097 @@
 		<key>effect_plist</key>
 		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>以战神之名，向对方挑战，使敌方主卡无心迎战，减少20点怒气</string>
+		<string>0</string>
 	</dict>
-	<key>205201</key>
+	<key>700001</key>
 	<dict>
 		<key>skill_id</key>
-		<string>205201</string>
+		<string>700001</string>
 		<key>skill_name</key>
-		<string>花色测试1</string>
+		<string>水</string>
 		<key>skill_type</key>
-		<string>5</string>
+		<string>1</string>
 		<key>skill_logic</key>
-		<string>3</string>
+		<string>2</string>
 		<key>cost_tips_1</key>
-		<string>无</string>
+		<string>怒气</string>
 		<key>cost_func_1</key>
-		<string>0</string>
+		<string>1</string>
 		<key>cost_parameter_1</key>
-		<string>0</string>
+		<string>125</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
-		<string>0</string>
+		<string>buff</string>
 		<key>cost_func_2</key>
-		<string>0</string>
+		<string>2</string>
 		<key>cost_parameter_2</key>
-		<string>0</string>
+		<string>702000</string>
 		<key>cost_parameter_p_2</key>
 		<string>0</string>
 		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<string>给敌方主卡的效果</string>
 		<key>parameter_1</key>
-		<string>205201</string>
+		<string>701001</string>
 		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
 		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
+		<string>额外伤害</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_4</key>
 		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
+		<string>给敌方上场卡的效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
+		<string>给我方上场卡的效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist5</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>0</string>
+		<string>700001</string>
 	</dict>
-	<key>205202</key>
+	<key>700002</key>
 	<dict>
 		<key>skill_id</key>
-		<string>205202</string>
+		<string>700002</string>
 		<key>skill_name</key>
-		<string>花色测试2</string>
+		<string>火</string>
 		<key>skill_type</key>
-		<string>5</string>
+		<string>1</string>
 		<key>skill_logic</key>
 		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>无</string>
+		<string>怒气</string>
 		<key>cost_func_1</key>
-		<string>0</string>
+		<string>1</string>
 		<key>cost_parameter_1</key>
-		<string>0</string>
+		<string>125</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
-		<string>0</string>
+		<string>我方主卡buff</string>
 		<key>cost_func_2</key>
-		<string>0</string>
+		<string>3</string>
 		<key>cost_parameter_2</key>
-		<string>0</string>
+		<string>702000</string>
 		<key>cost_parameter_p_2</key>
 		<string>0</string>
 		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<string>给敌方属性伤害</string>
 		<key>parameter_1</key>
-		<string>0</string>
+		<string>701001</string>
 		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
-		<string>205202</string>
+		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
+		<string>给敌方主卡额外伤害</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_4</key>
-		<string>0</string>
+		<string>100002</string>
 		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
+		<string>给敌方上场卡的效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
+		<string>给我方上场卡的效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist6</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>0</string>
+		<string>700002</string>
 	</dict>
-	<key>205203</key>
+	<key>700003</key>
 	<dict>
 		<key>skill_id</key>
-		<string>205203</string>
+		<string>700003</string>
 		<key>skill_name</key>
-		<string>花色测试3</string>
+		<string>水</string>
 		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>4</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方种族判定</string>
+		<key>cost_func_2</key>
+		<string>4</string>
+		<key>cost_parameter_2</key>
+		<string>1</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700003</string>
+	</dict>
+	<key>700004</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700004</string>
+		<key>skill_name</key>
+		<string>火</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
 		<string>5</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方种族判定</string>
+		<key>cost_func_2</key>
+		<string>4</string>
+		<key>cost_parameter_2</key>
+		<string>2</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700004</string>
+	</dict>
+	<key>700005</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700005</string>
+		<key>skill_name</key>
+		<string>光</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>6</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方种族判定</string>
+		<key>cost_func_2</key>
+		<string>4</string>
+		<key>cost_parameter_2</key>
+		<string>3</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700005</string>
+	</dict>
+	<key>700006</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700006</string>
+		<key>skill_name</key>
+		<string>暗</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>7</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方种族判定</string>
+		<key>cost_func_2</key>
+		<string>4</string>
+		<key>cost_parameter_2</key>
+		<string>4</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700006</string>
+	</dict>
+	<key>700007</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700007</string>
+		<key>skill_name</key>
+		<string>水</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>4</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>1</string>
+		<key>cost_parameter_p_2</key>
+		<string>2</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700007</string>
+	</dict>
+	<key>700008</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700008</string>
+		<key>skill_name</key>
+		<string>火</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>5</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>2</string>
+		<key>cost_parameter_p_2</key>
+		<string>1</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700008</string>
+	</dict>
+	<key>700009</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700009</string>
+		<key>skill_name</key>
+		<string>光</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>6</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>3</string>
+		<key>cost_parameter_p_2</key>
+		<string>3</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700009</string>
+	</dict>
+	<key>700010</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700010</string>
+		<key>skill_name</key>
+		<string>暗</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>7</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>4</string>
+		<key>cost_parameter_p_2</key>
+		<string>4</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700010</string>
+	</dict>
+	<key>700011</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700011</string>
+		<key>skill_name</key>
+		<string>水</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>2</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>5</string>
+		<key>cost_parameter_p_2</key>
+		<string>2</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700011</string>
+	</dict>
+	<key>700012</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700012</string>
+		<key>skill_name</key>
+		<string>火</string>
+		<key>skill_type</key>
+		<string>1</string>
 		<key>skill_logic</key>
 		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>无</string>
+		<string>怒气</string>
 		<key>cost_func_1</key>
-		<string>0</string>
+		<string>1</string>
 		<key>cost_parameter_1</key>
-		<string>0</string>
+		<string>125</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
-		<string>0</string>
+		<string>我放种族数量</string>
 		<key>cost_func_2</key>
-		<string>0</string>
+		<string>5</string>
 		<key>cost_parameter_2</key>
-		<string>0</string>
+		<string>6</string>
 		<key>cost_parameter_p_2</key>
-		<string>0</string>
+		<string>2</string>
 		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<string>属性伤害</string>
 		<key>parameter_1</key>
-		<string>0</string>
+		<string>701001</string>
 		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
 		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
+		<string>额外伤害</string>
 		<key>parameter_3</key>
-		<string>205203</string>
+		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<string>在条件情况下给我方主卡的效果</string>
 		<key>parameter_4</key>
 		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
+		<string>给敌方上场卡的效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
+		<string>给我方上场卡的效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist7</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>0</string>
+		<string>700012</string>
 	</dict>
-	<key>205204</key>
+	<key>700013</key>
 	<dict>
 		<key>skill_id</key>
-		<string>205204</string>
+		<string>700013</string>
 		<key>skill_name</key>
-		<string>花色测试4</string>
+		<string>光</string>
 		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>2</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
 		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>7</string>
+		<key>cost_parameter_p_2</key>
+		<string>2</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700013</string>
+	</dict>
+	<key>700014</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700014</string>
+		<key>skill_name</key>
+		<string>暗</string>
+		<key>skill_type</key>
+		<string>1</string>
 		<key>skill_logic</key>
 		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>无</string>
+		<string>怒气</string>
 		<key>cost_func_1</key>
-		<string>0</string>
+		<string>1</string>
 		<key>cost_parameter_1</key>
-		<string>0</string>
+		<string>125</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
-		<string>0</string>
+		<string>我放种族数量</string>
 		<key>cost_func_2</key>
-		<string>0</string>
+		<string>5</string>
 		<key>cost_parameter_2</key>
-		<string>0</string>
+		<string>8</string>
 		<key>cost_parameter_p_2</key>
-		<string>0</string>
+		<string>2</string>
 		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<string>属性伤害</string>
 		<key>parameter_1</key>
-		<string>0</string>
+		<string>701001</string>
 		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
 		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
+		<string>额外伤害</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<string>在条件情况下给我方主卡的效果</string>
 		<key>parameter_4</key>
-		<string>205204</string>
+		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
+		<string>给敌方上场卡的效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
+		<string>给我方上场卡的效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist11</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>0</string>
+		<string>700014</string>
 	</dict>
-	<key>205205</key>
+	<key>700015</key>
 	<dict>
 		<key>skill_id</key>
-		<string>205205</string>
+		<string>700015</string>
 		<key>skill_name</key>
-		<string>花色测试5</string>
+		<string>水</string>
 		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>4</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
 		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>9</string>
+		<key>cost_parameter_p_2</key>
+		<string>3</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700015</string>
+	</dict>
+	<key>700016</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700016</string>
+		<key>skill_name</key>
+		<string>火</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>5</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>10</string>
+		<key>cost_parameter_p_2</key>
+		<string>3</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700016</string>
+	</dict>
+	<key>700017</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700017</string>
+		<key>skill_name</key>
+		<string>光</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>6</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>11</string>
+		<key>cost_parameter_p_2</key>
+		<string>3</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700017</string>
+	</dict>
+	<key>700018</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700018</string>
+		<key>skill_name</key>
+		<string>暗</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>7</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>12</string>
+		<key>cost_parameter_p_2</key>
+		<string>3</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700018</string>
+	</dict>
+	<key>700019</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700019</string>
+		<key>skill_name</key>
+		<string>水</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>2</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>13</string>
+		<key>cost_parameter_p_2</key>
+		<string>4</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700019</string>
+	</dict>
+	<key>700020</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700020</string>
+		<key>skill_name</key>
+		<string>火</string>
+		<key>skill_type</key>
+		<string>1</string>
 		<key>skill_logic</key>
 		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>无</string>
+		<string>怒气</string>
 		<key>cost_func_1</key>
-		<string>0</string>
+		<string>1</string>
 		<key>cost_parameter_1</key>
-		<string>0</string>
+		<string>125</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
-		<string>0</string>
+		<string>我放种族数量</string>
 		<key>cost_func_2</key>
-		<string>0</string>
+		<string>5</string>
 		<key>cost_parameter_2</key>
-		<string>0</string>
+		<string>14</string>
 		<key>cost_parameter_p_2</key>
-		<string>0</string>
+		<string>4</string>
 		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<string>属性伤害</string>
 		<key>parameter_1</key>
-		<string>0</string>
+		<string>701001</string>
 		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
 		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
+		<string>额外伤害</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<string>在条件情况下给我方主卡的效果</string>
 		<key>parameter_4</key>
 		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
+		<string>给敌方上场卡的效果</string>
 		<key>parameter_5</key>
-		<string>205205</string>
+		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
+		<string>给我方上场卡的效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist12</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>0</string>
+		<string>700020</string>
 	</dict>
-	<key>205206</key>
+	<key>700021</key>
 	<dict>
 		<key>skill_id</key>
-		<string>205206</string>
+		<string>700021</string>
 		<key>skill_name</key>
-		<string>花色测试6</string>
+		<string>光</string>
 		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>4</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
 		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>15</string>
+		<key>cost_parameter_p_2</key>
+		<string>4</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700021</string>
+	</dict>
+	<key>700022</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700022</string>
+		<key>skill_name</key>
+		<string>暗</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>5</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>16</string>
+		<key>cost_parameter_p_2</key>
+		<string>4</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700022</string>
+	</dict>
+	<key>700023</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700023</string>
+		<key>skill_name</key>
+		<string>水</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>6</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>17</string>
+		<key>cost_parameter_p_2</key>
+		<string>6</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700023</string>
+	</dict>
+	<key>700024</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700024</string>
+		<key>skill_name</key>
+		<string>火</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>7</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>18</string>
+		<key>cost_parameter_p_2</key>
+		<string>6</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700024</string>
+	</dict>
+	<key>700025</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700025</string>
+		<key>skill_name</key>
+		<string>光</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>2</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>19</string>
+		<key>cost_parameter_p_2</key>
+		<string>6</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700025</string>
+	</dict>
+	<key>700026</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700026</string>
+		<key>skill_name</key>
+		<string>暗</string>
+		<key>skill_type</key>
+		<string>1</string>
 		<key>skill_logic</key>
 		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>无</string>
+		<string>怒气</string>
 		<key>cost_func_1</key>
-		<string>0</string>
+		<string>1</string>
 		<key>cost_parameter_1</key>
-		<string>0</string>
+		<string>125</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
-		<string>0</string>
+		<string>我放种族数量</string>
 		<key>cost_func_2</key>
-		<string>0</string>
+		<string>5</string>
 		<key>cost_parameter_2</key>
-		<string>0</string>
+		<string>20</string>
 		<key>cost_parameter_p_2</key>
-		<string>0</string>
+		<string>6</string>
 		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<string>属性伤害</string>
 		<key>parameter_1</key>
-		<string>205206</string>
+		<string>701001</string>
 		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
 		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
+		<string>额外伤害</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<string>在条件情况下给我方主卡的效果</string>
 		<key>parameter_4</key>
 		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
+		<string>给敌方上场卡的效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
+		<string>给我方上场卡的效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist13</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>0</string>
+		<string>700026</string>
 	</dict>
-	<key>205207</key>
+	<key>700027</key>
 	<dict>
 		<key>skill_id</key>
-		<string>205207</string>
+		<string>700027</string>
 		<key>skill_name</key>
-		<string>花色测试7</string>
+		<string>无属性</string>
 		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>4</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
 		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>21</string>
+		<key>cost_parameter_p_2</key>
+		<string>6</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700027</string>
+	</dict>
+	<key>700028</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700028</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>5</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>22</string>
+		<key>cost_parameter_p_2</key>
+		<string>6</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700028</string>
+	</dict>
+	<key>700029</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700029</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>6</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>23</string>
+		<key>cost_parameter_p_2</key>
+		<string>6</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700029</string>
+	</dict>
+	<key>700030</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700030</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>7</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我放种族数量</string>
+		<key>cost_func_2</key>
+		<string>5</string>
+		<key>cost_parameter_2</key>
+		<string>24</string>
+		<key>cost_parameter_p_2</key>
+		<string>6</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700030</string>
+	</dict>
+	<key>700031</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700031</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>2</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方主卡颜色</string>
+		<key>cost_func_2</key>
+		<string>6</string>
+		<key>cost_parameter_2</key>
+		<string>1</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700031</string>
+	</dict>
+	<key>700032</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700032</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
 		<key>skill_logic</key>
 		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>无</string>
+		<string>怒气</string>
 		<key>cost_func_1</key>
-		<string>0</string>
+		<string>1</string>
 		<key>cost_parameter_1</key>
-		<string>0</string>
+		<string>125</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
-		<string>0</string>
+		<string>敌方主卡颜色</string>
 		<key>cost_func_2</key>
-		<string>0</string>
+		<string>6</string>
 		<key>cost_parameter_2</key>
-		<string>0</string>
+		<string>2</string>
 		<key>cost_parameter_p_2</key>
 		<string>0</string>
 		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<string>属性伤害</string>
 		<key>parameter_1</key>
-		<string>0</string>
+		<string>701001</string>
 		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
-		<string>205207</string>
+		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
+		<string>额外伤害</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<string>在条件情况下给我方主卡的效果</string>
 		<key>parameter_4</key>
 		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
+		<string>给敌方上场卡的效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
+		<string>给我方上场卡的效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist14</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>0</string>
+		<string>700032</string>
 	</dict>
-	<key>205208</key>
+	<key>700033</key>
 	<dict>
 		<key>skill_id</key>
-		<string>205208</string>
+		<string>700033</string>
 		<key>skill_name</key>
-		<string>花色测试8</string>
+		<string>无属性</string>
 		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>4</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方主卡颜色</string>
+		<key>cost_func_2</key>
+		<string>6</string>
+		<key>cost_parameter_2</key>
+		<string>3</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700033</string>
+	</dict>
+	<key>700034</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700034</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
 		<string>5</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方主卡颜色</string>
+		<key>cost_func_2</key>
+		<string>6</string>
+		<key>cost_parameter_2</key>
+		<string>4</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700034</string>
+	</dict>
+	<key>700035</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700035</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>6</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方主卡颜色</string>
+		<key>cost_func_2</key>
+		<string>6</string>
+		<key>cost_parameter_2</key>
+		<string>5</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700035</string>
+	</dict>
+	<key>700036</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700036</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>7</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>敌方主卡颜色</string>
+		<key>cost_func_2</key>
+		<string>6</string>
+		<key>cost_parameter_2</key>
+		<string>6</string>
+		<key>cost_parameter_p_2</key>
+		<string>0</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700036</string>
+	</dict>
+	<key>700037</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700037</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
+		<key>skill_logic</key>
+		<string>2</string>
+		<key>cost_tips_1</key>
+		<string>怒气</string>
+		<key>cost_func_1</key>
+		<string>1</string>
+		<key>cost_parameter_1</key>
+		<string>125</string>
+		<key>cost_parameter_p_1</key>
+		<string>0</string>
+		<key>cost_tips_2</key>
+		<string>我方主卡血量判定</string>
+		<key>cost_func_2</key>
+		<string>7</string>
+		<key>cost_parameter_2</key>
+		<string>1</string>
+		<key>cost_parameter_p_2</key>
+		<string>20</string>
+		<key>parameter_tips_1</key>
+		<string>属性伤害</string>
+		<key>parameter_1</key>
+		<string>701001</string>
+		<key>parameter_tips_2</key>
+		<string>给我方主卡的效果</string>
+		<key>parameter_2</key>
+		<string>0</string>
+		<key>parameter_tips_3</key>
+		<string>额外伤害</string>
+		<key>parameter_3</key>
+		<string>0</string>
+		<key>parameter_tips_4</key>
+		<string>在条件情况下给我方主卡的效果</string>
+		<key>parameter_4</key>
+		<string>0</string>
+		<key>parameter_tips_5</key>
+		<string>给敌方上场卡的效果</string>
+		<key>parameter_5</key>
+		<string>0</string>
+		<key>parameter_tips_6</key>
+		<string>给我方上场卡的效果</string>
+		<key>parameter_6</key>
+		<string>0</string>
+		<key>effect_plist</key>
+		<string>resource_cn/boss_icon_Effect</string>
+		<key>skill_tips</key>
+		<string>700037</string>
+	</dict>
+	<key>700038</key>
+	<dict>
+		<key>skill_id</key>
+		<string>700038</string>
+		<key>skill_name</key>
+		<string>无属性</string>
+		<key>skill_type</key>
+		<string>1</string>
 		<key>skill_logic</key>
 		<string>3</string>
 		<key>cost_tips_1</key>
-		<string>无</string>
+		<string>怒气</string>
 		<key>cost_func_1</key>
-		<string>0</string>
+		<string>1</string>
 		<key>cost_parameter_1</key>
-		<string>0</string>
+		<string>125</string>
 		<key>cost_parameter_p_1</key>
 		<string>0</string>
 		<key>cost_tips_2</key>
-		<string>0</string>
+		<string>我方主卡血量判定</string>
 		<key>cost_func_2</key>
-		<string>0</string>
+		<string>7</string>
 		<key>cost_parameter_2</key>
-		<string>0</string>
+		<string>2</string>
 		<key>cost_parameter_p_2</key>
-		<string>0</string>
+		<string>80</string>
 		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
+		<string>属性伤害</string>
 		<key>parameter_1</key>
-		<string>0</string>
+		<string>701001</string>
 		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
+		<string>给我方主卡的效果</string>
 		<key>parameter_2</key>
 		<string>0</string>
 		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
-		<key>parameter_3</key>
-		<string>205208</string>
-		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
-		<key>parameter_4</key>
-		<string>0</string>
-		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
-		<key>parameter_5</key>
-		<string>0</string>
-		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
-		<key>parameter_6</key>
-		<string>0</string>
-		<key>effect_plist</key>
-		<string>plist15</string>
-		<key>skill_tips</key>
-		<string>0</string>
-	</dict>
-	<key>205209</key>
-	<dict>
-		<key>skill_id</key>
-		<string>205209</string>
-		<key>skill_name</key>
-		<string>花色测试9</string>
-		<key>skill_type</key>
-		<string>5</string>
-		<key>skill_logic</key>
-		<string>3</string>
-		<key>cost_tips_1</key>
-		<string>无</string>
-		<key>cost_func_1</key>
-		<string>0</string>
-		<key>cost_parameter_1</key>
-		<string>0</string>
-		<key>cost_parameter_p_1</key>
-		<string>0</string>
-		<key>cost_tips_2</key>
-		<string>0</string>
-		<key>cost_func_2</key>
-		<string>0</string>
-		<key>cost_parameter_2</key>
-		<string>0</string>
-		<key>cost_parameter_p_2</key>
-		<string>0</string>
-		<key>parameter_tips_1</key>
-		<string>给我方此阵容的卡牌的效果经验效果</string>
-		<key>parameter_1</key>
-		<string>0</string>
-		<key>parameter_tips_2</key>
-		<string>给我方此阵容的卡牌的金钱收益</string>
-		<key>parameter_2</key>
-		<string>0</string>
-		<key>parameter_tips_3</key>
-		<string>给我方此阵容的卡牌的血量效果</string>
+		<string>额外伤害</string>
 		<key>parameter_3</key>
 		<string>0</string>
 		<key>parameter_tips_4</key>
-		<string>给我方此阵容的卡牌的攻击力效果</string>
+		<string>在条件情况下给我方主卡的效果</string>
 		<key>parameter_4</key>
-		<string>205209</string>
+		<string>0</string>
 		<key>parameter_tips_5</key>
-		<string>给我方此阵容的卡牌的防御力效果</string>
+		<string>给敌方上场卡的效果</string>
 		<key>parameter_5</key>
 		<string>0</string>
 		<key>parameter_tips_6</key>
-		<string>给我方此阵容的卡牌的怒气效果</string>
+		<string>给我方上场卡的效果</string>
 		<key>parameter_6</key>
 		<string>0</string>
 		<key>effect_plist</key>
-		<string>plist16</string>
+		<string>resource_cn/boss_icon_Effect</string>
 		<key>skill_tips</key>
-		<string>0</string>
+		<string>700038</string>
 	</dict>
 </dict>
 </plist>

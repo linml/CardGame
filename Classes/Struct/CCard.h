@@ -30,7 +30,7 @@ public:
     string m_scard_name;
     int  m_ccard_next;  ///next id
     unsigned short int  m_sicard_star;
-    int m_icard_stirps;   //种族
+    int m_icard_stirps;   //种族 1,
     int m_icard_suit;      //随机数值
     int m_icard_leadership;
     int m_icard_exp;    //吃掉该卡牌的 经验

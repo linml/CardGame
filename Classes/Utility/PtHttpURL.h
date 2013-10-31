@@ -124,7 +124,14 @@
 //获取扭蛋卡牌
 #define STR_URL_CARDRANDOM(UID)     URL_FACTORY("api.php?m=Card&a=cardRandom&uid=",UID)
 //设置准备大战的阵容
+//设置战队
 #define STR_URL_SETFIGHTTEAM(UID)   URL_FACTORY("api.php?m=Fight&a=setTeam&uid=",UID)
+
+//去除Buffer
+#define STR_URL_CANCELBUFFER(UID)   URL_FACTORY("api.php?m=Item&a=deleteChapterBuff&uid=",UID)
+//使用特殊道具
+#define STR_URL_USESPEACIALPROP(UID) URL_FACTORY("api.php?m=Item&a=useSpecialItem&uid=",UID)
+
 //获取活动
 #define STR_URL_ACTIVITY(UID)       URL_FACTORY("api.php?m=Activity&a=getNotice&uid=",UID)
 

@@ -159,6 +159,7 @@ public:
     
     int getPropCountFromBag(int inPropId);
     int getPropMaxCountAddToBag(int inPropId);
+    int haveEnoughPropById(int inPropId, int inNum);
 protected:
     int isCanAddToBackPack(map<int, int> &tmpProps, map<int, int> &inAddProps , int inUserGridCount);
     void mergeProps(map<int, int> &tmpProps, map<int, int> &inAddProps);    

@@ -14,7 +14,7 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>100001</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -39,8 +39,8 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
-			<string>0</string>
+			<key>item_effect_id</key>
+			<string>100004</string>
 			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
@@ -64,8 +64,8 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>2</string>
-			<key>use_id</key>
-			<string>0</string>
+			<key>item_effect_id</key>
+			<string>100005</string>
 			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
@@ -89,10 +89,10 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
-			<string>0</string>
+			<key>item_effect_id</key>
+			<string>100009</string>
 			<key>use_scene</key>
-			<string>0</string>
+			<string>1</string>
 			<key>icon</key>
 			<string>icon_009.png</string>
 			<key>limit_num</key>
@@ -114,7 +114,7 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -139,7 +139,7 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -164,7 +164,7 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -189,7 +189,7 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -214,7 +214,7 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -239,7 +239,7 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -264,10 +264,10 @@
 			<string>1</string>
 			<key>use_delete</key>
 			<string>4</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
-			<string>0</string>
+			<string>2</string>
 			<key>icon</key>
 			<string>icon_011.png</string>
 			<key>limit_num</key>
@@ -288,8 +288,8 @@
 			<key>unlock_level</key>
 			<string>1</string>
 			<key>use_delete</key>
-			<string>4</string>
-			<key>use_id</key>
+			<string>0</string>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -313,8 +313,8 @@
 			<key>unlock_level</key>
 			<string>1</string>
 			<key>use_delete</key>
-			<string>2</string>
-			<key>use_id</key>
+			<string>4</string>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -336,10 +336,10 @@
 			<key>type</key>
 			<string>4</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>4</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907020</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -357,14 +357,14 @@
 			<key>item_id</key>
 			<string>900005</string>
 			<key>name</key>
-			<string>商人卡包</string>
+			<string>商人卡包1</string>
 			<key>type</key>
 			<string>4</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>4</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907040</string>
 			<key>use_scene</key>
 			<string>1</string>
@@ -386,10 +386,10 @@
 			<key>type</key>
 			<string>4</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>4</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907041</string>
 			<key>use_scene</key>
 			<string>1</string>
@@ -411,10 +411,10 @@
 			<key>type</key>
 			<string>4</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>4</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907042</string>
 			<key>use_scene</key>
 			<string>1</string>
@@ -436,10 +436,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907000</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -461,10 +461,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907001</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -486,10 +486,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907002</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -511,10 +511,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907006</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -536,10 +536,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907007</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -561,10 +561,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907054</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -586,10 +586,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907011</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -611,10 +611,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907012</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -636,10 +636,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907016</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -661,10 +661,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907031</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -686,10 +686,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907032</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -711,10 +711,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907033</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -736,10 +736,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907034</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -761,10 +761,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907035</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -786,10 +786,10 @@
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>1</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>907036</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -802,20 +802,20 @@
 			<key>tips</key>
 			<string>901036</string>
 		</dict>
-		<key>901051</key>
+		<key>901050</key>
 		<dict>
 			<key>item_id</key>
-			<string>901051</string>
+			<string>901050</string>
 			<key>name</key>
 			<string>扭蛋券</string>
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>4</string>
-			<key>use_id</key>
-			<string>907051</string>
+			<key>item_effect_id</key>
+			<string>907050</string>
 			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
@@ -825,22 +825,22 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>901051</string>
+			<string>907050</string>
 		</dict>
-		<key>901052</key>
+		<key>901060</key>
 		<dict>
 			<key>item_id</key>
-			<string>901052</string>
+			<string>901060</string>
 			<key>name</key>
 			<string>探路镜</string>
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
-			<string>2</string>
+			<key>item_effect_id</key>
+			<string>0</string>
 			<key>use_scene</key>
 			<string>1</string>
 			<key>icon</key>
@@ -850,22 +850,22 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>901052</string>
+			<string>907060</string>
 		</dict>
-		<key>901053</key>
+		<key>901070</key>
 		<dict>
 			<key>item_id</key>
-			<string>901053</string>
+			<string>901070</string>
 			<key>name</key>
 			<string>任意门</string>
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
-			<string>3</string>
+			<key>item_effect_id</key>
+			<string>0</string>
 			<key>use_scene</key>
 			<string>1</string>
 			<key>icon</key>
@@ -875,22 +875,22 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>901053</string>
+			<string>907070</string>
 		</dict>
-		<key>901054</key>
+		<key>901080</key>
 		<dict>
 			<key>item_id</key>
-			<string>901054</string>
+			<string>901080</string>
 			<key>name</key>
 			<string>笑忘书</string>
 			<key>type</key>
 			<string>1</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
-			<string>4</string>
+			<key>item_effect_id</key>
+			<string>0</string>
 			<key>use_scene</key>
 			<string>1</string>
 			<key>icon</key>
@@ -900,12 +900,12 @@
 			<key>is_only</key>
 			<string>0</string>
 			<key>tips</key>
-			<string>901054</string>
+			<string>901080</string>
 		</dict>
-		<key>901080</key>
+		<key>901090</key>
 		<dict>
 			<key>item_id</key>
-			<string>901080</string>
+			<string>901090</string>
 			<key>name</key>
 			<string>新手礼包</string>
 			<key>type</key>
@@ -914,8 +914,8 @@
 			<string>0</string>
 			<key>use_delete</key>
 			<string>2</string>
-			<key>use_id</key>
-			<string>1</string>
+			<key>item_effect_id</key>
+			<string>907090</string>
 			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
@@ -925,12 +925,12 @@
 			<key>is_only</key>
 			<string>1</string>
 			<key>tips</key>
-			<string>901080</string>
+			<string>901090</string>
 		</dict>
-		<key>901081</key>
+		<key>901091</key>
 		<dict>
 			<key>item_id</key>
-			<string>901081</string>
+			<string>901091</string>
 			<key>name</key>
 			<string>10级礼包</string>
 			<key>type</key>
@@ -939,8 +939,8 @@
 			<string>10</string>
 			<key>use_delete</key>
 			<string>2</string>
-			<key>use_id</key>
-			<string>1</string>
+			<key>item_effect_id</key>
+			<string>907091</string>
 			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
@@ -950,12 +950,12 @@
 			<key>is_only</key>
 			<string>1</string>
 			<key>tips</key>
-			<string>901081</string>
+			<string>901091</string>
 		</dict>
-		<key>901082</key>
+		<key>901092</key>
 		<dict>
 			<key>item_id</key>
-			<string>901082</string>
+			<string>901092</string>
 			<key>name</key>
 			<string>20级礼包</string>
 			<key>type</key>
@@ -964,8 +964,8 @@
 			<string>20</string>
 			<key>use_delete</key>
 			<string>2</string>
-			<key>use_id</key>
-			<string>1</string>
+			<key>item_effect_id</key>
+			<string>907092</string>
 			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
@@ -975,12 +975,12 @@
 			<key>is_only</key>
 			<string>1</string>
 			<key>tips</key>
-			<string>901082</string>
+			<string>901092</string>
 		</dict>
-		<key>901083</key>
+		<key>901093</key>
 		<dict>
 			<key>item_id</key>
-			<string>901083</string>
+			<string>901093</string>
 			<key>name</key>
 			<string>30级礼包</string>
 			<key>type</key>
@@ -989,8 +989,8 @@
 			<string>30</string>
 			<key>use_delete</key>
 			<string>2</string>
-			<key>use_id</key>
-			<string>1</string>
+			<key>item_effect_id</key>
+			<string>907093</string>
 			<key>use_scene</key>
 			<string>0</string>
 			<key>icon</key>
@@ -1000,57 +1000,7 @@
 			<key>is_only</key>
 			<string>1</string>
 			<key>tips</key>
-			<string>901083</string>
-		</dict>
-		<key>901084</key>
-		<dict>
-			<key>item_id</key>
-			<string>901084</string>
-			<key>name</key>
-			<string>40级礼包</string>
-			<key>type</key>
-			<string>1</string>
-			<key>unlock_level</key>
-			<string>40</string>
-			<key>use_delete</key>
-			<string>2</string>
-			<key>use_id</key>
-			<string>1</string>
-			<key>use_scene</key>
-			<string>0</string>
-			<key>icon</key>
-			<string>icon_001.png</string>
-			<key>limit_num</key>
-			<string>1</string>
-			<key>is_only</key>
-			<string>1</string>
-			<key>tips</key>
-			<string>901084</string>
-		</dict>
-		<key>901085</key>
-		<dict>
-			<key>item_id</key>
-			<string>901085</string>
-			<key>name</key>
-			<string>50级礼包</string>
-			<key>type</key>
-			<string>1</string>
-			<key>unlock_level</key>
-			<string>50</string>
-			<key>use_delete</key>
-			<string>2</string>
-			<key>use_id</key>
-			<string>1</string>
-			<key>use_scene</key>
-			<string>0</string>
-			<key>icon</key>
-			<string>icon_010.png</string>
-			<key>limit_num</key>
-			<string>1</string>
-			<key>is_only</key>
-			<string>1</string>
-			<key>tips</key>
-			<string>901085</string>
+			<string>901093</string>
 		</dict>
 		<key>901301</key>
 		<dict>
@@ -1061,10 +1011,10 @@
 			<key>type</key>
 			<string>3</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -1086,10 +1036,10 @@
 			<key>type</key>
 			<string>3</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -1111,10 +1061,10 @@
 			<key>type</key>
 			<string>3</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -1136,10 +1086,10 @@
 			<key>type</key>
 			<string>3</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -1161,10 +1111,10 @@
 			<key>type</key>
 			<string>3</string>
 			<key>unlock_level</key>
-			<string>0</string>
+			<string>1</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -1186,10 +1136,35 @@
 			<key>type</key>
 			<string>3</string>
 			<key>unlock_level</key>
+			<string>1</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>item_effect_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_003.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901306</string>
+		</dict>
+		<key>901306</key>
+		<dict>
+			<key>item_id</key>
+			<string>901306</string>
+			<key>name</key>
+			<string>材料6</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
 			<string>0</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>
@@ -1214,7 +1189,32 @@
 			<string>0</string>
 			<key>use_delete</key>
 			<string>3</string>
-			<key>use_id</key>
+			<key>item_effect_id</key>
+			<string>0</string>
+			<key>use_scene</key>
+			<string>0</string>
+			<key>icon</key>
+			<string>icon_004.png</string>
+			<key>limit_num</key>
+			<string>5</string>
+			<key>is_only</key>
+			<string>0</string>
+			<key>tips</key>
+			<string>901307</string>
+		</dict>
+		<key>901307</key>
+		<dict>
+			<key>item_id</key>
+			<string>901307</string>
+			<key>name</key>
+			<string>材料7</string>
+			<key>type</key>
+			<string>3</string>
+			<key>unlock_level</key>
+			<string>1</string>
+			<key>use_delete</key>
+			<string>3</string>
+			<key>item_effect_id</key>
 			<string>0</string>
 			<key>use_scene</key>
 			<string>0</string>

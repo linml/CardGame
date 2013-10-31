@@ -15,7 +15,7 @@
 using namespace cocos2d;
 using std::string;
 
-#define CSELLERDIALOG_TOUCH_PRORITY 50000
+#define CSELLERDIALOG_TOUCH_PRORITY -50000
 
 class CSellerDialog : public CCLayerColor
 {

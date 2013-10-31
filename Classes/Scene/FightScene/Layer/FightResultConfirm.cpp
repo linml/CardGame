@@ -136,6 +136,9 @@ void FightResultConfirm::callBackData(cocos2d::CCObject *object)
             {
                 pResult = (CCDictionary*) pResult->objectForKey("result");
                 CCAssert(pResult, "result null");
+                CCDictionary *buffs =(CCDictionary*) pResult->objectForKey("buffs");
+                CExploration::resetPropBufferByDict(buffs);
+                
                 CCDictionary *tmp = (CCDictionary*) pResult->objectForKey("event_info");
                 CExploration::setNextEventByDict(tmp);
                 resetAltarBuffer(pResult->objectForKey("chapter_buff"));
@@ -261,8 +264,8 @@ void FightResultConfirm::handlerEventReward(CCDictionary * inAllReward)
         if (addReward)
         {
             flag = addReward->excuteReward(ADD);
-            sprintf(tips, "add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", addReward->getEnergy(), addReward->getHP(), addReward->getExp(),
-                    addReward->getCoin(), addReward->getCash(), addReward->getCardCount(), addReward->getPropCount());
+            sprintf(tips, "add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n extra coin: %d, extra exp : %d", addReward->getEnergy(), addReward->getHP(), addReward->getExp(),
+                    addReward->getCoin(), addReward->getCash(), addReward->getCardCount(), addReward->getPropCount(), addReward->getExtarCoin(), addReward->getExtarExp());
            // addReward->getRewardContent(tips, 200);
            
         }

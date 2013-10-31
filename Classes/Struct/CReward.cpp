@@ -106,6 +106,8 @@ int CReward::excuteReward(OPEARTORTYPE inType)
             m_pPlayer->addPlayerCash(m_nCash);
             m_pPlayer->addPlayerAp(m_nEnergy);
             m_pPlayer->addPlayerGp(m_nHp);
+            m_pPlayer->addCoin(m_nExtarCoin);
+            m_pPlayer->addPalyerExp(m_nExtarExp);
             addCards();
             addProps();
             
@@ -135,6 +137,15 @@ int CReward::excuteReward(OPEARTORTYPE inType)
 }
 
 // getter and setter:
+
+int CReward::getExtarExp()
+{
+    return m_nExtarExp;
+}
+int CReward::getExtarCoin()
+{
+    return m_nExtarCoin;
+}
 
 int CReward::getCash()
 {
@@ -188,6 +199,8 @@ void CReward::initData()
     m_nExp = 0;
     m_nCash = 0;
     m_nFriendly = 0;
+    m_nExtarCoin = 0;
+    m_nExtarExp = 0;
     m_pCards = NULL;
     m_pProps = NULL;
     m_bExecute = false;
@@ -205,6 +218,8 @@ void CReward::copyWithCReward(CReward * inReward)
     m_nHp  = inReward->getHP();
     m_nExp = inReward->getExp();
     m_nEnergy = inReward->getEnergy();
+    m_nExtarCoin = inReward->getExtarCoin();
+    m_nExtarExp = inReward->getExtarExp();
     
     m_pCards = inReward->getCards();
     m_pProps = inReward->getProps();
@@ -220,6 +235,9 @@ void CReward::addCReward(CReward *inAddReward)
     m_nHp  += inAddReward->getHP();
     m_nExp += inAddReward->getExp();
     m_nEnergy += inAddReward->getEnergy();
+    m_nExtarExp += inAddReward->getExtarExp();
+    m_nExtarCoin += inAddReward->getExtarCoin();
+
     
     if (m_pCards == NULL)
     {
@@ -246,6 +264,14 @@ void CReward::parseDict(cocos2d::CCDictionary *inReward)
         
         m_pCards = (CCDictionary*)inReward->objectForKey("card");
         m_pProps = (CCDictionary*)inReward->objectForKey("item");
+        
+        CCDictionary *tmpBuffer = NULL;
+        tmpBuffer =(CCDictionary*) inReward->objectForKey("buff");
+        if (tmpBuffer)
+        {
+            m_nExtarExp = GameTools::intForKey("exp", tmpBuffer);
+            m_nExtarCoin = GameTools::intForKey("coin", tmpBuffer);
+        }
         
         CC_SAFE_RETAIN(m_pProps);
         CC_SAFE_RETAIN(m_pCards);
@@ -325,7 +351,7 @@ void CReward::subProps()
 
 void CReward::printContent()
 {
-    CCLog("Coin: %d --- HP: %d --- Energy: %d --- EXP: %d", m_nCoin, m_nHp, m_nEnergy, m_nExp);
+    CCLog("Coin: %d --- HP: %d --- Energy: %d --- EXP: %d --- add EXP : %d, add COIN: %d", m_nCoin, m_nHp, m_nEnergy, m_nExp, m_nExtarExp, m_nExtarCoin);
     if (m_pProps)
     {
         CCLog("the prop count: %d", m_pProps->count());
@@ -346,8 +372,8 @@ void CReward::getRewardContent(char * outString, const int leng)
 {
     memset(outString, 0, leng);
 
-    snprintf(outString,leng,"Coin: %d --- HP: %d --- Energy: %d --- EXP: %d, card count: %d, prop count: %d", m_nCoin, m_nHp, m_nEnergy, m_nExp
+    snprintf(outString,leng,"Coin: %d --- HP: %d --- Energy: %d --- EXP: %d, add EXP : %d, add COIN: %d, card count: %d, prop count: %d", m_nCoin, m_nHp, m_nEnergy, m_nExp,
             
-            ,m_pCards == NULL ? 0 : m_pCards->count(), m_pProps == NULL ? 0 : m_pProps->count());
+           m_nExtarExp, m_nExtarCoin ,m_pCards == NULL ? 0 : m_pCards->count(), m_pProps == NULL ? 0 : m_pProps->count());
 }
 

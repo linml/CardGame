@@ -14,6 +14,11 @@
 #include "CGameButtonControl.h"
 #include "gamePlayer.h"
 #include "CSkillData.h"
+#include "CPtPropUseManager.h"
+#include "PtHttpClient.h"
+#include "PtJsonUtility.h"
+#include "CReward.h"
+#include "CPlayerBufferManager.h"
 
 //implement class of CAltarBufferLogo
 CAltarBufferLogo * CAltarBufferLogo::create(AltarBuffer &inAltarBuffer)
@@ -53,6 +58,10 @@ bool CAltarBufferLogo::initCAltarBufferLog(int inSkillEffectId)
         updateTime();
         m_pTime->setPosition(ccp(0, -30));
         addChild(m_pTime);
+        CCSize size(m_pLogo->getContentSize());
+        size.width *= 2;
+        size.height *= 2;
+        setContentSize(size);
         bRet = true;
     } while (0);
     return bRet;
@@ -192,8 +201,15 @@ void CGameBufferTipLayer::initCGameBufferTipUI()
     if (m_pImapact)
     {
         m_nTipId = m_pImapact->m_iParameter_10;
+        if (m_pImapact->m_ieffect_logic == 21)
+        {
+            createBufferTipUI(bg);
+        }else if(m_pImapact->m_ieffect_logic == 24)
+        {
+             createDebufferTipUI(bg);
+        }
         
-        createDebufferTipUI(bg);
+       
     }
 
     setTouchEnabled(true);
@@ -227,8 +243,8 @@ void CGameBufferTipLayer::createDebufferTipUI(CCSprite* inBg)
     tipLabel->setPosition(ccp(bgSize.width*0.6, bgSize.height*0.8));
     tipLabel->setDimensions(CCSizeMake(bgSize.width*0.8, 0));
     inBg->addChild(tipLabel);
-    
-    CCNode *node = createShopItem(901054);
+    m_nPropId = CPtPropUserManager::getInstance()->getUserPropsBy(XIAOBUFFER)->at(0);
+    CCNode *node = createShopItem(m_nPropId);
     node->setPosition(ccp(bgSize.width/2, bgSize.height*0.4));
     inBg->addChild(node);
 }
@@ -272,6 +288,70 @@ void CGameBufferTipLayer:: onClickClose()
 void CGameBufferTipLayer::onClickUse()
 {
     // user prop:
+    if(SinglePlayer::instance()->haveEnoughPropById(m_nPropId, 1) == 1)
+    {
+        onSendCancelBufferRequest();
+    }else
+    {
+        CCMessageBox("没有该道具", "没有该道具");
+    }
+}
+
+/*
+ * sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)&item_id=1(道具ID)&num=1(数量)&( 2探路,3消buff)
+ * special_type=3&special_params={"effect_id"(buff的效果id):1}
+ * special_type=2
+ */
+void CGameBufferTipLayer::onSendCancelBufferRequest()
+{
+  
+    char buffer[300] = {0};
+    sprintf(buffer, "sig=%s&item_id=%d&num=1&special_type=3&special_params={\"effect_id\":%d}",STR_USER_SIG, m_nPropId, m_nBufferKey);
+    CCLog("the buffer: %s", buffer);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_USESPEACIALPROP(196), "CALLBACK_CGameBufferTipLayer::onSendCancelBufferRequest", "REQUEST_CGameBufferTipLayer::onSendCancelBufferRequest", buffer, callfuncO_selector(CGameBufferTipLayer::onReceiveMsg));
+}
+
+void CGameBufferTipLayer::onReceiveMsg(cocos2d::CCObject *pObject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGameBufferTipLayer::onSendCancelBufferRequest");
+    char *buffer = (char*) pObject;
+    if (buffer)
+    {
+        CCDictionary *dict = PtJsonUtility::JsonStringParse(buffer);
+        delete [] buffer;
+        if (dict)
+        {
+            int code = GameTools::intForKey("code", dict);
+            if (code == 0)
+            {
+            
+                CPlayerBufferManager::getInstance()->clearAltarBufferById(m_nBufferKey, false);
+                CCDictionary *tmpDict = (CCDictionary*) dict->objectForKey("result");
+                if(tmpDict)
+                {
+                    tmpDict = (CCDictionary*) (tmpDict->objectForKey("reward"));
+                    if (tmpDict)
+                    {
+                         tmpDict = (CCDictionary*)  tmpDict->objectForKey("dec");
+                         tmpDict = (CCDictionary*) tmpDict->objectForKey("item");
+                        CReward * reward = CReward::create(tmpDict);
+                        if (reward)
+                        {
+                            reward->excuteReward(DEC);
+                        }
+                    }
+                    
+                }
+                removeFromParentAndCleanup(true);
+                CCMessageBox("取消成功", "success");
+            }
+            else
+            {
+                CCMessageBox(CCString::createWithFormat("the error code : %d", code)->getCString(), "cancelbuffer error");
+            }
+        }
+    }
+    
 }
 
 CCNode * CGameBufferTipLayer::createShopItem(int inPropId)

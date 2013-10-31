@@ -23,6 +23,8 @@
 #include "CSellerDialog.h"
 #include "CGameBufferTip.h"
 #include "CAltarDialog.h"
+#include "CPtPropUseManager.h"
+#include "CGameTimerManager.h"
 
 
 int g_index = -1;
@@ -326,6 +328,17 @@ CPtSection * CExploration::getExplorationSectionInfo()
     return s_SectionData.sectionInfo;
 }
 
+void CExploration::resetPropBufferByDict(CCDictionary *inBuffers)
+{
+    if (inBuffers)
+    {
+        std::string typeName = typeid(*inBuffers).name();
+        if (typeName.find("CCDictionary") != std::string::npos)
+        {
+            CPlayerBufferManager::getInstance()->resetPropBufferByDict(inBuffers);
+        }
+    }
+}
 
 
 CCScene* CExploration::scene()
@@ -342,10 +355,12 @@ CCScene* CExploration::scene()
 CExploration::CExploration()
 {
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CExploration::levelUpCallBack), NOTIFYTAG_LEVELUP, NULL);
+
 }
 
 CExploration::~CExploration()
 {
+    m_pTimerManager->stopAltarBuffer();
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, NOTIFYTAG_LEVELUP);
     if (m_cMaps)
     {
@@ -368,10 +383,7 @@ bool CExploration::init()
     return bRet;
 }
 
-void CExploration::onEnter()
-{
-    CCLayer::onEnter();
-}
+
 bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
     if (m_bLoadTaskInfo == false)
@@ -383,6 +395,10 @@ bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
         return false;
     }
     // todo:
+    if (touchBeginBuffers(pTouch))
+    {
+        return true;
+    }
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag =  TouchRect::SearchTouchTag(touchPoint, m_cTouches);
     if (m_nTouchTag == -1)
@@ -415,6 +431,7 @@ void CExploration::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     CCLog("CExploration::ccTouchEnded");
     CCPoint touchPoint = pTouch->getLocation();
+    handlerTouchBuffers(pTouch);
     
     if (m_nTouchTag == TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_pTouchSprite))
     {
@@ -471,6 +488,7 @@ void CExploration::initData()
 {
     m_bLoadTaskInfo = true;
     m_bCanTouch = true;
+    m_bStartAltarBuffer = false;
     for (int i = 0; i < 3; i++)
     {
         m_pBtn[i] = NULL;
@@ -485,6 +503,7 @@ void CExploration::initData()
     m_pEventData = SingleEventDataConfig::instance();
     m_pEventBoxData = SingleEventBoxes::instance();
     m_pPlayerBufferManager = CPlayerBufferManager::getInstance();
+    m_pTimerManager = CGameTimerManager::getInstance();
 }
 
 
@@ -521,7 +540,7 @@ bool CExploration::initExploration()
         
         createBuffers();
 
-        this->schedule(schedule_selector(CExploration::updateBuffers), 1);
+        startAlarBuffer();
         // add buttons:
         CCSprite *btnActivity = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
         btnActivity->setAnchorPoint(CCPointZero);
@@ -833,7 +852,7 @@ void CExploration::updateBuffers(float dt)
            if(tmpLogo->getBufferData().getAltarBufferType() == KEEPTIME)
            {
            
-               int result =  m_pPlayerBufferManager->subAltarBufferKeepTime(skilleffectId, subTime, false);
+               int result =  m_pPlayerBufferManager->getPropBufferKeepTime(skilleffectId);//m_pPlayerBufferManager->subAltarBufferKeepTime(skilleffectId, subTime, false);
                
                if (result == 0)
                {
@@ -848,8 +867,17 @@ void CExploration::updateBuffers(float dt)
                }
            }else if(tmpLogo->getBufferData().getAltarBufferType() == KEEPTIMES)
            {
-               tmpLogo->setPositionX(i*80);
-               i++;
+               if (tmpLogo->getBufferData().getKeep() == 0)
+               {
+                   m_pBufferTips->removeObjectForKey(skilleffectId);
+                   tmpLogo->removeFromParentAndCleanup(true);
+                   m_pPlayerBufferManager->clearAltarBufferById(tmpLogo->getBufferData().getSkillEffectId());
+               }else
+               {
+                   tmpLogo->setPositionX(i*80);
+                   i++;
+               }
+              
            }
         }
     }
@@ -887,6 +915,65 @@ void CExploration::createBuffers()
     }
 }
 
+bool CExploration::touchBeginBuffers(CCTouch *pTouch)
+{
+    bool bRet = false;
+    if (m_pBufferTips)
+    {
+        CCDictElement *element = NULL;
+        CAltarBufferLogo *tmpLogo = NULL;
+        CCDICT_FOREACH(m_pBufferTips, element)
+        {
+            tmpLogo =(CAltarBufferLogo*) element->getObject();
+            if(CPtTool::isInNode(tmpLogo, pTouch))
+            {
+                m_nTouchTag = tmpLogo->getBufferData().getSkillEffectId();
+                bRet = true;
+                break;
+            }
+        }
+    }
+    return bRet;
+}
+void CExploration::handlerTouchBuffers(CCTouch *pTouch)
+{
+    if (m_pBufferTips)
+    {
+        CCDictElement *element = NULL;
+        CAltarBufferLogo *tmpLogo = NULL;
+        CCDICT_FOREACH(m_pBufferTips, element)
+        {
+            tmpLogo =(CAltarBufferLogo*) element->getObject();
+            if(CPtTool::isInNode(tmpLogo, pTouch))
+            {
+                if (m_nTouchTag == tmpLogo->getBufferData().getSkillEffectId())
+                {
+                    CGameBufferTipLayer *layer = CGameBufferTipLayer::create(m_nTouchTag);
+                    CCDirector::sharedDirector()->getRunningScene()->addChild(layer);
+                }
+                break;
+            }
+        }
+    }
+
+
+}
+void CExploration::startAlarBuffer()
+{
+    if (m_bStartAltarBuffer == false)
+    {
+        if (m_pPlayerBufferManager->hasAltarPropBuffer())
+        {
+            m_bStartAltarBuffer = true;
+            m_pTimerManager->startAltarBuffer();
+            this->schedule(schedule_selector(CExploration::updateBuffers), 1);
+        }
+
+    }
+    
+}
+
+
 void CExploration::updateBtn()
 {
     for (int i = 0; i < 3; i++)
@@ -923,12 +1010,21 @@ void CExploration::updateUI()
 void CExploration::onSaveSectionProgress()
 {
     m_bCanTouch = false;
-    int propId = 20001;
-    char buffer[200]={0};
-    CPtSection*  m_pSection = s_SectionData.sectionInfo;
-    sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&item_id=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(), propId);
-    
-    ADDHTTPREQUESTPOSTDATA(STR_URL_SAVE_PROGRESS(196),"saveProgress", "saveProgress",buffer, callfuncO_selector(CExploration::onReceiveSaveMsg));
+    int propId = canSaveSectionProgress();
+    if (propId != -1)
+    {
+        char buffer[200]={0};
+        CPtSection*  m_pSection = s_SectionData.sectionInfo;
+        sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d&item_id=%d",STR_USER_SIG, m_pSection->getChapterId(), m_pSection->getSectionId(), propId);
+        
+        ADDHTTPREQUESTPOSTDATA(STR_URL_SAVE_PROGRESS(196),"saveProgress", "saveProgress",buffer, callfuncO_selector(CExploration::onReceiveSaveMsg));
+    }
+    else
+    {
+        CCMessageBox("没有该道具无法保存进度", "回城了");
+        backHall();
+    }
+   
 
     
 }
@@ -963,7 +1059,24 @@ void CExploration::onParseSaveMsgByDictionary(CCDictionary *pResultDict)
     if (result == 0)
     {
         //success:
-       
+        CCDictionary *tmpDict = (CCDictionary*) pResultDict->objectForKey("result");
+        if(tmpDict)
+        {
+            tmpDict = (CCDictionary*) (tmpDict->objectForKey("reward"));
+            if (tmpDict)
+            {
+                tmpDict = (CCDictionary*)  tmpDict->objectForKey("dec");
+                tmpDict = (CCDictionary*) tmpDict->objectForKey("item");
+                CReward * reward = CReward::create(tmpDict);
+                if (reward)
+                {
+                    reward->excuteReward(DEC);
+                }
+            }
+            
+        }
+        CCMessageBox("扣除任意门道具1个", "回城保存进度");
+
         
     }else
     {
@@ -1045,7 +1158,8 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
     
     int nexstep = GameTools::intForKey("next_step", pResult);
     setCurrentStep(nexstep);
-
+    CCDictionary *buffs = (CCDictionary*) pResult->objectForKey("buffs");
+    resetPropBufferByDict(buffs);
     
     
     
@@ -1176,6 +1290,22 @@ void CExploration::dispatchParaseEvent(CCDictionary *pEventInfo, int inType)
 }
 
 /*
+ * @return 返回－1，没有该道具，返回该道具ID
+ */
+
+int CExploration::canSaveSectionProgress()
+{
+    int nRet = -1;
+
+    int propId = CPtPropUserManager::getInstance()->getUserPropsBy(HUICHENG)->at(0);
+    if(m_pPlayer->haveEnoughPropById(propId, 1)==1)
+    {
+        nRet = propId;
+    }
+    return nRet;
+}
+
+/*
  * @breif 发送startEvent请求
  */
 // http://cube.games.com/api.php?m=Part&a=startEvent&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&chapter_id=1&part_id=1&step=1&event_id=1 go event
@@ -1237,6 +1367,10 @@ void CExploration::onParseEventRequestMsg(CCDictionary *pResultDict)
         handlerSuccess();
         CCDictionary * result = (CCDictionary*) pResultDict->objectForKey("result");
         CCAssert(result, "result not null");
+        
+        CCDictionary *buffs = (CCDictionary*)result->objectForKey("buffs");
+        resetPropBufferByDict(buffs);
+        
         CCDictionary* tmp = (CCDictionary*) result->objectForKey("reward");
         CCDictionary *reward = setRewardsByDict(tmp);
         addForwordReword(reward);
@@ -1441,6 +1575,7 @@ void CExploration::handlerAltarEvent(CCDictionary *inEventInfo)
                 ALTARBUFFERTYPE altarType = GameTools::intForKey("num_type", tmpDict) == 1 ? KEEPTIMES : KEEPTIME;
                 int keeptime  = GameTools::intForKey("num", tmpDict);
                 m_pPlayerBufferManager->addAltarBufferById(effectId, altarType, keeptime);
+                startAlarBuffer();
                 handlerEmptyEvent();
             }
         }

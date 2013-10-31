@@ -13,7 +13,7 @@
 
 using namespace cocos2d;
 
-#define CALTARRDIALOG_TOUCH_PRORITY 50000
+#define CALTARRDIALOG_TOUCH_PRORITY -50000
 
 class CAltarDialogLayer : public CCLayerColor
 {

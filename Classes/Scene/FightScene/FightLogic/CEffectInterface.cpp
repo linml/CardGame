@@ -48,6 +48,7 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
             pMonster->appendHp(iChangeShanghaiHp);
             pMonster->subAtk(-iChangeatk);
             pMonster->subDef(-iChangedef);
+            CCLog("iChangeengry:%d,%d",pMonster->m_iCurrEngry,iChangeengry);
             pMonster->appendEngry(iChangeengry);
         }
     }

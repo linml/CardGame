@@ -27,6 +27,8 @@
 #include "CGlobalUpdateObject.h"
 #include "CStructShopInfo.h"
 #include "CPlayerBufferManager.h"
+#include "CGameTimerManager.h"
+#include "CPlayerBufferManager.h"
 
 
 
@@ -1196,6 +1198,30 @@ int CGamePlayer::getPropMaxCountAddToBag(int inPropId)
     return count;
 }
 
+/*
+ *  @return  nRet--> -1 不存在， inNum 够， <inNum : 不够的数目
+ */
+int CGamePlayer::haveEnoughPropById(int inPropId, int inNum)
+{
+    int nRet = -1;
+    map<int, int>::iterator it = m_vProps.find(inPropId);
+    if (it != m_vProps.end())
+    {
+        nRet =it->second-inNum;
+    }
+    else
+    {
+        return nRet;
+    }
+    if (nRet >= 0 )
+    {
+        nRet = inNum;
+    }else
+    {
+        nRet = -nRet;
+    }
+    return nRet;
+}
 
 bool CGamePlayer::addGridBySys()
 {
@@ -1707,6 +1733,18 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             {
                 CCDictionary *getTaskInfo=(CCDictionary *)dictresult->objectForKey("task_info");
                 parseTaskInfo(getTaskInfo);
+            }
+        }
+        
+        // add prop buffer by phileas
+        CCObject *propBuffer = dictresult->objectForKey("buff");
+        if (propBuffer)
+        {
+            teamStrType = typeid(*propBuffer).name();
+            if (teamStrType.find("CCDictionary")!=std::string::npos)
+            {
+                CPlayerBufferManager::getInstance()->resetPropBufferByDict((CCDictionary*) propBuffer);
+                CGameTimerManager::getInstance()->startTimer();
             }
         }
         

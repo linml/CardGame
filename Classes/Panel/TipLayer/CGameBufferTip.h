@@ -15,7 +15,7 @@
 #include "CPlayerBufferManager.h"
 using namespace cocos2d;
 
-#define CGAMEBUFFERTIPDIALOG_TOUCH_PRORITY 50000
+#define CGAMEBUFFERTIPDIALOG_TOUCH_PRORITY -50000
 
 class CAltarBufferLogo : public CCNode
 {
@@ -61,6 +61,10 @@ protected:
     void  handlerTouch(CCTouch* pTouch);
     void  onClickClose();
     void  onClickUse();
+    
+    void  onSendCancelBufferRequest();
+    void  onReceiveMsg(CCObject *pObject);
+    
 
 
 protected:
@@ -68,6 +72,7 @@ protected:
     int m_nBufferKey;
     int m_nBufferType;
     int m_nTipId;
+    int m_nPropId;
     CCSprite *m_pCloseBtn;
     CGameButtonControl *m_pUseBtn;
     CCObject *m_pCloseHandler;

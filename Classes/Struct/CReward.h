@@ -57,6 +57,9 @@ public:
     int excuteReward(OPEARTORTYPE inType);
     
     bool merger(CReward * inReward1, CReward *inReward2);
+    
+    int getExtarExp();
+    int getExtarCoin();
     int getCoin();
     int getHP();
     int getEnergy();
@@ -65,6 +68,7 @@ public:
     int getFriendly();
     int getCardCount();
     int getPropCount();
+   
     CCDictionary * getCards();
     CCDictionary * getProps();
     
@@ -85,6 +89,9 @@ protected:
     int m_nExp;
     int m_nCash;
     int m_nFriendly;
+    
+    int m_nExtarExp; // 道具buff
+    int m_nExtarCoin; // 道具buff
     CCDictionary *m_pCards; // key-> card_item_id, value-> card_id+suit
     CCDictionary *m_pProps;
     

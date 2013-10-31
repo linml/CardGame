@@ -14,6 +14,9 @@
 		6F08A46D1817D9900081C499 /* CCShake.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F08A46B1817D9900081C499 /* CCShake.cpp */; };
 		6F08A4701817DA9A0081C499 /* CPtSellerConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F08A46E1817DA990081C499 /* CPtSellerConfigData.cpp */; };
 		6F109A3F17F567F2004E1B39 /* CPanelGameLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */; };
+		6F1B3E0E18225861007FFE3A /* CGameTimerManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B3E0818225861007FFE3A /* CGameTimerManager.cpp */; };
+		6F1B3E0F18225861007FFE3A /* CPtPropUseEffectConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B3E0A18225861007FFE3A /* CPtPropUseEffectConfigData.cpp */; };
+		6F1B3E1018225861007FFE3A /* CPtPropUseManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B3E0C18225861007FFE3A /* CPtPropUseManager.cpp */; };
 		6F22EE201810D4E20062666F /* CDrawCardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F22EE1E1810D4E20062666F /* CDrawCardLayer.cpp */; };
 		6F28A6E418079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F28A6E218079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp */; };
 		6F28A6E71807EAEE00225C09 /* CGlobalUpdateObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F28A6E51807EAEE00225C09 /* CGlobalUpdateObject.cpp */; };
@@ -370,6 +373,12 @@
 		6F08A46F1817DA990081C499 /* CPtSellerConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtSellerConfigData.h; sourceTree = "<group>"; };
 		6F109A3D17F567F2004E1B39 /* CPanelGameLog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanelGameLog.cpp; sourceTree = "<group>"; };
 		6F109A3E17F567F2004E1B39 /* CPanelGameLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPanelGameLog.h; sourceTree = "<group>"; };
+		6F1B3E0818225861007FFE3A /* CGameTimerManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameTimerManager.cpp; sourceTree = "<group>"; };
+		6F1B3E0918225861007FFE3A /* CGameTimerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameTimerManager.h; sourceTree = "<group>"; };
+		6F1B3E0A18225861007FFE3A /* CPtPropUseEffectConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtPropUseEffectConfigData.cpp; sourceTree = "<group>"; };
+		6F1B3E0B18225861007FFE3A /* CPtPropUseEffectConfigData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtPropUseEffectConfigData.h; sourceTree = "<group>"; };
+		6F1B3E0C18225861007FFE3A /* CPtPropUseManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtPropUseManager.cpp; sourceTree = "<group>"; };
+		6F1B3E0D18225861007FFE3A /* CPtPropUseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtPropUseManager.h; sourceTree = "<group>"; };
 		6F22EE1E1810D4E20062666F /* CDrawCardLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDrawCardLayer.cpp; sourceTree = "<group>"; };
 		6F22EE1F1810D4E20062666F /* CDrawCardLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDrawCardLayer.h; sourceTree = "<group>"; };
 		6F28A6E218079D1700225C09 /* CPanelGamePlayerInfoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanelGamePlayerInfoLayer.cpp; sourceTree = "<group>"; };
@@ -1566,6 +1575,12 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6F1B3E0818225861007FFE3A /* CGameTimerManager.cpp */,
+				6F1B3E0918225861007FFE3A /* CGameTimerManager.h */,
+				6F1B3E0A18225861007FFE3A /* CPtPropUseEffectConfigData.cpp */,
+				6F1B3E0B18225861007FFE3A /* CPtPropUseEffectConfigData.h */,
+				6F1B3E0C18225861007FFE3A /* CPtPropUseManager.cpp */,
+				6F1B3E0D18225861007FFE3A /* CPtPropUseManager.h */,
 				6FBCC6B8181F670B008865DD /* CPlayerBufferManager.cpp */,
 				6FBCC6B9181F670B008865DD /* CPlayerBufferManager.h */,
 				6F08A46E1817DA990081C499 /* CPtSellerConfigData.cpp */,
@@ -2957,6 +2972,7 @@
 				9FC6F27417460BFF0091BE98 /* CocosDenshion.m in Sources */,
 				9FC6F27517460BFF0091BE98 /* SimpleAudioEngine.mm in Sources */,
 				9FC6F27617460BFF0091BE98 /* SimpleAudioEngine_objc.m in Sources */,
+				6F1B3E1018225861007FFE3A /* CPtPropUseManager.cpp in Sources */,
 				9FC6F27717460BFF0091BE98 /* CCBAnimationManager.cpp in Sources */,
 				9FC6F27817460BFF0091BE98 /* CCBFileLoader.cpp in Sources */,
 				9FC6F27917460BFF0091BE98 /* CCBKeyframe.cpp in Sources */,
@@ -3078,6 +3094,7 @@
 				6FAD754417A269C700AB8D8E /* CCardSettingScene.cpp in Sources */,
 				6FCD4323181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.cpp in Sources */,
 				6FAD754517A269C700AB8D8E /* CBattleArrayLayer.cpp in Sources */,
+				6F1B3E0E18225861007FFE3A /* CGameTimerManager.cpp in Sources */,
 				6FAD754617A269C700AB8D8E /* CCardEnhanceLayer.cpp in Sources */,
 				6FAD754D17A26A0000AB8D8E /* CPtBatterArray.cpp in Sources */,
 				6FAD754E17A26A0000AB8D8E /* CPtEditBoxWidget.cpp in Sources */,
@@ -3107,6 +3124,7 @@
 				9F095D3917D8730A00CE32B3 /* CGlobalSchedule.cpp in Sources */,
 				9F095D3A17D8730A00CE32B3 /* CMyDictionary.cpp in Sources */,
 				9F095D3B17D8730A00CE32B3 /* CPtSliderWidget.cpp in Sources */,
+				6F1B3E0F18225861007FFE3A /* CPtPropUseEffectConfigData.cpp in Sources */,
 				9F095D3C17D8730A00CE32B3 /* CButtonControl.cpp in Sources */,
 				6FDE76D4180E802D004DFDA8 /* CGameRechargeTip.cpp in Sources */,
 				9F095D3D17D8730A00CE32B3 /* CGameButtonControl.cpp in Sources */,

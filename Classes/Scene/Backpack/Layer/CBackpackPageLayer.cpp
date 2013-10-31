@@ -15,6 +15,7 @@
 #include "CDeletePropLayer.h"
 #include "CGameDialogLayer.h"
 #include "gameMiddle.h"
+#include "CPlayerBufferManager.h"
 
 CBackpackPageLayer * CBackpackPageLayer::create()
 {
@@ -275,7 +276,7 @@ void CBackpackPageLayer::handlerTouch()
         char buffer[100] = {0};
         std::string s = SinglePropConfigData::instance()->getPropById(item->propId)->getPropName();
         sprintf(buffer, "你确定要使用%s道具吗?", s.c_str());
-        CPtDialog * dialog = CPtDialog::create(buffer, this,NULL, NULL ,callfuncO_selector(CBackpackPageLayer::onClickUseProp),NULL, item);
+        CPtDialog * dialog = CPtDialog::create(buffer, NULL,this, NULL ,callfuncO_selector(CBackpackPageLayer::onClickUseProp),NULL, item);
 
         CCDirector::sharedDirector()->getRunningScene()->addChild(dialog, 20000, 10000);
         
@@ -781,7 +782,9 @@ void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
     char *buff = (char*)pOject;
     if (buff)
     {
+        CCLog("the buffer: %s", buff);
         CCDictionary * tmp = PtJsonUtility::JsonStringParse(buff);
+        delete [] buff;
         if(tmp)
         {
             int resultCode = GameTools::intForKey("code", tmp);
@@ -804,7 +807,15 @@ void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
                 }
 
                 // success:
-
+                
+                CCDictionary *result = (CCDictionary*) tmp->objectForKey("result");
+                CReward *reward =  onUsePropWithDict(result);
+                if (reward)
+                {
+                    char buffer[300]={0};
+                    reward->getRewardContent(buffer, 300);
+                    CCMessageBox(buffer, "PropUse");
+                }
             }
             else
             {
@@ -812,13 +823,61 @@ void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
                   CCLog("CBackpackPageLayer::onReceiveUsePropMsg-->server error code: %d", resultCode);
             }
         }
-        delete [] buff;
+       
     }else
     {
         // server no response:
         CCLog("CBackpackPageLayer::onReceiveUsePropMsg-->server no response");
     }
 }
+
+CReward* CBackpackPageLayer::onUsePropWithDict(cocos2d::CCDictionary *inDict)
+{
+    CReward *addReward = NULL;
+    CCDictionary *rewardDict = (CCDictionary*) inDict->objectForKey("reward");
+    CCDictionary* tmpDict = NULL;
+    if(rewardDict)
+    {
+       tmpDict = (CCDictionary*)  rewardDict->objectForKey("add");
+       if (tmpDict)
+       {
+            tmpDict = (CCDictionary*) tmpDict->objectForKey("item");
+            addReward= CReward::create(tmpDict);
+            if (addReward)
+            {
+                addReward->excuteReward(ADD);
+            }
+       }
+       handlerPropBuffer(inDict->objectForKey("effect"));
+    }
+    return addReward;
+    
+}
+void CBackpackPageLayer::handlerPropBuffer(CCObject * inEffect)
+{
+    if (inEffect)
+    {
+        std::string typeName = typeid(*inEffect).name();
+        if (typeName.find("CCDictionary") != std::string::npos)
+        {
+            CCDictionary *tmpDict = (CCDictionary*)inEffect;
+            //add card max count:
+            tmpDict = (CCDictionary*) tmpDict->objectForKey("item_effect");
+            int objectId = GameTools::intForKey("object_id", tmpDict);
+            int numTyep = GameTools::intForKey("num_type", tmpDict);
+            int num  = GameTools::intForKey("num", tmpDict);
+            
+            CPlayerBufferManager::getInstance()->addPropBufferById(objectId, (PROPBUFFERTYPE)numTyep, num);
+            
+        }
+    }
+}
+
+void addBufferByDict(CCDictionary *inItemEffectDict)
+{
+    
+}
+
 void CBackpackPageLayer::onReceiveDeletProp(CCObject *pObject)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "deleteProp");

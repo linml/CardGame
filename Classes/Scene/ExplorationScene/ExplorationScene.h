@@ -25,6 +25,7 @@
 #include "CEventConfigData.h"
 #include "CReward.h"
 #include "CPlayerBufferManager.h"
+#include "CGameTimerManager.h"
 
 
 using namespace cocos2d;
@@ -55,6 +56,8 @@ public:
     static const EVENTDATA &getEventData();
     static CPtSection *getExplorationSectionInfo();
     static SECTION_DATA s_SectionData ;
+    
+    static void resetPropBufferByDict(CCDictionary *inBuffers);
 public:
     static void setCurrentEvnetId(int inEventId);
     static int  getCurrentEventId(); //事件ID
@@ -81,7 +84,6 @@ public:
     virtual ~CExploration();
 public:
     virtual bool init();
-    virtual void onEnter();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
@@ -92,6 +94,7 @@ protected:
     bool initExploration();
     void initData();
     void initEvent();
+    
     void handlerTouch();
     void handlerEvent();
     void handlerSuccess();
@@ -129,9 +132,14 @@ protected:
     // altar event:
     void handlerAltarEvent(CCDictionary *inEventInfo);
     void handlerFinishAltarEvent();
+    
     void updateBuffers(float dt);
     void createBuffers();
+    
+    bool touchBeginBuffers(CCTouch *pTouch);
     void handlerTouchBuffers(CCTouch *pTouch);
+
+    void startAlarBuffer();
 
     // seller event:
     SELLER_DATA getShopItems(CCDictionary *inSellDict);
@@ -165,6 +173,7 @@ protected:
 
 
 protected:
+    bool m_bStartAltarBuffer;
     bool m_bCanTouch;
     bool m_bLoadTaskInfo;
     
@@ -184,6 +193,7 @@ protected:
     CEventData *m_aEvents[3];
     CEventDataConfig * m_pEventData;
     CEventBoxConfigData *m_pEventBoxData;
+    CGameTimerManager *m_pTimerManager;
     
     int m_nEventBoxSelectType; // 0---> cancle 1---> confirm
     
@@ -201,6 +211,7 @@ protected:
     void onReceiveSaveMsg(CCObject *pObject);
     void onParseSaveMsgByDictionary(CCDictionary *pResultDict);
     void dispatchParaseEvent(CCDictionary *pEventInfo, int inType);
+    int canSaveSectionProgress();
     
     //模块 ：api.php?m=Part&a=commonEvent&uid=194(用户ID)&sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)&chapter_id=1(章)&part_id=1(节)&step=1(小节中第几步)
     void onSendEventRequest();

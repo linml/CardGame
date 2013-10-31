@@ -14,6 +14,7 @@
 #include "CPtPropConfigData.h"
 #include "LayoutLayer.h"
 #include <vector>
+#include "CReward.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -77,6 +78,9 @@ protected:
     
     void onReceiveUsePropMsg(CCObject *pOject);
     void onReceiveDeletProp(CCObject *pObject);
+    CReward* onUsePropWithDict(CCDictionary *inDict);
+    void handlerPropBuffer(CCObject * inEffect);
+    void addBufferByDict(CCDictionary *inItemEffectDict);
     
     void reloadPage(multimap<int, int>::iterator inZeroInterator, vector<multimap<int, int>::iterator>::iterator inVectorIterator);
 protected:

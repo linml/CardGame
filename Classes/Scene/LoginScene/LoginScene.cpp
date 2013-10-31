@@ -251,23 +251,29 @@ bool CLoginScene::handleTouchSpritePool(CCPoint point)
             CCUserDefault::sharedUserDefault()->setStringForKey("account", "");
             vSerInf.clear();
             m_serverTable->reloadData();
+            m_pEditName->setText("");
+            SinglePlayer::instance()->setUserSig("");
             // CCUserDefault::sharedUserDefault()->flush();
             CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CLoginScene::notificationRegiterRecevice), REGITER_SUCCESS, NULL);
             addChild(CRegisterLayer::create(this),10000);
             break;
         case 2100:
-            strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
-            if(strAccount != ""  )
-            {
-                doLogin();
-            }
-            else
-            {
-                CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CLoginScene::notificationRegiterRecevice), REGITER_SUCCESS, NULL);
-                addChild(CRegisterLayer::create(this),10000);
-            }
+//            CSubLoginLayer* layer = CSubLoginLayer::create(this);
+            addChild(CSubLoginLayer::create(this),10000,361008);
             break;
-            break;
+//            if (SinglePlayer::instance()->getUserSig()) {
+//                break;
+//            }
+//            strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
+//            if(strAccount != ""  )
+//            {
+//                doLogin();
+//            }
+//            else
+//            {
+//                CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CLoginScene::notificationRegiterRecevice), REGITER_SUCCESS, NULL);
+//                addChild(CRegisterLayer::create(this),10000);
+//            }
         case 1000://选择服务器
             break;
         default:
@@ -483,7 +489,11 @@ bool CLoginScene::initLogin()
 //        m_pEditName->setText("wood");
         addChild(m_pEditName);
         
-        
+        string strAccount = CCUserDefault::sharedUserDefault()->getStringForKey("account");
+        if(strAccount != "")
+        {
+            doLogin();
+        }
 
     } while (0);
     return bRet;
@@ -710,6 +720,7 @@ void CLoginScene::onReceiveServerMsg(CCObject* obj)
     }
     else
     {
+        vSerInf.clear();
         serverInf(PtJsonUtility::JsonStringParse(data));
         m_serverTable->reloadData();
         string pchServerIdName = CCUserDefault::sharedUserDefault()->getStringForKey(vSerInf[m_nSelectServerId].m_strName.c_str());
