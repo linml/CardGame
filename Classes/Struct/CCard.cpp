@@ -20,12 +20,15 @@ delete *it; \
 VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 }
 
+
+
+
 CCard::CCard()
 {
     m_icard_id=0;
     m_scard_name.clear();
     m_ccard_next=0;;
-    m_sicard_star=1;
+    m_nCard_star=1;
     m_icard_stirps=0;
     m_icard_suit=0;
     m_icard_leadership=0;
@@ -148,6 +151,36 @@ void CFightCard::initFighting()
     DELETE_POINT_VECTOR(m_vlistBuffer, list<CCardBufferStatusRefactor*>);
 }
 
+bool CFightCard::isCanFight()
+{
+    if(m_vlistBuffer.size()==0)
+    {
+        return false;
+    }
+    for (list<CCardBufferStatusRefactor *>::iterator it=m_vlistBuffer.begin() ;it!=m_vlistBuffer.end();it++) {
+        if((*it)->m_nEffect_effectLogic==CANNOTFIGHTEFFECTLOGICVALUE)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool CFightCard::isHaveParamid10(int nParamidValue)
+{
+    if(m_vlistBuffer.size()==0)
+    {
+        return false;
+    }
+    for (list<CCardBufferStatusRefactor *>::iterator it=m_vlistBuffer.begin() ;it!=m_vlistBuffer.end();it++) {
+        if((*it)->m_iEffect_paramid10==nParamidValue)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
 bool CFightCard::isHaveBufferRefactor(int prameid)
 {
     if(m_vlistBuffer.size()==0)
@@ -229,12 +262,12 @@ void CFightCard::updateCard(int level)
     {
         CPtLevelConfigData * levelConfig = SingleLevleConfigData::instance();
         levelConfig->update(level);
-        m_iHp =  CPtTool::calulate(m_pCard->m_icardhp,levelConfig->getHp(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+        m_iHp =  CPtTool::calulate(m_pCard->m_icardhp,levelConfig->getHp(), m_pCard->m_nCard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_nCard_star) ,
                                     levelConfig->getCorrectTow(), levelConfig->getCorrect());/// m_pCard->m_icardhp;
        
-        m_attack =CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+        m_attack =CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_nCard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_nCard_star) ,
                                    levelConfig->getCorrectTow(), levelConfig->getCorrect());
-        m_defend =CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+        m_defend =CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_nCard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_nCard_star) ,
                                    levelConfig->getCorrectTow(), levelConfig->getCorrect());
         
         m_nCurrentPrice = levelConfig->getConin();
@@ -281,16 +314,16 @@ int CFightCard:: getAddValue(int level, int type)
     switch (type)
     {
         case 3:
-            result = CPtTool::calulate(m_pCard->m_icardhp, levelConfig->getHp(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+            result = CPtTool::calulate(m_pCard->m_icardhp, levelConfig->getHp(), m_pCard->m_nCard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_nCard_star) ,
                                      levelConfig->getCorrectTow(), levelConfig->getCorrect());
             break;
             
         case 1:
-            result =  CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+            result =  CPtTool::calulate(m_pCard->m_icard_attack, levelConfig->getAttack(), m_pCard->m_nCard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_nCard_star) ,
                                       levelConfig->getCorrectTow(), levelConfig->getCorrect());
             break;
         case 2:
-            result = CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_sicard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_sicard_star) ,
+            result = CPtTool::calulate(m_pCard->m_icard_defend, levelConfig->getDefine(), m_pCard->m_nCard_star, levelConfig->getCorrectOne(), levelConfig->getStarParamter(m_pCard->m_nCard_star) ,
                                        levelConfig->getCorrectTow(), levelConfig->getCorrect());
             break;
         default:
@@ -307,7 +340,7 @@ int  CFightCard::getCostCoin()
 {
     int result = 0;
     int value = SingleLevleConfigData::instance()->getValeWithLevel(m_iCurrLevel+1, 1);
-    int star_param = SingleLevleConfigData::instance()->getStarParamter(m_pCard->m_sicard_star, m_iCurrLevel+1);
+    int star_param = SingleLevleConfigData::instance()->getStarParamter(m_pCard->m_nCard_star, m_iCurrLevel+1);
     result = (int)(value*star_param);
     return result;
 }
@@ -321,7 +354,7 @@ int CFightCard::getSupportValue(int type)
     
     int result = 0;
     int value =  SingleLevleConfigData::instance()->getValeWithLevel(m_iCurrLevel, 2);
-    float star_param = SingleLevleConfigData::instance()->getStarParamter(m_pCard->m_sicard_star, m_iCurrLevel);
+    float star_param = SingleLevleConfigData::instance()->getStarParamter(m_pCard->m_nCard_star, m_iCurrLevel);
     switch (type)
     {
         case 1:

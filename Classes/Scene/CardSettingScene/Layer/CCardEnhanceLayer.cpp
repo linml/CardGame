@@ -345,11 +345,11 @@ void CCardEnhanceLayer::updateData()
         m_nCurrentExp += exp;
         exp = m_nCurrentExp;
         int currentLevel = m_pSelectCard->getCardData()->m_iCurrLevel;
-        int level = m_pLevelConfig->getCurrentLevel(exp,m_pSelectCard->getCardData()->m_pCard->m_sicard_star ,currentLevel);
+        int level = m_pLevelConfig->getCurrentLevel(exp,m_pSelectCard->getCardData()->m_pCard->m_nCard_star ,currentLevel);
         if (level >= m_pSelectCard->getCardData()->m_pCard->m_ileve_max)
         {
             level = m_pSelectCard->getCardData()->m_pCard->m_ileve_max;
-            m_nCurrentExp = m_pLevelConfig->getTopExpByStar(level, m_pSelectCard->getCardData()->m_pCard->m_sicard_star);
+            m_nCurrentExp = m_pLevelConfig->getTopExpByStar(level, m_pSelectCard->getCardData()->m_pCard->m_nCard_star);
         }
         CCLog("current-----: %d, level: %d, currentLevel: %d", exp, level, m_nCurrentLevel);
         if (level >= currentLevel )
@@ -581,7 +581,7 @@ void CCardEnhanceLayer::saveOnClick()
     CSaveConfirmLayer * layer =  CSaveConfirmLayer::create();
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 2000, 2000);
 
-    int index = m_pSelectCard->getCardData()->m_pCard->m_sicard_star;
+    int index = m_pSelectCard->getCardData()->m_pCard->m_nCard_star;
     index--;
     int needLevel = g_aMaxLevel[index];
     if (m_pSelectCard->getCardData()->m_iCurrLevel >= needLevel)

@@ -440,7 +440,7 @@ bool CGamesCard::initCreate(CFightCard *card)
     initBg(card);
     createBackground(card->m_pCard->m_scard_ground.c_str());
     createHero(card->m_pCard->m_scard_resources.c_str());
-    createStart(card->m_pCard->m_sicard_star);
+    createStart(card->m_pCard->m_nCard_star);
     createSuit(card->m_iSuit);
     createStirps(card->m_pCard->m_icard_stirps);
     createCardName(card->m_pCard->m_scard_name.c_str());
@@ -462,10 +462,10 @@ void CGamesCard:: updateCard(CFightCard *card)
     removeAllChildrenWithCleanup(true);
 
     m_pCardData->updateFight(card->m_pCard, card->m_iCurrLevel);
-    m_pCardData->m_iCurrExp = SingleLevleConfigData::instance()->getTopExpByStar(card->m_iCurrLevel, card->m_pCard->m_sicard_star);
+    m_pCardData->m_iCurrExp = SingleLevleConfigData::instance()->getTopExpByStar(card->m_iCurrLevel, card->m_pCard->m_nCard_star);
     createBackground(card->m_pCard->m_scard_ground.c_str());
     createHero(card->m_pCard->m_scard_resources.c_str());
-    createStart(card->m_pCard->m_sicard_star);
+    createStart(card->m_pCard->m_nCard_star);
     createSuit(card->m_iSuit);
     createStirps(card->m_pCard->m_icard_stirps);
     createCardName(card->m_pCard->m_scard_name.c_str());

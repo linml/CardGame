@@ -90,6 +90,8 @@
 		6FCD431D181E90FB00153054 /* CEffectInterFaceTwentyOneRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD431B181E90FB00153054 /* CEffectInterFaceTwentyOneRefactor.cpp */; };
 		6FCD4320181E976E00153054 /* CEffectInterFacePlayerBufferRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD431E181E976E00153054 /* CEffectInterFacePlayerBufferRefactor.cpp */; };
 		6FCD4323181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD4321181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.cpp */; };
+		6FCE6BD3182390F100132BBE /* CStructStrips.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE6BD1182390F100132BBE /* CStructStrips.cpp */; };
+		6FCE6BD618239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE6BD418239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp */; };
 		6FDE76CD180E7F0B004DFDA8 /* CGameRechargeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */; };
 		6FDE76D3180E802D004DFDA8 /* CGameArrageBackpackTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76CF180E802D004DFDA8 /* CGameArrageBackpackTip.cpp */; };
 		6FDE76D4180E802D004DFDA8 /* CGameRechargeTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76D1180E802D004DFDA8 /* CGameRechargeTip.cpp */; };
@@ -528,6 +530,10 @@
 		6FCD431F181E976E00153054 /* CEffectInterFacePlayerBufferRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFacePlayerBufferRefactor.h; sourceTree = "<group>"; };
 		6FCD4321181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceTwentyFourRefactor.cpp; sourceTree = "<group>"; };
 		6FCD4322181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceTwentyFourRefactor.h; sourceTree = "<group>"; };
+		6FCE6BD1182390F100132BBE /* CStructStrips.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CStructStrips.cpp; sourceTree = "<group>"; };
+		6FCE6BD2182390F100132BBE /* CStructStrips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CStructStrips.h; sourceTree = "<group>"; };
+		6FCE6BD418239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceTwoRefactor.cpp; sourceTree = "<group>"; };
+		6FCE6BD518239F3000132BBE /* CEffectInterFaceTwoRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceTwoRefactor.h; sourceTree = "<group>"; };
 		6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameRechargeLayer.cpp; sourceTree = "<group>"; };
 		6FDE76CC180E7F0B004DFDA8 /* CGameRechargeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameRechargeLayer.h; sourceTree = "<group>"; };
 		6FDE76CF180E802D004DFDA8 /* CGameArrageBackpackTip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameArrageBackpackTip.cpp; sourceTree = "<group>"; };
@@ -1339,6 +1345,8 @@
 				6FCD431F181E976E00153054 /* CEffectInterFacePlayerBufferRefactor.h */,
 				6FCD4321181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.cpp */,
 				6FCD4322181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.h */,
+				6FCE6BD418239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp */,
+				6FCE6BD518239F3000132BBE /* CEffectInterFaceTwoRefactor.h */,
 			);
 			path = CEffectLogic;
 			sourceTree = "<group>";
@@ -1649,6 +1657,8 @@
 				6F3AC84A180BC7A6007B8756 /* CStructShopInfo.h */,
 				6FCD4318181E75E200153054 /* CStructGameActionData.cpp */,
 				6FCD4319181E75E200153054 /* CStructGameActionData.h */,
+				6FCE6BD1182390F100132BBE /* CStructStrips.cpp */,
+				6FCE6BD2182390F100132BBE /* CStructStrips.h */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -2835,6 +2845,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FC6F1F517460BFF0091BE98 /* AppDelegate.cpp in Sources */,
+				6FCE6BD3182390F100132BBE /* CStructStrips.cpp in Sources */,
 				9FC6F1F617460BFF0091BE98 /* HelloWorldScene.cpp in Sources */,
 				9FC6F1F717460BFF0091BE98 /* CCAction.cpp in Sources */,
 				9FC6F1F817460BFF0091BE98 /* CCActionCamera.cpp in Sources */,
@@ -3090,6 +3101,7 @@
 				6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */,
 				6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */,
 				6F98CD2C179E154B00E77257 /* CEffectInterface.cpp in Sources */,
+				6FCE6BD618239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp in Sources */,
 				6FFD01BB180D4D8200ADE144 /* CPtRecharge.cpp in Sources */,
 				6FAD754417A269C700AB8D8E /* CCardSettingScene.cpp in Sources */,
 				6FCD4323181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.cpp in Sources */,

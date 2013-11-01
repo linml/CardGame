@@ -35,6 +35,8 @@ CCardBufferStatusRefactor::CCardBufferStatusRefactor(int iHp,int iAtk,int iDef,i
             this->m_iKeepTime -=1;
             this->m_iEffect_time -=1;
         }
+        this->m_iEffect_paramid10=pImapactEffect->m_iParameter_10;
+        this->m_nEffect_effectLogic=pImapactEffect->m_ieffect_logic;
 
     }    
 }

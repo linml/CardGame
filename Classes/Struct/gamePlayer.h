@@ -27,6 +27,7 @@ class CGlobalUpdateAp;
 class CGlobalUpdateGp;
 class CStructShopInfo;
 class CStructShopSellItem;
+class CStructStrips;
 
 #define OPENGGRIDLEVLE 20
 #define MAXLEVEL 100
@@ -67,6 +68,8 @@ private:
     //读取NPC效果表格
     void loadNpcCard(const char *npcCardName);
     void clearAllNpcCard();
+    
+    void clearSkillStrip();
 
 public:
     vector<CFightCard *> m_hashmapFightingCard;
@@ -125,6 +128,8 @@ public:
     void deleteFightMonsterCard();
     vector<SEveryATKData*> getHpAngryVectory()const;
     vector<CFightCardFightingBuffer *>getFightCardFightingBuffer()const;
+    CStructStrips *getSkillStripNeed(int id);
+    bool isCheckNeedSatisfied(int nlineIndex,EN_LEFTTEAMORRIGHTTEAM enValue);//判断左边的阵容是否满足需求
    
 // 领取邮件：
 public:
@@ -272,6 +277,7 @@ private:
     map<int ,CSkillData *>m_vSkillInfo;
     vector< CImapact * >m_vImpactInfo;
     map<int ,CCard *>m_hashmapNpcAllCard;
+    map<int,CStructStrips *>m_haspMapSkillStrips;
     string m_strSig;
     string m_strUid;
     std::vector<int >m_getRandom_data;
@@ -292,9 +298,7 @@ protected:
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
     CGlobalUpdateAp  *m_pUpdateAp;
     CGlobalUpdateGp  *m_pUpdateGp;   //其实用一个类就可以做的。
-
     CStructShopInfo  *m_gameShop;
-    
 public:
     void updatePlayerDataWithExp();
 protected:
@@ -305,6 +309,8 @@ protected:
     void levelUpData(int level);
 public:
     list<int>m_vPlayerBufferList;
+    int zhongzuCount[8];//0,1,2,3我方的人员个数   4,5,6,7,敌方的种族个数
+    void initZhongZu();
 
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

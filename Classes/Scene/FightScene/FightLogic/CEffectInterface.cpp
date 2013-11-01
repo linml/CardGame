@@ -24,6 +24,7 @@ CEffectInterface::~CEffectInterface()
 }
 void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCard *pMonster, CImapact *pImapact,std::string bufferfile)
 {
+    CCLog("asdfasdfasdfasdfasdfa,%d",pImapact->m_ieffect_id);
     if(pImapact->m_irandom)
     {
         CGamePlayer *gamePlayer= SinglePlayer::instance();
@@ -42,9 +43,11 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
             {
                 needDealWithHpAtkDefImmideala=false;
             }
+             m_sNeadAppendBufferFile=SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id);
         }
         if (needDealWithHpAtkDefImmideala)
         {
+            m_sNeadAppendBufferFile="";
             pMonster->appendHp(iChangeShanghaiHp);
             pMonster->subAtk(-iChangeatk);
             pMonster->subDef(-iChangedef);
@@ -54,8 +57,11 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
     }
     else
     {
+        
         CCardBufferStatusRefactor *bufferRefactor=new CCardBufferStatusRefactor(iChangeShanghaiHp,iChangeatk,iChangedef,iChangeengry,pImapact->m_ieffect_id,bufferfile);
         pMonster->appendBufferData(bufferRefactor);
+        m_sNeadAppendBufferFile=SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id);//需要播放的特效文件
+        
     }
        
 }

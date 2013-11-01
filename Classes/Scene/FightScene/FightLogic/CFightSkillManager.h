@@ -28,14 +28,14 @@ class CFightCardBufferDataEveryFight;
 static int FUNCTIONNAME(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pData);
 
 #define STATICEFFICEFUNCTION(FUNCTIONNAME) \
-static void FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
+static string FUNCTIONNAME(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject);
 
 #define STATICSKILLFUNCTION(FUNCTIONNAME) \
 static void FUNCTIONNAME(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
 
 typedef void (*pFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk); //skill
 typedef int (*pbFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pData);  //cost;
-typedef void (*pbEffFunc) (CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject); //effect
+typedef string (*pbEffFunc) (CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject); //effect
 
 class CFightSkillManager
 {
@@ -44,7 +44,7 @@ class CFightSkillManager
 public:
     //每一种逻辑ID对应的costfunc 不同。
     static void logicSkill_Putong(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill);
-    static void logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,bool isQunti=false,bool isDirenTuandui=true);//如果是团队的话 判断是给哪个团队加血
+    static string logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,bool isQunti=false,bool isDirenTuandui=true);//如果是团队的话 判断是给哪个团队加血
     static void logicSkill_1(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
     
     static void logicSkill_2(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
@@ -76,7 +76,9 @@ public:
     STATICEFFICEFUNCTION(effect_11);
     STATICEFFICEFUNCTION(effect_21);
     STATICEFFICEFUNCTION(effect_24);
-    
+    static void InitEffectId(CSkillData *pSkill);
+public:
+    static int effectId[6];   
 public:
     static  void appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex,int effectPlistId=0);
     static  void appendBuffIcon(CFightCard *fightCard,CFightCard *monster,EN_ATKFIGHT_INDEX enAtkFightIndex);

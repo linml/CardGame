@@ -833,7 +833,6 @@ void CExploration::attachConfirm()
 
 void CExploration::updateBuffers(float dt)
 {
-    int subTime = (int) dt;
     CCDictElement *element = NULL;
     CAltarBufferLogo *tmpLogo = NULL;
     int lastAddId = m_pPlayerBufferManager->getLastAddEffectId();

@@ -29,6 +29,7 @@
 #include "CPlayerBufferManager.h"
 #include "CGameTimerManager.h"
 #include "CPlayerBufferManager.h"
+#include "CStructStrips.h"
 
 
 
@@ -119,6 +120,9 @@ void CGamePlayer::loadGamesConfig()
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
     loadNpcCard((resRootPath+"npc_config.plist").c_str());
+    
+    G_SingleCConfigResourceLoad::instance()->loadSkillStripTable(m_haspMapSkillStrips,(resRootPath + "skill_strips_config.plist").c_str());
+    
     SinglePropConfigData::instance();
     G_SingleCConfigResourceLoad::instance()->loadShopSellItem(m_gameShop, (resRootPath+"shop.plist").c_str());
     G_FightSkillManager::instance()->initSkill();//加载列表
@@ -132,7 +136,7 @@ void CGamePlayer::onExitGameApp()
     clearAllNpcCard();
     clearPlayerTable();
     clearShangchengData();
-    
+    clearSkillStrip();    
     CPlayerBufferManager::releaseBufferManager(); // 取出player身上的buff add by phileas
 
     
@@ -142,8 +146,24 @@ void CGamePlayer::clearShangchengData()
     if(m_gameShop)
     {
         m_gameShop->clearShopItemData();
+        CC_SAFE_DELETE(m_gameShop);
     }
 }
+
+void CGamePlayer::clearSkillStrip()
+{
+    map<int ,CStructStrips *>::iterator it;
+    for(it=m_haspMapSkillStrips.begin();it!=m_haspMapSkillStrips.end();++it)
+    {
+        if(it->second)
+        {
+            delete it->second;
+            it->second=NULL;
+        }
+    }
+    m_haspMapSkillStrips.erase(m_haspMapSkillStrips.begin(),m_haspMapSkillStrips.end());
+}
+
 void CGamePlayer::clearAllCard()
 {
     map<int ,CCard *>::iterator it;
@@ -1076,6 +1096,32 @@ vector<CFightCardFightingBuffer *> CGamePlayer::getFightCardFightingBuffer()cons
 {
     return m_vCFightCardFightingBuffer;
 }
+
+CStructStrips *CGamePlayer::getSkillStripNeed(int id)
+{
+    return m_haspMapSkillStrips[id];
+}
+
+bool CGamePlayer::isCheckNeedSatisfied(int nlineIndex,EN_LEFTTEAMORRIGHTTEAM enValue)
+{
+    CStructStrips *pStrip=getSkillStripNeed(nlineIndex);
+    if(pStrip)
+    {
+        int i=0;
+        if (enValue==EN_RIGHTTEAM)
+        {
+            i=4;
+        }
+        if (zhongzuCount[i++]>=pStrip->m_nStripsOne &&
+            zhongzuCount[i++]>=pStrip->m_nStripsTwo &&
+            zhongzuCount[i++]>=pStrip->m_nStripsThree  &&
+            zhongzuCount[i++]>=pStrip->m_nStripsFour )
+        {
+            return true;
+        }
+    }
+   return false;
+}
 void CGamePlayer::deleteFightMonsterCard()
 {
     DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *> ,CFightCard);
@@ -1935,6 +1981,11 @@ void CGamePlayer::changePlayerInfoWithLevelUp(CCDictionary *inDict)
     }
 }
 
+void CGamePlayer::initZhongZu()
+{
+    memset(zhongzuCount, 0, 8);
+}
+
 void CGamePlayer::levelUpData(int level)
 {
     if (level <= MAXLEVEL)
@@ -1942,7 +1993,6 @@ void CGamePlayer::levelUpData(int level)
         m_gGamePlayerData->m_sLevelPlayer = m_gGamePlayerData->m_gvPlayerLevel.at(level);
         m_gGamePlayerData->m_irvc = m_gGamePlayerData->m_sLevelPlayer->m_iLeader_max;
         m_gGamePlayerData->m_ilevel = level;
-      
-        
+
     }
 }

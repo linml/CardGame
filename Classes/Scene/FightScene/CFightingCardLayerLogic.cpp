@@ -50,6 +50,9 @@ bool CFightingCardLayerLogic::loadFromCardTeamTest()
         {
             this->m_vMonsterCard.push_back(tempSinglePlayer->m_hashmapMonsterCard[i]);
             m_vMonsterCard[i]->tag=1000*(i+1);
+            m_vMonsterCard[i]->setTEAMPOSTION(EN_RIGHTTEAM);
+            //从后面的低5个开始代表敌方的阵容.
+            SinglePlayer::instance()->zhongzuCount[m_vMonsterCard[i]->m_pCard->m_icard_stirps+3]++;
         }
         else
         {
@@ -74,6 +77,8 @@ bool  CFightingCardLayerLogic::loadFromServerTest(int  loadTeamIndex)
             {
                 m_vFightingCard.push_back(new CFightCard(*(tempSinglePlayer->getCardBattleArray()[loadTeamIndex][i])));
                 m_vFightingCard[i]->tag=100*(i+1);
+                m_vFightingCard[i]->setTEAMPOSTION(EN_LEFTTEAM);
+                SinglePlayer::instance()->zhongzuCount[m_vFightingCard[i]->m_pCard->m_icard_stirps-1]++;
             }
             else
             {
@@ -495,6 +500,7 @@ void CFightingCardLayerLogic::dealWithShenTanBuffer(CFightCard *pFightCard)
 
 void CFightingCardLayerLogic::initFightLogic(int  loadTeamIndex)
 {
+    SinglePlayer::instance()->initZhongZu();
     loadFromServerTest(loadTeamIndex);//读取当前卡牌阵容，
     loadFromCardTeamTest();
     //初始化

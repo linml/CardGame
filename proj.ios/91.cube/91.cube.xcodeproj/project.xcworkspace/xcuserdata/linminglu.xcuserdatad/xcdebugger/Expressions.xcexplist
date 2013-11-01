@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "CFightSkillManager::logicSkill_2(CFightCard*, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, int, int, CSkillData*, EN_ATKFIGHT_INDEX):CFightSkillManager.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "CFightSkillManager::effectId">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "CFightSkillManager::checkIsManzuCostTiaojian(CFightCard*, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, int, int, int, int, int):CFightSkillManager.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "CEffectInterFaceElevenRefactor::logicFightingCardByFightAndMonster(CFightCard*, CFightCard*, CImapact*):CEffectInterFaceElevenRefactor.cpp">
+      </ContextState>
+      <ContextState
+         contextName = "CEffectInterface::dealWithBufferAndImmediately(CFightCard*, CFightCard*, CImapact*, std::string):CEffectInterface.cpp">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

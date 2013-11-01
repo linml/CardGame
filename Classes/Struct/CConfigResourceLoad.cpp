@@ -15,6 +15,7 @@
 #include "CGameNpcCard.h"
 #include "CStructShopInfo.h"
 #include "CStructShopSellItem.h"
+#include "CStructStrips.h"
 
 bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const char *cardFileName)
 {
@@ -27,7 +28,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_icard_id=GameTools::intForKey("card_id", cardDirector);
         card->m_scard_name=string(GameTools::valueForKey("card_name", cardDirector));
         card->m_ccard_next=GameTools::intForKey("card_next", cardDirector);  ///背景底色
-        card->m_sicard_star=GameTools::intForKey("card_star", cardDirector);
+        card->m_nCard_star=GameTools::intForKey("card_star", cardDirector);
         card->m_icard_stirps=GameTools::intForKey("card_stirps", cardDirector);   //种族
         card->m_icard_suit=GameTools::intForKey("card_suit", cardDirector);      //随机数值
         card->m_icard_leadership=GameTools::intForKey("card_leadership", cardDirector);
@@ -49,7 +50,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_scard_ground=GameTools::valueForKey("card_ground", cardDirector);
         card->m_scard_role=GameTools::valueForKey("card_role", cardDirector);
                 // change by phileas:
-        int index = card->m_sicard_star -1;
+        int index = card->m_nCard_star -1;
         index = abs(index) > 7 ? 7: abs(index);
         card->m_ileve_max = g_aMaxLevel[index];
         //CCLog("the %i card's next card id: %d", card->m_icard_id, card->m_ccard_next);
@@ -87,7 +88,7 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
         card->m_icard_id=GameTools::intForKey("npc_id", cardDirector);
         card->m_scard_name=string(GameTools::valueForKey("name", cardDirector));
         card->m_ccard_next=GameTools::intForKey("card_next", cardDirector);  ///背景底色
-        card->m_sicard_star=GameTools::intForKey("star", cardDirector);
+        card->m_nCard_star=GameTools::intForKey("star", cardDirector);
         card->m_icard_stirps=GameTools::intForKey("stirps", cardDirector);   //种族
         card->m_icard_suit=GameTools::intForKey("suit", cardDirector);      //随机数值
         card->m_icard_attack=GameTools::intForKey("attack", cardDirector); //攻击力
@@ -106,7 +107,7 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
         card->m_scard_role="card_role_"+card->m_scard_resources;
         card->m_scard_resources="peo"+card->m_scard_resources+".png";
         ((CNpcCard *)card)->m_npcCardLevel=GameTools::intForKey("level",cardDirector);
-        int index = card->m_sicard_star -1;
+        int index = card->m_nCard_star -1;
         index = abs(index) > 7 ? 7: abs(index);
         card->m_ileve_max = g_aMaxLevel[index];
         if(hashMapNpcCardAll[key->intValue()])
@@ -124,7 +125,29 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
     return false;
 }
 
-
+bool CConfigResourceLoad::loadSkillStripTable(map<int ,CStructStrips *>&mapStrip,const char *fileName)
+{
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile(fileName);
+    CCArray *vKeyArray=directory->allKeys();
+    for (int i=0; i<vKeyArray->count(); i++)
+    {
+        CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
+        CCDictionary *stripDict=(CCDictionary*)(directory->objectForKey(key->m_sString));
+        if (stripDict) {
+            CStructStrips *stripTableCell=new CStructStrips;
+            stripTableCell->m_nStripsOne=GameTools::intForKey("strips_1", stripDict);
+            stripTableCell->m_nStripsTwo=GameTools::intForKey("strips_2", stripDict);
+            stripTableCell->m_nStripsThree=GameTools::intForKey("strips_3", stripDict);
+            stripTableCell->m_nStripsFour=GameTools::intForKey("strips_4", stripDict);
+            if ( mapStrip[key->intValue()]) {
+                delete  mapStrip[key->intValue()];
+                mapStrip[key->intValue()]=NULL;
+            }
+            mapStrip[key->intValue()]=stripTableCell;
+        }
+    }
+    return true;
+}
 
 
 bool CConfigResourceLoad::loadPlayerLevelInfo(map<int ,SLevelPlayer *> &vPlayerLevel, const char *playerFileName)

@@ -11,7 +11,10 @@
 
 #include <iostream>
 #include <string>
+#include "cocos2d.h"
 using namespace std;
+using namespace cocos2d;
+
 //定义一个计算effect的 抽象类
 class CFightCard;
 class CImapact;
@@ -27,6 +30,8 @@ protected:
     int iChangeatk;
     int iChangedef;
     int iChangeengry;
+public:
+    CC_SYNTHESIZE(string, m_sNeadAppendBufferFile, NeedAppendBufferFile);
 };
 
 #endif /* defined(___1_cube__CEffectInterface__) */

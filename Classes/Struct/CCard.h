@@ -29,7 +29,7 @@ public:
     int m_icard_id;
     string m_scard_name;
     int  m_ccard_next;  ///next id
-    unsigned short int  m_sicard_star;
+    unsigned short int  m_nCard_star; //星级
     int m_icard_stirps;   //种族 1,
     int m_icard_suit;      //随机数值
     int m_icard_leadership;
@@ -51,7 +51,11 @@ public:
     string m_scard_ground; //
     string m_scard_role;
 };
-
+enum EN_LEFTTEAMORRIGHTTEAM
+{
+    EN_LEFTTEAM,
+    EN_RIGHTTEAM
+};
 //FIGHTING CARD
 class  CFightCard
 {
@@ -76,6 +80,8 @@ public:
     int  getInWhichBattleArray();
     
     bool isHaveBufferRefactor(int prameid);
+    bool isCanFight();
+    bool isHaveParamid10(int nParamidValue);
     void appendEngry(int iEngry);
     void appendHp(int iHp);
     //判断卡牌身上带的互斥的逻辑ID
@@ -111,7 +117,9 @@ public:
     CCard *m_pCard;    
     std::list<CCardBufferStatusRefactor *>m_vlistBuffer;
     // change by phileas.chen 2013.7.22
-    CC_SYNTHESIZE(bool, m_bConsume, EnConsume);
+    CC_SYNTHESIZE(bool, m_bConsume, EnConsume);//消耗
+    CC_SYNTHESIZE(EN_LEFTTEAMORRIGHTTEAM, m_enTeamPostion, TEAMPOSTION);
+    
 protected:
     int m_nWhichBattleArray;
 public: //for test

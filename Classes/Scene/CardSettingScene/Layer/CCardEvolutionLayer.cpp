@@ -365,7 +365,7 @@ void CCardEvolutionLayer::saveOnClick()
          * 3. 领导力
          * 4. 顶级
          */
-        int index = m_pSrcCard->getCardData()->m_pCard->m_sicard_star;
+        int index = m_pSrcCard->getCardData()->m_pCard->m_nCard_star;
         index--;
         int needLevel = g_aMaxLevel[index];
         

@@ -36,6 +36,8 @@ public:
     int m_iNeedAddBack; //是否需要返
     int m_iKeepTime;    //是否是持续次数
     int m_iEffect_time; //是否是影响次数
+    int m_iEffect_paramid10;//  在技能逻辑ID里面的10 需要标记下；
+    int m_nEffect_effectLogic;
     
     string m_sbfferFile;
     
