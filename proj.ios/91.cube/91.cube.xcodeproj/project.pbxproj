@@ -39,6 +39,12 @@
 		6F8E60F5178424A900AF5111 /* AnimationLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E60F3178424A900AF5111 /* AnimationLogic.cpp */; };
 		6F8E60FA178424BD00AF5111 /* CPtScrollWordsWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E60F6178424BD00AF5111 /* CPtScrollWordsWidget.cpp */; };
 		6F8E60FB178424BD00AF5111 /* CPtTableItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E60F8178424BD00AF5111 /* CPtTableItem.cpp */; };
+		6F91B4511827364800B284B9 /* CEffectInterFaceThreeRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F91B44F1827364800B284B9 /* CEffectInterFaceThreeRefactor.cpp */; };
+		6F91B4541827391000B284B9 /* CEffectInterFaceFourRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F91B4521827391000B284B9 /* CEffectInterFaceFourRefactor.cpp */; };
+		6F91B4571827392100B284B9 /* CEffectInterFaceFiveRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F91B4551827392100B284B9 /* CEffectInterFaceFiveRefactor.cpp */; };
+		6F91B45A1827393900B284B9 /* CEffectInterFaceSixRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F91B4581827393900B284B9 /* CEffectInterFaceSixRefactor.cpp */; };
+		6F91B45D1827394C00B284B9 /* CEffectInterFaceSevenRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F91B45B1827394C00B284B9 /* CEffectInterFaceSevenRefactor.cpp */; };
+		6F91B4601827395D00B284B9 /* CEffectInterFaceEightRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F91B45E1827395D00B284B9 /* CEffectInterFaceEightRefactor.cpp */; };
 		6F98CD2C179E154B00E77257 /* CEffectInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F98CD2A179E154B00E77257 /* CEffectInterface.cpp */; };
 		6FA496BD18165DE800D48944 /* CPanelLoadingLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA496BB18165DE800D48944 /* CPanelLoadingLayer.cpp */; };
 		6FA6AFB2174F6A1D00608A73 /* CBaseLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FA6AFAA174F6A1D00608A73 /* CBaseLayer.cpp */; };
@@ -424,6 +430,18 @@
 		6F8E60F7178424BD00AF5111 /* CPtScrollWordsWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtScrollWordsWidget.h; sourceTree = "<group>"; };
 		6F8E60F8178424BD00AF5111 /* CPtTableItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtTableItem.cpp; sourceTree = "<group>"; };
 		6F8E60F9178424BD00AF5111 /* CPtTableItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtTableItem.h; sourceTree = "<group>"; };
+		6F91B44F1827364800B284B9 /* CEffectInterFaceThreeRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceThreeRefactor.cpp; sourceTree = "<group>"; };
+		6F91B4501827364800B284B9 /* CEffectInterFaceThreeRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceThreeRefactor.h; sourceTree = "<group>"; };
+		6F91B4521827391000B284B9 /* CEffectInterFaceFourRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceFourRefactor.cpp; sourceTree = "<group>"; };
+		6F91B4531827391000B284B9 /* CEffectInterFaceFourRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceFourRefactor.h; sourceTree = "<group>"; };
+		6F91B4551827392100B284B9 /* CEffectInterFaceFiveRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceFiveRefactor.cpp; sourceTree = "<group>"; };
+		6F91B4561827392100B284B9 /* CEffectInterFaceFiveRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceFiveRefactor.h; sourceTree = "<group>"; };
+		6F91B4581827393900B284B9 /* CEffectInterFaceSixRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceSixRefactor.cpp; sourceTree = "<group>"; };
+		6F91B4591827393900B284B9 /* CEffectInterFaceSixRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceSixRefactor.h; sourceTree = "<group>"; };
+		6F91B45B1827394C00B284B9 /* CEffectInterFaceSevenRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceSevenRefactor.cpp; sourceTree = "<group>"; };
+		6F91B45C1827394C00B284B9 /* CEffectInterFaceSevenRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceSevenRefactor.h; sourceTree = "<group>"; };
+		6F91B45E1827395D00B284B9 /* CEffectInterFaceEightRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceEightRefactor.cpp; sourceTree = "<group>"; };
+		6F91B45F1827395D00B284B9 /* CEffectInterFaceEightRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceEightRefactor.h; sourceTree = "<group>"; };
 		6F98CD2A179E154B00E77257 /* CEffectInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterface.cpp; sourceTree = "<group>"; };
 		6F98CD2B179E154B00E77257 /* CEffectInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterface.h; sourceTree = "<group>"; };
 		6FA496BB18165DE800D48944 /* CPanelLoadingLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPanelLoadingLayer.cpp; sourceTree = "<group>"; };
@@ -1347,6 +1365,18 @@
 				6FCD4322181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.h */,
 				6FCE6BD418239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp */,
 				6FCE6BD518239F3000132BBE /* CEffectInterFaceTwoRefactor.h */,
+				6F91B44F1827364800B284B9 /* CEffectInterFaceThreeRefactor.cpp */,
+				6F91B4501827364800B284B9 /* CEffectInterFaceThreeRefactor.h */,
+				6F91B4521827391000B284B9 /* CEffectInterFaceFourRefactor.cpp */,
+				6F91B4531827391000B284B9 /* CEffectInterFaceFourRefactor.h */,
+				6F91B4551827392100B284B9 /* CEffectInterFaceFiveRefactor.cpp */,
+				6F91B4561827392100B284B9 /* CEffectInterFaceFiveRefactor.h */,
+				6F91B4581827393900B284B9 /* CEffectInterFaceSixRefactor.cpp */,
+				6F91B4591827393900B284B9 /* CEffectInterFaceSixRefactor.h */,
+				6F91B45B1827394C00B284B9 /* CEffectInterFaceSevenRefactor.cpp */,
+				6F91B45C1827394C00B284B9 /* CEffectInterFaceSevenRefactor.h */,
+				6F91B45E1827395D00B284B9 /* CEffectInterFaceEightRefactor.cpp */,
+				6F91B45F1827395D00B284B9 /* CEffectInterFaceEightRefactor.h */,
 			);
 			path = CEffectLogic;
 			sourceTree = "<group>";
@@ -2847,6 +2877,7 @@
 				9FC6F1F517460BFF0091BE98 /* AppDelegate.cpp in Sources */,
 				6FCE6BD3182390F100132BBE /* CStructStrips.cpp in Sources */,
 				9FC6F1F617460BFF0091BE98 /* HelloWorldScene.cpp in Sources */,
+				6F91B45D1827394C00B284B9 /* CEffectInterFaceSevenRefactor.cpp in Sources */,
 				9FC6F1F717460BFF0091BE98 /* CCAction.cpp in Sources */,
 				9FC6F1F817460BFF0091BE98 /* CCActionCamera.cpp in Sources */,
 				9FC6F1F917460BFF0091BE98 /* CCActionCatmullRom.cpp in Sources */,
@@ -2907,10 +2938,12 @@
 				9FC6F22D17460BFF0091BE98 /* CCScene.cpp in Sources */,
 				6F08A46D1817D9900081C499 /* CCShake.cpp in Sources */,
 				9FC6F22E17460BFF0091BE98 /* CCTransition.cpp in Sources */,
+				6F91B4601827395D00B284B9 /* CEffectInterFaceEightRefactor.cpp in Sources */,
 				9FC6F22F17460BFF0091BE98 /* CCTransitionPageTurn.cpp in Sources */,
 				9FC6F23017460BFF0091BE98 /* CCTransitionProgress.cpp in Sources */,
 				9FC6F23117460BFF0091BE98 /* CCMenu.cpp in Sources */,
 				9FC6F23217460BFF0091BE98 /* CCMenuItem.cpp in Sources */,
+				6F91B45A1827393900B284B9 /* CEffectInterFaceSixRefactor.cpp in Sources */,
 				9FC6F23317460BFF0091BE98 /* CCMotionStreak.cpp in Sources */,
 				9FC6F23417460BFF0091BE98 /* CCProgressTimer.cpp in Sources */,
 				9FC6F23517460BFF0091BE98 /* CCRenderTexture.cpp in Sources */,
@@ -3060,6 +3093,7 @@
 				6F3AC848180BC1C2007B8756 /* CStructShopSellItem.cpp in Sources */,
 				9FB94F95175DDF570002B887 /* PtJsonUtility.cpp in Sources */,
 				6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */,
+				6F91B4511827364800B284B9 /* CEffectInterFaceThreeRefactor.cpp in Sources */,
 				6F780751176469830049321C /* HallScene.cpp in Sources */,
 				6F780752176469830049321C /* AsgardLayer.cpp in Sources */,
 				6F780753176469830049321C /* LogoLayer.cpp in Sources */,
@@ -3080,6 +3114,7 @@
 				9F9A369B1773EA8900E504D7 /* PtActionUtility.cpp in Sources */,
 				6FCD431A181E75E200153054 /* CStructGameActionData.cpp in Sources */,
 				9F9A369C1773EA8900E504D7 /* PtHttpClient.cpp in Sources */,
+				6F91B4571827392100B284B9 /* CEffectInterFaceFiveRefactor.cpp in Sources */,
 				9F9A369D1773EA8900E504D7 /* PtShake.cpp in Sources */,
 				9F819F6A17799A3800DD21A1 /* CPtListViewWidget.cpp in Sources */,
 				9FFE8E5B17815A9700DF7D47 /* HBLabelPanel.cpp in Sources */,
@@ -3123,6 +3158,7 @@
 				6FB983B117AF84A400DCB630 /* CFightCardBufferData.cpp in Sources */,
 				9F2A2F5D17B33A1C0000E8DE /* CPtButtonWidget.cpp in Sources */,
 				6FAC988A17B9C3CE00B9612E /* CPtPropConfigData.cpp in Sources */,
+				6F91B4541827391000B284B9 /* CEffectInterFaceFourRefactor.cpp in Sources */,
 				6FABA40F17BCBAF300B1A449 /* CCardInfoLayer.cpp in Sources */,
 				6FB568EB17C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp in Sources */,
 				6FCD42D2181DFDED00153054 /* CGameBufferTip.cpp in Sources */,

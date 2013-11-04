@@ -14,6 +14,13 @@
 #include "CFightingCardLayerScene.h"
 #include "CEffectInterface.h"
 #include "CEffectInterFaceOneRefactor.h"
+#include "CEffectInterFaceTwoRefactor.h"
+#include "CEffectInterFaceThreeRefactor.h"
+#include "CEffectInterFaceFourRefactor.h"
+#include "CEffectInterFaceFiveRefactor.h"
+#include "CEffectInterFaceSixRefactor.h"
+#include "CEffectInterFaceSevenRefactor.h"
+#include "CEffectInterFaceEightRefactor.h"
 #include "CEffectInterFaceElevenRefactor.h"
 #include "CEffectInterFaceTwentyOneRefactor.h"
 #include "CEffectInterFaceTwentyFourRefactor.h"
@@ -181,6 +188,7 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
         {
             if (!effecitFile[i].empty())
             {
+                //整个敌方有错误的。。。
                 m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,CFightSkillManager::effectId[i],effecitFile[i]));
             }
         }
@@ -309,14 +317,7 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
 void CFightSkillManager::logicSkill_3(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
 {
     
-    
-    
-}
-
-
-void CFightSkillManager::logicSkill_4(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
-{
-    
+    //通过找到logc
     int currHp=FightCard[FightIndex]->m_iCurrHp;
     int engry=FightCard[FightIndex]->m_iCurrEngry;
     int monstercurrHp=MonsterCard[MonsterIndex]->m_iCurrHp;
@@ -325,138 +326,24 @@ void CFightSkillManager::logicSkill_4(CFightCard *pCard,vector<CFightCard *>Figh
     int costfunctValue=costFunc(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill);
     if (costfunctValue>=1)
     {
+        CCLog("costfunctValue %d",costfunctValue);
+        string resultEffectFile[6];
         if(costfunctValue==1)
         {
-            if(pSkill->parameter_1!=0)
-            {
-                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_1);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            if(pSkill->parameter_2!=0)
-            {
-                logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_2);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            if(pSkill->parameter_5!=0)
-            {
-                //发动增幅技能的特效plist
-                for (int i=MonsterIndex; i<MonsterCard.size(); i++)
-                {
-                    if(MonsterCard[i]&&MonsterCard[i]->m_iCurrHp>=0)
-                    {
-                        logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,i,pSkill,pSkill->parameter_5);
-                    }
-                }
-                //觉得这里需要添加个特效的文件
-                //appendAnimation(FightIndex, MonsterIndex, 0, 0, pSkill->skill_id,0, 0, EN_ANIMATIONTYPE_SKILL, enatk);
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_5);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            if(pSkill->parameter_6!=0)
-            {
-                //觉得这里需要添加个特效的文件
-                for (int i=FightIndex; i<FightCard.size(); i++)
-                {
-                    if(FightCard[i]&&FightCard[i]->m_iCurrHp>=0)
-                    {
-                        logicSkillFight(pCard,FightCard,FightCard,FightIndex,i,pSkill,pSkill->parameter_6);
-                    }
-                }
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_6);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            
+            resultEffectFile[0]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+            resultEffectFile[1]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+            resultEffectFile[4]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,0,pSkill,pSkill->parameter_5,true);
+            resultEffectFile[5]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,0,pSkill,pSkill->parameter_6,true);
         }
         else if(costfunctValue==2)   //判断单体的条件是否满足。
         {
-            // 发动effect的攻击效果
-            if(pSkill->parameter_1!=0)
-            {
-                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_1);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            if(pSkill->parameter_2!=0)
-            {
-                logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_2);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            if(pSkill->parameter_3!=0)
-            {
-                logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            if(pSkill->parameter_4!=0)
-            {
-                logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_4);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            if(pSkill->parameter_5!=0)
-            {
-                //发动增幅技能的特效plist
-                for (int i=MonsterIndex; i<MonsterCard.size(); i++)
-                {
-                    if(MonsterCard[i]&&MonsterCard[i]->m_iCurrHp>=0)
-                    {
-                        logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,i,pSkill,pSkill->parameter_5);
-                        
-                    }
-                }
-                //觉得这里需要添加个特效的文件
-                //appendAnimation(FightIndex, MonsterIndex, 0, 0, pSkill->skill_id,0, 0, EN_ANIMATIONTYPE_SKILL, enatk);
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_5);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
-            if(pSkill->parameter_6!=0)
-            {
-                //觉得这里需要添加个特效的文件
-                for (int i=FightIndex; i<FightCard.size(); i++)
-                {
-                    if(FightCard[i]&&FightCard[i]->m_iCurrHp>=0)
-                    {
-                        logicSkillFight(pCard,FightCard,FightCard,FightIndex,i,pSkill,pSkill->parameter_6);
-                    }
-                }
-                CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_6);
-                if (pImpact&&pImpact->m_irandom)
-                {
-                    SinglePlayer::instance()->randRomIndexAdd();
-                }
-            }
+            resultEffectFile[2]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
+            resultEffectFile[3]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
+            resultEffectFile[4]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,0,pSkill,pSkill->parameter_5,true);
+            resultEffectFile[5]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,0,pSkill,pSkill->parameter_6,true);
         }
-        switch (pSkill->skill_type) {
+        switch (pSkill->skill_type)
+        {
             case 1:
                 MonsterCard[MonsterIndex]->m_iCurrEngry+=30;
                 break;
@@ -481,23 +368,107 @@ void CFightSkillManager::logicSkill_4(CFightCard *pCard,vector<CFightCard *>Figh
         MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
         CCLog("用户发动了用户的技能3");
         appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
-        if(costfunctValue==2&&pSkill->parameter_3!=0)
+        for (int i=0; i<6; i++)
         {
-            CCLog("pSkill->parameter_3================>%d",pSkill->parameter_3);
-            CImapact *pImpact=SinglePlayer::instance()->findByImpactId(pSkill->parameter_3);
-            CCLog("apppppend%d",totoalanimation++);
-            //显示调用特效表。 如果发现有酒后或的特效
-            string effectPliststr=SinglePlayer::instance()->getBufferPlistByEffectId(pImpact->m_ieffect_id);
-            if(effectPliststr.empty())
+            CCLog("resultEffectFile[i] :%d :%s",i,resultEffectFile[i].c_str());
+            if (!resultEffectFile[i].empty())
             {
-                CCLog("effectid==%d,%d",m_animationVector.size(),pImpact->m_ieffect_id);
-                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,0,effectPliststr));
+                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,CFightSkillManager::effectId[i],resultEffectFile[i]));
             }
-            else
+        }
+    }
+    else
+    {
+        CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji(pCard);
+        if (pPutongSkill)
+        {
+            logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);
+            currHp-=FightCard[FightIndex]->m_iCurrHp;
+            FightCard[FightIndex]->appendEngry(20);
+            for (int i=FightIndex+1; i<FightCard.size(); i++)
             {
-                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,pImpact->m_ieffect_id,effectPliststr));
+                if(FightCard[i])
+                {
+                    FightCard[i]->appendEngry(10);
+                }
             }
-            CCLog("pSkill->parameter_4================>%s",pImpact->m_sEffectFile.c_str());
+            engry -=FightCard[FightIndex]->m_iCurrEngry;
+            monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
+            MonsterCard[MonsterIndex]->appendEngry(30);
+            monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
+            FightCard[FightIndex]->setNegativeToZero();
+            MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
+            CCLog("用户发动了用户的技能4");
+            appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pPutongSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
+        }
+    }
+    
+}
+
+
+void CFightSkillManager::logicSkill_4(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
+{
+    
+    //通过找到logc
+    int currHp=FightCard[FightIndex]->m_iCurrHp;
+    int engry=FightCard[FightIndex]->m_iCurrEngry;
+    int monstercurrHp=MonsterCard[MonsterIndex]->m_iCurrHp;
+    int monstercurrEngry=MonsterCard[MonsterIndex]->m_iCurrEngry;
+    // 满足条件
+    int costfunctValue=costFunc(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill);
+    if (costfunctValue>=1)
+    {
+        CCLog("costfunctValue %d",costfunctValue);
+        string resultEffectFile[6];
+        if(costfunctValue==1)
+        {
+            resultEffectFile[0]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+            resultEffectFile[1]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+            resultEffectFile[2]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
+            resultEffectFile[3]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
+        }
+        else if(costfunctValue==2)   //判断单体的条件是否满足。
+        {
+            resultEffectFile[0]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+            resultEffectFile[1]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+            resultEffectFile[2]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
+            resultEffectFile[3]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
+            resultEffectFile[4]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_5);
+            resultEffectFile[5]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_6);
+        }
+        switch (pSkill->skill_type)
+        {
+            case 1:
+                MonsterCard[MonsterIndex]->m_iCurrEngry+=30;
+                break;
+            case 3:
+                for (int i=FightIndex+1; i<FightCard.size(); i++) {
+                    if(FightCard[i])
+                    {
+                        FightCard[i]->m_iCurrEngry+=10;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        
+        currHp-=FightCard[FightIndex]->m_iCurrHp;
+        engry -=FightCard[FightIndex]->m_iCurrEngry;
+        monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
+        monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
+        //用户发动了拥护的技能
+        FightCard[FightIndex]->setNegativeToZero();
+        MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
+        CCLog("用户发动了用户的技能3");
+        appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
+        for (int i=0; i<6; i++)
+        {
+            CCLog("resultEffectFile[i] :%d :%s",i,resultEffectFile[i].c_str());
+            if (!resultEffectFile[i].empty())
+            {
+                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,CFightSkillManager::effectId[i],resultEffectFile[i]));
+            }
         }
     }
     else
@@ -526,6 +497,98 @@ void CFightSkillManager::logicSkill_4(CFightCard *pCard,vector<CFightCard *>Figh
         }
     }
 }
+
+
+void CFightSkillManager::logicSkill_5(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
+{
+    
+    //通过找到logc
+    int currHp=FightCard[FightIndex]->m_iCurrHp;
+    int engry=FightCard[FightIndex]->m_iCurrEngry;
+    int monstercurrHp=MonsterCard[MonsterIndex]->m_iCurrHp;
+    int monstercurrEngry=MonsterCard[MonsterIndex]->m_iCurrEngry;
+    // 满足条件
+    int costfunctValue=costFunc(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill);
+    if (costfunctValue>=1)
+    {
+        CCLog("costfunctValue %d",costfunctValue);
+        string resultEffectFile[6];
+        if(costfunctValue==1)
+        {
+            resultEffectFile[0]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+            resultEffectFile[1]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+            resultEffectFile[2]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_3);
+            resultEffectFile[3]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_4);
+        }
+        else if(costfunctValue==2)   //判断单体的条件是否满足。
+        {
+            resultEffectFile[0]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_1);
+            resultEffectFile[1]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_2);
+            resultEffectFile[4]=logicSkillFight(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill,pSkill->parameter_5);
+            resultEffectFile[5]=logicSkillFight(pCard,FightCard,FightCard,FightIndex,FightIndex,pSkill,pSkill->parameter_6);
+        }
+        switch (pSkill->skill_type)
+        {
+            case 1:
+                MonsterCard[MonsterIndex]->m_iCurrEngry+=30;
+                break;
+            case 3:
+                for (int i=FightIndex+1; i<FightCard.size(); i++) {
+                    if(FightCard[i])
+                    {
+                        FightCard[i]->m_iCurrEngry+=10;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        
+        currHp-=FightCard[FightIndex]->m_iCurrHp;
+        engry -=FightCard[FightIndex]->m_iCurrEngry;
+        monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
+        monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
+        //用户发动了拥护的技能
+        FightCard[FightIndex]->setNegativeToZero();
+        MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
+        CCLog("用户发动了用户的技能3");
+        appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
+        for (int i=0; i<6; i++)
+        {
+            CCLog("resultEffectFile[i] :%d :%s",i,resultEffectFile[i].c_str());
+            if (!resultEffectFile[i].empty())
+            {
+                m_animationVector.push_back(new CAnimationSpriteGameFight(EN_ANIMATIONTYPE_BUFFPLISTOTHER,enatk,FightIndex,MonsterIndex,0,0,0,0,0,CFightSkillManager::effectId[i],resultEffectFile[i]));
+            }
+        }
+    }
+    else
+    {
+        CSkillData *pPutongSkill=SinglePlayer::instance()->getPutongGongji(pCard);
+        if (pPutongSkill)
+        {
+            logicSkill_Putong(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pPutongSkill);
+            currHp-=FightCard[FightIndex]->m_iCurrHp;
+            FightCard[FightIndex]->appendEngry(20);
+            for (int i=FightIndex+1; i<FightCard.size(); i++)
+            {
+                if(FightCard[i])
+                {
+                    FightCard[i]->appendEngry(10);
+                }
+            }
+            engry -=FightCard[FightIndex]->m_iCurrEngry;
+            monstercurrHp-=MonsterCard[MonsterIndex]->m_iCurrHp;
+            MonsterCard[MonsterIndex]->appendEngry(30);
+            monstercurrEngry-=MonsterCard[MonsterIndex]->m_iCurrEngry;
+            FightCard[FightIndex]->setNegativeToZero();
+            MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
+            CCLog("用户发动了用户的技能4");
+            appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pPutongSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enatk);
+        }
+    }
+}
+
 
 int CFightSkillManager::costFunc(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pData)
 {
@@ -629,33 +692,6 @@ bool CFightSkillManager::checkIsManzuCostTiaojian(CFightCard *pCard,vector<CFigh
     
     return true;
 }
-bool  CFightSkillManager::getMougeZhongzuShuliang(vector<CFightCard *>MonsterCard,int ValueZhongZuLeixing,int count)
-{
-    switch (ValueZhongZuLeixing) {
-        case 0:
-            return  true;
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-            for (int i=0;i<MonsterCard.size(); i++) {
-                if(MonsterCard[i])
-                {
-                    if (MonsterCard[i]->m_pCard->m_icard_stirps==ValueZhongZuLeixing) {
-                        return true;
-                    }
-                }
-            }
-            return false;
-            break;
-        case 5:
-            
-        default:
-            break;
-    }
-    return  false;
-}
-
 
 
 
@@ -679,26 +715,47 @@ string CFightSkillManager::effect_1(CFightCard *pCard,CFightCard *pMonterCard,CS
 
 string CFightSkillManager::effect_2(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
-    return NULL;
+    CEffectInterface *effect=new CEffectInterFaceTwoRefactor();
+    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+    string result=effect->getNeedAppendBufferFile();
+    CC_SAFE_DELETE(effect);
+    return result;
 }
 
 string CFightSkillManager::effect_3(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
-    return "";
+    CEffectInterface *effect=new CEffectInterFaceThreeRefactor();
+    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+    string result=effect->getNeedAppendBufferFile();
+    CC_SAFE_DELETE(effect);
+    return result;
 }
 
 string CFightSkillManager::effect_4(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
-    return "";
+    CEffectInterface *effect=new CEffectInterFaceFourRefactor();
+    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+    string result=effect->getNeedAppendBufferFile();
+    CC_SAFE_DELETE(effect);
+    return result;
 }
 
 string CFightSkillManager::effect_5(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
-    return "";
+    CEffectInterface *effect=new CEffectInterFaceFiveRefactor();
+    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+    string result=effect->getNeedAppendBufferFile();
+    CC_SAFE_DELETE(effect);
+    return result;
 }
 
 string CFightSkillManager::effect_6(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
+//    CEffectInterface *effect=new CEffectInterFaceSixRefactor();
+//    effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+//    string result=effect->getNeedAppendBufferFile();
+//    CC_SAFE_DELETE(effect);
+//    return result;
     return "";
 }
 
@@ -709,7 +766,11 @@ string CFightSkillManager::effect_7(CFightCard *pCard,CFightCard *pMonterCard,CS
 
 string CFightSkillManager::effect_8(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
 {
-    return "";
+       CEffectInterface *effect=new CEffectInterFaceEightRefactor();
+        effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
+        string result=effect->getNeedAppendBufferFile();
+        CC_SAFE_DELETE(effect);
+        return result;
 }
 
 string CFightSkillManager::effect_9(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)
@@ -857,16 +918,16 @@ void CFightSkillManager::initBeginFightStatus(CFightCard *pInitCard, int effectS
     }
     
 }
-
+#include <functional>
 
 void CFightSkillManager::initSkill()
 {
-    
     m_vSkillManagerLogic["1"]=&CFightSkillManager::logicSkill_1;
     m_vSkillManagerLogic["2"]=&CFightSkillManager::logicSkill_2;
     m_vSkillManagerLogic["3"]=&CFightSkillManager::logicSkill_3;
     m_vSkillManagerLogic["4"]=&CFightSkillManager::logicSkill_4;
-    
+    m_vSkillManagerLogic["5"]=&CFightSkillManager::logicSkill_5;
+
     m_vEffictManager["0"] =&CFightSkillManager::effect_0;
     m_vEffictManager["1"] =&CFightSkillManager::effect_1;
     m_vEffictManager["2"] =&CFightSkillManager::effect_2;

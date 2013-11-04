@@ -45,16 +45,16 @@ public:
     //每一种逻辑ID对应的costfunc 不同。
     static void logicSkill_Putong(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill);
     static string logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,bool isQunti=false,bool isDirenTuandui=true);//如果是团队的话 判断是给哪个团队加血
-    static void logicSkill_1(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
     
-    static void logicSkill_2(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
+   
+    STATICSKILLFUNCTION(logicSkill_1);
+    STATICSKILLFUNCTION(logicSkill_2);
+    STATICSKILLFUNCTION(logicSkill_3);
+    STATICSKILLFUNCTION(logicSkill_4);
     
-    static void logicSkill_3(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
+    STATICSKILLFUNCTION(logicSkill_5);
     
-    static void logicSkill_4(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk);
     
-    //STATICSKILLFUNCTION(logicSkill_5);
-    static bool getMougeZhongzuShuliang(vector<CFightCard *>MonsterCard,int ValueZhongZuLeixing,int count);
     static bool checkIsManzuCostTiaojian(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,int costType,int costParam,int costParamP_n);
     
     //定义一个costfunction 的函数
@@ -77,6 +77,7 @@ public:
     STATICEFFICEFUNCTION(effect_21);
     STATICEFFICEFUNCTION(effect_24);
     static void InitEffectId(CSkillData *pSkill);
+    
 public:
     static int effectId[6];   
 public:
