@@ -47,7 +47,10 @@ tempClear.clearVector(); \
 static    map <string,pFunc>m_vSkillManagerLogic;
 static    map<string, pbEffFunc>m_vEffictManager;
 vector<CAnimationSpriteGameFight *>CFightSkillManager::m_animationVector;
+
 vector<CFightCardBufferDataEveryFight *>CFightSkillManager::m_animationBufferVector;
+
+vector<CAnimationSctrip *>CFightSkillManager::m_vAnimationStrip;
 
 string CFightSkillManager::logicSkillFight(CFightCard *pCard,vector< CFightCard *>pFightCard,vector< CFightCard *>pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,bool isQunti,bool isDirenTuandui)
 {
@@ -136,6 +139,8 @@ void CFightSkillManager::InitEffectId(CSkillData *pSkill)
 
 void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)
 {
+    
+    //发动
     //通过找到logc
     int currHp=FightCard[FightIndex]->m_iCurrHp;
     int engry=FightCard[FightIndex]->m_iCurrEngry;
@@ -144,6 +149,14 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
     // 满足条件
     if(costFunc(pCard,FightCard,MonsterCard,FightIndex,MonsterIndex,pSkill)>=1)   //判断单体的条件是否满足。
     {
+        //发动skill
+        /*    CAnimationSctrip(EN_ANIMATIONTYPEREFACTOR entype,EN_ATKFIGHT_INDEX enAtkIndex,
+         int skillId,
+         int nATKindex,
+         int nDefIndex,
+         int nAddHp,int nSubHp,string m_sRunActionFile);
+         */
+        m_vAnimationStrip.push_back(new CAnimationSctrip(EN_ANIMATIONTYPEREFACTOR_SKILL,enatk,pSkill->skill_id,FightIndex,MonsterIndex,0,0,pSkill->effect_plist));
         CCLog("条件满足 爆发了技能id:%d",pSkill->skill_id);
         // 给敌方主卡的效果
        string effecitFile[6];
@@ -897,6 +910,8 @@ void CFightSkillManager::clearAnimationList()
 {
     DELETE_POINT_VECTOR(m_animationVector, vector<CAnimationSpriteGameFight *>,CAnimationSpriteGameFight);
     m_animationVector.clear();
+    DELETE_POINT_VECTOR(m_vAnimationStrip, vector<CAnimationSctrip *>,CAnimationSctrip);
+    m_vAnimationStrip.clear();
     
 }
 

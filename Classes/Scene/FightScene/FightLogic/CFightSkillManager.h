@@ -20,6 +20,7 @@ class CFightCard;
 class CGamePlayer;
 class CSkillData;
 class CImapact;
+class CAnimationSctrip;
 class CAnimationSpriteGameFight;
 class CCardBufferStatusRefactor;
 class CFightCardBufferDataEveryFight;
@@ -107,6 +108,7 @@ public:
 public:
    static vector<CAnimationSpriteGameFight *>m_animationVector;
    static vector<CFightCardBufferDataEveryFight *>m_animationBufferVector;
+   static vector<CAnimationSctrip *>m_vAnimationStrip;
 };
 
 typedef Singleton<CFightSkillManager> G_FightSkillManager;
