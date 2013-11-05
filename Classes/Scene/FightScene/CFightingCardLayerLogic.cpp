@@ -308,6 +308,7 @@ bool CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()
             }
             CCLog("用户移动位置");
             G_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE);
+            G_FightSkillManager::instance()->appendVector(EN_ANIMATIONTYPEREFACTOR_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE, 0, m_iFightCardIndex, 0, 0, 0, "");
             appendUpdateAction();
             result=true;
         }
@@ -341,6 +342,7 @@ bool CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()
             
             CCLog("对方移动位置");
             G_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
+             G_FightSkillManager::instance()->appendVector(EN_ANIMATIONTYPEREFACTOR_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE, 0, m_iFightCardIndex, 0, 0, 0, "");
             appendUpdateAction();
             result=true;
         }

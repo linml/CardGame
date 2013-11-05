@@ -194,12 +194,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "755"
-            endingLineNumber = "755"
-            landmarkName = "CFightSkillManager::effect_6(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)"
+            startingLineNumber = "692"
+            endingLineNumber = "692"
+            landmarkName = "CFightSkillManager::effect_4(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -254,11 +254,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "136"
+            endingLineNumber = "136"
             landmarkName = "CFightSkillManager::InitEffectId(CSkillData *pSkill)"
             landmarkType = "5">
          </BreakpointContent>
@@ -270,12 +270,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -286,12 +286,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "191"
-            endingLineNumber = "191"
-            landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -302,12 +302,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
-            landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -318,12 +318,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -334,60 +334,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405314720.45105"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
-            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "CFightSkillManager::logicSkill_1(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404976013.551606"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "CFightSkillManager::logicSkillFight(CFightCard *pCard,vector&lt; CFightCard *&gt;pFightCard,vector&lt; CFightCard *&gt;pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,bool isQunti,bool isDirenTuandui)"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "CFightSkillManager::logicSkillFight(CFightCard *pCard,vector&lt; CFightCard *&gt; pFightCard,vector&lt; CFightCard *&gt;pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,EN_ATKFIGHT_INDEX enAtkIndex,bool isDirenTuandui,bool isQunti)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -428,12 +380,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404976013.551606"
+            timestampString = "405314720.45105"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "CFightSkillManager::logicSkillFight(CFightCard *pCard,vector&lt; CFightCard *&gt;pFightCard,vector&lt; CFightCard *&gt;pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,bool isQunti,bool isDirenTuandui)"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "CFightSkillManager::logicSkillFight(CFightCard *pCard,vector&lt; CFightCard *&gt; pFightCard,vector&lt; CFightCard *&gt;pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,EN_ATKFIGHT_INDEX enAtkIndex,bool isDirenTuandui,bool isQunti)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -594,12 +546,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "728"
-            endingLineNumber = "728"
-            landmarkName = "CFightSkillManager::effect_3(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)"
+            startingLineNumber = "665"
+            endingLineNumber = "665"
+            landmarkName = "CFightSkillManager::effect_1(CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -654,12 +606,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -670,12 +622,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
-            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -686,43 +638,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404970622.202953"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "CFightSkillManager::logicSkillFight(CFightCard *pCard,vector&lt; CFightCard *&gt;pFightCard,vector&lt; CFightCard *&gt;pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,bool isQunti,bool isDirenTuandui)"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
+            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
-            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404970685.074662"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -764,12 +686,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "566"
-            endingLineNumber = "566"
-            landmarkName = "CFightSkillManager::logicSkill_5(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+            startingLineNumber = "524"
+            endingLineNumber = "524"
+            landmarkName = "CFightSkillManager::logicSkill_5(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -780,28 +702,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
-            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/FightScene/FightLogic/CEffectInterface.cpp"
-            timestampString = "404986743.788733"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCard *pMonster, CImapact *pImapact,std::string bufferfile)"
+            startingLineNumber = "296"
+            endingLineNumber = "296"
+            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -812,12 +718,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
-            timestampString = "404986743.788733"
+            timestampString = "405337745.580402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
-            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enatk)"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
+            landmarkName = "CFightSkillManager::logicSkill_2(CFightCard *pCard,vector&lt;CFightCard *&gt;FightCard,vector&lt;CFightCard *&gt;MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
             landmarkType = "5">
             <Locations>
                <Location
@@ -847,6 +753,226 @@
                   startingLineNumber = "291"
                   endingLineNumber = "291"
                   offsetFromSymbolStart = "3666">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "405338935.576061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "CFightingLayerScene::skillAnimationSwf(CAnimationSctrip *fightAnimation,CCSprite *pFight,CCSprite *pMonster)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "405338935.576061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "310"
+            endingLineNumber = "310"
+            landmarkName = "CFightingLayerScene::animationSwf(CAnimationSctrip *fightAnimation)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "405338935.576061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "867"
+            endingLineNumber = "867"
+            landmarkName = "CFightingLayerScene::AnimaitonEnd()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "405338935.576061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "415"
+            endingLineNumber = "415"
+            landmarkName = "CFightingLayerScene::animationSchudel(float t)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "405338935.576061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "CFightingLayerScene::showHpShanghai(cocos2d::CCSprite *pFightSprite, cocos2d::CCSprite *pMonsterSprite2, int skillid, CAnimationSctrip *fightAnimation)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "405338935.576061"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
+            landmarkName = "CFightingLayerScene::skillAnimationSwf(CAnimationSctrip *fightAnimation,CCSprite *pFight,CCSprite *pMonster)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "405337964.412842"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "CFightingLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSprite2,int skillid,CAnimationSctrip *fightAnimation)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
+            timestampString = "405337745.580402"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
+            landmarkName = "CFightSkillManager::logicSkillFight(CFightCard *pCard,vector&lt; CFightCard *&gt; pFightCard,vector&lt; CFightCard *&gt;pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,EN_ATKFIGHT_INDEX enAtkIndex,bool isDirenTuandui,bool isQunti)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
+            timestampString = "405337745.580402"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "116"
+            endingLineNumber = "116"
+            landmarkName = "CFightSkillManager::logicSkillFight(CFightCard *pCard,vector&lt; CFightCard *&gt; pFightCard,vector&lt; CFightCard *&gt;pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,int paramid,EN_ATKFIGHT_INDEX enAtkIndex,bool isDirenTuandui,bool isQunti)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
+            timestampString = "405338850.84797"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "CFightSkillManager::logicSkill_0(CFightCard *pCard, vector&lt;CFightCard *&gt; FightCard, vector&lt;CFightCard *&gt; MonsterCard, int FightIndex, int MonsterIndex, CSkillData *pSkill, EN_ATKFIGHT_INDEX enAtkIndex)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
+            timestampString = "405338857.479939"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "CFightSkillManager::logicSkill_Putong(CFightCard *pCard,vector&lt; CFightCard *&gt;pFightCard,vector&lt; CFightCard *&gt;pMonterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFightSkillManager::logicSkill_Putong(CFightCard*, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, int, int, CSkillData*, EN_ATKFIGHT_INDEX)"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
+                  timestampString = "405338935.708307"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "58">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFightSkillManager::logicSkill_Putong(CFightCard*, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, int, int, CSkillData*, EN_ATKFIGHT_INDEX)"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
+                  timestampString = "405338935.70852"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "1220">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFightSkillManager::logicSkill_Putong(CFightCard*, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, std::vector&lt;CFightCard*, std::allocator&lt;CFightCard*&gt; &gt;, int, int, CSkillData*, EN_ATKFIGHT_INDEX)"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
+                  timestampString = "405338935.708788"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "124"
+                  endingLineNumber = "124"
+                  offsetFromSymbolStart = "1498">
                </Location>
             </Locations>
          </BreakpointContent>

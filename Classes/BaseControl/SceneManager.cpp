@@ -20,6 +20,7 @@
 #include "HallScene.h"
 #include "CFightingCardLayerScene.h"
 #include "CCardSettingScene.h"
+#include "CFightingLayerScene.h"
 
 SceneManager::SceneManager()
 {
@@ -214,11 +215,11 @@ void SceneManager::runFightScene()
         CCDirector *pDirector=CCDirector::sharedDirector();
         if(pDirector->getRunningScene())
         {
-             runSceneAnimation(CFightingCardLayerScene::scene());
+             runSceneAnimation(CFightingLayerScene::scene());
         }
         else
         {
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,CFightingCardLayerScene::scene()));
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,CFightingLayerScene::scene()));
         }
         
     }

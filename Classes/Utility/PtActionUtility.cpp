@@ -358,6 +358,9 @@ namespace PtActionUtility {
             data=(CCDictionary *)datatotal->objectForKey(key.c_str());
 
         }
+        if (!data) {
+            return NULL;
+        }
         
         CCAction* action = NULL;
         CCArray* vKey = data->allKeys();

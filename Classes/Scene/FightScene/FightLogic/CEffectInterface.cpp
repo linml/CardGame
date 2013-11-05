@@ -59,9 +59,20 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
     {
         
         CCardBufferStatusRefactor *bufferRefactor=new CCardBufferStatusRefactor(iChangeShanghaiHp,iChangeatk,iChangedef,iChangeengry,pImapact->m_ieffect_id,bufferfile);
-        pMonster->appendBufferData(bufferRefactor);
-        m_sNeadAppendBufferFile=SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id);//需要播放的特效文件
-        
+        bool isNeedAdd=true;
+        if(pMonster->isHaveBufferRefactor(pImapact->m_ieffect_id))
+           {
+               isNeedAdd=false;
+           }
+        if(!pMonster->appendBufferData(bufferRefactor))
+        {
+            isNeedAdd=false;
+        }
+        if (isNeedAdd)
+        {
+            m_sNeadAppendBufferFile=SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id);//需要播放的特效
+        }
+        CCLog("m_sNeadAppendBufferFile :%s",m_sNeadAppendBufferFile.c_str());
     }
        
 }

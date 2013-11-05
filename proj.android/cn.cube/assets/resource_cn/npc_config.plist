@@ -21,7 +21,7 @@
 		<key>defend</key>
 		<string>100</string>
 		<key>hp</key>
-		<string>420</string>
+		<string>5000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -31,9 +31,9 @@
 		<key>skill_help</key>
 		<string>100002</string>
 		<key>skill_dead</key>
-		<string>0</string>
+		<string>100003</string>
 		<key>skill_buff</key>
-		<string>0</string>
+		<string>100004</string>
 		<key>card_resources</key>
 		<string>000</string>
 	</dict>
@@ -56,7 +56,7 @@
 		<key>defend</key>
 		<string>110</string>
 		<key>hp</key>
-		<string>462</string>
+		<string>5000</string>
 		<key>card_energy</key>
 		<string>150</string>
 		<key>usually_attack</key>
@@ -64,11 +64,11 @@
 		<key>skill_energy</key>
 		<string>100001</string>
 		<key>skill_help</key>
-		<string>0</string>
+		<string>100002</string>
 		<key>skill_dead</key>
-		<string>0</string>
+		<string>100003</string>
 		<key>skill_buff</key>
-		<string>0</string>
+		<string>100004</string>
 		<key>card_resources</key>
 		<string>001</string>
 	</dict>
@@ -91,7 +91,7 @@
 		<key>defend</key>
 		<string>115</string>
 		<key>hp</key>
-		<string>483</string>
+		<string>5000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -99,11 +99,11 @@
 		<key>skill_energy</key>
 		<string>100001</string>
 		<key>skill_help</key>
-		<string>0</string>
+		<string>100002</string>
 		<key>skill_dead</key>
-		<string>0</string>
+		<string>100003</string>
 		<key>skill_buff</key>
-		<string>0</string>
+		<string>100004</string>
 		<key>card_resources</key>
 		<string>002</string>
 	</dict>
@@ -126,7 +126,7 @@
 		<key>defend</key>
 		<string>110</string>
 		<key>hp</key>
-		<string>462</string>
+		<string>5000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -161,7 +161,7 @@
 		<key>defend</key>
 		<string>100</string>
 		<key>hp</key>
-		<string>420</string>
+		<string>5000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -196,7 +196,7 @@
 		<key>defend</key>
 		<string>115</string>
 		<key>hp</key>
-		<string>483</string>
+		<string>5000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -231,7 +231,7 @@
 		<key>defend</key>
 		<string>120</string>
 		<key>hp</key>
-		<string>504</string>
+		<string>5000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -266,7 +266,7 @@
 		<key>defend</key>
 		<string>125</string>
 		<key>hp</key>
-		<string>525</string>
+		<string>5000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
