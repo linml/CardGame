@@ -16,6 +16,7 @@ SEveryATKData::SEveryATKData()
     {
         data[i]=NULL;
     }
+    m_nCurrAction=-1;
 }
 SEveryATKData::~SEveryATKData()
 {

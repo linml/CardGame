@@ -81,6 +81,7 @@ public:
     
     bool isHaveBufferRefactor(int prameid);
     bool isCanFight();
+    
     bool isHaveParamid10(int nParamidValue);
     void appendEngry(int iEngry);
     void appendHp(int iHp);
@@ -104,8 +105,6 @@ public:
     int m_iCurrLevel; //当前卡牌的等级
     int m_iCurrExp;   //当前卡牌拥有的exp
     bool isDead;     //卡牌是否已经死亡
-
-    
     int m_nCurrentPrice;
     int m_nNeedExp;
     int m_nLeadShip;

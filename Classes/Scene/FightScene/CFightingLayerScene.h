@@ -19,6 +19,7 @@ class CAnimationSctrip;
 class SEveryATKData;
 class CGameCardBuffer;
 class SFightResultData;
+class CGamePlayer;
 
 class CFightingLayerScene :public CCLayer
 {
@@ -37,6 +38,8 @@ public:
     int  m_nAnimationAndex; //当前动画做到第几帧
     bool m_bAnimationEnd;
     int  m_nTotalAnimation ;//总共多个动画
+    int  m_nHpEngryIndex;
+    int  m_nBufferIndex;
    
 private:
     void textSkillInfo(CAnimationSctrip *fight);
@@ -111,6 +114,7 @@ public:
     
 private:
     SFightResultData *m_pSFightData;
+    CGamePlayer *m_gamePlayer;
     
     
 };

@@ -59,6 +59,7 @@ public:
     CFightCardFightingBuffer();
     ~CFightCardFightingBuffer();
 public:
+    int m_nActionSkillIndex;
     void append(int EffectId,int  Value,bool isLeft);
     int m_index;
     vector<CBufferIcon *>m_vbufferList;

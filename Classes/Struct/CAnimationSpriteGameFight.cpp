@@ -63,7 +63,10 @@ CAnimationSctrip::CAnimationSctrip(EN_ANIMATIONTYPEREFACTOR entype,EN_ATKFIGHT_I
     this->m_sRunActionFile=sRunActionFile;
     this->m_nATKindex=nATKindex;
     this->m_nDEFindex=nDefIndex;
-    m_nSpritetag=0;
+    if(!sRunActionFile.empty())
+    {
+        m_nSpritetag=m_nSKillId;
+    }
 }
 
 CAnimationSctrip::~CAnimationSctrip()

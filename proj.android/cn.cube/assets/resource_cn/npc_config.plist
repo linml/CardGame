@@ -21,7 +21,7 @@
 		<key>defend</key>
 		<string>100</string>
 		<key>hp</key>
-		<string>5000</string>
+		<string>1000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -56,7 +56,7 @@
 		<key>defend</key>
 		<string>110</string>
 		<key>hp</key>
-		<string>5000</string>
+		<string>1000</string>
 		<key>card_energy</key>
 		<string>150</string>
 		<key>usually_attack</key>
@@ -91,7 +91,7 @@
 		<key>defend</key>
 		<string>115</string>
 		<key>hp</key>
-		<string>5000</string>
+		<string>1000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -126,7 +126,7 @@
 		<key>defend</key>
 		<string>110</string>
 		<key>hp</key>
-		<string>5000</string>
+		<string>400</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -161,7 +161,7 @@
 		<key>defend</key>
 		<string>100</string>
 		<key>hp</key>
-		<string>5000</string>
+		<string>1000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -196,7 +196,7 @@
 		<key>defend</key>
 		<string>115</string>
 		<key>hp</key>
-		<string>5000</string>
+		<string>1000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -231,7 +231,7 @@
 		<key>defend</key>
 		<string>120</string>
 		<key>hp</key>
-		<string>5000</string>
+		<string>1000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>
@@ -266,7 +266,7 @@
 		<key>defend</key>
 		<string>125</string>
 		<key>hp</key>
-		<string>5000</string>
+		<string>1000</string>
 		<key>usually_attack</key>
 		<string>100000</string>
 		<key>card_energy</key>

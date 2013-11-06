@@ -37,7 +37,7 @@ public:
     int  animationAndex;
     bool isAnimationEnd;
     int  hpUpdateIndex;
-    int bufferIndex;
+    int  bufferIndex;
     int m_itotalAnimation;
 private:
     void textSkillInfo(CAnimationSpriteGameFight *fight);

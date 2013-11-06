@@ -155,10 +155,12 @@ bool CFightCard::isCanFight()
 {
     if(m_vlistBuffer.size()==0)
     {
-        return false;
+        return true;
     }
-    for (list<CCardBufferStatusRefactor *>::iterator it=m_vlistBuffer.begin() ;it!=m_vlistBuffer.end();it++) {
-        if((*it)->m_nEffect_effectLogic==CANNOTFIGHTEFFECTLOGICVALUE)
+
+    for (list<CCardBufferStatusRefactor *>::iterator it=m_vlistBuffer.begin() ;it!=m_vlistBuffer.end();it++)
+    {
+        if(!(*it)->m_bIsCanfight)
         {
             return false;
         }
@@ -236,6 +238,7 @@ void CFightCard::appendEngry(int iEngry)
     {
         this->m_iCurrEngry=this->m_iEngryMax;
     }
+    CCLog("this->m_iCurrEngry:%d",this->m_iCurrEngry);
 }
 
 void CFightCard::appendHp(int iAddHp)
@@ -418,9 +421,9 @@ bool CFightCard::appendBufferData(CCardBufferStatusRefactor *pBuffer)
     bool isDeleItetor=false;
     for (list<CCardBufferStatusRefactor *>::iterator it=m_vlistBuffer.begin(); it!=m_vlistBuffer.end();)
     {
-        if(pBuffer->m_iEffectid==(*it)->m_iEffectid ||(pBuffer->m_iMutex==(*it)->m_iMutex && pBuffer->m_iMutexLevel>=(*it)->m_iMutexLevel)) //其实 只需要后面的那个就可以
+        if(pBuffer->m_iEffectid==(*it)->m_iEffectid || (pBuffer->m_iMutex == (*it)->m_iMutex && pBuffer->m_iMutexLevel>=(*it)->m_iMutexLevel)) //其实 只需要后面的那个就可以
         {
-            //删除旧数据， 添加新数据
+            //ID相等的时候
             if((*it)->m_iNeedAddBack)
             {
                 appendHp(-(*it)->m_iHp);
@@ -431,19 +434,16 @@ bool CFightCard::appendBufferData(CCardBufferStatusRefactor *pBuffer)
             isDeleItetor=true;
             CCardBufferStatusRefactor *tempData=(*it);
             it=m_vlistBuffer.erase(it);
-            delete  tempData;
-            tempData=NULL;
+            CC_SAFE_DELETE(tempData);
             m_vlistBuffer.push_back(pBuffer);
             return true;
+        } else  if(pBuffer->m_iMutex == (*it)->m_iMutex && pBuffer->m_iMutexLevel <= (*it)->m_iMutexLevel){
+            CC_SAFE_DELETE(pBuffer);
+            return false;
         }
-        else
+        if(!isDeleItetor)
         {
-            if( pBuffer->m_iEffectid!=(*it)->m_iEffectid )
-            {
-                delete pBuffer;
-                pBuffer=NULL;
-                return  false;
-            }
+            it++;
         }
     }
     m_vlistBuffer.push_back(pBuffer);

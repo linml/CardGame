@@ -20,6 +20,7 @@ class SEveryATKData
 {
 public:
     SEveryATKData();
+    int m_nCurrAction;
     ~SEveryATKData();
     SSpriteStatus *data[2];
 };

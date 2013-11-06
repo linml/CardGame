@@ -13,13 +13,15 @@ CNpcCard::CNpcCard()
 };
 CGameNpcCard::CGameNpcCard(CNpcCard *card):CFightCard(card,card->m_npcCardLevel)
 {
+    m_iCurrEngry=0;
   m_iCurrLevel=card->m_npcCardLevel;
   m_attack=m_iNpcAttack=card->m_icard_attack;
   m_defend=m_iNpcDefine=card->m_icard_defend;
-  m_iCurrExp=m_iNpcHp=card->m_icardhp;
+  m_iCurrHp=m_iNpcHp=card->m_icardhp;
   m_iHp=card->m_icardhp;
+  CCLog("m_iCurrHp:%d",m_iCurrHp);
   m_iEngryMax=card->m_icard_energyMax;
-    card->m_scard_ground="bg1.png";
+  card->m_scard_ground="bg1.png";
 }
 
 CGameNpcCard::~CGameNpcCard()

@@ -60,11 +60,12 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
         
         CCardBufferStatusRefactor *bufferRefactor=new CCardBufferStatusRefactor(iChangeShanghaiHp,iChangeatk,iChangedef,iChangeengry,pImapact->m_ieffect_id,bufferfile);
         bool isNeedAdd=true;
-        if(pMonster->isHaveBufferRefactor(pImapact->m_ieffect_id))
-           {
-               isNeedAdd=false;
-           }
-        if(!pMonster->appendBufferData(bufferRefactor))
+        CCLog("pImapact->m_ieffect_id:%d",pImapact->m_ieffect_id);
+        if(pMonster->isHaveBufferRefactor(pImapact->m_ieffect_id)) //如果身上有这个特效的ID的话。
+        {
+            isNeedAdd=false; //就不必要 添加这个文件
+        }
+        if(!pMonster->appendBufferData(bufferRefactor)) //能不能添加这个buffer 如果不能的话 也没必要添加这个文件
         {
             isNeedAdd=false;
         }

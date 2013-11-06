@@ -1073,12 +1073,21 @@ bool CGamePlayer::isSuccessFinishTask()
 
 void CGamePlayer::appendCFightCardFightingBuffer(CFightCardFightingBuffer *data)
 {
-    this->m_vCFightCardFightingBuffer.push_back(data);
+    if(data)
+    {
+        data->m_nActionSkillIndex=G_FightSkillManager::instance()->m_vAnimationStrip.size();
+        CCLog("data->m_nActionSkillIndex %d",data->m_nActionSkillIndex);
+        this->m_vCFightCardFightingBuffer.push_back(data);
+    }
 }
 
 void CGamePlayer::appendAtkData(SEveryATKData * data)
 {
-    m_vHpAngry.push_back(data);
+    if(data)
+    {
+        data->m_nCurrAction=G_FightSkillManager::instance()->m_vAnimationStrip.size();
+        m_vHpAngry.push_back(data);
+    }
 }
 
 void CGamePlayer::onFightInterScene()

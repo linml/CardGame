@@ -63,6 +63,7 @@ CFightCardBufferDataEveryFight::~CFightCardBufferDataEveryFight()
 CFightCardFightingBuffer::CFightCardFightingBuffer()
 {
     m_index=0;
+    m_nActionSkillIndex=-1;
     this->m_vbufferList.clear();
  
     

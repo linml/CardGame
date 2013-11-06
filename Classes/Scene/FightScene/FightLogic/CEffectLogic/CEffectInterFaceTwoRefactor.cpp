@@ -24,17 +24,11 @@ CEffectInterFaceTwoRefactor::~CEffectInterFaceTwoRefactor()
 
 void CEffectInterFaceTwoRefactor::logicFightingCardByFightAndMonster(CFightCard *pCard,CFightCard *pMonster,CImapact *pImapact)
 {
+  // 扣血= 参数1+目标总血量*参数2/100+目标耗血量*参数3/100+自身总血量*参数4/100+自身耗血量*参数5/100
         //扣血=参数1+目标总血量*参数2/100+目标耗血量*参数3/100+(参数4 * max(自身当前攻击力+自身当前攻击力*目标耗血量/总血量*参数5+目标耗血量*参数6/100-(目标当前防御力-目标当前防御力*自身耗血量/总血量*参数7-自身当前耗血量*参数8/100),(自身当前攻击力+自身当前攻击力*目标耗血量/总血量*参数5+目标耗血量*参数6/100)*0.2));
     int nMubiaoHaoxueliang=pMonster->m_iHp-pMonster->m_iCurrHp;
     int nZishenHaoxueliang=pCard->m_iHp-pCard->m_iCurrHp;
-    
-    int tempdata1=pCard->m_attack +
-                 pCard->m_attack * nMubiaoHaoxueliang/pMonster->m_iHp*pImapact->m_iParameter_5+
-                 nMubiaoHaoxueliang*pImapact->m_iParameter_6/100-
-                 (pMonster->m_defend-pMonster->m_defend*nZishenHaoxueliang/pCard->m_iHp*pImapact->m_iParameter_7-nZishenHaoxueliang*pImapact->m_iParameter_8/100);
-    int tempdata2= pCard->m_attack+pCard->m_attack*nMubiaoHaoxueliang/pMonster->m_iHp*pImapact->m_iParameter_5+nMubiaoHaoxueliang*pImapact->m_iParameter_6/100;
-    
-    iChangeShanghaiHp=pImapact->m_iParameter_1 +pMonster->m_iHp *pImapact->m_iParameter_2/100+nMubiaoHaoxueliang*pImapact->m_iParameter_3/100+(tempdata1>tempdata2?tempdata1:tempdata2) ;
+    iChangeShanghaiHp=pImapact->m_iParameter_1 +pMonster->m_iHp *pImapact->m_iParameter_2*0.01+nMubiaoHaoxueliang*pImapact->m_iParameter_3*0.01+ pCard->m_iHp *pImapact->m_iParameter_4 *0.01+nZishenHaoxueliang*pImapact->m_iParameter_5*0.01;
     iChangeShanghaiHp =-iChangeShanghaiHp;
     dealWithBufferAndImmediately(pCard, pMonster, pImapact);
 }
