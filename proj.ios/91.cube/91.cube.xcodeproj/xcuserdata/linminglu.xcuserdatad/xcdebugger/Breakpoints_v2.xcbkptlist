@@ -764,11 +764,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "405420123.064181"
+            timestampString = "405427787.539008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "321"
+            endingLineNumber = "321"
             landmarkName = "CFightingLayerScene::animationSwf(CAnimationSctrip *fightAnimation)"
             landmarkType = "5">
          </BreakpointContent>
@@ -780,11 +780,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "405422445.927487"
+            timestampString = "405427787.539008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "427"
-            endingLineNumber = "427"
+            startingLineNumber = "429"
+            endingLineNumber = "429"
             landmarkName = "CFightingLayerScene::animationSchudel(float t)"
             landmarkType = "5">
          </BreakpointContent>
@@ -796,11 +796,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "405420123.064181"
+            timestampString = "405427787.539008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "CFightingLayerScene::showHpShanghai(cocos2d::CCSprite *pFightSprite, cocos2d::CCSprite *pMonsterSprite2, int skillid, CAnimationSctrip *fightAnimation)"
             landmarkType = "5">
          </BreakpointContent>
@@ -936,11 +936,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "405422445.927487"
+            timestampString = "405427787.539008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "429"
-            endingLineNumber = "429"
+            startingLineNumber = "431"
+            endingLineNumber = "431"
             landmarkName = "CFightingLayerScene::animationSchudel(float t)"
             landmarkType = "5">
          </BreakpointContent>
@@ -952,11 +952,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "405422445.927487"
+            timestampString = "405427787.539008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "494"
-            endingLineNumber = "494"
+            startingLineNumber = "496"
+            endingLineNumber = "496"
             landmarkName = "CFightingLayerScene::initSetUpdateHp(int iCurrHp,int TotalHp,int currEngry,bool isLeft)"
             landmarkType = "5">
          </BreakpointContent>
@@ -968,11 +968,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "405422445.927487"
+            timestampString = "405427787.539008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "497"
-            endingLineNumber = "497"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "CFightingLayerScene::initSetUpdateHp(int iCurrHp,int TotalHp,int currEngry,bool isLeft)"
             landmarkType = "5">
          </BreakpointContent>
@@ -984,11 +984,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "405426271.507162"
+            timestampString = "405427787.539008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "945"
-            endingLineNumber = "945"
+            startingLineNumber = "947"
+            endingLineNumber = "947"
             landmarkName = "CFightingLayerScene::createMonsterCard()"
             landmarkType = "5">
          </BreakpointContent>
@@ -1092,11 +1092,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "405425812.85407"
+            timestampString = "405427787.539008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "580"
-            endingLineNumber = "580"
+            startingLineNumber = "582"
+            endingLineNumber = "582"
             landmarkName = "CFightingLayerScene::updateBuffer()"
             landmarkType = "5">
             <Locations>
@@ -1143,6 +1143,38 @@
                   offsetFromSymbolStart = "1200">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "405427787.539008"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "413"
+            endingLineNumber = "413"
+            landmarkName = "CFightingLayerScene::animationSwf(CAnimationSctrip *fightAnimation)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/FightLogic/CFightSkillManager.cpp"
+            timestampString = "405428424.272969"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "949"
+            endingLineNumber = "949"
+            landmarkName = "CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int DefIndex,EN_ATKFIGHT_INDEX enAtkIndex)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -935,7 +935,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
         bool isNeedAddIterator=true;
         if (pCardBufferRefactor)
         {
-            if(pCardBufferRefactor->m_iEffect_time<=0 &&pCardBufferRefactor ->m_iKeepTime<=0)
+            if(pCardBufferRefactor->m_iEffect_time<=1 &&pCardBufferRefactor ->m_iKeepTime<=1)
             {
                 if(pCardBufferRefactor->m_iNeedAddBack)
                 {
@@ -967,8 +967,6 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                 {
                     pCardBufferRefactor->m_iKeepTime--;
                     appendAnimation(AtkIndex, DefIndex, pCardBufferRefactor->m_iHp, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enAtkIndex);
-                    appendVector(EN_ANIMATIONTYPEREFACTOR_SHANGHAI, enAtkIndex, 0, AtkIndex, DefIndex, pCardBufferRefactor->m_iHp, 0, "");
-                    
                 }
             }
             

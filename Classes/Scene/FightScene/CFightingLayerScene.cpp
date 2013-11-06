@@ -268,7 +268,9 @@ void CFightingLayerScene::skillAnimationSwf(CAnimationSctrip *fightAnimation,CCS
         case EN_ANIMATIONTYPEREFACTOR_REMOVEPLIST:
             if(pFight)
             {
+                CCLog("fightAnimation->m_nSpritetag %d",fightAnimation->m_nSpritetag);
                 pFight->removeChildByTag(fightAnimation->m_nSpritetag, true);
+                AnimaitonEnd();
             }
             break;
         case    EN_ANIMATIONTYPEREFACTOR_DEADMOVE:   // 当防卫的图标消失的时候
