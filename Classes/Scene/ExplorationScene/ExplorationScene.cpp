@@ -25,7 +25,7 @@
 #include "CAltarDialog.h"
 #include "CPtPropUseManager.h"
 #include "CGameTimerManager.h"
-
+#include "CGamePropBufferTipLayer.h"
 
 int g_index = -1;
 
@@ -336,6 +336,9 @@ void CExploration::resetPropBufferByDict(CCDictionary *inBuffers)
         if (typeName.find("CCDictionary") != std::string::npos)
         {
             CPlayerBufferManager::getInstance()->resetPropBufferByDict(inBuffers);
+        }else
+        {
+            CPlayerBufferManager::getInstance()->setPropBufferZero();
         }
     }
 }
@@ -692,6 +695,7 @@ bool CExploration::initExploration()
         createOrUpdatePlayerData();
         
         getBiforest();
+        createPropBuffer();
         bRet = true;
     } while (0);
     
@@ -888,7 +892,7 @@ void CExploration::updateBuffers(float dt)
             if (allAltarBuffer.at(j).getSkillEffectId() == lastAddId)
             {
                 tmpLogo = CAltarBufferLogo::create(allAltarBuffer.at(j));
-                tmpLogo->setPosition(ccp(i*80, -80));
+                tmpLogo->setPosition(ccp(i*80,0));
                 m_pBufferTips->setObject(tmpLogo, lastAddId);
                 m_pBufferTipContainer->addChild(tmpLogo);
                 break;
@@ -902,7 +906,7 @@ void CExploration::updateBuffers(float dt)
 void CExploration::createBuffers()
 {
     m_pBufferTipContainer = CCNode::create();
-    m_pBufferTipContainer->setPosition(ccp(80, 700));
+    m_pBufferTipContainer->setPosition(ccp(80, 640));
     addChild(m_pBufferTipContainer);
     vector<AltarBuffer> &allAltarBuffer = m_pPlayerBufferManager->getAllAltarBuffer();
     for (int i = 0; i  < allAltarBuffer.size(); i++)
@@ -1908,4 +1912,10 @@ void CExploration::callback(float dt)
 void CExploration::levelUpCallBack(cocos2d::CCObject *pObject)
 {
     CCLog("display: ");
+}
+
+void CExploration::createPropBuffer()
+{
+    CGamePropBufferTipLayer *layer = CGamePropBufferTipLayer::create();
+    addChild(layer);
 }

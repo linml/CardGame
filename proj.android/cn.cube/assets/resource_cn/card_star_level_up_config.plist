@@ -6,6 +6,10 @@
 		<dict>
 			<key>card_id</key>
 			<string>100004</string>
+			<key>item_card</key>
+			<string>0</string>
+			<key>item_card_num</key>
+			<string>0</string>
 			<key>coin</key>
 			<string>1000</string>
 			<key>item_1</key>
@@ -28,19 +32,15 @@
 			<string>0</string>
 			<key>num_5</key>
 			<string>0</string>
-			<key>item_6</key>
-			<string>0</string>
-			<key>num_6</key>
-			<string>0</string>
-			<key>item_7</key>
-			<string>0</string>
-			<key>num_7</key>
-			<string>0</string>
 		</dict>
 		<key>100005</key>
 		<dict>
 			<key>card_id</key>
 			<string>100005</string>
+			<key>item_card</key>
+			<string>100005</string>
+			<key>item_card_num</key>
+			<string>1</string>
 			<key>coin</key>
 			<string>1800</string>
 			<key>item_1</key>
@@ -63,19 +63,15 @@
 			<string>0</string>
 			<key>num_5</key>
 			<string>0</string>
-			<key>item_6</key>
-			<string>0</string>
-			<key>num_6</key>
-			<string>0</string>
-			<key>item_7</key>
-			<string>0</string>
-			<key>num_7</key>
-			<string>0</string>
 		</dict>
 		<key>100008</key>
 		<dict>
 			<key>card_id</key>
 			<string>100008</string>
+			<key>item_card</key>
+			<string>0</string>
+			<key>item_card_num</key>
+			<string>0</string>
 			<key>coin</key>
 			<string>1000</string>
 			<key>item_1</key>
@@ -98,19 +94,15 @@
 			<string>0</string>
 			<key>num_5</key>
 			<string>0</string>
-			<key>item_6</key>
-			<string>0</string>
-			<key>num_6</key>
-			<string>0</string>
-			<key>item_7</key>
-			<string>0</string>
-			<key>num_7</key>
-			<string>0</string>
 		</dict>
 		<key>100009</key>
 		<dict>
 			<key>card_id</key>
 			<string>100009</string>
+			<key>item_card</key>
+			<string>0</string>
+			<key>item_card_num</key>
+			<string>0</string>
 			<key>coin</key>
 			<string>1800</string>
 			<key>item_1</key>
@@ -133,19 +125,15 @@
 			<string>0</string>
 			<key>num_5</key>
 			<string>0</string>
-			<key>item_6</key>
-			<string>0</string>
-			<key>num_6</key>
-			<string>0</string>
-			<key>item_7</key>
-			<string>0</string>
-			<key>num_7</key>
-			<string>0</string>
 		</dict>
 		<key>110003</key>
 		<dict>
 			<key>card_id</key>
 			<string>110003</string>
+			<key>item_card</key>
+			<string>0</string>
+			<key>item_card_num</key>
+			<string>0</string>
 			<key>coin</key>
 			<string>3500</string>
 			<key>item_1</key>
@@ -168,19 +156,15 @@
 			<string>0</string>
 			<key>num_5</key>
 			<string>0</string>
-			<key>item_6</key>
-			<string>0</string>
-			<key>num_6</key>
-			<string>0</string>
-			<key>item_7</key>
-			<string>0</string>
-			<key>num_7</key>
-			<string>0</string>
 		</dict>
 		<key>120000</key>
 		<dict>
 			<key>card_id</key>
 			<string>120000</string>
+			<key>item_card</key>
+			<string>0</string>
+			<key>item_card_num</key>
+			<string>0</string>
 			<key>coin</key>
 			<string>1800</string>
 			<key>item_1</key>
@@ -203,19 +187,15 @@
 			<string>200005</string>
 			<key>num_5</key>
 			<string>2</string>
-			<key>item_6</key>
-			<string>0</string>
-			<key>num_6</key>
-			<string>0</string>
-			<key>item_7</key>
-			<string>0</string>
-			<key>num_7</key>
-			<string>0</string>
 		</dict>
 		<key>110007</key>
 		<dict>
 			<key>card_id</key>
 			<string>110007</string>
+			<key>item_card</key>
+			<string>100004</string>
+			<key>item_card_num</key>
+			<string>1</string>
 			<key>coin</key>
 			<string>2000</string>
 			<key>item_1</key>
@@ -235,17 +215,9 @@
 			<key>num_4</key>
 			<string>0</string>
 			<key>item_5</key>
-			<string>0</string>
-			<key>num_5</key>
-			<string>0</string>
-			<key>item_6</key>
 			<string>200006</string>
-			<key>num_6</key>
+			<key>num_5</key>
 			<string>5</string>
-			<key>item_7</key>
-			<string>0</string>
-			<key>num_7</key>
-			<string>0</string>
 		</dict>
 	</dict>
 </plist>

@@ -50,6 +50,7 @@ protected:
     void callBackToShowRechargeDialog(CCObject *object);
     void showRechargeView();
     void showNiuDanJieMian();
+    void createPropBufferTips();
 protected:
     int m_nTouchTag;
     CCSprite* m_touchSprite;

@@ -20,7 +20,7 @@ CPtTrigger* CPtTrigger::create()
 
 CPtTrigger::CPtTrigger()
 {
-    
+  
 }
 
 CPtTrigger::~CPtTrigger()

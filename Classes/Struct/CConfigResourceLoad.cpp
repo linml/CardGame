@@ -286,7 +286,7 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
                     shopInfo->setShopRondomNumber(GameTools::intForKey("rondom_num", shopInfoDict));
                     shopInfo->setShopIsRondom(GameTools::boolForKey("is_rondom",shopInfoDict));
                     shopInfo->setShopReloadTime(GameTools::intForKey("reload_num", shopInfoDict));
-                    for (int i=1; i<20; i++)
+                    for (int i=1; i<=20; i++)
                     {
                         //解析20个商品的东西 我了个草。。。
                         char getParam[20];

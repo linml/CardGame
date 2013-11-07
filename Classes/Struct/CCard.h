@@ -51,11 +51,7 @@ public:
     string m_scard_ground; //
     string m_scard_role;
 };
-enum EN_LEFTTEAMORRIGHTTEAM
-{
-    EN_LEFTTEAM,
-    EN_RIGHTTEAM
-};
+
 //FIGHTING CARD
 class  CFightCard
 {

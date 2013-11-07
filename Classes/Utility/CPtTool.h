@@ -28,6 +28,7 @@ namespace CPtTool
     void  insertMoveNode(CCNode * array[], CCNode *parent, CCNode *inCard, int inCount);
     bool isInNode(CCNode *node, CCPoint & point);
     bool isInNode(CCNode *node,CCTouch *pTouch);
+    bool  isInRect(CCNode *node, CCRect inRect, CCTouch *pTouch);
     
     bool sameColor(const int suit[],  const int len);
     int getSuit(const int sequence[], const int len);

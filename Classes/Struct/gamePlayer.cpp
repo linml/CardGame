@@ -138,6 +138,7 @@ void CGamePlayer::onExitGameApp()
     clearShangchengData();
     clearSkillStrip();    
     CPlayerBufferManager::releaseBufferManager(); // 取出player身上的buff add by phileas
+    CGameTimerManager::releaseManager();
 
     
 }
@@ -430,7 +431,15 @@ void CGamePlayer::subCardByIterator(vector<CFightCard *>::iterator inIterator)
     }
 }
 
+int CGamePlayer::getMaxCardCount()
+{
+    return m_gGamePlayerData->getCardBagMax();
+}
 
+int CGamePlayer::getCurrentCardCount()
+{
+    return m_vCardBag.size();
+}
 
 void CGamePlayer::clearServerCardBag()
 {
@@ -1211,14 +1220,14 @@ int CGamePlayer::getPropCountFromBag(int inPropId)
 /*
  * @breif :获取该道具能填充的背包的最大添充数
  * @param inPropId 道具ID
- * @return int
+ * @return int -1 不入包
  */
 
 int CGamePlayer::getPropMaxCountAddToBag(int inPropId)
 {
     if (inPropId >= EXPID && inPropId < NOPROPIDEND)
     {
-        return  0;
+        return  -1;
     }
     CPtProp* prop = NULL;
     int count = 0;

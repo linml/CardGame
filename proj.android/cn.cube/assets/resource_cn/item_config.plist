@@ -813,7 +813,7 @@
 			<key>unlock_level</key>
 			<string>1</string>
 			<key>use_delete</key>
-			<string>4</string>
+			<string>1</string>
 			<key>item_effect_id</key>
 			<string>907050</string>
 			<key>use_scene</key>

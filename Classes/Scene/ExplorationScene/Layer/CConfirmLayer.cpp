@@ -171,6 +171,9 @@ void CConfirmLayer::onHandlerSuccess(CCDictionary *inResult)
 void CConfirmLayer::setFightTeamBuffer(CCObject *inBuffers)
 {
     SinglePlayer::instance()->m_vPlayerBufferList.clear();
+    if (!inBuffers) {
+        return ;
+    }
     std::string typeName = typeid(*inBuffers).name();
     if (typeName.find("CCDictionary") != std::string::npos)
     {

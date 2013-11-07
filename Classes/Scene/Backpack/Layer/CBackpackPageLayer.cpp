@@ -838,18 +838,31 @@ CReward* CBackpackPageLayer::onUsePropWithDict(cocos2d::CCDictionary *inDict)
     CCDictionary* tmpDict = NULL;
     if(rewardDict)
     {
-       tmpDict = (CCDictionary*)  rewardDict->objectForKey("add");
-       if (tmpDict)
+       CCDictionary* addDict = (CCDictionary*)  rewardDict->objectForKey("add");
+       if (addDict)
        {
-            tmpDict = (CCDictionary*) tmpDict->objectForKey("item");
+           // get card:
+            tmpDict = (CCDictionary*) addDict->objectForKey("card_item");
             addReward= CReward::create(tmpDict);
             if (addReward)
             {
                 addReward->excuteReward(ADD);
             }
+           
+           // get item effect:
+           tmpDict = (CCDictionary*) addDict->objectForKey("item");
+           addReward= CReward::create(tmpDict);
+           if (addReward)
+           {
+               addReward->excuteReward(ADD);
+           }
+
+           
        }
-       handlerPropBuffer(inDict->objectForKey("effect"));
+      
     }
+    handlerPropBuffer(inDict->objectForKey("buffs"));
+
     return addReward;
     
 }
@@ -860,15 +873,19 @@ void CBackpackPageLayer::handlerPropBuffer(CCObject * inEffect)
         std::string typeName = typeid(*inEffect).name();
         if (typeName.find("CCDictionary") != std::string::npos)
         {
-            CCDictionary *tmpDict = (CCDictionary*)inEffect;
-            //add card max count:
-            tmpDict = (CCDictionary*) tmpDict->objectForKey("item_effect");
-            int objectId = GameTools::intForKey("object_id", tmpDict);
-            int numTyep = GameTools::intForKey("num_type", tmpDict);
-            int num  = GameTools::intForKey("num", tmpDict);
-            
-            CPlayerBufferManager::getInstance()->addPropBufferById(objectId, (PROPBUFFERTYPE)numTyep, num);
-            
+//            CCDictionary *tmpDict = (CCDictionary*)inEffect;
+//            //add card max count:
+//            tmpDict = (CCDictionary*) tmpDict->objectForKey("item_effect");
+//            int objectId = GameTools::intForKey("object_id", tmpDict);
+//            int numTyep = GameTools::intForKey("num_type", tmpDict);
+//            int num  = GameTools::intForKey("num", tmpDict);
+//            
+//            CPlayerBufferManager::getInstance()->addPropBufferById(objectId, (PROPBUFFERTYPE)numTyep, num);
+    
+            CPlayerBufferManager::getInstance()->resetPropBufferByDict((CCDictionary*)inEffect);
+        }else
+        {
+            CPlayerBufferManager::getInstance()->setPropBufferZero();
         }
     }
 }

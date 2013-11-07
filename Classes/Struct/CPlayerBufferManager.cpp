@@ -160,10 +160,18 @@ ALTARBUFFERTYPE CPlayerBufferManager::getAltarBufferTypeById(int inEffectId)
     return eRet;
 }
 
+void CPlayerBufferManager::setPropBufferZero()
+{
+    map<int, PropBuffer>::iterator it = m_cBufferContainer.begin();
+    for (; it != m_cBufferContainer.end(); it++)
+    {
+        it->second.setKeep(0);
+    }
+}
 
 void CPlayerBufferManager::resetPropBufferByDict(CCDictionary *inPropBuffes)
 {
-    m_cBufferContainer.clear();
+    setPropBufferZero();
     if (inPropBuffes)
     {
         CCDictionary *tmpDict = NULL;
@@ -195,11 +203,10 @@ void CPlayerBufferManager::addPropBufferById(int inEffectId, PROPBUFFERTYPE inBu
   
     if (!bRet)
     {
-
-        m_nLastAddEffectId = inEffectId;
+        CGameTimerManager::getInstance()->startTimer();
+        m_nLastAddPropEffectId = inEffectId;
         m_cBufferContainer.insert(make_pair(inEffectId, PropBuffer(inEffectId, inBufferType, inKeepTime)));
     }
-
     
 }
 void CPlayerBufferManager::clearPropBufferById(int inEffectId , bool bRemove /*= true*/)
@@ -246,7 +253,7 @@ int CPlayerBufferManager::subPropBufferKeepTime(int inEffectId, int inSubTime /*
 int CPlayerBufferManager::getPropBufferKeepTime(int inEffectId)
 {
     
-    return subAltarBufferKeepTime(inEffectId, 0);
+    return subPropBufferKeepTime(inEffectId, 0);
 }
 
 
@@ -256,4 +263,16 @@ bool CPlayerBufferManager::hasPropBuffer()
     return  bRet;
 };
 
-
+PropBuffer * CPlayerBufferManager::getLastAddPropBuffer()
+{
+    PropBuffer* buffer = NULL;
+    if (m_nLastAddPropEffectId != -1)
+    {
+        map<int, PropBuffer>::iterator  it = m_cBufferContainer.find(m_nLastAddPropEffectId);
+        if (it != m_cBufferContainer.end())
+        {
+            buffer = &(it->second);
+        }
+    }
+    return buffer;
+}

@@ -9,6 +9,131 @@
 #include "CReward.h"
 #include "gameTools.h"
 
+/*
+ * @breif : 获取 card_item, item, inbox, recharge, shop reward
+ */
+
+CCDictionary * CReward::getAllRewardByDict(CCDictionary *inRewardDict)
+{
+    CCDictionary * resultDict = CCDictionary::create();
+    
+    CCDictionary * addDict = NULL;
+    CCDictionary * decDict = NULL;
+    CReward * reward = NULL;
+    
+   
+    if (inRewardDict)
+    {
+        addDict = (CCDictionary*) inRewardDict->objectForKey("add");
+        decDict = (CCDictionary*) inRewardDict->objectForKey("dec");
+        
+        if (addDict)
+        {
+            // add
+            CCDictionary * tmp = (CCDictionary*) addDict->objectForKey("card_item");
+            if (tmp)
+            {
+                // event reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, CARDITEMREWARD_ADD);
+                
+            }
+            tmp =  (CCDictionary*) addDict->objectForKey("item");
+            
+            if (tmp)
+            {
+                // chpater reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, ITEMREWARD_ADD);
+
+            }
+            
+            tmp = (CCDictionary*) addDict->objectForKey("inbox");
+            if (tmp)
+            {
+                // part reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, INBOXREWARD_ADD);
+            }
+            
+            tmp = (CCDictionary*) addDict->objectForKey("recharge");
+            
+            if (tmp)
+            {
+                // task reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, RECHARGEREWARD_ADD);
+                
+            }
+            
+            
+            tmp = (CCDictionary*) addDict->objectForKey("shop");
+            if (tmp)
+            {
+                //step reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, SHOPREWARD_ADD);
+                
+            }
+                      
+            
+        }
+        if(decDict)
+        {
+            //dec
+            
+            
+            CCDictionary * tmp = (CCDictionary*) decDict->objectForKey("card_item");
+            if (tmp)
+            {
+                // event reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, CARDITEMREWARD_DEC);
+            }
+            
+            tmp =  (CCDictionary*) decDict->objectForKey("item");
+            if (tmp)
+            {
+                // chpater reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, ITEMREWARD_DEC);
+            }
+            
+            tmp = (CCDictionary*) decDict->objectForKey("inbox");
+            if (tmp)
+            {
+                // part reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, INBOXREWARD_DEC);
+            }
+            
+            tmp = (CCDictionary*) decDict->objectForKey("recharge");
+            if (tmp)
+            {
+                // task reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, RECHARGEREWARD_DEC);
+                
+            }
+            
+            
+            tmp = (CCDictionary*) decDict->objectForKey("shop");
+            if (tmp)
+            {
+                //step reward:
+                reward = CReward::create(tmp);
+                resultDict->setObject(reward, SHOPREWARD_DEC);
+                
+            }
+            
+        }
+        
+    }
+    
+
+    
+    return resultDict;
+}
 
 CReward* CReward::create(cocos2d::CCDictionary *inReward)
 {

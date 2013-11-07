@@ -20,6 +20,7 @@
 #include "CSceneGameShopLayer.h"
 #include "CPtRecharge.h"
 #include "CDrawCardLayer.h"
+#include "CGamePropBufferTipLayer.h"
 
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
@@ -217,6 +218,12 @@ void CHallScene::showRechargeView()
     addChild(lRecharge,10000);
 }
 
+void CHallScene::createPropBufferTips()
+{
+    CGamePropBufferTipLayer *layer = CGamePropBufferTipLayer::create();
+    addChild(layer);
+}
+
 // protectd method:
 bool CHallScene::initHall(int inType)
 {
@@ -384,7 +391,7 @@ bool CHallScene::initHall(int inType)
             asgard->createBiforestLayer();
         }
         
-        
+        createPropBufferTips();
         
         // set touch
         setTouchEnabled(true);

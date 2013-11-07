@@ -13,6 +13,9 @@
 #include "cocos2d.h"
 #include "cocos-ext.h"
 #include <string>
+#include "CGameButtonControl.h"
+
+#define REWARDCOUNT 3
 using namespace std;
 using namespace cocos2d;
 class CStructGameActionData;
@@ -25,17 +28,45 @@ public:
 public:
     CActionItemLayer();
     ~CActionItemLayer();
+    
+
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+
+protected:
+    
+    bool handlerTouchEvent(CCTouch* pTouch);
+    bool handlerSingleButton(CCTouch *pTouch);
+    bool handlerMultiButtons(CCTouch *pTouch);
+    
+    void recoverButtons(CCTouch *pTouch);
+    
+    void handlerGoEncounter(CCTouch *pTouch);
+    void handlerGetReward(CCTouch *pTouch);
+    void handlerGoRecharge(CCTouch *pTouch);
+    
+    int isTouchEvent(CCTouch *pTouch, int inType);
+    
+    void onClickGoEncounter();
+    void onClickGoRecharge();
+    void onClickGetItems(int inItemId);
 private:
     void createHead(string strHead);//创建一个 标题
     void createContext(string  strContext);//创建一个内容
     void createPng(string strPngName);
     void createTips(CStructGameActionData *data);
-    void createHuben(CStructGameActionData *data);
+    void createFuben(CStructGameActionData *data);
     void createChongZhi(CStructGameActionData *data);
+protected:
+    int m_nTouchTag;
+    CGameButtonControl *m_pSingleButton;
+    CGameButtonControl *m_pRewardButtons[REWARDCOUNT];
 private:
     CCSize size;
     CStructGameActionData *m_pData;
     float height;
+    
+    
    
     
 };

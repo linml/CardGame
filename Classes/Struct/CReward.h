@@ -16,17 +16,31 @@
 using namespace cocos2d;
 
 
-#define  EVENTREWARD_ADD  1
-#define  CHAPTERREWARD_ADD 2
-#define  TASKREWARD_ADD 3
-#define  SECTIONREWARD_ADD 4
-#define  FORWARDREWARD_ADD 5
+#define  EVENTREWARD_ADD    1
+#define  CHAPTERREWARD_ADD  2
+#define  TASKREWARD_ADD     3
+#define  SECTIONREWARD_ADD  4
+#define  FORWARDREWARD_ADD  5
+#define  UNLOCKREWARD_ADD   6
+#define  CARDITEMREWARD_ADD 7
+#define  ITEMREWARD_ADD     8
+#define  INBOXREWARD_ADD    9
+#define  RECHARGEREWARD_ADD 10
+#define  SHOPREWARD_ADD     11
     
-#define  EVENTREWARD_DEC  11
-#define  CHAPTERREWARD_DEC 12
-#define  TASKREWARD_DEC 13
-#define  SECTIONREWARD_DEC 14
-#define  FORWARDREWARD_DEC 15
+#define  EVENTREWARD_DEC    21
+#define  CHAPTERREWARD_DEC  22
+#define  TASKREWARD_DEC     23
+#define  SECTIONREWARD_DEC  24
+#define  FORWARDREWARD_DEC  25
+#define  UNLOCKREWARD_DEC   26
+#define  CARDITEMREWARD_DEC 27
+#define  ITEMREWARD_DEC     28
+#define  INBOXREWARD_DEC    29
+#define  RECHARGEREWARD_DEC 30
+#define  SHOPREWARD_DEC     31
+
+
     
 enum OPEARTORTYPE
 {
@@ -48,8 +62,12 @@ enum OPEARTORTYPE
 class CReward : public CCObject
 {
 public:
+    // tool methods:
+    static CCDictionary *getAllRewardByDict(CCDictionary *inRewardDict);
+    
     static CReward* create(CCDictionary * inReward);
     static CReward* create(CReward * inReward1, CReward *inReward2);
+    
 public:
     CReward();
     virtual ~CReward();

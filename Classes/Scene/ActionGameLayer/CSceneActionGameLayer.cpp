@@ -18,6 +18,8 @@
 #include "Utility.h"
 #include "CActionItemLayer.h"
 #include "gameStruct.h"
+#include "CPtTool.h"
+
 #define GOLDPLACE_TOUCH_PRORITY -2
 
 
@@ -33,8 +35,12 @@ CEmrysClearVectorMemory< __TYPECLASSNAME__ *> tempClear(VECTORARRAY) ; \
 tempClear.clearVector(); \
 }
 
+/*
+ * @function: init data & preload texture resource
+ */
 CSceneActionGameLayer::CSceneActionGameLayer()
 {
+    m_fOffsetX = 0.0f;
     size=CCDirector::sharedDirector()->getWinSize();
     m_enStatus=EN_CSceneActionGameLayerStatus_NONE;
     m_pBackData=NULL;
@@ -115,6 +121,7 @@ void CSceneActionGameLayer::removeShowNoHaveActivity()
 }
 void CSceneActionGameLayer::sendHttpToGetAction(float t)
 {
+// 从服务端获取信息
 #ifndef DDEBUG__
     removeShowNoHaveActivity();
     createLoadingLayer();
@@ -123,6 +130,7 @@ void CSceneActionGameLayer::sendHttpToGetAction(float t)
     postStrdata+=SinglePlayer::instance()->getUserSig();
     ADDHTTPREQUESTPOSTDATA(STR_URL_ACTIVITY(194), "CALLBACK_CSceneActionGameLayer_sendHttpToGetAction", "REQUEST_CALLBACK_CSceneActionGameLayer_sendHttpToGetAction",postStrdata.c_str(),callfuncO_selector(CSceneActionGameLayer::decodeHttpToGetAction));
 #else
+// 从本地获取信息
     const  char *data=CPtTool::readFileName((resRootPath +"cc.txt").c_str()).c_str();
     char *tt=new char[strlen(data+1)];
     memcpy(tt, data, strlen(data));
@@ -186,17 +194,28 @@ void CSceneActionGameLayer::decodeHttpToGetAction(cocos2d::CCObject *object)
     
 }
 
+/*
+ * @breif : 创建活动展示界面
+ * @note : 使用tableview 时，当内容窗口比视窗小的使用，出现滑动问题
+ */
+#include "CPtListViewWidget.h"
 void CSceneActionGameLayer::createTableView()
 {
     CCLog("Creata Table View");
-    int count=m_vActionList.size()>6?6:m_vActionList.size();
-    CCTableView *tableView = CCTableView::create(this, CCSizeMake(250,count *50));
+//    int count= 6;//m_vActionList.size()>6?6:m_vActionList.size();
+
+    CCTableView *tableView = CCTableView::create(this, CCSizeMake(250,400));
+//    TableView *tableView = TableView::create(this, CCSizeMake(250,400));
+//    tableView->addBackground(CCLayerColor::create(ccc4(125,0, 0, 125)));
+
+
     tableView->setDirection(kCCScrollViewDirectionVertical);
-    tableView->setAnchorPoint(ccp(0, 1.0));
-    tableView->setPosition(CCPointMake(200, 480-(6-count)*50));
+    tableView->setAnchorPoint(ccp(0, 0.0));
+    tableView->setPosition(ccp(190,145));
     tableView->setDelegate(this);
     tableView->setTouchPriority(GOLDPLACE_TOUCH_PRORITY-2);
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
+  
     this->addChild(tableView,2,999);
 }
 
@@ -207,13 +226,14 @@ void CSceneActionGameLayer::initCellItem(CCTableViewCell*cell, unsigned int idx)
         if (m_vActionList[idx])
         {
             CCSprite *sprite=CCSprite::createWithSpriteFrameName("biaotiban.png");
+            sprite->setAnchorPoint(CCPointZero);
             CCLabelTTF *labelTTF=CCLabelTTF::create(m_vActionList[idx]->getActionName().c_str(), "Arial", 15);
             float pointX=sprite->getContentSize().width*0.5+sprite->getPosition().x;
             float pointY=sprite->getContentSize().height*0.5+sprite->getPosition().y;
             labelTTF->setPosition(ccp(pointX,pointY));
             sprite->addChild(labelTTF);
             cell->addChild(sprite,1,idx+100);
-            sprite->setPosition(ccp(120,25));
+           // sprite->setPosition(ccp(120,25));
         }
     }
 }
@@ -234,6 +254,8 @@ void CSceneActionGameLayer::reloadTableView()
     ((CCTableView *)getChildByTag(999))->reloadData();
     
 }
+
+// implement interface of CCTableViewDataSource,CCTableViewDelegate
 
 CCSize CSceneActionGameLayer::cellSizeForTable(CCTableView *table)
 {
@@ -271,7 +293,7 @@ void CSceneActionGameLayer::tableCellTouched(CCTableView* table, CCTableViewCell
 
 void CSceneActionGameLayer::adjustScrollView(float distance)
 {
-    if (!getScrollView()) {
+    if (!getScrollView()||m_bTouchScrollView==false) {
         return ;
     }
     //该地方逻辑需要重新构建
@@ -284,24 +306,24 @@ void CSceneActionGameLayer::adjustScrollView(float distance)
         CCLOG("%f,%f,%f", getScrollView()->getContentOffset().y , distance ,layer->getContentSize().height);
         if(distance >0 &&(int)( getScrollView()->getContentOffset().y +  + getScrollView()->getViewSize().height) > (int)layer->getContentSize().height)
         {
-            adjustPoint=ccp(0,layer->getContentSize().height-getScrollView()->getViewSize().height*0.5);
+            adjustPoint=ccp(m_fOffsetX,layer->getContentSize().height-getScrollView()->getViewSize().height*0.5);
             getScrollView()->setContentOffsetInDuration(adjustPoint, 0.2f);
         }
         else if(distance<0)
         {
             if(getScrollView()->getContentOffset().y-50<=0.0)
             {
-                adjustPoint=ccp(0,0);
+                adjustPoint=ccp(m_fOffsetX,0);
             }
             else{
-                adjustPoint=ccp(0,getScrollView()->getContentOffset().y-50);
+                adjustPoint=ccp(m_fOffsetX,getScrollView()->getContentOffset().y-50);
             }
             
             getScrollView()->setContentOffsetInDuration(adjustPoint, 0.2f);
         }
     }
     else{
-        adjustPoint=ccp(0,0);
+        adjustPoint=ccp(m_fOffsetX,0);
         CCLOG("%f",adjustPoint.y);
         getScrollView()->setContentOffsetInDuration(adjustPoint, 0.2f);
     }
@@ -316,13 +338,18 @@ void CSceneActionGameLayer::createRightLayer(CStructGameActionData *data)
     if (m_pBackData && m_pBackData!=data) {
         removeChildByTag(101, true);
     }
-    CCScrollView *view=CCScrollView::create(CCSizeMake(600, 400));
+    CCScrollView *view=CCScrollView::create(CCSizeMake(400, 420),CCLayerColor::create(ccc4(130,0 , 0, 220)));
     //m_pScrollView= cocos2d::extension::CCScrollView::create(CCSizeMake(850, 670));
     CCLayer *layer=CActionItemLayer::Created(data);
-    layer->setAnchorPoint(CCPointMake(0.0, 1.0));
+    layer->ignoreAnchorPointForPosition(false);
+    layer->setAnchorPoint(CCPointMake(0, 1.0));
+    m_fOffsetX = -70;
+   
+    
+    layer->setPositionX(m_fOffsetX);
     view->setContainer(layer);
     view->setTouchEnabled(false);
-    view->setPosition(ccp(400,150));
+    view->setPosition(ccp(450,150));
     view->setTouchPriority(-8);
     view->setDirection(kCCScrollViewDirectionHorizontal);
     CCLog("m_pScrollView::%f,%f",view->getAnchorPoint().x,view->getAnchorPoint().y);
@@ -357,12 +384,26 @@ void CSceneActionGameLayer::onExit()
 // default implements are used to call script callback if exist
 bool CSceneActionGameLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-    
+    m_bTouchScrollView = false;
+    m_bTouchEventEnable = false;
     //if (((CCScrollView *)getChildByTag(101)->boundingBox().containsPoint(pTouch->getLocation())) {
     m_touchPoint=CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
     //
-    if (getChildByTag(101)) {
-        m_touchOffset = ((CCScrollView*)(getChildByTag(101)))->getContentOffset();;
+     CCScrollView* node =(CCScrollView*) getChildByTag(101);
+    if (node)
+    {
+       
+        CCRect rect;
+        rect.size=((CCScrollView*)node)->getViewSize();
+        rect.origin = node->boundingBox().origin;
+        if(CPtTool::isInRect(node, rect, pTouch))
+        {
+            m_bTouchScrollView = true;
+            m_touchOffset = node->getContentOffset();
+            m_bTouchEventEnable = ((CCLayer*)node->getContainer())->ccTouchBegan(pTouch, pEvent);
+        }
+//          m_bTouchScrollView = ((CCScrollView*)(getChildByTag(101)))->ccTouchBegan(pTouch, pEvent);
+
     }
     return true;
 }
@@ -377,11 +418,20 @@ void CSceneActionGameLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
     CCPoint movePoint = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
     float distance = movePoint.y - m_touchPoint.y;
     // 设定当前偏移位置
-    CCPoint adjustPoint = ccp(0, m_touchOffset.y + distance);
-    if(getScrollView())
+    CCPoint adjustPoint = ccp(m_fOffsetX, m_touchOffset.y + distance);
+    if(getScrollView()&&m_bTouchScrollView && m_bTouchEventEnable == false)
     {
         getScrollView()->setContentOffset(adjustPoint, false);
     }
+    
+//    CCNode *node = getChildByTag(101);
+//    if (node&&m_bTouchScrollView)
+//    {
+//       
+//        ((CCScrollView*)(getChildByTag(101)))->ccTouchMoved(pTouch, pEvent);
+//        
+//    }
+
     
 }
 
@@ -396,6 +446,13 @@ void CSceneActionGameLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         removeFromParentAndCleanup(false);
     }
     
+    CCScrollView* layer = (CCScrollView*)getChildByTag(101);
+    if (layer && m_bTouchEventEnable)
+    {
+        ((CCLayer*)layer->getContainer())->ccTouchEnded(pTouch, pEvent);
+        return;
+    }
+    
     CCPoint endPoint = CCDirector::sharedDirector()->convertToGL(pTouch->getLocationInView());
     float distance = endPoint.x - m_touchPoint.x;
     float distanceY = endPoint.y - m_touchPoint.y;
@@ -407,6 +464,14 @@ void CSceneActionGameLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
     {
      adjustScrollView(distance);
     }
+//    node = getChildByTag(101);
+//    if (node&&m_bTouchScrollView)
+//    {
+//        ((CCScrollView*)(getChildByTag(101)))->ccTouchEnded(pTouch, pEvent);
+//        
+//    }
+    
+
     
 }
 

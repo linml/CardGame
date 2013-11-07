@@ -11,6 +11,7 @@
 
 #include "cocos2d.h"
 #include <map>
+#include "CSingleton.h"
 
 using namespace cocos2d;
 using namespace std;
@@ -46,5 +47,7 @@ protected:
 protected:
     map<int, PtPropUseEffectData*> m_cPropUseEffectContainer;
 };
+typedef Singleton<CPtPropUseEffectConfigData> SinglePropUseEffectConfig;
+
 
 #endif /* defined(___1_cube__CPtPropUseEffectConfigData__) */

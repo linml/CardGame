@@ -9,7 +9,6 @@
 #include "CPtPropUseManager.h"
 #include "gameConfig.h"
 #include "gameTools.h"
-
 CPtPropUserManager * CPtPropUserManager::s_pInstance = NULL;
 
 CPtPropUserManager * CPtPropUserManager::getInstance()

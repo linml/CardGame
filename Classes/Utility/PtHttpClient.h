@@ -14,6 +14,7 @@
 #include "PtHttpURL.h"
 #include <queue>
 #include "CPanelGameLog.h"
+#include "CPanelLoadingLayer.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -42,7 +43,12 @@ using namespace std;
 
 #define ADDHTTPREQUESTPOSTDATA(URL,NOTIFICATIONTAG,HTTPREQUESTTAG,__POSTSTR__,CALLBACK)\
 {\
-stcRequestInf inf;\
+CCScene *pScene=CCDirector::sharedDirector()->getRunningScene(); \
+CCLayer *pLayer=CPanelLoadingLayer::create(); \
+pLayer->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width *0.5,    CCDirector::sharedDirector()->getWinSize().height*0.5)); \
+if(pScene) \
+    pScene->addChild(pLayer,7,8888888); \
+stcRequestInf inf; \
 inf.m_pchURL = URL; \
 cout<<inf.m_pchURL<<endl; \
 inf.m_RequestType=CCHttpRequest::kHttpPost;\
@@ -51,13 +57,21 @@ inf.m_pchTag = HTTPREQUESTTAG;\
 inf.m_pchData = __POSTSTR__;\
 appendFileLog(URL); \
 appendFileLog(__POSTSTR__); \
+ \
 CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
 CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector.c_str(), NULL);\
 }
 
 
+
+
 #define ADDHTTPREQUESTPOSTDATABYOWNCCCLASS(URL,NOTIFICATIONTAG,HTTPREQUESTTAG,__POSTSTR__,__CCOBJECTPOINT__,CALLBACK)\
 {\
+CCScene *pScene=CCDirector::sharedDirector()->getRunningScene(); \
+CCLayer *pLayer=CPanelLoadingLayer::create(); \
+pLayer->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width *0.5,    CCDirector::sharedDirector()->getWinSize().height*0.5)); \
+if(pScene) \
+pScene->addChild(pLayer,7,8888888); \
 stcRequestInf inf;\
 inf.m_pchURL = URL; \
 cout<<inf.m_pchURL<<endl; \
@@ -95,7 +109,6 @@ public:
     CPtHttpClient();
     
     ~CPtHttpClient();
-    
     static CPtHttpClient* sharePtHttpClient();
     
     void addRequest(stcRequestInf tInf);

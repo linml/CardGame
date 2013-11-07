@@ -20,13 +20,16 @@ CPanelLoadingLayer::~CPanelLoadingLayer()
 
 bool CPanelLoadingLayer::init()
 {
-    CCLabelTTF *labelttf=CCLabelTTF::create("等待服务器返回数据", "Arial", 50);
-    addChild(labelttf,1,200);
+    if(CCLayer::init())
+    {
+            CCLabelTTF *labelttf=CCLabelTTF::create("等待服务器返回数据", "Arial", 50);
+        addChild(labelttf,1,200);
     //CCSize size=CCDirector::sharedDirector()->getWinSize();
-    //labelttf->setPosition(ccp(size.width *0.5, size.height *0.5));
-    setTouchPriority(-999);
-    setTouchEnabled(true);
-    setTouchMode(kCCTouchesOneByOne);
+        //labelttf->setPosition(ccp(size.width *0.5, size.height *0.5));
+        setTouchPriority(-9999999);
+        setTouchEnabled(true);
+        setTouchMode(kCCTouchesOneByOne);
+    }
     return true;
 }
 

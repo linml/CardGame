@@ -13,11 +13,12 @@
 #include "CGameButtonControl.h"
 #include "CSkillData.h"
 #include "CPlayerBufferManager.h"
+#include "CBufferLogo.h"
 using namespace cocos2d;
 
 #define CGAMEBUFFERTIPDIALOG_TOUCH_PRORITY -50000
 
-class CAltarBufferLogo : public CCNode
+class CAltarBufferLogo : public CBufferLogo
 {
 public:
   static  CAltarBufferLogo *create(AltarBuffer& inAltarBuffer);
@@ -25,13 +26,6 @@ public:
     CAltarBufferLogo(AltarBuffer &inAltarBuffer);
     ~CAltarBufferLogo();
     bool initCAltarBufferLog(int inSkillEffectId);
-    void updateTime(int inTime);
-    void updateTime();
-    AltarBuffer &getBufferData(){return m_rAltarBuffer;};
-protected:
-    CCSprite * m_pLogo;
-    CCLabelTTF *m_pTime;
-    AltarBuffer &m_rAltarBuffer;
 };
 
 class CGameBufferTipLayer : public CCLayerColor

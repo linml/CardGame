@@ -50,6 +50,7 @@ public:
     int     m_nFriendly;
     struct SLevelPlayer *m_sLevelPlayer;
     int    m_nOpenGridCount;
+    int    m_nCardMaxCount;
     std::map<int ,SLevelPlayer *>m_gvPlayerLevel;
 };
 

@@ -17,6 +17,7 @@
 #include "CPtPropConfigData.h"
 #include "CGameEmailData.h"
 #include "CTaskConfigData.h"
+#include "CGameTimerManager.h"
 using namespace std;
 class CImapact;
 class CSkillData;
@@ -96,6 +97,8 @@ public: //读取卡包的信息
     void subCardByUserId(const int &inUserId);
     void subCardByIndex(const int inIdex);
     void subCardByIterator(vector<CFightCard*>::iterator inIterator);
+    int  getMaxCardCount();
+    int  getCurrentCardCount();
     CFightCard *findFightCardByCard_User_ID(int  carduserid);
     bool cardBagIsMoreThanConfig();
 public:

@@ -373,7 +373,7 @@ void CGameRechargeLayer::longTouchCallBack(float dt)
 
 int CGameRechargeLayer::getMaxCount(CStructShopSellItem* inItem)
 {
-    int count = 0;
+    unsigned int count = 0;
     CGamePlayer * player = SinglePlayer::instance();
     if (inItem)
     {
@@ -382,9 +382,17 @@ int CGameRechargeLayer::getMaxCount(CStructShopSellItem* inItem)
         CCAssert(countInGroup != 0, "grounNum is zero");
         int cashPerGroup = inItem ->getValue();
         int maxGroupsCanInBackPack = player->getPropMaxCountAddToBag(inItem->getShopSellItemPropData()->getPropId());
-        maxGroupsCanInBackPack /= countInGroup;
-        count = maxGroup >= maxGroupsCanInBackPack ? maxGroupsCanInBackPack : maxGroup;
-        CCLog("the count %d", maxGroupsCanInBackPack);
+        if (maxGroupsCanInBackPack == -1)
+        {
+            count = maxGroup;
+        }else
+        {
+            maxGroupsCanInBackPack /= countInGroup;
+            count = maxGroup >= maxGroupsCanInBackPack ? maxGroupsCanInBackPack : maxGroup;
+            CCLog("the count %d", maxGroupsCanInBackPack);
+
+        }
+     
         int cash = m_nPriceType == 1 ? player->getPlayerCash() : player->getCoin();
         maxGroupsCanInBackPack = cash/cashPerGroup;
         count = count >= maxGroupsCanInBackPack ? maxGroupsCanInBackPack : count;

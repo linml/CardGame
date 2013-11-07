@@ -309,6 +309,7 @@ namespace PtActionUtility {
         if(!data)
         {
             CCLog("plist 不存在一个gongjide key  麻烦修改");
+            return;
         }
         CCArray* vKey = data->allKeys();
         for (int i = 0; i < vKey->count(); i++)

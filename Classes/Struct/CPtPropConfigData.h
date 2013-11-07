@@ -16,7 +16,7 @@ using namespace cocos2d;
 
 #define EXPID 900000
 #define COINSID 900001
-#define NOPROPIDEND 900100
+#define NOPROPIDEND 900999
 
 class CPtProp : public CCObject
 {

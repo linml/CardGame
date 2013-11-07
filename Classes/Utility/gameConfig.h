@@ -73,6 +73,7 @@ const std::string g_chapterPath = resRootPath+"chapter/";
 
 const std::string g_eventBoxPath= resRootPath+"eventbox/";
 const std::string g_sellerPath = resRootPath+"img/seller/";
+const std::string g_bufferIconPath = g_mapImagesPath+"bufferIcon/";
 
 //注意 编辑器中使用大小 -1--就代表 T形按钮 100%
 const int g_custom_font_size[] = {
@@ -272,6 +273,12 @@ enum ERROR_MSG {
     ERROR_MSG_CONNECTSERVERERROR = 10000, //服务端链接失败
     ERROR_MSG_SERVERERROR =10001,
     ERROR_MSG_SERVERDATA=5035
+};
+enum EN_LEFTTEAMORRIGHTTEAM
+{
+    EN_RIGHTTEAM=0,
+    EN_LEFTTEAM=1,
+   
 };
 
 #define NOTIFYTAG_LEVELUP "NOTIFYTAG_LEVELUP"

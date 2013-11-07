@@ -356,6 +356,7 @@ void CLoginScene::onReceiveLoginMsg(CCObject* obj)
         SinglePlayer::instance()->setUserId(uid->m_sString);
         SinglePlayer::instance()->setUserSig(sig->m_sString);
         CCArray* serverArr = (CCArray*)usrData->objectForKey("server_ids");
+        m_serverSet.clear();
         for (int i=0; i<serverArr->count(); i++) {
             CCString* item = (CCString*)serverArr->objectAtIndex(i);
             m_serverSet.insert(item->intValue());

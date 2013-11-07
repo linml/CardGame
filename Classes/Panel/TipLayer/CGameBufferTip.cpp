@@ -36,7 +36,8 @@ CAltarBufferLogo * CAltarBufferLogo::create(AltarBuffer &inAltarBuffer)
     return logo;
 }
 
-CAltarBufferLogo::CAltarBufferLogo(AltarBuffer &inAltarBuffer):m_rAltarBuffer(inAltarBuffer)
+CAltarBufferLogo::CAltarBufferLogo(AltarBuffer &inAltarBuffer):CBufferLogo(inAltarBuffer)
+
 {
     m_pLogo = NULL;
     m_pTime = NULL;
@@ -50,51 +51,13 @@ CAltarBufferLogo::~CAltarBufferLogo()
 bool CAltarBufferLogo::initCAltarBufferLog(int inSkillEffectId)
 {
     bool bRet = false;
-    do {
-        std::string icon = SinglePlayer::instance()->getBufferPngByEffectId(inSkillEffectId);
-        m_pLogo = CCSprite::create(icon.c_str());
-        addChild(m_pLogo);
-        m_pTime = CCLabelTTF::create("", "Arial", 13);
-        updateTime();
-        m_pTime->setPosition(ccp(0, -30));
-        addChild(m_pTime);
-        CCSize size(m_pLogo->getContentSize());
-        size.width *= 2;
-        size.height *= 2;
-        setContentSize(size);
-        bRet = true;
-    } while (0);
+    std::string icon = SinglePlayer::instance()->getBufferPngByEffectId(inSkillEffectId);
+    bRet = initCBufferLog(icon);
+    updateTime();
     return bRet;
 }
+  
 
-void CAltarBufferLogo::updateTime(int inTime)
-{
-    char buffer[30]={0};
-    sprintf(buffer,"the time: %d", inTime);
-    if (m_pTime)
-    {
-        m_pTime->setString(buffer);
-    }
-    
-}
-
-void CAltarBufferLogo::updateTime()
-{
-    char buffer[30]={0};
-    if (m_rAltarBuffer.getAltarBufferType() == KEEPTIME)
-    {
-         sprintf(buffer,"the time: %d", m_rAltarBuffer.getKeep());
-    }else
-    {
-         sprintf(buffer,"the times: %d", m_rAltarBuffer.getKeep());
-    }
-   
-    if (m_pTime)
-    {
-        m_pTime->setString(buffer);
-    }
-
-}
 
 // implement class of CGameBufferTipLayer
 CGameBufferTipLayer * CGameBufferTipLayer::create(int inBufferKey)
@@ -334,7 +297,7 @@ void CGameBufferTipLayer::onReceiveMsg(cocos2d::CCObject *pObject)
                     {
                          tmpDict = (CCDictionary*)  tmpDict->objectForKey("dec");
                          tmpDict = (CCDictionary*) tmpDict->objectForKey("item");
-                        CReward * reward = CReward::create(tmpDict);
+                         CReward * reward = CReward::create(tmpDict);
                         if (reward)
                         {
                             reward->excuteReward(DEC);

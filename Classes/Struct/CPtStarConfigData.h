@@ -29,17 +29,22 @@ class CPtStarConfigData :public CCObject
 public:
     CPtStarConfigData();
     virtual ~CPtStarConfigData();
-    int getConstConin(const int &inCardId);
-    CCArray *getPropArrays(const int&inCardId);
+    int getConstConin(const int inCardId);
+    CCArray *getPropArrays(const int inCardId);
+    int getCardId(const int inCardId);
+    int getCardNum(const int inCardId);
+    
     
 protected:
-    bool updateWithCardId(const int &inCardId);
+    bool updateWithCardId(const int inCardId);
     
 protected:
     int m_nCurrentCardId;
 
     int m_nCoin;
     CCArray *m_pProps;
+    int m_nCardId;
+    int m_nCardNum;
 
 };
 

@@ -11,7 +11,6 @@
 #include "CCard.h"
 #include "CSkillData.h"
 #include "gamePlayer.h"
-#include "CFightingCardLayerScene.h"
 #include "CEffectInterface.h"
 #include "CEffectInterFaceOneRefactor.h"
 #include "CEffectInterFaceTwoRefactor.h"
@@ -170,7 +169,7 @@ void CFightSkillManager::logicSkill_0(CFightCard *pCard, vector<CFightCard *> Fi
         MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
         CCLog("用户发动了用户的技能2");
         appendVector(EN_ANIMATIONTYPEREFACTOR_SHANGHAI, enAtkIndex, 0, FightIndex, MonsterIndex, -currHp, -monstercurrHp, "");
-        appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pPutongSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
+       // appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pPutongSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
     }
 
 }
@@ -236,7 +235,7 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
         FightCard[FightIndex]->setNegativeToZero();
         MonsterCard[MonsterIndex]->setNegativeToZero();
         CCLog("用户发动了用户的技能1");
-        appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
+       // appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
         for (int i=0; i<6; i++)
         {
             if (!effecitFile[i].empty())
@@ -311,7 +310,7 @@ void CFightSkillManager::logicSkill_2(CFightCard *pCard,vector<CFightCard *>Figh
         MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
         CCLog("用户发动了用户的技能3");
         appendVector(EN_ANIMATIONTYPEREFACTOR_SHANGHAI, enAtkIndex, 0, FightIndex, MonsterIndex, -currHp, -monstercurrHp, "");
-        appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
+       // appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
         for (int i=0; i<6; i++)
         {
             CCLog("resultEffectFile[i] :%d :%s",i,resultEffectFile[i].c_str());
@@ -381,7 +380,8 @@ void CFightSkillManager::logicSkill_3(CFightCard *pCard,vector<CFightCard *>Figh
         FightCard[FightIndex]->setNegativeToZero();
         MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
         CCLog("用户发动了用户的技能3");
-        appendVector(EN_ANIMATIONTYPEREFACTOR_SHANGHAI, enAtkIndex, 0, FightIndex, MonsterIndex, -currHp, -monstercurrHp, "");appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
+        appendVector(EN_ANIMATIONTYPEREFACTOR_SHANGHAI, enAtkIndex, 0, FightIndex, MonsterIndex, -currHp, -monstercurrHp, "");
+        //appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
         for (int i=0; i<6; i++)
         {
             CCLog("resultEffectFile[i] :%d :%s",i,resultEffectFile[i].c_str());
@@ -456,7 +456,7 @@ void CFightSkillManager::logicSkill_4(CFightCard *pCard,vector<CFightCard *>Figh
         FightCard[FightIndex]->setNegativeToZero();
         MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
         CCLog("用户发动了用户的技能3");
-        appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
+       // appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
         for (int i=0; i<6; i++)
         {
             CCLog("resultEffectFile[i] :%d :%s",i,resultEffectFile[i].c_str());
@@ -527,7 +527,7 @@ void CFightSkillManager::logicSkill_5(CFightCard *pCard,vector<CFightCard *>Figh
         FightCard[FightIndex]->setNegativeToZero();
         MonsterCard[MonsterIndex]->setNegativeToZero();            //用户发动了用户的技能
         CCLog("用户发动了用户的技能3");
-        appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
+        //appendAnimation(FightIndex, MonsterIndex, -currHp, -monstercurrHp, pSkill->skill_id,-engry, -monstercurrEngry, EN_ANIMATIONTYPE_HERO, enAtkIndex);
         for (int i=0; i<6; i++)
         {
             CCLog("resultEffectFile[i] :%d :%s",i,resultEffectFile[i].c_str());
@@ -814,12 +814,12 @@ bool CFightSkillManager::CardFighting(CFightCard *pCard,vector<CFightCard *>figh
     return false;
 }
 
-void CFightSkillManager::appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex,int effectPlistId)
-{
-    
-    CCLog("aaaaaappend %d",totoalanimation++);
-    m_animationVector.push_back(new CAnimationSpriteGameFight(enAnimationType,enatkindex,AtkIndex,DefIndex,AddHp,SubHp,AddEngry,subAngry,skillid,effectPlistId));
-}
+//void CFightSkillManager::appendAnimation(int AtkIndex,int DefIndex,int AddHp,int SubHp,int skillid,int AddEngry,int subAngry,EN_ANIMATIONTYPE enAnimationType,EN_ATKFIGHT_INDEX enatkindex,int effectPlistId)
+//{
+//    
+//    CCLog("aaaaaappend %d",totoalanimation++);
+//    m_animationVector.push_back(new CAnimationSpriteGameFight(enAnimationType,enatkindex,AtkIndex,DefIndex,AddHp,SubHp,AddEngry,subAngry,skillid,effectPlistId));
+//}
 
 void CFightSkillManager::appendBuffIcon(CFightCard *fightCard,CFightCard *monster,EN_ATKFIGHT_INDEX enAtkFightIndex)
 {
@@ -862,6 +862,7 @@ void CFightSkillManager::appendVector(EN_ANIMATIONTYPEREFACTOR entype,EN_ATKFIGH
                                                   int nDefIndex,
                                                   int nAddHp,int nSubHp,string sRunActionFile)
 {
+    CCLog("sRunActionFile:%s",sRunActionFile.c_str());
     if ((entype==EN_ANIMATIONTYPEREFACTOR_BUFFER_OWN||entype==EN_ANIMATIONTYPEREFACTOR_BUFFER_MONSTER) && sRunActionFile.empty())
     {
         return ;
@@ -935,7 +936,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
         bool isNeedAddIterator=true;
         if (pCardBufferRefactor)
         {
-            if(pCardBufferRefactor->m_iEffect_time<=1 &&pCardBufferRefactor ->m_iKeepTime<=1)
+            if(pCardBufferRefactor->m_iEffect_time<=0 &&pCardBufferRefactor ->m_iKeepTime<=0)
             {
                 if(pCardBufferRefactor->m_iNeedAddBack)
                 {
@@ -945,7 +946,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                     pFightCard->appendEngry(-pCardBufferRefactor->m_iEngry);
                 }
                 //添加一个删除
-                appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_REMOVEPLIST, enAtkIndex,pCardBufferRefactor->m_iEffectid);
+                //appendAnimation(AtkIndex, DefIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_REMOVEPLIST, enAtkIndex,pCardBufferRefactor->m_iEffectid);
                 appendVector(EN_ANIMATIONTYPEREFACTOR_REMOVEPLIST, enAtkIndex, pCardBufferRefactor->m_iEffectid, AtkIndex, DefIndex, 0, 0, "");
                 
                 CC_SAFE_DELETE(pCardBufferRefactor);
@@ -966,7 +967,7 @@ void CFightSkillManager::dealWithBuffer(CFightCard *pFightCard,int AtkIndex, int
                 else if(pCardBufferRefactor->m_iKeepTime>0)
                 {
                     pCardBufferRefactor->m_iKeepTime--;
-                    appendAnimation(AtkIndex, DefIndex, pCardBufferRefactor->m_iHp, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enAtkIndex);
+                    //appendAnimation(AtkIndex, DefIndex, pCardBufferRefactor->m_iHp, 0, 0, 0, 0, EN_ANIMATIONTYPE_BUFFER, enAtkIndex);
                 }
             }
             

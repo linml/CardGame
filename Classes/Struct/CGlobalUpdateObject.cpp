@@ -22,6 +22,7 @@ CGlobalUpdateAp::~CGlobalUpdateAp()
 void CGlobalUpdateAp::globalUpdate(float t)
 {
     SinglePlayer::instance()->sendUpdateAp();
+
 }
 
 CGlobalUpdateGp::CGlobalUpdateGp(int iValueTag):CGlobalSchedule(iValueTag)

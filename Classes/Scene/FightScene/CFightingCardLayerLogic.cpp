@@ -128,29 +128,33 @@ bool CFightingCardLayerLogic::logicFighting()
 void CFightingCardLayerLogic::loadAnimatePlist()
 {
     CFightSkillManager *skillManager=G_FightSkillManager::instance();
-    for (int i= 0; i<skillManager->m_animationVector.size(); i++) {
-        if(skillManager->m_animationVector[i])
+    for (int i= 0; i<skillManager->m_vAnimationStrip.size(); i++)
+    {
+        CCLog("aaaaaadasdfsadfasdfas %s",skillManager->m_vAnimationStrip[i]->m_sRunActionFile.c_str());
+        string  strPlist=skillManager->m_vAnimationStrip[i]->m_sRunActionFile;
+        if(strPlist.empty())
         {
-            CSkillData *pSkilldata=m_tempGamePlayer->getSkillBySkillId(skillManager->m_animationVector[i]->m_iSKillId);
-            if(pSkilldata)
-            {
-                bool  needInsert=true;
-                for (int i=0; i<m_vSskillFile.size(); i++)
-                {
-                    if(m_vSskillFile[i]==pSkilldata->effect_plist.c_str())
-                    {
-                        needInsert=false;
-                        break;
-                    }
-                }
-                if(needInsert)
-                {
-                    string strPlist=pSkilldata->effect_plist+"_l.plist";
-                    CCLog("load plist %s",pSkilldata->effect_plist.c_str());
-                    m_vSskillFile.push_back(pSkilldata->effect_plist);
-                    PtActionUtility::getAppendHBActionCachWithActionFile(strPlist, m_vNeedAnimate);
-                }
+            continue;
+        }
+        CCLog("aaaaaaa:%s",strPlist.c_str());
+        if(strPlist.compare(strPlist.length()-6, 6, ".plist"))
+        {
+            strPlist+="_l.plist";
+        }
+        bool  needInsert=true;
+        for (int j=0; j<m_vSskillFile.size(); j++)
+        {
+            string data=m_vSskillFile[j];
+            if(data==strPlist) {
+                needInsert=false;
+                break;
             }
+        }
+        if(needInsert)
+        {
+            CCLog("load plist %s",strPlist.c_str());
+            m_vSskillFile.push_back(strPlist);
+            PtActionUtility::getAppendHBActionCachWithActionFile(strPlist, m_vNeedAnimate);
         }
     }
 }
@@ -201,15 +205,15 @@ bool CFightingCardLayerLogic::checklogicCheckIsCanSendAtk()
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT && m_vFightingCard[4])
     {
-                    card=m_vFightingCard[4];
+        card=m_vFightingCard[4];
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD && m_vMonsterCard[m_iMonsterCardIndex])
     {
-     card=m_vMonsterCard[m_iMonsterCardIndex];
+        card=m_vMonsterCard[m_iMonsterCardIndex];
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT && m_vMonsterCard[4])
     {
-         card=m_vMonsterCard[4];
+        card=m_vMonsterCard[4];
     }
     if (card) {
         return card->isCanFight();
@@ -244,26 +248,26 @@ bool CFightingCardLayerLogic::checkFighting()
         //发动拥护技能
         if(G_FightSkillManager::instance()->CardFighting(m_vFightingCard[4], m_vFightingCard,m_vMonsterCard,m_iFightCardIndex,m_iMonsterCardIndex,EN_SEND_SKILL_HELP,m_enHuiheIndex))
         {
-               appendUpdateAction();
+            appendUpdateAction();
         }
         
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_LORD && m_vMonsterCard[m_iMonsterCardIndex])
     {
-       if(G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex], m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_ANGRY,m_enHuiheIndex))
-       {
-               appendUpdateAction();
-       }
+        if(G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[m_iMonsterCardIndex], m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_ANGRY,m_enHuiheIndex))
+        {
+            appendUpdateAction();
+        }
     }
     else if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT && m_vMonsterCard[4])
     {
         
-       if(G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[4],m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_HELP,m_enHuiheIndex))
-       {
-           appendUpdateAction();
-       }
+        if(G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[4],m_vMonsterCard,m_vFightingCard,m_iMonsterCardIndex,m_iFightCardIndex,EN_SEND_SKILL_HELP,m_enHuiheIndex))
+        {
+            appendUpdateAction();
+        }
     }
-
+    
     CCLog("END:当前攻击顺序是%d",int(m_enHuiheIndex));
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
     {
@@ -327,7 +331,7 @@ bool CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()
                 
             }
             CCLog("用户移动位置");
-            G_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE);
+            //            G_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE);
             G_FightSkillManager::instance()->appendVector(EN_ANIMATIONTYPEREFACTOR_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE, 0, m_iFightCardIndex, 0, 0, 0, "");
             appendUpdateAction();
             result=true;
@@ -361,8 +365,8 @@ bool CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()
             }
             
             CCLog("对方移动位置");
-            G_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
-             G_FightSkillManager::instance()->appendVector(EN_ANIMATIONTYPEREFACTOR_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE, 0, backIndex, 0, 0, 0, "");
+            //            G_FightSkillManager::instance()->appendAnimation(backIndex, m_iMonsterCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE);
+            G_FightSkillManager::instance()->appendVector(EN_ANIMATIONTYPEREFACTOR_DEADMOVE, EN_ATKFIGHT_INDEX_RIGHT_MOVE, 0, backIndex, 0, 0, 0, "");
             appendUpdateAction();
             result=true;
         }
@@ -429,7 +433,7 @@ void CFightingCardLayerLogic::appendUpdateBuffer()
         fightBuffer->append((*itAfter)->m_iEffectid, (*itAfter)->m_iKeepTime, false);
     }
     m_tempGamePlayer->appendCFightCardFightingBuffer(fightBuffer);
-
+    
 }
 
 void CFightingCardLayerLogic::appendUpdateAction()
@@ -544,7 +548,7 @@ void CFightingCardLayerLogic::initFightLogic(int  loadTeamIndex)
             }
         }
     }
-
+    
     for (int i=0; i<m_vMonsterCard.size(); i++) {
         if(m_vMonsterCard[i])
         {

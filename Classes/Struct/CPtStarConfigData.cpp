@@ -40,7 +40,7 @@ CPtStarConfigData::~CPtStarConfigData()
     }
 }
 
-int CPtStarConfigData::getConstConin(const int &inCardId)
+int CPtStarConfigData::getConstConin(const int inCardId)
 {
  
     if (inCardId != m_nCurrentCardId)
@@ -50,7 +50,7 @@ int CPtStarConfigData::getConstConin(const int &inCardId)
     return m_nCoin;
 }
 
-CCArray *CPtStarConfigData::getPropArrays(const int&inCardId)
+CCArray *CPtStarConfigData::getPropArrays(const int inCardId)
 {
 
     if (inCardId != m_nCurrentCardId)
@@ -61,7 +61,29 @@ CCArray *CPtStarConfigData::getPropArrays(const int&inCardId)
     return m_pProps;
 }
 
-bool CPtStarConfigData::updateWithCardId(const int &inCardId)
+int CPtStarConfigData::getCardId(const int inCardId)
+{
+
+    if (inCardId != m_nCurrentCardId)
+    {
+        updateWithCardId(inCardId);
+        
+    }
+    return m_nCardId;
+    
+}
+int CPtStarConfigData::getCardNum(const int inCardId)
+{
+    
+    if (inCardId != m_nCurrentCardId)
+    {
+        updateWithCardId(inCardId);
+        
+    }
+    return m_nCardNum;
+}
+
+bool CPtStarConfigData::updateWithCardId(const int inCardId)
 {
     bool  bRet = false;
     
@@ -81,8 +103,9 @@ bool CPtStarConfigData::updateWithCardId(const int &inCardId)
             int tmpId = 0;
             int tmpNum = 0;
             m_nCoin = GameTools::intForKey("coin", tmp);
-            int count  = 0;
-            for (int i= 1; i <8 && count < 5 ; i++)
+            m_nCardId = GameTools::intForKey("item_card", tmp);
+            m_nCardNum = GameTools::intForKey("item_card_num ", tmp);
+            for (int i= 1; i <6 ; i++)
             {
                
                 sprintf(buff, "item_%d",i);
@@ -91,7 +114,6 @@ bool CPtStarConfigData::updateWithCardId(const int &inCardId)
                 tmpNum = GameTools::intForKey(buff, tmp);
                 if (tmpId != 0 && tmpNum != 0)
                 {
-                    count++;
                     PropItem * item = new PropItem();
                     item->autorelease();
                     item->propId = tmpId;

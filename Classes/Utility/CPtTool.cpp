@@ -275,6 +275,26 @@ namespace CPtTool
         
         return bRet;
     }
+   bool isInRect(CCNode *node, CCRect inRect, CCTouch *pTouch)
+   {
+       bool bRet = false;
+       if (node && node->isVisible())
+       {
+           CCNode *parent = node->getParent();
+           if (parent)
+           {
+               CCPoint point = pTouch->getLocation();
+               point = parent->convertToNodeSpace(point);
+               if (inRect.containsPoint(point))
+               {
+                   bRet = true;
+               }
+           }
+       }
+       
+       return bRet;
+
+   }
     
     bool sameColor(const int suit[],  const int len)
     {

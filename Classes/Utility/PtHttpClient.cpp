@@ -101,6 +101,10 @@ void CPtHttpClient::onHttpRequestCompleted(cocos2d::CCNode *sender, void *data)
         appendFileLog("FUCK 服务端， 返回一个NULL数据");
         CCLog("response failed");
         CCLog("error buffer: %s", response->getErrorBuffer());
+        CCScene *pScene=CCDirector::sharedDirector()->getRunningScene();
+        if(pScene&&pScene->getChildByTag(8888888)){
+            pScene->removeChildByTag(8888888, true);
+        }
         CCNotificationCenter::sharedNotificationCenter()->postNotification(MSG_HTTPCLIENT,NULL);
         return;
     }
@@ -124,7 +128,10 @@ void CPtHttpClient::notificationMsgRecevice(CCObject* obj)
     stcRequestInf inf = m_qRequestInf.front();
     m_qRequestInf.pop();
     CCNotificationCenter::sharedNotificationCenter()->postNotification(inf.m_pSelector.c_str(), (CCObject*)obj);
-  
+    CCScene *pScene=CCDirector::sharedDirector()->getRunningScene();
+    if(pScene&&pScene->getChildByTag(8888888)){
+        pScene->removeChildByTag(8888888, true);
+    }
     m_bIsSending = false;
     CCLog("the queue size: %d", m_qRequestInf.size());
     if(!m_qRequestInf.empty())

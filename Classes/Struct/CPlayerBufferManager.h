@@ -44,6 +44,7 @@ public:
     CC_SYNTHESIZE(int, m_nKeep, Keep); // 当AltarBufferType == KEEPTIME 时，表示为倒计的时间； 当 AltarBufferType == KEEPTIMES时，表示为遇到战斗的次数，无论成败都减1
 };
 
+typedef AltarBuffer Buffer;
 typedef AltarBuffer PropBuffer;
 typedef ALTARBUFFERTYPE PROPBUFFERTYPE;
 
@@ -61,7 +62,7 @@ protected:
     
 public:
     void resetPropBufferByDict(CCDictionary *inPropBuffes);
-    
+    void setPropBufferZero();
     void addPropBufferById(int inEffectId, PROPBUFFERTYPE inBufferType, int inKeepTime);
     void clearPropBufferById(int inEffectId , bool bRemove = true);
     
@@ -83,6 +84,7 @@ public:
     ALTARBUFFERTYPE getAltarBufferTypeById(int inEffectId);
     
     bool hasAnyBuffer(){return (m_cBufferContainer.size() != 0) || (m_cAltarBuffercontainer.size() != 0);};
+    PropBuffer *getLastAddPropBuffer();
 protected:
     CPlayerBufferManager();
     ~CPlayerBufferManager();

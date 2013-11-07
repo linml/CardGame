@@ -171,6 +171,7 @@ protected:
     
     void levelUpCallBack(CCObject *pObject);
 
+    void createPropBuffer();
 
 protected:
     bool m_bStartAltarBuffer;

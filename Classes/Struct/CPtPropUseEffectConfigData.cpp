@@ -40,7 +40,7 @@ void CPtPropUseEffectConfigData::releaseData()
 
 CPtPropUseEffectConfigData::CPtPropUseEffectConfigData()
 {
-    
+    loadDataFromFile();
 }
 
 CPtPropUseEffectConfigData::~CPtPropUseEffectConfigData()
@@ -89,13 +89,19 @@ void CPtPropUseEffectConfigData::loadDataFromFile()
                 PtPropUseEffectData *data = new PtPropUseEffectData();
                 int itemEffectId = GameTools::intForKey("item_effect_id", elementDict);
                 data->setItemEffectId(itemEffectId);
-                CCString *tmp = (CCString*) elementDict->objectForKey("pList");
+                CCString *tmp = (CCString*) elementDict->objectForKey("plist");
                 if (tmp)
                 {
                     sprintf(buffer, "%s", tmp->getCString());
                     vector<string> plist = GameTools::splitArgString(buffer, ",");
-                    data->setSpecialEffect(plist.at(0));
-                    data->setIcon(plist.at(1));
+                    if (plist.size() == 2)
+                    {
+                        data->setSpecialEffect(plist.at(0));
+                        data->setIcon(plist.at(1));
+                    }else if(plist.size() == 1)
+                    {
+                        data->setSpecialEffect(plist.at(0));
+                    }
                 }
                 data->setItemEffectTipId(GameTools::intForKey("tips", elementDict));
                 m_cPropUseEffectContainer.insert(make_pair(itemEffectId, data));
