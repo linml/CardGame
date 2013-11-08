@@ -71,17 +71,6 @@ CGamesCard * CGamesCard::getCopy()
  */
 void CGamesCard::setDead()
 {
-//    CCArray *children = getChildren();
-//    CCNode *tmp = NULL;
-//    for (int i = 0; i < children->count(); i++)
-//    {
-//        tmp = (CCNode*)(children->objectAtIndex(i));
-//        if(tmp)
-//        {
-//            setDead(tmp);
-//        }
-//    }
-
     CCNode *tmp = getChildByTag(TAG_GAMECARD_HERO);
     if (tmp)
     {
@@ -474,7 +463,6 @@ void CGamesCard:: updateCard(CFightCard *card)
 }
 void CGamesCard::createLogo()
 {
-    
     m_pLogo = CCSprite::create();
     m_pLogo->setPosition(ccp(70, 100 ));
     addChild(m_pLogo, 20);
@@ -488,7 +476,7 @@ void  CGamesCard::hideNodeByTag(int tag)
     
 }
 
-void CGamesCard::setGameStatus()
+void CGamesCard::hideGameCardData()
 {
         hideNodeByTag(CARDRVCTAG);
         hideNodeByTag(CARDATKTAG);

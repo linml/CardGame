@@ -42,6 +42,7 @@ class CGamePlayer : cocos2d::CCObject
     void onExitGameApp();
     void clearShangchengData();
 public:
+     map<int ,CCard *> getCardMap()const;
      CCard *getCardByCardId(int cardid);
      CSkillData *getPutongGongji(CFightCard *pCard);
      CSkillData *getSkillBySkillId(int skillId);

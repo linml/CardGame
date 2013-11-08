@@ -106,8 +106,9 @@ public:
     int m_nLeadShip;
     int addAtk;      //绿色属性攻击 暂定，基本没用
     int addDef;      //绿色属性防御暂定， 基本没用
-    bool isSendZengfu;
+    bool isSendZengfu; //战斗适合用到了
     int m_iSuit;
+    bool isShiFouYongyouguo; //是否拥有过；
 public:
     CCard *m_pCard;    
     std::list<CCardBufferStatusRefactor *>m_vlistBuffer;

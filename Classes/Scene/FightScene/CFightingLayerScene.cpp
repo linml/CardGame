@@ -930,7 +930,7 @@ void CFightingLayerScene::createFightCard()
             CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
         }
         if (gameCard) {
-            gameCard->setGameStatus();
+            gameCard->hideGameCardData();
         }
     }
     
@@ -982,7 +982,7 @@ void CFightingLayerScene::createMonsterCard()
             CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
         }
         if (gameCard) {
-            gameCard->setGameStatus();
+            gameCard->hideGameCardData();
         }
         
     }

@@ -203,7 +203,10 @@ void CGamePlayer::clearAllNpcCard()
     m_hashmapNpcAllCard.erase(m_hashmapNpcAllCard.begin(),m_hashmapNpcAllCard.end());
     
 }
-
+std::map<int ,CCard *> CGamePlayer::getCardMap()const
+{
+    return m_hashmapAllCard;
+}
 
 CCard *CGamePlayer::getCardByCardId(int cardid)
 {

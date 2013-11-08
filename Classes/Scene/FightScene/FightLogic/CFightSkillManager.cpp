@@ -27,7 +27,7 @@
 #include "gameStruct.h"
 #include <vector>
 using namespace std;
-static  int totoalanimation=0;
+//static  int totoalanimation=0;
 
 #include "CAnimationSpriteGameFight.h"
 #define DELETE_POINT_VECTOR(VECTORARRAY,VECTORITETYPE,_ITEMTYPE_) \

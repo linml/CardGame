@@ -32,7 +32,7 @@ public:
     CFightCard *getCardData(){ return m_pCardData;};
     void updateCard(CFightCard *card);
     void setLogo(const int &inType);
-    void setGameStatus();
+    void hideGameCardData();
     void setUpExpTo(int inExp);
 protected:
     void hideNodeByTag(int tag);
@@ -49,7 +49,7 @@ protected:
     
     void updateData(const int &inAtk, const int &inHp, const int &inRcv, const int &inDef);
     
-    void createLogo();
+    void createLogo(); //!<  在卡包里面的 在哪个阵容的 后面有初始化该图案
 
 protected:
     CCLabelTTF *label;

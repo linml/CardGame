@@ -72,7 +72,7 @@ void CFightCard::init()
     m_iCurrExp = 0;   //当前卡牌拥有的exp
     isDead = false;     //卡牌是否已经死亡
     m_iSuit = 0;
-    
+    isShiFouYongyouguo=false;
     m_nCurrentPrice =0; // 从1升级到该级别所需要的金币
     m_nNeedExp = 0;     // 从1级升到该级别所需要的经验值
     m_nLeadShip = 0;

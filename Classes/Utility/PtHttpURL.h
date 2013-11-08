@@ -134,6 +134,9 @@
 
 //获取活动
 #define STR_URL_ACTIVITY(UID)       URL_FACTORY("api.php?m=Activity&a=getNotice&uid=",UID)
+//图鉴借口
+#define STR_URL_ATLAS(UID)          URL_FACTORY("api.php?m=atlas&a=atlas&uid=",UID)
+
 
 
 

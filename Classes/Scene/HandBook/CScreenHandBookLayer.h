@@ -11,16 +11,26 @@
 
 #include <iostream>
 #include "cocos2d.h"
+#include "cocos-ext.h"
+#include <vector>
 using namespace std;
 USING_NS_CC;
+using namespace extension;
+class CFightCard;
 class CHandBookLayerCell:public CCLayer
 {
-    
+public:
+    CHandBookLayerCell();
+    ~CHandBookLayerCell();
+    static CHandBookLayerCell *Create(vector<CFightCard *>CardList,int begin,int end);
+    bool initCreate(vector<CFightCard *>CardList,int begin,int end);
+    int checkTouchCell(CCTouch *pTouch);
+    CCPoint getCardPosition(int nIndex);
 };
 
+class CGamePlayer;
 
-
-class CScreenHandBookLayer :public CCLayer
+class CScreenHandBookLayer :public CCLayer,CCTableViewDataSource,CCTableViewDelegate
 {
 public:
     CScreenHandBookLayer();
@@ -28,7 +38,14 @@ public:
     CREATE_FUNC(CScreenHandBookLayer);
     bool init();
     void createBackGroud();
-public:
+    void createTableView();
+    
+private:
+    void sendGetTuJian();
+    void loadCardVector();
+    void decodeGetData(CCObject *object);
+    vector<CFightCard *>m_vCardList;
+    CGamePlayer *m_tempPlayer;
 };
 
 #endif /* defined(___1_cube__CScreenHandBookLayer__) */
