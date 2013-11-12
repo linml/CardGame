@@ -169,15 +169,34 @@ void CSceneActionGameLayer::decodeHttpToGetAction(cocos2d::CCObject *object)
     }
     m_vActionList.clear();
     CCDictionary *result=(CCDictionary *)dict->objectForKey("result");
-    if (result) {
+    if (result)
+    {
+        CCDictionary * itemState = (CCDictionary*) result->objectForKey("item_status");
+        if (itemState)
+        {
+            std::string typeName = typeid(*itemState).name();
+            if (typeName.find("CCDictionary") != std::string::npos)
+            {
+               
+            }else
+            {
+                itemState = NULL;
+            }
+            result->removeObjectForKey("item_status");
+        }
         CCDictElement *element = NULL;
         CCDictionary *tmpDict = NULL;
         CCDICT_FOREACH(result, element)
         {
             tmpDict =(CCDictionary*) element->getObject();
-            if (tmpDict) {
+            if (tmpDict)
+            {
                 CStructGameActionData *pSGameAction=new CStructGameActionData;
                 pSGameAction->setDataValue(tmpDict);
+                if (itemState && itemState->objectForKey(element->getStrKey()))
+                {
+                    pSGameAction->setItemStatue((CCArray*)itemState->objectForKey(element->getStrKey()));
+                }
                 m_vActionList.push_back(pSGameAction);
             }
             
@@ -301,7 +320,6 @@ void CSceneActionGameLayer::adjustScrollView(float distance)
     CCLOG("getScrollView()->getContentOffset().y:%f",getScrollView()->getContentOffset().y);
     if(getScrollView()->getContentOffset().y >=50.0f)
     {
-       
         CCLayer *layer=(CCLayer *)(getScrollView()->getContainer());
         CCLOG("%f,%f,%f", getScrollView()->getContentOffset().y , distance ,layer->getContentSize().height);
         if(distance >0 &&(int)( getScrollView()->getContentOffset().y +  + getScrollView()->getViewSize().height) > (int)layer->getContentSize().height)

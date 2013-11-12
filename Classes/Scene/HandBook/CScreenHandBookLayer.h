@@ -39,6 +39,26 @@ public:
     bool init();
     void createBackGroud();
     void createTableView();
+    void createQuitButton();
+
+protected:
+    // implement interface of CCTableViewDataSource & CCTableViewDelegate
+    CCSize cellSizeForTable(CCTableView *table);
+    CCTableViewCell* tableCellAtIndex(CCTableView *table, unsigned int idx) ;
+    unsigned int numberOfCellsInTableView(CCTableView *table) ;
+    void tableCellTouched(CCTableView* table, CCTableViewCell* cell);
+    void scrollViewDidScroll(CCScrollView* view);
+    void scrollViewDidZoom(CCScrollView* view);
+    
+    void initCellItem(CCTableViewCell*cell, unsigned int idx);
+protected:
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    //void onEnter(void);
+    void registerWithTouchDispatcher(void);
+    void onExit();
     
 private:
     void sendGetTuJian();
@@ -46,6 +66,7 @@ private:
     void decodeGetData(CCObject *object);
     vector<CFightCard *>m_vCardList;
     CGamePlayer *m_tempPlayer;
+    bool isLoading;
 };
 
 #endif /* defined(___1_cube__CScreenHandBookLayer__) */

@@ -13,7 +13,14 @@
 #include "gameConfig.h"
 #include "CGameButtonControl.h"
 #include "CPtTool.h"
-
+#include "CStructGameActionData.h"
+#include "PtHttpClient.h"
+#include "PtJsonUtility.h"
+#include "CGameArrageBackpackTip.h"
+#include "CReward.h"
+#include "SceneManager.h"
+#include "HallScene.h"
+#include "CPtRecharge.h"
 
 
 
@@ -22,15 +29,13 @@ CActionItemLayer::CActionItemLayer()
     size=CCDirector::sharedDirector()->getWinSize();
     height=380.0f;
     m_pSingleButton = NULL;
-    for (int i = 0; i < REWARDCOUNT; i++)
-    {
-        m_pRewardButtons[i] = NULL;
-    }
+    m_nRewardButtonCount = 0;
+    m_pRewardButtons = NULL;
     m_nTouchTag = -1;
 }
 CActionItemLayer::~CActionItemLayer()
 {
-    
+    CC_SAFE_DELETE_ARRAY(m_pRewardButtons);
 }
 
 CActionItemLayer *CActionItemLayer::Created(CStructGameActionData *data)
@@ -63,13 +68,13 @@ void CActionItemLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             switch (m_pData->getActionShowType())
             {
                 case 1 :
-                    handlerGetReward(pTouch);
+                    handlerGetReward();
                     break;
                 case 2:
-                    handlerGoRecharge(pTouch);
+                    handlerGoRecharge();
                     break;
                 case 3:
-                    handlerGoEncounter(pTouch);
+                    handlerGoEncounter();
                     break;
                 case 4:
                     break;
@@ -160,10 +165,10 @@ void CActionItemLayer::recoverButtons(CCTouch *pTouch)
 {
     if(m_nTouchTag != -1)
     {
-        if (m_nTouchTag == 3)
+        if (m_nTouchTag == 10)
         {
             m_pSingleButton->unselected();
-        }else if(m_nTouchTag >= 0 && m_nTouchTag <3)
+        }else if(m_nTouchTag >= 0 && m_nTouchTag < m_nRewardButtonCount)
         {
             if (m_pRewardButtons[m_nTouchTag])
             {
@@ -174,33 +179,43 @@ void CActionItemLayer::recoverButtons(CCTouch *pTouch)
     }
 }
 
-void CActionItemLayer::handlerGoEncounter(CCTouch *pTouch)
+void CActionItemLayer::handlerGoEncounter()
 {
-
-        
-
+    CCLog("CActionItemLayer::handlerGoEncounter");
+    onClickGoEncounter();
     
 }
-void CActionItemLayer::handlerGetReward(CCTouch *pTouch)
+void CActionItemLayer::handlerGetReward()
 {
+    if(m_nTouchTag >= 0 && m_nTouchTag < m_nRewardButtonCount)
+    {
+       Present *present =(Present*)m_pData->getAllRewardItems()->objectAtIndex(m_nTouchTag);
+        if (present && present->getHasGet() == false)
+        {
+            onClickGetItems(present->getItemId());
+        }else
+        {
+            CCMessageBox("该道具已领取", "CActionItemLayer");
+        }
+    }
    
 }
-void CActionItemLayer::handlerGoRecharge(CCTouch *pTouch)
+void CActionItemLayer::handlerGoRecharge()
 {
 
-    
+    onClickGoRecharge();
 
 }
 
 /*
- * @return -1: no touch 0-2 --> getReward 3 -->(go encounter or go recharge)
+ * @return -1: no touch 0-2 --> getReward 10 -->(go encounter or go recharge)
  */
 int CActionItemLayer::isTouchEvent(CCTouch *pTouch , int inType)
 {
     int nRet = -1;
     if (inType == 1)
     {
-        for (int  i = 0; i <  REWARDCOUNT; i++)
+        for (int  i = 0; i <  m_nRewardButtonCount; i++)
         {
            if(CPtTool::isInNode(m_pRewardButtons[i], pTouch))
            {
@@ -212,7 +227,7 @@ int CActionItemLayer::isTouchEvent(CCTouch *pTouch , int inType)
     {
         if (CPtTool::isInNode(m_pSingleButton, pTouch))
         {
-            nRet = 3;
+            nRet = 10;
         }
     }
     return nRet;
@@ -260,15 +275,94 @@ bool  CActionItemLayer::initCreate(CStructGameActionData *data)
 
 void CActionItemLayer::onClickGoEncounter()
 {
-    
+    CHallScene* hallScene = (CHallScene*)  CCDirector::sharedDirector()->getRunningScene()->getChildByTag(100);
+    hallScene->getAsgardLayer()->createBiforestLayer(ACTIVITYEXPLORATION, m_pData->getActionPartId());
+ 
 }
 void CActionItemLayer::onClickGoRecharge()
 {
-    
+    CPtRecharge *layer = CPtRecharge::create();
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 1000);
 }
 void CActionItemLayer::onClickGetItems(int inItemId)
 {
-    
+    //
+    int result =   SinglePlayer::instance()->getPropMaxCountAddToBag(inItemId);
+    if (result > 0)
+    {
+        onSendGetItemRequest(inItemId);
+    }
+    else if(result == 0)
+    {
+        CGameArrageBackpackTip *layer = CGameArrageBackpackTip::create();
+        CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 1000);
+        return;
+        
+    }
+    else
+    {
+        CCMessageBox("不入包的", "CActionItemLayer: error");
+    }
+}
+
+//eg. cube.games.com/api.php?m=Activity&a=getActivityItem&uid=194&sig=2ac2b1e302c46976beaab20a68ef95&board_id=1&item_id=10001
+void CActionItemLayer::onSendGetItemRequest(int inItemId)
+{
+    char buffer[200] = {0};
+    sprintf(buffer,"&sig=%s&board_id=%d&item_id=%d", STR_USER_SIG, m_pData->getActionID(), inItemId);
+    CCLog("the buffer: %s", buffer);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GETREWARDITEM(196),"CALLBACK_CActionItemLayer::onSendGetItemRequest", "REQUEST_CActionItemLayer::onSendGetItemRequest",buffer, callfuncO_selector(CActionItemLayer ::onReceiveGetItemMsg));
+}
+void CActionItemLayer::onReceiveGetItemMsg(CCObject* pObject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this , "CALLBACK_CActionItemLayer::onSendGetItemRequest");
+    char *buffer = (char*) pObject;
+    if (buffer)
+    {
+        CCLog("the buffer: %s", buffer);
+        CCDictionary *resultDict = PtJsonUtility::JsonStringParse(buffer);
+        delete [] buffer;
+        if(resultDict)
+        {
+            int code = GameTools::intForKey("code", resultDict);
+            if (code == 0)
+            {
+                // success:
+                resultDict = (CCDictionary*) resultDict->objectForKey("result");
+                if (resultDict &&   GameTools::intForKey("info", resultDict)==1)
+                {
+                    CCDictionary *rewardDict = (CCDictionary*)resultDict->objectForKey("reward");
+                    if (rewardDict)
+                    {
+                        rewardDict = (CCDictionary*)rewardDict->objectForKey("add");
+                        if (rewardDict)
+                        {
+                            rewardDict =(CCDictionary*) rewardDict->objectForKey("activity");
+                            CReward * reward = CReward::create(rewardDict);
+                            if (reward)
+                            {
+                                reward->excuteReward(ADD);
+                                char tmp[300]={0};
+                                reward->getRewardContent(tmp, 300);
+                                CCMessageBox(tmp, "activity");
+                            }
+                            Present *present = (Present*)m_pData->getAllRewardItems()->objectAtIndex(m_nTouchTag);
+                            present->setHasGet(true);
+                        }
+                       
+                    }
+                }
+               
+            }else
+            {
+            
+            }
+            
+        }else
+        {
+            
+        }
+    }
 }
 
 void CActionItemLayer::createHead(string strHead)
@@ -309,67 +403,40 @@ void CActionItemLayer::createContext(string  strContext)
 
 void CActionItemLayer::createTips(CStructGameActionData *data)
 {
+    CCArray * array = data->getAllRewardItems();
+    if (array)
+    {
+        m_nRewardButtonCount = array->count();
+        m_pRewardButtons = new CGameButtonControl*[m_nRewardButtonCount];
+        
+    }
+    Present *present = NULL;
     string word=Utility::getWordWithFile("word.plist", "lingqujiangpin");
-    if (data->getActionItemId1()!=0) {
-        height-=80;
-        //获取物品表里面的物品图片；
-        CPtProp *m_itemProp=SinglePropConfigData::instance()->getPropById(data->getActionItemId1());
-        CCSprite *sprite=CCSprite::create(CSTR_FILEPTAH(g_propImagesPath,m_itemProp->getIconName().c_str()));
-        addChild(sprite,1,20);
-        sprite->setPosition(ccp(100, height));
-        //描述
-        CCLabelTTF *labelTTF=CCLabelTTF::create(data->getActionItemTip1().c_str(), "Arial", 15);
-        addChild(labelTTF,1,21);
-        labelTTF->setPosition(ccp(180, height));
-        CGameButtonControl *gamebutton =CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
-        gamebutton->setPosition(ccp(400, height));
-        addChild(gamebutton,1,22);
-        m_pRewardButtons[0] = gamebutton;
-
-    }
-    string word2=Utility::getWordWithFile("word.plist", "lingqujiangpin");
-    if (data->getActionItemId2()!=0) {
-        //获取物品表里面的物品图片；
-        height-=60;
-        CPtProp *m_itemProp=SinglePropConfigData::instance()->getPropById(data->getActionItemId2());
-        CCSprite *sprite=CCSprite::create(CSTR_FILEPTAH(g_propImagesPath,m_itemProp->getIconName().c_str()));
-        addChild(sprite,1,30);
-        
-        sprite->setPosition(ccp(100, height));
-        //描述
-        CCLabelTTF *labelTTF=CCLabelTTF::create(data->getActionItemTip2().c_str(), "Arial", 15);
-        addChild(labelTTF,1,31);
-         labelTTF->setPosition(ccp(180, height));
-        CGameButtonControl *gamebutton =CGameButtonControl::createButton(TEXTMID, word2.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
-        gamebutton->setPosition(ccp(400, height));
-        addChild(gamebutton,1,33);
-        m_pRewardButtons[1] = gamebutton;
-        
-    }
-    string word3=Utility::getWordWithFile("word.plist", "lingqujiangpin");
-    if (data->getActionItemId3()!=0) {
-        
-        CPtProp *m_itemProp=SinglePropConfigData::instance()->getPropById(data->getActionItemId3());
-        if (m_itemProp)
+    for (int i = 0; i < m_nRewardButtonCount; i++)
+    {
+        m_pRewardButtons[i] = NULL;
+        present = (Present*)array->objectAtIndex(i);
+        if (present && present->getItemId() != 0)
         {
-            height-=60;
+            
+            height-=80;
+            //获取物品表里面的物品图片；
+            CPtProp *m_itemProp=SinglePropConfigData::instance()->getPropById(present->getItemId());
             CCSprite *sprite=CCSprite::create(CSTR_FILEPTAH(g_propImagesPath,m_itemProp->getIconName().c_str()));
-            addChild(sprite,1,40);
+            addChild(sprite,1,20+12*i);
             sprite->setPosition(ccp(100, height));
-            CCLabelTTF *labelTTF=CCLabelTTF::create(data->getActionItemTip3().c_str(), "Arial", 15);
-            addChild(labelTTF,1,41);
+            //描述
+            CCLabelTTF *labelTTF=CCLabelTTF::create(present->getTips().c_str(), "Arial", 15);
+            addChild(labelTTF,1,21+12*i);
             labelTTF->setPosition(ccp(180, height));
-            CGameButtonControl *gamebutton =CGameButtonControl::createButton(TEXTMID, word3.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
+            CGameButtonControl *gamebutton =CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
             gamebutton->setPosition(ccp(400, height));
-            addChild(gamebutton,1,42);
-            height+=120;
-            m_pRewardButtons[2] = gamebutton;
+            addChild(gamebutton,1,22+12*i);
+            m_pRewardButtons[i] = gamebutton;
         }
-        else{
-            CCLog("data->getActionItemId3():%d",data->getActionItemId3());
-        }
-     
     }
+  
+     
 
 }
 void CActionItemLayer::createChongZhi(CStructGameActionData *data)

@@ -14,6 +14,17 @@
 using namespace std;
 using namespace cocos2d;
 
+
+class Present : public CCObject
+{
+public:
+    Present():m_bHasGet(false) {};
+    Present(int inItemId, std::string inTips, bool inFlag=false):m_nItemId(inItemId), m_sTips(inTips), m_bHasGet(inFlag){};
+    CC_SYNTHESIZE(int, m_nItemId, ItemId);
+    CC_SYNTHESIZE(bool, m_bHasGet, HasGet);
+    CC_SYNTHESIZE(std::string, m_sTips, Tips);
+};
+
 class CStructGameActionData
 {
 public:
@@ -23,11 +34,12 @@ public:
     
 public:
     void setDataValue(CCDictionary *dict);
+    void setItemStatue(CCArray *inItemStatus);
     
     
 public:
 	/*
-	"board_id": "2",
+	       "board_id": "2",
 		   "name": "登陆送礼",
 		   "show_type": "1",
 		   "is_open": "1",
@@ -42,19 +54,28 @@ public:
 		   "item_tips_3": "双倍金币卡，让你腰缠万贯",
 		   "content": "登陆有送礼包好吗"
 	*/
+    CCArray *getAllRewardItems(){return m_pAllPresent;};
     CC_SYNTHESIZE(int,  	m_nBoard_id,    ActionID);
     CC_SYNTHESIZE(string,   m_sName,  ActionName);
     CC_SYNTHESIZE(int , 	m_nShow_type,ActionShowType);
     CC_SYNTHESIZE(int , 	m_nPard_id,ActionPartId); //如果对应的showtype的id 是5的话 那么pardid对应的是副本的ID
     CC_SYNTHESIZE(string ,  m_nPic,ActionPic);
     CC_SYNTHESIZE(string ,  m_sShow_time,ActionShowTime);
-    CC_SYNTHESIZE(int , 	m_nItem_1,ActionItemId1);
-    CC_SYNTHESIZE(string ,  m_sItem_tips_1,ActionItemTip1);
-    CC_SYNTHESIZE(int , 	m_nItem_2,ActionItemId2);
-    CC_SYNTHESIZE(string ,  m_sItem_tips_2,ActionItemTip2);
-    CC_SYNTHESIZE(int , 	m_nItem_3,ActionItemId3);
-    CC_SYNTHESIZE(string ,  m_sItem_tips_3,ActionItemTip3);
     CC_SYNTHESIZE(string ,	m_sContent,Content);
+    
+//    CC_SYNTHESIZE(int , 	m_nItem_1,ActionItemId1);
+//    CC_SYNTHESIZE(string ,  m_sItem_tips_1,ActionItemTip1);
+//    CC_SYNTHESIZE(int , 	m_nItem_2,ActionItemId2);
+//    CC_SYNTHESIZE(string ,  m_sItem_tips_2,ActionItemTip2);
+//    CC_SYNTHESIZE(int , 	m_nItem_3,ActionItemId3);
+//    CC_SYNTHESIZE(string ,  m_sItem_tips_3,ActionItemTip3);
+    
+
+
+protected:
+    void realeaseData();
+protected:
+    CCArray* m_pAllPresent;
 };
 
 #endif /* defined(___1_cube__CStructGameActionData__) */

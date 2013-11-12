@@ -55,6 +55,21 @@ namespace CPtTool
     
     int ceil(float inSrc);
 
+    inline int campare(const int inOne_1,const int inOne_2, const int inTwo_1, const int inTwo_2, const int inThree_1, const int inThree_2)
+    {
+      
+        int nRet = inOne_1 - inOne_2;
+        if(nRet == 0)
+        {
+            nRet = inTwo_1 - inTwo_2;
+            if(nRet==0)
+            {
+                nRet = inThree_1- inThree_2;
+            }
+        }
+        return nRet;
+    };
+
 };
 
 

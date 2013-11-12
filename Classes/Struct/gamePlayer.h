@@ -42,7 +42,7 @@ class CGamePlayer : cocos2d::CCObject
     void onExitGameApp();
     void clearShangchengData();
 public:
-     map<int ,CCard *> getCardMap()const;
+     map<int ,CCard *> *getCardMap();
      CCard *getCardByCardId(int cardid);
      CSkillData *getPutongGongji(CFightCard *pCard);
      CSkillData *getSkillBySkillId(int skillId);
@@ -190,6 +190,9 @@ protected:
 
 // play info:
 public:
+    bool hasFullGP();
+    bool hasFullAP();
+    
     int getCoin();          //金币
     int getPlayerCash();  //现金
     int getRVC();          //领导力

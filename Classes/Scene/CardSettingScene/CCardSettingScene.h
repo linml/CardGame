@@ -43,6 +43,7 @@ protected:
     void handlerTouch();
     void onClickBack();
     
+    void setSort(int inType);
 protected:
     int m_nTouchTag;
     int m_nLastSceneTag; // 0--> hall 1--> exploration
@@ -51,7 +52,11 @@ protected:
     int m_nCurrentTableId;
     CBattleArrayLayer *m_pCardSetting;
     CCSprite * m_pBackBtn;
+    CCSprite * m_pStarSortBtn;
+    CCSprite * m_pLevelSortBtn;
     CCSprite * m_pTabButton[4];
+    
+    int m_nSortState;
 // test: network;
     void callback(float dt);
 };

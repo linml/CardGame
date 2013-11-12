@@ -13,6 +13,7 @@
 #include "CGameStoryLayer.h"
 #include "CDrawCardLayer.h"
 #include "CSceneActionGameLayer.h"
+#include "CScreenHandBookLayer.h"
 
 
 using namespace cocos2d;
@@ -43,8 +44,11 @@ CCScene* HelloWorld::scene()
     CCScene *scene = CCScene::create();
     
     // 'layer' is an autorelease object
-    HelloWorld *layer = HelloWorld::create();
-
+   // HelloWorld *layer = HelloWorld::create();
+ 
+    CScreenHandBookLayer *layer=CScreenHandBookLayer::create();
+    
+    
     // add layer as a child to scene
     scene->addChild(layer);
 
@@ -188,33 +192,100 @@ void testInit(SELLER_DATA &rSellData)
     rSellData.priceType = 1;
     
 }
+
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+struct Element
+{
+    int a;
+    int b;
+};
+int camparent(const void * inElementOne, const void *inElementTwo)
+{
+    Element * temp1 = (Element*) inElementOne;
+    Element * temp2 = (Element*) inElementTwo;
+    int nRet = temp1->a - temp2->a;
+    if (nRet == 0)
+    {
+        nRet = temp1->b - temp2->b;
+    }
+    return nRet;
+}
+int lcomparent(const void * inElementOne, const void *inElementTwo)
+{
+    Element * temp1 = (Element*) inElementOne;
+    Element * temp2 = (Element*) inElementTwo;
+    int nRet = temp1->a - temp2->a;
+    if (nRet == 0)
+    {
+        nRet = temp1->b - temp2->b;
+    }
+    return -nRet;
+    
+}
+void printArray(Element* array, int lenth)
+{
+    for(int i = 0; i  < lenth; i++)
+    {
+        printf(" the index : %d a: %d  b:%d \n", i, array[i].a , array[i].b);
+    }
+}
+void testSort()
+{
+    int length = 1000;
+    
+    Element * array = new Element[length];
+    srand(time(0));
+    for (int i = 0;  i  < length; i++)
+    {
+        int temp = (rand() % 5) +1;
+        int temp2 = (rand() % 100) +1;
+        array[i].b = temp2;
+        array[i].a = temp;
+    }
+    printArray(array, length);
+    
+    long t = clock();
+    qsort(array, length, sizeof(Element), camparent);
+    t = clock()-t;
+    printf("===============the cost clock: %ld\n", t);
+    printArray(array, length);
+    t = clock();
+    qsort(array, length, sizeof(Element), camparent);
+    t = clock()-t;
+    printf("===============the cost clock: %ld\n", t);
+    printArray(array, length);
+}
+
 void test(CCNode *pSender)
 {
-  
+   
     // CBattleArrayLayer *layer = CBattleArrayLayer::create();
     // CCardSettingScene *layer = CCardSettingScene::create();
-    // CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
+    //CBackpackContainerLayer *layer = CBackpackContainerLayer::create();
     // pSender->addChild(layer);
-    // CPtDialog * layer = CPtDialog::create();
-    // CGameRechargeTip * layer = CGameRechargeTip::create();
-    // CGameArrageBackpackTip *layer = CGameArrageBackpackTip::create();
-    
-    // item.propId = 100001;
-    // item.propCount = 20;
-    // CDeletePropLayer * layer = CDeletePropLayer::create(&item);
-    // CBiforestLayer *layer = CBiforestLayer::create();
+    //   CPtDialog * layer = CPtDialog::create();
+    //  CGameRechargeTip * layer = CGameRechargeTip::create();
+    //  CGameArrageBackpackTip *layer = CGameArrageBackpackTip::create();
+    //    item.propId = 100001;
+    //    item.propCount = 20;
+    //    CDeletePropLayer * layer = CDeletePropLayer::create(&item);
+    //    CBiforestLayer *layer = CBiforestLayer::create();
     // CEventBoxLayer *layer = CEventBoxLayer::create(1);
-    // CEventBoxRewordLayer *layer = CEventBoxRewordLayer::create(NULL, 3);
+    //   CEventBoxRewordLayer *layer = CEventBoxRewordLayer::create(NULL, 3);
     // CGameRechargeLayer * layer = CGameRechargeLayer::create(NULL);
-    // CSceneGameShopLayer * layer = CSceneGameShopLayer::create();
-    // SELLER_DATA inSellData;
-    // testInit(inSellData);
-    // CSellerDialog * layer = CSellerDialog::create(inSellData);
+    //  CSceneGameShopLayer * layer = CSceneGameShopLayer::create();
+    //    SELLER_DATA inSellData;
+    //    testInit(inSellData);
+    //    CSellerDialog * layer = CSellerDialog::create(inSellData);
     // CAltarDialogLayer *layer = CAltarDialogLayer::create(0);
-    //CGameBufferTipLayer *layer = CGameBufferTipLayer::create(0);
-    //pSender->addChild(layer);
-    CSceneActionGameLayer *layer=CSceneActionGameLayer::create();
+    CGameBufferTipLayer *layer = CGameBufferTipLayer::create(0);
     pSender->addChild(layer);
+    testSort();
+    
 }
+
 
 

@@ -13,6 +13,7 @@
 #include "CSaveConfirmLayer.h"
 #include "PtJsonUtility.h"
 #include "PtHttpURL.h"
+#include "CBattleArrayLayer.h"
 CCardEvolutionLayer::CCardEvolutionLayer()
 {
     m_bPropEnough = false;
@@ -227,8 +228,23 @@ void CCardEvolutionLayer:: updateTexture()
     label[3]->setString(buff);
     
     // update prop icon:
-    
-    CCArray * array = SingleStarConfigData::instance()->getPropArrays(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
+    m_vSameCardIdContainer.clear();
+    m_vDeleteCard.clear();
+     m_bCardEnough = true;
+    int userCardId = m_pSrcCard->getCardData()->m_User_Card_ID;
+    int cardId = m_pStarData->getCardId(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
+    m_nNeedCardNumber = m_pStarData->getCardNum(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
+    if(hasMaterialCard(m_vSameCardIdContainer, cardId,userCardId))
+    {
+        if (m_nNeedCardNumber <= m_vSameCardIdContainer.size())
+        {
+            m_bCardEnough = true;
+        }else
+        {
+            m_bCardEnough = false;
+        }
+    }
+    CCArray * array = m_pStarData->getPropArrays(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
     if (array)
     {
         
@@ -324,6 +340,7 @@ void CCardEvolutionLayer:: save()
         }
        
         //removeCard();
+        m_pCardBag->reload();
     }
     
 }
@@ -335,7 +352,7 @@ void CCardEvolutionLayer::saveData()
     m_pPlayer->subCoin(m_nCostCoin);
     CCLog("the sub after: %d", m_pPlayer->getCoin());
     // sub prop:
-    CCArray * array = SingleStarConfigData::instance()->getPropArrays(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
+    CCArray * array = m_pStarData->getPropArrays(m_pSrcCard->getCardData()->m_pCard->m_icard_id);
     if (array)
     {
         PropItem *propItem = NULL;
@@ -345,6 +362,10 @@ void CCardEvolutionLayer::saveData()
             m_pPlayer->subProp(propItem->propId, propItem->propCount);
         }
     }
+   
+    // remove card:
+  
+    removeCardFromCardBag();
     
 }
 
@@ -393,11 +414,12 @@ void CCardEvolutionLayer::saveOnClick()
             return;
         }
         
-        if (EnoughRvc()== false)
+        if (enoughRvc()== false || m_bCardEnough==false)
         {
             layer->setResultCode(13);
             return;
         }
+        
         // 领导力不够：
 
         // send message to server:
@@ -408,14 +430,24 @@ void CCardEvolutionLayer::saveOnClick()
         cardItemId = m_pSrcCard->getCardData()->m_User_Card_ID;
         cardGroup = m_pSrcCard->getCardData()->getInWhichBattleArray();
 
-    
+        getDeleteCards(m_vDeleteCard);
         char buff[500]={0};
-//xianbei modify        sprintf(buff, "sig=2ac2b1e302c46976beaab20a68ef95&&type=1&info=\"{\"card_id\":\"%d_%d\",\"other\":\"\"}",cardItemId, cardGroup);
-        sprintf(buff, "sig=%s&type=1&info={\"card_id\":\"%d_%d\",\"other\":\"\"}",STR_USER_SIG, cardItemId, cardGroup);
+        sprintf(buff, "sig=%s&type=1&info={\"card_id\":\"%d_%d\",\"other\":\"",STR_USER_SIG, cardItemId, cardGroup);
+        std::string tmp = buff;
+        if (m_vDeleteCard.size()==1)
+        {
+            sprintf(buff, "%d", m_vDeleteCard.at(0).userId);
+            tmp.append(buff);
+        }
+        for (int i = 1; i < m_vDeleteCard.size(); i++)
+        {
+            sprintf(buff, ",%d", m_vDeleteCard.at(i).userId);
+            tmp.append(buff);
+        }
+        tmp.append("\"}");
     
-        CCLog("%s",buff);
-    
-        ADDHTTPREQUESTPOSTDATA(STR_URL_UPGRADE_CARD(194),"cardEvolution","evolution", buff, callfuncO_selector(CCardEvolutionLayer::receiveCallBack));
+        CCLog("the buffer: %s", tmp.c_str());
+        ADDHTTPREQUESTPOSTDATA(STR_URL_UPGRADE_CARD(194),"cardEvolution","evolution", tmp.c_str(), callfuncO_selector(CCardEvolutionLayer::receiveCallBack));
       //  #define STR_URL_UPGRADE_CARD(UID)   URL_FACTORY("api.php?m=Card&a=cardUpGrade&uid=",UID)
       
     }else
@@ -530,7 +562,7 @@ void CCardEvolutionLayer::removeCard()
   
 }
 
-bool CCardEvolutionLayer::EnoughRvc()
+bool CCardEvolutionLayer::enoughRvc()
 {
     bool bRet = false;
     do {
@@ -541,7 +573,7 @@ bool CCardEvolutionLayer::EnoughRvc()
             {
                 battleArrayIndex--;
                 int changedValue =  m_pPlayer->getAllRvcBattlerArray(battleArrayIndex);
-                changedValue += m_nAddAtk;
+                changedValue += m_nAddRvc;
                 if (changedValue > m_pPlayer->getRVC())
                 {
                     break;
@@ -553,4 +585,73 @@ bool CCardEvolutionLayer::EnoughRvc()
         bRet = true;
     } while (0);
     return bRet;
+}
+
+void CCardEvolutionLayer::removeCardFromCardBag()
+{
+    vector<int> ids;
+    list<int> index;
+    CCArray *array = m_pCardBag->getItems();
+    for (int i = 0 ; i < m_vDeleteCard.size() ; i++)
+    {
+        ids.push_back(m_vDeleteCard.at(i).userId);
+        index.push_back(m_vDeleteCard.at(i).index);
+    }
+    index.sort();
+    for (int i = index.size()-1; i >= 0; i--)
+    {
+        array->removeObjectAtIndex(i);
+    }
+    m_pPlayer->deleteFromCardBag(ids);
+}
+
+void CCardEvolutionLayer::getDeleteCards(vector<UserIdAndIndex> & inVector)
+{
+    CCArray* array =  m_pCardBag->getItems();
+    int index = 0;
+
+    m_vDeleteCard.clear();
+    for (int i = 0; i < m_nNeedCardNumber; i++)
+    {
+        int tmp = 0;
+        CFightCard* tmpCard= ((CPtDisPlayCard*)((CPtBattleArrayItem*)array->objectAtIndex(tmp))->getDisplayView())->getCardData();
+        for (int j = 1 ; j < m_vSameCardIdContainer.size(); j++)
+        {
+            CFightCard* cardData1 = ((CPtDisPlayCard*)((CPtBattleArrayItem*)array->objectAtIndex(j))->getDisplayView())->getCardData();
+            CFightCard* tmpCard= ((CPtDisPlayCard*)((CPtBattleArrayItem*)array->objectAtIndex(tmp))->getDisplayView())->getCardData();
+            if (cardData1->m_iCurrExp < tmpCard->m_iCurrExp)
+            {
+                tmp = j;
+                tmpCard = cardData1;
+            }
+        }
+        index = m_vSameCardIdContainer.at(tmp);
+        m_vDeleteCard.push_back(UserIdAndIndex(index,tmpCard->m_User_Card_ID));
+        m_vSameCardIdContainer.erase(m_vSameCardIdContainer.begin()+tmp);
+    }
+    
+}
+
+bool CCardEvolutionLayer::hasMaterialCard(vector<int>& inSameCardIdContainer, int inCardId, int inSrcUserCardId)
+{
+   
+    inSameCardIdContainer.clear();
+    if (inCardId == 0)
+    {
+        return false;
+    }
+    CCArray* array = m_pCardBag->getItems();
+    CFightCard* card = NULL;
+    for (int i = 0; i < array->count(); i++)
+    {
+        card = ((CPtDisPlayCard*) ((CPtBattleArrayItem*) array->objectAtIndex(i))->getDisplayView())->getCardData();
+        if (card && card->m_pCard)
+        {
+            if(card->m_pCard->m_icard_id == inCardId && card->m_User_Card_ID != inSrcUserCardId)
+            {
+                inSameCardIdContainer.push_back(i);
+            }
+        }
+    }
+    return (inSameCardIdContainer.size() > 0);
 }

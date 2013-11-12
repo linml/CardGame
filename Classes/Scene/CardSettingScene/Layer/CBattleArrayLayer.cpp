@@ -21,7 +21,7 @@
 #include "CCardInfoLayer.h"
 
 static CPtBattleArray * s_currentBattleArray = NULL;
-
+static void sortCards(CCArray *item, int inType);
 // implement class of CPtBattleArrayItem:
 
 
@@ -190,12 +190,12 @@ void CPtBattleArrayItem::onEnhanceEnd(CCTouch *pTouch, CCEvent *pEvent)
                 int i = m_pDelegateLayer->m_pEnhancePanel->getEmptyCardSlide();
                 if (i != -1)
                 {
-                    CPtDisPlayCard * displace = m_pDelegateLayer->m_pMoveCard; //(CPtDisPlayCard *)(this->getDisplayView());
+                    CPtDisPlayCard * displace = m_pDelegateLayer->m_pMoveCard; 
                     
                     if(displace)
                     {
                     
-                        if (displace->getCardData()->getInWhichBattleArray() != 0) // (displace->getCardData()->getInBattleArray())
+                        if (displace->getCardData()->getInWhichBattleArray() != 0)
                         {
                                 //
                             if (i != -2)
@@ -318,7 +318,6 @@ void CPtBattleArrayItem:: onSellEnd(CCTouch *pTouch, CCEvent *pEvent)
                             item->setDelegateLayer(m_pDelegateLayer);
                             m_pDelegateLayer->m_pSellPanel->getSellPackage()->getItems()->addObject(item);
                             m_pDelegateLayer->m_pSellPanel->getSellPackage()->reload();
-                           // m_pDelegateLayer->m_pSellPanel->addCoin(displace->getCardData()->m_pCard->m_icard_price);
                             CFightCard* priceCard =  displace->getCardData();
                             int coin = CPtTool::getSellPrice(priceCard->m_pCard->m_icard_price, priceCard->m_iCurrLevel, priceCard->m_pCard->m_nCard_star);
                             m_pDelegateLayer->m_pSellPanel->addCoin(coin);
@@ -817,6 +816,10 @@ CBattleArrayLayer::CBattleArrayLayer()
     m_pMoveCard = NULL;
     m_pPreCardManifier = NULL;
     m_bActionEnable = false;
+    
+    m_bStarDec = false;
+    m_bLevelDec = false;
+    m_nSortType = 0; // default none sort
 }
 CBattleArrayLayer::~CBattleArrayLayer()
 {
@@ -837,26 +840,25 @@ bool CBattleArrayLayer::init()
 }
 
 
+
 void CBattleArrayLayer::initCards()
 {
     m_bTableClikEnable = false;
     m_pGamePlayer = SinglePlayer::instance();
+    
     vector<CFightCard *> & bag =  m_pGamePlayer->getCardBagVector();
+    
     CCArray * array = CCArray::create();
     for (int i = 0; i < bag.size() ; i++)
     {
         CFightCard * cardData = bag.at(i);
-    
-        
-     
         CPtDisPlayCard * card = CPtDisPlayCard::Create(cardData);
         card->setAnchorPoint(CCPointZero);
         if (card)//(card)
         {
             int groupId = cardData->getInWhichBattleArray();
-            if( groupId != 0) //(cardData->getInBattleArray())
+            if( groupId != 0) 
             {
-//                card->setDead();
                 card->setLogo(groupId);
                 if (CCardSettingScene::s_pBattleArrayCards)
                 {
@@ -873,7 +875,7 @@ void CBattleArrayLayer::initCards()
             array->addObject(item);
         }
     }
-    
+
     
     m_pCards = CPtListViewWidget::create(array, CCSizeMake(476, 632), kCCScrollViewDirectionVertical , CCSizeMake(5, 2) , 3);
     ((TableView *)(m_pCards->getTableView()))->setDelayMode(true);
@@ -916,13 +918,6 @@ bool CBattleArrayLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CBattleArrayLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
-    // onclik mode:
-//    if (m_bTableClikEnable)
-//    {
-//        setTableClickMove(true);
-//        return;
-//    }
-
     setTableClickMove(true);
    
     if (m_pMoveCard == NULL)
@@ -1044,5 +1039,111 @@ void CBattleArrayLayer::removeLeft()
     CCLog("time end: %d, %d", clock(), time(NULL ));
 }
 
+/*
+ * @breif 排序
+ * @param inType 1--> star 2--> level
+ */
 
+void CBattleArrayLayer::resort(int inType)
+{
+    if (m_pCards)
+    {
+        if (m_nSortType == 1)
+        {
+            if (inType == m_nSortType)
+            {
+                m_bStarDec = !m_bStarDec;
+                m_pCards->setReverse(m_bStarDec);
+                
+            }else
+            {
+                m_nSortType = inType;
+                m_pCards->setReverse(m_bLevelDec);
+            }
+        }else if(m_nSortType == 2)
+        {
+            if (inType == m_nSortType)
+            {
+                m_bLevelDec = !m_bLevelDec;
+                m_pCards->setReverse(m_bLevelDec);
+                
+            }else
+            {
+                m_nSortType = inType;
+                m_pCards->setReverse(m_bStarDec);
+            }
+            
+        }else
+        {
+            m_nSortType = inType;
+            if (inType == 1)
+            {
+                m_pCards->setReverse(m_bStarDec);
+            }else
+            {
+                m_pCards->setReverse(m_bLevelDec);
+            }
+          
+            
+        }
+      
+        sortCards(m_pCards->getItems(), inType);
+        m_pCards->reload();
+    }
+   
+}
+
+// static tool method:
+// sort:升序排序
+
+/*
+ * @param inType = 1-->按升级排序  2-->按等级排序
+ */
+int compareWithStarLevel(const void* inCardOne, const void* inCardTwo, int const inType)
+{
+    int nRet = 0;
+    CPtBattleArrayItem ** itemOne = (CPtBattleArrayItem**)(inCardOne);
+    CFightCard * cardOne = ((CPtDisPlayCard*)(*itemOne)->getDisplayView())->getCardData();
+    
+    itemOne = (CPtBattleArrayItem**)inCardTwo;
+    CFightCard * cardTwo = ((CPtDisPlayCard*)(*itemOne)->getDisplayView())->getCardData();
+    if (inType == 1)
+    {
+        nRet = CPtTool::campare(cardOne->m_pCard->m_nCard_star, cardTwo->m_pCard->m_nCard_star,cardOne->m_iCurrExp,cardTwo->m_iCurrExp ,cardOne->m_User_Card_ID, cardTwo->m_User_Card_ID);
+        
+    }else if(inType == 2)
+    {
+        nRet = CPtTool::campare(cardOne->m_iCurrLevel,cardTwo->m_iCurrLevel,cardOne->m_pCard->m_nCard_star, cardTwo->m_pCard->m_nCard_star,cardOne->m_User_Card_ID, cardTwo->m_User_Card_ID);
+    }
+    return nRet;
+}
+
+int compareWithStar(const void* inCardOne, const void* inCardTwo)
+{
+    return compareWithStarLevel(inCardOne, inCardTwo, 1);
+}
+
+
+int compareWithLevel(const void*inCardOne, const void* inCardTwo)
+{
+    return compareWithStarLevel(inCardOne, inCardTwo, 2);
+
+}
+
+/*
+ * @param inType = 1-->按升级排序  2-->按等级排序
+ */
+void sortCards(CCArray *item, int inType)
+{
+    if (inType == 1)
+    {
+         qsort(item->data->arr, item->data->num , sizeof(CPtBattleArrayItem*),compareWithStar);
+        
+    }else if(inType == 2)
+    {
+         qsort(item->data->arr, item->data->num , sizeof(CPtBattleArrayItem*),compareWithLevel);
+    }
+   
+   
+}
 

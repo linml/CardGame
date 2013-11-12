@@ -18,6 +18,7 @@
 #include "Pt_AES.h"
 #include "CTaskConfigData.h"
 
+
 USING_NS_CC;
 
 AppDelegate::AppDelegate()
@@ -46,8 +47,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     Pt_AES::sharePtAESTool(keyData);
 
 	// set FPS. the default value is 1.0/60 if you don't call this
- pDirector->setAnimationInterval(1.0 / 60);
-   SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
+    pDirector->setAnimationInterval(1.0 / 60);
+    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_LOGINSCENE);
 
 
    //pDirector->runWithScene(HelloWorld::scene());

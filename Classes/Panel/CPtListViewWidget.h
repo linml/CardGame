@@ -97,7 +97,7 @@ public:
     virtual unsigned int numberOfCellsInTableView(cocos2d::extension::CCTableView *table);
 
 
-
+    CC_SYNTHESIZE(bool, m_bReverse, Reverse);
     
 protected:
     void initData(CCArray *items, CCSize containerSize, CCScrollViewDirection direction, CCSize itemSize, int inColumCount);

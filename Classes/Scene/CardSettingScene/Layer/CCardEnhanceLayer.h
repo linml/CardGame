@@ -61,9 +61,9 @@ protected:
     
     bool verifyConin();
     void save();
-    
     void saveOnClick();
     void receiveCallBack(CCObject *pSender);
+
 protected:
     int m_nTouchTag;
     
@@ -73,6 +73,7 @@ protected:
     
     CPtDisPlayCard * m_pSelectCard;
     CPtDisPlayCard* m_pMaterialCards[MATERIALCARDCOUNT];
+
     
     int m_nAddAtak;
     int m_nAddDef;

@@ -63,10 +63,7 @@ bool CPtPropConfigData::getPropDataById(const int &inPropId)
         m_nPropType  = prop->getPropType();    
         m_nUnLockLevel = prop->getUnLockLevel();
         m_nUseDelete = prop->getUseDelete(); 
-        m_nPrice =  prop->getCash();
         m_nUseId = prop->getUseId();
-        m_nSellCoin = prop->getSellCoin(); 
-        m_nCoin = prop->getCoin(); 
         m_strIconName = prop->getIconName(); 
         m_nLimitNum = prop->getLimitNum();
         m_nIsOnly = prop->getIsOnlyNum(); 
@@ -138,6 +135,32 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
                 continue;
                 
             }
+            /*
+             *
+             <key>item_id</key>
+             <string>100001</string>
+             <key>name</key>
+             <string>体力药水</string>
+             <key>type</key>
+             <string>1</string>
+             <key>unlock_level</key>
+             <string>1</string>
+             <key>use_delete</key>
+             <string>1</string>
+             <key>item_effect_id</key>
+             <string>100001</string>
+             <key>use_scene</key>
+             <string>0</string>
+             <key>icon</key>
+             <string>icon_007.png</string>
+             <key>limit_num</key>
+             <string>20</string>
+             <key>is_only</key>
+             <string>0</string>
+             <key>tips</key>
+             <string>999991</string>
+
+             */
             prop= new CPtProp();
             tmpValue = (CCDictionary *)element->getObject();
             prop->setPropId(keyId);
@@ -145,10 +168,7 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
             prop->setPropType(GameTools::intForKey("type", tmpValue));
             prop->setUnLockLevel(GameTools::intForKey("unlock_level", tmpValue));
             prop->setUseDelete(GameTools::intForKey("use_delete", tmpValue));
-            prop->setCash(GameTools::intForKey("cash", tmpValue));
-            prop->setUseId(GameTools::intForKey("use_id", tmpValue));
-            prop->setSellCoin(GameTools::intForKey("sell_coin", tmpValue));
-            prop->setCoin(GameTools::intForKey("coin",tmpValue));
+            prop->setUseId(GameTools::intForKey("item_effect_id", tmpValue));
             prop->setIconName(GameTools::valueForKey("icon", tmpValue));
             prop->setLimitNum(GameTools::intForKey("limit_num", tmpValue));
             prop->setIsOnlyNum(GameTools::intForKey("is_only", tmpValue));

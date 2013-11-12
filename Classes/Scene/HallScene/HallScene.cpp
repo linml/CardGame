@@ -22,6 +22,7 @@
 #include "CDrawCardLayer.h"
 #include "CGamePropBufferTipLayer.h"
 
+
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
 
@@ -36,7 +37,7 @@ CCScene *CHallScene::scene(int pType)
   
         CCScene *scene = CCScene::create();
         CHallScene *layer = CHallScene::create(pType);
-        scene->addChild(layer);
+        scene->addChild(layer, 0, 100);
         return scene;
     
 }
@@ -198,6 +199,10 @@ void CHallScene::callBackToShowRechargeDialog(cocos2d::CCObject *object)
 {
     showRechargeView();
 }
+
+
+
+
 void CHallScene::showBackBag()
 {
     CCLayer * layer = CBackpackContainerLayer::create();
@@ -225,6 +230,9 @@ void CHallScene::createPropBufferTips()
 }
 
 // protectd method:
+/*
+ * @param inType : 1--> normalexploration, 2--> activityexploration
+ */
 bool CHallScene::initHall(int inType)
 {
     bool bRet = false;
@@ -389,8 +397,11 @@ bool CHallScene::initHall(int inType)
         if (inType == 1)
         {
             asgard->createBiforestLayer();
+        }else if(inType == 2)
+        {
+            asgard->createBiforestLayer(ACTIVITYEXPLORATION);
         }
-        
+        m_pAsgardLayer = asgard;
         createPropBufferTips();
         
         // set touch

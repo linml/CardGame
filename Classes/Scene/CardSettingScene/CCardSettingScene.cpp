@@ -37,6 +37,8 @@ CCardSettingScene::CCardSettingScene()
     {
         m_pTabButton[i] = NULL;
     }
+    m_pStarSortBtn = NULL;
+    m_pLevelSortBtn = NULL;
    
 }
 
@@ -185,6 +187,22 @@ void CCardSettingScene::initCCardSetting()
     m_pBackBtn = btn;
     Utility::addTouchRect(3006, btn, m_cTouches);
     
+    btn = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "back_normal.png"));
+    this->addChild(btn, 100000, 3007);
+    btn->setAnchorPoint(CCPointZero);
+    btn->setPosition(ccp(850, 700));
+    m_pStarSortBtn = btn;
+    Utility::addTouchRect(3007, btn, m_cTouches);
+    
+    btn = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "back_normal.png"));
+    this->addChild(btn, 100000, 3008);
+    btn->setAnchorPoint(CCPointZero);
+    btn->setPosition(ccp(750, 700));
+    m_pLevelSortBtn = btn;
+    Utility::addTouchRect(3008, btn, m_cTouches);
+    
+    
+    
     //tab button:
     
     CCNode *parent = m_cMaps->getElementByTags("1,1");
@@ -219,7 +237,7 @@ void CCardSettingScene::initCCardSetting()
          parent->addChild(m_pTabButton[i],200);
          label->removeFromParentAndCleanup(true);
          label->setPosition(wordPos);
-        m_pTabButton[i]->addChild(label);
+         m_pTabButton[i]->addChild(label);
     }
     
 }
@@ -264,11 +282,16 @@ void CCardSettingScene::handlerTouch()
         case 3006:
             onClickBack();
             break;
+            
+        case 3007:
+        case 3008:
+            setSort(m_nTouchTag-3006);
+            break;
         default:
             return;
     }
  
-    if (m_nTouchTag != 3006)
+    if (m_nTouchTag < 3006)
     {
         CCTexture2D * texture = NULL;
         CCPoint  anPos = m_pTabButton[m_nTouchTag-3001]->getAnchorPoint();
@@ -301,6 +324,10 @@ void CCardSettingScene::onClickBack()
 
 }
 
+void CCardSettingScene::setSort(int inType)
+{
+    m_pCardSetting->resort(inType);
+}
 
 void CCardSettingScene::callback(float dt)
 {

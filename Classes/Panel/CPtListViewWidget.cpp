@@ -579,7 +579,7 @@ CPtListViewWidget * CPtListViewWidget::create(CCArray*items, CCSize containerSiz
 
 CPtListViewWidget::CPtListViewWidget()
 {
-
+    m_bReverse = false;
 }
 
 CPtListViewWidget::~CPtListViewWidget()
@@ -726,7 +726,15 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
                 break;
             }
             
-            CPtTableItem *tmp = dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(i+idx*m_nColumcount));
+            CPtTableItem *tmp = NULL;
+            if (m_bReverse)
+            {
+                 tmp= dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(m_cItems->count()-1-i-idx*m_nColumcount));
+            }else
+            {
+                 tmp= dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(i+idx*m_nColumcount));
+            }
+           
             
             if (tmp)
             {

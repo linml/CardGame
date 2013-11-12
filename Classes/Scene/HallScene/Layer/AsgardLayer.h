@@ -13,6 +13,7 @@
 
 #include "cocos2d.h"
 #include "LayoutLayer.h"
+#include "Biforest.h"
 
 using namespace std;
 using namespace cocos2d;
@@ -35,7 +36,7 @@ public:
     CAsgardLayer();
     virtual ~CAsgardLayer();
     
-    void createBiforestLayer();
+    void createBiforestLayer(EXPLORATIONTYPE inType= NORMALEXPLORATION, int inSelectSectionId = -1);
     void onClickBiforest();
 public:
     virtual bool init();
@@ -49,6 +50,7 @@ protected:
     void handlerTouch();
     void createOrUpdatePlayerData();
     void createChapterReward();
+    void showHandBook();
 
 protected:
     

@@ -45,6 +45,7 @@ public:
     void addEvolution();
     
     void removeLeft();
+    void resort(int inType);
 protected:
     void initCards();
     void resetState();
@@ -75,6 +76,11 @@ public:
     CC_SYNTHESIZE(int, m_nCurrentTab, CurrentTab);
     CC_SYNTHESIZE(CPtDisPlayCard*, m_pPreCardManifier, PreCardManifier);
     CC_SYNTHESIZE(bool, m_bActionEnable, ActionEnable);
+    
+    CC_SYNTHESIZE(int, m_nSortType, SortType); // 1--> star, 2--> level // 0-> none
+protected:
+    bool m_bStarDec;
+    bool m_bLevelDec;
  
 };
 

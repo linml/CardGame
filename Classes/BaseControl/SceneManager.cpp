@@ -7,7 +7,6 @@
 //
 
 #include "SceneManager.h"
-
 #include "MapScene.h"
 #include "CardFactoryLayer.h"
 #include "TaskSceneLayer.h"
@@ -20,6 +19,7 @@
 #include "HallScene.h"
 #include "CCardSettingScene.h"
 #include "CFightingLayerScene.h"
+#include "HelloWorldScene.h"
 
 SceneManager::SceneManager()
 {
@@ -84,19 +84,19 @@ void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene ,int inParam)
         case EN_CURRSCENE_MAPSCENE :
             runMapScene();
             break;
-        case  EN_CURRSCENE_TASKSCENE :
+        case EN_CURRSCENE_TASKSCENE :
             runTaskScene();
             break;
-        case   EN_CURRSCENE_CARDFACTORYSCENE:
+        case EN_CURRSCENE_CARDFACTORYSCENE:
             runCreateCardScene();
             break;
-        case  EN_CURRSCENE_EXPLORATIONSCENE:
+        case EN_CURRSCENE_EXPLORATIONSCENE:
             runExplorationScene();
             break;
-        case   EN_CURRSCENE_EVOLUTIONSCENE:
+        case  EN_CURRSCENE_EVOLUTIONSCENE:
             runEvolutionScene();
             break;
-        case   EN_CURRSCENE_UPGRADESCENE:
+        case EN_CURRSCENE_UPGRADESCENE:
             runUpgradeScene();
             break;
         case   EN_CURRSCENE_FIGHTSCENE:
@@ -104,6 +104,10 @@ void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene ,int inParam)
             break;
         case EN_CURRSCENE_CARDSETTINGSCENE:
             runCardSettingScene(inParam);
+            break;
+        case EN_CURRSCENE_HELLOWORLD:
+            runHelloWorldScene();
+            break;
         default:
             break;
     }
@@ -227,22 +231,7 @@ void SceneManager::runFightScene()
 
 void SceneManager::runUpgradeScene()
 {
-    //    if(m_currscene!=EN_CURRSCENE_EVOLUTIONSCENE)
-    //    {
-    //        m_currscene=EN_CURRSCENE_EVOLUTIONSCENE;
-    //        CCDirector *pDirector=CCDirector::sharedDirector();
-    //        CCScene *scene=CCScene::create();
-    //        CEvolutionLayer *taskscene=CEvolutionLayer::Create<CEvolutionLayer>(scene_evolution.c_str());
-    //        scene->addChild(taskscene);
-    //        if(pDirector->getRunningScene())
-    //        {
-    //            pDirector->replaceScene(scene);
-    //        }
-    //        else
-    //        {
-    //            pDirector->runWithScene(scene);
-    //        }
-    //    }
+   
     
 }
 
@@ -261,6 +250,24 @@ void SceneManager::runEvolutionScene()
             pDirector->runWithScene(CCTransitionFade::create(1.0f,CEvolutionLayer::scene()));
         }
     }
+}
+
+void SceneManager::runHelloWorldScene()
+{
+    if(m_currscene!=EN_CURRSCENE_HELLOWORLD)
+    {
+        m_currscene=EN_CURRSCENE_HELLOWORLD;
+        CCDirector *pDirector=CCDirector::sharedDirector();
+        if(pDirector->getRunningScene())
+        {
+            runSceneAnimation(HelloWorld::scene());
+        }
+        else
+        {
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,HelloWorld::scene()));
+        }
+    }
+
 }
 
 void SceneManager::runExplorationScene()

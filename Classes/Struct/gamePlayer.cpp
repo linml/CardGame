@@ -30,6 +30,7 @@
 #include "CGameTimerManager.h"
 #include "CPlayerBufferManager.h"
 #include "CStructStrips.h"
+#include "CActivityEncounterManager.h"
 
 
 
@@ -203,9 +204,9 @@ void CGamePlayer::clearAllNpcCard()
     m_hashmapNpcAllCard.erase(m_hashmapNpcAllCard.begin(),m_hashmapNpcAllCard.end());
     
 }
-std::map<int ,CCard *> CGamePlayer::getCardMap()const
+std::map<int ,CCard *> *CGamePlayer::getCardMap()
 {
-    return m_hashmapAllCard;
+    return &m_hashmapAllCard;
 }
 
 CCard *CGamePlayer::getCardByCardId(int cardid)
@@ -436,7 +437,7 @@ void CGamePlayer::subCardByIterator(vector<CFightCard *>::iterator inIterator)
 
 int CGamePlayer::getMaxCardCount()
 {
-    return m_gGamePlayerData->getCardBagMax();
+    return m_gGamePlayerData->getCardBagAppend() + m_gGamePlayerData->m_sLevelPlayer->m_iCard_max;
 }
 
 int CGamePlayer::getCurrentCardCount()
@@ -549,7 +550,7 @@ void CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)
 
 bool CGamePlayer::cardBagIsMoreThanConfig()
 {
-    return m_vCardBag.size()>=m_gGamePlayerData->getCardBagMax();
+    return m_vCardBag.size()>=getMaxCardCount();
 }
 
 CFightCard *CGamePlayer::findFightCardByCard_User_ID(int carduserid)
@@ -819,6 +820,14 @@ void CGamePlayer::backUpFightTeam(int index)
 
 
 // player info
+bool CGamePlayer::hasFullGP()
+{
+   return  getPlayerGp() >= m_gGamePlayerData->m_sLevelPlayer->m_iGp_max;
+}
+bool CGamePlayer::hasFullAP()
+{
+    return getPlayerAp() >= m_gGamePlayerData->m_sLevelPlayer->m_iAp_max;
+}
 int CGamePlayer::getCoin()
 {
     return  m_gGamePlayerData->m_icoin;
@@ -1848,10 +1857,12 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             gameInitStatus=1;
         }
        
+        
     
         CCDictionary *getCardItem=(CCDictionary *)dictresult->objectForKey("card_team");
         loadCardTeamInfoCallBackByDict(getCardItem);
         
+        SingleActivityEncounterManager::instance()->parseActivityByDic((CCDictionary*)dictresult->objectForKey("activity_config"));
     }
 }
 

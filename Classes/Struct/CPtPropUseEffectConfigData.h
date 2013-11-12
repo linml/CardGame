@@ -21,11 +21,13 @@ class PtPropUseEffectData : public CCObject
 
 public:
     PtPropUseEffectData();
-    
     CC_SYNTHESIZE(int, m_nItemEffectId, ItemEffectId);
     CC_SYNTHESIZE(int, m_nItemEffectTipId, ItemEffectTipId);
     CC_SYNTHESIZE(std::string, m_sSpecialEffect, SpecialEffect);
     CC_SYNTHESIZE(std::string, m_sIcon, Icon);
+    CC_SYNTHESIZE(int, m_nType, ItemType); // 1.玩家属性， 2. 真假卡包， 3. 增加奖励， 4. 开启奖励包， 5.调用功能， 7.回城， 8， 去神坛buffer，
+    CC_SYNTHESIZE(int, m_nTarget, ItemTarget);
+    CC_SYNTHESIZE(int, m_nValue, Value);
 };
 
 class CPtPropUseEffectConfigData

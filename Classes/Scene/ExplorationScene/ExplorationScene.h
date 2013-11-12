@@ -58,6 +58,7 @@ public:
     static SECTION_DATA s_SectionData ;
     
     static void resetPropBufferByDict(CCDictionary *inBuffers);
+    static void setExplorationType(EXPLORATIONTYPE inType);
 public:
     static void setCurrentEvnetId(int inEventId);
     static int  getCurrentEventId(); //事件ID
@@ -78,7 +79,7 @@ protected:
 protected:
     static int s_CurrentEventId;
     static CCDictionary *s_Rewards; // save task reward & chapter reward & section reward:
-    
+    static EXPLORATIONTYPE s_eExplorationType;
 public:
     CExploration();
     virtual ~CExploration();

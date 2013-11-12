@@ -46,36 +46,76 @@ CPtBookItem * CPtBookItem::create(const char *inName, int inType)
 
 // implement class of CBiforestLayer:
 
-CBiforestLayer::CBiforestLayer()
+CBiforestLayer * CBiforestLayer::create(EXPLORATIONTYPE inType /*= NORMALEXPLORATION*/, int inSelectSectionId)
+{
+    CBiforestLayer *layer = new CBiforestLayer(inType);
+    if (layer)
+    {
+        layer->setSelectSectionId(inSelectSectionId);
+        if(layer->init())
+        {
+            layer->autorelease();
+        }
+        else
+        {
+            CC_SAFE_DELETE(layer);
+            layer = NULL;
+        }
+        
+    }else
+    {
+        CC_SAFE_DELETE(layer);
+        layer = NULL;
+    }
+    return layer;
+}
+
+CBiforestLayer::CBiforestLayer(EXPLORATIONTYPE inType /*= NORMALEXPLORATION*/): m_eExploartionType(inType)
 {
     m_nCurrentChapterId = -1;
     m_nCurrentChaptetIndex = -1;
+    m_nCurrentSectionId = -1;
+    m_nCurrentSectionIndex = -1;
+    
     m_cMaps = NULL;
     m_pTouchSprite = NULL;
-    m_pChapters = NULL;
-    m_pSections = NULL;
+    
+    m_pNormalChapters = NULL;
+    m_pActivityChapters = NULL;
+    m_pNormalSections = NULL;
+    m_pActivitySections = NULL;
+    
     m_pTips = NULL;
     m_pBg = NULL;
     m_pGoBtn = NULL;
-    m_pLeftPanel = NULL;
     
     m_sPicName = "a.png";
     m_sTips = "";
     m_bGoneVisiable = false;
-    m_bChapterMode = true;
+    m_bSendRequest = false;
     
     m_nMaxChapterId = SinglePlayer::instance()->getMaxChapterId();
     m_nMaxSectionId = SinglePlayer::instance()->getMaxSectionid();
-    selectNode = NULL;
+    
+    
+    m_pActivityEncounterManager = SingleActivityEncounterManager::instance();
+    m_pSwtichBtn = NULL;
     m_pListView = NULL;
+    m_pActivityEncounterInfo = NULL;
+    m_bStartActivity = false;
 }
 
 CBiforestLayer::~CBiforestLayer()
 {
     CC_SAFE_RELEASE(m_cMaps);
-    CC_SAFE_RELEASE(m_pChapters);
-    CC_SAFE_RELEASE(m_pSections);
+    CC_SAFE_RELEASE(m_pNormalChapters);
+    CC_SAFE_RELEASE(m_pActivityChapters);
+    CC_SAFE_RELEASE(m_pNormalSections);
+    CC_SAFE_RELEASE(m_pActivitySections);
+    CC_SAFE_RELEASE(m_pActivityEncounterInfo);
 }
+
+
 
 bool CBiforestLayer::init()
 {
@@ -92,13 +132,9 @@ bool CBiforestLayer::init()
 
 bool CBiforestLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
-    
+   
     CCPoint touchPoint = pTouch->getLocation();
     m_nTouchTag = TouchRect::SearchTouchTag(touchPoint, m_cTouches);
-    if(m_nTouchTag != -1)
-    {
-        return true;
-    }
     return  true;
 }
 
@@ -108,6 +144,10 @@ void CBiforestLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void CBiforestLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if(m_bSendRequest)
+    {
+        return;
+    }
     CCPoint touchPoint = pTouch->getLocation();
     if (m_nTouchTag ==  TouchRect::SearchTouchTag(touchPoint, m_cTouches, &m_pTouchSprite))
     {
@@ -172,6 +212,7 @@ void CBiforestLayer::tableCellTouched(CCTableView* table, CCTableViewCell* cell)
 
     updatePanel(m_nCurrentChaptetIndex, m_nCurrentSectionIndex);
 }
+
 void CBiforestLayer::initBiforest()
 {
     // load resource:
@@ -205,18 +246,109 @@ void CBiforestLayer::initBiforest()
         node->setVisible(false);
     }
     
-    initPanel();
+    // add switchBtn
+    m_pSwtichBtn = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
+    m_pSwtichBtn->setAnchorPoint(CCPointZero);
+    m_pSwtichBtn->setPosition(ccp(650, 580));
+    CCNode *node = m_cMaps->getElementByTags(array, 2);
+    node->addChild(m_pSwtichBtn, 100,2006);
+
+    Utility::addTouchRect(2006, m_pSwtichBtn, m_cTouches);
+    
+    if (m_eExploartionType == NORMALEXPLORATION)
+    {
+        initPanel();
+    }
+    else
+    {
+        goToAcitivityEncounter();
+    }
     
 }
 
 
+CCArray* CBiforestLayer::getDispLayerData()
+{
+    CCArray* chapters = getChaptersByType(m_eExploartionType, m_nMaxChapterId);
+    
+    
+    // get items:
+    CCArray * array = CCArray::create();
+    CPtChapter * chapter = NULL;
+    CPtExpandableListViewItem * item = NULL;
+    
+    CCArray * sections = getSectionItem(getSections(m_nCurrentChaptetIndex, m_nCurrentSectionId));
+    
+    for (int i = 0; i <chapters->count(); i++)
+    {
+        item = CPtExpandableListViewItem::create();
+        chapter = (CPtChapter *) chapters->objectAtIndex(i);
+        if (chapter)
+        {
+            item->setDisplayView(createItemViewByType(chapter->getChapterName().c_str()));
+            item->setHandler(this, callfuncO_selector(CBiforestLayer::setNormal), callfuncO_selector(CBiforestLayer::setSelected), callfuncO_selector(CBiforestLayer::getChildren));
+            item->setIndex(i);
+        }
+        if (i == m_nCurrentChaptetIndex)
+        {
+            item->setChildrenItem(sections);
+            item->setSelected();
+        }
+        array->addObject(item);
+    }
+
+    return array;
+}
+
+void CBiforestLayer::initPanel()
+{
+    if (m_eExploartionType == NORMALEXPLORATION)
+    {
+        initNormalPanel();
+    }else
+    {
+        initActivityPanel();
+    }
+    
+    CPtExpandableListViewItemList * expandList = CPtExpandableListViewItemList::create();
+    expandList->setListViewItems(getDispLayerData());
+    expandList->setWhichOneOpen(m_nCurrentChaptetIndex);
+    
+    CPtExpandableListView*  leftPanel = CPtExpandableListView::create(expandList, CCSizeMake(246, 515),  CCSizeMake(0.0f, 0.0f));
+    leftPanel->getTabelView()->setDelegate(this);
+    leftPanel->getTabelView()->setTouchPriority(-300);
+    leftPanel->setPosition(ccp(220, 135));
+    leftPanel->getTabelView()->setTouchPriority(-200);
+    m_cMaps->getElementByTags("2,0")->addChild(leftPanel, 10);
+    m_pListView = leftPanel;
+    
+    initRightPanel(m_nCurrentChaptetIndex);
+    updatePanel(m_nCurrentChaptetIndex, m_nCurrentSectionIndex);
+    
+}
 
 
-void CBiforestLayer::initRightPanel(int inMaxChapterId)
+void CBiforestLayer::initActivityPanel()
+{
+    m_nCurrentChapterId = ACTIVITYCHAPTERID;
+    m_nCurrentChaptetIndex = 0;
+    m_nCurrentSectionIndex = -1;
+    
+}
+
+void CBiforestLayer::initNormalPanel()
+{
+    m_nCurrentChapterId = m_nMaxChapterId;
+    m_nCurrentChaptetIndex = (m_nMaxChapterId - BASEVALUE )/INTERVALVALUE;
+    m_nCurrentSectionId = m_nMaxSectionId;
+
+}
+
+
+void CBiforestLayer::initRightPanel(int inCurrentChapterIndex)
 {
     int array[]={2,0,7};
-    
-    CPtChapter * chapter = (CPtChapter*)m_pChapters->objectAtIndex(inMaxChapterId);
+    CPtChapter * chapter = getChapterByIndex(inCurrentChapterIndex);
     m_sPicName =  chapter->getChapterPicName();
     CCLog("---%s",chapter->getChapterTipid().c_str());
     m_sTips = Utility::getWordWithFile("dictionary.plist", chapter->getChapterTipid().c_str());
@@ -236,53 +368,6 @@ void CBiforestLayer::initRightPanel(int inMaxChapterId)
 }
 
 
-CCArray * CBiforestLayer::getChapterItem()
-{
-    CCArray * array = CCArray::create();
-    CPtChapter * chapter = NULL;
-    CPtTableItem * item = NULL;
-
-    for (int i = 0; i <m_pChapters->count(); i++)
-    {
-        item = CPtTableItem::create();
-        chapter = (CPtChapter *) m_pChapters->objectAtIndex(i);
-        if (chapter)
-        {
-              item->setDisplayView(createItemView(chapter->getChapterName().c_str()));
-        }
-        array->addObject(item);
-    }
-    return array;
-}
-
-CCArray * CBiforestLayer::getSectionItem()
-{
-    CCArray* sections = CCArray::create();
-    CPtSection * section = NULL;
-    
-    for (int i = 0; i <m_pSections->count(); i++)
-    {
-       CPtExpandableListViewItem*  item = CPtExpandableListViewItem::create();
-        section = (CPtSection *) m_pSections->objectAtIndex(i);
-        if (section)
-        {
-            item->setDisplayView(createItemViewByType(section->getSectionName().c_str(), CHILDRENT_TYPE));
-            item->setHandler(this, callfuncO_selector(CBiforestLayer::setNormal), callfuncO_selector(CBiforestLayer::setSelected), NULL);
-            item->setIndex(i);
-            item->setItemType(CHILDRENT_TYPE);
-            if (i == m_pSections->count()-1)
-            {
-                item->setSelected();
-                m_nCurrentSectionIndex = i;
-            }
-        }
-        sections->addObject(item);
-    }
- 
-    
-    return sections;
-    
-}
 
 CCNode * CBiforestLayer::createItemView(const char* const inTitle)
 {
@@ -294,11 +379,13 @@ CCNode * CBiforestLayer::createItemView(const char* const inTitle)
 }
 
 
-void CBiforestLayer::updatePanel(int inChapterIndex, int inSectionId)
+void CBiforestLayer::updatePanel(int inChapterIndex, int inSectionIndex)
 {
-    if (inSectionId == -1)
+    CCArray *chapters = getChaptersByType(m_eExploartionType);
+    CCAssert(inChapterIndex < chapters->count(), "chapter two more");
+    if (inSectionIndex == -1)
     {
-        CPtChapter * chapter = (CPtChapter*)m_pChapters->objectAtIndex(inChapterIndex);
+        CPtChapter * chapter = (CPtChapter*)chapters->objectAtIndex(inChapterIndex);
         m_sPicName =  chapter->getChapterPicName();
         m_sTips = Utility::getWordWithFile("dictionary.plist",chapter->getChapterTipid().c_str());
         m_bGoneVisiable = false;
@@ -306,12 +393,19 @@ void CBiforestLayer::updatePanel(int inChapterIndex, int inSectionId)
     }
     else
     {
-        CPtSection* section =  (CPtSection*) ((CPtChapter*)(m_pChapters->objectAtIndex(inChapterIndex)))->getSections()->getSectionByIndex(inSectionId);
+        CPtSection* section  = NULL;
+        if (m_eExploartionType == ACTIVITYEXPLORATION)
+        {
+            section =(CPtSection*) getActivitySections()->objectAtIndex(inSectionIndex);
+        }else
+        {
+          section  =  (CPtSection*) ((CPtChapter*)(chapters->objectAtIndex(inChapterIndex)))->getSections()->getSectionByIndex(inSectionIndex);
+        }
         
         m_sPicName =  section->getSectionPicName();
         m_sTips = Utility::getWordWithFile("dictionary.plist",section->getTipId().c_str());
         m_bGoneVisiable = true;
-        m_nCurrentSectionId =  section->getSectionId();
+        m_nCurrentSectionId = section->getSectionId();
         
     }
     
@@ -331,36 +425,6 @@ void CBiforestLayer::updateRightPanelUI()
 
 
 
-void CBiforestLayer::getChapters(int inMaxChapterId)
-{
-     CPtChapterConfigData * chapters =  SingleCPtChapters::instance();
-     CC_SAFE_RELEASE(m_pChapters);
-     m_pChapters = chapters->getOpenChapter(inMaxChapterId);
-     m_pChapters->retain();
-    
-}
-
-void CBiforestLayer::getSections(int inSelectedChapterIndex, int inMaxSectionId)
-{
-    if (inMaxSectionId == -1)
-    {
-        CC_SAFE_RELEASE(m_pSections);
-        m_pSections = ((CPtChapter*)m_pChapters->objectAtIndex(inSelectedChapterIndex))->getSections()->getSectionByOrder();
-        m_nCurrentChaptetIndex = inSelectedChapterIndex;
-        m_pSections->retain();
-        return;
-    }
-    
-    if (inSelectedChapterIndex >= 0 && inSelectedChapterIndex <= m_pChapters->count())
-    {
-        CC_SAFE_RELEASE(m_pSections);
-        m_pSections = ((CPtChapter*)m_pChapters->objectAtIndex(inSelectedChapterIndex))->getSections()->getSectionsBeforeId(inMaxSectionId);
-        m_pSections->retain();
-        m_nCurrentChaptetIndex = inSelectedChapterIndex;
-    }
-    
-}
-
 
 void CBiforestLayer::handlerTouch()
 {
@@ -378,7 +442,16 @@ void CBiforestLayer::handlerTouch()
             }
 
             break;
-            
+        case 2006:
+            if (m_eExploartionType == NORMALEXPLORATION)
+            {
+                switchExplorationType(ACTIVITYEXPLORATION);
+            }
+            else
+            {
+                switchExplorationType(NORMALEXPLORATION);
+            }
+            break;
         default:
             break;
     }
@@ -398,6 +471,20 @@ bool CBiforestLayer::canGoSection()
         {
             break;
         }
+        if (m_eExploartionType == ACTIVITYEXPLORATION && m_pActivitySections)
+        {
+           
+            if (m_nCurrentSectionIndex < m_pActivitySections->count())
+            {
+                CActivityEncounter *encounter = (CActivityEncounter*) m_pActivityEncounterInfo->objectAtIndex(m_nCurrentSectionIndex);
+                if (encounter && encounter->haveTime()==false)
+                {
+                  
+                    CCMessageBox(CCString::createWithFormat("活动：%d :近日的次数已经用完了", encounter->getSectionInfo()->getSectionId())->getCString(), "活动副本");
+                    break;
+                }
+            }
+        }
         bRet = true;
     } while (0);
     return bRet;
@@ -406,13 +493,22 @@ void CBiforestLayer::onClickGoSection()
 {
     // constructor post data:
     //api.php?m=Part&a=getPartEvent&uid=194(用户ID)&sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)&chapter_id=1(章)&part_id=1(节)
-    
-    m_nCurrentChapterId = m_nCurrentChaptetIndex*INTERVALVALUE + BASEVALUE;
+    if (m_eExploartionType == NORMALEXPLORATION)
+    {
+        m_nCurrentChapterId = m_nCurrentChaptetIndex*INTERVALVALUE + BASEVALUE;
+    }else
+    {
+        m_nCurrentChapterId = ACTIVITYCHAPTERID;
+    }
+
     // first detected can go:
     if (!canGoSection())
     {
         CCLog("error:can go section:");
+        return;
     }
+    
+    m_bSendRequest = true;
     CCLog("the chapter id : %d, the section Id: %d", m_nCurrentChapterId, m_nCurrentSectionId);
     char buffer[200]={0};
     sprintf(buffer, "sig=%s&chapter_id=%d&part_id=%d",STR_USER_SIG, m_nCurrentChapterId, m_nCurrentSectionId);
@@ -435,6 +531,7 @@ void CBiforestLayer::onReceiveGoSectionMsg(CCObject *pObject)
     {
         CCLog("error: connect server");
     }
+    m_bSendRequest = false;
    
 }
 void CBiforestLayer::onParseGoSectionMsgByDictionary(CCDictionary * inDataDictionary)
@@ -444,13 +541,18 @@ void CBiforestLayer::onParseGoSectionMsgByDictionary(CCDictionary * inDataDictio
     {
          // init:
          CCDictionary *tmp = (CCDictionary*)inDataDictionary->objectForKey("result");
-         CExploration::setCurrentStep(GameTools::intForKey("step", tmp));
-         EVENTDATA eventData =  dispatchEventWithType((CCDictionary*)tmp->objectForKey("event_info"));
-         CExploration::setEvents(eventData);
-         CPtSection* tempPtSection= (CPtSection*)((CPtChapter*)m_pChapters->objectAtIndex(m_nCurrentChaptetIndex))->getSections()->getSectionById(m_nCurrentSectionId);
-         CExploration::setExplorationInfo(tempPtSection);
-         CPlayerBufferManager::getInstance()->clearAllAltarBufferes();
-         SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
+         if (tmp)
+         {
+             CExploration::setExplorationType(m_eExploartionType);
+             CExploration::setCurrentStep(GameTools::intForKey("step", tmp));
+             EVENTDATA eventData =  dispatchEventWithType((CCDictionary*)tmp->objectForKey("event_info"));
+             CExploration::setEvents(eventData);
+             CPtSection* tempPtSection= getChapterByIndex(m_nCurrentChaptetIndex)->getSections()->getSectionById(m_nCurrentSectionId);
+             CExploration::setExplorationInfo(tempPtSection);
+             CPlayerBufferManager::getInstance()->clearAllAltarBufferes();
+             SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
+         }
+         
         // success:
     }else
     {
@@ -503,58 +605,6 @@ void CBiforestLayer::loadResource()
 
 
 // test:
-void CBiforestLayer::initPanel()
-{
-    m_nCurrentChapterId = m_nMaxChapterId;
-    m_nCurrentChaptetIndex = (m_nMaxChapterId - BASEVALUE )/INTERVALVALUE;
-    m_nCurrentSectionId = m_nMaxSectionId;;
-    getChapters(m_nMaxChapterId);
-    getSections(m_nCurrentChaptetIndex, m_nMaxSectionId);
-    // get items:
-    CCArray * array = CCArray::create();
-    CPtChapter * chapter = NULL;
-    CPtExpandableListViewItem * item = NULL;
-    
-    CCArray * sections = getSectionItem();
-
-    for (int i = 0; i <m_pChapters->count(); i++)
-    {
-        item = CPtExpandableListViewItem::create();
-        chapter = (CPtChapter *) m_pChapters->objectAtIndex(i);
-        if (chapter)
-        {
-            item->setDisplayView(createItemViewByType(chapter->getChapterName().c_str()));
-            item->setHandler(this, callfuncO_selector(CBiforestLayer::setNormal), callfuncO_selector(CBiforestLayer::setSelected), callfuncO_selector(CBiforestLayer::getChildren));
-            item->setIndex(i);
-        }
-        if (i == m_nCurrentChaptetIndex)
-        {
-            item->setChildrenItem(sections);
-            item->setSelected();
-        }
-        array->addObject(item);
-    }
-    
-     CPtExpandableListViewItemList * expandList = CPtExpandableListViewItemList::create();
-     expandList->setListViewItems(array);
-     expandList->setWhichOneOpen(m_nCurrentChaptetIndex);
-
-
-
-
-    CPtExpandableListView*  leftPanel = CPtExpandableListView::create(expandList, CCSizeMake(246, 515),  CCSizeMake(0.0f, 0.0f));
-    leftPanel->getTabelView()->setDelegate(this);
-    leftPanel->getTabelView()->setTouchPriority(-300);
-    leftPanel->setPosition(ccp(220, 135));
-    leftPanel->getTabelView()->setTouchPriority(-200);
-    m_cMaps->getElementByTags("2,0")->addChild(leftPanel, 10);
-    m_pListView = leftPanel;
-    
-    initRightPanel(m_nCurrentChaptetIndex);
-    updatePanel(m_nCurrentChaptetIndex, m_nCurrentSectionIndex);
-    
-    
-}
 
 void CBiforestLayer::setNormal(CCObject *pObject)
 {
@@ -594,20 +644,22 @@ void CBiforestLayer::setSelected(CCObject *pObject)
 void CBiforestLayer::getChildren(CCObject* pObject)
 {
     CPtExpandableListViewItem* items = (CPtExpandableListViewItem*) pObject;
+    CCArray *sectionInfo = NULL;
     if (items && items->getItemType() == PARENT_TYPE)
     {
-        int chapterId = items->getIndex();
-        if(chapterId >= 0 && chapterId < m_pChapters->count())
+        int chapterIndex = items->getIndex();
+        
+        if(chapterIndex >= 0 && chapterIndex < getChaptersByType(m_eExploartionType, m_nMaxChapterId)->count())
         {
-            getSections(chapterId);
+           sectionInfo = getSections(chapterIndex);
             
             CCArray * sections = CCArray::create();
             CPtSection * section = NULL;
             
-            for (int i = 0; i <m_pSections->count(); i++)
+            for (int i = 0; i <sectionInfo->count(); i++)
             {
-               CPtExpandableListViewItem* item = CPtExpandableListViewItem::create();
-                section = (CPtSection *) m_pSections->objectAtIndex(i);
+                CPtExpandableListViewItem* item = CPtExpandableListViewItem::create();
+                section = (CPtSection *) sectionInfo->objectAtIndex(i);
                 if (section)
                 {
                     item->setDisplayView(createItemViewByType(section->getSectionName().c_str(), CHILDRENT_TYPE));
@@ -658,3 +710,275 @@ CCNode* CBiforestLayer::createItemViewByType(const char* inTitle,ITEM_TYPE inTyp
     return sprite;
  
 }
+
+
+void CBiforestLayer::switchExplorationType(EXPLORATIONTYPE inType)
+{
+    if (!m_bStartActivity)
+    {
+        goToAcitivityEncounter();
+        return;
+    }
+    m_eExploartionType = inType;
+    if (m_eExploartionType == NORMALEXPLORATION)
+    {
+        initNormalPanel();
+    }else
+    {
+        initActivityPanel();
+    }
+    CPtExpandableListViewItemList * expandList = CPtExpandableListViewItemList::create();
+    expandList->setListViewItems(getDispLayerData());
+    expandList->setWhichOneOpen(m_nCurrentChaptetIndex);
+    
+    bool first = m_pListView == NULL;
+    if (first)
+    {
+        m_pListView = CPtExpandableListView::create(expandList, CCSizeMake(246, 515),  CCSizeMake(0.0f, 0.0f));
+        m_pListView->getTabelView()->setDelegate(this);
+        m_pListView->getTabelView()->setTouchPriority(-300);
+        m_pListView->setPosition(ccp(220, 135));
+        m_pListView->getTabelView()->setTouchPriority(-200);
+        m_cMaps->getElementByTags("2,0")->addChild(m_pListView, 10);
+    }
+    CCSize size1 =  m_pListView->getTabelView()->getContentSize();
+    m_pListView->setItems(expandList);
+    m_pListView->getTabelView()->reloadData();
+    CCSize size2 =  m_pListView->getTabelView()->getContentSize();
+    CCPoint offset = m_pListView->getTabelView()->getContentOffset();
+    offset.y -= (size2.height- size1.height);
+    m_pListView->getTabelView()->setContentOffset(offset);
+    if (first)
+    {
+        initRightPanel(m_nCurrentChaptetIndex);
+       
+    }
+    updatePanel(m_nCurrentChaptetIndex, m_nCurrentSectionIndex);
+
+}
+CCArray * CBiforestLayer::getChaptersByType(EXPLORATIONTYPE inType, int inMaxChapterId /*=0*/)
+{
+    if (inType == NORMALEXPLORATION)
+    {
+        return getNormalChapters(inMaxChapterId);
+    }else
+    {
+        return getActivityChapters();
+    }
+}
+
+
+/*
+ *  @breif : 获得当前开启得所有章
+ */
+
+CCArray* CBiforestLayer::getNormalChapters(int inMaxChapterId)
+{
+    if (m_pNormalChapters == NULL)
+    {
+        CPtChapterConfigData * chapters =  SingleCPtChapters::instance();
+        m_pNormalChapters = chapters->getOpenChapter(inMaxChapterId);
+        m_pNormalChapters->retain();
+    }
+    return m_pNormalChapters;
+}
+
+CCArray* CBiforestLayer::getActivityChapters()
+{
+    if (m_pActivityChapters == NULL)
+    {
+        m_pActivityChapters =  CCArray::create();
+        m_pActivityChapters->retain();
+        CPtChapterConfigData * chapters =  SingleCPtChapters::instance();
+        m_pActivityChapters->addObject(chapters->getAcitivityChapter());
+    }
+    return m_pActivityChapters;
+}
+
+CCArray * CBiforestLayer::getSections(int inSelectedChapterIndex, int inMaxSectionId)
+{
+    if (m_eExploartionType == NORMALEXPLORATION)
+    {
+        return getNormalSections(inSelectedChapterIndex, inMaxSectionId);
+    }
+    else
+    {
+        return getActivitySections();
+    }
+    return NULL;
+}
+
+/*
+ * @breif:获取所选章的节
+ */
+CCArray* CBiforestLayer::getNormalSections(int inSelectedChapterIndex, int inMaxSectionId)
+{
+    if (inMaxSectionId == -1)
+    {
+        CC_SAFE_RELEASE(m_pNormalSections);
+        m_pNormalSections = ((CPtChapter*)m_pNormalChapters->objectAtIndex(inSelectedChapterIndex))->getSections()->getSectionByOrder();
+        m_nCurrentChaptetIndex = inSelectedChapterIndex;
+        m_pNormalSections->retain();
+        
+    }else
+    {
+        if (inSelectedChapterIndex >= 0 && inSelectedChapterIndex <= m_pNormalChapters->count())
+        {
+            CC_SAFE_RELEASE(m_pNormalSections) ;
+            m_pNormalSections = ((CPtChapter*)m_pNormalChapters->objectAtIndex(inSelectedChapterIndex))->getSections()->getSectionsBeforeId(inMaxSectionId);
+            m_pNormalSections->retain();
+            m_nCurrentChaptetIndex = inSelectedChapterIndex;
+        }
+    }
+    
+   
+    return m_pNormalSections;
+}
+
+CCArray* CBiforestLayer::getActivitySections()
+{
+
+    if (m_pActivitySections == NULL)
+    {
+        m_pActivitySections = CCArray::create();
+        if (m_pActivityEncounterInfo)
+        {
+            CCObject *pObject = NULL;
+            CCARRAY_FOREACH(m_pActivityEncounterInfo, pObject)
+            {
+                m_pActivitySections->addObject(((CActivityEncounter*)pObject)->getSectionInfo());
+            }
+        }
+       // m_pActivitySections = ((CPtChapter*)m_pActivityChapters->objectAtIndex(0))->getSections()->getSectionByOrder();
+        m_nCurrentChaptetIndex = 0;
+        m_pActivitySections->retain();
+    }
+    return m_pActivitySections;
+    
+}
+
+CCArray * CBiforestLayer::getChapterItem()
+{
+    CCArray * array = CCArray::create();
+    CPtChapter * chapter = NULL;
+    CPtTableItem * item = NULL;
+    CCArray *chapters = getChaptersByType(m_eExploartionType);
+    for (int i = 0; i <chapters->count(); i++)
+    {
+        item = CPtTableItem::create();
+        chapter = (CPtChapter *) chapters->objectAtIndex(i);
+        if (chapter)
+        {
+            item->setDisplayView(createItemView(chapter->getChapterName().c_str()));
+        }
+        array->addObject(item);
+    }
+    return array;
+}
+
+CCArray * CBiforestLayer::getSectionItem(CCArray *inSectionInfo)
+{
+    if (inSectionInfo == NULL)
+    {
+        return NULL;
+    }
+    CCArray* sections = CCArray::create();
+    CPtSection * section = NULL;
+    bool selected = false;
+    for (int i = 0; i <inSectionInfo->count(); i++)
+    {
+        CPtExpandableListViewItem*  item = CPtExpandableListViewItem::create();
+        section = (CPtSection *) inSectionInfo->objectAtIndex(i);
+        if (section)
+        {
+            item->setDisplayView(createItemViewByType(section->getSectionName().c_str(), CHILDRENT_TYPE));
+            item->setHandler(this, callfuncO_selector(CBiforestLayer::setNormal), callfuncO_selector(CBiforestLayer::setSelected), NULL);
+            item->setIndex(i);
+            item->setItemType(CHILDRENT_TYPE);
+            if (!selected)
+            {
+                if(m_nCurrentSectionId != -1 && section->getSectionId() == m_nCurrentSectionId)
+                {
+                    item->setSelected();
+                    m_nCurrentSectionIndex = i;
+                    selected = true;
+                    sections->addObject(item);
+                    continue;
+                }
+                if (i == inSectionInfo->count()-1)
+                {
+                    item->setSelected();
+                    m_nCurrentSectionIndex = i;
+                    selected = true;
+                }
+
+                
+               
+            }
+            
+        }
+        sections->addObject(item);
+    }
+    return sections;
+    
+}
+
+CPtChapter * CBiforestLayer::getChapterByIndex(int inIndex)
+{
+    if(m_eExploartionType == NORMALEXPLORATION)
+    {
+        return (CPtChapter*)m_pNormalChapters->objectAtIndex(inIndex);
+    }else
+    {
+        return (CPtChapter*)m_pActivityChapters->objectAtIndex(inIndex);
+    }
+}
+
+
+// connect with server:
+
+void CBiforestLayer::onSendRequestGetActivity()
+{
+    m_bSendRequest = true;
+    char buffer[150] = {0};
+    sprintf(buffer, "&sig=%s", STR_USER_SIG);
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GETACTIVITY(196),  "CALLBACK_CBiforestLayer::onSendRequestGetActivity","REQUEST_CBiforestLayer::onSendRequestGetActivity",buffer, callfuncO_selector(CBiforestLayer::onReceiveMsgGetActivity));
+
+}
+
+void CBiforestLayer::onReceiveMsgGetActivity(CCObject* pObject)
+{
+    m_bStartActivity = true;
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CBiforestLayer::onSendRequestGetActivity");
+    CC_SAFE_RELEASE_NULL(m_pActivityEncounterInfo);
+    char *buffer = (char*) pObject;
+    if (buffer)
+    {
+        CCLog("CBiforestLayer::onReceiveMsgGetActivity: %s",buffer);
+        CCDictionary * resultDict = PtJsonUtility::JsonStringParse(buffer);
+        delete [] buffer;
+        if (resultDict)
+        {
+            int code = GameTools::intForKey("code", resultDict);
+            if (code == 0)
+            {
+                resultDict = (CCDictionary*)resultDict->objectForKey("result");
+                if (resultDict)
+                {
+                   m_pActivityEncounterInfo = m_pActivityEncounterManager->getCurrentActivityByDict((CCDictionary*)resultDict->objectForKey("activity_part"));
+                   m_pActivityEncounterInfo->retain();
+                   switchExplorationType(ACTIVITYEXPLORATION);
+                }
+            }
+        }
+    }
+    m_bSendRequest = false;
+
+}
+
+
+void CBiforestLayer::goToAcitivityEncounter()
+{
+    onSendRequestGetActivity();
+}
+

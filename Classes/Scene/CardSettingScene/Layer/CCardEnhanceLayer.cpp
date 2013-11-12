@@ -532,10 +532,9 @@ void CCardEnhanceLayer:: save()
     m_pPlayer->subCoin(m_nCostConin);
     m_nCostConin = 0;
     
-    vector<CFightCard *> &r_CardBag = m_pPlayer->getCardBagVector();
     CCArray * array = m_pCardBag->getItems();
-    list<int> ids;
-
+    vector<int> ids;
+    list<int> indexes;
     
     CBattleArrayLayer *parent =(CBattleArrayLayer*) getParent();
     CPtDisPlayCard *preCardManifier = parent->getPreCardManifier();
@@ -544,24 +543,23 @@ void CCardEnhanceLayer:: save()
     {
         if (m_pMaterialCards[i])
         {
-            index = m_pMaterialCards[i]->getIndex();
+            index = m_pMaterialCards[i]->getCardData()->m_User_Card_ID;//getIndex();
             ids.push_back(index);
-            
+            indexes.push_back(m_pMaterialCards[i]->getIndex());
             if(preCardManifier &&preCardManifier->getCardData() == m_pMaterialCards[i]->getCardData())
             {
                 parent->setPreCardManifier(NULL);
             }
         }
     }
-    ids.sort();
-    for (std::list<int>::reverse_iterator i = ids.rbegin(); i != ids.rend(); i++)
+    m_pPlayer->deleteFromCardBag(ids);
+    
+    indexes.sort();
+    for (std::list<int>::reverse_iterator i = indexes.rbegin(); i != indexes.rend(); i++)
     {
         index = *i;
         CCLog("index:%d",index);
         array->removeObjectAtIndex(index);
-        std::vector<CFightCard*>::iterator j = r_CardBag.begin()+index;
-        delete *j;
-        r_CardBag.erase(j);
     }
     
     
@@ -652,3 +650,5 @@ void CCardEnhanceLayer::receiveCallBack(CCObject *pSender)
     delete [] buffer;
 
 }
+
+

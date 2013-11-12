@@ -417,21 +417,27 @@ bool CFightingCardLayerLogic::checkSendZengfu()
 void CFightingCardLayerLogic::appendUpdateBuffer()
 {
     
-    if(m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.size()==0&& m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.size()==0)
+    if((m_vFightingCard[m_iFightCardIndex] && m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.size()==0 )&& m_vMonsterCard[m_iMonsterCardIndex]&& m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.size()==0)
     {
         m_tempGamePlayer->appendCFightCardFightingBuffer(NULL);
         return;
     }
     
     CFightCardFightingBuffer *fightBuffer=new CFightCardFightingBuffer;
-    for (list<CCardBufferStatusRefactor *>::iterator itAfter=m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.begin(); itAfter!=m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.end(); itAfter++)
+    if (m_vFightingCard[m_iFightCardIndex])
     {
-        fightBuffer->append((*itAfter)->m_iEffectid, (*itAfter)->m_iKeepTime, true);
+        for (list<CCardBufferStatusRefactor *>::iterator itAfter=m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.begin(); itAfter!=m_vFightingCard[m_iFightCardIndex]->m_vlistBuffer.end(); itAfter++)
+        {
+            fightBuffer->append((*itAfter)->m_iEffectid, (*itAfter)->m_iKeepTime, true);
+        }
     }
-    for (list<CCardBufferStatusRefactor *>::iterator itAfter=m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.begin(); itAfter!=m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.end(); itAfter++)
-    {
-        fightBuffer->append((*itAfter)->m_iEffectid, (*itAfter)->m_iKeepTime, false);
+    if (m_vMonsterCard[m_iMonsterCardIndex]) {
+        for (list<CCardBufferStatusRefactor *>::iterator itAfter=m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.begin(); itAfter!=m_vMonsterCard[m_iMonsterCardIndex]->m_vlistBuffer.end(); itAfter++)
+        {
+            fightBuffer->append((*itAfter)->m_iEffectid, (*itAfter)->m_iKeepTime, false);
+        }
     }
+   
     m_tempGamePlayer->appendCFightCardFightingBuffer(fightBuffer);
     
 }

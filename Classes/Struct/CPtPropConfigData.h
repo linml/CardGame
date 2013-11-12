@@ -17,6 +17,8 @@ using namespace cocos2d;
 #define EXPID 900000
 #define COINSID 900001
 #define NOPROPIDEND 900999
+#define CANGETCARDIDBEGIN 900500
+#define CANGETCARDIDEND   901499
 
 class CPtProp : public CCObject
 {
@@ -28,10 +30,7 @@ public:
     CC_SYNTHESIZE(int, m_nPropType, PropType);
     CC_SYNTHESIZE(int, m_nUnLockLevel, UnLockLevel); //可能用到 的时候到达某个等级后显示该道具
     CC_SYNTHESIZE(int, m_nUseDelete, UseDelete);    //使用跟删除
-    CC_SYNTHESIZE(int, m_nCoin, Coin);              //
-    CC_SYNTHESIZE(int, m_nCash, Cash);
     CC_SYNTHESIZE(int, m_nUseId, UseId);            //!<
-    CC_SYNTHESIZE(int, m_nSellCoin, SellCoin);
     CC_SYNTHESIZE(std::string, m_strIconName, IconName);
     CC_SYNTHESIZE(int, m_nLimitNum, LimitNum);
     CC_SYNTHESIZE(int, m_nIsOnly, IsOnlyNum);
@@ -58,16 +57,13 @@ public:
     
     map<int, CPtProp*> &getProps(){return m_pAllProps;};
     
-    bool isCanGoBackPackById(int inPropId){return (inPropId >= EXPID && inPropId < NOPROPIDEND);};
-    
+    bool isCanGoBackPackById(int inPropId){return (inPropId >= EXPID && inPropId <= NOPROPIDEND);};
+    bool isCanGetCardById(int inPropId){return inPropId >= CANGETCARDIDBEGIN && inPropId <= CANGETCARDIDEND;};
     CC_SYNTHESIZE_READONLY(std::string, m_strPropName, PropName);
     CC_SYNTHESIZE_READONLY(int, m_nPropType, PropType);
     CC_SYNTHESIZE_READONLY(int, m_nUnLockLevel, UnLockLevel);
     CC_SYNTHESIZE_READONLY(int, m_nUseDelete, UseDelete);
-    CC_SYNTHESIZE_READONLY(int, m_nCoin, Coin);
-    CC_SYNTHESIZE_READONLY(int, m_nPrice, Price);
     CC_SYNTHESIZE_READONLY(int, m_nUseId, UseId);
-    CC_SYNTHESIZE_READONLY(int, m_nSellCoin, SellCoin);
     CC_SYNTHESIZE_READONLY(std::string, m_strIconName, IconName);
     CC_SYNTHESIZE_READONLY(int, m_nLimitNum, LimitNum);
     CC_SYNTHESIZE_READONLY(int, m_nIsOnly, IsOnlyNum);

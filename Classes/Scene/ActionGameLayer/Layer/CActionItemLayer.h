@@ -15,7 +15,7 @@
 #include <string>
 #include "CGameButtonControl.h"
 
-#define REWARDCOUNT 3
+
 using namespace std;
 using namespace cocos2d;
 class CStructGameActionData;
@@ -41,15 +41,20 @@ protected:
     
     void recoverButtons(CCTouch *pTouch);
     
-    void handlerGoEncounter(CCTouch *pTouch);
-    void handlerGetReward(CCTouch *pTouch);
-    void handlerGoRecharge(CCTouch *pTouch);
+    void handlerGoEncounter();
+    void handlerGetReward();
+    void handlerGoRecharge();
     
     int isTouchEvent(CCTouch *pTouch, int inType);
     
     void onClickGoEncounter();
     void onClickGoRecharge();
     void onClickGetItems(int inItemId);
+    
+    // connect with server:
+    void onSendGetItemRequest(int inItemId);
+    void onReceiveGetItemMsg(CCObject* pObject);
+    
 private:
     void createHead(string strHead);//创建一个 标题
     void createContext(string  strContext);//创建一个内容
@@ -58,9 +63,11 @@ private:
     void createFuben(CStructGameActionData *data);
     void createChongZhi(CStructGameActionData *data);
 protected:
+    
     int m_nTouchTag;
+    int m_nRewardButtonCount;
     CGameButtonControl *m_pSingleButton;
-    CGameButtonControl *m_pRewardButtons[REWARDCOUNT];
+    CGameButtonControl **m_pRewardButtons;
 private:
     CCSize size;
     CStructGameActionData *m_pData;

@@ -137,7 +137,11 @@
 //图鉴借口
 #define STR_URL_ATLAS(UID)          URL_FACTORY("api.php?m=atlas&a=atlas&uid=",UID)
 
+//获得活动中的奖品
+#define STR_URL_GETREWARDITEM(UID)  URL_FACTORY("api.php?m=Activity&a=getActivityItem&uid=",UID)
 
+//获得活动副本的信息
+#define STR_URL_GETACTIVITY(UID) URL_FACTORY("api.php?m=Part&a=getActivityPart&uid=",UID)
 
 
 

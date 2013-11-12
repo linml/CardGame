@@ -17,7 +17,8 @@
 #define INVALID 0
 #define BASEVALUE 300000
 #define INTERVALVALUE 100
-
+#define ACTIVITYCHAPTERID 309900
+const std::string activityfile = "activity_partlist.plist";
 using namespace cocos2d;
 
 typedef struct
@@ -31,9 +32,6 @@ class CPtSection : public CCObject
 public:
     static CPtSection* create();
 public:
-    
-    void setTriggers(const char * string);
-    const vector<int>& getTriggers();
     
     CC_SYNTHESIZE(int, m_nSectionId, SectionId);              // 小节Id
     CC_SYNTHESIZE(std::string, m_sSectionName, SectionName);  //小节名称
@@ -67,6 +65,8 @@ class CPtSectionConfigData : public CCObject
 {
 public:
     static CPtSectionConfigData* create(int inChapterId);
+    static CPtSectionConfigData* create(const char *fileName);
+    static CPtSectionConfigData* createActivitySectionConfigData();
     CPtSectionConfigData(CCDictionary *inSectionDictionary);
     virtual ~CPtSectionConfigData();
     CPtSection *getSectionById(int inSectionId);
@@ -86,6 +86,7 @@ public:
     CPtSectionManager();
     virtual ~CPtSectionManager();
     CPtSectionConfigData * getSectionByChapterId(int inChapterId);
+    CPtSectionConfigData * getActivitySections();
 protected:
   //  std::map<int, CPtSectionConfigData*> m_cSections;
     CCDictionary *m_pSections;
@@ -127,12 +128,14 @@ public:
     CPtChapterConfigData();
     virtual ~CPtChapterConfigData();
     CCArray *getOpenChapter(int inMaxId);
-    CPtChapter *getChapterById(int inChapterId);
+    CPtChapter *getAcitivityChapter();
+   
 protected:
     void loadChapterConifg();
-    
+     CPtChapter *getChapterById(int inChapterId);
 protected:
     CCDictionary* m_pChapters;
+protected:
     
 
 };

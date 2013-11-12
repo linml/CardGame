@@ -26,7 +26,8 @@ enum  EN_CURRSCENE
     EN_CURRSCENE_FIGHTSCENE,
     EN_CURRSCENE_HALLSCENE,
     EN_CURRSCENE_LOGINSCENE,
-    EN_CURRSCENE_CARDSETTINGSCENE
+    EN_CURRSCENE_CARDSETTINGSCENE,
+    EN_CURRSCENE_HELLOWORLD
     
 };
 class SceneManager
@@ -48,6 +49,7 @@ private:
     void runHallScene(int inOpenType = 0);
     void runCardSettingScene(int inLastSceneTag = 0);
     void runSceneAnimation(CCScene *tagerScene);
+    void runHelloWorldScene();
     //test
 public:
     void runTest();

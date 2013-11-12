@@ -18,34 +18,30 @@ CPtSection* CPtSection::create()
     return section;
 }
 
-void CPtSection::setTriggers(const char * string)
-{
-    m_cTriggers.clear();
-    vector<std::string> tmp = GameTools::splitString(string, ",");
-    for (int i = 0; i < tmp.size(); i++)
-    {
-        m_cTriggers.push_back(atoi(tmp.at(i).c_str()));
-    }
-    
-}
-const vector<int>& CPtSection::getTriggers()
-{
-    return m_cTriggers;
-}
 
 // implement class of CPtSectionConfigData
 
+CPtSectionConfigData* CPtSectionConfigData::create(const char *fileName)
+{
+    CCDictionary * tmp = NULL;
+    tmp = CCDictionary::createWithContentsOfFile(fileName);
+    CPtSectionConfigData * data = new CPtSectionConfigData(tmp);
+    data->autorelease();
+    return data;
+
+}
 CPtSectionConfigData* CPtSectionConfigData::create(int inChapterId)
 {
 
     inChapterId = (inChapterId -BASEVALUE )/100+1;
-    CCDictionary * tmp = NULL;
     char buff[150]={0};
     sprintf(buff, "%s_%d.plist", CSTR_FILEPTAH(g_chapterPath, "partlist"), inChapterId);
-    tmp = CCDictionary::createWithContentsOfFile(buff);
-    CPtSectionConfigData * data = new CPtSectionConfigData(tmp);
-    data->autorelease();
-    return data;
+    return create(buff);
+}
+
+CPtSectionConfigData* CPtSectionConfigData::createActivitySectionConfigData()
+{
+    return create( CSTR_FILEPTAH(g_chapterPath, activityfile.c_str()));
 }
 
 CPtSectionConfigData::CPtSectionConfigData(CCDictionary* inSectionDictionary)
@@ -91,7 +87,6 @@ void CPtSectionConfigData::loadSectionDataByChapter(cocos2d::CCDictionary *inSec
             tmpSection->setEndBounsMoney(GameTools::intForKey("endbouns_money",tmpValue));
             tmpSection->setTaskId(GameTools::intForKey("mission_id", tmpValue));
             tmpSection->setRandomEventId(GameTools::intForKey("randomevent_id", tmpValue));
-            tmpSection->setTriggers(GameTools::valueForKey("trigger_id", tmpValue));
             
             m_pIdToSequence->setObject(CCInteger::create(tmpSection->getSequence()),tmpSection->getSectionId());
             m_pSectionsInChapter->setObject(tmpSection, tmpSection->getSequence());
@@ -179,15 +174,37 @@ CPtSectionConfigData * CPtSectionManager::getSectionByChapterId(int inChapterId)
     CPtSectionConfigData * tmp = (CPtSectionConfigData*) m_pSections->objectForKey(inChapterId);
     if (tmp == NULL)
     {
-         tmp = CPtSectionConfigData::create(inChapterId);
+        CCLog("inChapterId:%d",inChapterId);
+        if (inChapterId >= ACTIVITYCHAPTERID)
+        {
+            tmp = CPtSectionConfigData::createActivitySectionConfigData();
+        }else
+        {
+            tmp = CPtSectionConfigData::create(inChapterId);
+        }
+ 
          if (tmp)
          {
              m_pSections->setObject(tmp, inChapterId);
-        }
+         }
     }
 
     return tmp;
+}
+
+CPtSectionConfigData *CPtSectionManager::getActivitySections()
+{
+    CPtSectionConfigData * tmp = (CPtSectionConfigData*) m_pSections->objectForKey(ACTIVITYCHAPTERID);
+    if (tmp == NULL)
+    {
+        tmp = CPtSectionConfigData::createActivitySectionConfigData();
+        if (tmp)
+        {
+            m_pSections->setObject(tmp, ACTIVITYCHAPTERID);
+        }
+    }
     
+    return tmp;
 }
 
 // implement class of CPtChapter
@@ -262,7 +279,10 @@ CPtChapterConfigData::~CPtChapterConfigData()
 
 CCArray * CPtChapterConfigData::getOpenChapter(int inMaxId)
 {
-    
+    if(inMaxId == ACTIVITYCHAPTERID)
+    {
+        return NULL;
+    }
     
     if ((inMaxId-BASEVALUE)/INTERVALVALUE + 1 > m_pChapters->count())
     {
@@ -285,19 +305,17 @@ CCArray * CPtChapterConfigData::getOpenChapter(int inMaxId)
 
 }
 
+CPtChapter * CPtChapterConfigData::getAcitivityChapter()
+{
+    return getChapterById(ACTIVITYCHAPTERID);
+}
+
 CPtChapter * CPtChapterConfigData::getChapterById(int inChapterId)
 {
-    if (inChapterId > m_pChapters->count())
-    {
-        return NULL;
-    }else
-    {
+    
+    CPtChapter * chapter= (CPtChapter*) m_pChapters->objectForKey(inChapterId);
 
-        CPtChapter * chapter= (CPtChapter*) m_pChapters->objectForKey(inChapterId);
-
-        return chapter;
-    }
-
+    return chapter;
 }
 
 void CPtChapterConfigData::loadChapterConifg()

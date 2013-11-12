@@ -13,6 +13,7 @@
 
 #include "cocos2d.h"
 #include "LayoutLayer.h"
+#include "AsgardLayer.h"
 
 
 #define HALL_TOUCH_PRORITY (-1)
@@ -39,6 +40,7 @@ public:
     void createEmailNumberUnread();
     void updateEmailNumber(CCObject *object);
     
+    CAsgardLayer* getAsgardLayer(){return m_pAsgardLayer;};
     
 protected:
     bool initHall(int inType = 0);
@@ -55,6 +57,7 @@ protected:
     int m_nTouchTag;
     CCSprite* m_touchSprite;
     LayoutLayer* m_cplist;
+    CAsgardLayer *m_pAsgardLayer;
     vector<TouchRect> m_cTouches;
     
 

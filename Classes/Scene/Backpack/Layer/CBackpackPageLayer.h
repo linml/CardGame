@@ -82,6 +82,8 @@ protected:
     void handlerPropBuffer(CCObject * inEffect);
     void addBufferByDict(CCDictionary *inItemEffectDict);
     
+    bool canUseItemById(int inPropId);
+    
     void reloadPage(multimap<int, int>::iterator inZeroInterator, vector<multimap<int, int>::iterator>::iterator inVectorIterator);
 protected:
     

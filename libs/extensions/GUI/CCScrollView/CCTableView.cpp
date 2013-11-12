@@ -488,6 +488,7 @@ bool CCTableView::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEven
      m_oldPoint =m_tTouchPoint;
     return flag;
 }
+
 void CCTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
     if (!this->isVisible()) {

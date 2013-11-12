@@ -80,7 +80,6 @@ void CPtPropUseEffectConfigData::loadDataFromFile()
          <key>tips</key>
          <string>907000</string>
          */
-        char buffer[80] = {0};
         CCDICT_FOREACH(tmp, element)
         {
             elementDict = (CCDictionary*) element->getObject();
@@ -89,21 +88,11 @@ void CPtPropUseEffectConfigData::loadDataFromFile()
                 PtPropUseEffectData *data = new PtPropUseEffectData();
                 int itemEffectId = GameTools::intForKey("item_effect_id", elementDict);
                 data->setItemEffectId(itemEffectId);
-                CCString *tmp = (CCString*) elementDict->objectForKey("plist");
-                if (tmp)
-                {
-                    sprintf(buffer, "%s", tmp->getCString());
-                    vector<string> plist = GameTools::splitArgString(buffer, ",");
-                    if (plist.size() == 2)
-                    {
-                        data->setSpecialEffect(plist.at(0));
-                        data->setIcon(plist.at(1));
-                    }else if(plist.size() == 1)
-                    {
-                        data->setSpecialEffect(plist.at(0));
-                    }
-                }
+                data->setSpecialEffect(GameTools::valueForKey("plist", elementDict));
+                data->setIcon(GameTools::valueForKey("pic", elementDict));
                 data->setItemEffectTipId(GameTools::intForKey("tips", elementDict));
+                data->setItemType(GameTools::intForKey("type", elementDict));
+                data->setItemTarget(GameTools::intForKey("target", elementDict));
                 m_cPropUseEffectContainer.insert(make_pair(itemEffectId, data));
                 
             }

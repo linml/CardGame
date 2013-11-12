@@ -18,6 +18,13 @@
 
 using namespace cocos2d;
 
+struct UserIdAndIndex
+{
+    UserIdAndIndex(int inIndex, int inUserId): index(inIndex), userId(inUserId){};
+    int index;
+    int userId;
+};
+
 class CCardEvolutionLayer : public CCLayer
 {
 public:
@@ -49,8 +56,10 @@ protected:
     void saveData();
     void receiveCallBack(CCObject *pSender);
     void clearProps();
-    
-    bool EnoughRvc();
+    bool hasMaterialCard(vector<int>& inSameCardIdContainer, int inCardId, int inSrcUserCardId);
+    bool enoughRvc();
+    void removeCardFromCardBag();
+    void getDeleteCards(vector<UserIdAndIndex> & inVector);
 protected:
 
     LayoutLayer *m_cMaps;
@@ -64,6 +73,9 @@ protected:
     
     CCLabelTTF *label[5];
     CCSprite *m_pPropBg[5];
+    vector<int> m_vSameCardIdContainer;
+    vector<UserIdAndIndex> m_vDeleteCard;
+    int m_nNeedCardNumber;
     
     CC_SYNTHESIZE(CPtListViewWidget*, m_pCardBag, CardBag);
     CFightCard * m_pFightCard;
@@ -71,14 +83,13 @@ protected:
     
     
     bool m_bPropEnough;
+    bool m_bCardEnough;
     int m_nTouchTag;
     int m_nCostCoin;
     int m_nAddAtk;
     int m_nAddRvc;
     int m_nAddDef;
     int m_nAddHp;
-    
-  
     
 };
 

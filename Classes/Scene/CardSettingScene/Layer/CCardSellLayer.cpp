@@ -300,10 +300,9 @@ void CCardSellLayer::restCardFlag()
 
 void CCardSellLayer::removeCardInCardBag()
 {
-    vector<CFightCard *> & r_CardBag = m_pPlayer->getCardBagVector();
     CCArray * arrayBag = m_pCardBag->getItems();
-    std::list<int> ids;
-    
+    std::vector<int> ids;
+    std::list<int> indexes;
     CPtBattleArrayItem * tmp = NULL;
     CCArray * array = m_pSellPackage->getItems();
     if (m_pSellPackage)
@@ -317,26 +316,27 @@ void CCardSellLayer::removeCardInCardBag()
             if (tmp && tmp->getDisplayView())
             {
                 CPtDisPlayCard * tmpCard = ((CPtDisPlayCard*)(tmp->getDisplayView()));
-               index = tmpCard->getIndex();
-               ids.push_back(index);
+                index = tmpCard->getCardData()->m_User_Card_ID;//tmpCard->getIndex();
+                ids.push_back(index);
+                indexes.push_back(tmpCard->getIndex());
                 if (preManifier && preManifier->getCardData() == tmpCard->getCardData())
                 {
                     parent->setPreCardManifier(NULL);
                 }
             }
         }
+        
+        m_pPlayer->deleteFromCardBag(ids);
 
-        ids.sort();
-
-        for (std::list<int>::reverse_iterator i = ids.rbegin(); i != ids.rend(); i++)
+        indexes.sort();
+        for (std::list<int>::reverse_iterator i = indexes.rbegin(); i != indexes.rend(); i++)
         {
             index = *i;
             CCLog("index:%d",index);
             arrayBag->removeObjectAtIndex(index);
-            std::vector<CFightCard*>::iterator j = r_CardBag.begin()+index;
-            delete *j;
-            r_CardBag.erase(j);
         }
+ 
+
  
         
         m_pCardBag->reload();

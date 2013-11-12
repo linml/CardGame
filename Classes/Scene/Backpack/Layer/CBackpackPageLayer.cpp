@@ -16,6 +16,8 @@
 #include "CGameDialogLayer.h"
 #include "gameMiddle.h"
 #include "CPlayerBufferManager.h"
+#include "CPtPropUseEffectConfigData.h"
+#include "gamePlayer.h"
 
 CBackpackPageLayer * CBackpackPageLayer::create()
 {
@@ -736,15 +738,67 @@ void CBackpackPageLayer::onReceiveOpenGridMsg(CCObject *pOject)
     }
 }
 
+bool CBackpackPageLayer::canUseItemById(int inPropId)
+{
+    CGamePlayer *player = SinglePlayer::instance();
+    CPtPropConfigData *propConfigData = SinglePropConfigData::instance();
+    bool bRet = true;
+    if (propConfigData->isCanGetCardById(inPropId) && player->cardBagIsMoreThanConfig())
+    {
+        CCMessageBox("卡包满了", "产生卡片的道具");
+        return false;
+    }
+    int itemEffectid = 0;
+    CPtProp* prop =  propConfigData->getPropById(inPropId);
+    if (prop)
+    {
+        itemEffectid = prop->getUseId();
+    }
+    if (prop->getUnLockLevel() > player->getPlayerLevel())
+    {
+        CCMessageBox("等级不够，不能使用，快去找王老板开后门", "");
+        bRet = false;
+        return bRet;
+    }
+    PtPropUseEffectData * effectData = SinglePropUseEffectConfig::instance()->getPropUseDataById(itemEffectid);
+    if (effectData)
+    {
+        if (effectData->getItemType() == 1)
+        {
+            if (effectData->getItemTarget() == 1)
+            {
+                if(player->hasFullAP())
+                {
+                    CCMessageBox("当前的体力满了，不需要服用大力丸","");
+                    bRet = false;
+                }
+            }
+            else if (effectData->getItemTarget() == 2)
+            {
+                if (player->hasFullGP()) {
+                    CCMessageBox("当前的神力满了，不需要喝十全大补汤了","");
+                    bRet = false;
+                }
+            }
+        }
+    }
+    
+    return bRet;
+}
 
 void CBackpackPageLayer::onClickUseProp(CCObject *object)
 {
     if (object)
     {
         PropItem * item = (PropItem*)object;
-        onClickUseProp(item->propId, item->propCount);
+        if(canUseItemById(item->propId))
+        {
+            onClickUseProp(item->propId, item->propCount);
+        }
+
     }
 }
+
 
 void CBackpackPageLayer::onClickUseProp(int inPropId, int inPropNum)
 {
@@ -873,14 +927,6 @@ void CBackpackPageLayer::handlerPropBuffer(CCObject * inEffect)
         std::string typeName = typeid(*inEffect).name();
         if (typeName.find("CCDictionary") != std::string::npos)
         {
-//            CCDictionary *tmpDict = (CCDictionary*)inEffect;
-//            //add card max count:
-//            tmpDict = (CCDictionary*) tmpDict->objectForKey("item_effect");
-//            int objectId = GameTools::intForKey("object_id", tmpDict);
-//            int numTyep = GameTools::intForKey("num_type", tmpDict);
-//            int num  = GameTools::intForKey("num", tmpDict);
-//            
-//            CPlayerBufferManager::getInstance()->addPropBufferById(objectId, (PROPBUFFERTYPE)numTyep, num);
     
             CPlayerBufferManager::getInstance()->resetPropBufferByDict((CCDictionary*)inEffect);
         }else

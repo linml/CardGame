@@ -32,6 +32,7 @@ int g_index = -1;
 SECTION_DATA CExploration::s_SectionData ;
 
 int CExploration::s_CurrentEventId = -1;
+EXPLORATIONTYPE CExploration::s_eExplorationType = NORMALEXPLORATION;
 
 CCDictionary * CExploration::s_Rewards = NULL;
 
@@ -343,6 +344,10 @@ void CExploration::resetPropBufferByDict(CCDictionary *inBuffers)
     }
 }
 
+void CExploration::setExplorationType(EXPLORATIONTYPE inType)
+{
+    s_eExplorationType = inType;
+}
 
 CCScene* CExploration::scene()
 {
@@ -781,6 +786,11 @@ void CExploration::handlerEvent()
 {
     if (m_nWhichEvent>= 0 || m_nWhichEvent < 3)
     {
+        if (m_pPlayer->cardBagIsMoreThanConfig())
+        {
+            CCMessageBox("当前的卡包满了", "卡包满了");
+            return;
+        }
         m_nEventType= m_aEvents[m_nWhichEvent]->getEventType(); // s_SectionData.eventData.eventId[m_nWhichEvent];
         setCurrentEvnetId(m_aEvents[m_nWhichEvent]->getEventId());
         CCLog("event type: %d", m_nEventType);
@@ -1906,7 +1916,14 @@ void CExploration::goSection()
 }
 void CExploration::callback(float dt)
 {
-    SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
+    if (s_eExplorationType == NORMALEXPLORATION)
+    {
+        SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
+    }else
+    {
+         SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 2);
+    }
+  
 }
 
 void CExploration::levelUpCallBack(cocos2d::CCObject *pObject)

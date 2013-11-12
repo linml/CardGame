@@ -15,6 +15,7 @@
 #include "ExplorationScene.h"
 #include "CPanelGamePlayerInfoLayer.h"
 #include "CSceneActionGameLayer.h"
+#include "CScreenHandBookLayer.h"
 
 
 CAsgardLayer::CAsgardLayer()
@@ -40,10 +41,10 @@ bool CAsgardLayer::init()
     return bRet;
 }
 
-void CAsgardLayer::createBiforestLayer()
+void CAsgardLayer::createBiforestLayer(EXPLORATIONTYPE inType,int inSelectSectionId)
 {
-   CCLayer*  layer = CBiforestLayer::create();
-    this->getParent()->addChild(layer, 30000, 6001);
+   CCLayer*  layer = CBiforestLayer::create(inType,inSelectSectionId);
+   this->getParent()->addChild(layer, 30000, 6001);
 
 }
 
@@ -163,13 +164,19 @@ void CAsgardLayer::handlerTouch()
             break;
         case DUPLICATE_TOUCH_TAG:
             // to do:
-            
+            showHandBook();
             break;
         default:
             break;
     }
 }
 
+void CAsgardLayer::showHandBook()
+{
+    CCLayer *layer=CScreenHandBookLayer::create();
+    addChild(layer,1000);
+    CCLog("CScreenHandBookLayer create");
+}
 
 void CAsgardLayer::onClickBiforest()
 {

@@ -71,9 +71,9 @@ int CGamePlayerData::getExpMax()
     return m_sLevelPlayer->m_iExp_max;
 }
 
-int CGamePlayerData::getCardBagMax()
+int CGamePlayerData::getCardBagAppend()
 {
-    return m_nCardMaxCount;
+    return m_nCardAppend;
 }
 
 void CGamePlayerData::settestInit(int level)
@@ -157,7 +157,7 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_friend_count=GameTools::intForKey("friend_max",dict);
     m_susername=GameTools::valueForKey("username", dict);
     m_nOpenGridCount = GameTools::intForKey("max_bag", dict);
-    m_nCardMaxCount = GameTools::intForKey("card_max", dict);
+    m_nCardAppend = GameTools::intForKey("card_max_buy", dict);
     m_iGp=GameTools::intForKey("gp", dict);
     
     //是否首充

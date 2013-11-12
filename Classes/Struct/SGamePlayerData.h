@@ -27,7 +27,7 @@ public:
     int getGpMax();
     int getApMax();
     int getExpMax();
-    int getCardBagMax();
+    int getCardBagAppend();
     void settestInit(int level);
     void logicValue(int &Value,int inValue, char logicChar);
 public:
@@ -50,7 +50,7 @@ public:
     int     m_nFriendly;
     struct SLevelPlayer *m_sLevelPlayer;
     int    m_nOpenGridCount;
-    int    m_nCardMaxCount;
+    int    m_nCardAppend;
     std::map<int ,SLevelPlayer *>m_gvPlayerLevel;
 };
 

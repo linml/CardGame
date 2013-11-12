@@ -17,8 +17,8 @@
 #include "CPtListViewWidget.h"
 #include "CPtTableItem.h"
 #include "gameStruct.h"
-
 #include "CPtExpandableListView.h"
+#include "CActivityEncounterManager.h"
 using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace std;
@@ -26,6 +26,11 @@ using namespace std;
 
 #define TYPE_CHAPTER 1
 #define TYPE_SECTION 2
+enum EXPLORATIONTYPE
+{
+    NORMALEXPLORATION = 1,
+    ACTIVITYEXPLORATION
+};
 
 class CPtBookItem : public CPtTableItem
 {
@@ -43,15 +48,13 @@ protected:
 
 class CBiforestLayer : public CCLayerColor , public CCTableViewDelegate
 {
-    
-    
 public:
-    CREATE_FUNC(CBiforestLayer);
+    static CBiforestLayer *create(EXPLORATIONTYPE inType = NORMALEXPLORATION, int inSelectSectionId = -1);
     static  EVENTDATA dispatchEventWithType(CCDictionary *inDict);
 public:
-    CBiforestLayer();
+    CBiforestLayer(EXPLORATIONTYPE inType = NORMALEXPLORATION);
     virtual ~CBiforestLayer();
-    
+    void setSelectSectionId(int inSectionId){m_nCurrentSectionId = inSectionId;};
 public:
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
@@ -62,66 +65,86 @@ public:
     virtual void scrollViewDidScroll(CCScrollView* view){};
     virtual void scrollViewDidZoom(CCScrollView* view){};
     
-
 protected:
-    void initBiforest();
-    void handlerTouch();
     
-    void initRightPanel(int inMaxCurrentIndex);
+    void initPanel();
+    void initActivityPanel();
+    void initNormalPanel();
+
+    void initBiforest();
+    CCArray* getDispLayerData();
+    
+    void handlerTouch();
+    void initRightPanel(int inCurrentChapterIndex);
     void updateRightPanelUI();
     void updatePanel(int inChapterId, int inSectionId);
     
-    void getChapters(int inMaxChapterId);
-    void getSections(int inSelectedChapterIndex, int inMaxSectionId = -1);
-    
-    
-    CCArray *getChapterItem();
-    CCArray *getSectionItem();
-    CCNode *createItemView(const char* const inTitle);
         
     // test connect server:
     bool canGoSection();
     void onClickGoSection();
     void onReceiveGoSectionMsg(CCObject *pObject);
     void onParseGoSectionMsgByDictionary(CCDictionary * inDataDictionary);
-    
+
 
 
     
     // load image resource:
     void loadResource();
     
-    // test with expandableListView:
-    CPtExpandableListView *m_pListView;
-    void initPanel();
-    
+    CCNode *createItemView(const char* const inTitle);
     CCNode* createItemViewByType(const char* inTitle, ITEM_TYPE inType = PARENT_TYPE);
+    
     void setNormal(CCObject *pObject);
     void setSelected(CCObject *pObject);
     void getChildren(CCObject* pObject);
    
+    void switchExplorationType(EXPLORATIONTYPE inType);
     
+    CCArray *getChaptersByType(EXPLORATIONTYPE inType, int inMaxChapterId=0);
+    CCArray *getNormalChapters(int inMaxChapterId);
+    CCArray *getActivityChapters();
+
+    CCArray *getSections(int inSelectedChapterIndex, int inMaxSectionId=-1);
+    CCArray *getNormalSections(int inSelectedChapterIndex, int inMaxSectionId = -1);
+    CCArray *getActivitySections();
+    
+    CCArray *getChapterItem();
+    CCArray *getSectionItem(CCArray *inSectionInfo);
+    
+    CPtChapter *getChapterByIndex(int inIndex);
+    
+    
+    void goToAcitivityEncounter();
+    // getActivityInfo from sever:
+    void onSendRequestGetActivity();
+    void onReceiveMsgGetActivity(CCObject* pObject);
     
 protected:
     
-    int m_nMaxChapterId;
-    int m_nMaxSectionId;
+    EXPLORATIONTYPE m_eExploartionType;
     
-    int m_nCurrentChapterId;
-    int m_nCurrentSectionId;
+    int m_nMaxChapterId; //最大章
+    int m_nMaxSectionId; // 最大节
     
-    int m_nCurrentSectionIndex;
-    int m_nCurrentChaptetIndex;
+    int m_nCurrentChapterId; //当前章的ID
+    int m_nCurrentSectionId; //当前节的ID
+    
+    int m_nCurrentSectionIndex; // 当前节的Index
+    int m_nCurrentChaptetIndex; // 当前章的Index
     
     int m_nTouchTag;
     bool m_bSectionTouchEnable;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;
     CCSprite * m_pTouchSprite;
-    CCArray *m_pChapters;
-    CCArray *m_pSections;
     
-    CPtListViewWidget *m_pLeftPanel;
+    CCArray *m_pNormalChapters; // normal chapters;
+    CCArray *m_pActivityChapters;// activityChapter;
+    CCArray *m_pNormalSections;
+    CCArray *m_pActivitySections;
+    
+    CPtExpandableListView *m_pListView;
     
     // back button:
     CCSprite *m_pBackBtn;
@@ -137,10 +160,13 @@ protected:
     bool m_bGoneVisiable;
     
     //mode:
-    bool m_bChapterMode;
+    bool m_bSendRequest;
+    bool m_bStartActivity;
     
-    CCSprite * selectNode ;
+    CCSprite * m_pSwtichBtn;
     
+    CActivityEncounterManager *m_pActivityEncounterManager;
+    CCArray *m_pActivityEncounterInfo;
 
     
     

@@ -170,6 +170,10 @@ void CConfirmLayer::onHandlerSuccess(CCDictionary *inResult)
 
 void CConfirmLayer::setFightTeamBuffer(CCObject *inBuffers)
 {
+    if (inBuffers == NULL)
+    {
+        return;
+    }
     SinglePlayer::instance()->m_vPlayerBufferList.clear();
     if (!inBuffers) {
         return ;
