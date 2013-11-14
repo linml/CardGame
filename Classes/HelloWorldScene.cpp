@@ -14,6 +14,7 @@
 #include "CDrawCardLayer.h"
 #include "CSceneActionGameLayer.h"
 #include "CScreenHandBookLayer.h"
+#include "CSceneFriendMainLayer.h"
 
 
 using namespace cocos2d;
@@ -44,9 +45,10 @@ CCScene* HelloWorld::scene()
     CCScene *scene = CCScene::create();
     
     // 'layer' is an autorelease object
-   // HelloWorld *layer = HelloWorld::create();
+    //HelloWorld *layer = HelloWorld::create();
  
-    CScreenHandBookLayer *layer=CScreenHandBookLayer::create();
+    //CScreenHandBookLayer *layer=CScreenHandBookLayer::create();
+    CSceneFriendMainLayer *layer=CSceneFriendMainLayer::create();
     
     
     // add layer as a child to scene

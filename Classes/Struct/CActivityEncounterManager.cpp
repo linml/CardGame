@@ -103,3 +103,14 @@ CActivityEncounter* CActivityEncounterManager::getActivityEncounter(int sectionI
     encounter->setCurrentTime(num);
     return encounter;
 }
+
+bool CActivityEncounterManager::haveEncounterBySectionId(int inSectionId)
+{
+    bool bRet = false;
+    map<int, int>::iterator it = m_vAllActivites.find(inSectionId);
+    if (it != m_vAllActivites.end())
+    {
+        bRet = true;
+    }
+    return bRet;
+}

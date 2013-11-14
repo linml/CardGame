@@ -21,7 +21,7 @@
 #include "SceneManager.h"
 #include "HallScene.h"
 #include "CPtRecharge.h"
-
+#include "CActivityEncounterManager.h"
 
 
 CActionItemLayer::CActionItemLayer()
@@ -182,6 +182,11 @@ void CActionItemLayer::recoverButtons(CCTouch *pTouch)
 void CActionItemLayer::handlerGoEncounter()
 {
     CCLog("CActionItemLayer::handlerGoEncounter");
+    if(!SingleActivityEncounterManager::instance()->haveEncounterBySectionId(m_pData->getActionPartId()))
+    {
+        CCMessageBox("该活动今天不开放", "");
+        return;
+    }
     onClickGoEncounter();
     
 }

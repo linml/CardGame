@@ -16,6 +16,7 @@
 #include "CPanelGamePlayerInfoLayer.h"
 #include "CSceneActionGameLayer.h"
 #include "CScreenHandBookLayer.h"
+#include "CSceneHospitalLayer.h"
 
 
 CAsgardLayer::CAsgardLayer()
@@ -134,7 +135,23 @@ void CAsgardLayer::initArsgard()
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(GOLDPLACE_TOUCH_PRORITY);
     createChapterReward();
-   
+    createHospitolButton();
+    
+ 
+}
+
+void CAsgardLayer::createHospitolButton()
+{
+    pHospital= CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
+    pHospital->setAnchorPoint(CCPointZero);
+    pHospital->setPosition(ccp(500, 500));
+    addChild(pHospital, 200, 999);
+    string word = Utility::getWordWithFile("word.plist", "yiwushi");
+    CCLabelTTF *label=CCLabelTTF::create("yiwushi", "Arial", 20);
+    label->setPosition(ccp(50, 10));
+    pHospital->addChild(label,2,999);
+   // pHospital->schedule(schedule_selector(CAsgardLayer::updateHospitolData), 1.0);
+    Utility::addTouchRect(HOSPITAL_TOUCH_TAG, pHospital, m_cTouches);
 }
 
 void CAsgardLayer::handlerTouch()
@@ -151,7 +168,9 @@ void CAsgardLayer::handlerTouch()
             addChild(active,1000,20000);
         }
             break;
-            
+        case HOSPITAL_TOUCH_TAG:
+            createHospitalLayer();
+            break;
         case VALHALLA_TOUCH_TAG:
             // to do:
      //       SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_CARDSETTINGSCENE);
@@ -169,6 +188,14 @@ void CAsgardLayer::handlerTouch()
         default:
             break;
     }
+}
+
+void CAsgardLayer::createHospitalLayer()
+{
+    CCLayer *layer=CSceneHospitalLayer::create();
+    addChild(layer,1000);
+    CCLog("CSceneHospitalLayer create");
+
 }
 
 void CAsgardLayer::showHandBook()

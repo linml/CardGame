@@ -71,6 +71,11 @@ int CGamePlayerData::getExpMax()
     return m_sLevelPlayer->m_iExp_max;
 }
 
+int CGamePlayerData::getFriendMax()
+{
+    return m_sLevelPlayer->m_iFriend_max;
+}
+
 int CGamePlayerData::getCardBagAppend()
 {
     return m_nCardAppend;

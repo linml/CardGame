@@ -61,7 +61,21 @@ appendFileLog(__POSTSTR__); \
 CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
 CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector.c_str(), NULL);\
 }
-
+#define ADDHTTPREQUESTPOSTDATANOLOCK(URL,NOTIFICATIONTAG,HTTPREQUESTTAG,__POSTSTR__,CALLBACK)\
+{\
+stcRequestInf inf; \
+inf.m_pchURL = URL; \
+cout<<inf.m_pchURL<<endl; \
+inf.m_RequestType=CCHttpRequest::kHttpPost;\
+inf.m_pSelector = NOTIFICATIONTAG;\
+inf.m_pchTag = HTTPREQUESTTAG;\
+inf.m_pchData = __POSTSTR__;\
+appendFileLog(URL); \
+appendFileLog(__POSTSTR__); \
+\
+CPtHttpClient::sharePtHttpClient()->addRequest(inf);\
+CCNotificationCenter::sharedNotificationCenter()->addObserver(this,CALLBACK, inf.m_pSelector.c_str(), NULL);\
+}
 
 
 

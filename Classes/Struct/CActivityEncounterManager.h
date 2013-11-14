@@ -35,6 +35,7 @@ public:
     void parseActivityByDic(CCDictionary * inDict);
     
     CCArray *getCurrentActivityByDict(CCDictionary *inDict);
+    bool haveEncounterBySectionId(int inSectionId);
 protected:
     CActivityEncounter* getActivityEncounter(int sectionId, int num);
 protected:

@@ -729,11 +729,14 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
             CPtTableItem *tmp = NULL;
             if (m_bReverse)
             {
-                 tmp= dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(m_cItems->count()-1-i-idx*m_nColumcount));
-            }else
-            {
-                 tmp= dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(i+idx*m_nColumcount));
+                 index = m_cItems->count() -1 -index;
+               //(m_cItems->count()-1-i-idx*m_nColumcount));
+//            }else
+//            {
+//                 tmp= dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(i+idx*m_nColumcount));
+//            }
             }
+            tmp= dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(index));
            
             
             if (tmp)
@@ -753,7 +756,7 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
                 pCell->addChild(pSprite, 0, i);
                //  CCLog("the point: %d" ,(int)tmp);
                 pSprite->setUserData((void *) (tmp));
-                tmp->setUserData((void *) (i+idx*m_nColumcount));
+                tmp->setUserData((void *)(index)); //(i+idx*m_nColumcount));
             }
         }
         

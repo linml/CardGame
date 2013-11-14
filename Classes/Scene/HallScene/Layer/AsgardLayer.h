@@ -24,6 +24,7 @@ using namespace cocos2d;
 #define GLADSHEIM_TOUCH_TAG (VALHALLA_TOUCH_TAG+1)
 #define DUPLICATE_TOUCH_TAG (GLADSHEIM_TOUCH_TAG+1)
 #define BIFROST_TOUCH_TAG   (DUPLICATE_TOUCH_TAG+1)
+#define HOSPITAL_TOUCH_TAG  (BIFROST_TOUCH_TAG+1)
 
 
 class CAsgardLayer : public CCLayer {
@@ -51,15 +52,15 @@ protected:
     void createOrUpdatePlayerData();
     void createChapterReward();
     void showHandBook();
-
+    void createHospitolButton();
+    void createHospitalLayer();
 protected:
-    
     bool m_bLoadTaskInfo;
     int m_nTouchTag;
     CCSprite* m_touchSprite;
     LayoutLayer * m_cMaps;
     vector<TouchRect> m_cTouches;
-    
+    CCSprite *pHospital;
 };
 
 

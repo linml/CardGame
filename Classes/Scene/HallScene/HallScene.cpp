@@ -35,10 +35,10 @@
 CCScene *CHallScene::scene(int pType)
 {
   
-        CCScene *scene = CCScene::create();
-        CHallScene *layer = CHallScene::create(pType);
-        scene->addChild(layer, 0, 100);
-        return scene;
+    CCScene *scene = CCScene::create();
+    CHallScene *layer = CHallScene::create(pType);
+    scene->addChild(layer, 0, 100);
+    return scene;
     
 }
 
@@ -339,6 +339,7 @@ bool CHallScene::initHall(int inType)
             this->addChild(btnActivity, 200, 2006);
             Utility::addTouchRect(2006, btnActivity, m_cTouches);
             
+            
             word = Utility::getWordWithFile("word.plist", "packsack");
             CCLog("word :%s",word.c_str());
             pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
@@ -389,7 +390,6 @@ bool CHallScene::initHall(int inType)
 
         }
                
-       
         this->addChild(layer);
         
         CAsgardLayer *asgard = CAsgardLayer::create();

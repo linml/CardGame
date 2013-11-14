@@ -38,3 +38,6 @@ void  CGlobalUpdateGp::globalUpdate(float t)
 {
    SinglePlayer::instance()->sendUpdateGp();
 }
+
+
+

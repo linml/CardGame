@@ -25,6 +25,14 @@ void CPanelGamePlayerInfoLayer::updateShowData(float t)
 void CPanelGamePlayerInfoLayer::updateInfo()
 {
     CCSize wndSize=CCDirector::sharedDirector()->getWinSize();
+    if (!getChildByTag(1000000))
+    {
+        //显示UID
+        CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 20);
+        addChild(labelttf,0,1000000);
+        labelttf->setPosition(ccp(350, 120));
+        labelttf->setString(SinglePlayer::instance()->getUserId());
+    }
     if (!getChildByTag(1000001))
     {
         CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 20);

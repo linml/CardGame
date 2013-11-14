@@ -332,7 +332,8 @@ void CScreenHandBookLayer::decodeGetData(CCObject *object)
     loadCardVector();
     
     CCArray *exsitArray= (CCArray*) (((CCDictionary *)(dict->objectForKey("result")))->objectForKey("atlas"));
-    for (int i=0; i<exsitArray->count(); i++) {
+    for (int i=0; i<exsitArray->count(); i++)
+    {
         int cardid= ((CCString* )exsitArray->objectAtIndex(i))->intValue();
         for (int j=0; j<m_vCardList.size(); j++) {
             if (cardid==m_vCardList[j]->m_pCard->m_icard_id) {

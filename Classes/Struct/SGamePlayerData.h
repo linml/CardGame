@@ -28,6 +28,7 @@ public:
     int getApMax();
     int getExpMax();
     int getCardBagAppend();
+    int getFriendMax();
     void settestInit(int level);
     void logicValue(int &Value,int inValue, char logicChar);
 public:

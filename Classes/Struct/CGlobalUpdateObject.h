@@ -30,4 +30,8 @@ public:
 public:
     virtual void globalUpdate(float t);
 };
+
+
+
+
 #endif /* defined(___1_cube__CGlobalUpdateObject__) */

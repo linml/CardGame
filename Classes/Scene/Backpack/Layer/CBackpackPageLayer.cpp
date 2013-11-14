@@ -888,6 +888,7 @@ void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
 CReward* CBackpackPageLayer::onUsePropWithDict(cocos2d::CCDictionary *inDict)
 {
     CReward *addReward = NULL;
+    CReward *addItemReward = NULL;
     CCDictionary *rewardDict = (CCDictionary*) inDict->objectForKey("reward");
     CCDictionary* tmpDict = NULL;
     if(rewardDict)
@@ -905,12 +906,13 @@ CReward* CBackpackPageLayer::onUsePropWithDict(cocos2d::CCDictionary *inDict)
            
            // get item effect:
            tmpDict = (CCDictionary*) addDict->objectForKey("item");
-           addReward= CReward::create(tmpDict);
-           if (addReward)
+           addItemReward= CReward::create(tmpDict);
+           if (addItemReward)
            {
-               addReward->excuteReward(ADD);
+               addItemReward->excuteReward(ADD);
            }
-
+           
+           addReward = CReward::create(addReward, addItemReward);
            
        }
       
@@ -936,10 +938,6 @@ void CBackpackPageLayer::handlerPropBuffer(CCObject * inEffect)
     }
 }
 
-void addBufferByDict(CCDictionary *inItemEffectDict)
-{
-    
-}
 
 void CBackpackPageLayer::onReceiveDeletProp(CCObject *pObject)
 {

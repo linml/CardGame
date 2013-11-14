@@ -115,7 +115,7 @@ protected:
     CPtChapter *getChapterByIndex(int inIndex);
     
     
-    void goToAcitivityEncounter();
+    void goToAcitivityEncounter(float dt);
     // getActivityInfo from sever:
     void onSendRequestGetActivity();
     void onReceiveMsgGetActivity(CCObject* pObject);

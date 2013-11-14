@@ -873,6 +873,11 @@ int CGamePlayer::getExpMax()
     return m_gGamePlayerData->getExpMax();
 }
 
+int CGamePlayer::getFriendMax()
+{
+    return  m_gGamePlayerData->getFriendMax();
+}
+
 int CGamePlayer::getFriendly()
 {
     return m_gGamePlayerData->m_nFriendly;
@@ -1626,7 +1631,7 @@ void CGamePlayer::sendUpdateAp()
         m_pUpdateAp->stop();
         string connectData="sig=";
         connectData += m_strSig;
-        ADDHTTPREQUESTPOSTDATA(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataAp", "REQUEST_CGamePlayer_decodeDataAp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataAp));
+        ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataAp", "REQUEST_CGamePlayer_decodeDataAp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataAp));
 //    }
 //    else{
 //        m_pUpdateAp->resume();
@@ -1641,13 +1646,12 @@ void CGamePlayer::sendUpdateGp()
          m_pUpdateGp->stop();
         string connectData="sig=";
         connectData += m_strSig;
-        ADDHTTPREQUESTPOSTDATA(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataGp", "REQUEST_CGamePlayer_decodeDataGp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataGp));
+        ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataGp", "REQUEST_CGamePlayer_decodeDataGp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataGp));
 //    }
 //    else{
 //        m_pUpdateGp->resume();
 //    }
 }
-
 void CGamePlayer::decodeDataAp(cocos2d::CCObject *object)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_decodeDataAp");
@@ -1673,6 +1677,7 @@ void CGamePlayer::decodeDataAp(cocos2d::CCObject *object)
     }
     
 }
+
 
 void CGamePlayer::decodeDataGp(cocos2d::CCObject *object)
 {

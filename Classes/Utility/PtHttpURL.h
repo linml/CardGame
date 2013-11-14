@@ -142,7 +142,9 @@
 
 //获得活动副本的信息
 #define STR_URL_GETACTIVITY(UID) URL_FACTORY("api.php?m=Part&a=getActivityPart&uid=",UID)
-
-
+//获得神力的请求
+#define STR_URL_HOSPITALACTITY(UID) URL_FACTORY("api.php?m=clinic&a=cure&uid=",UID)
+//获得神力的剩余时间
+#define STR_URL_GPLEVELTIME(UID)  URL_FACTORY("api.php?m=clinic&a=clinic&uid=",UID)
 
 #endif

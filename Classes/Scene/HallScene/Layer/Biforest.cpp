@@ -252,6 +252,9 @@ void CBiforestLayer::initBiforest()
     m_pSwtichBtn->setPosition(ccp(650, 580));
     CCNode *node = m_cMaps->getElementByTags(array, 2);
     node->addChild(m_pSwtichBtn, 100,2006);
+    CCLabelTTF* label = CCLabelTTF::create("任务切换", "Arial", 18);
+    label->setPosition(ccp(60, 30));
+    m_pSwtichBtn->addChild(label);
 
     Utility::addTouchRect(2006, m_pSwtichBtn, m_cTouches);
     
@@ -261,7 +264,7 @@ void CBiforestLayer::initBiforest()
     }
     else
     {
-        goToAcitivityEncounter();
+        goToAcitivityEncounter(0.0f);
     }
     
 }
@@ -716,7 +719,7 @@ void CBiforestLayer::switchExplorationType(EXPLORATIONTYPE inType)
 {
     if (!m_bStartActivity)
     {
-        goToAcitivityEncounter();
+        goToAcitivityEncounter(0.0f);
         return;
     }
     m_eExploartionType = inType;
@@ -731,7 +734,7 @@ void CBiforestLayer::switchExplorationType(EXPLORATIONTYPE inType)
     expandList->setListViewItems(getDispLayerData());
     expandList->setWhichOneOpen(m_nCurrentChaptetIndex);
     
-    bool first = m_pListView == NULL;
+    bool first = (m_pListView == NULL);
     if (first)
     {
         m_pListView = CPtExpandableListView::create(expandList, CCSizeMake(246, 515),  CCSizeMake(0.0f, 0.0f));
@@ -739,7 +742,12 @@ void CBiforestLayer::switchExplorationType(EXPLORATIONTYPE inType)
         m_pListView->getTabelView()->setTouchPriority(-300);
         m_pListView->setPosition(ccp(220, 135));
         m_pListView->getTabelView()->setTouchPriority(-200);
-        m_cMaps->getElementByTags("2,0")->addChild(m_pListView, 10);
+        CCNode *node =  m_cMaps->getElementByTags("2,0");
+        if (node)
+        {
+            node->addChild(m_pListView, 10);
+        }
+      
     }
     CCSize size1 =  m_pListView->getTabelView()->getContentSize();
     m_pListView->setItems(expandList);
@@ -977,7 +985,7 @@ void CBiforestLayer::onReceiveMsgGetActivity(CCObject* pObject)
 }
 
 
-void CBiforestLayer::goToAcitivityEncounter()
+void CBiforestLayer::goToAcitivityEncounter(float dt)
 {
     onSendRequestGetActivity();
 }

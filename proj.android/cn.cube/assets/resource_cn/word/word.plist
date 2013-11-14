@@ -80,6 +80,10 @@
 	<string>神宝库</string>
 	<key>bifrost</key>
 	<string>彩虹桥</string>
+	<key>yiwushi</key>
+	<string>医务室</string>
+	<key>dayizhen</key>
+	<string>恢复神力20点</string>
 	<key>title</key>
 	<string>DEMO测试</string>
 	<key>activity</key>
@@ -134,6 +138,14 @@
 	<string>活动时间</string>
 	<key>huodongneirong</key>
 	<string>活动内容</string>
+	<key>haoyouliebiao</key>
+	<string>好友列表</string>
+	<key>shenqingliebiao</key>
+	<string>申请列表</string>
+	<key>shouhuozanmei</key>
+	<string>收获赞美</string>
+	<key>haoyoushuliang</key>
+	<string>好友数量</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

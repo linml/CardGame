@@ -26,6 +26,7 @@ class CFightCardFightingBuffer;
 class CGamePlayerData;
 class CGlobalUpdateAp;
 class CGlobalUpdateGp;
+class CGlobalUpdateHospital;
 class CStructShopInfo;
 class CStructShopSellItem;
 class CStructStrips;
@@ -207,6 +208,7 @@ public:
     int getGpMax();
     int getApMax();
     int getExpMax();
+    int getFriendMax();
     
     
     int setPlayerGp(int iValue); //神力
@@ -269,6 +271,7 @@ public:
     void sendUpdateAp();
     void decodeDataGp(CCObject *object);
     void decodeDataAp(CCObject *object);
+
     
 public:
     // 或取当前阵容的全部领导力

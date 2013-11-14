@@ -375,6 +375,8 @@ CExploration::~CExploration()
         m_cMaps->release();
     }
     CC_SAFE_DELETE(m_pBufferTips);
+    CCLog("~~CExploration");
+    
 }
 
 
@@ -1469,7 +1471,7 @@ void CExploration::addTaskAndSectionReward()
         sprintf(tips, "task or section reward add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", taskAndSection->getEnergy(), taskAndSection->getHP(), taskAndSection->getExp(),
                 taskAndSection->getCoin(), taskAndSection->getCash(), taskAndSection->getCardCount(), taskAndSection->getPropCount());
         
-        Middle::showAlertView(tips);
+     //   Middle::showAlertView(tips);
     }
 
 }
@@ -1912,16 +1914,19 @@ void CExploration::addTask()
  */
 void CExploration::goSection()
 {
-    scheduleOnce(schedule_selector(CExploration::callback), 1.0f);
+    m_bCanTouch = false;
+    scheduleOnce(schedule_selector(CExploration::callback), 1.5f);
 }
 void CExploration::callback(float dt)
 {
+    m_bCanTouch = false;
     if (s_eExplorationType == NORMALEXPLORATION)
     {
         SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 1);
     }else
     {
-         SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 2);
+        SingleSceneManager::instance()->runTargetScene(EN_CURRSCENE_HALLSCENE, 2);
+        
     }
   
 }
