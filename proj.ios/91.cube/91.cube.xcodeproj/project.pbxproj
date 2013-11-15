@@ -22,7 +22,7 @@
 		6F28A6E71807EAEE00225C09 /* CGlobalUpdateObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F28A6E51807EAEE00225C09 /* CGlobalUpdateObject.cpp */; };
 		6F28A6E91807F52200225C09 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F28A6E81807F52200225C09 /* Default-568h@2x.png */; };
 		6F293F041830B80D007338D4 /* CScreenHandBookLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F293EFF1830B80D007338D4 /* CScreenHandBookLayer.cpp */; };
-		6F293F051830B80D007338D4 /* CHandBookTableView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F293F021830B80D007338D4 /* CHandBookTableView.cpp */; };
+		6F293F051830B80D007338D4 /* CCustomerTableView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F293F021830B80D007338D4 /* CCustomerTableView.cpp */; };
 		6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F34AE8E1760945F00A6433C /* LoadingScene.cpp */; };
 		6F3AC848180BC1C2007B8756 /* CStructShopSellItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3AC846180BC1C2007B8756 /* CStructShopSellItem.cpp */; };
 		6F3AC84B180BC7A6007B8756 /* CStructShopInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F3AC849180BC7A6007B8756 /* CStructShopInfo.cpp */; };
@@ -95,6 +95,9 @@
 		6FCB05441834997C00848C82 /* CSceneHospitalLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB05421834997C00848C82 /* CSceneHospitalLayer.cpp */; };
 		6FCB05491834D79600848C82 /* CSceneFriendMainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB05471834D79600848C82 /* CSceneFriendMainLayer.cpp */; };
 		6FCB054C1834E61A00848C82 /* CGameTabControlItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB054A1834E61A00848C82 /* CGameTabControlItem.cpp */; };
+		6FCB05501835BD8500848C82 /* CSceneFriendHaoyouliebiao.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB054E1835BD8500848C82 /* CSceneFriendHaoyouliebiao.cpp */; };
+		6FCB05531835C50200848C82 /* CGameFriedItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB05511835C50200848C82 /* CGameFriedItem.cpp */; };
+		6FCB05561835C59A00848C82 /* CFriend.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB05541835C59A00848C82 /* CFriend.cpp */; };
 		6FCD27E4182B20960043D050 /* CBufferLogo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD27DE182B20960043D050 /* CBufferLogo.cpp */; };
 		6FCD27E5182B20960043D050 /* CGamePropBufferTipLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD27E0182B20960043D050 /* CGamePropBufferTipLayer.cpp */; };
 		6FCD27E6182B20960043D050 /* CGameUserPropDialogLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD27E2182B20960043D050 /* CGameUserPropDialogLayer.cpp */; };
@@ -112,6 +115,7 @@
 		6FDE76CD180E7F0B004DFDA8 /* CGameRechargeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */; };
 		6FDE76D3180E802D004DFDA8 /* CGameArrageBackpackTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76CF180E802D004DFDA8 /* CGameArrageBackpackTip.cpp */; };
 		6FDE76D4180E802D004DFDA8 /* CGameRechargeTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76D1180E802D004DFDA8 /* CGameRechargeTip.cpp */; };
+		6FF95BF518360289004B6C80 /* CAddFriendLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FF95BF318360289004B6C80 /* CAddFriendLayer.cpp */; };
 		6FFD01BB180D4D8200ADE144 /* CPtRecharge.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FFD01B9180D4D8200ADE144 /* CPtRecharge.cpp */; };
 		8E13F18C17700F5F0050812F /* TaskLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E13F18A17700F5F0050812F /* TaskLayer.cpp */; };
 		8E6CE596176EEF1E00CF5C0D /* ExplorationScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E6CE591176EEF1E00CF5C0D /* ExplorationScene.cpp */; };
@@ -407,8 +411,8 @@
 		6F28A6E81807F52200225C09 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6F293EFF1830B80D007338D4 /* CScreenHandBookLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CScreenHandBookLayer.cpp; sourceTree = "<group>"; };
 		6F293F001830B80D007338D4 /* CScreenHandBookLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CScreenHandBookLayer.h; sourceTree = "<group>"; };
-		6F293F021830B80D007338D4 /* CHandBookTableView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CHandBookTableView.cpp; sourceTree = "<group>"; };
-		6F293F031830B80D007338D4 /* CHandBookTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHandBookTableView.h; sourceTree = "<group>"; };
+		6F293F021830B80D007338D4 /* CCustomerTableView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCustomerTableView.cpp; sourceTree = "<group>"; };
+		6F293F031830B80D007338D4 /* CCustomerTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCustomerTableView.h; sourceTree = "<group>"; };
 		6F34AE8E1760945F00A6433C /* LoadingScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoadingScene.cpp; sourceTree = "<group>"; };
 		6F34AE8F1760945F00A6433C /* LoadingScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadingScene.h; sourceTree = "<group>"; };
 		6F3AC846180BC1C2007B8756 /* CStructShopSellItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CStructShopSellItem.cpp; sourceTree = "<group>"; };
@@ -557,6 +561,12 @@
 		6FCB05481834D79600848C82 /* CSceneFriendMainLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneFriendMainLayer.h; sourceTree = "<group>"; };
 		6FCB054A1834E61A00848C82 /* CGameTabControlItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameTabControlItem.cpp; sourceTree = "<group>"; };
 		6FCB054B1834E61A00848C82 /* CGameTabControlItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameTabControlItem.h; sourceTree = "<group>"; };
+		6FCB054E1835BD8500848C82 /* CSceneFriendHaoyouliebiao.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneFriendHaoyouliebiao.cpp; sourceTree = "<group>"; };
+		6FCB054F1835BD8500848C82 /* CSceneFriendHaoyouliebiao.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneFriendHaoyouliebiao.h; sourceTree = "<group>"; };
+		6FCB05511835C50200848C82 /* CGameFriedItem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameFriedItem.cpp; sourceTree = "<group>"; };
+		6FCB05521835C50200848C82 /* CGameFriedItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameFriedItem.h; sourceTree = "<group>"; };
+		6FCB05541835C59A00848C82 /* CFriend.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFriend.cpp; sourceTree = "<group>"; };
+		6FCB05551835C59A00848C82 /* CFriend.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFriend.h; sourceTree = "<group>"; };
 		6FCD27DE182B20960043D050 /* CBufferLogo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CBufferLogo.cpp; sourceTree = "<group>"; };
 		6FCD27DF182B20960043D050 /* CBufferLogo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CBufferLogo.h; sourceTree = "<group>"; };
 		6FCD27E0182B20960043D050 /* CGamePropBufferTipLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGamePropBufferTipLayer.cpp; sourceTree = "<group>"; };
@@ -591,6 +601,8 @@
 		6FDE76D0180E802D004DFDA8 /* CGameArrageBackpackTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameArrageBackpackTip.h; sourceTree = "<group>"; };
 		6FDE76D1180E802D004DFDA8 /* CGameRechargeTip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameRechargeTip.cpp; sourceTree = "<group>"; };
 		6FDE76D2180E802D004DFDA8 /* CGameRechargeTip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameRechargeTip.h; sourceTree = "<group>"; };
+		6FF95BF318360289004B6C80 /* CAddFriendLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAddFriendLayer.cpp; sourceTree = "<group>"; };
+		6FF95BF418360289004B6C80 /* CAddFriendLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAddFriendLayer.h; sourceTree = "<group>"; };
 		6FFD01B9180D4D8200ADE144 /* CPtRecharge.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtRecharge.cpp; sourceTree = "<group>"; };
 		6FFD01BA180D4D8200ADE144 /* CPtRecharge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPtRecharge.h; sourceTree = "<group>"; };
 		8E13F18A17700F5F0050812F /* TaskLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskLayer.cpp; sourceTree = "<group>"; };
@@ -1278,8 +1290,8 @@
 		6F293F011830B80D007338D4 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
-				6F293F021830B80D007338D4 /* CHandBookTableView.cpp */,
-				6F293F031830B80D007338D4 /* CHandBookTableView.h */,
+				6F293F021830B80D007338D4 /* CCustomerTableView.cpp */,
+				6F293F031830B80D007338D4 /* CCustomerTableView.h */,
 			);
 			path = Layer;
 			sourceTree = "<group>";
@@ -1509,6 +1521,12 @@
 		6FCB05461834D75400848C82 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				6FCB05511835C50200848C82 /* CGameFriedItem.cpp */,
+				6FCB05521835C50200848C82 /* CGameFriedItem.h */,
+				6FCB054E1835BD8500848C82 /* CSceneFriendHaoyouliebiao.cpp */,
+				6FCB054F1835BD8500848C82 /* CSceneFriendHaoyouliebiao.h */,
+				6FF95BF318360289004B6C80 /* CAddFriendLayer.cpp */,
+				6FF95BF418360289004B6C80 /* CAddFriendLayer.h */,
 			);
 			path = Layer;
 			sourceTree = "<group>";
@@ -1703,6 +1721,8 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6FCB05541835C59A00848C82 /* CFriend.cpp */,
+				6FCB05551835C59A00848C82 /* CFriend.h */,
 				6F4B30C21832296400A57CAE /* CActivityEncounterManager.cpp */,
 				6F4B30C31832296400A57CAE /* CActivityEncounterManager.h */,
 				6F1B3E0818225861007FFE3A /* CGameTimerManager.cpp */,
@@ -3038,13 +3058,14 @@
 				6F91B4601827395D00B284B9 /* CEffectInterFaceEightRefactor.cpp in Sources */,
 				9FC6F22F17460BFF0091BE98 /* CCTransitionPageTurn.cpp in Sources */,
 				9FC6F23017460BFF0091BE98 /* CCTransitionProgress.cpp in Sources */,
+				6FF95BF518360289004B6C80 /* CAddFriendLayer.cpp in Sources */,
 				9FC6F23117460BFF0091BE98 /* CCMenu.cpp in Sources */,
 				9FC6F23217460BFF0091BE98 /* CCMenuItem.cpp in Sources */,
 				6F91B45A1827393900B284B9 /* CEffectInterFaceSixRefactor.cpp in Sources */,
 				9FC6F23317460BFF0091BE98 /* CCMotionStreak.cpp in Sources */,
 				9FC6F23417460BFF0091BE98 /* CCProgressTimer.cpp in Sources */,
 				9FC6F23517460BFF0091BE98 /* CCRenderTexture.cpp in Sources */,
-				6F293F051830B80D007338D4 /* CHandBookTableView.cpp in Sources */,
+				6F293F051830B80D007338D4 /* CCustomerTableView.cpp in Sources */,
 				9FC6F23617460BFF0091BE98 /* CCParticleBatchNode.cpp in Sources */,
 				9FC6F23717460BFF0091BE98 /* CCParticleExamples.cpp in Sources */,
 				9FC6F23817460BFF0091BE98 /* CCParticleSystem.cpp in Sources */,
@@ -3091,6 +3112,7 @@
 				6FCA468B17F014B300346E6B /* CReward.cpp in Sources */,
 				9FC6F25E17460BFF0091BE98 /* TGAlib.cpp in Sources */,
 				9FC6F25F17460BFF0091BE98 /* TransformUtils.cpp in Sources */,
+				6FCB05531835C50200848C82 /* CGameFriedItem.cpp in Sources */,
 				9FC6F26017460BFF0091BE98 /* ioapi.cpp in Sources */,
 				9FC6F26117460BFF0091BE98 /* unzip.cpp in Sources */,
 				9FC6F26217460BFF0091BE98 /* ZipUtils.cpp in Sources */,
@@ -3134,6 +3156,7 @@
 				9FC6F28317460BFF0091BE98 /* CCLayerColorLoader.cpp in Sources */,
 				9FC6F28417460BFF0091BE98 /* CCLayerGradientLoader.cpp in Sources */,
 				6FCD27E4182B20960043D050 /* CBufferLogo.cpp in Sources */,
+				6FCB05501835BD8500848C82 /* CSceneFriendHaoyouliebiao.cpp in Sources */,
 				6FBCC6BA181F670B008865DD /* CPlayerBufferManager.cpp in Sources */,
 				9FC6F28517460BFF0091BE98 /* CCLayerLoader.cpp in Sources */,
 				9FC6F28617460BFF0091BE98 /* CCMenuItemImageLoader.cpp in Sources */,
@@ -3150,6 +3173,7 @@
 				9FC6F29017460BFF0091BE98 /* CCControlButton.cpp in Sources */,
 				9FC6F29117460BFF0091BE98 /* CCControlColourPicker.cpp in Sources */,
 				9FC6F29217460BFF0091BE98 /* CCControlHuePicker.cpp in Sources */,
+				6FCB05561835C59A00848C82 /* CFriend.cpp in Sources */,
 				9FC6F29317460BFF0091BE98 /* CCControlPotentiometer.cpp in Sources */,
 				9FC6F29417460BFF0091BE98 /* CCControlSaturationBrightnessPicker.cpp in Sources */,
 				9FC6F29517460BFF0091BE98 /* CCControlSlider.cpp in Sources */,

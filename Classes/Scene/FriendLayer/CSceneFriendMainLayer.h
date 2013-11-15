@@ -29,8 +29,9 @@ public:
     void updateFriend();
     void createFriendText();
     void createBottomButton();
-    
-    void  setTabMargin(float marginLeft,float marginTop);
+    void createQuitButton();
+    int  getFriendCount();
+    void handleTagCallBack(int tag);
     
     CCNode*  getContainer();
     CCSize getContainerContentSize();
@@ -41,21 +42,29 @@ public:
  
     CCPoint getTabPositionByIndex(int index);
     bool  switchToTab(int index);
-    int touchTableIndex(CCPoint point);
-    int touchBottomButton(CCPoint point);
-    int touchQuitButton(CCPoint *point);
-
+    int checkTouchTableIndex(CCPoint point);
+    int checkTouchBottomButton(CCPoint point);
+    int checkTouchQuitButton(CCPoint point);
+public:
+    void selectFriendByUserId();
+    void sendAllZanMei();
+protected:
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    void registerWithTouchDispatcher(void);
+    void onExit();
+    
 protected:
     CCArray*          m_tabs;
     CCLayer*          m_container;
-    CCSprite*         m_bgSprite;
-    CCSpriteFrame*    m_tabNormalFrame;
-    CCSpriteFrame*    m_tabSelectedFrame;
-    std::string       m_fontName;
-    int               m_fontSize;
     int               m_currentTabIndex;
-    CCSize size;
-    int m_nFriendMax;
+    CCSize            size;
+    int               m_nFriendMax;
+    CCObject *pObject;
+    SEL_CallFunc callback[2];
+    
 };
 
 

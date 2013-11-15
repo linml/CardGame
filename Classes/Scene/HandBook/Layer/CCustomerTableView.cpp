@@ -6,20 +6,20 @@
 //
 //
 
-#include "CHandBookTableView.h"
+#include "CCustomerTableView.h"
 
-CHandBookTableView::CHandBookTableView():CCTableView()
+CCustomerTableView::CCustomerTableView():CCTableView()
 {
     
 }
 
-CHandBookTableView::~CHandBookTableView()
+CCustomerTableView::~CCustomerTableView()
 {
     
 }
-CHandBookTableView *CHandBookTableView::create(CCTableViewDataSource* dataSource, CCSize size, CCNode *container)
+CCustomerTableView *CCustomerTableView::create(CCTableViewDataSource* dataSource, CCSize size, CCNode *container)
 {
-    CHandBookTableView *pTableView=new CHandBookTableView();
+    CCustomerTableView *pTableView=new CCustomerTableView();
     pTableView->initWithViewSize(size,container);
     pTableView->autorelease();
     pTableView->setDataSource(dataSource);
@@ -28,13 +28,13 @@ CHandBookTableView *CHandBookTableView::create(CCTableViewDataSource* dataSource
 }
 
 
-bool CHandBookTableView::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
+bool CCustomerTableView::ccTouchBegan(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
     m_pTouch=NULL;
     bool resualt=CCTableView::ccTouchBegan(pTouch, pEvent);
     return resualt;
 }
-void CHandBookTableView::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
+void CCustomerTableView::ccTouchEnded(cocos2d::CCTouch *pTouch, cocos2d::CCEvent *pEvent)
 {
     if (!this->isVisible()) {
         return;

@@ -146,6 +146,8 @@
 	<string>收获赞美</string>
 	<key>haoyoushuliang</key>
 	<string>好友数量</string>
+	<key>wodeid</key>
+	<string>我的ID:</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

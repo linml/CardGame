@@ -12,14 +12,21 @@
 #include "LayoutLayer.h"
 #include "gameTools.h"
 #include "gamePlayer.h"
+#include "CSceneFriendHaoyouliebiao.h"
 #include <string>
+
 using namespace std;
 #define TAG_TABBEGIN 1000
 #define TAG_FRIENDCOUNT 12
 #define TAG_BOTTOMALLBUTTON 14
+#define TAG_QUITBUTTON 20
+
 
 CSceneFriendMainLayer::CSceneFriendMainLayer()
 {
+    m_container=NULL;
+    pObject=NULL;
+    memset(callback, 0, 2);
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath, "friendjiemian.plist"), CSTR_FILEPTAH(g_mapImagesPath, "friendjiemian.png"));
     size=CCDirector::sharedDirector()->getWinSize();
     m_nFriendMax=SinglePlayer::instance()->getFriendMax();
@@ -42,6 +49,10 @@ bool CSceneFriendMainLayer::init()
     createIDText();
     createFriendText();
     createBottomButton();
+    createQuitButton();
+    switchToTab(0);
+    setTouchPriority(-3);
+    setTouchEnabled(true);
     return true;
 }
 
@@ -59,7 +70,7 @@ void CSceneFriendMainLayer::createBackGround()
 {
     CCLayer *layer=CCLayer::create();
     LayoutLayer *tempLayerout=LayoutLayer::create();
-    tempLayerout->initWithFile(layer, CSTR_FILEPTAH(plistPath, "youjianjiemian.plist"));
+    tempLayerout->initWithFile(layer, CSTR_FILEPTAH(plistPath, "haoyoujiemian.plist"));
     addChild(layer,1,1);
 }
 
@@ -73,7 +84,7 @@ void CSceneFriendMainLayer::updateFriend()
     if (pLabelTTF)
     {
         string value;
-        value +=Utility::getWordWithFile("word.plist", "haoyoushuliang")+ConvertToString(5)+"/"+ConvertToString(m_nFriendMax);
+        value +=Utility::getWordWithFile("word.plist", "haoyoushuliang")+ConvertToString(getFriendCount())+"/"+ConvertToString(m_nFriendMax);
         pLabelTTF->setString(value.c_str());
     }
 }
@@ -82,19 +93,32 @@ void CSceneFriendMainLayer::updateFriend()
 void CSceneFriendMainLayer::createFriendText()
 {
     string value;
-    value +=Utility::getWordWithFile("word.plist", "haoyoushuliang")+ConvertToString(5)+"/"+ConvertToString(m_nFriendMax);
+    value +=Utility::getWordWithFile("word.plist", "haoyoushuliang")+ConvertToString(getFriendCount())+"/"+ConvertToString(m_nFriendMax);
     CCLabelTTF *pLabelTTF=CCLabelTTF::create(value.c_str(), "Arial", 15);
     pLabelTTF->setPosition(ccp(size.width *0.5-290 , size.height*0.5-230));
     addChild(pLabelTTF,1,TAG_FRIENDCOUNT);
 
 }
+int CSceneFriendMainLayer::getFriendCount()
+{
+    return 5;
+}
+
+void CSceneFriendMainLayer::createQuitButton()
+{
+    CGameButtonControl *gameButton=CGameButtonControl::createButton(TEXTMID, "", "QuitButton_Normal.png", "QuitButton_Actived.png");
+    addChild(gameButton,3,TAG_QUITBUTTON);
+    gameButton->setPosition(ccp(size.width*0.5+320, size.height*0.5+220));
+    
+}
+
 
 void CSceneFriendMainLayer::createBottomButton()
 {
     for (int i=0; i<2; i++)
     {
         CGameButtonControl *gameButton=CGameButtonControl::createButton(TEXTMID, " ", "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
-        addChild(gameButton,2,TAG_BOTTOMALLBUTTON+1);
+        addChild(gameButton,2,TAG_BOTTOMALLBUTTON+i);
         gameButton->setPosition(ccp(size.width *0.5+120+120*i, size.height *0.5-230));
     }
 }
@@ -104,18 +128,14 @@ void CSceneFriendMainLayer::createIDText()
 {
     CGamePlayer *tempPlayer=SinglePlayer::instance();
     string IdText;
-    IdText += "+" +GameTools::ConvertToString(tempPlayer->getUserId());
+    IdText=Utility::getWordWithFile("word.plist", "wodeid");
+    IdText += GameTools::ConvertToString(tempPlayer->getUserId());
     CCLabelTTF *pLabelTTF=CCLabelTTF::create(IdText.c_str(), "Arial", 20);
-    pLabelTTF->setPosition(ccp(size.width*0.5+300, size.height+200));
+    pLabelTTF->setPosition(ccp(size.width*0.5+300, size.height*0.5+200));
     pLabelTTF->setAnchorPoint(ccp(1.0, 0.0));
-    addChild(pLabelTTF, 2);
+    addChild(pLabelTTF, 30);
 }
 
-void  CSceneFriendMainLayer::setTabMargin(float marginLeft,float marginTop)
-{
-    //setMarginLeft(marginLeft);
-    //setMarginTop(marginTop);
-}
                                           
 CCNode*  CSceneFriendMainLayer::getContainer()
 {
@@ -160,7 +180,7 @@ bool  CSceneFriendMainLayer::addTab(const char* label,int index)
     m_tabs->addObject(gameButton);
     return true;
 }
-int CSceneFriendMainLayer::touchTableIndex(CCPoint point)
+int CSceneFriendMainLayer::checkTouchTableIndex(CCPoint point)
 {
     CCObject *tempButton=NULL;
     CCARRAY_FOREACH(m_tabs, tempButton)
@@ -174,22 +194,39 @@ int CSceneFriendMainLayer::touchTableIndex(CCPoint point)
     }
     return -1;
 }
-int CSceneFriendMainLayer::touchBottomButton(CCPoint point)
+int CSceneFriendMainLayer::checkTouchBottomButton(CCPoint point)
 {
-    for (int i=1; i<3; i++) {
+    for (int i=0; i<2; i++) {
         if (getChildByTag(i+TAG_BOTTOMALLBUTTON)) {
             CGameButtonControl *tempGameButton=(CGameButtonControl *)(getChildByTag(i+TAG_BOTTOMALLBUTTON));
-            if (tempGameButton) {
-                tempGameButton->getTag();
+            if (tempGameButton&& tempGameButton->boundingBox().containsPoint(point)) {
+               return  i+TAG_BOTTOMALLBUTTON;
             }
         }
     }
     return -1;
 }
 
-int CSceneFriendMainLayer::touchQuitButton(CCPoint *point)
+int CSceneFriendMainLayer::checkTouchQuitButton(CCPoint point)
 {
+    if (getChildByTag(TAG_QUITBUTTON)) {
+        CGameButtonControl *pGameButton=(CGameButtonControl *)getChildByTag(TAG_QUITBUTTON);
+        if(pGameButton->boundingBox().containsPoint(point))
+        {
+            return TAG_QUITBUTTON;
+        }
+    }
     return -1;
+}
+
+void CSceneFriendMainLayer::selectFriendByUserId()
+{
+    
+}
+
+void CSceneFriendMainLayer::sendAllZanMei()
+{
+    
 }
 
 bool  CSceneFriendMainLayer::switchToTab(int index)
@@ -212,5 +249,114 @@ bool  CSceneFriendMainLayer::switchToTab(int index)
         pTempButton->selected();
     }
     m_currentTabIndex=index;
+    CCLog("current tab index %d",m_currentTabIndex);
+    if (m_container) {
+        removeChild(m_container, true);
+        pObject=NULL;
+        memset(callback, 0, 2);
+    }
+    switch (m_currentTabIndex) {
+        case 0:
+        {
+            CCLayer *layer=CSceneFriendHaoyouliebiao::create();
+            addChild(layer,2,33333);
+            m_container=layer;
+            pObject=layer;
+            callback[0]=callfunc_selector(CSceneFriendHaoyouliebiao::selectButton);
+            const string data[2]={"添加好友","全部赞"};
+            for (int i=0; i<2; i++)
+            {
+                CGameButtonControl *gameButton=(CGameButtonControl*)(getChildByTag(TAG_BOTTOMALLBUTTON+i));
+                if(gameButton->getTextLabel())
+                {
+                    gameButton->getTextLabel()->setString(data[i].c_str());
+                }
+            }
+        }
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        default:
+            break;
+    }
+    
+    
     return  true;
+}
+
+bool CSceneFriendMainLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+    return true;
+}
+
+void CSceneFriendMainLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
+{
+    
+}
+
+void CSceneFriendMainLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
+{
+    CCPoint point =pTouch->getLocation();
+
+    if (checkTouchTableIndex(point)!=-1)
+    {
+        handleTagCallBack(checkTouchTableIndex(point));
+        
+    } else if(checkTouchBottomButton(point)!=-1)
+    {
+        handleTagCallBack(checkTouchBottomButton(point));
+    }
+    else if(checkTouchQuitButton(point)!=-1)
+    {
+        removeFromParentAndCleanup(true);
+    }
+}
+
+void CSceneFriendMainLayer::handleTagCallBack(int tag)
+{
+    switch (tag) {
+        case (TAG_BOTTOMALLBUTTON+1):
+        {
+            if (pObject&&callback[1]) {
+                (pObject->*callback[1])();
+            }
+
+        }
+            break;
+        case TAG_BOTTOMALLBUTTON:
+        {
+            if (pObject&&callback[0]) {
+                (pObject->*callback[0])();
+            }
+            CCLOG("touch the bottom left button");
+        }
+        break;
+        case TAG_TABBEGIN:
+            switchToTab(0);
+            break;
+        case TAG_TABBEGIN+1:
+            switchToTab(1);
+            break;
+        case TAG_TABBEGIN+2:
+            switchToTab(2);
+            break;
+        default:
+            break;
+    }
+}
+
+void CSceneFriendMainLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
+{
+    
+}
+void CSceneFriendMainLayer::registerWithTouchDispatcher(void)
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, getTouchPriority(), true);
+}
+void CSceneFriendMainLayer::onExit()
+{
+    CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+    CCLayer::onExit();
 }

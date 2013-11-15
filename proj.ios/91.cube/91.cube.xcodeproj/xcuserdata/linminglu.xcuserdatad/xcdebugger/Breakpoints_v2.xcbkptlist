@@ -679,7 +679,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "557"
             endingLineNumber = "557"
-            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -695,7 +695,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "556"
             endingLineNumber = "556"
-            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -711,7 +711,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "555"
             endingLineNumber = "555"
-            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -727,7 +727,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "551"
             endingLineNumber = "551"
-            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -775,7 +775,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "524"
             endingLineNumber = "524"
-            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
+            landmarkName = "CGameEmailTableView::tableCellSizeForIndex(CCTableView *table, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -950,9 +950,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "964"
-            endingLineNumber = "964"
-            landmarkName = "CGameEmailTableView::scrollBar(CCTableView* table)"
-            landmarkType = "5">
+            endingLineNumber = "964">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -983,7 +981,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "806"
             endingLineNumber = "806"
-            landmarkName = "CGameEmailTableView::scrollViewDidScroll(CCScrollView* view)"
+            landmarkName = "CGameEmailTableView::removeDialog()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1095,7 +1093,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "519"
             endingLineNumber = "519"
-            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
+            landmarkName = "CGameEmailTableView::cellSizeForTable(CCTableView *table)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1126,9 +1124,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "432"
-            endingLineNumber = "432"
-            landmarkName = "CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)"
-            landmarkType = "5">
+            endingLineNumber = "432">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1143,7 +1139,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "494"
             endingLineNumber = "494"
-            landmarkName = "CGameEmailTableView::tableCellAtIndex(CCTableView *table, unsigned int idx)"
+            landmarkName = "CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1239,7 +1235,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "582"
             endingLineNumber = "582"
-            landmarkName = "CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)"
+            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1457,7 +1453,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "577"
             endingLineNumber = "577"
-            landmarkName = "CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)"
+            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1472,9 +1468,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "502"
-            endingLineNumber = "502"
-            landmarkName = "CGameEmailTableView::tableCellAtIndex(CCTableView *table, unsigned int idx)"
-            landmarkType = "5">
+            endingLineNumber = "502">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1488,9 +1482,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "970"
-            endingLineNumber = "970"
-            landmarkName = "CGameEmailTableView::scrollBar(CCTableView* table)"
-            landmarkType = "5">
+            endingLineNumber = "970">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1771,7 +1763,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "191"
             endingLineNumber = "191"
-            landmarkName = "CRegisterLayer::onReceiveRegiterMsg(CCObject *pOject)"
+            landmarkName = "CRegisterLayer::menuRegisterCallback(CCObject* pSender)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1787,7 +1779,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "177"
             endingLineNumber = "177"
-            landmarkName = "CRegisterLayer::doRegiter()"
+            landmarkName = "CRegisterLayer::menuRegisterCallback(CCObject* pSender)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2200,6 +2192,86 @@
             startingLineNumber = "283"
             endingLineNumber = "283"
             landmarkName = "CSceneHospitalLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FriendLayer/CSceneFriendMainLayer.cpp"
+            timestampString = "406194605.528906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "261"
+            endingLineNumber = "261"
+            landmarkName = "CSceneFriendMainLayer::switchToTab(int index)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FriendLayer/CSceneFriendMainLayer.cpp"
+            timestampString = "406194605.528906"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "CSceneFriendMainLayer::switchToTab(int index)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FriendLayer/CSceneFriendMainLayer.cpp"
+            timestampString = "406199142.069468"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "CSceneFriendMainLayer::handleTagCallBack(int tag)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FriendLayer/CSceneFriendMainLayer.cpp"
+            timestampString = "406199142.069468"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
+            landmarkName = "CSceneFriendMainLayer::handleTagCallBack(int tag)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FriendLayer/Layer/CSceneFriendHaoyouliebiao.cpp"
+            timestampString = "406198485.956854"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "CSceneFriendHaoyouliebiao::selectButton()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

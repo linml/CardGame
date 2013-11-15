@@ -14,7 +14,7 @@
 #include "gamePlayer.h"
 #include "PtHttpClient.h"
 #include "LayoutLayer.h"
-#include "CHandBookTableView.h"
+#include "CCustomerTableView.h"
 #include "CCardInfoLayer.h"
 #include "CGameButtonControl.h"
 #include <map>
@@ -156,7 +156,7 @@ void CScreenHandBookLayer::createBackGroud()
 void CScreenHandBookLayer::createTableView()
 {
     
-    CHandBookTableView *tableView = CHandBookTableView::create(this, CCSizeMake(800,600),NULL);
+    CCustomerTableView *tableView = CCustomerTableView::create(this, CCSizeMake(800,600),NULL);
     tableView->setDirection(kCCScrollViewDirectionHorizontal);
     tableView->setAnchorPoint(ccp(0, 0.0));
     tableView->setPosition(ccp(100,70));
@@ -211,7 +211,7 @@ void CScreenHandBookLayer::tableCellTouched(CCTableView* table, CCTableViewCell*
     int value =cell->getIdx();
     CCLog("you touch cell at %d", value);
     //createRightLayer(m_vActionList[value]);
-    CCTouch *pTouch=((CHandBookTableView *)table)->getTouchSet();
+    CCTouch *pTouch=((CCustomerTableView *)table)->getTouchSet();
     
     CHandBookLayerCell *cellLayer=(CHandBookLayerCell *)(cell->getChildByTag(10000+value));
     if(cellLayer)

@@ -379,7 +379,7 @@ void CLoginScene::playGame()
 {
     if(Utility::getNodeByTag(this, "0,2,0")->isVisible())
     {
-        //SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+       // SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
         SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
     }
 }

@@ -146,5 +146,12 @@
 #define STR_URL_HOSPITALACTITY(UID) URL_FACTORY("api.php?m=clinic&a=cure&uid=",UID)
 //获得神力的剩余时间
 #define STR_URL_GPLEVELTIME(UID)  URL_FACTORY("api.php?m=clinic&a=clinic&uid=",UID)
+//获取好友的信息列表
+#define STR_URL_GETFRIEND(UID)    URL_FACTORY("api.php?m=Friend&a=getFriendList&uid=",UID)
+//添加一个Uid的好友
+#define STR_URL_SEARCHFRIEND(UID)  URL_FACTORY("api.php?m=Friend&a=searchFriend&uid=",UID)
+//赞美一个好友
+#define STR_URL_GETFRIENDLY(UID)   URL_FACTORY("api.php?m=Friend&a=addFriendly&uid="，UID)
+
 
 #endif
