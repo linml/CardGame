@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>s_boss_1</key>
+	<dict>
+		<key>spriteFile</key>
+		<string>icon.sprite</string>
+		<key>spriteFile_spriteName</key>
+		<string>boss</string>
+		<key>initProperty</key>
+		<dict>
+			<key>scale</key>
+			<string>0.1</string>
+			<key>opacity</key>
+			<string>170</string>
+			<key>anchor</key>
+			<string>{0.5,0.5}</string>
+		</dict>
+		<key>actions</key>
+		<array>
+			<string>Show()</string>
+			<string>ScaleBy(0.1,13)</string>
+			<string>Hide()</string>
+			<string>Sequence(Item 0,Item 1,Item 2)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 3</string>
+		<key>z</key>
+		<string>2</string>
+	</dict>
+	<key>s_boss_2</key>
+	<dict>
+		<key>spriteFile</key>
+		<string>icon.sprite</string>
+		<key>spriteFile_spriteName</key>
+		<string>boss</string>
+		<key>initProperty</key>
+		<dict>
+			<key>opacity</key>
+			<string>170</string>
+			<key>anchor</key>
+			<string>{0.5,0.5}</string>
+		</dict>
+		<key>actions</key>
+		<array>
+			<string>Show()</string>
+			<string>ScaleBy(0.5,2)</string>
+			<string>Hide()</string>
+			<string>Sequence(Item 4,Item 0,Item 6,Item 2)</string>
+			<string>Delay(0.1)</string>
+			<string>FadeTo(0.2,0)</string>
+			<string>Spawn(Item 1,Item 5)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 3</string>
+		<key>z</key>
+		<string>9</string>
+	</dict>
+	<key>s_boss_3</key>
+	<dict>
+		<key>spriteFile</key>
+		<string>icon.sprite</string>
+		<key>spriteFile_spriteName</key>
+		<string>boss</string>
+		<key>initProperty</key>
+		<dict>
+			<key>opacity</key>
+			<string>170</string>
+			<key>anchor</key>
+			<string>{0.5,0.5}</string>
+		</dict>
+		<key>actions</key>
+		<array>
+			<string>Show()</string>
+			<string>ScaleBy(0.5,2.2)</string>
+			<string>Hide()</string>
+			<string>Sequence(Item 4,Item 0,Item 6,Item 2)</string>
+			<string>Delay(0.2)</string>
+			<string>FadeTo(0.2,0)</string>
+			<string>Spawn(Item 1,Item 5)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 3</string>
+		<key>z</key>
+		<string>9</string>
+	</dict>
+</dict>
+</plist>

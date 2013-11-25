@@ -1,1 +1,0 @@
-{"code":0,"result":{"friendly":{"free_times":1,"leave_time":150000},"cash":{"free_times":1,"leave_time":150000},"reward":{"add":{"card_item":{"card":{"91118":{"card_id":100006,"level":1},"91117":{"card_id":100005,"level":1}}}}}}}

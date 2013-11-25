@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>1</key>
+	<dict>
+		<key>actionForever</key>
+		<string>(repeatForever:(sequence:(show:);(animate:22,juqi1/juqi1.ani,0.04);(hide:)))</string>
+		<key>nodeType</key>
+		<string>sprite</string>
+		<key>opacity</key>
+		<string>255</string>
+		<key>position</key>
+		<string>50,150</string>
+		<key>scaleX</key>
+		<string>1</string>
+		<key>scaleY</key>
+		<string>1</string>
+		<key>tag</key>
+		<string>1</string>
+		<key>visable</key>
+		<string>1</string>
+		<key>zOrder</key>
+		<string>100000</string>
+        <key>anchorPosition</key>
+		<string>0.5,0.5</string>
+	</dict>
+</dict>
+</plist>

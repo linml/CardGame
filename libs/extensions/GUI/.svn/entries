@@ -1,0 +1,37 @@
+10
+
+dir
+2111
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/libs/extensions/GUI
+svn://merlin@192.168.2.3/sdp
+
+
+
+2013-08-30T01:33:35.961997Z
+1111
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+CCScrollView
+dir
+
+CCControlExtension
+dir
+
+CCEditBox
+dir
+

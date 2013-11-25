@@ -1,0 +1,70 @@
+10
+
+dir
+2112
+svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene
+svn://merlin@192.168.2.3/sdp
+
+
+
+2013-11-25T08:26:54.050133Z
+2112
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+Backpack
+dir
+
+FightScene
+dir
+
+GameShopLayer
+dir
+
+HospitalLayer
+dir
+
+GameEmail
+dir
+
+ExplorationScene
+dir
+
+ActionGameLayer
+dir
+
+DrawCardLayer
+dir
+
+FriendLayer
+dir
+
+CardSettingScene
+dir
+
+HandBook
+dir
+
+LoginScene
+dir
+
+StoryLayer
+dir
+
+HallScene
+dir
+

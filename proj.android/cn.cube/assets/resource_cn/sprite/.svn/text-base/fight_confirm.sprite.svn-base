@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict>
+    <key>spriteFileName</key>
+    <string>fight_confirm</string>
+    <key>imagePath</key>
+    <string>../Library/Application Support/iPhone Simulator/6.1/Applications/33C246C2-32ED-4F91-A782-D9073F17BAC8/MapView.app/resource/image/fight_confirm.png</string>
+    <key>clipData</key>
+    <dict>
+        <key>fight_confirm_bg</key>
+        <string>{72,75,447,507}</string>
+        <key>fight_confirm_btn</key>
+        <string>{543,49,311,140}</string>
+    </dict>
+    <key>mapSpriteData</key>
+    <dict>
+        <key>fight_confirm_bg</key>
+        <dict>
+            <key>fight_confirm_bg</key>
+            <dict>
+                <key>pos</key>
+                <string>{0,0}</string>
+                <key>filp</key>
+                <integer>0</integer>
+                <key>scale</key>
+                <string>1</string>
+                <key>rotate</key>
+                <string>0</string>
+                <key>anchor</key>
+                <string>{0,1}</string>
+            </dict>
+        </dict>
+        <key>fight_confirm_btn</key>
+        <dict>
+            <key>fight_confirm_btn</key>
+            <dict>
+                <key>pos</key>
+                <string>{0,0}</string>
+                <key>filp</key>
+                <integer>0</integer>
+                <key>scale</key>
+                <string>1</string>
+                <key>rotate</key>
+                <string>0</string>
+                <key>anchor</key>
+                <string>{0,1}</string>
+            </dict>
+        </dict>
+    </dict>
+</dict>

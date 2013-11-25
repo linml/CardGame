@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>dialog_bottom.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,154},{485,90}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{485,90}}</string>
+			<key>sourceSize</key>
+			<string>{485,90}</string>
+		</dict>
+		<key>dialog_mid.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,116},{485,36}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{485,36}}</string>
+			<key>sourceSize</key>
+			<string>{485,36}</string>
+		</dict>
+		<key>dialog_top.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{485,112}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{485,112}}</string>
+			<key>sourceSize</key>
+			<string>{485,112}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>dialog_bg.png</string>
+		<key>size</key>
+		<string>{512,256}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:4080ae33f28f0d4562964b93a738cd22$</string>
+		<key>textureFileName</key>
+		<string>dialog_bg.png</string>
+	</dict>
+</dict>
+</plist>

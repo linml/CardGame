@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dict>
+    <key>spriteFileName</key>
+    <string>button</string>
+    <key>imagePath</key>
+    <string>button.png</string>
+    <key>clipData</key>
+    <dict>
+        <key>clip0</key>
+        <string>{0,0,126,60}</string>
+    </dict>
+    <key>mapSpriteData</key>
+    <dict>
+        <key>clip0</key>
+        <dict>
+            <key>clip0</key>
+            <dict>
+                <key>pos</key>
+                <string>{0,0}</string>
+                <key>filp</key>
+                <integer>0</integer>
+                <key>scale</key>
+                <string>1</string>
+                <key>rotate</key>
+                <string>0</string>
+                <key>anchor</key>
+                <string>{0,1}</string>
+            </dict>
+        </dict>
+    </dict>
+</dict>
