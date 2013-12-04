@@ -77,7 +77,7 @@ public:
     
     bool isHaveBufferRefactor(int prameid);
     bool isCanFight();
-    
+    int  getFightPoint();
     bool isHaveParamid10(int nParamidValue);
     void appendEngry(int iEngry);
     void appendHp(int iHp);
@@ -88,6 +88,7 @@ public:
     void subAtk(int value);
     void subDef(int value);
     void dealWithPlayerBuffer(int effectId);
+  
 public:
     int m_iCurrHp;  //当前HP
     int m_iHp;      //当前总的HP

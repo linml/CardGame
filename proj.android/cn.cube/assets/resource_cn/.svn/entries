@@ -1,15 +1,15 @@
 10
 
 dir
-2111
+2156
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-11-25T04:00:51.478148Z
-2106
-phileas
+2013-12-04T04:19:48.011954Z
+2156
+merlin
 has-props
 
 
@@ -100,11 +100,11 @@ file
 
 
 
-2013-11-25T08:28:18.000000Z
-a318599fb01a2e20acc24a54ceaf827b
-2013-09-23T03:32:52.513848Z
-1452
-merlin
+2013-12-03T08:27:21.000000Z
+32d704c8d832986d0fa5291a39d165cb
+2013-11-27T08:22:49.773146Z
+2126
+phileas
 
 
 
@@ -126,7 +126,7 @@ merlin
 
 
 
-11763
+59443
 
 meiyouyongskill_config.plist
 file

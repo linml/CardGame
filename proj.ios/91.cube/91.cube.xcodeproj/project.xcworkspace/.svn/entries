@@ -1,14 +1,14 @@
 10
 
 dir
-2112
+2156
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.ios/91.cube/91.cube.xcodeproj/project.xcworkspace
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-11-19T06:42:04.645202Z
-2039
+2013-11-25T09:09:13.575946Z
+2115
 merlin
 has-props
 
@@ -61,5 +61,8 @@ wood
 152
 
 xcuserdata
+dir
+
+xcshareddata
 dir
 

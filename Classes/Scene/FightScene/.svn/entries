@@ -1,15 +1,15 @@
 10
 
 dir
-2112
+2156
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene/FightScene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-11-25T08:26:54.050133Z
-2112
-merlin
+2013-12-03T08:28:40.993976Z
+2152
+phileas
 has-props
 
 
@@ -140,11 +140,11 @@ file
 
 
 
-2013-11-25T08:28:18.000000Z
-853e991d969e45ebab90a5a2af02c4f0
-2013-11-22T06:34:05.642251Z
-2093
-merlin
+2013-12-03T08:30:04.000000Z
+3266f96964bd4e7661dd80a4f50eba75
+2013-12-03T08:28:40.993976Z
+2152
+phileas
 
 
 
@@ -166,5 +166,5 @@ merlin
 
 
 
-40544
+40552
 

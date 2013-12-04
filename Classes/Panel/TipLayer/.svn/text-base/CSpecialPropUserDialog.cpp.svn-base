@@ -10,6 +10,7 @@
 #include "PtJsonUtility.h"
 #include "PtHttpClient.h"
 #include "gameConfig.h"
+#include "CPtRecharge.h"
 
 
 CSpecialPropUserDialog * CSpecialPropUserDialog::create(USERTYPE inFunctionId, SPECIALPROPDATA specialPropData)
@@ -65,6 +66,14 @@ void CSpecialPropUserDialog::initSpecialPropUserDialog()
 
 void CSpecialPropUserDialog::onClickUserOrRecharge(CCObject *pObject)
 {
+    if (!hasEnouchCoin())
+    {
+        CPtRecharge * layer = CPtRecharge::create();
+        layer->setTouchPriority(getTouchPriority()-1);
+        addChild(layer, 1000);
+        return;
+    }
+
     char buffer[300] = {0};
     int use_coin = m_bHaveProp ? 0:1;
     int specialType = 0;

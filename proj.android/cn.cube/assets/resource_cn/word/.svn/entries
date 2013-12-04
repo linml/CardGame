@@ -1,7 +1,7 @@
 10
 
 dir
-2111
+2156
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/word
 svn://merlin@192.168.2.3/sdp
 
@@ -96,20 +96,15 @@ has-props
 
 word.plist
 file
+2163
 
 
 
-
-2013-11-25T08:28:12.000000Z
-486b89dd2781dbcca91e2c55638adb3b
-2013-11-19T08:53:40.299586Z
-2049
-phileas
-
-
-
-
-
+2013-12-03T09:28:40.000000Z
+7f0b48d91ee19a989d491d1de3a350dd
+2013-12-04T07:48:37.510824Z
+2163
+merlin
 
 
 
@@ -126,7 +121,12 @@ phileas
 
 
 
-5910
+
+
+
+
+
+6086
 
 tips.plist
 file

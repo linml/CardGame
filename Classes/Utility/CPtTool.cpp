@@ -470,6 +470,13 @@ namespace CPtTool
     {
         return (int)((base_value+ currentValue*ractor*starParam));
     }
+    
+    //战斗力=(攻击力*25+81*防御力)/((20+等级)*星级系数*25*81)*1000+血量/2116.96153846154*1000
+    int getFightPoint(int atk, int def, int hp, int level, float starParam)
+    {
+        int result =(atk*25+81*def)/((20+level)*starParam*25*81)*1000+hp/2116.96153846154*1000;
+        return result;
+    }
     bool getSuit(const int &number, int &outSuit, int &outSequence)
     {
         int inSuit = number;

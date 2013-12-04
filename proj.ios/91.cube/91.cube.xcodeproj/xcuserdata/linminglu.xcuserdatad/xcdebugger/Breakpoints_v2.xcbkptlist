@@ -383,7 +383,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "374"
             endingLineNumber = "374"
-            landmarkName = "CFightCard::appendBufferData(CCardBufferStatusRefactor *pBuffer)"
+            landmarkName = "CFightCard::getSupportValue(int type)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -495,7 +495,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1106"
             endingLineNumber = "1106"
-            landmarkName = "CGamePlayer::mergeProps(map&lt;int, int&gt; &amp;tmpProps, map&lt;int, int&gt; &amp;inAddProps)"
+            landmarkName = "CGamePlayer::getCurrentTaskType()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -542,9 +542,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "930"
-            endingLineNumber = "930"
-            landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
-            landmarkType = "5">
+            endingLineNumber = "930">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -559,7 +557,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "945"
             endingLineNumber = "945"
-            landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
+            landmarkName = "CGamePlayer::addPlayerGp(int inAddHp)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -574,9 +572,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "935"
-            endingLineNumber = "935"
-            landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
-            landmarkType = "5">
+            endingLineNumber = "935">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -590,9 +586,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "1053"
-            endingLineNumber = "1053"
-            landmarkName = "CGamePlayer::isCanAddToBackPack(map&lt;int, int&gt; &amp;tmpProps, map&lt;int, int&gt;&amp; inAddProps, int inUserGridCount)"
-            landmarkType = "5">
+            endingLineNumber = "1053">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -607,7 +601,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "940"
             endingLineNumber = "940"
-            landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
+            landmarkName = "CGamePlayer::addPlayerGp(int inAddHp)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -622,9 +616,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "937"
-            endingLineNumber = "937"
-            landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
-            landmarkType = "5">
+            endingLineNumber = "937">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -639,7 +631,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "957"
             endingLineNumber = "957"
-            landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
+            landmarkName = "CGamePlayer::addPlayerAp(int inAddEnergy)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -687,7 +679,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "557"
             endingLineNumber = "557"
-            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -703,7 +695,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "556"
             endingLineNumber = "556"
-            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -719,7 +711,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "555"
             endingLineNumber = "555"
-            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -735,7 +727,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "551"
             endingLineNumber = "551"
-            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -783,7 +775,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "524"
             endingLineNumber = "524"
-            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
+            landmarkName = "CGameEmailTableView::tableCellAtIndex(CCTableView *table, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -959,7 +951,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "964"
             endingLineNumber = "964"
-            landmarkName = "CGameEmailTableView::scrollBar(CCTableView* table)"
+            landmarkName = "CGameEmailTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -982,22 +974,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
-            timestampString = "400400125.72741"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "806"
-            endingLineNumber = "806"
-            landmarkName = "CGameEmailTableView::scrollViewDidScroll(CCScrollView* view)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1006,9 +982,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "CEmrysTableView::scrollViewDidScroll(CCScrollView* view)"
-            landmarkType = "5">
+            endingLineNumber = "69">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1070,9 +1044,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "CEmrysTableView::ccTouchMoved(cocos2d::CCTouch *pTouch,cocos2d::CCEvent *pEvent)"
-            landmarkType = "5">
+            endingLineNumber = "176">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1103,7 +1075,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "519"
             endingLineNumber = "519"
-            landmarkName = "CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTouch)"
+            landmarkName = "CGameEmailTableView::tableCellAtIndex(CCTableView *table, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1135,7 +1107,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "432"
             endingLineNumber = "432"
-            landmarkName = "CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)"
+            landmarkName = "CGameEmailTableView::reloadData()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1151,7 +1123,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "494"
             endingLineNumber = "494"
-            landmarkName = "CGameEmailTableView::tableCellAtIndex(CCTableView *table, unsigned int idx)"
+            landmarkName = "CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1231,7 +1203,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "590"
             endingLineNumber = "590"
-            landmarkName = "CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)"
+            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1247,7 +1219,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "582"
             endingLineNumber = "582"
-            landmarkName = "CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)"
+            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1341,7 +1313,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "961"
             endingLineNumber = "961"
-            landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
+            landmarkName = "CGamePlayer::addPlayerAp(int inAddEnergy)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1357,7 +1329,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "969"
             endingLineNumber = "969"
-            landmarkName = "CGamePlayer:: parsePropsInfo(CCObject *pObject)"
+            landmarkName = "CGamePlayer::subPlayerAp(int inSubEnergy)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1387,7 +1359,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "503"
             endingLineNumber = "503"
-            landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
+            landmarkName = "CGamePlayer::deleteFromCardBag(vector&lt;int&gt;user_CardId)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1467,7 +1439,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "577"
             endingLineNumber = "577"
-            landmarkName = "CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)"
+            landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1483,7 +1455,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "502"
             endingLineNumber = "502"
-            landmarkName = "CGameEmailTableView::tableCellAtIndex(CCTableView *table, unsigned int idx)"
+            landmarkName = "CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1499,7 +1471,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "970"
             endingLineNumber = "970"
-            landmarkName = "CGameEmailTableView::scrollBar(CCTableView* table)"
+            landmarkName = "CGameEmailTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1813,7 +1785,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "982"
             endingLineNumber = "982"
-            landmarkName = "CGamePlayer::updateProps()"
+            landmarkName = "CGamePlayer::subPlayerCash(int iValue)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1877,7 +1849,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "663"
             endingLineNumber = "663"
-            landmarkName = "CGamePlayer::parseNpcCard(cocos2d::CCObject *object)"
+            landmarkName = "CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1941,7 +1913,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "501"
             endingLineNumber = "501"
-            landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
+            landmarkName = "CGamePlayer::deleteFromCardBag(vector&lt;int&gt;user_CardId)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

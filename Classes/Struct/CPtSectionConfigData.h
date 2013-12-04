@@ -32,7 +32,7 @@ class CPtSection : public CCObject
 public:
     static CPtSection* create();
 public:
-    
+    bool getButtonMirror(int inDirection);
     CC_SYNTHESIZE(int, m_nSectionId, SectionId);              // 小节Id
     CC_SYNTHESIZE(std::string, m_sSectionName, SectionName);  //小节名称
     CC_SYNTHESIZE(int, m_nChapterId, ChapterId);              // 该小节所属章节ID
@@ -52,6 +52,10 @@ public:
 
     CC_SYNTHESIZE(int, m_nTaskId, TaskId);                    // 任务ID
     CC_SYNTHESIZE(int, m_nRandomEventId, RandomEventId);      //随机ID
+    
+    CC_SYNTHESIZE(bool,m_bLeftClear, LeftClear);    // 左边事件是否可知
+    CC_SYNTHESIZE(bool,m_bRightClear, RightClear);  // 右边事件是否可知
+    CC_SYNTHESIZE(bool,m_bMiddleClear, MiddleClear);// 中间事件是否可知
     
    // CC_SYNTHESIZE(int, m_nTriggerId, TriggerId);              // 触发ID组
     

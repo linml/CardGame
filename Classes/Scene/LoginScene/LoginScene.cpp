@@ -380,8 +380,9 @@ void CLoginScene::playGame()
     if(Utility::getNodeByTag(this, "0,2,0")->isVisible())
     {
 
-        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
-       // SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
+        //SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+        //场景切换动画 用来做测试的时候用得。 
+        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
     }
 }
 
@@ -624,7 +625,7 @@ void CLoginScene::addFunctionInitGames(float t)
                     if (pGamePlayer->getCurrentTaskId()!=0)
                     {
                         //先判断当前的任务是否完成 如果完成了 需要调用校验 然后添加新的任务 最后才执行play
-                        if (!SinglePlayer::instance()->isSuccessFinishTask())
+                        if (!SinglePlayer::instance()->isHaveSendComplate())//isSuccessFinishTask())
                         {
                             playGame();
                         }

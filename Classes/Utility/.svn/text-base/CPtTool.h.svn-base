@@ -36,6 +36,7 @@ namespace CPtTool
     
     int calulate(int card_base_value, int config_value, int star, float correct_value_1, float star_parameter, float correct_value_2,float correct_parameter);
     int calSupportValue(int base_value,int currentValue, float starParam, float ractor);
+    int getFightPoint(int atk, int def, int hp, int level, float starParam);
     bool getSuit(const int &number, int &outSuit, int &outSequence);
     bool memoryInfo(vm_statistics_data_t *vmStats) ;
     

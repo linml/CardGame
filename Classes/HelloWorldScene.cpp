@@ -15,6 +15,8 @@
 #include "CSceneActionGameLayer.h"
 #include "CScreenHandBookLayer.h"
 #include "CSceneFriendMainLayer.h"
+#include "CGameRankLayer.h"
+#include "CAnnouncementLayer.h"
 
 
 using namespace cocos2d;
@@ -45,14 +47,16 @@ CCScene* HelloWorld::scene()
     CCScene *scene = CCScene::create();
     
     // 'layer' is an autorelease object
-    HelloWorld *layer = HelloWorld::create();
+   // HelloWorld *layer = HelloWorld::create();
  
     //CScreenHandBookLayer *layer=CScreenHandBookLayer::create();
    // CSceneFriendMainLayer *layer=CSceneFriendMainLayer::create();
     
-    
+    CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
+    //addChild(gamelayer,1,1);
+   // gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5));
     // add layer as a child to scene
-    scene->addChild(layer);
+    scene->addChild(gamelayer);
 
     // return the scene
     return scene;
@@ -105,7 +109,7 @@ bool HelloWorld::init()
 //    addChild(layer,0);
     //layer->setPosition(ccp(size.width*0.5,size.height*0.5));
 
-    test(this);
+    //test(this);
     // add "HelloWorld" splash screen"
 
  //   CCSprite* pSprite = CCSprite::create("resource_cn/img/HelloWorld.png");
@@ -145,6 +149,10 @@ bool HelloWorld::init()
 //    addChild(sprite,0,200);
 //    sprite->setPosition(ccp(size.width*0.5,size.height*0.5));
 //   CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(30005,this);
+    
+ 
+    
+    
     
     return true;
 }

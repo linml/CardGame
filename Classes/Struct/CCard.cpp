@@ -168,6 +168,13 @@ bool CFightCard::isCanFight()
     return true;
 }
 
+int CFightCard::getFightPoint()
+{
+    float star_param = SingleLevleConfigData::instance()->getStarParamter(m_pCard->m_nCard_star, m_iCurrLevel);
+    int result = CPtTool::getFightPoint(m_attack, m_defend, m_iHp, m_iCurrLevel, star_param);
+    return result;
+}
+
 bool CFightCard::isHaveParamid10(int nParamidValue)
 {
     if(m_vlistBuffer.size()==0)

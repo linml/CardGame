@@ -1,15 +1,15 @@
 10
 
 dir
-2112
+2156
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Struct
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-11-25T08:26:54.050133Z
-2112
-merlin
+2013-12-03T08:28:40.993976Z
+2152
+phileas
 has-props
 
 
@@ -60,40 +60,6 @@ merlin
 
 420
 
-SEveryATKData.cpp
-file
-
-
-
-
-2013-11-25T08:28:18.000000Z
-e3352ef979fa72229536996d9f55bf76
-2013-11-07T01:04:40.447299Z
-1934
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-422
-
 CPtPropConfigData.cpp
 file
 
@@ -128,17 +94,17 @@ phileas
 
 4724
 
-CEventConfigData.h
+SEveryATKData.cpp
 file
 
 
 
 
 2013-11-25T08:28:18.000000Z
-22258491070d41840760670a6e54c043
-2013-09-11T11:56:39.996218Z
-1319
-phileas
+e3352ef979fa72229536996d9f55bf76
+2013-11-07T01:04:40.447299Z
+1934
+merlin
 
 
 
@@ -160,7 +126,7 @@ phileas
 
 
 
-2292
+422
 
 CStructGameActionData.cpp
 file
@@ -196,16 +162,16 @@ phileas
 
 2860
 
-CActivityEncounterManager.cpp
+CEventConfigData.h
 file
 
 
 
 
 2013-11-25T08:28:18.000000Z
-31e88bbaed4b3a207ef8fe43e50a2b5e
-2013-11-13T06:52:17.737417Z
-1989
+22258491070d41840760670a6e54c043
+2013-09-11T11:56:39.996218Z
+1319
 phileas
 
 
@@ -228,7 +194,7 @@ phileas
 
 
 
-3215
+2292
 
 CEventBoxConfigData.cpp
 file
@@ -263,6 +229,40 @@ phileas
 
 
 2807
+
+CActivityEncounterManager.cpp
+file
+
+
+
+
+2013-11-25T08:28:18.000000Z
+31e88bbaed4b3a207ef8fe43e50a2b5e
+2013-11-13T06:52:17.737417Z
+1989
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3215
 
 CFriend.h
 file
@@ -1086,10 +1086,10 @@ file
 
 
 
-2013-11-25T08:28:18.000000Z
-42df1c5b69ab858f011c7067a4483e73
-2013-11-25T04:00:51.478148Z
-2106
+2013-11-28T07:10:57.000000Z
+b8e79706fc31acbc1d05ef49bb26c32d
+2013-11-27T08:22:49.773146Z
+2126
 phileas
 
 
@@ -1112,7 +1112,7 @@ phileas
 
 
 
-59012
+59021
 
 CReward.cpp
 file
@@ -1423,40 +1423,6 @@ merlin
 
 893
 
-SGamePlayerData.h
-file
-
-
-
-
-2013-11-25T08:28:18.000000Z
-5b387441b759ee5f7bdb6bf9ffd2079b
-2013-11-19T07:53:31.308587Z
-2045
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1513
-
 CGameTalkDialog.cpp
 file
 
@@ -1491,6 +1457,74 @@ merlin
 
 492
 
+SGamePlayerData.h
+file
+
+
+
+
+2013-11-25T08:28:18.000000Z
+5b387441b759ee5f7bdb6bf9ffd2079b
+2013-11-19T07:53:31.308587Z
+2045
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1513
+
+CCard.cpp
+file
+
+
+
+
+2013-12-04T04:15:13.000000Z
+d40ed684a19dd1fb6070fe62925253ab
+2013-12-03T08:28:40.993976Z
+2152
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+12404
+
 CGameErrorConfig.cpp
 file
 
@@ -1524,40 +1558,6 @@ merlin
 
 
 745
-
-CCard.cpp
-file
-
-
-
-
-2013-11-25T08:28:18.000000Z
-74c87479de00e1331295864a09c4578f
-2013-11-11T07:07:16.732170Z
-1967
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-12142
 
 CGameTimerManager.h
 file
@@ -1627,40 +1627,6 @@ merlin
 
 1097
 
-CStructShopSellItem.cpp
-file
-
-
-
-
-2013-11-25T08:28:18.000000Z
-c75cefba39c2f690c25d28a1a381b3bb
-2013-10-16T10:54:31.060281Z
-1736
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1324
-
 CConfigResourceLoad.cpp
 file
 
@@ -1694,6 +1660,40 @@ phileas
 
 
 16784
+
+CStructShopSellItem.cpp
+file
+
+
+
+
+2013-11-25T08:28:18.000000Z
+c75cefba39c2f690c25d28a1a381b3bb
+2013-10-16T10:54:31.060281Z
+1736
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1324
 
 Craftsmanship
 dir
@@ -1834,6 +1834,40 @@ merlin
 
 1421
 
+CRankDataManager.h
+file
+
+
+
+
+2013-12-04T04:15:13.000000Z
+3ea3d3a81e9a114e8e08f9b66a6f77ae
+2013-12-03T08:28:40.993976Z
+2152
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+804
+
 CPlayerBufferManager.h
 file
 
@@ -1942,10 +1976,10 @@ file
 
 
 
-2013-11-25T08:28:18.000000Z
-1c1f80db6b2dbb4c0774b8aa8205de75
-2013-11-08T04:27:46.628936Z
-1955
+2013-11-28T07:10:57.000000Z
+5fb1fd16878396c463ae19eb83c91494
+2013-11-27T08:22:49.773146Z
+2126
 phileas
 
 
@@ -1968,7 +2002,7 @@ phileas
 
 
 
-4510
+4793
 
 CPtPropUseEffectConfigData.cpp
 file
@@ -2004,40 +2038,6 @@ phileas
 
 2883
 
-CGlobalUpdateObject.h
-file
-
-
-
-
-2013-11-25T08:28:18.000000Z
-89cada083b98f4b8460f2939d983885c
-2013-11-14T09:06:31.121724Z
-1996
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-688
-
 CStructShopInfo.h
 file
 
@@ -2071,6 +2071,40 @@ phileas
 
 
 1025
+
+CGlobalUpdateObject.h
+file
+
+
+
+
+2013-11-25T08:28:18.000000Z
+89cada083b98f4b8460f2939d983885c
+2013-11-14T09:06:31.121724Z
+1996
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+688
 
 SGamePlayerData.cpp
 file
@@ -2350,11 +2384,11 @@ file
 
 
 
-2013-11-25T08:28:18.000000Z
-6de78d659d022d2fd817e46d6d6377af
-2013-11-11T07:07:26.890924Z
-1968
-merlin
+2013-12-04T04:15:13.000000Z
+b6a8c41fc49a39da9d9e7c2e10e4d322
+2013-12-03T08:28:40.993976Z
+2152
+phileas
 
 
 
@@ -2376,7 +2410,7 @@ merlin
 
 
 
-3977
+4001
 
 CGameErrorConfig.h
 file
@@ -2513,6 +2547,40 @@ phileas
 
 
 2072
+
+CRankDataManager.cpp
+file
+
+
+
+
+2013-12-04T04:15:13.000000Z
+b57c73700b468c6eb87eb43e1486a0bf
+2013-12-03T08:28:40.993976Z
+2152
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+471
 
 CConfigResourceLoad.h
 file
@@ -2656,11 +2724,11 @@ file
 
 
 
-2013-11-25T08:28:18.000000Z
-195ad6d4b8735c63144d9436e41b4432
-2013-11-13T09:06:51.350521Z
-1991
-merlin
+2013-11-28T07:10:57.000000Z
+85f7b12baa0fdefe699cb4da43ddaadd
+2013-11-27T08:22:49.773146Z
+2126
+phileas
 
 
 
@@ -2682,7 +2750,7 @@ merlin
 
 
 
-10022
+10711
 
 CStructShopInfo.cpp
 file

@@ -293,7 +293,8 @@ void CGameUserPropDialogLayer::onClickUserOrRecharge(cocos2d::CCObject *pObject)
         }else
         {
             CPtRecharge * layer = CPtRecharge::create();
-            addChild(layer);
+            layer->setTouchPriority(getTouchPriority()-1);
+            addChild(layer, 1000);
         }
       
       

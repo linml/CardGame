@@ -62,7 +62,6 @@ protected:
     CCObject *m_pCloseHandler;
     SEL_CallFunc m_pCloseCallBack;
     
-   // CCRect m_cTouchSpriteFrameRect[2];
     CCSpriteFrame *m_pFrame[2];
     CCSprite* m_pBtn[2];
     

@@ -17,7 +17,6 @@ using namespace std;
 class CPtButtonWidget : public CCSprite
 {
 public:
-    
     static CPtButtonWidget *create(const char * inText, const string& soundFile = "UI_click.wav");
     virtual bool init(const char * inText, const string& soundFile = "");
     CPtButtonWidget();
@@ -28,8 +27,15 @@ public:
     void setPress();
     void setSelect();
     void setEnd();
+    void setMirrorVisiable(bool haveMirror);
+    bool haveTouchMirror(CCTouch *pTouch);
+    bool getHaveMirror(){return m_bHaveMirror;};
+    void resetState();
+    void setHaveMirror(bool var);
+    void setEventType(int inType);
 protected:
-    
+    bool m_bHaveMirror;
+    CCSprite * m_pMirrorIcon; // 探路镜
     CCSprite * m_pNoraml;
     CCSprite * m_pPress ;
     CCSprite * m_pSelect;
@@ -37,6 +43,7 @@ protected:
     string m_strSoundFile;
     // test:
     CC_SYNTHESIZE(int , m_nType, Type);
+
 };
 
 #endif /* defined(___1_cube__CPtButtonWidget__) */

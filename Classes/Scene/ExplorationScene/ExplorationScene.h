@@ -164,6 +164,8 @@ protected:
     bool canContinutExploration();
 
     
+    void onClickUseTanLujing();
+    void useTanLujingSuccessCallback();
     // test:
     
     void taskCompleteCallback(CCObject* pObject);
@@ -171,8 +173,6 @@ protected:
     
     void addTask();
     
-    void test_print(int code);
-    void test_print(const char * inMsg);
     void createTaskAndSectionReward();
     
     void goSection();
@@ -181,8 +181,10 @@ protected:
     void levelUpCallBack(CCObject *pObject);
 
     void createPropBuffer();
+    
 
 protected:
+    bool m_bTouchMirror; // 点击探路镜的起始标记
     bool m_bStartAltarBuffer;
     bool m_bCanTouch;
     bool m_bLoadTaskInfo;

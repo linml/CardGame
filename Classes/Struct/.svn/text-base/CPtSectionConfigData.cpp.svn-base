@@ -18,6 +18,25 @@ CPtSection* CPtSection::create()
     return section;
 }
 
+bool CPtSection::getButtonMirror(int inDirection)
+{
+    bool bRet = false;
+    switch (inDirection)
+    {
+        case 0:
+            bRet = getLeftClear();
+            break;
+        case 1:
+            bRet = getMiddleClear();
+            break;
+        case 2:
+            bRet = getMiddleClear();
+            break;
+        default:
+            break;
+    }
+    return bRet;
+}
 
 // implement class of CPtSectionConfigData
 
@@ -87,6 +106,10 @@ void CPtSectionConfigData::loadSectionDataByChapter(cocos2d::CCDictionary *inSec
             tmpSection->setEndBounsMoney(GameTools::intForKey("endbouns_money",tmpValue));
             tmpSection->setTaskId(GameTools::intForKey("mission_id", tmpValue));
             tmpSection->setRandomEventId(GameTools::intForKey("randomevent_id", tmpValue));
+            
+            tmpSection->setLeftClear(GameTools::intForKey("left_clear", tmpValue) ==1 ); // 是否显示事件
+            tmpSection->setRightClear(GameTools::intForKey("right_clear", tmpValue) == 1);
+            tmpSection->setMiddleClear(GameTools::intForKey("middle_clear", tmpValue) == 1);
             
             m_pIdToSequence->setObject(CCInteger::create(tmpSection->getSequence()),tmpSection->getSectionId());
             m_pSectionsInChapter->setObject(tmpSection, tmpSection->getSequence());

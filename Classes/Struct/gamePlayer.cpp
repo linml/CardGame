@@ -1771,9 +1771,8 @@ CStructShopSellItem * CGamePlayer::getShopItemByPropId(int inPropId)
     for (int i = 0; i < maps.size(); i++)
     {
         shopItem = maps[i];
-        if (shopItem && shopItem->propID())
+        if (shopItem && shopItem->propID()==inPropId)
         {
-
             break;
         }
     }

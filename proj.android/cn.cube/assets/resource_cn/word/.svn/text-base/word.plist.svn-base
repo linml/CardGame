@@ -150,6 +150,12 @@
 	<string>好友数量</string>
 	<key>wodeid</key>
 	<string>我的ID:</string>
+	<key>zongzhandoulipaihang</key>
+	<string>总战斗力</string>
+	<key>dengjipaihang</key>
+	<string>等级</string>
+	<key>fubushipaihang</key>
+	<string>富豪排行榜</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

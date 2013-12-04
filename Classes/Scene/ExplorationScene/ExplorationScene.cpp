@@ -402,6 +402,7 @@ bool CExploration::init()
 
 bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {
+    m_bTouchMirror = false;
     if (m_bLoadTaskInfo == false)
     {
         return false;
@@ -424,7 +425,14 @@ bool CExploration::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
             if (CPtTool::isInNode(m_pBtn[i], pTouch))
             {
                 m_nTouchTag = 3001+i;
-                m_pBtn[i]->setPress();
+                if (m_pBtn[i]->haveTouchMirror(pTouch))
+                {
+                    m_bTouchMirror = true;
+                }else
+                {
+                    m_pBtn[i]->setPress();
+                }
+               
                 return true;
             }
         }
@@ -481,7 +489,10 @@ void CExploration::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             case 3001:
             case 3002:
             case 3003:
-                m_pBtn[m_nTouchTag-3001]->setNormal();
+                if (!m_bTouchMirror)
+                {
+                    m_pBtn[m_nTouchTag-3001]->setNormal();
+                }
                 break;
             default:
                 break;
@@ -690,6 +701,7 @@ bool CExploration::initExploration()
             m_pBtn[i] = CPtButtonWidget::create("");
             m_pBtn[i]->setAnchorPoint(CCPointZero);
             m_pBtn[i]->setPosition(ccp(120+290*i, 370));
+            m_pBtn[i]->setHaveMirror(!s_SectionData.sectionInfo->getButtonMirror(i));
             outLayer->addChild(m_pBtn[i], 3001+i, 200);
         }
        
@@ -740,10 +752,19 @@ void CExploration:: initEvent()
 void CExploration::handlerTouch()
 {
     
-    if (m_nTouchTag > 3000) {
+    if (m_nTouchTag > 3000)
+    {
         m_pBtn[m_nTouchTag-3001]->setEnd();
     }
-    switch (m_nTouchTag) {
+
+    if (m_bTouchMirror)
+    {
+        m_nWhichEvent = m_nTouchTag-3001;
+        onClickUseTanLujing();
+        return;
+    }
+    switch (m_nTouchTag)
+    {
         case LEFT_TOUCH_TAG:
             CCLog("CExploration:: left");
             m_nWhichEvent = 0;            // to do:
@@ -753,7 +774,6 @@ void CExploration::handlerTouch()
         case CENTER_TOUCH_TAG:
             m_nWhichEvent = 1;
             CCLog("CExploration:: center");
-            // to do:
             m_pBtn[m_nTouchTag-3001]->setPress();
             handlerEvent();
             break;
@@ -763,7 +783,6 @@ void CExploration::handlerTouch()
             m_pBtn[m_nTouchTag-3001]->setPress();
             m_nWhichEvent = 2;
             handlerEvent();
-            // to do:
             break;
             
         case 2005:
@@ -1005,17 +1024,33 @@ void CExploration::startAlarBuffer()
 
 void CExploration::updateBtn()
 {
+    char buffer[50] = {};
+    
+    int wordInex = 0;
+    srand(time(0));
+    
     for (int i = 0; i < 3; i++)
     {
         if (m_aEvents[i])
         {
+            m_pBtn[i]->setType(rand()%4);
+            wordInex = (rand()%30)+1;
+            sprintf(buffer, "%d", wordInex);
+            m_pBtn[i]->setText(Utility::getWordWithFile("tips.plist", buffer).c_str());
             m_pBtn[i]->setVisible(true);
+            m_pBtn[i]->resetState();
+            if (!m_pBtn[i]->getHaveMirror())
+            {
+                m_pBtn[i]->setEventType(m_aEvents[i]->getEventType());
+            }
         }else
         {
             m_pBtn[i]->setVisible(false);
         }
     }
 }
+
+
 
 // ui:
 
@@ -1515,8 +1550,7 @@ void CExploration::addTaskAndSectionReward()
         taskAndSection->excuteReward(ADD);
         sprintf(tips, "task or section reward add: ap: %d, gp: %d \n     exp:%d, coin: %d, cash: %d\n card count: %d, prop count: %d\n", taskAndSection->getEnergy(), taskAndSection->getHP(), taskAndSection->getExp(),
                 taskAndSection->getCoin(), taskAndSection->getCash(), taskAndSection->getCardCount(), taskAndSection->getPropCount());
-        
-     //   Middle::showAlertView(tips);
+    
     }
 
 }
@@ -1817,6 +1851,21 @@ void CExploration::onCloseSellerEventCallback(CCObject *pObject)
     
     getBiforest();
     
+}
+
+void CExploration::onClickUseTanLujing()
+{    
+    SPECIALPROPDATA data ;
+    data.saveData.shopId = 800000;
+    CSpecialPropUserDialog *layer = CSpecialPropUserDialog::create(TANLU, data);
+    layer->setSucessHandler(this, callfunc_selector(CExploration::useTanLujingSuccessCallback));
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer);
+
+}
+void CExploration::useTanLujingSuccessCallback()
+{
+    m_pBtn[m_nWhichEvent]->setMirrorVisiable(false);
+    m_pBtn[m_nWhichEvent]->setEventType(m_aEvents[m_nWhichEvent]->getEventType());
 }
 
 bool CExploration::canContinutExploration()

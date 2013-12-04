@@ -1,17 +1,17 @@
 10
 
 dir
-2112
+2156
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-11-25T08:26:54.050133Z
-2112
+2013-12-04T04:17:35.253679Z
+2155
 merlin
 has-props
-
+has-prop-mods
 
 
 
@@ -26,13 +26,7 @@ has-props
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
 
-Backpack
-dir
-
 FightScene
-dir
-
-GameShopLayer
 dir
 
 HospitalLayer
@@ -44,27 +38,36 @@ dir
 ExplorationScene
 dir
 
-ActionGameLayer
-dir
-
 DrawCardLayer
-dir
-
-FriendLayer
-dir
-
-CardSettingScene
 dir
 
 HandBook
 dir
 
+CardSettingScene
+dir
+
 LoginScene
 dir
 
-StoryLayer
+Rank
 dir
 
 HallScene
+dir
+
+Backpack
+dir
+
+GameShopLayer
+dir
+
+FriendLayer
+dir
+
+ActionGameLayer
+dir
+
+StoryLayer
 dir
 
