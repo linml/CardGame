@@ -380,9 +380,9 @@ void CLoginScene::playGame()
     if(Utility::getNodeByTag(this, "0,2,0")->isVisible())
     {
 
-        //SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
         //场景切换动画 用来做测试的时候用得。 
-        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
+        //SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
     }
 }
 

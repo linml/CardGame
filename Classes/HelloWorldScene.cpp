@@ -54,9 +54,11 @@ CCScene* HelloWorld::scene()
     
     CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
     //addChild(gamelayer,1,1);
-   // gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5));
+    CCSize size=CCDirector::sharedDirector()->getWinSize();
+    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5));
     // add layer as a child to scene
     scene->addChild(gamelayer);
+
 
     // return the scene
     return scene;

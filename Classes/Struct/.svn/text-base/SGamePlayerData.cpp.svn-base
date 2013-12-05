@@ -25,6 +25,8 @@ tempClear.clearVector(); \
 
 CGamePlayerData::CGamePlayerData()
 {
+    m_nTotalFightPoint = 0;
+    m_nTotalRechargeValue = 0;
     m_icoin=0;
     m_icash=0;
     m_iexp=0;

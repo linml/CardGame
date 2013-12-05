@@ -1,7 +1,7 @@
 10
 
 dir
-2156
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/action/xuanzhe
 svn://merlin@192.168.2.3/sdp
 
@@ -25,40 +25,6 @@ has-props
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
-
-xuanzhe-0010.png
-file
-
-
-
-
-2013-11-25T08:28:16.000000Z
-6757f7c67ff1c49cca1decd2fe584d2e
-2013-06-20T02:25:48.171719Z
-565
-wood
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-77345
 
 xuanzhe-0001.png
 file
@@ -94,14 +60,14 @@ has-props
 
 35563
 
-xuanzhe-0011.png
+xuanzhe-0010.png
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-e141efcfd991d9eb931d9c361b1125a3
+6757f7c67ff1c49cca1decd2fe584d2e
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -126,7 +92,7 @@ has-props
 
 
 
-77431
+77345
 
 xuanzhe-0002.png
 file
@@ -162,14 +128,14 @@ has-props
 
 59153
 
-xuanzhe-0012.png
+xuanzhe-0011.png
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-02852d9213d5888df0dabf900e19f807
+e141efcfd991d9eb931d9c361b1125a3
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -194,7 +160,7 @@ has-props
 
 
 
-77398
+77431
 
 xuanzhe-0003.png
 file
@@ -230,14 +196,14 @@ has-props
 
 73038
 
-xuanzhe-0013.png
+xuanzhe-0012.png
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-ed1c7f964d389026a3cb0969f6cc70a9
+02852d9213d5888df0dabf900e19f807
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -262,7 +228,7 @@ has-props
 
 
 
-78099
+77398
 
 xuanzhe-0004.png
 file
@@ -298,14 +264,14 @@ has-props
 
 74460
 
-xuanzhe-0014.png
+xuanzhe-0013.png
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-b04343cf1078518ddf030d6ae012f964
+ed1c7f964d389026a3cb0969f6cc70a9
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -330,7 +296,7 @@ has-props
 
 
 
-83403
+78099
 
 xuanzhe-0005.png
 file
@@ -366,17 +332,18 @@ has-props
 
 75788
 
-xuanzhe.act
+xuanzhe-0014.png
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-62fd33d17d4e4bec02bc7a268211eecb
-2013-07-08T08:33:51.651442Z
-672
-merlin
+b04343cf1078518ddf030d6ae012f964
+2013-06-20T02:25:48.171719Z
+565
+wood
+has-props
 
 
 
@@ -397,8 +364,7 @@ merlin
 
 
 
-
-1358
+83403
 
 xuanzhe-0006.png
 file
@@ -433,6 +399,40 @@ has-props
 
 
 79101
+
+xuanzhe.act
+file
+
+
+
+
+2013-11-25T08:28:16.000000Z
+62fd33d17d4e4bec02bc7a268211eecb
+2013-07-08T08:33:51.651442Z
+672
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1358
 
 xuanzhe-0007.png
 file

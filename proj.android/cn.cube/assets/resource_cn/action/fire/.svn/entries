@@ -1,7 +1,7 @@
 10
 
 dir
-2156
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/action/fire
 svn://merlin@192.168.2.3/sdp
 
@@ -706,40 +706,6 @@ wood
 
 1817
 
-fire0_1.ani
-file
-
-
-
-
-2013-11-25T08:28:17.000000Z
-2b8343d0c8d17ba7738d6a8a090bafcc
-2013-07-31T08:08:11.836931Z
-835
-wood
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1385
-
 fire.act
 file
 
@@ -773,6 +739,40 @@ wood
 
 
 725
+
+fire0_1.ani
+file
+
+
+
+
+2013-11-25T08:28:17.000000Z
+2b8343d0c8d17ba7738d6a8a090bafcc
+2013-07-31T08:08:11.836931Z
+835
+wood
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1385
 
 fire0010.png
 file
@@ -808,40 +808,6 @@ has-props
 
 81454
 
-fire1001.png
-file
-
-
-
-
-2013-11-25T08:28:17.000000Z
-109a82fbdcfc0a9249d3545a47c44c82
-2013-07-31T08:08:11.836931Z
-835
-wood
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-557774
-
 fire0011.png
 file
 
@@ -876,14 +842,14 @@ has-props
 
 81216
 
-fire1002.png
+fire1001.png
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-ab0086a28d179b47b4cb450ce3520de8
+109a82fbdcfc0a9249d3545a47c44c82
 2013-07-31T08:08:11.836931Z
 835
 wood
@@ -908,7 +874,7 @@ has-props
 
 
 
-555486
+557774
 
 fire0012.png
 file
@@ -944,14 +910,14 @@ has-props
 
 83951
 
-fire1003.png
+fire1002.png
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-4c7499a4fb040cc7e624b8c6ffbecdd4
+ab0086a28d179b47b4cb450ce3520de8
 2013-07-31T08:08:11.836931Z
 835
 wood
@@ -976,7 +942,7 @@ has-props
 
 
 
-560454
+555486
 
 fire0013.png
 file
@@ -1012,14 +978,14 @@ has-props
 
 83749
 
-fire1004.png
+fire1003.png
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-aa1b9132ab9a922523d690140971930c
+4c7499a4fb040cc7e624b8c6ffbecdd4
 2013-07-31T08:08:11.836931Z
 835
 wood
@@ -1044,7 +1010,7 @@ has-props
 
 
 
-568790
+560454
 
 fire0014.png
 file
@@ -1079,6 +1045,40 @@ has-props
 
 
 85581
+
+fire1004.png
+file
+
+
+
+
+2013-11-25T08:28:17.000000Z
+aa1b9132ab9a922523d690140971930c
+2013-07-31T08:08:11.836931Z
+835
+wood
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+568790
 
 fire1005.png
 file

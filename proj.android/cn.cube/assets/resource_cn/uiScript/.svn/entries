@@ -1,7 +1,7 @@
 10
 
 dir
-2156
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/uiScript
 svn://merlin@192.168.2.3/sdp
 
@@ -536,40 +536,6 @@ has-props
 
 4274
 
-youjianjiemian.plist
-file
-
-
-
-
-2013-11-25T08:28:12.000000Z
-9c37ff41ceb1a3517b3a2d9cd6293d08
-2013-09-04T01:25:03.057836Z
-1167
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-457
-
 chushoujiemian.plist
 file
 
@@ -603,6 +569,40 @@ phileas
 
 
 2557
+
+youjianjiemian.plist
+file
+
+
+
+
+2013-11-25T08:28:12.000000Z
+9c37ff41ceb1a3517b3a2d9cd6293d08
+2013-09-04T01:25:03.057836Z
+1167
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+457
 
 room.plist
 file
@@ -672,40 +672,6 @@ phileas
 
 4654
 
-recharge.plist
-file
-
-
-
-
-2013-11-25T08:28:12.000000Z
-e38beab898b61be440fba4b6003824d0
-2013-10-15T09:19:06.165155Z
-1707
-wood
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3843
-
 hall.plist
 file
 
@@ -740,14 +706,48 @@ phileas
 
 1373
 
-mail_cell.plist
+recharge.plist
 file
 
 
 
 
 2013-11-25T08:28:12.000000Z
-e904c105651170090e6ae2ad5869d2a4
+e38beab898b61be440fba4b6003824d0
+2013-10-15T09:19:06.165155Z
+1707
+wood
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3843
+
+gameinit.txt
+file
+
+
+
+
+2013-11-25T08:28:12.000000Z
+c4330dd8d75eda75c22f91c881b63b48
 2013-08-29T12:50:43.692448Z
 1101
 merlin
@@ -772,7 +772,7 @@ merlin
 
 
 
-447
+43093
 
 beibao.plist
 file
@@ -808,14 +808,14 @@ has-props
 
 855
 
-gameinit.txt
+mail_cell.plist
 file
 
 
 
 
 2013-11-25T08:28:12.000000Z
-c4330dd8d75eda75c22f91c881b63b48
+e904c105651170090e6ae2ad5869d2a4
 2013-08-29T12:50:43.692448Z
 1101
 merlin
@@ -840,7 +840,7 @@ merlin
 
 
 
-43093
+447
 
 shangdianjiemian.plist
 file
@@ -944,40 +944,6 @@ merlin
 
 5129
 
-asgard.plist
-file
-
-
-
-
-2013-11-25T08:28:12.000000Z
-06bfc0dcc4004a37ed3f711d4f7e64fe
-2013-10-30T07:15:46.198442Z
-1878
-merlin
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3085
-
 haoyoujiemian.plist
 file
 
@@ -1011,6 +977,40 @@ merlin
 
 
 456
+
+asgard.plist
+file
+
+
+
+
+2013-11-25T08:28:12.000000Z
+06bfc0dcc4004a37ed3f711d4f7e64fe
+2013-10-30T07:15:46.198442Z
+1878
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3085
 
 daoju.plist
 file

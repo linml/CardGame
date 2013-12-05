@@ -42,6 +42,10 @@ public:
     
 public:
     std::string m_susername;
+    
+    // new add by phileas:
+    int    m_nTotalFightPoint;
+    int    m_nTotalRechargeValue;
     int    m_icoin;
     int    m_icash;
     int    m_iexp;

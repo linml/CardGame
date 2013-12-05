@@ -1,7 +1,7 @@
 10
 
 dir
-2151
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/libs/cocos2dx/platform/third_party/win32/libraries
 svn://merlin@192.168.2.3/sdp
 
@@ -60,40 +60,6 @@ has-props
 
 328850
 
-pthreadVCE2.dll
-file
-
-
-
-
-2013-11-25T08:28:10.000000Z
-ae4ae0ef65becf8684db223ceecbfba7
-2013-05-17T07:36:48.301808Z
-361
-wood
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-77879
-
 libjpeg.lib
 file
 
@@ -127,6 +93,40 @@ has-props
 
 
 268986
+
+pthreadVCE2.dll
+file
+
+
+
+
+2013-11-25T08:28:10.000000Z
+ae4ae0ef65becf8684db223ceecbfba7
+2013-05-17T07:36:48.301808Z
+361
+wood
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+77879
 
 libxml2.dll
 file
@@ -332,40 +332,6 @@ has-props
 
 13214
 
-libcurl_imp.lib
-file
-
-
-
-
-2013-11-25T08:28:10.000000Z
-d9f90122a65cb426dd32b11e629dd4ce
-2013-05-17T07:36:48.301808Z
-361
-wood
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-13694
-
 libcurl.dll
 file
 
@@ -399,6 +365,40 @@ has-props
 
 
 228864
+
+libcurl_imp.lib
+file
+
+
+
+
+2013-11-25T08:28:10.000000Z
+d9f90122a65cb426dd32b11e629dd4ce
+2013-05-17T07:36:48.301808Z
+361
+wood
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13694
 
 glew32.lib
 file

@@ -12,9 +12,9 @@
 #include <iostream>
 #include  "cocos2d.h"
 #include "CUtilityTableView.h"
+#include "CRankDataManager.h"
 using namespace std;
 using namespace cocos2d;
-class CGameRankData;
 
 //其实这个界面跟好友界面是差不多的。。 这里不写派生的原因是怕未来的UI会更改变
 
@@ -32,6 +32,9 @@ private:
     void createRankTypeButton();
     void createQuitButton();
     void setGunDongTiaoPtr();
+    
+    void createPlayerRankInfo();
+    void updatePlayerRankInfo();
 private:
     bool switchToTab(int index);
     void onClickZongZhandouTabItem();
@@ -69,9 +72,10 @@ protected:
     void handleTagCallBack(int tagValue);
     int checkTouchTableIndex(CCPoint point);
     int checkTouchQuitButton(CCPoint point);
+    void updateRankCount();
 private:
     int m_currentTabIndex;
-    vector<CGameRankData *>m_vTableViewData;
+    vector<CRankData *> *m_vTableViewData;
     CCSize size;
     CCArray*          m_tabs;
     CCSprite *m_pScrollViewGuanDongTiao;
@@ -79,7 +83,11 @@ private:
     float m_foldscrollBarPosiontylow;
     CCSize m_pTableCellSize;
     CCSprite *tempSprite;
+    CRankDataManager * m_pRankManager;
     
+    int m_nPlayerUid;
+    int m_nRankCount;
+    CCLabelTTF * m_pPlayerRankInfo;
     
 };
 

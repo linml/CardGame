@@ -1,7 +1,7 @@
 10
 
 dir
-2156
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/sprite
 svn://merlin@192.168.2.3/sdp
 
@@ -604,17 +604,17 @@ phileas
 
 4710
 
-youjianziyuan.sprite
+jinhua.sprite
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-cf560460214d69ee300826a5c251c993
-2013-08-29T12:50:43.692448Z
-1101
-merlin
+8e2aaf2ec0fae53b6544cf3301a9f0b9
+2013-09-02T05:05:55.056924Z
+1144
+phileas
 has-props
 
 
@@ -636,7 +636,7 @@ has-props
 
 
 
-6548
+1421
 
 logon.sprite
 file
@@ -672,17 +672,17 @@ merlin
 
 5980
 
-jinhua.sprite
+youjianziyuan.sprite
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-8e2aaf2ec0fae53b6544cf3301a9f0b9
-2013-09-02T05:05:55.056924Z
-1144
-phileas
+cf560460214d69ee300826a5c251c993
+2013-08-29T12:50:43.692448Z
+1101
+merlin
 has-props
 
 
@@ -704,41 +704,7 @@ has-props
 
 
 
-1421
-
-shanchushuliang.sprite
-file
-
-
-
-
-2013-11-25T08:28:16.000000Z
-4a571684fbc65afe20a8e5d2f415362c
-2013-08-29T12:57:53.295970Z
-1104
-phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-7311
+6548
 
 main.sprite
 file
@@ -774,17 +740,17 @@ merlin
 
 9438
 
-mall.sprite
+shanchushuliang.sprite
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-6c8af0dd8f753e44ecdf044a53ee29a2
-2013-06-17T08:03:18.289114Z
-528
-merlin
+4a571684fbc65afe20a8e5d2f415362c
+2013-08-29T12:57:53.295970Z
+1104
+phileas
 has-props
 
 
@@ -806,7 +772,7 @@ has-props
 
 
 
-4758
+7311
 
 zhujiemianziyuan2.sprite
 file
@@ -841,6 +807,40 @@ has-props
 
 
 2056
+
+mall.sprite
+file
+
+
+
+
+2013-11-25T08:28:16.000000Z
+6c8af0dd8f753e44ecdf044a53ee29a2
+2013-06-17T08:03:18.289114Z
+528
+merlin
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4758
 
 mission_bg.sprite
 file
@@ -910,51 +910,17 @@ has-props
 
 893
 
-qianghua.sprite
+zhenxingfudong.sprite
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-4820a27b73faa9c88241140b2f9bd79b
-2013-09-02T05:05:55.056924Z
-1144
+1219bf1733804195940fdb019544516d
+2013-08-29T08:57:16.208427Z
+1094
 phileas
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-9819
-
-chushoujiemian2.sprite
-file
-
-
-
-
-2013-11-25T08:28:16.000000Z
-56faaee1aabc22e1c01011acf767c0a3
-2013-08-29T12:50:55.167876Z
-1102
-merlin
 
 
 
@@ -976,7 +942,7 @@ merlin
 
 
 
-2521
+10463
 
 confirm.sprite
 file
@@ -1012,17 +978,52 @@ phileas
 
 3501
 
-zhenxingfudong.sprite
+chushoujiemian2.sprite
 file
 
 
 
 
 2013-11-25T08:28:16.000000Z
-1219bf1733804195940fdb019544516d
-2013-08-29T08:57:16.208427Z
-1094
+56faaee1aabc22e1c01011acf767c0a3
+2013-08-29T12:50:55.167876Z
+1102
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2521
+
+qianghua.sprite
+file
+
+
+
+
+2013-11-25T08:28:16.000000Z
+4820a27b73faa9c88241140b2f9bd79b
+2013-09-02T05:05:55.056924Z
+1144
 phileas
+has-props
 
 
 
@@ -1043,8 +1044,7 @@ phileas
 
 
 
-
-10463
+9819
 
 baoguoziyuan2.sprite
 file

@@ -21,7 +21,7 @@
 #include "CPtRecharge.h"
 #include "CDrawCardLayer.h"
 #include "CGamePropBufferTipLayer.h"
-
+#include "CAnnouncementLayer.h"
 
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
@@ -38,6 +38,12 @@ CCScene *CHallScene::scene(int pType)
     CCScene *scene = CCScene::create();
     CHallScene *layer = CHallScene::create(pType);
     scene->addChild(layer, 0, 100);
+    
+    CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
+    CCSize size=CCDirector::sharedDirector()->getWinSize();
+    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5+200));
+    scene->addChild(gamelayer,1);
+
     return scene;
     
 }

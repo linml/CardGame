@@ -1,15 +1,15 @@
 10
 
 dir
-2156
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-12-04T04:19:48.011954Z
-2156
-merlin
+2013-12-05T02:30:10.942709Z
+2170
+phileas
 has-props
 
 
@@ -378,40 +378,6 @@ merlin
 
 732
 
-recharge_config.plist
-file
-
-
-
-
-2013-11-25T08:28:18.000000Z
-2ea55ed19b938f3b4cfd5bd6a94299df
-2013-10-15T09:19:06.165155Z
-1707
-wood
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2823
-
 npccardteam.txt
 file
 
@@ -446,17 +412,17 @@ merlin
 
 153
 
-cardbg.txt
+recharge_config.plist
 file
 
 
 
 
 2013-11-25T08:28:18.000000Z
-0377610e3f8a111ca1716b421d1a26d1
-2013-08-06T10:10:36.375682Z
-865
-merlin
+2ea55ed19b938f3b4cfd5bd6a94299df
+2013-10-15T09:19:06.165155Z
+1707
+wood
 
 
 
@@ -478,7 +444,7 @@ merlin
 
 
 
-4369
+2823
 
 special_event_config.plist
 file
@@ -514,19 +480,16 @@ phileas
 
 2560
 
-uiScript
-dir
-
-shoushang_l.plist
+cardbg.txt
 file
 
 
 
 
 2013-11-25T08:28:18.000000Z
-692cfca7cc64af9cb3466013eeea0cd7
-2013-08-13T09:32:24.972476Z
-962
+0377610e3f8a111ca1716b421d1a26d1
+2013-08-06T10:10:36.375682Z
+865
 merlin
 
 
@@ -549,7 +512,10 @@ merlin
 
 
 
-596
+4369
+
+uiScript
+dir
 
 team.txt
 file
@@ -584,6 +550,40 @@ merlin
 
 
 513
+
+shoushang_l.plist
+file
+
+
+
+
+2013-11-25T08:28:18.000000Z
+692cfca7cc64af9cb3466013eeea0cd7
+2013-08-13T09:32:24.972476Z
+962
+merlin
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+596
 
 event_box_config.plist
 file
@@ -690,9 +690,6 @@ merlin
 word
 dir
 
-img
-dir
-
 card_star_level_up_config.plist
 file
 
@@ -727,7 +724,7 @@ phileas
 
 4812
 
-map
+img
 dir
 
 item_config.plist
@@ -763,6 +760,9 @@ phileas
 
 
 27878
+
+map
+dir
 
 handbook.plist
 file

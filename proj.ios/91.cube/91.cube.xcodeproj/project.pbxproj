@@ -92,6 +92,8 @@
 		6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */; };
 		6FBCC6BA181F670B008865DD /* CPlayerBufferManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCC6B8181F670B008865DD /* CPlayerBufferManager.cpp */; };
 		6FBDD9151828A16900870AF4 /* CFightingLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDD9131828A16900870AF4 /* CFightingLayerScene.cpp */; };
+		6FBEFD6D18505B0B0091C9F3 /* CDrawGonggaoTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEFD6B18505B0B0091C9F3 /* CDrawGonggaoTable.cpp */; };
+		6FBEFD7018505E010091C9F3 /* CRankDataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBEFD6E18505E000091C9F3 /* CRankDataManager.cpp */; };
 		6FC5981B184F1DE500877701 /* CAnnouncementDataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC59819184F1DE500877701 /* CAnnouncementDataManager.cpp */; };
 		6FC6B05A184DAE2F0098E3BF /* CAnnouncementLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6B058184DAE2F0098E3BF /* CAnnouncementLayer.cpp */; };
 		6FC6B060184DCE450098E3BF /* CGameRankLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6B05E184DCE450098E3BF /* CGameRankLayer.cpp */; };
@@ -568,6 +570,10 @@
 		6FBCC6B9181F670B008865DD /* CPlayerBufferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPlayerBufferManager.h; sourceTree = "<group>"; };
 		6FBDD9131828A16900870AF4 /* CFightingLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightingLayerScene.cpp; sourceTree = "<group>"; };
 		6FBDD9141828A16900870AF4 /* CFightingLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightingLayerScene.h; sourceTree = "<group>"; };
+		6FBEFD6B18505B0B0091C9F3 /* CDrawGonggaoTable.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CDrawGonggaoTable.cpp; sourceTree = "<group>"; };
+		6FBEFD6C18505B0B0091C9F3 /* CDrawGonggaoTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDrawGonggaoTable.h; sourceTree = "<group>"; };
+		6FBEFD6E18505E000091C9F3 /* CRankDataManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRankDataManager.cpp; sourceTree = "<group>"; };
+		6FBEFD6F18505E000091C9F3 /* CRankDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRankDataManager.h; sourceTree = "<group>"; };
 		6FC59819184F1DE500877701 /* CAnnouncementDataManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAnnouncementDataManager.cpp; sourceTree = "<group>"; };
 		6FC5981A184F1DE500877701 /* CAnnouncementDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAnnouncementDataManager.h; sourceTree = "<group>"; };
 		6FC6B058184DAE2F0098E3BF /* CAnnouncementLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAnnouncementLayer.cpp; sourceTree = "<group>"; };
@@ -1800,6 +1806,8 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6FBEFD6E18505E000091C9F3 /* CRankDataManager.cpp */,
+				6FBEFD6F18505E000091C9F3 /* CRankDataManager.h */,
 				6FCB05541835C59A00848C82 /* CFriend.cpp */,
 				6FCB05551835C59A00848C82 /* CFriend.h */,
 				6F4B30C21832296400A57CAE /* CActivityEncounterManager.cpp */,
@@ -1882,6 +1890,8 @@
 				6FCE6BD2182390F100132BBE /* CStructStrips.h */,
 				6FC59819184F1DE500877701 /* CAnnouncementDataManager.cpp */,
 				6FC5981A184F1DE500877701 /* CAnnouncementDataManager.h */,
+				6FBEFD6B18505B0B0091C9F3 /* CDrawGonggaoTable.cpp */,
+				6FBEFD6C18505B0B0091C9F3 /* CDrawGonggaoTable.h */,
 			);
 			path = Struct;
 			sourceTree = "<group>";
@@ -3168,6 +3178,7 @@
 				9FC6F23E17460BFF0091BE98 /* CCApplication.mm in Sources */,
 				9FC6F23F17460BFF0091BE98 /* CCCommon.mm in Sources */,
 				9FC6F24017460BFF0091BE98 /* CCDirectorCaller.mm in Sources */,
+				6FBEFD6D18505B0B0091C9F3 /* CDrawGonggaoTable.cpp in Sources */,
 				9FC6F24117460BFF0091BE98 /* CCEGLView.mm in Sources */,
 				9FC6F24217460BFF0091BE98 /* CCES2Renderer.m in Sources */,
 				9FC6F24317460BFF0091BE98 /* CCFileUtils.mm in Sources */,
@@ -3198,6 +3209,7 @@
 				9FC6F25A17460BFF0091BE98 /* CCUserDefault.cpp in Sources */,
 				9FC6F25B17460BFF0091BE98 /* ccUtils.cpp in Sources */,
 				9FC6F25C17460BFF0091BE98 /* CCVertex.cpp in Sources */,
+				6FBEFD7018505E010091C9F3 /* CRankDataManager.cpp in Sources */,
 				6FCD431D181E90FB00153054 /* CEffectInterFaceTwentyOneRefactor.cpp in Sources */,
 				6F3AC84B180BC7A6007B8756 /* CStructShopInfo.cpp in Sources */,
 				9FC6F25D17460BFF0091BE98 /* ccCArray.cpp in Sources */,

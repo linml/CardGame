@@ -110,6 +110,9 @@
 //定时更新数据请求
 #define STR_URL_UPDATEAPHP(UID)     URL_FACTORY("api.php?m=GameBegin&a=cron&uid=",UID)
 
+//公告请求
+#define STR_URL_GONGGAOQINGQIU(UID)  URL_FACTORY("api.php?m=GameBegin&a=notice&uid=",UID)
+
 //IAP请求
 #define STR_URL_IAPBUY(UID)         URL_FACTORY("api.php?m=recharge&a=checkRecharge&uid=",UID)
 
@@ -167,5 +170,13 @@
 
 //对好友进行感恩
 #define STR_URL_GANEN(UID)         URL_FACTORY("api.php?m=Friend&a=thankFriend&uid=",UID)
+
+//获取战力排行榜
+#define STR_URL_GETFIGHTRANK(UID)  URL_FACTORY("api.php?m=charts&a=fightPow&uid=",UID)
+
+//获取等级排行榜
+#define STR_URL_GETLEVELRANK(UID)  URL_FACTORY("api.php?m=charts&a=level&uid=",UID)
+//充值排行榜
+#define STR_URL_GETCASHRANK(UID)   URL_FACTORY("api.php?m=charts&a=cash&uid=",UID)
 
 #endif

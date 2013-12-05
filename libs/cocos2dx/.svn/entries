@@ -1,7 +1,7 @@
 10
 
 dir
-2151
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/libs/cocos2dx
 svn://merlin@192.168.2.3/sdp
 
@@ -300,10 +300,10 @@ has-props
 
 3415
 
-include
+keypad_dispatcher
 dir
 
-keypad_dispatcher
+include
 dir
 
 Android.mk
@@ -383,10 +383,10 @@ has-props
 kazmath
 dir
 
-script_support
+actions
 dir
 
-actions
+script_support
 dir
 
 CCConfiguration.h

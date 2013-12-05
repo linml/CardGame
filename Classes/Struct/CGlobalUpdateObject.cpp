@@ -39,5 +39,18 @@ void  CGlobalUpdateGp::globalUpdate(float t)
    SinglePlayer::instance()->sendUpdateGp();
 }
 
+CGlobalGetGongGao::CGlobalGetGongGao(int iValueTag):CGlobalSchedule(iValueTag)
+{
+    
+}
 
+CGlobalGetGongGao::~CGlobalGetGongGao()
+{
+    
+}
+
+void CGlobalGetGongGao::globalUpdate(float t)
+{
+    SinglePlayer::instance()->sendGetGonggao();
+}
 

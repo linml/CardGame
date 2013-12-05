@@ -32,6 +32,9 @@
 #include "CStructStrips.h"
 #include "CActivityEncounterManager.h"
 #include "CPtPropUseManager.h"
+#include "CAnnouncementDataManager.h"
+#include "CRankDataManager.h"
+#include "CDrawGonggaoTable.h"
 
 
 
@@ -39,6 +42,7 @@
 
 using namespace std;
 #define SKILLPUTONGGONGJIID 100000
+#define BEGINGAMEGETNOTIFACE 600
 
 
 inline bool dealWithCallbackObject(CCObject *object)
@@ -58,8 +62,8 @@ delete temp; \
 temp=NULL; \
 } \
 VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
-    CEmrysClearVectorMemory< __TYPECLASSNAME__ *> tempClear(VECTORARRAY) ; \
-    tempClear.clearVector(); \
+CEmrysClearVectorMemory< __TYPECLASSNAME__ *> tempClear(VECTORARRAY) ; \
+tempClear.clearVector(); \
 }
 
 
@@ -98,12 +102,17 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
         CCLog("m_pTaskLogic == NULL");
         appendFileLog("m_pTaskLogic ISnULL");
     }
+    m_pAnno=new CAnnouncementDataManager;
     m_pUpdateAp=new CGlobalUpdateAp(1);
     m_pUpdateGp=new CGlobalUpdateGp(2);
+    m_vGonggaoId.clear();
+    m_nActionGonggao=0;
+    m_pUpdateGetGonggao=new CGlobalGetGongGao(10);
 }
 
 CGamePlayer::~CGamePlayer()
 {
+    CC_SAFE_RELEASE(m_gonggaoCard);
     CC_SAFE_DELETE(m_pUpdateGp);
     CC_SAFE_DELETE(m_pUpdateAp);
     CC_SAFE_DELETE(m_pTaskLogic);
@@ -113,6 +122,8 @@ CGamePlayer::~CGamePlayer()
         delete m_gGamePlayerData;
         m_gGamePlayerData=NULL;
     }
+    
+    CC_SAFE_DELETE(m_pAnno);
 }
 
 void CGamePlayer::loadGamesConfig()
@@ -128,6 +139,7 @@ void CGamePlayer::loadGamesConfig()
     SinglePropConfigData::instance();
     G_SingleCConfigResourceLoad::instance()->loadShopSellItem(m_gameShop, (resRootPath+"shop.plist").c_str());
     G_FightSkillManager::instance()->initSkill();//加载列表
+    loadCardGonggao();
 }
 
 void CGamePlayer::onExitGameApp()
@@ -138,11 +150,11 @@ void CGamePlayer::onExitGameApp()
     clearAllNpcCard();
     clearPlayerTable();
     clearShangchengData();
-    clearSkillStrip();    
+    clearSkillStrip();
     CPlayerBufferManager::releaseBufferManager(); // 取出player身上的buff add by phileas
     CGameTimerManager::releaseManager();
     CPtPropUserManager::releaseManager();
-
+    CRankDataManager::releaseDataManager();
     
 }
 void CGamePlayer::clearShangchengData()
@@ -152,6 +164,27 @@ void CGamePlayer::clearShangchengData()
         m_gameShop->clearShopItemData();
         CC_SAFE_DELETE(m_gameShop);
     }
+}
+
+void CGamePlayer::loadCardGonggao()
+{
+    m_gonggaoCard=new CCArray;
+    m_gonggaoCard->retain();
+    
+    //先读取一个公告表格  然后加载到要公告的卡的表格里面
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile((resRootPath+"card_random_config.plist").c_str());
+    CCArray *vKeyArray=directory->allKeys();
+    for (int i=0; i<vKeyArray->count(); i++) {
+        CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
+        CCDictionary *cardDirector=(CCDictionary*)(directory->objectForKey(key->m_sString));
+        CDrawGonggaoTable *pCardGongGap=new CDrawGonggaoTable();
+        pCardGongGap->autorelease();
+        pCardGongGap->cardId=GameTools::intForKey("card_id", cardDirector);
+        pCardGongGap->cardName=GameTools::valueForKey("name", cardDirector);
+        pCardGongGap->stringName=Utility::getWordWithFile("dictionary.plist", GameTools::valueForKey("notice_content", cardDirector));
+        m_gonggaoCard->addObject(pCardGongGap);
+    }
+    
 }
 
 void CGamePlayer::clearSkillStrip()
@@ -229,7 +262,7 @@ void CGamePlayer::initPlayerTable(const char *playerFileName)
     {
         G_SingleCConfigResourceLoad::instance()->loadPlayerLevelInfo(m_gGamePlayerData->m_gvPlayerLevel, playerFileName);
     }
-
+    
 }
 //读取技能表格
 void CGamePlayer::loadAllSkillInfo(const char *skillFileName)
@@ -410,12 +443,12 @@ void CGamePlayer::subCardByUserId(const int &inUserId)
     vector<CFightCard *>::iterator iterator =  m_vCardBag.begin();
     for (; iterator != m_vCardBag.end(); iterator++)
     {
-       if((*iterator)->m_User_Card_ID == inUserId)
-       {
-           delete *iterator;
-           m_vCardBag.erase(iterator);
-           break;
-       }
+        if((*iterator)->m_User_Card_ID == inUserId)
+        {
+            delete *iterator;
+            m_vCardBag.erase(iterator);
+            break;
+        }
     }
 }
 
@@ -453,7 +486,7 @@ void CGamePlayer::appendCardBag()
 }
 bool CGamePlayer::canAppendCardBag()
 {
-  return  m_gGamePlayerData->getCardBagAppend() < EXTENTCARDBAG_MAX;
+    return  m_gGamePlayerData->getCardBagAppend() < EXTENTCARDBAG_MAX;
 }
 
 void CGamePlayer::clearServerCardBag()
@@ -649,47 +682,47 @@ void CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)
     {
         return ;
     }
-//    CCArray *vKeyArrayresult=dictresult->allKeys();
-//    for (int i=0; i<vKeyArrayresult->count(); i++)
-//    {
-//        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
-//        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
-//        if(cardDirector)
-//        {
-            DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
-            m_hashmapMonsterCard.resize(5);
-            if(dictresult)
+    //    CCArray *vKeyArrayresult=dictresult->allKeys();
+    //    for (int i=0; i<vKeyArrayresult->count(); i++)
+    //    {
+    //        CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
+    //        CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
+    //        if(cardDirector)
+    //        {
+    DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
+    m_hashmapMonsterCard.resize(5);
+    if(dictresult)
+    {
+        CCDictElement* pElement = NULL;
+        CCDICT_FOREACH(dictresult, pElement)
+        {
+            const char* pchKey = pElement->getStrKey();
+            int position=atoi(pchKey)-1;
+            CCAssert(position>=0, "f**k服务端传输位置为-1的");
+            int card_id=GameTools::intForKey(pchKey, dictresult);
+            if(card_id==0)
             {
-                CCDictElement* pElement = NULL;
-                CCDICT_FOREACH(dictresult, pElement)
-                {
-                    const char* pchKey = pElement->getStrKey();
-                    int position=atoi(pchKey)-1;
-                    CCAssert(position>=0, "f**k服务端传输位置为-1的");
-                    int card_id=GameTools::intForKey(pchKey, dictresult);
-                    if(card_id==0)
-                    {
-                        m_hashmapMonsterCard[position]=NULL;
-                    }else{
-                        CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
-                        m_hashmapMonsterCard[position]=pFightCard;
-
-                    }
-                }
+                m_hashmapMonsterCard[position]=NULL;
+            }else{
+                CFightCard *pFightCard=new CGameNpcCard((CNpcCard *)m_hashmapNpcAllCard[card_id]);
+                m_hashmapMonsterCard[position]=pFightCard;
+                
             }
-            parseRandomData((CCArray*)resultDictresult->objectForKey("random_data"));
-//            CCArray *vKeyArraytempBBB=(CCArray *)resultDictresult->objectForKey("random_data");
-//            std::vector<int>().swap(m_getRandom_data);
-//            m_currRandRomIndex=0;
-//            for (int i=0; i<vKeyArraytempBBB->count(); i++) {
-//                CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
-//                m_getRandom_data.push_back(strtemp->intValue());
-//            }
+        }
+    }
+    parseRandomData((CCArray*)resultDictresult->objectForKey("random_data"));
+    //            CCArray *vKeyArraytempBBB=(CCArray *)resultDictresult->objectForKey("random_data");
+    //            std::vector<int>().swap(m_getRandom_data);
+    //            m_currRandRomIndex=0;
+    //            for (int i=0; i<vKeyArraytempBBB->count(); i++) {
+    //                CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
+    //                m_getRandom_data.push_back(strtemp->intValue());
+    //            }
     
-//        }
-//    }
+    //        }
+    //    }
     isLoadFightTeam=true;
-
+    
 }
 
 void CGamePlayer::parseRandomData(CCArray* inRandomArray)
@@ -704,7 +737,7 @@ void CGamePlayer::parseRandomData(CCArray* inRandomArray)
             m_getRandom_data.push_back(strtemp->intValue());
         }
     }
-
+    
 }
 
 void CGamePlayer::parseRival(CCObject *object)
@@ -833,12 +866,39 @@ void CGamePlayer::backUpFightTeam(int index)
 // player info
 bool CGamePlayer::hasFullGP()
 {
-   return  getPlayerGp() >= m_gGamePlayerData->m_sLevelPlayer->m_iGp_max;
+    return  getPlayerGp() >= m_gGamePlayerData->m_sLevelPlayer->m_iGp_max;
 }
 bool CGamePlayer::hasFullAP()
 {
     return getPlayerAp() >= m_gGamePlayerData->m_sLevelPlayer->m_iAp_max;
 }
+
+/*
+ * @brief 下面五个函数用于排行榜中的战力值 和 充值累计值
+ */
+
+int CGamePlayer::getTotalFightPoint()
+{
+    return m_gGamePlayerData->m_nTotalFightPoint;
+}
+int CGamePlayer::getTotalRechargeValue()
+{
+    return m_gGamePlayerData->m_nTotalRechargeValue;
+}
+
+void CGamePlayer::setTotalFightPoint(int inFightPoint)
+{
+    m_gGamePlayerData->m_nTotalFightPoint = inFightPoint;
+}
+void CGamePlayer::setTotalRechargeValue(int inRechargeValue)
+{
+    m_gGamePlayerData->m_nTotalRechargeValue =inRechargeValue;
+}
+void CGamePlayer::addRechargeValue(int inAddRechargeValue)
+{
+    m_gGamePlayerData->m_nTotalRechargeValue += inAddRechargeValue;
+}
+
 int CGamePlayer::getCoin()
 {
     return  m_gGamePlayerData->m_icoin;
@@ -917,8 +977,8 @@ bool CGamePlayer::setPlayrHadRecharged(bool var)
 
 int CGamePlayer::setPlayerGp(int iValue)
 {
-     m_gGamePlayerData->m_iGp=iValue;
-     return m_gGamePlayerData->m_iGp;
+    m_gGamePlayerData->m_iGp=iValue;
+    return m_gGamePlayerData->m_iGp;
 }
 
 int CGamePlayer::setPlayerAp(int iValue)
@@ -936,13 +996,13 @@ int CGamePlayer::setPlayerCash(int iValue)
 
 void CGamePlayer::addPlayerGp(int inAddHp)
 {
-
+    
     m_gGamePlayerData->logicValue(m_gGamePlayerData->m_iGp,inAddHp,'+');
     if(m_gGamePlayerData->m_iGp>m_gGamePlayerData->getGpMax())
     {
         m_gGamePlayerData->m_iGp=m_gGamePlayerData->getGpMax();
     }
-
+    
 }
 void CGamePlayer::subPlayerGp(int inSubHp)
 {
@@ -1177,7 +1237,7 @@ bool CGamePlayer::isCheckNeedSatisfied(int nlineIndex,EN_LEFTTEAMORRIGHTTEAM enV
             return true;
         }
     }
-   return false;
+    return false;
 }
 void CGamePlayer::deleteFightMonsterCard()
 {
@@ -1560,7 +1620,7 @@ void CGamePlayer::addEmails(CCDictionary *inboxinfoDict)
             G_GAMESINGEMAIL::instance()->decodeEmap(inboxinfoDict);
         }
     }
-
+    
 }
 
 // interface of prop:
@@ -1660,36 +1720,149 @@ void CGamePlayer::setChapterAndSectionByTask()
         m_nCurrentTaskId=task->getTaskId();
     }
 }
+void CGamePlayer::sendGetGonggao()
+{
+    m_pUpdateGetGonggao->stop();
+    string connectData="sig=";
+    connectData += m_strSig;
+    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_GONGGAOQINGQIU(194), "CALLBACK_CGamePlayer_decodeDataGonggao", "REQUEST_CGamePlayer_decodeDataGonggao",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataGonggao));
+}
+bool CGamePlayer::isCheckSameGongGao(cocos2d::CCArray *array)
+{
+    if (m_nActionGonggao%5==0) {
+        m_nActionGonggao=0;
+        m_vGonggaoId.clear();
+        return false;
+    }
+    if (array->count()!=m_vGonggaoId.size()) {
+        m_nActionGonggao=0;
+        m_vGonggaoId.clear();
+        return false;
+    }
+    else{
+        
+        for (int i=0; i<array->count(); i++)
+        {
+            bool isConntinue=false;
+            for (int j=0;j<m_vGonggaoId.size(); j++)
+            {
+
+                if (m_vGonggaoId[j]==((CCString *)array->objectAtIndex(i))->intValue())
+                {
+                    isConntinue=true;
+                    break;
+                }
+            }
+            if(isConntinue)
+            {
+                continue;
+            }
+            m_nActionGonggao=0;
+            m_vGonggaoId.clear();
+            return false;
+        }
+    }
+    return true;
+    
+}
+void CGamePlayer::decodeDataGonggao(CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_decodeDataGonggao");
+    if(!object)
+    {
+        CCMessageBox("fuck 服务端 传递GONGGAO的数据是NULL的", "error");
+        m_pUpdateGetGonggao->startOldTimer();
+        return;
+    }
+    char *strdata=(char *)object;
+    CCDictionary *dict=PtJsonUtility::JsonStringParse(strdata);
+    delete []strdata;
+    strdata=NULL;
+    if (GameTools::intForKey("code", dict)!=0) {
+        CCMessageBox("fuck 服务端 传递GONGGAO的数据是NULL的", "error");
+        m_pUpdateGetGonggao->startOldTimer();
+        return;
+    }
+    CCDictionary *result=(CCDictionary *)dict->objectForKey("result");
+    if(result)
+    {
+        m_pUpdateGetGonggao->start(600, 0.0);
+        CCArray *activity_notice =(CCArray*)result->objectForKey("activity_notice");
+        if (m_vGonggaoId.size()==0) {
+            
+        }
+        if (activity_notice) {
+            m_pAnno->removeAll(EN_ANNOUNCEMENT_CONTEXTTYPE_GAMEACTION);
+            //先获取一个东西
+            if (!isCheckSameGongGao(activity_notice)) {
+                m_nActionGonggao++;
+                for (int i=0; i<activity_notice->count(); i++)
+                {
+                    CCString *strValue=(CCString *)activity_notice->objectAtIndex(i);
+                    m_vGonggaoId.push_back(strValue->intValue());
+                    CCLOG("strValue->m_sString:%s",strValue->m_sString.c_str());
+                    string valueStr=Utility::getWordWithFile("dictionary.plist",strValue->m_sString.c_str());
+                    m_pAnno->appendData(valueStr, EN_ANNOUNCEMENT_CONTEXTTYPE_GAMEACTION);
+                }
+            }
+        }
+        CCArray *card_notice =(CCArray*)result->objectForKey("card_notice");
+        if (card_notice&&card_notice->count()>0)
+        {
+            
+            for (int i=0; i<card_notice->count(); i++)
+            {
+                CCDictionary *strValue=(CCDictionary *)card_notice->objectAtIndex(i);
+                string userName=GameTools::valueForKey("name", strValue);
+                if(userName!=getPlayerName())
+                {
+                    int nCardid=GameTools::intForKey("card_id", strValue);
+                    char data[500];
+                    for (int i=0; i<m_gonggaoCard->count(); i++)
+                    {
+                        if (((CDrawGonggaoTable *)m_gonggaoCard->objectAtIndex(i))->cardId==nCardid) {
+                            CDrawGonggaoTable *temp=(CDrawGonggaoTable *)m_gonggaoCard->objectAtIndex(i);
+                            sprintf(data, temp->stringName.c_str(),userName.c_str(),temp->cardName.c_str());
+                            string sValueData=data;
+                            m_pAnno->appendData(sValueData, EN_ANNOUNCEMENT_CONTEXTTYPE_OWNDRAWCARD);
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
 
 void CGamePlayer::sendUpdateAp()
 {
-//      m_pUpdateAp->pause();
-//    if (getApMax()>getPlayerAp())
-//    {
-        //这种做法的时候 必须是服务端如果是满值的情况下必须在服务端满值的情况下 传值必须》1
-        m_pUpdateAp->stop();
-        string connectData="sig=";
-        connectData += m_strSig;
-        ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataAp", "REQUEST_CGamePlayer_decodeDataAp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataAp));
-//    }
-//    else{
-//        m_pUpdateAp->resume();
-//    }
+    //      m_pUpdateAp->pause();
+    //    if (getApMax()>getPlayerAp())
+    //    {
+    //这种做法的时候 必须是服务端如果是满值的情况下必须在服务端满值的情况下 传值必须》1
+    m_pUpdateAp->stop();
+    string connectData="sig=";
+    connectData += m_strSig;
+    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataAp", "REQUEST_CGamePlayer_decodeDataAp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataAp));
+    //    }
+    //    else{
+    //        m_pUpdateAp->resume();
+    //    }
 }
 
 void CGamePlayer::sendUpdateGp()
 {
-//    m_pUpdateGp->pause();
-//    if (getGpMax()>getPlayerGp())
-//    {
-         m_pUpdateGp->stop();
-        string connectData="sig=";
-        connectData += m_strSig;
-        ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataGp", "REQUEST_CGamePlayer_decodeDataGp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataGp));
-//    }
-//    else{
-//        m_pUpdateGp->resume();
-//    }
+    //    m_pUpdateGp->pause();
+    //    if (getGpMax()>getPlayerGp())
+    //    {
+    m_pUpdateGp->stop();
+    string connectData="sig=";
+    connectData += m_strSig;
+    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_UPDATEAPHP(194), "CALLBACK_CGamePlayer_decodeDataGp", "REQUEST_CGamePlayer_decodeDataGp",connectData.c_str(),callfuncO_selector(CGamePlayer::decodeDataGp));
+    //    }
+    //    else{
+    //        m_pUpdateGp->resume();
+    //    }
 }
 void CGamePlayer::decodeDataAp(cocos2d::CCObject *object)
 {
@@ -1720,7 +1893,7 @@ void CGamePlayer::decodeDataAp(cocos2d::CCObject *object)
 
 void CGamePlayer::decodeDataGp(cocos2d::CCObject *object)
 {
-     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_decodeDataGp");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_decodeDataGp");
     if(!object)
     {
         CCMessageBox("fuck 服务端 传递AP的数据是NULL的", "error");
@@ -1737,16 +1910,16 @@ void CGamePlayer::decodeDataGp(cocos2d::CCObject *object)
         setPlayerGp(GameTools::intForKey("gp", gp));
         m_pUpdateGp->start(GameTools::intForKey("lever_time", gp), 0.0f);
     }
-
+    
     
 }
 
 void CGamePlayer::setReBackXiangLiang()
 {
     if(m_gameShop)
-{
-    m_gameShop->setRebackMaxNumber();
-}
+    {
+        m_gameShop->setRebackMaxNumber();
+    }
     
 }
 void CGamePlayer::setShopItemByItemId(int itemID,int nValue)
@@ -1916,12 +2089,12 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             parseJsonUserInfo(dicuserinfo);
             gameInitStatus=1;
         }
-       
         
-    
+        
+        
         CCDictionary *getCardItem=(CCDictionary *)dictresult->objectForKey("card_team");
         loadCardTeamInfoCallBackByDict(getCardItem);
-        
+        m_pUpdateGetGonggao->start(2, BEGINGAMEGETNOTIFACE);
         SingleActivityEncounterManager::instance()->parseActivityByDic((CCDictionary*)dictresult->objectForKey("activity_config"));
     }
 }
@@ -1942,7 +2115,7 @@ void CGamePlayer::parseTaskInfo(CCDictionary *dict)
         m_pTaskLogic->setPtTaskCurrentStatus(GameTools::intForKey("status", detail));
         break;
     }
-
+    
 }
 
 void CGamePlayer::parseJsonUserInfo(CCDictionary *dict)
@@ -1954,7 +2127,7 @@ void CGamePlayer::parseJsonUserInfo(CCDictionary *dict)
     CCDictionary *cardinfo=(CCDictionary *)(dict->objectForKey("card_item"));
     if (cardinfo)
     {
-            decodeCardDictAppendCardBag(cardinfo);
+        decodeCardDictAppendCardBag(cardinfo);
     }
     
     CCDictionary *bag_info=(CCDictionary *)(dict->objectForKey("bag_info"));
@@ -2009,9 +2182,9 @@ void CGamePlayer::updatePlayerDataWithExp()
 // example: cube.games.com/api.php?m=GameBegin&a=checkLevelUp&uid=1000001&sig=2ac2b1e302c46976beaab20a68ef95
 void CGamePlayer::sendLeveleUpRequest()
 {
-      char buff[200]={0};
-      sprintf(buff,"sig=%s", getUserSig());
-      ADDHTTPREQUESTPOSTDATA(STR_URL_LEVEL_UP(196), "CALLBACK_CGamePlayer_sendLeveleUpRequest", "REQUEST_CGamePlayer_sendLeveleUpRequest",buff,callfuncO_selector(CGamePlayer::receiveLevelUpRequestMsg));
+    char buff[200]={0};
+    sprintf(buff,"sig=%s", getUserSig());
+    ADDHTTPREQUESTPOSTDATA(STR_URL_LEVEL_UP(196), "CALLBACK_CGamePlayer_sendLeveleUpRequest", "REQUEST_CGamePlayer_sendLeveleUpRequest",buff,callfuncO_selector(CGamePlayer::receiveLevelUpRequestMsg));
 }
 
 void CGamePlayer::receiveLevelUpRequestMsg(CCObject *pObject)
@@ -2035,7 +2208,7 @@ void CGamePlayer::parseLevelUpInfoByDict(CCDictionary *inDict)
         {
             CCDictionary *result = (CCDictionary *)inDict->objectForKey("result");
             changePlayerInfoWithLevelUp(result);
-
+            
         }else
         {
             CCLog("server error code : %d", code);
@@ -2062,9 +2235,9 @@ void CGamePlayer::changePlayerInfoWithLevelUp(CCDictionary *inDict)
         {
             setOpenGridCount(grid);
         }
-       
+        
         // notify
-      //  CCNotificationCenter::sharedNotificationCenter()->postNotification(NOTIFYTAG_LEVELUP,NULL);
+        //  CCNotificationCenter::sharedNotificationCenter()->postNotification(NOTIFYTAG_LEVELUP,NULL);
         CCLog( "level up --> level : %d, exp: %d, gp: %d, ap : %d, grid : %d", level, exp, gp, ap, grid);
         char buffTip[300]= {0};
         sprintf(buffTip, "level up --> level : %d, exp: %d, gp: %d, ap : %d, grid : %d", level, exp, gp, ap, grid);
@@ -2085,6 +2258,6 @@ void CGamePlayer::levelUpData(int level)
         m_gGamePlayerData->m_sLevelPlayer = m_gGamePlayerData->m_gvPlayerLevel.at(level);
         m_gGamePlayerData->m_irvc = m_gGamePlayerData->m_sLevelPlayer->m_iLeader_max;
         m_gGamePlayerData->m_ilevel = level;
-
+        
     }
 }

@@ -1,7 +1,7 @@
 10
 
 dir
-2151
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/libs/cocos2dx/platform
 svn://merlin@192.168.2.3/sdp
 
@@ -25,6 +25,9 @@ has-props
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
+
+android
+dir
 
 CCEGLViewProtocol.h
 file
@@ -59,9 +62,6 @@ has-props
 
 
 5009
-
-android
-dir
 
 CCApplicationProtocol.h
 file
@@ -165,6 +165,9 @@ has-props
 
 9304
 
+third_party
+dir
+
 CCImageCommon_cpp.h
 file
 
@@ -198,9 +201,6 @@ has-props
 
 
 25379
-
-third_party
-dir
 
 ios
 dir

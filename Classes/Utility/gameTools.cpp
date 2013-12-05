@@ -409,7 +409,8 @@ namespace GameTools {
                     layer->addChild(subttf);
                     x += subttf->getContentSize().width;
                 }
-                else {
+                else
+                {
                     //判断是否有“\n”
                     //                    string
                     string tmpWord = vSubWord.at(i).substr(wordStart);

@@ -11,6 +11,7 @@
 #include "LayoutLayer.h"
 #include "gameConfig.h"
 #include "CGameButtonControl.h"
+#include "gamePlayer.h"
 
 #define TAG_TABBEGIN 1000
 #define TAG_FRIENDCOUNT 12
@@ -18,18 +19,14 @@
 #define TAG_QUITBUTTON 20
 #define TAG_TABLEVIEW 2
 #define TAG_BACKGROUDMAP 1
-class CGameRankData
-{
-public:
-    CGameRankData(string name,int value){this->gamePlayerName=name;this->value=value;};
-    string gamePlayerName;
-    int   value;
-};
 
 CGameRankLayer::CGameRankLayer()
 {
+    m_pRankManager = CRankDataManager::getInstance();
+    m_nPlayerUid = atoi(SinglePlayer::instance()->getUserId());
+    m_pPlayerRankInfo = NULL;
     m_currentTabIndex=-1;
-    m_vTableViewData.clear();
+    m_vTableViewData = NULL;
   CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath, "friendjiemian.plist"), CSTR_FILEPTAH(g_mapImagesPath, "friendjiemian.png"));
     size=CCDirector::sharedDirector()->getWinSize();
     m_tabs = new CCArray();
@@ -44,37 +41,56 @@ CGameRankLayer::CGameRankLayer()
     tempSprite=CCSprite::create((g_mapImagesPath+"rankpagecell.png").c_str());
     tempSprite->retain();
     
-    {
-        char data[20];
-
-        for (int i=100; i>=1; i--) {
-            sprintf(data, "gameplayername%d",100-i);
-            m_vTableViewData.push_back(new CGameRankData(data,i+10000));
-        }
-    }
+//    {
+//        char data[20];
+//
+//        for (int i = 0; i < 100; i++) {
+//            sprintf(data, "gameplayername%d",i);
+//            m_vTableViewData.push_back(new CRankData(data,i+1,(rand()%80)+1));
+//        }
+//    }
 }
 
 CGameRankLayer::~CGameRankLayer()
 {
     
-    {
-        for (int i=0; i<m_vTableViewData.size(); i++) {
-            delete m_vTableViewData[i];
-            m_vTableViewData[i]=NULL;
-        }
-    }
+//    {
+//        for (int i=0; i<m_vTableViewData.size(); i++) {
+//            delete m_vTableViewData[i];
+//            m_vTableViewData[i]=NULL;
+//        }
+//    }
     
     
     CC_SAFE_RELEASE(tempSprite);
     CC_SAFE_RELEASE(m_tabs);
-    CEmrysClearVectorMemory<CGameRankData *>m_vData(m_vTableViewData);
-    m_vData.clearVector();
+//    CEmrysClearVectorMemory<CRankData *>m_vData(m_vTableViewData);
+//    m_vData.clearVector();
     CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath, "friendjiemian.png"));
 }
 
 void CGameRankLayer::callBackFunc(void)//让对方去回调的数据;
 {
-    
+    m_vTableViewData = m_pRankManager->getDataByType(m_currentTabIndex);
+    if (m_vTableViewData)
+    {
+        switch (m_currentTabIndex)
+        {
+            case 0:
+                onClickZongZhandouTabItem();
+                break;
+            case 1:
+                onClickDengJiTabItem();
+                break;
+            case 2:
+                onClickFuhaoTabItem();
+                break;
+            default:
+                break;
+        }
+        
+    }
+
 }
 
 bool CGameRankLayer::init()
@@ -85,12 +101,19 @@ bool CGameRankLayer::init()
     createBackGround();
     createRankTypeButton();
     createQuitButton();
+    createPlayerRankInfo();
     setGunDongTiaoPtr();
     setTouchEnabled(true);
     setTouchPriority(-9);
    if(switchToTab(0))
    {
-       onClickZongZhandouTabItem();
+        m_vTableViewData = m_pRankManager->sendRequest(FIGHTRANK, this, callfunc_selector(CGameRankLayer::callBackFunc));
+       if (m_vTableViewData)
+       {
+           onClickZongZhandouTabItem();
+       }
+       
+       
    }
     return true;
 }
@@ -131,6 +154,8 @@ bool  CGameRankLayer::addTab(const char* label,int index)
 }
 void CGameRankLayer::onClickZongZhandouTabItem()
 {
+    updatePlayerRankInfo();
+    updateRankCount();
     if(getChildByTag(TAG_TABLEVIEW))
     {
         CUtilityTableView *tableView=(CUtilityTableView *)(getChildByTag(TAG_TABLEVIEW));
@@ -143,6 +168,8 @@ void CGameRankLayer::onClickZongZhandouTabItem()
 
 void CGameRankLayer::onClickDengJiTabItem()
 {
+    updatePlayerRankInfo();
+    updateRankCount();
     if(getChildByTag(TAG_TABLEVIEW))
     {
         CUtilityTableView *tableView=(CUtilityTableView *)(getChildByTag(TAG_TABLEVIEW));
@@ -156,14 +183,17 @@ void CGameRankLayer::onClickDengJiTabItem()
 
 void CGameRankLayer::onClickFuhaoTabItem()
 {
+    updatePlayerRankInfo();
+    updateRankCount();
     if(getChildByTag(TAG_TABLEVIEW))
-{
-    CUtilityTableView *tableView=(CUtilityTableView *)(getChildByTag(TAG_TABLEVIEW));
-    tableView->reloadDataView();
-}
-else{
-    createTableView(0);
-}
+    {
+        CUtilityTableView *tableView=(CUtilityTableView *)(getChildByTag(TAG_TABLEVIEW));
+        tableView->reloadDataView();
+    }
+    else
+    {
+        createTableView(0);
+    }
     
 }
 
@@ -286,7 +316,7 @@ void CGameRankLayer::reloadTableViewData(int index)
 
 unsigned int CGameRankLayer::numberOfCellsInTableView(CCTableView *table)
 {
-    return m_vTableViewData.size();
+    return m_nRankCount;//m_vTableViewData->size();
 }
 
 void CGameRankLayer::initCellItem(CCTableViewCell*cell, unsigned int idx)
@@ -303,26 +333,38 @@ void CGameRankLayer::initCellItem(CCTableViewCell*cell, unsigned int idx)
     switch (m_currentTabIndex) {
         case 0:
         {
-           strName="玩家战斗力";
+           strName="玩家战斗力:";
             
         }
             break;
         case 1:
-            strName="玩家成就";
+            strName="玩家等级:";
             break;
         case 2:
-            strName="消费积分";
+            strName="累积充值额度:";
             break;
         default:
             break;
     }
-    CCLabelTTF *labelTTF=CCLabelTTF::create(("玩家姓名:"+m_vTableViewData[idx]->gamePlayerName).c_str(), "Arial", 15);
+    CRankData * data =  m_vTableViewData->at(idx);
+    data->name.c_str();
+    char buffer[100]={0};
+    snprintf(buffer, 100, "玩家姓名: %s", data->name.c_str());
+    CCLabelTTF *labelTTF=CCLabelTTF::create(buffer, "Arial", 15);
     labelTTF->setPosition(CCPointMake(150, 40));
     labelTTF->setAnchorPoint(CCPointZero);
     cell->addChild(labelTTF);
-    labelTTF=CCLabelTTF::create((strName +ConvertToString(m_vTableViewData[idx]->value)).c_str(), "Arial", 20);
+    snprintf(buffer,100, "%d", data->value);
+    labelTTF=CCLabelTTF::create(strName.append(buffer).c_str(), "Arial", 20);
     labelTTF->setAnchorPoint(CCPointZero);
     labelTTF->setPosition(CCPointMake(150, 10));
+    cell->addChild(labelTTF);
+    
+    // add rank label
+    snprintf(buffer,100, "第%d名", idx+1);
+    labelTTF=CCLabelTTF::create(buffer, "Arial", 20);
+    labelTTF->setAnchorPoint(CCPointZero);
+    labelTTF->setPosition(CCPointMake(400, 20));
     cell->addChild(labelTTF);
 }
 
@@ -388,6 +430,46 @@ int CGameRankLayer::checkTouchQuitButton(CCPoint point)
     return -1;
 }
 
+void CGameRankLayer::updateRankCount()
+{
+    m_nRankCount = 0;
+    if (m_vTableViewData)
+    {
+        m_nRankCount = m_vTableViewData->size();
+        int leftValue = m_nRankCount;
+        int rightValue = 0;
+        int middleValue = 0;
+
+        while (rightValue != leftValue)
+        {
+            if (m_vTableViewData->at(rightValue))
+            {
+                if (m_vTableViewData->at(leftValue-1))
+                {
+                    m_nRankCount = leftValue;
+                    break;
+                }
+                else
+                {
+                    middleValue =(leftValue+rightValue)/2;
+                    if (m_vTableViewData->at(middleValue))
+                    {
+                        rightValue = middleValue;
+                    }else
+                    {
+                        leftValue = middleValue;
+                    }
+                }
+            }else
+            {
+                m_nRankCount = 0;
+                break;
+            }
+        }
+       
+        
+    }
+}
 int CGameRankLayer::checkTouchTableIndex(CCPoint point)
 {
     CCObject *tempButton=NULL;
@@ -422,19 +504,34 @@ void CGameRankLayer::handleTagCallBack(int tag)
         case TAG_TABBEGIN:
             if(switchToTab(0))
             {
-                onClickZongZhandouTabItem();
+                m_vTableViewData = m_pRankManager->sendRequest(FIGHTRANK, this, callfunc_selector(CGameRankLayer::callBackFunc));
+                if (m_vTableViewData)
+                {
+                    onClickZongZhandouTabItem();
+                }
+
             }
             break;
         case TAG_TABBEGIN+1:
             if(switchToTab(1))
             {
-                onClickDengJiTabItem();
+                m_vTableViewData = m_pRankManager->sendRequest(LEVELRANK, this, callfunc_selector(CGameRankLayer::callBackFunc));
+                if (m_vTableViewData)
+                {
+                    onClickDengJiTabItem();
+                }
+                
             }
             break;
         case TAG_TABBEGIN+2:
             if(switchToTab(2))
             {
-                onClickFuhaoTabItem();
+                m_vTableViewData = m_pRankManager->sendRequest(RECHARGERANK, this, callfunc_selector(CGameRankLayer::callBackFunc));
+                if (m_vTableViewData)
+                {
+                    onClickFuhaoTabItem();
+                }
+                
             }
             break;
         default:
@@ -454,4 +551,51 @@ void CGameRankLayer::onExit()
 {
     CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
     CCLayer::onExit();
+}
+
+void CGameRankLayer::createPlayerRankInfo()
+{
+    char buffer[200] = {0};
+    snprintf(buffer, 200, "player uid: %d\nfight : %d\nrank : %d ", 0, 0, 0);
+    m_pPlayerRankInfo = CCLabelTTF::create("", "Arial", 13);
+    m_pPlayerRankInfo->setPosition(ccp(size.width*0.5+230, size.height*0.5+220));
+    m_pPlayerRankInfo->setString(buffer);
+    m_pPlayerRankInfo->setHorizontalAlignment(kCCTextAlignmentLeft);
+    addChild(m_pPlayerRankInfo,2);
+}
+void CGameRankLayer::updatePlayerRankInfo()
+{
+    int rank = -1;
+    int value  = 0;
+    char buffer[200] = {0};
+    if (m_currentTabIndex == 0)
+    {
+        value = SinglePlayer::instance()->getTotalFightPoint();
+        snprintf(buffer, 200, "我的uid: %d\n我的战力: %d\n", m_nPlayerUid, value);
+    }
+    else if(m_currentTabIndex == 1)
+    {
+        value = SinglePlayer::instance()->getPlayerLevel();
+        snprintf(buffer, 200, "我的uid: %d\n我的等级: %d\n", m_nPlayerUid, value);
+    }
+    else if(m_currentTabIndex == 2)
+    {
+        value = SinglePlayer::instance()->getTotalRechargeValue();
+        snprintf(buffer, 200, "我的uid: %d\n我的充值: %d\n", m_nPlayerUid, value);
+    }
+    
+    CRankData *data  =m_pRankManager->getRankDataByUid(m_nPlayerUid, m_currentTabIndex, rank);
+    char *tmpPointer = buffer+strlen(buffer);
+    if (data == NULL)
+    {
+        snprintf(tmpPointer, 200-strlen(buffer), "未上榜");
+    }else
+    {
+        snprintf(tmpPointer, 200-strlen(buffer), "我的排名 : %d", rank);
+    }
+    //
+
+
+     m_pPlayerRankInfo->setString(buffer);
+    
 }

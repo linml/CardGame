@@ -31,6 +31,14 @@ public:
     virtual void globalUpdate(float t);
 };
 
+class CGlobalGetGongGao :public CGlobalSchedule
+{
+public:
+    CGlobalGetGongGao(int iValueTag);
+    ~CGlobalGetGongGao();
+public:
+    virtual void globalUpdate(float t);
+};
 
 
 

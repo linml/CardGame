@@ -19,6 +19,10 @@
 #include "CGameArrangeCardBag.h"
 #include "CCShake.h"
 #include "CCardBagFullDialog.h"
+#include "gameConfig.h"
+#include "CAnnouncementDataManager.h"
+#include "CDrawGonggaoTable.h"
+
 
 const int g_niudanjiage=300; //钻石抽单价
 const int g_niudanyouqingjiage=200;
@@ -30,6 +34,7 @@ CDrawCardLayer::CDrawCardLayer()
     m_tempGamePlayer=SinglePlayer::instance();
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath,"niudanchouka.plist"));
     touchVector.clear();
+        
 }
 
 CDrawCardLayer::~CDrawCardLayer()
@@ -358,6 +363,21 @@ void CDrawCardLayer::showCardData(CCDictionary *dict)
         CCString *key=(CCString *)array->objectAtIndex(i);
         CFightCard *card=m_tempGamePlayer->findFightCardByCard_User_ID(key->intValue());
         m_vectorGetCardList.push_back(card);
+        char data[500];
+        if(card)
+        {
+        for (int i=0; i<m_tempGamePlayer->m_gonggaoCard->count(); i++)
+        {
+            
+            if (((CDrawGonggaoTable *)m_tempGamePlayer->m_gonggaoCard->objectAtIndex(i))->cardId==card->m_pCard->m_icard_id) {
+                CDrawGonggaoTable *temp=(CDrawGonggaoTable *)m_tempGamePlayer->m_gonggaoCard->objectAtIndex(i);
+                sprintf(data, temp->stringName.c_str(),m_tempGamePlayer->getPlayerName(),temp->cardName.c_str());
+                string valueData=data;
+                m_tempGamePlayer->m_pAnno->appendData(valueData, EN_ANNOUNCEMENT_CONTEXTTYPE_OWNDRAWCARD);
+            }
+        }
+        }
+        
     }
     
 }

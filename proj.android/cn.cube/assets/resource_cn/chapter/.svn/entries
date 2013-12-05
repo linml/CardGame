@@ -1,7 +1,7 @@
 10
 
 dir
-2156
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/chapter
 svn://merlin@192.168.2.3/sdp
 
@@ -400,40 +400,6 @@ phileas
 
 2099
 
-chapterlist.plist
-file
-
-
-
-
-2013-12-03T08:27:21.000000Z
-3d730eda1862c96f3e7715895f603ba8
-2013-11-27T08:22:49.773146Z
-2126
-phileas
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-3839
-
 partlist_1.plist
 file
 
@@ -467,6 +433,40 @@ phileas
 
 
 835
+
+chapterlist.plist
+file
+
+
+
+
+2013-12-03T08:27:21.000000Z
+3d730eda1862c96f3e7715895f603ba8
+2013-11-27T08:22:49.773146Z
+2126
+phileas
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3839
 
 partlist_2.plist
 file

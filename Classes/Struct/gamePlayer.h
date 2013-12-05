@@ -28,9 +28,11 @@ class CFightCardFightingBuffer;
 class CGamePlayerData;
 class CGlobalUpdateAp;
 class CGlobalUpdateGp;
+class CGlobalGetGongGao;
 class CGlobalUpdateHospital;
 class CStructStrips;
-
+class CAnnouncementDataManager;
+class CDrawGonggaoTable;
 #define OPENGGRIDLEVLE 20
 #define MAXLEVEL 100
 
@@ -73,6 +75,9 @@ private:
     void clearAllNpcCard();
     
     void clearSkillStrip();
+    
+    //读取CardGongGao
+    void loadCardGonggao();
 
 public:
     vector<CFightCard *> m_hashmapFightingCard;
@@ -202,6 +207,15 @@ public:
     bool hasFullGP();
     bool hasFullAP();
     
+    
+    // new add by phileas:
+    int getTotalFightPoint();
+    int getTotalRechargeValue();
+    
+    void setTotalFightPoint(int inFightPoint);
+    void setTotalRechargeValue(int inRechargeValue);
+    void addRechargeValue(int inAddRechargeValue);
+    
     int getCoin();          //金币
     int getPlayerCash();  //现金
     int getRVC();          //领导力
@@ -285,6 +299,9 @@ public:
     void sendUpdateAp();
     void decodeDataGp(CCObject *object);
     void decodeDataAp(CCObject *object);
+    void sendGetGonggao();
+    void decodeDataGonggao(CCObject *object);
+    bool isCheckSameGongGao(CCArray *array);
 
     
 public:
@@ -322,7 +339,10 @@ protected:
     vector<CFightCardFightingBuffer *>m_vCFightCardFightingBuffer;
     CGlobalUpdateAp  *m_pUpdateAp;
     CGlobalUpdateGp  *m_pUpdateGp;   //其实用一个类就可以做的。
+    CGlobalGetGongGao *m_pUpdateGetGonggao;
     CStructShopInfo  *m_gameShop;
+    int m_nActionGonggao;
+    vector<int>m_vGonggaoId;
 public:
     void updatePlayerDataWithExp();
 protected:
@@ -335,7 +355,10 @@ public:
     list<int>m_vPlayerBufferList;
     int zhongzuCount[8];//0,1,2,3我方的人员个数   4,5,6,7,敌方的种族个数
     void initZhongZu();
-
+public:
+    CAnnouncementDataManager *m_pAnno;
+    CCArray *m_gonggaoCard;
+    
 };
 typedef Singleton<CGamePlayer> SinglePlayer;
 

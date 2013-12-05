@@ -1,7 +1,7 @@
 10
 
 dir
-2151
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/libs/cocos2dx/shaders
 svn://merlin@192.168.2.3/sdp
 
@@ -60,40 +60,6 @@ has-props
 
 2612
 
-CCShaderCache.cpp
-file
-
-
-
-
-2013-11-25T08:28:11.000000Z
-f53b07583fccda8586f0977ae131d6b1
-2013-05-17T07:36:48.301808Z
-361
-wood
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-8665
-
 CCGLProgram.cpp
 file
 
@@ -127,6 +93,40 @@ has-props
 
 
 11652
+
+CCShaderCache.cpp
+file
+
+
+
+
+2013-11-25T08:28:11.000000Z
+f53b07583fccda8586f0977ae131d6b1
+2013-05-17T07:36:48.301808Z
+361
+wood
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8665
 
 ccGLStateCache.h
 file
@@ -196,40 +196,6 @@ has-props
 
 632
 
-ccShader_PositionColor_vert.h
-file
-
-
-
-
-2013-11-25T08:28:11.000000Z
-e4d903fb0cb9fcb3362702eb02f70807
-2013-05-17T07:36:48.301808Z
-361
-wood
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-989
-
 ccShaders.h
 file
 
@@ -264,14 +230,14 @@ has-props
 
 2301
 
-CCShaderCache.h
+ccShader_PositionColor_vert.h
 file
 
 
 
 
 2013-11-25T08:28:11.000000Z
-24b97c9439b1998a06d12ba6313e4f12
+e4d903fb0cb9fcb3362702eb02f70807
 2013-05-17T07:36:48.301808Z
 361
 wood
@@ -296,7 +262,7 @@ has-props
 
 
 
-2424
+989
 
 CCGLProgram.h
 file
@@ -331,6 +297,40 @@ has-props
 
 
 6913
+
+CCShaderCache.h
+file
+
+
+
+
+2013-11-25T08:28:11.000000Z
+24b97c9439b1998a06d12ba6313e4f12
+2013-05-17T07:36:48.301808Z
+361
+wood
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2424
 
 ccShader_PositionTexture_uColor_frag.h
 file

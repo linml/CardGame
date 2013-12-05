@@ -50,6 +50,7 @@ enum EN_NIUDANHTTPSTATUS {
     EN_NIUDANHTTPSTATUS_END
     };
 
+
 class CDrawCardLayer: public cocos2d::CCLayer,public cocos2d::extension::CCTableViewDataSource,public cocos2d::extension::CCTableViewDelegate
 {
 public:

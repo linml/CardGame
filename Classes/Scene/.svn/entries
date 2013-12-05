@@ -1,15 +1,15 @@
 10
 
 dir
-2156
+2185
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/Classes/Scene
 svn://merlin@192.168.2.3/sdp
 
 
 
-2013-12-04T04:17:35.253679Z
-2155
-merlin
+2013-12-05T03:14:23.109472Z
+2176
+phileas
 has-props
 has-prop-mods
 
@@ -41,10 +41,10 @@ dir
 DrawCardLayer
 dir
 
-HandBook
+CardSettingScene
 dir
 
-CardSettingScene
+HandBook
 dir
 
 LoginScene
@@ -62,10 +62,10 @@ dir
 GameShopLayer
 dir
 
-FriendLayer
+ActionGameLayer
 dir
 
-ActionGameLayer
+FriendLayer
 dir
 
 StoryLayer

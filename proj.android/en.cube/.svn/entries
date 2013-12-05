@@ -1,7 +1,7 @@
 10
 
 dir
-2156
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/en.cube
 svn://merlin@192.168.2.3/sdp
 
@@ -103,10 +103,10 @@ dir
 .externalToolBuilders
 dir
 
-libs
+res
 dir
 
-res
+libs
 dir
 
 build.xml
@@ -211,6 +211,9 @@ wood
 
 628
 
+assets
+dir
+
 ndkgdb.sh
 file
 
@@ -244,9 +247,6 @@ has-props
 
 
 1303
-
-assets
-dir
 
 proguard-project.txt
 file

@@ -13,6 +13,7 @@
 #include "cocos2d.h"
 using namespace std;
 using namespace cocos2d;
+class CGamePlayer;
 class  CAnnouncementLayer :public CCLayer
 {
     
@@ -22,11 +23,14 @@ class  CAnnouncementLayer :public CCLayer
     bool init();
     CREATE_FUNC(CAnnouncementLayer);
     void updateSchu(float t); //定时5s后继续调用下一条公告信息
+    void removeCallBack(CCObject *object);
+    void createContextLayer(string str);
 private:
     void createColorLayer();
     CCLabelTTF *plabelTTF;
     void showLayer();
     void hideColorLayer();
+    CGamePlayer *m_tempPlayer;
 };
 
 #endif /* defined(___1_cube__CAnnouncementLayer__) */

@@ -34,9 +34,10 @@ class CAnnouncementDataManager
 public:
     CAnnouncementDataManager();
     ~CAnnouncementDataManager();
-    void appendData(string str,EN_ANNOUNCEMENT_CONTEXTTYPE type);
+    void appendData(string  &str,EN_ANNOUNCEMENT_CONTEXTTYPE type);
     int getListSize();
     string getShowData();
+    void removeAll(EN_ANNOUNCEMENT_CONTEXTTYPE type);
 private:
     list <CAnnouncementInfo *>m_vListContext; //应该50条左右外加一个当前抽卡的内容。
     list<CAnnouncementInfo *>::iterator m_itListIterator;

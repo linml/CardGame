@@ -18,12 +18,15 @@
 #include "CScreenHandBookLayer.h"
 #include "CSceneHospitalLayer.h"
 #include "CSceneFriendMainLayer.h"
+#include "CGameRankLayer.h"
+#include "CRankDataManager.h"
 
 
 CAsgardLayer::CAsgardLayer()
 {
     m_bLoadTaskInfo = true;
     m_pFriendBtn = NULL;
+    m_pRankBtn = NULL;
 }
 
 CAsgardLayer::~CAsgardLayer()
@@ -139,6 +142,7 @@ void CAsgardLayer::initArsgard()
     createChapterReward();
     createHospitolButton();
     createFriendButton();
+    createRankButton();
     
  
 }
@@ -173,6 +177,19 @@ void CAsgardLayer::createFriendButton()
 
 }
 
+void CAsgardLayer::createRankButton()
+{
+    m_pRankBtn= CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
+    m_pRankBtn->setAnchorPoint(CCPointZero);
+    m_pRankBtn->setPosition(ccp(680, 560));
+    addChild(m_pRankBtn, 200, 77);
+    string word = Utility::getWordWithFile("rank");
+    CCLabelTTF *label=CCLabelTTF::create(word.c_str(), "Arial", 20);
+    label->setColor(g_custom_color[14]);
+    label->setPosition(ccp(65, 30));
+    m_pRankBtn->addChild(label,2,999);
+    Utility::addTouchRect(RANK_TOUCH_TAG, m_pRankBtn, m_cTouches);
+}
 void CAsgardLayer::handlerTouch()
 {
     CCLog("CAsgardLayer m_nTag : %d ", m_nTouchTag);
@@ -192,6 +209,9 @@ void CAsgardLayer::handlerTouch()
             break;
         case FRIEND_TOUCH_TAG:
             createFriendLayer();
+            break;
+        case RANK_TOUCH_TAG:
+            createRankLayer();
             break;
         case VALHALLA_TOUCH_TAG:
             // to do:
@@ -224,6 +244,13 @@ void CAsgardLayer::createFriendLayer()
     CCLayer *layer = CSceneFriendMainLayer::create();
     addChild(layer, 1000);
     
+}
+
+void CAsgardLayer::createRankLayer()
+{
+    CRankDataManager::getInstance()->startRankDataManger();
+    CCLayer *layer = CGameRankLayer::create();
+    addChild(layer, 1000);
 }
 void CAsgardLayer::showHandBook()
 {

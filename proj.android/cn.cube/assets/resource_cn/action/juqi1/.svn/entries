@@ -1,7 +1,7 @@
 10
 
 dir
-2156
+2176
 svn://merlin@192.168.2.3/sdp/GameProject/CubeCOCO/proj.android/cn.cube/assets/resource_cn/action/juqi1
 svn://merlin@192.168.2.3/sdp
 
@@ -25,74 +25,6 @@ has-props
 
 
 d3e4ec7a-0a7c-4738-b08f-82a0926b3a1f
-
-juqi10012.png
-file
-
-
-
-
-2013-11-25T08:28:17.000000Z
-7a94e5a23ab2282f2963d2f37306bbd7
-2013-06-20T02:25:48.171719Z
-565
-wood
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-47502
-
-juqi10003.png
-file
-
-
-
-
-2013-11-25T08:28:17.000000Z
-62a5ca2ff8fe2598d370224604a726c3
-2013-06-20T02:25:48.171719Z
-565
-wood
-has-props
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-183605
 
 juqi10021.png
 file
@@ -128,14 +60,14 @@ has-props
 
 4142
 
-juqi10013.png
+juqi10003.png
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-ad34ff3b1c6095620e4c55b5a8ce931a
+62a5ca2ff8fe2598d370224604a726c3
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -160,16 +92,16 @@ has-props
 
 
 
-46831
+183605
 
-juqi10004.png
+juqi10012.png
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-d64866b99ab4a38feac7d20ffaf0b70c
+7a94e5a23ab2282f2963d2f37306bbd7
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -194,7 +126,7 @@ has-props
 
 
 
-229177
+47502
 
 juqi10022.png
 file
@@ -230,14 +162,14 @@ has-props
 
 3910
 
-juqi10005.png
+juqi10004.png
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-0d5c328e4d775739510a2d02a9d65e6c
+d64866b99ab4a38feac7d20ffaf0b70c
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -262,7 +194,41 @@ has-props
 
 
 
-239066
+229177
+
+juqi10013.png
+file
+
+
+
+
+2013-11-25T08:28:17.000000Z
+ad34ff3b1c6095620e4c55b5a8ce931a
+2013-06-20T02:25:48.171719Z
+565
+wood
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+46831
 
 juqi10014.png
 file
@@ -298,14 +264,14 @@ has-props
 
 50392
 
-juqi10006.png
+juqi10005.png
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-3738070a0968d97b2e702c0e1c9e256e
+0d5c328e4d775739510a2d02a9d65e6c
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -330,7 +296,7 @@ has-props
 
 
 
-230937
+239066
 
 juqi10015.png
 file
@@ -366,14 +332,14 @@ has-props
 
 59178
 
-juqi10007.png
+juqi10006.png
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-d62a9b16b0ab9fa43031af000e8d160c
+3738070a0968d97b2e702c0e1c9e256e
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -398,41 +364,7 @@ has-props
 
 
 
-251581
-
-juqi1.plist
-file
-
-
-
-
-2013-11-25T08:28:17.000000Z
-f19fd366035a990461de97941fddc599
-2013-06-20T02:25:48.171719Z
-565
-wood
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-2681
+230937
 
 juqi10016.png
 file
@@ -468,14 +400,48 @@ has-props
 
 62824
 
-juqi10008.png
+juqi1.plist
 file
 
 
 
 
 2013-11-25T08:28:17.000000Z
-fbfdce5e0ecf917b99b2618d04a49dec
+f19fd366035a990461de97941fddc599
+2013-06-20T02:25:48.171719Z
+565
+wood
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2681
+
+juqi10007.png
+file
+
+
+
+
+2013-11-25T08:28:17.000000Z
+d62a9b16b0ab9fa43031af000e8d160c
 2013-06-20T02:25:48.171719Z
 565
 wood
@@ -500,7 +466,7 @@ has-props
 
 
 
-216688
+251581
 
 juqi10017.png
 file
@@ -535,6 +501,40 @@ has-props
 
 
 43118
+
+juqi10008.png
+file
+
+
+
+
+2013-11-25T08:28:17.000000Z
+fbfdce5e0ecf917b99b2618d04a49dec
+2013-06-20T02:25:48.171719Z
+565
+wood
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+216688
 
 juqi10009.png
 file

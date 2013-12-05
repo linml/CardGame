@@ -202,6 +202,15 @@ public:
     bool hasFullGP();
     bool hasFullAP();
     
+    
+    // new add by phileas:
+    int getTotalFightPoint();
+    int getTotalRechargeValue();
+    
+    void setTotalFightPoint(int inFightPoint);
+    void setTotalRechargeValue(int inRechargeValue);
+    void addRechargeValue(int inAddRechargeValue);
+    
     int getCoin();          //金币
     int getPlayerCash();  //现金
     int getRVC();          //领导力
