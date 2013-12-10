@@ -178,5 +178,9 @@
 #define STR_URL_GETLEVELRANK(UID)  URL_FACTORY("api.php?m=charts&a=level&uid=",UID)
 //充值排行榜
 #define STR_URL_GETCASHRANK(UID)   URL_FACTORY("api.php?m=charts&a=cash&uid=",UID)
+//签到的日期
+#define STR_URL_QIANDAO(UID)   URL_FACTORY("api.php?m=GameBegin&a=loginReward&uid=",UID)
+
+
 
 #endif

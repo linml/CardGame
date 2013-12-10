@@ -55,6 +55,8 @@ namespace GameTools {
     //字符串解析 以 c 为分隔符，将 str 分割，提取相邻两个 c 之间的信息
     vector<std::string> splitString(const char *str, const char *c);
     vector<string> splitString(const string& s_str,const char* from_c,const char* to_c);
+    //将字符串split 后转化成int
+    vector<int>spliteStringToIntArray(const string &s_str,const char *c);
 
     
     //获取字串 搜索 s_str 截取从 from 到字符串 find_str 之间的字符串

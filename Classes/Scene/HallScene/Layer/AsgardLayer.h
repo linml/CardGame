@@ -27,6 +27,7 @@ using namespace cocos2d;
 #define HOSPITAL_TOUCH_TAG  (BIFROST_TOUCH_TAG+1)
 #define FRIEND_TOUCH_TAG    (HOSPITAL_TOUCH_TAG+1)
 #define RANK_TOUCH_TAG       (FRIEND_TOUCH_TAG+1)
+#define QIANDAO_TOUCH_TAG    (RANK_TOUCH_TAG+1)
 
 
 class CAsgardLayer : public CCLayer {
@@ -57,9 +58,11 @@ protected:
     void createHospitolButton();
     void createFriendButton();
     void createRankButton();
+    void createQianDaoButton();
     void createHospitalLayer();
     void createFriendLayer();
     void createRankLayer();
+    void createQianDaoLayer();
 protected:
     bool m_bLoadTaskInfo;
     int m_nTouchTag;
@@ -69,6 +72,7 @@ protected:
     CCSprite *pHospital;
     CCSprite *m_pFriendBtn;
     CCSprite *m_pRankBtn;
+    CCSprite *m_pQianDao;
 };
 
 

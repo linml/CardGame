@@ -52,7 +52,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     
 //    pDirector->runWithScene(HelloWorld::scene());
 
-    
+
     return true;
 }
 

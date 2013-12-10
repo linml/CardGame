@@ -12,6 +12,9 @@ using namespace std;
 
 #define FONTSELECTCOLOR ccc3(255,255,255)
 #define FONTNORMALCOLOR ccc3(255,228,120)
+
+#define TAG_TEXTTAG 100
+
 CGameButtonControl::CGameButtonControl():CButtonControl()
 {
     m_cFontNormalColor=FONTNORMALCOLOR;
@@ -50,8 +53,8 @@ CGameButtonControl *CGameButtonControl::createButton(TEXTPOSTION textPosion,cons
 void CGameButtonControl::setEnable(bool flag)
 {
     if (!flag) {
-        if (getChildByTag(100)) {
-            ((CCLabelTTF *)getChildByTag(100))->setColor(ccc3(150,150,150));
+        if (getChildByTag(TAG_TEXTTAG)) {
+            ((CCLabelTTF *)getChildByTag(TAG_TEXTTAG))->setColor(ccc3(150,150,150));
         }
         
         m_bIsCanTouch=false;
@@ -64,15 +67,22 @@ void CGameButtonControl::setEnable(bool flag)
 void CGameButtonControl::setFontColor(ccColor3B csColor)
 {
     m_cFontNormalColor=csColor;
-    if (getChildByTag(100)) {
-        ((CCLabelTTF *)getChildByTag(100))->setColor(m_cFontNormalColor);
+    if (getChildByTag(TAG_TEXTTAG)) {
+        ((CCLabelTTF *)getChildByTag(TAG_TEXTTAG))->setColor(m_cFontNormalColor);
     }
 
 }
 
+void CGameButtonControl::setText(const char * str)
+{
+    if (getChildByTag(TAG_TEXTTAG)) {
+        ((CCLabelTTF *)getChildByTag(TAG_TEXTTAG))->setString(str);//(m_cFontNormalColor);
+    }
+}
+
 CCLabelTTF *CGameButtonControl::getTextLabel()
 {
-    return (CCLabelTTF *)getChildByTag(100);
+    return (CCLabelTTF *)getChildByTag(TAG_TEXTTAG);
 }
 
 bool CGameButtonControl::init(TEXTPOSTION textPosion,const char *text,const char *normalPng,const char *selectPng,const char *disablePng/*=NULL*/)
@@ -94,23 +104,23 @@ bool CGameButtonControl::init(TEXTPOSTION textPosion,const char *text,const char
     CCLog("text:%s",text);
     if(strlen(text)>0)
     {
-        CCLabelTTF *label=CCLabelTTF::create(text, "Arial", 15);
-        addChild(label,1,100);
-        label->setColor(m_cFontNormalColor);
+      CCLabelTTF  *  pLabel=CCLabelTTF::create(text, "Arial", 15);
+        addChild(pLabel,1,TAG_TEXTTAG);
+        pLabel->setColor(m_cFontNormalColor);
         CCSize contextSize=getContentSize();
         switch (textPosion)
         {
             case TEXTOP :
-                label->setPosition(ccp(contextSize.width/2,contextSize.height/2+10));
+                pLabel->setPosition(ccp(contextSize.width/2,contextSize.height/2+10));
                 break;
             case TEXTMID :
-                label->setPosition(ccp(contextSize.width/2,contextSize.height/2));
+                pLabel->setPosition(ccp(contextSize.width/2,contextSize.height/2));
                 break;
             case TEXTBOTTOM:
-                label->setPosition(ccp(contextSize.width/2,-contextSize.height/2-10));
+                pLabel->setPosition(ccp(contextSize.width/2,-contextSize.height/2-10));
                 break;
             case TEXTLEFT:
-                label->setPosition(ccp(contextSize.width/2-20,contextSize.height/2));
+                pLabel->setPosition(ccp(contextSize.width/2-20,contextSize.height/2));
                 break;
             case TEXTRIGHT :
                 break;
@@ -126,10 +136,10 @@ void CGameButtonControl::selected()
 {
     if(m_bIsCanTouch)
     {
-        if(getChildByTag(100))
+        if(getChildByTag(TAG_TEXTTAG))
         {
         //CCLabelBMFont *label=(CCLabelBMFont *)getChildByTag(GAMEBUTTONLABELTAG);
-            CCLabelTTF *label=(CCLabelTTF*)getChildByTag(100);
+            CCLabelTTF *label=(CCLabelTTF*)getChildByTag(TAG_TEXTTAG);
             label->setColor(FONTSELECTCOLOR);
         }
         setDisplayFrame(m_pSelectFrame);
@@ -139,10 +149,10 @@ void CGameButtonControl::selected()
 void CGameButtonControl::unselected()
 {
     if (m_bIsCanTouch) {
-        if(getChildByTag(100))
+        if(getChildByTag(TAG_TEXTTAG))
         {
             //CCLabelBMFont *label=(CCLabelBMFont *)getChildByTag(GAMEBUTTONLABELTAG);
-            CCLabelTTF *label=(CCLabelTTF*)getChildByTag(100);
+            CCLabelTTF *label=(CCLabelTTF*)getChildByTag(TAG_TEXTTAG);
             label->setColor(m_cFontNormalColor);
         }
         setDisplayFrame(m_pNormalFrame );

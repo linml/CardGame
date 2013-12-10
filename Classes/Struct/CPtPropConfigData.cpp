@@ -113,6 +113,29 @@ std::string CPtPropConfigData::getIconName(const int &inPropId)
     return "";
 }
 
+std::string CPtPropConfigData::getPropName(const int inPropId)
+{
+    std::string propName;
+    if(inPropId > 0)
+    {
+        if(inPropId == EXPID)
+        {
+            propName = m_sExpName;
+        }else if(inPropId == COINSID)
+        {
+            propName= m_sCoinName;
+        }
+        else
+        {
+            CPtProp* prop = m_pAllProps.at(inPropId);
+            propName = prop->getPropName();
+        }
+    }     
+
+    return propName;
+}
+
+
 void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
 {
     if (inConfigData)
@@ -127,11 +150,13 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
             if (keyId == COINSID)
             {
                 //经验和金币
-               m_sCoinIcon = GameTools::valueForKey("icon", tmpValue);
+                m_sCoinIcon = GameTools::valueForKey("icon", tmpValue);
+                m_sCoinName = GameTools::valueForKey("name", tmpValue);
                 continue;
             }else if(keyId == EXPID)
             {
-               m_sExpIcon = GameTools::valueForKey("icon", tmpValue);
+                m_sExpIcon = GameTools::valueForKey("icon", tmpValue);
+                m_sExpName = GameTools::valueForKey("name", tmpValue);
                 continue;
                 
             }

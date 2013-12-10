@@ -27,7 +27,7 @@ public:
     CCLabelTTF *getTextLabel();
     void setFontColor(ccColor3B csColor);
     void setEnable(bool flag);
-    
+    void setText(const char * str);    
     void setDisable();
     bool getEnable();
 protected:

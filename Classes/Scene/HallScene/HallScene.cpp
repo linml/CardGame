@@ -22,6 +22,7 @@
 #include "CDrawCardLayer.h"
 #include "CGamePropBufferTipLayer.h"
 #include "CAnnouncementLayer.h"
+#include "CEveryDayLoginLayer.h"
 
 #define  EMAILMAXNUMBERCOUNT 50
 #define  EMAILTISHI 40
@@ -41,7 +42,7 @@ CCScene *CHallScene::scene(int pType)
     
     CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
     CCSize size=CCDirector::sharedDirector()->getWinSize();
-    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5+200));
+    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5+320));
     scene->addChild(gamelayer,1);
 
     return scene;
@@ -92,10 +93,24 @@ bool CHallScene::init(int inType)
         CC_BREAK_IF(!CCLayer::init());
         CC_BREAK_IF(!initHall(inType));
         createEmailNumberUnread();
+        if (SinglePlayer::instance()->m_bIsLogin) {
+            createEveryDataLogin();
+            SinglePlayer::instance()->m_bIsLogin=false;
+        }
         bRet = true;
     } while (0);
     return bRet;
 }
+
+bool CHallScene::createEveryDataLogin()
+{
+    //签到的layer
+    CEveryDayLoginLayer *pLayer=CEveryDayLoginLayer::create();
+    addChild(pLayer,202,1);
+    return true;
+    
+}
+
 
 void CHallScene::createEmailNumberUnread()
 {

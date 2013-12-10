@@ -53,6 +53,7 @@ protected:
     void showRechargeView();
     void showNiuDanJieMian();
     void createPropBufferTips();
+    bool createEveryDataLogin();
 protected:
     int m_nTouchTag;
     CCSprite* m_touchSprite;

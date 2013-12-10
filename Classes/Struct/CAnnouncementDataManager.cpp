@@ -64,9 +64,10 @@ void CAnnouncementDataManager::removeAll(EN_ANNOUNCEMENT_CONTEXTTYPE type)
 void CAnnouncementDataManager::appendData(string & str,EN_ANNOUNCEMENT_CONTEXTTYPE type)
 {
     CCLOG("AAAAAAAAAAAAAAAPPPPPPPPPPPPPPPP%s",str.c_str());
-    if (type==EN_ANNOUNCEMENT_CONTEXTTYPE_GAMEACTION)
+    if (type==EN_ANNOUNCEMENT_CONTEXTTYPE_OWNDRAWCARD)
     {
         m_vListContext.insert(m_vListContext.begin(),new CAnnouncementInfo(str,type));
+        reBegin=true;
     }
     else {
         m_vListContext.push_back(new CAnnouncementInfo(str,type));

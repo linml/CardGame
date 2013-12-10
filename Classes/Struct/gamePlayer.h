@@ -33,6 +33,8 @@ class CGlobalUpdateHospital;
 class CStructStrips;
 class CAnnouncementDataManager;
 class CDrawGonggaoTable;
+class CEveryDayLoginData;
+
 #define OPENGGRIDLEVLE 20
 #define MAXLEVEL 100
 
@@ -197,12 +199,7 @@ public:
     void openChapterAndSection(int inChapterId, int inSectionId){ m_nMaxChapterId = inChapterId; m_nMaxSectionId = inSectionId;};
 
 protected:
-
     void setChapterAndSectionByTask();
-
-    // test:
-
-// play info:
 public:
     bool hasFullGP();
     bool hasFullAP();
@@ -358,6 +355,10 @@ public:
 public:
     CAnnouncementDataManager *m_pAnno;
     CCArray *m_gonggaoCard;
+    CEveryDayLoginData *m_pEveryDataLogin;
+    bool m_bIsLogin;
+    bool isTodayHaveGet();
+    void initDayInfo(string str);
     
 };
 typedef Singleton<CGamePlayer> SinglePlayer;

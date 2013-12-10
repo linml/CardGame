@@ -35,6 +35,7 @@
 #include "CAnnouncementDataManager.h"
 #include "CRankDataManager.h"
 #include "CDrawGonggaoTable.h"
+#include "CEveryDayLoginData.h"
 
 
 
@@ -108,10 +109,13 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
     m_vGonggaoId.clear();
     m_nActionGonggao=0;
     m_pUpdateGetGonggao=new CGlobalGetGongGao(10);
+    m_pEveryDataLogin=NULL;
+    m_bIsLogin=false;
 }
 
 CGamePlayer::~CGamePlayer()
 {
+    CC_SAFE_DELETE(m_pEveryDataLogin);
     CC_SAFE_RELEASE(m_gonggaoCard);
     CC_SAFE_DELETE(m_pUpdateGp);
     CC_SAFE_DELETE(m_pUpdateAp);
@@ -1824,7 +1828,7 @@ void CGamePlayer::decodeDataGonggao(CCObject *object)
                             CDrawGonggaoTable *temp=(CDrawGonggaoTable *)m_gonggaoCard->objectAtIndex(i);
                             sprintf(data, temp->stringName.c_str(),userName.c_str(),temp->cardName.c_str());
                             string sValueData=data;
-                            m_pAnno->appendData(sValueData, EN_ANNOUNCEMENT_CONTEXTTYPE_OWNDRAWCARD);
+                            m_pAnno->appendData(sValueData, EN_ANNOUNCEMENT_CONTEXTTYPE_OTHERDRAWCARD);
                         }
                     }
                 }
@@ -1992,7 +1996,13 @@ void CGamePlayer::setUserSig(string sig)
 {
     m_strSig = sig;
 }
-
+bool CGamePlayer::isTodayHaveGet()
+{
+    if (m_pEveryDataLogin) {
+        return m_pEveryDataLogin->getIsLogin();
+    }
+    return false;
+}
 void CGamePlayer::onGameBegin(const char* pchNickname)
 {
     //xianbei modify
@@ -2036,6 +2046,12 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
                 G_GAMESINGEMAIL::instance()->decodeEmap(dicinfobox_info);
             }
         }
+        m_pEveryDataLogin=new CEveryDayLoginData;
+        if (dictresult->objectForKey("sign_info")) {
+            string strDateArray=GameTools::valueForKey("sign_info", dictresult);
+            initDayInfo(strDateArray);
+        }
+        m_pEveryDataLogin->m_nServerTime=GameTools::intForKey("server_time", dictresult);
         if (dictresult->objectForKey("task_info")) {
             teamStrType=typeid(*dictresult->objectForKey("task_info")).name();
             if(teamStrType.find("CCDictionary")!=std::string::npos)
@@ -2097,6 +2113,15 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
         m_pUpdateGetGonggao->start(2, BEGINGAMEGETNOTIFACE);
         SingleActivityEncounterManager::instance()->parseActivityByDic((CCDictionary*)dictresult->objectForKey("activity_config"));
     }
+}
+
+void CGamePlayer::initDayInfo(string strDateArray)
+{
+    vector<int>tempLogin=GameTools::spliteStringToIntArray(strDateArray, ",");
+    for (int i=0; i<tempLogin.size(); i++) {
+        m_pEveryDataLogin->m_nQianDaoArray[tempLogin[i]-1]=true;
+    }
+
 }
 
 void CGamePlayer::parseTaskInfo(CCDictionary *dict)

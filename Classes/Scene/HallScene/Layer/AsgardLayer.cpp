@@ -20,6 +20,7 @@
 #include "CSceneFriendMainLayer.h"
 #include "CGameRankLayer.h"
 #include "CRankDataManager.h"
+#include "CEveryDayLoginLayer.h"
 
 
 CAsgardLayer::CAsgardLayer()
@@ -27,6 +28,7 @@ CAsgardLayer::CAsgardLayer()
     m_bLoadTaskInfo = true;
     m_pFriendBtn = NULL;
     m_pRankBtn = NULL;
+    m_pQianDao=NULL;
 }
 
 CAsgardLayer::~CAsgardLayer()
@@ -143,6 +145,7 @@ void CAsgardLayer::initArsgard()
     createHospitolButton();
     createFriendButton();
     createRankButton();
+    createQianDaoButton();
     
  
 }
@@ -177,6 +180,21 @@ void CAsgardLayer::createFriendButton()
 
 }
 
+void CAsgardLayer::createQianDaoButton()
+{
+
+        m_pQianDao= CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
+        m_pQianDao->setAnchorPoint(CCPointZero);
+        m_pQianDao->setPosition(ccp(450, 560));
+        addChild(m_pQianDao, 200, 77);
+        string word = Utility::getWordWithFile("qiandao");
+        CCLabelTTF *label=CCLabelTTF::create(word.c_str(), "Arial", 20);
+        label->setColor(g_custom_color[14]);
+        label->setPosition(ccp(65, 30));
+        m_pQianDao->addChild(label,2,999);
+        Utility::addTouchRect(QIANDAO_TOUCH_TAG, m_pQianDao, m_cTouches);
+    
+}
 void CAsgardLayer::createRankButton()
 {
     m_pRankBtn= CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
@@ -190,6 +208,9 @@ void CAsgardLayer::createRankButton()
     m_pRankBtn->addChild(label,2,999);
     Utility::addTouchRect(RANK_TOUCH_TAG, m_pRankBtn, m_cTouches);
 }
+
+
+
 void CAsgardLayer::handlerTouch()
 {
     CCLog("CAsgardLayer m_nTag : %d ", m_nTouchTag);
@@ -212,6 +233,9 @@ void CAsgardLayer::handlerTouch()
             break;
         case RANK_TOUCH_TAG:
             createRankLayer();
+            break;
+        case QIANDAO_TOUCH_TAG:
+            createQianDaoLayer();
             break;
         case VALHALLA_TOUCH_TAG:
             // to do:
@@ -244,6 +268,13 @@ void CAsgardLayer::createFriendLayer()
     CCLayer *layer = CSceneFriendMainLayer::create();
     addChild(layer, 1000);
     
+}
+
+void CAsgardLayer::createQianDaoLayer()
+{
+    CEveryDayLoginLayer *pLayer=CEveryDayLoginLayer::create();
+    addChild(pLayer,202,1);
+
 }
 
 void CAsgardLayer::createRankLayer()

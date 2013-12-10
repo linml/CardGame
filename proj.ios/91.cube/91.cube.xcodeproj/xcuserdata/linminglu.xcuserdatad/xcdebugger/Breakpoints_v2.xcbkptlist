@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "359"
             endingLineNumber = "359"
-            landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
+            landmarkName = "CFightingCardLayerLogic::checkSendZengfu()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "195"
             endingLineNumber = "195"
-            landmarkName = "CFightingCardLayerLogic::checklogicBuffAndDead()"
+            landmarkName = "CFightingCardLayerLogic::checkFighting()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "210"
             endingLineNumber = "210"
-            landmarkName = "CFightingCardLayerLogic::checklogicCheckIsCanSendAtk()"
+            landmarkName = "CFightingCardLayerLogic::checkFighting()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -303,7 +303,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "218"
             endingLineNumber = "218"
-            landmarkName = "CFightingCardLayerLogic::checklogicCheckIsCanSendAtk()"
+            landmarkName = "CFightingCardLayerLogic::checkFighting()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -319,7 +319,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
             endingLineNumber = "94"
-            landmarkName = "CFightingCardLayerLogic::loadFromServerTest(int loadTeamIndex)"
+            landmarkName = "CFightingCardLayerLogic::logicFighting()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -447,7 +447,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "291"
             endingLineNumber = "291"
-            landmarkName = "CFightingCardLayerLogic::getNextFightCard(int index,bool isLeftFightTeam)"
+            landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -463,7 +463,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "287"
             endingLineNumber = "287"
-            landmarkName = "CFightingCardLayerLogic::getNextFightCard(int index,bool isLeftFightTeam)"
+            landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -478,7 +478,9 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "305"
-            endingLineNumber = "305">
+            endingLineNumber = "305"
+            landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -488,12 +490,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1136"
-            endingLineNumber = "1136"
-            landmarkName = "CGamePlayer::setInitCurrentTaskTargetNumber(int number)"
+            startingLineNumber = "1107"
+            endingLineNumber = "1107"
+            landmarkName = "CGamePlayer::addTaskOperator(int taskType,vector&lt;int &gt; *targetIdVector)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -536,12 +538,54 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "960"
-            endingLineNumber = "960"
-            landmarkName = "CGamePlayer::getPlayerAp()"
+            startingLineNumber = "931"
+            endingLineNumber = "931">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Struct/gamePlayer.cpp"
+            timestampString = "408258795.783237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "946"
+            endingLineNumber = "946">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Struct/gamePlayer.cpp"
+            timestampString = "408258795.783237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "936"
+            endingLineNumber = "936">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Struct/gamePlayer.cpp"
+            timestampString = "408258795.783237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1054"
+            endingLineNumber = "1054"
+            landmarkName = "CGamePlayer::addPalyerExp(int inAddExp)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -552,12 +596,26 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "975"
-            endingLineNumber = "975"
-            landmarkName = "CGamePlayer::setPlayrHadRecharged(bool var)"
+            startingLineNumber = "941"
+            endingLineNumber = "941">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Struct/gamePlayer.cpp"
+            timestampString = "408258795.783237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "938"
+            endingLineNumber = "938"
+            landmarkName = "CGamePlayer::getGpMax()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -568,72 +626,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "965"
-            endingLineNumber = "965"
-            landmarkName = "CGamePlayer::getPlayrHadRecharged()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1083"
-            endingLineNumber = "1083">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "970"
-            endingLineNumber = "970"
-            landmarkName = "CGamePlayer::getPlayerName()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "967"
-            endingLineNumber = "967">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "987"
-            endingLineNumber = "987"
-            landmarkName = "CGamePlayer::setPlayerAp(int iValue)"
+            startingLineNumber = "958"
+            endingLineNumber = "958"
+            landmarkName = "CGamePlayer::getFriendly()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1310,12 +1308,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "991"
-            endingLineNumber = "991"
-            landmarkName = "CGamePlayer::setPlayerCash(int iValue)"
+            startingLineNumber = "962"
+            endingLineNumber = "962"
+            landmarkName = "CGamePlayer::getPlayerAp()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1326,13 +1324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "999"
-            endingLineNumber = "999"
-            landmarkName = "CGamePlayer::addPlayerGp(int inAddHp)"
-            landmarkType = "5">
+            startingLineNumber = "970"
+            endingLineNumber = "970">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1356,7 +1352,23 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "504"
+            endingLineNumber = "504"
+            landmarkName = "CGamePlayer::isCardBagContainUserCardList(vector&lt;int&gt;User_CardId)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Struct/gamePlayer.cpp"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "533"
@@ -1372,28 +1384,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "562"
-            endingLineNumber = "562"
-            landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
-            landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
+            startingLineNumber = "514"
+            endingLineNumber = "514"
+            landmarkName = "CGamePlayer::isCardBagContainUserCardList(vector&lt;int&gt;User_CardId)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1420,12 +1416,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/HallScene/HallScene.cpp"
-            timestampString = "407920375.003252"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "67"
-            endingLineNumber = "67"
-            landmarkName = "CHallScene::CHallScene()"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "CHallScene::create(int pType)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1442,6 +1438,22 @@
             startingLineNumber = "577"
             endingLineNumber = "577"
             landmarkName = "CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/GameEmail/CGameEmailTableView.cpp"
+            timestampString = "400151407.343666"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1766,12 +1778,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1012"
-            endingLineNumber = "1012"
-            landmarkName = "CGamePlayer::subPlayerGp(int inSubHp)"
+            startingLineNumber = "983"
+            endingLineNumber = "983"
+            landmarkName = "CGamePlayer::setPlayerGp(int iValue)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1814,12 +1826,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "661"
-            endingLineNumber = "661"
-            landmarkName = "CGamePlayer::parseNpcCard(cocos2d::CCObject *object)"
+            startingLineNumber = "632"
+            endingLineNumber = "632"
+            landmarkName = "CGamePlayer::loadRival(int usid,int troops)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1830,13 +1842,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "693"
-            endingLineNumber = "693"
-            landmarkName = "CGamePlayer::parseNpcCard(CCDictionary *resultDictresult)"
-            landmarkType = "5">
+            startingLineNumber = "664"
+            endingLineNumber = "664">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1894,11 +1904,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "531"
-            endingLineNumber = "531"
+            startingLineNumber = "502"
+            endingLineNumber = "502"
+            landmarkName = "CGamePlayer::isCardBagContainUserCardList(vector&lt;int&gt;User_CardId)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Struct/gamePlayer.cpp"
+            timestampString = "408258795.783237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "517"
+            endingLineNumber = "517"
+            landmarkName = "CGamePlayer::isCardBagContainUserCardList(vector&lt;int&gt;User_CardId)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Struct/gamePlayer.cpp"
+            timestampString = "408258795.783237"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "539"
+            endingLineNumber = "539"
             landmarkName = "CGamePlayer::deleteFromCardBag(vector&lt;int&gt;user_CardId)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1910,11 +1952,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "546"
-            endingLineNumber = "546"
+            startingLineNumber = "553"
+            endingLineNumber = "553"
             landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
             landmarkType = "5">
          </BreakpointContent>
@@ -1926,12 +1968,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "568"
-            endingLineNumber = "568"
-            landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
+            startingLineNumber = "518"
+            endingLineNumber = "518"
+            landmarkName = "CGamePlayer::isCardBagContainUserCardList(vector&lt;int&gt;User_CardId)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1942,44 +1984,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            timestampString = "408258795.783237"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "582"
-            endingLineNumber = "582"
-            landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "547"
-            endingLineNumber = "547"
-            landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "548"
-            endingLineNumber = "548"
-            landmarkName = "CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)"
+            startingLineNumber = "519"
+            endingLineNumber = "519"
+            landmarkName = "CGamePlayer::isCardBagContainUserCardList(vector&lt;int&gt;User_CardId)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1995,7 +2005,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
-            landmarkName = "CFightingCardLayerLogic::loadFromCardTeamTest()"
+            landmarkName = "CFightingCardLayerLogic::loadFromServerTest(int loadTeamIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2085,13 +2095,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/CGlobalUpdateObject.h"
-            timestampString = "407916893.410162"
+            filePath = "../../Classes/Utility/HBLabelPanel.h"
+            timestampString = "408253054.366138"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "class CGlobalGetGongGao"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "class HBLabelPanel"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2101,86 +2111,56 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407920238.66291"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginData.cpp"
+            timestampString = "408272747.697758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-            timestampString = "407920580.082496"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "CAnnouncementLayer::createContextLayer(string str)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-            timestampString = "407920686.241559"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "74"
-            endingLineNumber = "74"
-            landmarkName = "CAnnouncementLayer::createContextLayer(string str)"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "CEveryDayLoginDataStruct::deleteDropData()"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CAnnouncementLayer::createContextLayer(std::string)"
+                  symbolName = "CEveryDayLoginRewardDataContainer::loadData()"
                   moduleName = "91.cube"
-                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-                  timestampString = "407921028.175135"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/EveryDayLogin/CEveryDayLoginData.cpp"
+                  timestampString = "408262866.037037"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
                   offsetFromSymbolStart = "32">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CAnnouncementLayer::createContextLayer(std::string)"
+                  symbolName = "CEveryDayLoginRewardDataContainer::loadData()"
                   moduleName = "91.cube"
-                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-                  timestampString = "407921028.175596"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/EveryDayLogin/CEveryDayLoginData.cpp"
+                  timestampString = "408262866.037466"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "806">
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "572">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CAnnouncementLayer::createContextLayer(std::string)"
+                  symbolName = "CEveryDayLoginRewardDataContainer::loadData()"
                   moduleName = "91.cube"
-                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-                  timestampString = "407921028.176065"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/EveryDayLogin/CEveryDayLoginData.cpp"
+                  timestampString = "408262866.03769"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "74"
-                  endingLineNumber = "74"
-                  offsetFromSymbolStart = "962">
+                  startingLineNumber = "131"
+                  endingLineNumber = "131"
+                  offsetFromSymbolStart = "638">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2191,13 +2171,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-            timestampString = "407920696.809212"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginData.cpp"
+            timestampString = "408272747.697758"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "68"
-            endingLineNumber = "68"
-            landmarkName = "CAnnouncementLayer::init()"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "CEveryDayLoginDataStruct::deleteDropData()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2207,56 +2187,120 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-            timestampString = "407920701.114712"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginLayer.cpp"
+            timestampString = "408274558.362799"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "CAnnouncementLayer::updateSchu(float t)"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
+            landmarkName = "CEveryDayLoginLayer::updateLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginLayer.cpp"
+            timestampString = "408274558.362799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "CEveryDayLoginLayer::updateLoad()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginLayer.cpp"
+            timestampString = "408274558.362799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "CEveryDayLoginLayer::init()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginRewardInfoLayer.cpp"
+            timestampString = "408270781.401914"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "CEveryDayLoginRewardInfoLayer::initCEveryDayLoginRewardInfoLayer()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginRewardInfoLayer.cpp"
+            timestampString = "408270801.975722"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "CEveryDayLoginRewardInfoLayer::updateView(CEveryDayLoginDataStruct * data)"
             landmarkType = "5">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CAnnouncementLayer::updateSchu(float)"
+                  symbolName = "CEveryDayLoginRewardInfoLayer::updateView(CEveryDayLoginDataStruct*)"
                   moduleName = "91.cube"
-                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-                  timestampString = "407920762.085022"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/EveryDayLogin/CEveryDayLoginRewardInfoLayer.cpp"
+                  timestampString = "408272366.713359"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "44">
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "62">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CAnnouncementLayer::updateSchu(float)"
+                  symbolName = "CEveryDayLoginRewardInfoLayer::updateView(CEveryDayLoginDataStruct*)"
                   moduleName = "91.cube"
-                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-                  timestampString = "407920762.085569"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/EveryDayLogin/CEveryDayLoginRewardInfoLayer.cpp"
+                  timestampString = "408272366.713685"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "300">
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "716">
                </Location>
                <Location
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "CAnnouncementLayer::updateSchu(float)"
+                  symbolName = "CEveryDayLoginRewardInfoLayer::updateView(CEveryDayLoginDataStruct*)"
                   moduleName = "91.cube"
-                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-                  timestampString = "407920762.085956"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/EveryDayLogin/CEveryDayLoginRewardInfoLayer.cpp"
+                  timestampString = "408272366.713979"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "50"
-                  endingLineNumber = "50"
-                  offsetFromSymbolStart = "348">
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "766">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2267,13 +2311,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/AnnouncementLayer/CAnnouncementLayer.cpp"
-            timestampString = "407920787.342936"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginRewardInfoLayer.cpp"
+            timestampString = "408270823.863142"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "CAnnouncementLayer::createContextLayer(string str)"
+            startingLineNumber = "59"
+            endingLineNumber = "59"
+            landmarkName = "CEveryDayLoginRewardInfoLayer::updateView(CEveryDayLoginDataStruct * data)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2283,155 +2327,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
+            filePath = "../../Classes/Scene/EveryDayLogin/CEveryDayLoginData.cpp"
+            timestampString = "408270901.707795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1770"
-            endingLineNumber = "1770"
-            landmarkName = "CGamePlayer::decodeDataGonggao(CCObject *object)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1725"
-            endingLineNumber = "1725"
-            landmarkName = "CGamePlayer::sendGetGonggao()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1811"
-            endingLineNumber = "1811"
-            landmarkName = "CGamePlayer::decodeDataGonggao(CCObject *object)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CGamePlayer::decodeDataGonggao(cocos2d::CCObject*)"
-                  moduleName = "91.cube"
-                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Struct/gamePlayer.cpp"
-                  timestampString = "407921093.16165"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1762"
-                  endingLineNumber = "1762"
-                  offsetFromSymbolStart = "1014">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "CGamePlayer::decodeDataGonggao(cocos2d::CCObject*)"
-                  moduleName = "91.cube"
-                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Struct/gamePlayer.cpp"
-                  timestampString = "407921093.162008"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "1762"
-                  endingLineNumber = "1762"
-                  offsetFromSymbolStart = "1460">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "407922331.185535"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "CDrawCardLayer::showCardData(CCDictionary *dict)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Scene/DrawCardLayer/CDrawCardLayer.cpp"
-            timestampString = "407922331.185535"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
-            landmarkName = "CDrawCardLayer::showCardData(CCDictionary *dict)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/CAnnouncementDataManager.cpp"
-            timestampString = "407922699.238544"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "CAnnouncementDataManager::getShowData()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1732"
-            endingLineNumber = "1732"
-            landmarkName = "CGamePlayer::isCheckSameGongGao(cocos2d::CCArray *array)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../Classes/Struct/gamePlayer.cpp"
-            timestampString = "407930453.205802"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1798"
-            endingLineNumber = "1798"
-            landmarkName = "CGamePlayer::decodeDataGonggao(CCObject *object)"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "CEveryDayLoginDataStruct::loadDropData()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

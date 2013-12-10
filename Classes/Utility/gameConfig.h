@@ -75,6 +75,7 @@ const std::string g_eventBoxPath= resRootPath+"eventbox/";
 const std::string g_sellerPath = resRootPath+"img/seller/";
 const std::string g_bufferIconPath = g_mapImagesPath+"bufferIcon/";
 const std::string g_friendIconPath = g_mapImagesPath+"friend/";
+const std::string g_loginRewardIconPath = g_mapImagesPath+"loginreward/";
 
 //注意 编辑器中使用大小 -1--就代表 T形按钮 100%
 const int g_custom_font_size[] = {
@@ -134,7 +135,11 @@ const ccColor3B g_custom_color[] = {
     {255,210,0},    //17 装备列表选中
     {0,0,0},    //18 black
     {255,125,125}, //19黄色
-    {255,0,0}
+    {255,0,0},//20
+    {209,209,209},  //21每日签到灰色
+    {0,255,0},      //22每日签到绿色
+    {236,250,163},  //23每日签到黄色
+    {255,255,255},  //24每日签到白色
 };
 
 typedef struct TPlayTask {

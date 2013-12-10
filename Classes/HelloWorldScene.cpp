@@ -16,7 +16,6 @@
 #include "CScreenHandBookLayer.h"
 #include "CSceneFriendMainLayer.h"
 #include "CGameRankLayer.h"
-#include "CAnnouncementLayer.h"
 
 
 using namespace cocos2d;
@@ -52,13 +51,11 @@ CCScene* HelloWorld::scene()
     //CScreenHandBookLayer *layer=CScreenHandBookLayer::create();
    // CSceneFriendMainLayer *layer=CSceneFriendMainLayer::create();
     
-    CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
+    CGameRankLayer * gamelayer=CGameRankLayer::create();
     //addChild(gamelayer,1,1);
-    CCSize size=CCDirector::sharedDirector()->getWinSize();
-    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5));
+   // gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5));
     // add layer as a child to scene
     scene->addChild(gamelayer);
-
 
     // return the scene
     return scene;

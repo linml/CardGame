@@ -539,9 +539,17 @@ namespace CPtTool
         snprintf(buf,sizeof(buf),"%04d-%02d-%02d %02d:%02d:%02d",l->tm_year+1900,l->tm_mon+1,l->tm_mday,l->tm_hour,l->tm_min,l->tm_sec);
             std::string s(buf);
         return s;
-        
-        
     }
+    
+    int    getToDayByTimet(time_t const timer)
+    {
+         struct tm *l=localtime(&timer);
+         return l->tm_mday;
+    }
+
+    
+    
+    
     void getDataShijianChai(time_t  beforetime,time_t now,std::string &str)
     {
         CCLog("beforetime::%s",timetodate(beforetime).c_str());

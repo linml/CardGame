@@ -69,6 +69,18 @@ namespace GameTools {
 		return tmp;
 	}
     
+    vector<int>spliteStringToIntArray(const string &s_str,const char *c)
+    {
+        vector<int> tmp;
+		stringstream ss(s_str);
+		string sub_str;
+		while(getline(ss,sub_str,*c))
+		{
+			tmp.push_back(atoi(sub_str.c_str()));
+		}
+		return tmp;
+    }
+    
     vector<string> splitString(const string& s_str,const char* from_c,const char* to_c)
     {
         string substr = getSubStr(s_str,from_c,to_c);

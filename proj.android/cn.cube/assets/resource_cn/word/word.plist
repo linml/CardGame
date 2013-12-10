@@ -158,6 +158,10 @@
 	<string>等级</string>
 	<key>fubushipaihang</key>
 	<string>富豪排行榜</string>
+	<key>qiandao</key>
+	<string>签到</string>
+	<key>yiqiandao</key>
+	<string>已签到</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>
