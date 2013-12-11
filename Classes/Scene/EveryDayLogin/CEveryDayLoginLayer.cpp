@@ -126,6 +126,7 @@ void CEveryDayLoginLayer::callBackGetLingQu(CCObject *object)
                     }
                     
                 }
+                m_tempPlayer->addEmails((CCDictionary*)resultDict->objectForKey("inbox_info"));
                 runCCLayerBel();
                 updateLoad();
             }

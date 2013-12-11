@@ -147,6 +147,7 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
         CCDICT_FOREACH(inConfigData, element)
         {
             keyId = atoi(element->getStrKey());
+            tmpValue = (CCDictionary *)element->getObject();
             if (keyId == COINSID)
             {
                 //经验和金币
@@ -187,7 +188,7 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
 
              */
             prop= new CPtProp();
-            tmpValue = (CCDictionary *)element->getObject();
+           
             prop->setPropId(keyId);
             prop->setPropName(GameTools::valueForKey("name", tmpValue));
             prop->setPropType(GameTools::intForKey("type", tmpValue));

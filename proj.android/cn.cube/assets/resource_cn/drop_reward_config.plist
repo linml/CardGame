@@ -57,15 +57,15 @@
 		<key>drop_id</key>
 		<string>963001</string>
 		<key>item_1</key>
-		<string>901001</string>
+		<string>900001</string>
 		<key>num_1</key>
 		<string>100</string>
 		<key>item_2</key>
-		<string>901001</string>
+		<string>900001</string>
 		<key>num_2</key>
 		<string>500</string>
 		<key>item_3</key>
-		<string>901001</string>
+		<string>900001</string>
 		<key>num_3</key>
 		<string>1000</string>
 		<key>item_4</key>
@@ -82,15 +82,15 @@
 		<key>drop_id</key>
 		<string>964001</string>
 		<key>item_1</key>
-		<string>901002</string>
+		<string>900002</string>
 		<key>num_1</key>
 		<string>1</string>
 		<key>item_2</key>
-		<string>901002</string>
+		<string>900002</string>
 		<key>num_2</key>
 		<string>2</string>
 		<key>item_3</key>
-		<string>901002</string>
+		<string>900002</string>
 		<key>num_3</key>
 		<string>5</string>
 		<key>item_4</key>
