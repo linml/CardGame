@@ -723,6 +723,13 @@ void CDrawCardLayer::createNiudanButton(EN_NIUDANTYPE entype)
     }
 }
 
+void CDrawCardLayer::updateShengxiaChiShu()
+{
+    if (!getChildByTag(107)) {
+        CCLabelTTF 
+    }
+}
+
 void CDrawCardLayer::updateFriendButton()
 {
     if (getChildByTag(108)) {

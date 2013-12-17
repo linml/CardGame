@@ -107,6 +107,7 @@ private:
     void clearSelectFreeItemLayer();
     void createGoldAndCash();
     void updateFriendButton();
+    void updateShengxiaChiShu();
 public:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);

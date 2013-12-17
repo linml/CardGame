@@ -162,6 +162,8 @@
 	<string>签到</string>
 	<key>yiqiandao</key>
 	<string>已签到</string>
+	<key>hainengchouduoshaoka</key>
+	<string>剩余的友情点还能抽%d张卡</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>
