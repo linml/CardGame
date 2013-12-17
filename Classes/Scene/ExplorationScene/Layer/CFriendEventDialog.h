@@ -20,10 +20,19 @@ public:
     virtual bool init();
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    void setCloseCallBack(CCObject *pObject, SEL_CallFunc inSelector);
 protected:
     void initCFriendEventDialog();
     CCNode* createFriendInfo();
+    void onClickYes(CCObject *pObject);
+    void onClickNo(CCObject *pObject);
+    void onReceiveMsg(CCObject *pObject);
+    void closeDialog();
+protected:
+    CCObject *m_pCloseHandler;
+    SEL_CallFunc m_pCloseSelector;
     CC_SYNTHESIZE(Friend, m_sFriend, Friend);
+    
 };
 
 #endif /* defined(___1_cube__CFriendEventDialog__) */

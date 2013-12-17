@@ -18,6 +18,14 @@ CFriend::CFriend(int friendId, int level, int fightPower, const char * nickName,
     
 }
 
+void CFriend::resetValue(int friendId, int level, int fightPower, const char *nickName,bool state)
+{
+    m_nFriendUid = friendId;
+    m_nLevel = level;
+    m_nFightPower = fightPower;
+    m_sNickName = nickName;
+    m_bState = state;
+}
 
 CFriendMM::CFriendMM()
 {
@@ -65,26 +73,61 @@ vector<CFriend*> * CFriendManager::getFriendListByDict(CCDictionary *inFriendInf
     vector<CFriend*> *array = NULL;
     if (isDictionary(inFriendInfoDict))
     {
-
-        array = new vector<CFriend*>();
+        m_pFriendList = m_pFriendList == NULL ? new vector<CFriend*>() : m_pFriendList;
+        array = m_pFriendList;
+        int count = array->size();
+        int tempCount = 0;
         CCDictElement *element = NULL;
         CCDictionary *elementDict = NULL;
         CFriend *pFriend = NULL;
         CCDICT_FOREACH(inFriendInfoDict, element)
         {
+          
             elementDict = (CCDictionary*) element->getObject();
-            int freindId = atoi(element->getStrKey());
+            int friendId = atoi(element->getStrKey());
             const char *userName = GameTools::valueForKey("username", elementDict);
             int level = GameTools::intForKey("level", elementDict);
             bool state = GameTools::intForKey("haved_good", elementDict);
             int fight = 99999;
-            pFriend = new CFriend(freindId, level,fight, userName, state);
-            array->push_back(pFriend);
+            if (tempCount < array->size())
+            {
+                array->at(tempCount)->resetValue(friendId, level,fight, userName, state);
+                tempCount++;
+                
+            }else
+            {
+                pFriend = new CFriend(friendId, level,fight, userName, state);
+                array->push_back(pFriend);
+            }
+            
+            
+        }
+        if (tempCount < count)
+        {
+            relaseFriendList(tempCount);
+            m_pFriendList->erase(m_pFriendList->begin()+tempCount, m_pFriendList->end());
         }
     }
 
     return array;
 }
+
+CFriendManager::CFriendManager()
+{
+    m_pActiveFriend = new vector<ActiveFriend *>(100, (ActiveFriend*)NULL);
+    m_nStartIndex = MAXACTIVEFRIEND;
+    m_pFriendList = NULL;
+}
+
+CFriendManager::~CFriendManager()
+{
+    releasActiveFriendContent();
+    relaseFriendList();
+    CC_SAFE_DELETE(m_pFriendList);
+    CC_SAFE_DELETE(m_pActiveFriend);
+
+}
+
 vector<CFriendMM*>* CFriendManager::getApplyFriendListByDict(CCDictionary* inResultDict)
 {
     vector<CFriendMM*> *array = NULL;
@@ -132,6 +175,38 @@ vector<Friend> *CFriendManager::getPraiseListByDict(CCDictionary* inResultDict)
     return array;
 }
 
+vector <ActiveFriend*>* CFriendManager:: getActiveFriend()
+{
+    vector<ActiveFriend *>* tmp = NULL;
+    if (m_nStartIndex == MAXACTIVEFRIEND)
+    {
+        getActiveFriendFromServer();
+    }
+    else
+    {
+        vector<ActiveFriend*>::iterator it = m_pActiveFriend->begin();
+        tmp = new vector<ActiveFriend*>(it+m_nStartIndex, it+m_nStartIndex+10);
+        m_nStartIndex += 10;
+        
+        if (m_pFriendList)
+        {
+            for (int i = 0; i < tmp->size(); i++)
+            {
+                for (int j = 0; j < m_pFriendList->size(); j++)
+                {
+                    if(tmp->at(i)->friendInfo.fried_uid == m_pFriendList->at(j)->getFriendUid())
+                    {
+                        tmp->at(i)->isFriend = true;
+                        break;
+                    }
+                }
+                
+            }
+        }
+    }
+    return tmp;
+  
+}
 
 bool CFriendManager::isDictionary(CCDictionary *inDict)
 {
@@ -144,6 +219,43 @@ bool CFriendManager::isDictionary(CCDictionary *inDict)
     return bRet;
 }
 
+void CFriendManager::releasActiveFriendContent()
+{
+    if (m_pActiveFriend)
+    {
+        ActiveFriend * tmp = NULL;
+        for (int i = 0; i < m_pActiveFriend->size(); i++)
+        {
+            tmp = m_pActiveFriend->at(i);
+            CC_SAFE_DELETE(tmp);
+            tmp = NULL; 
+        }
+    }
+}
+
+void CFriendManager::relaseFriendList(int startIndex)
+{
+    if (m_pFriendList)
+    {
+        CFriend * tmp = NULL;
+        for (int i = startIndex; i < m_pFriendList->size(); i++)
+        {
+            tmp = m_pFriendList->at(i);
+            CC_SAFE_DELETE(tmp);
+            tmp = NULL;
+        }
+
+    }
+}
+
+void CFriendManager::getActiveFriendFromServer()
+{
+    
+}
+void CFriendManager::getMsgActiveFriend(CCObject *pObject)
+{
+    
+}
 
 
 

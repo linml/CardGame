@@ -8,6 +8,9 @@
 #include "CFriendEventDialog.h"
 #include "gameConfig.h"
 #include "CPtTool.h"
+#include "PtHttpClient.h"
+#include "PtHttpURL.h"
+#include "PtJsonUtility.h"
 
 CFriendEventDialog* CFriendEventDialog::create(Friend inFriend)
 {
@@ -96,7 +99,7 @@ void CFriendEventDialog::initCFriendEventDialog()
 
     // right btn
     node=CCSprite::createWithSpriteFrame(frame);
-    m_pRight = CCLabelTTF::create("赞美", "Arial", 18);
+    m_pRight = CCLabelTTF::create("加好友", "Arial", 18);
     node->addChild(m_pRight);
        node->setAnchorPoint(ccp(0,1));
     size =  node->boundingBox().size;
@@ -117,6 +120,8 @@ void CFriendEventDialog::initCFriendEventDialog()
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(-30000);
+    setRightHandler(this, callfuncO_selector(CFriendEventDialog::onClickYes));
+    setLeftHandler(this, callfuncO_selector(CFriendEventDialog::onClickNo));
 }
 
 
@@ -193,4 +198,67 @@ CCNode* CFriendEventDialog::createFriendInfo()
     node->addChild(label);
     return node;
     
+}
+
+void CFriendEventDialog::onClickYes(CCObject *pObject)
+{
+    char buffer[200]={0};
+    snprintf(buffer,200, "%d",m_sFriend.fried_uid);
+    string connectData="sig=";
+    connectData += SinglePlayer::instance()->getUserSig();
+    connectData +=string("&friend_uid=")+buffer;
+    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_SEARCHFRIEND(196), "CALLBACK_CFriendEventDialog::onClickYes", "CFriendEventDialog::onClickYes",connectData.c_str(),callfuncO_selector(CFriendEventDialog::onReceiveMsg));
+}
+void CFriendEventDialog::onClickNo(CCObject *pObject)
+{
+    closeDialog();
+}
+
+
+
+void CFriendEventDialog::onReceiveMsg(CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CFriendEventDialog::onClickYes");
+    if (!object )
+    {
+        CCMessageBox("服务端传输的是", "error");
+        return ;
+    }
+    char * tempdata=(char *)object;
+    //解析字符串。 赋值与vector中
+    CCDictionary *dict=PtJsonUtility::JsonStringParse(tempdata);
+    CCLog("tempdata:%s",tempdata);
+    delete [] tempdata;
+    tempdata = NULL;
+    if (GameTools::intForKey("code",dict)!=0)
+    {
+        CCMessageBox("code错误", "error");
+        return ;
+    }
+    CCDictionary *resultDict=(CCDictionary*)(dict->objectForKey("result"));
+    if (GameTools::intForKey("info", resultDict)==1)
+    {
+        
+    }
+    else
+    {
+        CCMessageBox("没有该ID","");
+    }
+    closeDialog();
+}
+
+void CFriendEventDialog::setCloseCallBack(cocos2d::CCObject *pObject, SEL_CallFunc inSelector)
+{
+    m_pCloseHandler = pObject;
+    m_pCloseSelector = inSelector;
+}
+
+
+void CFriendEventDialog::closeDialog()
+{
+    removeFromParentAndCleanup(true);
+    if (m_pCloseHandler && m_pCloseSelector)
+    {
+        (m_pCloseHandler->*m_pCloseSelector)();
+    }
 }

@@ -1328,6 +1328,17 @@ void CExploration::dispatchParaseFinishEvent(CCDictionary *pResult, int inType)
     }
     else if(inType == 8)
     {
+        // reward
+        CCDictionary * inRewards = (CCDictionary*) pResult->objectForKey("reward");
+        if (inRewards)
+        {
+            inRewards =  setRewardsByDict(inRewards);
+            addEventReward(inRewards);
+        }
+        else
+        {
+            CCLog("event reward : null");
+        }
         handlerFinishFriendEvent();
         return;
     }
@@ -1700,12 +1711,8 @@ void CExploration::handlerFriendEvent(CCDictionary *inEventInfo)
            inEventInfo =(CCDictionary *) inEventInfo->objectForKey(((CCString*) allKey->objectAtIndex(0))->getCString());
             m_sFriend.fried_uid = GameTools::intForKey("friend_uid", inEventInfo);
             m_sFriend.username = GameTools::valueForKey("username", inEventInfo);
-            CFriendEventDialog *layer = CFriendEventDialog::create(m_sFriend);
-            layer->setLeftHandler(this, callfuncO_selector(CExploration::onClickIngoreFriend));
-            layer->setRightHandler(this, callfuncO_selector(CExploration::onClickZanFriend));
-            addChild(layer);
+            onClickZanFriend(NULL);
             setInsiable();
-            
         }
         
     }
@@ -1715,7 +1722,7 @@ void CExploration::handlerFinishFriendEvent()
 {
     if (m_bTriggerFriendEvent)
     {
-        CFriendEventApplyDialog *layer = CFriendEventApplyDialog::create(m_sFriend);
+        CFriendEventDialog *layer = CFriendEventDialog::create(m_sFriend);
         layer->setCloseCallBack(this, callfunc_selector(CExploration::getBiforest));
         addChild(layer);
         m_bTriggerFriendEvent = false;

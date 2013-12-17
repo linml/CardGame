@@ -710,7 +710,9 @@ void CDrawCardLayer::createNiudanButton(EN_NIUDANTYPE entype)
         }
         else{
             updateFriendButton();
+            
         }
+        updateShengxiaChiShu();
         if (!getChildByTag(52)) {
             string everyZuanshi=Utility::getWordWithFile("word.plist", "niudanstrfriend");
             char data[100];
@@ -725,9 +727,22 @@ void CDrawCardLayer::createNiudanButton(EN_NIUDANTYPE entype)
 
 void CDrawCardLayer::updateShengxiaChiShu()
 {
-    if (!getChildByTag(107)) {
-        CCLabelTTF 
+    if (!getChildByTag(120)) {
+        CCLabelTTF *labelttf=CCLabelTTF::create("", "Arial", 15);
+        labelttf->setPosition(ccp(size.width*0.5,size.height *0.5+200));
+        addChild(labelttf,3,120);
     }
+    CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(120);
+    string everyZuanshi=Utility::getWordWithFile("word.plist", "hainengchouduoshaoka");
+    char data[150];
+    if (g_niudanyouqingjiage==0) {
+        sprintf(data, everyZuanshi.c_str(),m_tempGamePlayer->getFriendly()/200);
+    }
+    else{
+        sprintf(data, everyZuanshi.c_str(),m_tempGamePlayer->getFriendly()/g_niudanyouqingjiage);
+    }
+    labelttf->setString(data);
+    
 }
 
 void CDrawCardLayer::updateFriendButton()

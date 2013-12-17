@@ -130,6 +130,7 @@
 		6FCD4323181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCD4321181E9BB700153054 /* CEffectInterFaceTwentyFourRefactor.cpp */; };
 		6FCE6BD3182390F100132BBE /* CStructStrips.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE6BD1182390F100132BBE /* CStructStrips.cpp */; };
 		6FCE6BD618239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCE6BD418239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp */; };
+		6FCF538218602A6A0060CAA9 /* CActivePlayerLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCF538018602A6A0060CAA9 /* CActivePlayerLayer.cpp */; };
 		6FDE76CD180E7F0B004DFDA8 /* CGameRechargeLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */; };
 		6FDE76D3180E802D004DFDA8 /* CGameArrageBackpackTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76CF180E802D004DFDA8 /* CGameArrageBackpackTip.cpp */; };
 		6FDE76D4180E802D004DFDA8 /* CGameRechargeTip.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FDE76D1180E802D004DFDA8 /* CGameRechargeTip.cpp */; };
@@ -649,6 +650,8 @@
 		6FCE6BD2182390F100132BBE /* CStructStrips.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CStructStrips.h; sourceTree = "<group>"; };
 		6FCE6BD418239F3000132BBE /* CEffectInterFaceTwoRefactor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEffectInterFaceTwoRefactor.cpp; sourceTree = "<group>"; };
 		6FCE6BD518239F3000132BBE /* CEffectInterFaceTwoRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceTwoRefactor.h; sourceTree = "<group>"; };
+		6FCF538018602A6A0060CAA9 /* CActivePlayerLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CActivePlayerLayer.cpp; sourceTree = "<group>"; };
+		6FCF538118602A6A0060CAA9 /* CActivePlayerLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CActivePlayerLayer.h; sourceTree = "<group>"; };
 		6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameRechargeLayer.cpp; sourceTree = "<group>"; };
 		6FDE76CC180E7F0B004DFDA8 /* CGameRechargeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameRechargeLayer.h; sourceTree = "<group>"; };
 		6FDE76CF180E802D004DFDA8 /* CGameArrageBackpackTip.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameArrageBackpackTip.cpp; sourceTree = "<group>"; };
@@ -1626,6 +1629,8 @@
 				6FF95BF418360289004B6C80 /* CAddFriendLayer.h */,
 				6F22471E183A0B3100E4B705 /* CSceneShowOtherUidTeam.cpp */,
 				6F22471F183A0B3100E4B705 /* CSceneShowOtherUidTeam.h */,
+				6FCF538018602A6A0060CAA9 /* CActivePlayerLayer.cpp */,
+				6FCF538118602A6A0060CAA9 /* CActivePlayerLayer.h */,
 			);
 			path = Layer;
 			sourceTree = "<group>";
@@ -3151,6 +3156,7 @@
 				9FC6F21517460BFF0091BE98 /* cocos2d.cpp in Sources */,
 				9FC6F21617460BFF0091BE98 /* CCGrabber.cpp in Sources */,
 				6F08A4691817D8D70081C499 /* CSellerShopDialog.cpp in Sources */,
+				6FCF538218602A6A0060CAA9 /* CActivePlayerLayer.cpp in Sources */,
 				6FDE76CD180E7F0B004DFDA8 /* CGameRechargeLayer.cpp in Sources */,
 				9FC6F21717460BFF0091BE98 /* CCGrid.cpp in Sources */,
 				9FC6F21817460BFF0091BE98 /* aabb.c in Sources */,

@@ -96,6 +96,7 @@ void CSceneFriendMainLayer::updateFriend(CCObject *object)
             pLabelTTF->setString(value.c_str());
         }
         delete p;
+        p=NULL;
     }
     
 }

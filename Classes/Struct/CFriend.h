@@ -14,6 +14,9 @@
 using namespace std;
 using namespace cocos2d;
 
+#define MAXACTIVEFRIEND 100
+
+
 struct Friend
 {
     Friend():fried_uid(0),username(""){};
@@ -22,11 +25,18 @@ struct Friend
     std::string username;
 };
 
+struct ActiveFriend
+{
+    Friend friendInfo;
+    bool isFriend = false;
+};
+
 class CFriend : public CCObject
 {
 public:
     CFriend();
     CFriend(int friendId, int level, int fightPower, const char * nickName, bool state = false);
+    void resetValue(int friendId, int level, int fightPower, const char * nickName, bool state = false);
     CC_SYNTHESIZE(int, m_nFriendUid, FriendUid);
     CC_SYNTHESIZE(std::string, m_sNickName, NickName);
     CC_SYNTHESIZE(int, m_nLevel, Level);
@@ -59,13 +69,24 @@ public:
 protected:
     static CFriendManager* s_pInstance;
 public:
+    CFriendManager();
+    ~CFriendManager();
     /*
      * @breif: 以下三个工具类所产生的vector需要自己释放内存，包括元素内存
      */
     vector<CFriend*> *getFriendListByDict(CCDictionary *inFriendInfoDict);
     vector<CFriendMM*> *getApplyFriendListByDict(CCDictionary* inResultDict);
     vector<Friend> *getPraiseListByDict(CCDictionary* inResultDict);
+    vector<ActiveFriend*>* getActiveFriend();
 protected:
     bool isDictionary(CCDictionary *inDict);
+    void releasActiveFriendContent();
+    void relaseFriendList(int startIndex = 0);
+    void getActiveFriendFromServer();
+    void getMsgActiveFriend(CCObject *pObject);
+protected:
+    vector<ActiveFriend*>* m_pActiveFriend;
+    vector<CFriend*> *m_pFriendList;
+    int m_nStartIndex;
 };
 #endif /* defined(___1_cube__CFriend__) */

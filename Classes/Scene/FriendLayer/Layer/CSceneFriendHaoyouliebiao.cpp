@@ -45,18 +45,19 @@ bool CSceneFriendHaoyouliebiao::init()
 
 void CSceneFriendHaoyouliebiao::cleanFriendVector()
 {
-    if (m_vNewFriendList) {
-        for (vector<CFriend *>::iterator it=m_vNewFriendList->begin(); it!=m_vNewFriendList->end(); it++) {
-            if(*it)
-            {
-                CFriend *tempData=(*it);
-                CC_SAFE_DELETE(tempData);
-            }
-        }
-        m_vNewFriendList->erase(m_vNewFriendList->begin(), m_vNewFriendList->end());
-        CC_SAFE_DELETE(m_vNewFriendList);
-        removeTableView();
-    }
+//    if (m_vNewFriendList) {
+//        for (vector<CFriend *>::iterator it=m_vNewFriendList->begin(); it!=m_vNewFriendList->end(); it++) {
+//            if(*it)
+//            {
+//                CFriend *tempData=(*it);
+//                CC_SAFE_DELETE(tempData);
+//            }
+//        }
+//        m_vNewFriendList->erase(m_vNewFriendList->begin(), m_vNewFriendList->end());
+//        CC_SAFE_DELETE(m_vNewFriendList);
+//  
+//    }
+   removeTableView();
 }
 
 void CSceneFriendHaoyouliebiao::startUpdateText()
@@ -348,8 +349,7 @@ void CSceneFriendHaoyouliebiao::decodeDataGetFriendLy(CCObject *object)
                     }
                 }
             }
-            startUpdateText();
-            
+            startUpdateText();  
         }
         else{
             stopUpdateText();
