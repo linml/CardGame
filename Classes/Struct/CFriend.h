@@ -27,6 +27,8 @@ struct Friend
     std::string username;
 };
 
+
+
 class CFriend : public CCObject
 {
 public:
@@ -42,7 +44,7 @@ public:
 
 struct ActivePlayer
 {
-    ActivePlayer(int inFriendId, int inLevel, const char *inUserName, bool inFriend =false ):friend_uid(inFriend),level(inLevel), username(inUserName), isFriend(inFriend)
+    ActivePlayer(int inFriendId, int inLevel, const char *inUserName, bool inFriend =false ):friend_uid(inFriendId),level(inLevel), username(inUserName), isFriend(inFriend)
     {
         
     };
@@ -84,9 +86,9 @@ public:
     vector<CFriend*> *getFriendListByDict(CCDictionary *inFriendInfoDict);
     vector<CFriendMM*> *getApplyFriendListByDict(CCDictionary* inResultDict);
     vector<Friend> *getPraiseListByDict(CCDictionary* inResultDict);
-
     void getActivePlayerListFromLocal(vector<ActivePlayer*> *outActivePlayer);
     void paraseActivePlayerListByDict(CCDictionary *pRandomFriend);
+    
 protected:
     bool isDictionary(CCDictionary *inDict);
     void releasActivePlayerContent(int startIndex = 0);
@@ -94,6 +96,7 @@ protected:
     void gernerActivePlayerList(vector<ActivePlayer *>*outActivePlayer);
     int  setActivePlayerInfoesByDict(CCDictionary *pDict, int startIndex = 0);
     int  fillActivePlayer(vector<ActivePlayer*> *outActivePlayeres, int nowstartIndex, int orignstartIndex, int endIndex, int count);
+   
 protected:
     vector<ActivePlayer*>* m_pActivePlayeres;
     vector<CFriend*> *m_pFriendList;

@@ -32,7 +32,7 @@ protected:
     void getNextData();
     void decodeAddFriend(CCObject *object);
     void runLabelTTFAction(string str,bool flag);
-    void removeTTF();
+    void removeTTF(CCNode *node);
 public:
     CCPoint getIndexPostion(int index);
     void createItem(ActivePlayer *pFriend,int index);

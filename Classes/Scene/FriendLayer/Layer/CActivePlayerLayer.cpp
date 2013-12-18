@@ -63,7 +63,7 @@ void CActivePlayerLayer::createFriendItem()
 
 void CActivePlayerLayer::getNextData()
 {
-   CFriendManager::getInstance()->getActivePlayerListFromLocal(&m_vActiverFriendList);
+    CFriendManager::getInstance()->getActivePlayerListFromLocal(&m_vActiverFriendList);
 
     createFriendItem();
 }
@@ -162,14 +162,15 @@ void CActivePlayerLayer::handleTouchTag(int tag)
         default:
         {
             int index=tag;
-            if (index>=0 &&index<m_vActiverFriendList.size()) {
+            if (index>=0 && index<m_vActiverFriendList.size())
+            {
                 ActivePlayer *pFriend=m_vActiverFriendList[index];
                 if (pFriend && !pFriend ->isFriend) {
                     //发送数据
                         string connectData="sig=";
                         connectData += SinglePlayer::instance()->getUserSig();
                         connectData +=string("&friend_uid=")+ConvertToString(pFriend->friend_uid);
-                        ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_SEARCHFRIEND(194), "CALLBACK_CActivePlayerLayer_sendAddFriend", "REQUEST_CActivePlayerLayer_sendAddFriend",connectData.c_str(),callfuncO_selector(CActivePlayerLayer::decodeAddFriend));
+                        ADDHTTPREQUESTPOSTDATA(STR_URL_SEARCHFRIEND(194), "CALLBACK_CActivePlayerLayer_sendAddFriend", "REQUEST_CActivePlayerLayer_sendAddFriend",connectData.c_str(),callfuncO_selector(CActivePlayerLayer::decodeAddFriend));
                         m_nSendUidIndex=index;
                 }
 
@@ -183,7 +184,7 @@ void CActivePlayerLayer::handleTouchTag(int tag)
 
 void CActivePlayerLayer::decodeAddFriend(cocos2d::CCObject *object)
 {
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CAddFriendLayer_sendAddFriend");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CActivePlayerLayer_sendAddFriend");
     if (!object )
     {
         CCMessageBox("服务端传输的是", "error");
@@ -201,10 +202,11 @@ void CActivePlayerLayer::decodeAddFriend(cocos2d::CCObject *object)
         return ;
     }
     CCDictionary *resultDict=(CCDictionary*)(dict->objectForKey("result"));
-    if (GameTools::intForKey("info", resultDict)==1) {
-        
-        //update
-        if (m_nSendUidIndex>=0 &&m_nSendUidIndex<m_vActiverFriendList.size()) {
+    if (GameTools::intForKey("info", resultDict)==1)
+    {
+        if (m_nSendUidIndex>=0 && m_nSendUidIndex<m_vActiverFriendList.size())
+        {
+            CCLOG("m_nSendUidIndex:%d",m_nSendUidIndex);
             m_vActiverFriendList[m_nSendUidIndex]->isFriend=true;
             ((CGameButtonControl *)getChildByTag(m_nSendUidIndex))->setText("已申请");
 
@@ -216,22 +218,20 @@ void CActivePlayerLayer::decodeAddFriend(cocos2d::CCObject *object)
 
 void CActivePlayerLayer::runLabelTTFAction(string str, bool flag)
 {
-    if (!getChildByTag(155)) {
-        CCLabelTTF *pLabel=CCLabelTTF::create(str.c_str(), "Arial", 40);
-        addChild(pLabel,2,155);
-    }
-    CCLabelTTF * pLabel=(CCLabelTTF *)(getChildByTag(155));
+    CCLabelTTF *pLabel=CCLabelTTF::create(str.c_str(), "Arial", 40);
+    addChild(pLabel,2);
     CCSize size=CCDirector::sharedDirector()->getWinSize();
-    pLabel->setPosition(ccp(-400, size.height*0.5-200));
-    pLabel->runAction(CCSequence::create(CCSpawn::create(CCMoveBy::create(2.0, ccp(0,300)),CCFadeOut::create(2.0),NULL),CCCallFunc::create(this, callfunc_selector(CActivePlayerLayer::removeTTF)),NULL));
+    pLabel->setPosition(ccp(-400, 0));
+    pLabel->runAction(CCSequence::create(CCSpawn::create(CCMoveBy::create(1.0, ccp(0,100)),CCFadeOut::create(1.0),NULL),CCCallFuncN::create(this, callfuncN_selector(CActivePlayerLayer::removeTTF)),NULL));
 }
 
 
-void CActivePlayerLayer::removeTTF()
+void CActivePlayerLayer::removeTTF(CCNode *node)
 {
-    if (getChildByTag(155)) {
-        removeChildByTag(155, true);
+    if (node) {
+        removeChild(node,true);
     }
+
 }
 
 void CActivePlayerLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
