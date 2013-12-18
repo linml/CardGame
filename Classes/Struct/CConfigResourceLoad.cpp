@@ -33,7 +33,7 @@ bool CConfigResourceLoad::loadCardInfo(map<int,CCard *> &hashmapAllCard, const c
         card->m_icard_suit=GameTools::intForKey("card_suit", cardDirector);      //随机数值
         card->m_icard_leadership=GameTools::intForKey("card_leadership", cardDirector);
         card->m_icard_exp=GameTools::intForKey("card_exp", cardDirector);    //吃掉该卡牌的 经验
-        card->m_icard_price=GameTools::intForKey("card_price", cardDirector);  //卖掉该卡佩的 价格
+        card->m_icard_price=GameTools::intForKey("card_coin", cardDirector);  //卖掉该卡佩的 价格
         //  card->m_ileve_max=GameTools::intForKey("card_leve_max", cardDirector);   //等级最高级别
         card->m_icard_attack=GameTools::intForKey("card_attack", cardDirector); //攻击力
         card->m_icard_defend=GameTools::intForKey("card_defend", cardDirector); //防御力

@@ -733,7 +733,7 @@ void CDrawCardLayer::updateShengxiaChiShu()
         addChild(labelttf,3,120);
     }
     CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(120);
-    string everyZuanshi=Utility::getWordWithFile("word.plist", "hainengchouduoshaoka");
+    string everyZuanshi=Utility::getWordWithFile("dictionary.plist","309900");
     char data[150];
     if (g_niudanyouqingjiage==0) {
         sprintf(data, everyZuanshi.c_str(),m_tempGamePlayer->getFriendly()/200);
