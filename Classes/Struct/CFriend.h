@@ -14,7 +14,9 @@
 using namespace std;
 using namespace cocos2d;
 
-#define MAXACTIVEFRIEND 100
+#define MAXPLAYERCOUNT 3
+#define NOWPLAYERCOUNT 4
+#define MINPLAYERCOUNT 3
 
 
 struct Friend
@@ -23,12 +25,6 @@ struct Friend
     Friend(int uid, const char *nickName):fried_uid(uid), username(nickName){};
     int fried_uid;
     std::string username;
-};
-
-struct ActiveFriend
-{
-    Friend friendInfo;
-    bool isFriend = false;
 };
 
 class CFriend : public CCObject
@@ -44,6 +40,17 @@ public:
     CC_SYNTHESIZE(bool, m_bState, State); //true 赞过
 };
 
+struct ActivePlayer
+{
+    ActivePlayer(int inFriendId, int inLevel, const char *inUserName, bool inFriend =false ):friend_uid(inFriend),level(inLevel), username(inUserName), isFriend(inFriend)
+    {
+        
+    };
+    int friend_uid;
+    int level;
+    std::string username;
+    bool isFriend = false;
+};
 
 class CFriendMM
 {
@@ -77,16 +84,26 @@ public:
     vector<CFriend*> *getFriendListByDict(CCDictionary *inFriendInfoDict);
     vector<CFriendMM*> *getApplyFriendListByDict(CCDictionary* inResultDict);
     vector<Friend> *getPraiseListByDict(CCDictionary* inResultDict);
-    vector<ActiveFriend*>* getActiveFriend();
+
+    void getActivePlayerListFromLocal(vector<ActivePlayer*> *outActivePlayer);
+    void paraseActivePlayerListByDict(CCDictionary *pRandomFriend);
 protected:
     bool isDictionary(CCDictionary *inDict);
-    void releasActiveFriendContent();
+    void releasActivePlayerContent(int startIndex = 0);
     void relaseFriendList(int startIndex = 0);
-    void getActiveFriendFromServer();
-    void getMsgActiveFriend(CCObject *pObject);
+    void gernerActivePlayerList(vector<ActivePlayer *>*outActivePlayer);
+    int  setActivePlayerInfoesByDict(CCDictionary *pDict, int startIndex = 0);
+    int  fillActivePlayer(vector<ActivePlayer*> *outActivePlayeres, int nowstartIndex, int orignstartIndex, int endIndex, int count);
 protected:
-    vector<ActiveFriend*>* m_pActiveFriend;
+    vector<ActivePlayer*>* m_pActivePlayeres;
     vector<CFriend*> *m_pFriendList;
-    int m_nStartIndex;
+    
+    int m_nMaxStartIndex;
+    int m_nEqualStartIndex;
+    int m_nMinStartIndex;
+    
+    int m_nMaxEndIndex;
+    int m_nEqualEndIndex;
+    int m_nMinEndIndex;
 };
 #endif /* defined(___1_cube__CFriend__) */

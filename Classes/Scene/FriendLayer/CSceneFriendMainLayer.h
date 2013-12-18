@@ -25,11 +25,14 @@ public:
     void createTabControl();
     void createBackGround();
     void createIDText();
-    bool  addTab(const char* label,int index);
+    bool addTab(const char* label,int index);
     void updateFriend(CCObject *object);
+    void updateActiveFriend(CCObject *object);
     void createFriendText();
     void createBottomButton();
     void createQuitButton();
+    void createHaoyouLieBiao();
+    void createActiveFriend();
     void handleTagCallBack(int tag);
     
     CCNode*  getContainer();
@@ -54,12 +57,9 @@ protected:
     virtual void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
     void registerWithTouchDispatcher(void);
     void onExit();
-
-    
+protected:
     void onClickApplyList();
     void onClickPriaseList();
-
-
 protected:
     CCArray*          m_tabs;
     CCLayer*          m_container;

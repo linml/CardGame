@@ -15,6 +15,7 @@
 #include "CPtApplyListLayer.h"
 #include "CPtPriaseListLayer.h"
 #include "CSceneFriendHaoyouliebiao.h"
+#include "CActivePlayerLayer.h"
 #include <string>
 
 using namespace std;
@@ -36,9 +37,12 @@ CSceneFriendMainLayer::CSceneFriendMainLayer()
     m_tabs->retain();
     m_currentTabIndex=-1;
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CSceneFriendMainLayer::updateFriend), "CallBACK_CSceneFriendMainLayer_FRIENDDATA", NULL);
+    CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CSceneFriendMainLayer::updateActiveFriend), "CallBACK_CSceneFriendMainLayer_updateActiveFriend", NULL);
+    
 }
 CSceneFriendMainLayer::~CSceneFriendMainLayer()
 {
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CallBACK_CSceneFriendMainLayer_updateActiveFriend");
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CallBACK_CSceneFriendMainLayer_FRIENDDATA");
     CC_SAFE_RELEASE(m_tabs);
     CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath, "friendjiemian.plist"));
@@ -56,6 +60,7 @@ bool CSceneFriendMainLayer::init()
     createBottomButton();
     createQuitButton();
     switchToTab(0);
+    createActiveFriend();
     setTouchPriority(-3);
     setTouchEnabled(true);
     return true;
@@ -79,6 +84,16 @@ void CSceneFriendMainLayer::createBackGround()
     addChild(layer,1,1);
 }
 
+
+void CSceneFriendMainLayer::updateActiveFriend(cocos2d::CCObject *object)
+{
+    if (getChildByTag(33332)) {
+        CActivePlayerLayer *layer=(CActivePlayerLayer *)(getChildByTag(33332));
+        layer->sendUpdateActiveFriend();
+    }
+}
+
+
 void CSceneFriendMainLayer::updateFriend(CCObject *object)
 {
     int *p=(int *)object;
@@ -98,7 +113,6 @@ void CSceneFriendMainLayer::updateFriend(CCObject *object)
         delete p;
         p=NULL;
     }
-    
 }
 
 
@@ -271,25 +285,7 @@ bool  CSceneFriendMainLayer::switchToTab(int index)
     switch (m_currentTabIndex) {
         case 0:
         {
-            CCLayer *layer=CSceneFriendHaoyouliebiao::create();
-            addChild(layer,2,33333);
-            m_container=layer;
-            pObject=layer;
-            callback[0]=callfunc_selector(CSceneFriendHaoyouliebiao::selectButton);
-            callback[1]=callfunc_selector(CSceneFriendHaoyouliebiao::allZan);
-            const string data[2]={"添加好友","全部赞"};
-            for (int i=0; i<2; i++)
-            {
-                CGameButtonControl *gameButton=(CGameButtonControl*)(getChildByTag(TAG_BOTTOMALLBUTTON+i));
-                if( i== 0)
-                {
-                    gameButton->setVisible(true);
-                }
-                if(gameButton->getTextLabel())
-                {
-                    gameButton->getTextLabel()->setString(data[i].c_str());
-                }
-            }
+            createHaoyouLieBiao();
         }
             break;
         case 1:
@@ -301,6 +297,37 @@ bool  CSceneFriendMainLayer::switchToTab(int index)
     }
     return  true;
 }
+void CSceneFriendMainLayer::createHaoyouLieBiao()
+{
+    CCLayer *layer=CSceneFriendHaoyouliebiao::create();
+    addChild(layer,2,33333);
+    m_container=layer;
+    pObject=layer;
+    callback[0]=callfunc_selector(CSceneFriendHaoyouliebiao::selectButton);
+    callback[1]=callfunc_selector(CSceneFriendHaoyouliebiao::allZan);
+    const string data[2]={"添加好友","全部赞"};
+    for (int i=0; i<2; i++)
+    {
+        CGameButtonControl *gameButton=(CGameButtonControl*)(getChildByTag(TAG_BOTTOMALLBUTTON+i));
+        if( i== 0)
+        {
+            gameButton->setVisible(true);
+        }
+        if(gameButton->getTextLabel())
+        {
+            gameButton->getTextLabel()->setString(data[i].c_str());
+        }
+    }
+
+}
+
+void CSceneFriendMainLayer::createActiveFriend()
+{
+    CActivePlayerLayer *pLayer=CActivePlayerLayer::create();
+    pLayer->setPosition(CCPointMake(size.width *0.5+300,size.height *0.5 ));
+    addChild(pLayer,3,33332);
+}
+
 
 bool CSceneFriendMainLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
 {

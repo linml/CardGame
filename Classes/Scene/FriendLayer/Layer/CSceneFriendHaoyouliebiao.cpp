@@ -254,6 +254,8 @@ void CSceneFriendHaoyouliebiao::decodeGetFriend(CCObject *object)
         {
             startUpdateText();
         }
+        CCDictionary *active_friendirct=(CCDictionary *)(resultDict->objectForKey("random_friend"));
+        CFriendManager::getInstance()->paraseActivePlayerListByDict(active_friendirct); //解析
     }
     else
     {
@@ -263,7 +265,11 @@ void CSceneFriendHaoyouliebiao::decodeGetFriend(CCObject *object)
         
         createTableView();
         CCNotificationCenter::sharedNotificationCenter()->postNotification("CallBACK_CSceneFriendMainLayer_FRIENDDATA",(CCObject *)(new int(getFriendCount())));
+       
     }
+    CCNotificationCenter::sharedNotificationCenter()->postNotification("CallBACK_CSceneFriendMainLayer_updateActiveFriend",NULL);
+    
+    
 }
 
 void CSceneFriendHaoyouliebiao::sendPostSendZanMei(int Uid)

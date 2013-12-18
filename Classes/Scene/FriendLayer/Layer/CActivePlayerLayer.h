@@ -13,11 +13,13 @@
 #include "cocos2d.h"
 using namespace std;
 using namespace cocos2d;
-class ActiveFriend;
+class ActivePlayer;
 class  CActivePlayerLayer :public CCLayer
 {
 public:
+    ~CActivePlayerLayer();
     bool init();
+    CREATE_FUNC(CActivePlayerLayer);
 protected:
     virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     virtual void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
@@ -33,13 +35,15 @@ protected:
     void removeTTF();
 public:
     CCPoint getIndexPostion(int index);
-    void createItem(ActiveFriend *pFriend,int index);
+    void createItem(ActivePlayer *pFriend,int index);
     void createFriendItem();
+    void sendUpdateActiveFriend();
+    void callBackSendUpdate(CCObject *object);
 public:
-    vector<ActiveFriend *>m_vActiverFriendList;
+    vector<ActivePlayer *> m_vActiverFriendList;
     CCSize size;
     CCArray *m_vTouchArray;
-    int m_nSendUid;
+    int m_nSendUidIndex;
 };
 
 

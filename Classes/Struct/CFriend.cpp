@@ -8,6 +8,7 @@
 
 #include "CFriend.h"
 #include "gameTools.h"
+#include "gamePlayer.h"
 
 CFriend::CFriend():m_nFriendUid(0), m_nFightPower(0), m_sNickName(""), m_nLevel(0),m_bState(false)
 {
@@ -107,6 +108,7 @@ vector<CFriend*> * CFriendManager::getFriendListByDict(CCDictionary *inFriendInf
             relaseFriendList(tempCount);
             m_pFriendList->erase(m_pFriendList->begin()+tempCount, m_pFriendList->end());
         }
+     
     }
 
     return array;
@@ -114,17 +116,24 @@ vector<CFriend*> * CFriendManager::getFriendListByDict(CCDictionary *inFriendInf
 
 CFriendManager::CFriendManager()
 {
-    m_pActiveFriend = new vector<ActiveFriend *>(100, (ActiveFriend*)NULL);
-    m_nStartIndex = MAXACTIVEFRIEND;
+    m_pActivePlayeres = new vector<ActivePlayer *>(110, (ActivePlayer*)NULL);
     m_pFriendList = NULL;
+    
+    m_nMaxStartIndex = 0;
+    m_nEqualStartIndex = 0;
+    m_nMinStartIndex = 0;
+    
+    m_nMaxEndIndex = 0;
+    m_nEqualEndIndex = 0;
+    m_nMinEndIndex = 0;
 }
 
 CFriendManager::~CFriendManager()
 {
-    releasActiveFriendContent();
+    releasActivePlayerContent();
     relaseFriendList();
     CC_SAFE_DELETE(m_pFriendList);
-    CC_SAFE_DELETE(m_pActiveFriend);
+    CC_SAFE_DELETE(m_pActivePlayeres);
 
 }
 
@@ -175,38 +184,6 @@ vector<Friend> *CFriendManager::getPraiseListByDict(CCDictionary* inResultDict)
     return array;
 }
 
-vector <ActiveFriend*>* CFriendManager:: getActiveFriend()
-{
-    vector<ActiveFriend *>* tmp = NULL;
-    if (m_nStartIndex == MAXACTIVEFRIEND)
-    {
-        getActiveFriendFromServer();
-    }
-    else
-    {
-        vector<ActiveFriend*>::iterator it = m_pActiveFriend->begin();
-        tmp = new vector<ActiveFriend*>(it+m_nStartIndex, it+m_nStartIndex+10);
-        m_nStartIndex += 10;
-        
-        if (m_pFriendList)
-        {
-            for (int i = 0; i < tmp->size(); i++)
-            {
-                for (int j = 0; j < m_pFriendList->size(); j++)
-                {
-                    if(tmp->at(i)->friendInfo.fried_uid == m_pFriendList->at(j)->getFriendUid())
-                    {
-                        tmp->at(i)->isFriend = true;
-                        break;
-                    }
-                }
-                
-            }
-        }
-    }
-    return tmp;
-  
-}
 
 bool CFriendManager::isDictionary(CCDictionary *inDict)
 {
@@ -219,14 +196,14 @@ bool CFriendManager::isDictionary(CCDictionary *inDict)
     return bRet;
 }
 
-void CFriendManager::releasActiveFriendContent()
+void CFriendManager::releasActivePlayerContent(int startIndex)
 {
-    if (m_pActiveFriend)
+    if (m_pActivePlayeres)
     {
-        ActiveFriend * tmp = NULL;
-        for (int i = 0; i < m_pActiveFriend->size(); i++)
+        ActivePlayer * tmp = NULL;
+        for (int i = startIndex; i < m_pActivePlayeres->size(); i++)
         {
-            tmp = m_pActiveFriend->at(i);
+            tmp = m_pActivePlayeres->at(i);
             CC_SAFE_DELETE(tmp);
             tmp = NULL; 
         }
@@ -248,14 +225,175 @@ void CFriendManager::relaseFriendList(int startIndex)
     }
 }
 
-void CFriendManager::getActiveFriendFromServer()
+void CFriendManager::paraseActivePlayerListByDict(CCDictionary *pRandomFriend)
 {
+    if (pRandomFriend)
+    {
+        int count = 0;
+        m_nMaxStartIndex = 0;
+        
+        CCDictionary *maxDict = (CCDictionary*) pRandomFriend->objectForKey("max");
+        if (isDictionary(maxDict))
+        {
+            count += setActivePlayerInfoesByDict(maxDict);
+        }
+        m_nMaxEndIndex = count;
+        m_nEqualStartIndex = count;
+        
+        CCDictionary *nowDict = (CCDictionary*) pRandomFriend->objectForKey("now");
+        if(isDictionary(nowDict))
+        {
+            count += setActivePlayerInfoesByDict(nowDict,m_nMaxEndIndex);
+        }
+        m_nEqualEndIndex = count;
+        m_nMinStartIndex  = count;
+        
+        CCDictionary *minDict = (CCDictionary*) pRandomFriend->objectForKey("min");
+        if (isDictionary(minDict))
+        {
+            count += setActivePlayerInfoesByDict(minDict,m_nEqualEndIndex);
+        }
+        m_nMinEndIndex = count;
+        
+        if (count < m_pActivePlayeres->size())
+        {
+            releasActivePlayerContent(count);
+            m_pFriendList->erase(m_pFriendList->begin()+count, m_pFriendList->end());
+        }
+
+        
+    }
     
 }
-void CFriendManager::getMsgActiveFriend(CCObject *pObject)
+int CFriendManager::setActivePlayerInfoesByDict(CCDictionary *pDict, int startIndex)
 {
+    int myuid = atoi(SinglePlayer::instance()->getUserId());
+    m_pActivePlayeres = m_pActivePlayeres == NULL ? new vector<ActivePlayer*>() : m_pActivePlayeres;
+    int elementCount = 0;
+    int count = m_pActivePlayeres->size();
+    int tempCount = startIndex;
+    CCDictElement *element = NULL;
+    CCDictionary *elementDict = NULL;
+    ActivePlayer *tmpPlayer = NULL;
+    CCDICT_FOREACH(pDict, element)
+    {
+        
+        elementDict = (CCDictionary*) element->getObject();
+        int friendId = atoi(element->getStrKey());
+        if (friendId == myuid)
+        {
+            continue;
+        }
+
+        const char *userName = GameTools::valueForKey("username", elementDict);
+        int level = GameTools::intForKey("level", elementDict);
+               
+        if (tempCount < count)
+        {
+            tmpPlayer =  m_pActivePlayeres->at(tempCount);
+            if (tmpPlayer)
+            {
+                tmpPlayer->isFriend = friendId;
+                tmpPlayer->username = userName;
+                tmpPlayer->level = level;
+                tmpPlayer->isFriend = false;
+               
+            }
+            else
+            {
+                tmpPlayer = new ActivePlayer(friendId, level, userName);
+                m_pActivePlayeres->at(tempCount) = tmpPlayer;
+                
+            }
+            tempCount++;
+            
+            
+        }else
+        {
+            tmpPlayer = new ActivePlayer(friendId, level, userName);
+            m_pActivePlayeres->push_back(tmpPlayer);
+        }
+        elementCount++;
+    }
     
+    return elementCount;
+}
+void CFriendManager::getActivePlayerListFromLocal(vector<ActivePlayer*> *outActivePlayer)
+{
+    if (outActivePlayer)
+    {
+        outActivePlayer->clear();
+        gernerActivePlayerList(outActivePlayer);
+        sort(outActivePlayer->begin(), outActivePlayer->end());
+        if (m_pFriendList)
+        {
+            for (int i = 0; i < outActivePlayer->size(); i++)
+            {
+                for (int j = 0; j < m_pFriendList->size(); j++)
+                {
+                    if(outActivePlayer->at(i)->friend_uid == m_pFriendList->at(j)->getFriendUid())
+                    {
+                        outActivePlayer->at(i)->isFriend = true;
+                        break;
+                    }
+                }
+                
+            }
+        }
+
+    }
+        
+
 }
 
+void CFriendManager::gernerActivePlayerList(vector<ActivePlayer *>*outActivePlayer)
+{
+   int sum = 0;
+   int count =  fillActivePlayer(outActivePlayer, m_nMaxStartIndex, 0, m_nMaxEndIndex, MAXPLAYERCOUNT);
+   sum += count;
+   m_nMaxStartIndex = (m_nMaxStartIndex+count)%(MAXPLAYERCOUNT);
+
+   count = fillActivePlayer(outActivePlayer, m_nEqualStartIndex, m_nMaxEndIndex, m_nEqualEndIndex, NOWPLAYERCOUNT+(MAXPLAYERCOUNT-sum));
+   sum += count;
+   m_nEqualStartIndex = (m_nEqualStartIndex+count)%(NOWPLAYERCOUNT);
+    
+   count = fillActivePlayer(outActivePlayer, m_nMinStartIndex, m_nEqualEndIndex, m_nMinEndIndex, MINPLAYERCOUNT+(MAXPLAYERCOUNT+NOWPLAYERCOUNT - sum));
+    m_nMinStartIndex = (m_nMinStartIndex+count) %(MINPLAYERCOUNT);
+}
+
+int CFriendManager:: fillActivePlayer(vector<ActivePlayer*> *outActivePlayeres, int nowstartIndex, int orignstartIndex, int endIndex, int count)
+{
+    
+    int hasCount = endIndex - orignstartIndex;
+    if (hasCount == 0)
+    {
+        return 0;
+    }
+    if (hasCount < count)
+    {
+        
+        for (int i = nowstartIndex; i < endIndex && i < m_pActivePlayeres->size(); i++)
+        {
+            outActivePlayeres->push_back(m_pActivePlayeres->at(i));
+        }
+        if ((endIndex - nowstartIndex) < count)
+        {
+            for (int i = 0; i < count - endIndex- nowstartIndex; i++)
+            {
+                outActivePlayeres->push_back(m_pActivePlayeres->at(i+orignstartIndex));
+            }
+        }
+       
+    }
+    else
+    {
+        for (int i = orignstartIndex ; i < endIndex && i < m_pActivePlayeres->size(); i++)
+        {
+            outActivePlayeres->push_back(m_pActivePlayeres->at(i));
+        }
+    }
+    
+    return hasCount <= count ? hasCount : count;
+}
 
 
