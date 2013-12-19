@@ -92,7 +92,7 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
     m_vvBattleArray.clear();
     m_gGamePlayerData=new CGamePlayerData();
     //loaditem表格;
-    m_gameShop=new CStructShopInfo;
+    m_gameShopManager=new CStructShopInfoManager;
     loadGamesConfig();
     if ( m_gGamePlayerData->m_sLevelPlayer==NULL) {
         m_gGamePlayerData->settestInit(1);
@@ -141,7 +141,7 @@ void CGamePlayer::loadGamesConfig()
     G_SingleCConfigResourceLoad::instance()->loadSkillStripTable(m_haspMapSkillStrips,(resRootPath + "skill_strips_config.plist").c_str());
     
     SinglePropConfigData::instance();
-    G_SingleCConfigResourceLoad::instance()->loadShopSellItem(m_gameShop, (resRootPath+"shop.plist").c_str());
+    G_SingleCConfigResourceLoad::instance()->loadShopSellItem(m_gameShopManager, (resRootPath+"shop.plist").c_str());
     G_FightSkillManager::instance()->initSkill();//加载列表
     loadCardGonggao();
 }
@@ -163,10 +163,17 @@ void CGamePlayer::onExitGameApp()
 }
 void CGamePlayer::clearShangchengData()
 {
-    if(m_gameShop)
+    //当程序关闭的适合 需要释放商店里面的信息
+    if(m_gameShopManager)
     {
-        m_gameShop->clearShopItemData();
-        CC_SAFE_DELETE(m_gameShop);
+        for (map<int ,CStructShopInfo *>::iterator it=m_gameShopManager->m_gameShopList.begin(); it!=m_gameShopManager->m_gameShopList.end(); it++) {
+            CStructShopInfo *shopInfo=it->second;
+            shopInfo->clearShopItemData();
+            delete shopInfo;
+            shopInfo=NULL;
+        }
+        m_gameShopManager->m_gameShopList.erase(m_gameShopManager->m_gameShopList.begin(),m_gameShopManager->m_gameShopList.end());
+        CC_SAFE_DELETE(m_gameShopManager);
     }
 }
 
@@ -1750,7 +1757,7 @@ bool CGamePlayer::isCheckSameGongGao(cocos2d::CCArray *array)
             bool isConntinue=false;
             for (int j=0;j<m_vGonggaoId.size(); j++)
             {
-
+                
                 if (m_vGonggaoId[j]==((CCString *)array->objectAtIndex(i))->intValue())
                 {
                     isConntinue=true;
@@ -1918,58 +1925,83 @@ void CGamePlayer::decodeDataGp(cocos2d::CCObject *object)
     
 }
 
-void CGamePlayer::setReBackXiangLiang()
+void CGamePlayer::setReBackAll()
 {
-    if(m_gameShop)
-    {
-        m_gameShop->setRebackMaxNumber();
-    }
-    
-}
-void CGamePlayer::setShopItemByItemId(int itemID,int nValue)
-{
-    if(m_gameShop)
-    {
-        m_gameShop->logicShopItemNumber(itemID, nValue);
-    }
-}
-CStructShopSellItem *CGamePlayer::getShopItemById(int itemID)
-{
-    if (itemID>m_gameShop->mapShopItem.size()) {
-        return NULL;
-    }
-    return m_gameShop->mapShopItem[itemID];
-}
-
-CStructShopSellItem * CGamePlayer::getShopItemByPropId(int inPropId)
-{
-    CStructShopSellItem *shopItem = NULL;
-    SHOPSELLITEMMAP &maps = m_gameShop->mapShopItem;
-    for (int i = 0; i < maps.size(); i++)
-    {
-        shopItem = maps[i];
-        if (shopItem && shopItem->propID()==inPropId)
+    for (map<int ,CStructShopInfo *>::iterator it=m_gameShopManager->m_gameShopList.begin(); it!=m_gameShopManager->m_gameShopList.end(); it++) {
+        CStructShopInfo *gameShop=it->second;
+        if (gameShop)
         {
-            break;
+            gameShop->setRebackMaxNumber();
         }
     }
-    return shopItem;
+}
+void CGamePlayer::setReBackXiangLiang(int shopId)
+{
+    CStructShopInfo *gameShop=m_gameShopManager->m_gameShopList[shopId];
+    if (gameShop&&gameShop->getShopId()==shopId)
+    {
+        gameShop->setRebackMaxNumber();
+        return ;
+    }
+}
+void CGamePlayer::setShopItemByItemId(int shopID,int itemID,int nValue)
+{
     
+    CStructShopInfo *gameShop= m_gameShopManager->m_gameShopList[shopID];
+    if (gameShop&&gameShop->getShopId()==shopID )
+    {
+        gameShop->logicShopItemNumber(itemID, nValue);
+        return ;
+    }
+}
+CStructShopSellItem *CGamePlayer::getShopItemById(int shopId,int itemID)
+{
+    
+    CStructShopInfo *gameShop=m_gameShopManager->m_gameShopList[shopId];
+    if (gameShop&&gameShop->getShopId()==shopId && itemID<=gameShop->mapShopItem.size() )
+    {
+        return gameShop->mapShopItem[itemID];
+    }
+    return NULL;
 }
 
-int CGamePlayer::getShopItemCount()
+CStructShopSellItem * CGamePlayer::getShopItemByPropId( int inPropId)
 {
-    return m_gameShop->getShopItemCount();
+    for (map<int , CStructShopInfo *>::iterator it=m_gameShopManager->m_gameShopList.begin(); it!=m_gameShopManager->m_gameShopList.end();it++) {
+        CStructShopInfo *gameShop=it->second;
+        if (gameShop)
+        {
+            CStructShopSellItem *shopItem = NULL;
+            SHOPSELLITEMMAP &maps =gameShop->mapShopItem;
+            for (int i = 0; i < maps.size(); i++)
+            {
+                shopItem = maps[i];
+                if (shopItem && shopItem->propID()==inPropId)
+                {
+                    break;
+                }
+            }
+            return shopItem;
+        }
+    }
+    
+    return NULL;
 }
 
-int CGamePlayer::getShopType()
+int CGamePlayer::getShopItemCount(int shopID)
 {
-    return m_gameShop->getShopType();
+    return  m_gameShopManager->m_gameShopList[shopID]->getShopItemCount();
 }
 
-string CGamePlayer::getShopName()
+
+int CGamePlayer::getShopType(int shopID)
 {
-    return m_gameShop->getShopName();
+    return m_gameShopManager->m_gameShopList[shopID]->getShopType();
+}
+
+string CGamePlayer::getShopName(int shopID)
+{
+    return m_gameShopManager->m_gameShopList[shopID]->getShopName();
 }
 
 /*
@@ -2121,7 +2153,7 @@ void CGamePlayer::initDayInfo(string strDateArray)
     for (int i=0; i<tempLogin.size(); i++) {
         m_pEveryDataLogin->m_nQianDaoArray[tempLogin[i]-1]=true;
     }
-
+    
 }
 
 void CGamePlayer::parseTaskInfo(CCDictionary *dict)

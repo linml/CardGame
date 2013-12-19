@@ -268,7 +268,7 @@ bool CConfigResourceLoad::loadEffectLogicInfo(vector<CImapact *> &vImapactTable,
     return true;
 }
 
-bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char *fileName)
+bool CConfigResourceLoad::loadShopSellItem(CStructShopInfoManager *shopInfoManager,const char *fileName)
 {
     CCDictionary *directory = CCDictionary::createWithContentsOfFile(fileName);
     if(directory)
@@ -278,9 +278,10 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
         {
             for (int i=0; i<vKeyArray->count(); i++)
             {
-                CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
-                 CCDictionary *shopInfoDict=(CCDictionary*)(directory->objectForKey(key->m_sString));
-                 shopInfo->setShopId(key->intValue());
+                        CStructShopInfo *shopInfo=new CStructShopInfo;
+                    CCString *key=(CCString *)vKeyArray->objectAtIndex(i);
+                    CCDictionary *shopInfoDict=(CCDictionary*)(directory->objectForKey(key->m_sString));
+                    shopInfo->setShopId(key->intValue());
                     shopInfo->setShopName(GameTools::valueForKey("shop_name", shopInfoDict));
                     shopInfo->setShopType(GameTools::intForKey("type", shopInfoDict));
                     shopInfo->setShopRondomNumber(GameTools::intForKey("rondom_num", shopInfoDict));
@@ -301,6 +302,9 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
                             sprintf(getParam, "limit_num_%d",i);
 
                             int limitNumber=GameTools::intForKey(getParam, shopInfoDict);
+                            if (limitNumber!=0) {
+                                shopInfo->setNeedShuaxin(true);
+                            }
                             unsigned int maxNumber= (limitNumber==0 ? UINT_MAX:limitNumber);
                             item->setItemSellMaxNum(maxNumber);
                             item->setMaxNumberBack(maxNumber);
@@ -318,9 +322,14 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfo *shopInfo,const char 
                             shopInfo->mapShopItem.push_back(item);
                         }
                     }
+                if (shopInfo->getShopItemCount()>0) {
+                    shopInfoManager->m_gameShopList[shopInfo->getShopId()]=shopInfo;
+                    CCLOG("商城加载个数%d",shopInfoManager->m_gameShopList.size());
+                }
             }
-            return true;
+           return true;
         }
+     
     }
     CCLog("商店配置表格有错误");
     return false;

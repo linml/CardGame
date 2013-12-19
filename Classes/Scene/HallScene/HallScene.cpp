@@ -40,10 +40,10 @@ CCScene *CHallScene::scene(int pType)
     CHallScene *layer = CHallScene::create(pType);
     scene->addChild(layer, 0, 100);
     
-    CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
-    CCSize size=CCDirector::sharedDirector()->getWinSize();
-    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5+320));
-    scene->addChild(gamelayer,1);
+//    CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
+//    CCSize size=CCDirector::sharedDirector()->getWinSize();
+//    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5+320));
+//    scene->addChild(gamelayer,1);
 
     return scene;
     
@@ -94,7 +94,7 @@ bool CHallScene::init(int inType)
         CC_BREAK_IF(!initHall(inType));
         createEmailNumberUnread();
         if (SinglePlayer::instance()->m_bIsLogin) {
-            createEveryDataLogin();
+           // createEveryDataLogin();
             SinglePlayer::instance()->m_bIsLogin=false;
         }
         bRet = true;

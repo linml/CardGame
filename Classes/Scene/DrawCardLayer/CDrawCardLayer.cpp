@@ -631,6 +631,9 @@ void CDrawCardLayer::rebackFirstLayer()
             removeChildByTag( i, true);
         }
     }
+    if (getChildByTag(120)) {
+        removeChildByTag(120, true);
+    }
     for (int i=21; i<=24; i++) {
         if (getChildByTag(i)) {
             removeChildByTag( i, true);
@@ -712,7 +715,6 @@ void CDrawCardLayer::createNiudanButton(EN_NIUDANTYPE entype)
             updateFriendButton();
             
         }
-        updateShengxiaChiShu();
         if (!getChildByTag(52)) {
             string everyZuanshi=Utility::getWordWithFile("word.plist", "niudanstrfriend");
             char data[100];
@@ -723,6 +725,7 @@ void CDrawCardLayer::createNiudanButton(EN_NIUDANTYPE entype)
             
         }
     }
+    updateShengxiaChiShu();
 }
 
 void CDrawCardLayer::updateShengxiaChiShu()
@@ -735,12 +738,25 @@ void CDrawCardLayer::updateShengxiaChiShu()
     CCLabelTTF *labelttf=(CCLabelTTF *)getChildByTag(120);
     string everyZuanshi=Utility::getWordWithFile("dictionary.plist","309900");
     char data[150];
-    if (g_niudanyouqingjiage==0) {
-        sprintf(data, everyZuanshi.c_str(),m_tempGamePlayer->getFriendly()/200);
+    int countValue;
+    if (m_enSaveSendValue==EN_NIUDANTYPE_CASH)
+    {
+        if (g_niudanjiage==0) {
+            countValue=m_tempGamePlayer->getPlayerCash()/300;
+        }
+        else{
+            countValue=m_tempGamePlayer->getPlayerCash()/g_niudanjiage;
+        }
     }
     else{
-        sprintf(data, everyZuanshi.c_str(),m_tempGamePlayer->getFriendly()/g_niudanyouqingjiage);
+        if (g_niudanyouqingjiage==0) {
+            countValue=m_tempGamePlayer->getFriendly()/200;
+        }
+        else{
+            countValue=m_tempGamePlayer->getFriendly()/g_niudanyouqingjiage;
+        }
     }
+    sprintf(data, everyZuanshi.c_str(),countValue);
     labelttf->setString(data);
     
 }

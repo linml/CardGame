@@ -36,8 +36,22 @@ public:
     CC_SYNTHESIZE(bool ,m_shop_is_rondom,ShopIsRondom);
     CC_SYNTHESIZE(int,m_shop_reloadTime,ShopReloadTime);
     CC_SYNTHESIZE(int,m_rondom_num,ShopRondomNumber);
+    CC_SYNTHESIZE(bool,m_bNeedShuaxin,NeedShuaxin);
+    CC_SYNTHESIZE(int, m_nShuaXinShiJian, ShuaXinShiJian);
 public:
     SHOPSELLITEMMAP mapShopItem;
+    
+};
+
+
+
+class CStructShopInfoManager
+{
+public:
+    CStructShopInfoManager();
+    ~CStructShopInfoManager();
+public:
+    map<int,CStructShopInfo *>m_gameShopList;
     
 };
 #endif /* defined(___1_cube__CStructShopInfo__) */

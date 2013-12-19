@@ -96,6 +96,7 @@
 		6FB9D34C1855B5C600E752DF /* CEveryDayLoginRewardInfoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9D34A1855B5C600E752DF /* CEveryDayLoginRewardInfoLayer.cpp */; };
 		6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24817964AF800E16CDE /* CFightSkillManager.cpp */; };
 		6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */; };
+		6FBCA8491862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCA8471862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp */; };
 		6FBCC6BA181F670B008865DD /* CPlayerBufferManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCC6B8181F670B008865DD /* CPlayerBufferManager.cpp */; };
 		6FBDD9151828A16900870AF4 /* CFightingLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDD9131828A16900870AF4 /* CFightingLayerScene.cpp */; };
 		6FC6B05A184DAE2F0098E3BF /* CAnnouncementLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6B058184DAE2F0098E3BF /* CAnnouncementLayer.cpp */; };
@@ -582,6 +583,8 @@
 		6FBBC24917964AF800E16CDE /* CFightSkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightSkillManager.h; sourceTree = "<group>"; };
 		6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAnimationSpriteGameFight.cpp; sourceTree = "<group>"; };
 		6FBBC24C17966FA400E16CDE /* CAnimationSpriteGameFight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAnimationSpriteGameFight.h; sourceTree = "<group>"; };
+		6FBCA8471862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneGameSingleShopLayer.cpp; sourceTree = "<group>"; };
+		6FBCA8481862CDB8009F51D6 /* CSceneGameSingleShopLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSceneGameSingleShopLayer.h; sourceTree = "<group>"; };
 		6FBCC6B8181F670B008865DD /* CPlayerBufferManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPlayerBufferManager.cpp; sourceTree = "<group>"; };
 		6FBCC6B9181F670B008865DD /* CPlayerBufferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPlayerBufferManager.h; sourceTree = "<group>"; };
 		6FBDD9131828A16900870AF4 /* CFightingLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightingLayerScene.cpp; sourceTree = "<group>"; };
@@ -1650,6 +1653,8 @@
 			children = (
 				6FDE76CB180E7F0B004DFDA8 /* CGameRechargeLayer.cpp */,
 				6FDE76CC180E7F0B004DFDA8 /* CGameRechargeLayer.h */,
+				6FBCA8471862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp */,
+				6FBCA8481862CDB8009F51D6 /* CSceneGameSingleShopLayer.h */,
 			);
 			path = Layer;
 			sourceTree = "<group>";
@@ -3223,6 +3228,7 @@
 				9FC6F24E17460BFF0091BE98 /* CCShaderCache.cpp in Sources */,
 				9FC6F24F17460BFF0091BE98 /* ccShaders.cpp in Sources */,
 				9FC6F25017460BFF0091BE98 /* CCAnimation.cpp in Sources */,
+				6FBCA8491862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp in Sources */,
 				6FC6B060184DCE450098E3BF /* CGameRankLayer.cpp in Sources */,
 				6F6D998E1820F2200027D0D8 /* CActionItemLayer.cpp in Sources */,
 				9FC6F25117460BFF0091BE98 /* CCAnimationCache.cpp in Sources */,

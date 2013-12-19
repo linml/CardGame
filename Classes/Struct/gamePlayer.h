@@ -280,12 +280,13 @@ public:
      */
     void postAddTask(int taskNextId, CCObject *object, SEL_CallFuncO selector,const char *strCallback); //当本地
     bool isHaveSendComplate();
-    int getShopItemCount();
-    int getShopType(); // priceType
-    string getShopName();
-    CStructShopSellItem *getShopItemById(int itemID);
-    void  setShopItemByItemId(int itemID,int nNowValue);
-    void setReBackXiangLiang();
+    int getShopItemCount(int shopID);
+    int getShopType(int shopID); // priceType
+    string getShopName(int shopID);
+    CStructShopSellItem *getShopItemById(int shopId,int itemID);
+    void  setShopItemByItemId(int shopID,int itemID,int nNowValue);
+    void setReBackXiangLiang(int shopId);
+    void setReBackAll();
     
     //机器猫说商城中买的道具ID都是唯一的
     CStructShopSellItem *getShopItemByPropId(int inPropId);
@@ -337,7 +338,7 @@ protected:
     CGlobalUpdateAp  *m_pUpdateAp;
     CGlobalUpdateGp  *m_pUpdateGp;   //其实用一个类就可以做的。
     CGlobalGetGongGao *m_pUpdateGetGonggao;
-    CStructShopInfo  *m_gameShop;
+    CStructShopInfoManager  *m_gameShopManager;
     int m_nActionGonggao;
     vector<int>m_vGonggaoId;
 public:

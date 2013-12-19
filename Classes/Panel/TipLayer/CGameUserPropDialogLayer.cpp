@@ -13,6 +13,7 @@
 #include "PtJsonUtility.h"
 #include "CPtRecharge.h"
 #include "CReward.h"
+#define XIESIDESHANGDIAN_BYJIQIMAO 800000
 
 CGameUserPropDialogLayer * CGameUserPropDialogLayer::create(USERTYPE inFunctionId)
 {
@@ -349,7 +350,7 @@ bool CGameUserPropDialogLayer::hasEnouchCoin()
     CGamePlayer *player = SinglePlayer::instance();
     CStructShopSellItem *shopItem =player->getShopItemByPropId(m_nPropId);
     CCAssert(shopItem, "商店里没有买这种道具，找猫去");
-    m_nCostType = player->getShopType();
+    m_nCostType = player->getShopType(XIESIDESHANGDIAN_BYJIQIMAO);
     m_nCostValue = shopItem->getValue();
     if (m_nCostType == 1)
     {

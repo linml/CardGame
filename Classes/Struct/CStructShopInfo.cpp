@@ -27,7 +27,8 @@ tempClear.clearVector(); \
 
 CStructShopInfo::CStructShopInfo()
 {
-    
+    m_nShuaXinShiJian=3602;
+    m_bNeedShuaxin=false;
 }
 
 CStructShopInfo::~CStructShopInfo()
@@ -78,4 +79,14 @@ void CStructShopInfo::logicShopItemNumber(int itemId,int nNowHaveNumber)
 int CStructShopInfo::getShopItemCount()
 {
     return mapShopItem.size();
+}
+
+
+CStructShopInfoManager::CStructShopInfoManager()
+{
+    
+}
+CStructShopInfoManager::~CStructShopInfoManager()
+{
+    
 }
