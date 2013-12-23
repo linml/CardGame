@@ -15,17 +15,22 @@
 CGameRechargeLayer* CGameRechargeLayer::create(CStructShopSellItem *inShopItem ,int priceType /*= 1*/)
 {
     CGameRechargeLayer *pRet = new CGameRechargeLayer();
-    if (pRet && pRet->init(inShopItem))
-    {   pRet->setPriceType(priceType);
-        pRet->autorelease();
-        return pRet;
-    }
-    else
+    if (pRet)
     {
-        CC_SAFE_DELETE(pRet);
-        return NULL;
-    }
+        pRet->setPriceType(priceType);
+        if (pRet->init(inShopItem))
+        {
+            pRet->autorelease();
+        }
+        else
+        {
+            CC_SAFE_DELETE(pRet);
+            pRet = NULL;
+        }
+    
 
+    }
+    return pRet;
 }
 
 CGameRechargeLayer::CGameRechargeLayer()
@@ -228,7 +233,7 @@ void CGameRechargeLayer::initCGameRechargeLayer(CStructShopSellItem *item)
     memset(buff, 0, sizeof(buff));
     if (m_nPriceType == 1)
     {
-        sprintf(buff, "你所消耗的现金币: %d", m_nCurrentCount*m_nCashPerItem);
+        sprintf(buff, "你所消耗的钻石: %d", m_nCurrentCount*m_nCashPerItem);
     }else
     {
         sprintf(buff, "你所消耗的金币: %d", m_nCurrentCount*m_nCashPerItem);
@@ -325,7 +330,16 @@ void CGameRechargeLayer::updateTexture()
     m_pNumberLabel->setString(buff);
     
     memset(buff, 0, sizeof(buff));
-    sprintf(buff, "你所消耗的现金币: %d", m_nCurrentCount*m_nCashPerItem);
+    if (m_nPriceType == 1)
+    {
+        sprintf(buff, "你所消耗的钻石: %d", m_nCurrentCount*m_nCashPerItem);
+    }
+    else
+    {
+        sprintf(buff, "你所消耗的金币: %d", m_nCurrentCount*m_nCashPerItem);
+
+    }
+    
     m_pCash->setString(buff);
     
 }
@@ -381,14 +395,16 @@ int CGameRechargeLayer::getMaxCount(CStructShopSellItem* inItem)
         unsigned int countInGroup = inItem->getGroupNum();
         CCAssert(countInGroup != 0, "grounNum is zero");
         int cashPerGroup = inItem ->getValue();
+        //CCLOG("cashPerGroup:%d;countInGroup:%d",cashPerGroup,countInGroup);
         int maxGroupsCanInBackPack = player->getPropMaxCountAddToBag(inItem->getShopSellItemPropData()->getPropId());
+        //CCLOG("maxGroupsCanInBackPack:%d",maxGroupsCanInBackPack);
         if (maxGroupsCanInBackPack == -1)
         {
             count = maxGroup;
         }else
         {
             maxGroupsCanInBackPack /= countInGroup;
-            count = maxGroup >= maxGroupsCanInBackPack ? maxGroupsCanInBackPack : maxGroup;
+            count = (maxGroup >= maxGroupsCanInBackPack ? maxGroupsCanInBackPack : maxGroup);
             CCLog("the count %d", maxGroupsCanInBackPack);
 
         }

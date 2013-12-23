@@ -120,14 +120,6 @@ CFriendManager::CFriendManager()
 {
     m_pActivePlayeres = new vector<ActivePlayer *>(110, (ActivePlayer*)NULL);
     m_pFriendList = NULL;
-    
-    m_nMaxStartIndex = 0;
-    m_nEqualStartIndex = 0;
-    m_nMinStartIndex = 0;
-    
-    m_nMaxEndIndex = 0;
-    m_nEqualEndIndex = 0;
-    m_nMinEndIndex = 0;
 }
 
 CFriendManager::~CFriendManager()
@@ -232,37 +224,37 @@ void CFriendManager::paraseActivePlayerListByDict(CCDictionary *pRandomFriend)
     if (pRandomFriend)
     {
         int count = 0;
-        m_nMaxStartIndex = 0;
-        
+    
         CCDictionary *maxDict = (CCDictionary*) pRandomFriend->objectForKey("max");
         if (isDictionary(maxDict))
         {
             count += setActivePlayerInfoesByDict(maxDict);
         }
-        m_nMaxEndIndex = count;
-        m_nEqualStartIndex = count;
-        
+      
+        m_pActivePlayerListInfo[0].setValue(0, count, MAXPLAYERCOUNT);
         CCDictionary *nowDict = (CCDictionary*) pRandomFriend->objectForKey("now");
         if(isDictionary(nowDict))
         {
-            count += setActivePlayerInfoesByDict(nowDict,m_nMaxEndIndex);
+            count += setActivePlayerInfoesByDict(nowDict,m_pActivePlayerListInfo[0].endIndex);
         }
-        m_nEqualEndIndex = count;
-        m_nMinStartIndex  = count;
+ 
+        m_pActivePlayerListInfo[1].setValue(m_pActivePlayerListInfo[0].endIndex, count,NOWPLAYERCOUNT);
         
         CCDictionary *minDict = (CCDictionary*) pRandomFriend->objectForKey("min");
         if (isDictionary(minDict))
         {
-            count += setActivePlayerInfoesByDict(minDict,m_nEqualEndIndex);
+            count += setActivePlayerInfoesByDict(minDict,m_pActivePlayerListInfo[1].endIndex);
         }
-        m_nMinEndIndex = count;
+    
+        m_pActivePlayerListInfo[2].setValue(m_pActivePlayerListInfo[1].endIndex, count, MINPLAYERCOUNT);
         
         if (count < m_pActivePlayeres->size())
         {
             releasActivePlayerContent(count);
             m_pActivePlayeres->erase(m_pActivePlayeres->begin()+count, m_pActivePlayeres->end());
         }
-
+        
+        sortLevelData();
         
     }
     
@@ -327,21 +319,21 @@ void CFriendManager::getActivePlayerListFromLocal(vector<ActivePlayer*> *outActi
         outActivePlayer->clear();
         gernerActivePlayerList(outActivePlayer);
         sort(outActivePlayer->begin(), outActivePlayer->end(), compareLevel);
-        if (m_pFriendList)
-        {
-            for (int i = 0; i < outActivePlayer->size(); i++)
-            {
-                for (int j = 0; j < m_pFriendList->size(); j++)
-                {
-                    if(outActivePlayer->at(i)->friend_uid == m_pFriendList->at(j)->getFriendUid())
-                    {
-                        outActivePlayer->at(i)->isFriend = true;
-                        break;
-                    }
-                }
-                
-            }
-        }
+//        if (m_pFriendList)
+//        {
+//            for (int i = 0; i < outActivePlayer->size(); i++)
+//            {
+//                for (int j = 0; j < m_pFriendList->size(); j++)
+//                {
+//                    if(outActivePlayer->at(i)->friend_uid == m_pFriendList->at(j)->getFriendUid())
+//                    {
+//                        outActivePlayer->at(i)->isFriend = true;
+//                        break;
+//                    }
+//                }
+//                
+//            }
+//        }
 
     }
         
@@ -349,18 +341,51 @@ void CFriendManager::getActivePlayerListFromLocal(vector<ActivePlayer*> *outActi
 }
 
 void CFriendManager::gernerActivePlayerList(vector<ActivePlayer *>*outActivePlayer)
-{
-   int sum = 0;
-   int count =  fillActivePlayer(outActivePlayer, m_nMaxStartIndex, 0, m_nMaxEndIndex, MAXPLAYERCOUNT);
-   sum += count;
-   m_nMaxStartIndex = (m_nMaxStartIndex+count)%(MAXPLAYERCOUNT);
+{    
+    if (m_pActivePlayeres->size() <= 10)
+    {
+        outActivePlayer->assign(m_pActivePlayeres->begin(), m_pActivePlayeres->end());
+        return;
+    }
 
-   count = fillActivePlayer(outActivePlayer, m_nEqualStartIndex, m_nMaxEndIndex, m_nEqualEndIndex, NOWPLAYERCOUNT+(MAXPLAYERCOUNT-sum));
-   sum += count;
-   m_nEqualStartIndex = (m_nEqualStartIndex+count)%(NOWPLAYERCOUNT) + m_nMaxEndIndex;
     
-   count = fillActivePlayer(outActivePlayer, m_nMinStartIndex, m_nEqualEndIndex, m_nMinEndIndex, MINPLAYERCOUNT+(MAXPLAYERCOUNT+NOWPLAYERCOUNT - sum));
-    m_nMinStartIndex = (m_nMinStartIndex+count) %(MINPLAYERCOUNT) + m_nEqualEndIndex;
+    int addArray[3] = {0};
+    int j = 0;
+    for (int i = 0; i < 3; i++)
+    {
+        j = index[i];
+        PlayerLevelData &temp = m_pActivePlayerListInfo[j];
+        addArray[i] = fillActivePlayer(outActivePlayer, temp.startIndex, temp.orginStartIndex, temp.endIndex, temp.moveCount);
+        temp.startIndex = (temp.startIndex-temp.orginStartIndex+addArray[i]) %(temp.count) + temp.orginStartIndex;
+        addArray[i] -= temp.moveCount;
+    }
+    
+    
+    if (addArray[2] < 0)
+    {
+        if (addArray[1] <= 0)
+        {
+            int count = abs((addArray[2]-addArray[1]));
+            PlayerLevelData &temp = m_pActivePlayerListInfo[index[0]];
+            count = fillActivePlayer(outActivePlayer, temp.startIndex, temp.orginStartIndex, temp.endIndex, count);
+            temp.startIndex = (temp.startIndex-temp.orginStartIndex+count) %(temp.count) + temp.orginStartIndex;
+        }else
+        {
+            int tmpCount = 0;
+            int count = abs(addArray[2]);
+            PlayerLevelData &temp = m_pActivePlayerListInfo[index[0]];
+            tmpCount = fillActivePlayer(outActivePlayer, temp.startIndex, temp.orginStartIndex, temp.endIndex, count);
+            temp.startIndex = (temp.startIndex-temp.orginStartIndex+tmpCount) %(temp.count) + temp.orginStartIndex;
+            
+            if (tmpCount < count)
+            {
+                count -= tmpCount;
+                PlayerLevelData &temp = m_pActivePlayerListInfo[index[1]];
+                tmpCount = fillActivePlayer(outActivePlayer, temp.startIndex, temp.orginStartIndex, temp.endIndex, count);
+                temp.startIndex = (temp.endIndex-temp.orginStartIndex+tmpCount) %(temp.count) + temp.orginStartIndex;
+            }
+        }
+    }
 }
 
 int CFriendManager:: fillActivePlayer(vector<ActivePlayer*> *outActivePlayeres, int nowstartIndex, int orignstartIndex, int endIndex, int count)
@@ -380,7 +405,7 @@ int CFriendManager:: fillActivePlayer(vector<ActivePlayer*> *outActivePlayeres, 
         }
         if ((endIndex - nowstartIndex) < count)
         {
-            for (int i = 0; i < count - endIndex- nowstartIndex; i++)
+            for (int i = 0; i < (count - (endIndex- nowstartIndex)); i++)
             {
                 outActivePlayeres->push_back(m_pActivePlayeres->at(i+orignstartIndex));
             }
@@ -398,6 +423,37 @@ int CFriendManager:: fillActivePlayer(vector<ActivePlayer*> *outActivePlayeres, 
     return hasCount <= count ? hasCount : count;
 }
 
+void CFriendManager::sortLevelData()
+{
+    int sum = 0;
+    int data[3]={0};
+    for (int i = 0; i < 3; i++)
+    {
+        sum += m_pActivePlayerListInfo[i].count;
+        data[i] = m_pActivePlayerListInfo[i].count - m_pActivePlayerListInfo[i].moveCount;
+        index[i] = 0;
+    }
+    if (sum <= 10)
+    {
+        return;
+    }
+    
+    if (data[0]  < data[2])
+    {
+        index[2] = 0;
+        index[0] = 2;
+    }
+    
+    if (data[1] > data[index[0]])
+    {
+        index[1] = index[0];
+        index[0] = 1;
+    }else if(data[1] < data[index[2]])
+    {
+        index[1] = index[2];
+        index[2] = 1;
+    }
+}
 bool compareLevel(ActivePlayer * param1, ActivePlayer *param2)
 {
     int result = 0;
@@ -414,3 +470,4 @@ bool compareLevel(ActivePlayer * param1, ActivePlayer *param2)
         return false;
     }
 }
+

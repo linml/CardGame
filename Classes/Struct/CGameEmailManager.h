@@ -40,6 +40,7 @@ public:
     void deleteAllEmail();
     void writeToFile();
     void deleteEmailByEmailId(int msgID);
+    void changeEmailByEmail(CCDictionary *array);
     void deleteEmailData(vector<int >emilIdList);
     void testData();
     int getMailCount();
@@ -48,6 +49,7 @@ public:
     void copyDataTovectory(vector<EMAIL_DATA>&vEmaildata,int data=-1);
 private:
     void sortList();
+    void removeMoreThan();
 public:
     int m_iGetHttpStatus;
     list<CGameEmailData *> m_listGameEamil;

@@ -72,6 +72,16 @@ namespace CPtTool
         return nRet;
     };
 
+    inline bool  isDictionary(CCObject* pObject)
+    {
+        bool bRet = false;
+        if (pObject)
+        {
+            std::string typeName = typeid(*pObject).name();
+            bRet = typeName.find("CCDictionary") != std::string::npos ;
+        }
+        return bRet;
+    }
 };
 
 

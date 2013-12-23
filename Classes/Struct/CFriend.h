@@ -68,7 +68,22 @@ protected:
     CC_SYNTHESIZE(int, m_nApplyId, ApplyId)
     CC_SYNTHESIZE(bool, m_bHaveHandler, HaveHandler);
 };
-
+struct PlayerLevelData
+{
+    int endIndex = 0;
+    int startIndex = 0;
+    int orginStartIndex = 0;
+    int count = 0;
+    int moveCount = 0;
+    void setValue(int inStartIndex, int inEndIndex, int inMoveCount)
+    {
+        startIndex = inStartIndex;
+        orginStartIndex = startIndex;
+        endIndex = inEndIndex;
+        count = inEndIndex - inStartIndex;
+        moveCount = inMoveCount;
+    };
+};
 
 class CFriendManager
 {
@@ -96,17 +111,12 @@ protected:
     void gernerActivePlayerList(vector<ActivePlayer *>*outActivePlayer);
     int  setActivePlayerInfoesByDict(CCDictionary *pDict, int startIndex = 0);
     int  fillActivePlayer(vector<ActivePlayer*> *outActivePlayeres, int nowstartIndex, int orignstartIndex, int endIndex, int count);
-   
+    void sortLevelData();
 protected:
     vector<ActivePlayer*>* m_pActivePlayeres;
     vector<CFriend*> *m_pFriendList;
     
-    int m_nMaxStartIndex;
-    int m_nEqualStartIndex;
-    int m_nMinStartIndex;
-    
-    int m_nMaxEndIndex;
-    int m_nEqualEndIndex;
-    int m_nMinEndIndex;
+    PlayerLevelData m_pActivePlayerListInfo[3];
+    int index[3];
 };
 #endif /* defined(___1_cube__CFriend__) */

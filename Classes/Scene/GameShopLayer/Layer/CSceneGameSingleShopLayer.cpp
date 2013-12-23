@@ -871,6 +871,7 @@ void CSceneGameSingleShopLayer::onClickPurchase(int inTagId)
         {
             CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CSceneGameSingleShopLayer::sendSendBuyItemData), "CGameRechargeLayercallback_layer", NULL);
             touchIndexCell=inTagId;
+            //CCLOG("value=============%d,%d",pItem->getValue(),m_pPlayer->getShopType(m_pShopInfo->getShopId()));
             layer = CGameRechargeLayer::create(pItem, m_pPlayer->getShopType(m_pShopInfo->getShopId()));
         }
         else

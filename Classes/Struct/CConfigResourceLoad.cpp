@@ -300,7 +300,7 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfoManager *shopInfoManag
                             CStructShopSellItem *item=new CStructShopSellItem(itemKeyId);
                             item->setGroupNum(GameTools::intForKey(getParam, shopInfoDict));
                             sprintf(getParam, "limit_num_%d",i);
-
+                            
                             int limitNumber=GameTools::intForKey(getParam, shopInfoDict);
                             if (limitNumber!=0) {
                                 shopInfo->setNeedShuaxin(true);
@@ -319,6 +319,7 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfoManager *shopInfoManag
 //                                delete  shopInfo->mapShopItem[itemKeyId];
 //                                shopInfo->mapShopItem[itemKeyId]=NULL;
 //                            }
+                            item->setPriceType(shopInfo->getShopType());
                             shopInfo->mapShopItem.push_back(item);
                         }
                     }

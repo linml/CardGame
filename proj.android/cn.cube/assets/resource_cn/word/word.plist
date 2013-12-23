@@ -116,6 +116,8 @@
 	<string>全部领取</string>
 	<key>lingqujiangpin</key>
 	<string>领取</string>
+	<key>yijinglingqu</key>
+	<string>已经领取</string>
 	<key>youjiankuaimanle</key>
 	<string>后台请不要发那多邮件，邮件都快爆了</string>
 	<key>caonima</key>

@@ -246,7 +246,7 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
             index = this->_indexFromOffset(point);
             CCLog("index=%d",index);
             cell  = this->_cellWithIndex(index);
-           
+            
             
             if (cell)
             {
@@ -265,7 +265,7 @@ void CEmrysTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 
 CGameEmailTableView::CGameEmailTableView()
 {
-   m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
+    m_enhttpStatus=EN_EMAILHTTPREQUEST_NONE;
     node=NULL;
     isSendPostGetData=false;
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath,"youxianniu.plist"));
@@ -274,7 +274,7 @@ CGameEmailTableView::CGameEmailTableView()
 }
 CGameEmailTableView::~CGameEmailTableView()
 {
-     CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath,"youxianniu.plist"));
+    CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath,"youxianniu.plist"));
 }
 
 void CGameEmailTableView::setGunDongTiaoPtr()
@@ -288,7 +288,7 @@ void CGameEmailTableView::setGunDongTiaoPtr()
 
 CGameEmailTableView *CGameEmailTableView::CreateEmailLayer()
 {
-     CGameEmailTableView *gameEmailLayer=new CGameEmailTableView();
+    CGameEmailTableView *gameEmailLayer=new CGameEmailTableView();
     if(!gameEmailLayer || !gameEmailLayer->initCreate())
     {
         delete gameEmailLayer;
@@ -314,12 +314,12 @@ void CGameEmailTableView::creaetEmailTableView()
 
 void CGameEmailTableView::showDialogBagFull(cocos2d::CCObject *obect)
 {
-//    string word = Utility::getWordWithFile("word.plist", "caonima");
-//    CPtDialog *ptDialog=CPtDialog::create(word.c_str() , this , this, callfuncO_selector(CGameEmailTableView::dialogOkButtonSetFunc), callfuncO_selector(CGameEmailTableView::dialogCancelButtonSetFunc), NULL, NULL);
-//    addChild(ptDialog,1000,10000);
+    //    string word = Utility::getWordWithFile("word.plist", "caonima");
+    //    CPtDialog *ptDialog=CPtDialog::create(word.c_str() , this , this, callfuncO_selector(CGameEmailTableView::dialogOkButtonSetFunc), callfuncO_selector(CGameEmailTableView::dialogCancelButtonSetFunc), NULL, NULL);
+    //    addChild(ptDialog,1000,10000);
     CGameArrageBackpackTip *layer = CGameArrageBackpackTip::create();
     addChild(layer, 1000, 10000);
-
+    
 }
 
 
@@ -381,7 +381,7 @@ bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSize ce
     m_tableViewSize = s;
     m_tableViewPoint = p;
     
-   
+    
     
     tableView = CEmrysTableView::Create(this, s,this);
     tableView->setDirection(kCCScrollViewDirectionVertical);
@@ -391,7 +391,7 @@ bool CGameEmailTableView::initView(CCPoint p , CCSize s ,int cellNum , CCSize ce
     tableView->setVerticalFillOrder(kCCTableViewFillTopDown);
     this->addChild(tableView,2,77777);
     
-  
+    
     
     return true;
 }
@@ -450,18 +450,25 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
         CCSprite *lingquButton=(CCSprite *)Utility::getNodeByTag(cell, "1,0,32");
         if(lingquButton)
         {
-            string word = Utility::getWordWithFile("word.plist", "lingqujiangpin");
-            CGameButtonControl *gameLingqu=CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
-            gameLingqu->setPosition(lingquButton->getPosition());
-            //gameLingqu->setTag(lingquButton->getTag());
-            gameLingqu->setAnchorPoint(lingquButton->getAnchorPoint());
-            cell->addChild(gameLingqu,lingquButton->getZOrder(),2000);
-            //cell ->reorderChild(gameLingqu,lingquButton->getZOrder());
-            cell->removeChild(lingquButton, true);
-            CCLog("load index::%d",idx);
             CGameEmailData *gameData=G_GAMESINGEMAIL::instance()->getGameDataByIndex(idx);
-            if(gameData && gameData->m_mapDataProp.size() > 0)
+            string word;
+            if(gameData&&gameData->m_mapDataProp.size() > 0)
             {
+                
+                if(gameData->getGameEmailStatus()!=2)
+                {
+                    word = Utility::getWordWithFile("word.plist", "lingqujiangpin");
+                }
+                else {
+                    word = Utility::getWordWithFile("word.plist", "yijinglingqu");
+                }
+                CGameButtonControl *gameLingqu=CGameButtonControl::createButton(TEXTMID, word.c_str(), "anniu2_Normal.png", "anniu2_Pressed.png");
+                gameLingqu->setPosition(lingquButton->getPosition());
+                gameLingqu->setAnchorPoint(lingquButton->getAnchorPoint());
+                cell->addChild(gameLingqu,lingquButton->getZOrder(),2000);
+                cell->removeChild(lingquButton, true);
+                CCLog("load index::%d",idx);
+                
                 CCLog("getGameEmailTitle:::%s",gameData->getGameEmailTitle().c_str());
                 CCLabelTTF *label=CCLabelTTF::create(gameData->getGameEmailTitle().c_str(),"Arial",15);
                 CCPoint point=Utility::getNodeByTag(cell, "1,0,1")->getPosition();
@@ -493,18 +500,19 @@ void CGameEmailTableView::initCellItem(CCTableViewCell*cell, unsigned int idx)
                 labelContextTime->setHorizontalAlignment(kCCTextAlignmentRight);
                 cell->reorderChild(labelContextTime, Utility::getNodeByTag(cell, "1,0,31")->getZOrder()+1);
                 
-                string strPng=g_propImagesPath+gameData->getFirstItemsPng();
-                CCSprite  *sprite = CCSprite::create(strPng.c_str());
-                CCSize rect=Utility::getNodeByTag(cell, "1,0,0")->boundingBox().size;
-                int valueZorder=Utility::getNodeByTag(cell, "1,0,0")->getZOrder()+1;
-                Utility::getNodeByTag(cell, "1,0,0")->addChild(sprite,valueZorder);
-                sprite->setPosition(ccp(rect.width/2,rect.height/2));
-                
-                // test:
-                char buffer[20]={0};
-                sprintf(buffer, "id: %d",gameData->getGameEmailMsgId());
-                CCLabelTTF *propId = CCLabelTTF::create(buffer, "Arial", 12);
-                sprite->addChild(propId);
+                if (gameData->getGameEmailStatus()!=2) {
+                    string strPng=g_propImagesPath+gameData->getFirstItemsPng();
+                    CCSprite  *sprite = CCSprite::create(strPng.c_str());
+                    CCSize rect=Utility::getNodeByTag(cell, "1,0,0")->boundingBox().size;
+                    int valueZorder=Utility::getNodeByTag(cell, "1,0,0")->getZOrder()+1;
+                    Utility::getNodeByTag(cell, "1,0,0")->addChild(sprite,valueZorder);
+                    sprite->setPosition(ccp(rect.width/2,rect.height/2));
+                    // test:
+                    char buffer[20]={0};
+                    sprintf(buffer, "id: %d",gameData->getGameEmailMsgId());
+                    CCLabelTTF *propId = CCLabelTTF::create(buffer, "Arial", 12);
+                    sprite->addChild(propId);
+                }
             }
         }
     }
@@ -556,7 +564,14 @@ void CGameEmailTableView::tablecellTouchNode(CCTableViewCell *cell,CCTouch *pTou
             }
             node=gamebutton;
         }
-        gamebutton->selected();
+        {
+            int value = cell->getIdx();
+            CGameEmailData *tempValue= G_GAMESINGEMAIL::instance()->getGameDataByIndex(value);
+            if ( !tempValue ||tempValue->getGameEmailStatus()!=2 ) {
+                gamebutton->selected();
+            }
+        }
+        
     }
     else {
         if(node)
@@ -579,6 +594,10 @@ void CGameEmailTableView::tableCellTouched(CCTableView* table, CCTableViewCell* 
         point=cell->convertTouchToNodeSpace(tempTouch);
         if(cell->getChildByTag(2000)->boundingBox().containsPoint(point))
         {
+            CGameEmailData *tempValue= G_GAMESINGEMAIL::instance()->getGameDataByIndex(value);
+            if ( !tempValue ||tempValue->getGameEmailStatus()==2 ) {
+                return ;
+            }
             if(node)
             {
                 ((CGameButtonControl *)node)->unselected();
@@ -600,11 +619,16 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
     {
         return ;
     }
+    CGameEmailData *tempValue= G_GAMESINGEMAIL::instance()->getGameDataByIndex(msg_id);
+    if ( !tempValue ||tempValue->getGameEmailStatus()==2 ) {
+        return ;
+    }
     isSendPostGetData=true;
     PtSoundTool::playSysSoundEffect("UI_click.wav");
     vector<EMAIL_DATA >vemaildatalist;
     G_GAMESINGEMAIL::instance()->copyDataTovectory(vemaildatalist,msg_id);
-    vector<int>canereadList;//.clear();
+    
+    vector<int>canereadList;
     CGamePlayer *player=SinglePlayer::instance();
     canereadList=player->getCanAddToBackPackEmals(vemaildatalist);
     
@@ -621,7 +645,7 @@ void CGameEmailTableView::sendPostHttpGetSingleItem(int msg_id)
         sprintf(data, "%d]",canereadList[canereadList.size()-1]);
         str+=data;
         CCLog("post get data:%s",str.c_str());
-        str +="&sig=2ac2b1e302c46976beaab20a68ef95";
+        str +=string("&sig=")+SinglePlayer::instance()->getUserSig();
         m_enhttpStatus=EN_EMAILHTTPREQUEST_GETSINGLEITEM;
         ADDHTTPREQUESTPOSTDATA(STR_URL_EMAILGETITEMS(194), "CALLBACK_CGameEmailTableView_getItems", "REQUEST_CALLBACK_CGameEmailTableView_getItems",str.c_str(),callfuncO_selector(CGameEmailTableView::recvBockHttpCallBack));
     }
@@ -676,33 +700,22 @@ void CGameEmailTableView::decodeSingleRecvEmail(char *object)
             }
             
         }
-
         
-        CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
-        vector<int >livetable;
-        for (int i=0; i<array->count();i++)
-        {
-            CCString * cocosstr=(CCString *)array->objectAtIndex(i);
-            livetable.push_back(atoi(cocosstr->m_sString.c_str()));
-        }
-        if (livetable.size()==0)
-        {
-            G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
+        
+        CCDictionary *dcitresult=(CCDictionary*)dictresult->objectForKey("mail_ids");
+        if (!CPtTool::isDictionary(dcitresult)) {
+            G_GAMESINGEMAIL::instance()->deleteAllEmail();
             tableView->reloadDataView();
         }
-        else
-        {
-            if(livetable.size()!=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail())
-            {
-                G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
-                tableView->reloadDataView();
-            }
+        else{
+            G_GAMESINGEMAIL::instance()->changeEmailByEmail(dcitresult);
+            tableView->reloadDataView();
         }
         runDialogAction();
         CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
         G_GAMESINGEMAIL::instance()->writeToFile();
     }
-
+    
 }
 
 bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
@@ -718,6 +731,9 @@ bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
     else
     {
         CCDictionary *dictresult=(CCDictionary *)dict->objectForKey("result");
+        if (!dictresult) {
+            return false;
+        }
         if (m_enhttpStatus==EN_EMAILHTTPREQUEST_GETSINGLEITEM  ||
             m_enhttpStatus==EN_EMAILHTTPREQUEST_GETALLEMAIL )
         {
@@ -727,28 +743,25 @@ bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
                 CReward *reward =NULL;
                 if (tmp->objectForKey("add") &&((CCDictionary*)tmp->objectForKey("add"))->objectForKey("inbox") )
                 {
-                                    reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("add"))->objectForKey("inbox"));
-                                    reward->excuteReward(ADD);
-
+                    reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("add"))->objectForKey("inbox"));
+                    reward->excuteReward(ADD);
+                    
                 }
                 else if(tmp->objectForKey("dec") &&((CCDictionary*)tmp->objectForKey("dec"))->objectForKey("inbox"))
                 {
                     reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("dec"))->objectForKey("inbox"));
                     reward->excuteReward(DEC);
                 }
-          
+                
             }
-            CCArray *array=(CCArray*)dictresult->objectForKey("mail_ids");
-            vector<int >livetable;
-            for (int i=0; i<array->count();i++)
-            {
-                CCString * cocosstr=(CCString *)array->objectAtIndex(i);
-                livetable.push_back(atoi(cocosstr->m_sString.c_str()));
+            CCDictionary *array=(CCDictionary*)dictresult->objectForKey("mail_ids");
+            if (!CPtTool::isDictionary(array)) {
+                G_GAMESINGEMAIL::instance()->deleteAllEmail();
+                tableView->reloadDataView();
             }
-            if(livetable.size()!=G_GAMESINGEMAIL::instance()->getMailCount())
-            {
-                G_GAMESINGEMAIL::instance()->deleteEmailData(livetable);
-                reloadData();
+            else{
+                G_GAMESINGEMAIL::instance()->changeEmailByEmail(array);
+                tableView->reloadDataView();
             }
             runDialogAction();
             CCNotificationCenter::sharedNotificationCenter()->postNotification("youjiangengxin");
@@ -771,7 +784,7 @@ bool CGameEmailTableView::decodeRecvBackStr(char *strdata)
         }
         return true;
     }
-
+    
 }
 
 void CGameEmailTableView::recvBockHttpCallBack(CCObject *object)
@@ -807,7 +820,7 @@ void CGameEmailTableView::runDialogAction()
     CCSize size=CCDirector::sharedDirector()->getWinSize();
     labelttf->setPosition(ccp(size.width*0.5,size.height*0.5));
     labelttf->runAction(CCSequence::create(CCSpawn::create(CCMoveBy::create(1.0, ccp(0,100)),CCFadeOut::create(1.0),NULL),CCCallFunc::create(this, callfunc_selector(CGameEmailTableView::removeDialog)),NULL));
-                        
+    
     
 }
 void CGameEmailTableView::removeDialog()
@@ -832,7 +845,7 @@ void CGameEmailTableView::scrollViewDidZoom(CCScrollView* view) {
 
 void CGameEmailTableView::dialogCancelButtonSetFunc(cocos2d::CCObject *object)
 {
-        removeChildByTag(10000, true);
+    removeChildByTag(10000, true);
 }
 
 void CGameEmailTableView::dialogOkButtonSetFunc(cocos2d::CCObject *object)
@@ -944,7 +957,7 @@ void CGameEmailTableView::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
         CCLog("aaaaaaa4");
         if(m_tempTouchNode==node)
         {
-             this->runAction(CCSequence::create(CCEaseBounceInOut::create(CCScaleTo::create(0.2, 0.01)),CCCallFunc::create(this, callfunc_selector(CGameEmailTableView::runCallExitEmailLayer)),NULL));
+            this->runAction(CCSequence::create(CCEaseBounceInOut::create(CCScaleTo::create(0.2, 0.01)),CCCallFunc::create(this, callfunc_selector(CGameEmailTableView::runCallExitEmailLayer)),NULL));
         }
     }
     else if(getChildByTag(7)->boundingBox().containsPoint(touchPoint))

@@ -161,6 +161,7 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
                 continue;
                 
             }
+
             /*
              *
              <key>item_id</key>
@@ -187,8 +188,23 @@ void CPtPropConfigData::loadPropToMap(CCDictionary* inConfigData)
              <string>999991</string>
 
              */
+            tmpValue = (CCDictionary *)element->getObject();
+            if (keyId == COINSID)
+            {
+                //经验和金币
+                m_sCoinIcon = GameTools::valueForKey("icon", tmpValue);
+                m_sCoinName = GameTools::valueForKey("name", tmpValue);
+                CCLog(m_sCoinName.c_str());
+                continue;
+            }else if(keyId == EXPID)
+            {
+                m_sExpIcon = GameTools::valueForKey("icon", tmpValue);
+                m_sExpName = GameTools::valueForKey("name", tmpValue);
+                CCLog(m_sExpName.c_str());
+                continue;
+                
+            }
             prop= new CPtProp();
-           
             prop->setPropId(keyId);
             prop->setPropName(GameTools::valueForKey("name", tmpValue));
             prop->setPropType(GameTools::intForKey("type", tmpValue));
