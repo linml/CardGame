@@ -12,6 +12,11 @@
 #include "gameConfig.h"
 #include "CGameButtonControl.h"
 #include "gamePlayer.h"
+#include "CRankRewardManager.h"
+#include "PtHttpClient.h"
+#include "PtHttpURL.h"
+#include "PtJsonUtility.h"
+#include "CReward.h"
 
 #define TAG_TABBEGIN 1000
 #define TAG_FRIENDCOUNT 12
@@ -22,6 +27,7 @@
 
 CGameRankLayer::CGameRankLayer()
 {
+    m_pRankRewardData = NULL;
     m_pRankManager = CRankDataManager::getInstance();
     m_nPlayerUid = atoi(SinglePlayer::instance()->getUserId());
     m_pPlayerRankInfo = NULL;
@@ -41,31 +47,15 @@ CGameRankLayer::CGameRankLayer()
     tempSprite=CCSprite::create((g_mapImagesPath+"rankpagecell.png").c_str());
     tempSprite->retain();
     
-//    {
-//        char data[20];
-//
-//        for (int i = 0; i < 100; i++) {
-//            sprintf(data, "gameplayername%d",i);
-//            m_vTableViewData.push_back(new CRankData(data,i+1,(rand()%80)+1));
-//        }
-//    }
+    m_pPlayerRankRewardInfo = NULL;
+    m_pGetRankRewardBtn = NULL;
+
 }
 
 CGameRankLayer::~CGameRankLayer()
 {
-    
-//    {
-//        for (int i=0; i<m_vTableViewData.size(); i++) {
-//            delete m_vTableViewData[i];
-//            m_vTableViewData[i]=NULL;
-//        }
-//    }
-    
-    
     CC_SAFE_RELEASE(tempSprite);
     CC_SAFE_RELEASE(m_tabs);
-//    CEmrysClearVectorMemory<CRankData *>m_vData(m_vTableViewData);
-//    m_vData.clearVector();
     CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath, "friendjiemian.png"));
 }
 
@@ -101,6 +91,7 @@ bool CGameRankLayer::init()
     createBackGround();
     createRankTypeButton();
     createQuitButton();
+    createRankReward();
     createPlayerRankInfo();
     setGunDongTiaoPtr();
     setTouchEnabled(true);
@@ -154,6 +145,8 @@ bool  CGameRankLayer::addTab(const char* label,int index)
 }
 void CGameRankLayer::onClickZongZhandouTabItem()
 {
+    m_pRankRewardData = m_pRankManager->getRankRewardByType(FIGHTRANK);
+    updateRankReward();
     updatePlayerRankInfo();
     updateRankCount();
     if(getChildByTag(TAG_TABLEVIEW))
@@ -168,6 +161,8 @@ void CGameRankLayer::onClickZongZhandouTabItem()
 
 void CGameRankLayer::onClickDengJiTabItem()
 {
+    m_pRankRewardData = m_pRankManager->getRankRewardByType(LEVELRANK);
+    updateRankReward();
     updatePlayerRankInfo();
     updateRankCount();
     if(getChildByTag(TAG_TABLEVIEW))
@@ -183,6 +178,8 @@ void CGameRankLayer::onClickDengJiTabItem()
 
 void CGameRankLayer::onClickFuhaoTabItem()
 {
+    m_pRankRewardData = m_pRankManager->getRankRewardByType(RECHARGERANK);
+    updateRankReward();
     updatePlayerRankInfo();
     updateRankCount();
     if(getChildByTag(TAG_TABLEVIEW))
@@ -360,11 +357,22 @@ void CGameRankLayer::initCellItem(CCTableViewCell*cell, unsigned int idx)
     labelTTF->setPosition(CCPointMake(150, 10));
     cell->addChild(labelTTF);
     
+    CCSprite * iconSprite = CCSprite::create(CSTR_FILEPTAH(g_rankIconPath,data->getRankChangeIconPath().c_str()));
+    iconSprite->setAnchorPoint(CCPointZero);
+    iconSprite->setPosition(ccp(340, 20));
+    cell->addChild(iconSprite);
     // add rank label
     snprintf(buffer,100, "第%d名", idx+1);
     labelTTF=CCLabelTTF::create(buffer, "Arial", 20);
     labelTTF->setAnchorPoint(CCPointZero);
     labelTTF->setPosition(CCPointMake(400, 20));
+    cell->addChild(labelTTF);
+    
+    
+    snprintf(buffer,100, "第%d勋章", data->stage);
+    labelTTF=CCLabelTTF::create(buffer, "Arial", 20);
+    labelTTF->setAnchorPoint(CCPointZero);
+    labelTTF->setPosition(CCPointMake(460, 20));
     cell->addChild(labelTTF);
 }
 
@@ -390,7 +398,19 @@ CCSize CGameRankLayer::cellSizeForTable(CCTableView *table)
 
 void CGameRankLayer::tableCellTouched(CCTableView* table, CCTableViewCell* cell)
 {
-    
+    if (cell && m_vTableViewData)
+    {
+        int idx = cell->getIdx();
+        int index = m_vTableViewData->at(idx)->stage;
+        int inType = m_currentTabIndex == 0 ? FIGHTRANKREWARD : m_currentTabIndex == 1 ? LEVELRANKREWARD : RECHARGRANKREWARD;
+        const RankReward* tmpData =  CRankRewardManager::getInstance()->getRankRewardByIndex(inType, index);
+        if (tmpData)
+        {
+            char buffer[200] = {0};
+            snprintf(buffer, sizeof(char)*200, "第 %d 名 获得奖励: \n金币: %d, 经验:%d \n道具: id: %d * %d",idx+1,tmpData->exp, tmpData->coin, tmpData->item.propId, tmpData->item.propCount);
+            CCMessageBox(buffer, "排名奖励");
+        }
+    }
 }
 
 //CCSize CGameRankLayer::tableCellSizeForIndex(CCTableView *table, unsigned int idx)
@@ -486,6 +506,10 @@ int CGameRankLayer::checkTouchTableIndex(CCPoint point)
 }
 void CGameRankLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (CPtTool::isInNode(m_pGetRankRewardBtn, pTouch))
+    {
+        onClickGetRankReward();
+    }
     CCPoint point =pTouch->getLocation();
     int tag;
     if ((tag=checkTouchTableIndex(point))!=-1)
@@ -558,7 +582,7 @@ void CGameRankLayer::createPlayerRankInfo()
     char buffer[200] = {0};
     snprintf(buffer, 200, "player uid: %d\nfight : %d\nrank : %d ", 0, 0, 0);
     m_pPlayerRankInfo = CCLabelTTF::create("", "Arial", 13);
-    m_pPlayerRankInfo->setPosition(ccp(size.width*0.5+230, size.height*0.5+220));
+    m_pPlayerRankInfo->setPosition(ccp(size.width*0.5+240, size.height*0.5+220));
     m_pPlayerRankInfo->setString(buffer);
     m_pPlayerRankInfo->setHorizontalAlignment(kCCTextAlignmentLeft);
     addChild(m_pPlayerRankInfo,2);
@@ -598,4 +622,139 @@ void CGameRankLayer::updatePlayerRankInfo()
 
      m_pPlayerRankInfo->setString(buffer);
     
+}
+
+//领取排名奖励
+void CGameRankLayer::createRankReward()
+{
+    if (m_pRankRewardData == NULL)
+    {
+        return;
+    }
+    if (m_pGetRankRewardBtn == NULL)
+    {
+        m_pGetRankRewardBtn = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "anniu2_Normal.png"));
+      
+        addChild(m_pGetRankRewardBtn,2);
+        m_pGetRankRewardBtn->setPosition(ccp(size.width*0.5+400, size.height*0.5+220));
+  
+        CCLabelTTF * tip = CCLabelTTF::create("", "Arial", 14);
+        tip->setPosition(ccp(m_pGetRankRewardBtn->getContentSize().width/2, m_pGetRankRewardBtn->getContentSize().height/2));
+        m_pGetRankRewardBtn->addChild(tip, 0, 1);
+        m_pGetRankRewardBtn->setVisible(false);
+    }
+    if (m_pPlayerRankRewardInfo == NULL)
+    {
+        m_pPlayerRankRewardInfo = CCLabelTTF::create("", "Arial", 13);
+        m_pPlayerRankRewardInfo->setPosition(ccp(size.width*0.5+125, size.height*0.5+220));
+        m_pPlayerRankRewardInfo->setHorizontalAlignment(kCCTextAlignmentLeft);
+        addChild(m_pPlayerRankRewardInfo,2);
+        m_pPlayerRankRewardInfo->setVisible(false);
+        
+    }
+}
+void CGameRankLayer::updateRankReward()
+{
+    if (m_pRankRewardData->rankRewardData)
+    {
+        createRankReward();
+        const char *buffer = m_pRankRewardData->hasGet ? "已领取" : "未领取";
+        m_pGetRankRewardBtn->setVisible(true);
+        ((CCLabelTTF*)m_pGetRankRewardBtn->getChildByTag(1))->setString(buffer);
+        const RankReward* tmpData =  m_pRankRewardData->rankRewardData;
+        if (tmpData)
+        {
+            char buffer[200] = {0};
+            snprintf(buffer, sizeof(char)*200, "第 %d - %d 名 获得奖励: \n金币: %d, 经验:%d \n道具: id: %d * %d",tmpData->startIndex, tmpData->endIndex,tmpData->exp, tmpData->coin, tmpData->item.propId, tmpData->item.propCount);
+            m_pPlayerRankRewardInfo->setString(buffer);
+            m_pPlayerRankRewardInfo->setVisible(true);
+        }
+    
+    }else
+    {
+        if (m_pGetRankRewardBtn)
+        {
+            m_pGetRankRewardBtn->setVisible(false);
+        }
+        if (m_pPlayerRankRewardInfo)
+        {
+            m_pPlayerRankRewardInfo->setVisible(false);
+        }
+         
+        
+    }
+    
+}
+
+void CGameRankLayer::onClickGetRankReward()
+{
+    if (m_pRankRewardData && m_pRankRewardData->rankRewardData)
+    {
+        if (m_pRankRewardData->hasGet)
+        {
+            CCMessageBox("奖励已经领完，还想要，找王老板！", "排名奖励");
+        }else
+        {
+            onSendGetRankReward();
+        }
+        
+    }
+}
+void CGameRankLayer::onSendGetRankReward()
+{
+    int inType = m_currentTabIndex == 0 ? 2 : m_currentTabIndex == 1 ? 0 : 3;
+    char buffer[200] = {0};
+    snprintf(buffer,sizeof(char)*200,"sig=%s&type=%d",SinglePlayer::instance()->getUserSig(), inType);
+
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GETRANKREWARD(SinglePlayer::getUserId), "CALLBACK_CGameRankLayer::onSendGetRankReward", 
+                           "REQUEST_CGameRankLayer::onSendGetRankReward", buffer, callfuncO_selector(CGameRankLayer::onReceiveGetRankRewardMsg));
+}
+void CGameRankLayer::onReceiveGetRankRewardMsg(CCObject *pObject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGameRankLayer::onSendGetRankReward");
+    char *buffer = (char*)pObject;
+    if (buffer)
+    {
+        CCLog("the buffer: %s", buffer);
+        CCDictionary *resultDict = PtJsonUtility::JsonStringParse(buffer);
+        delete [] buffer;
+        if (resultDict)
+        {
+            int code = GameTools::intForKey("code", resultDict);
+            if(code == 0)
+            {
+                resultDict = (CCDictionary*) resultDict->objectForKey("result");
+                if (resultDict)
+                {
+                    SinglePlayer::instance()->addEmails((CCDictionary*)resultDict->objectForKey("inbox_info"));
+                    CCDictionary *rewardDict = (CCDictionary*) resultDict->objectForKey("reward");
+                    if (rewardDict)
+                    {
+                        rewardDict = (CCDictionary*) rewardDict->objectForKey("add");
+                        if (rewardDict)
+                        {
+                            rewardDict = (CCDictionary*) rewardDict->objectForKey("task");
+                            CReward *reward = CReward::create(rewardDict);
+                            if (reward)
+                            {
+                                reward->excuteReward(ADD);
+                                char buffer[200] = {0};
+                                const RankReward *tmpData = m_pRankRewardData->rankRewardData;
+                                
+                                snprintf(buffer, sizeof(char)*200, "获得上期奖励: \n金币: %d, 经验:%d \n道具: id: %d * %d",tmpData->coin, tmpData->exp, tmpData->item.propId, tmpData->item.propCount);
+                                CCMessageBox(buffer, "排名奖励");
+                            }
+
+                        }
+                    }
+                                    }
+                 m_pRankRewardData->hasGet = true;
+                 updateRankReward();
+            }
+            else
+            {
+                CCMessageBox(CCString::createWithFormat("error code :%d",code)->getCString(), "error code");
+            }
+        }
+    }
 }

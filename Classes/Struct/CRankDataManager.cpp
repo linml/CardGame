@@ -12,6 +12,7 @@
 #include "PtHttpURL.h"
 #include "PtHttpClient.h"
 
+
 #include <vector>
 using namespace std;
 // local tool method:
@@ -26,10 +27,17 @@ void test(vector<CRankData*> * rankdata)
     for (int i = 0; i < 100; i++)
     {
         sprintf(data, "gameplayername%d",i);
-        rankdata->at(i) =new CRankData(data,i+1,(rand()%80)+1);
+        rankdata->at(i) =new CRankData(data,i+1,(rand()%80)+1, 0);
     }
      sort(rankdata->begin(), rankdata->end(), compareRank);
 
+}
+
+std::string CRankData::getRankChangeIconPath()
+{
+    char buffer[30] = {0};
+    snprintf(buffer, sizeof(char)*100, "rankchange_%d.png",rank);
+    return buffer;
 }
 
 CRankDataManager * CRankDataManager::getInstance()
@@ -156,10 +164,12 @@ CRankData * CRankDataManager::getRankDataByUid(int inUid, int inType , int &outR
 
 CRankDataManager::CRankDataManager()
 {
+    m_pRewardInstance = CRankRewardManager::getInstance();
     initData();
 }
 CRankDataManager::~CRankDataManager()
 {
+    CRankRewardManager::releaseDataManager();
     releaseData();
 }
 
@@ -212,18 +222,22 @@ void CRankDataManager::callBackFunc()
     }
 }
 
-void CRankDataManager::paraRankData(int inType,CCArray *pArray)
+void CRankDataManager::parseRankData(int inType,CCArray *pArray)
 {
+    int rewardType = 0;
     vector<CRankData *> *tmpVector = NULL;
     switch (inType)
     {
         case 0:
+            rewardType = FIGHTRANKREWARD;
             tmpVector = m_pFightRanks;
             break;
         case 1:
+            rewardType = LEVELRANKREWARD;
             tmpVector = m_pLevelRanks;
             break;
         case 2:
+            rewardType = RECHARGRANKREWARD;
             tmpVector = m_pRechargeRanks;
             break;
         default:
@@ -237,14 +251,54 @@ void CRankDataManager::paraRankData(int inType,CCArray *pArray)
             tmpDict = (CCDictionary*) pArray->objectAtIndex(i);
             if (tmpVector->at(i))
             {
-                tmpVector->at(i)->setData(GameTools::valueForKey("name", tmpDict), GameTools::intForKey("uid", tmpDict), GameTools::intForKey("num", tmpDict));
+                tmpVector->at(i)->setData(GameTools::valueForKey("name", tmpDict), GameTools::intForKey("uid", tmpDict), GameTools::intForKey("num", tmpDict), GameTools::intForKey("sort", tmpDict));
+                
             }
             else
             {
-                tmpVector->at(i) = new CRankData(GameTools::valueForKey("name", tmpDict), GameTools::intForKey("uid", tmpDict), GameTools::intForKey("num", tmpDict));
+                tmpVector->at(i) = new CRankData(GameTools::valueForKey("name", tmpDict), GameTools::intForKey("uid", tmpDict), GameTools::intForKey("num", tmpDict), GameTools::intForKey("sort", tmpDict));
             }
+            tmpVector->at(i)->stage = m_pRewardInstance->getMedalKind(rewardType, i+1);
         }
     
+    }
+
+}
+void CRankDataManager::parseRankReward(int inType, CCObject *pObject)
+{
+    if(!(inType >= 0 && inType < 3))
+    {
+        return;
+        
+    }
+    int rewardType = 0;
+    vector<CRankData *> *tmpVector = NULL;
+    switch (inType)
+    {
+        case 0:
+            rewardType = FIGHTRANK;
+            tmpVector = m_pFightRanks;
+            break;
+        case 1:
+            rewardType = LEVELRANK;
+            tmpVector = m_pLevelRanks;
+            break;
+        case 2:
+            rewardType = RECHARGERANK;
+            tmpVector = m_pRechargeRanks;
+            break;
+        default:
+            break;
+    }
+    if(CPtTool::isDictionary(pObject))
+    {
+        int num = GameTools::intForKey("num", (CCDictionary*)pObject);
+        bool hasGet = GameTools::intForKey("is_reward", (CCDictionary*)pObject) == 0 ? false : true;
+        m_pRankRewards[inType].rankRewardData =  m_pRewardInstance->getRankRewardByRank(rewardType, num);
+        m_pRankRewards[inType].hasGet = hasGet;
+    }else
+    {
+        resetReward(inType);
     }
 
 }
@@ -317,7 +371,8 @@ void CRankDataManager::onReceiveDataFightRank(CCObject *pObject)
             if (code == 0)
             {
                 resultDict = (CCDictionary*) resultDict->objectForKey("result");
-                paraRankData(FIGHTRANK, (CCArray*) resultDict->objectForKey("charts"));
+                parseRankData(FIGHTRANK, (CCArray*) resultDict->objectForKey("charts"));
+                parseRankReward(FIGHTRANK, resultDict->objectForKey("last_time_info"));
                 m_bFightReady = true;
                 int fp = GameTools::intForKey("user_fp", resultDict);
                 SinglePlayer::instance()->setTotalFightPoint(fp);
@@ -348,7 +403,8 @@ void CRankDataManager::onReceiveDataLevelRank(CCObject *pObject)
             if (code == 0)
             {
                 resultDict = (CCDictionary*) resultDict->objectForKey("result");
-                paraRankData(LEVELRANK, (CCArray*) resultDict->objectForKey("charts"));
+                parseRankData(LEVELRANK, (CCArray*) resultDict->objectForKey("charts"));
+                parseRankReward(LEVELRANK, resultDict->objectForKey("last_time_info"));
                 m_bLevelReady = true;
                 callBackFunc();
             }
@@ -376,7 +432,8 @@ void CRankDataManager::onReceiveDataRechageRank(CCObject *pObject)
             if (code == 0)
             {
                 resultDict = (CCDictionary*) resultDict->objectForKey("result");
-                paraRankData(RECHARGERANK, (CCArray*) resultDict->objectForKey("charts"));
+                parseRankData(RECHARGERANK, (CCArray*) resultDict->objectForKey("charts"));
+                parseRankReward(RECHARGERANK, resultDict->objectForKey("last_time_info"));
                 int recharge = GameTools::intForKey("user_cash", resultDict);
                 SinglePlayer::instance()->setTotalRechargeValue(recharge);
                 m_bRechargeReady = true;

@@ -13,6 +13,7 @@
 #include  "cocos2d.h"
 #include "CUtilityTableView.h"
 #include "CRankDataManager.h"
+
 using namespace std;
 using namespace cocos2d;
 
@@ -73,6 +74,15 @@ protected:
     int checkTouchTableIndex(CCPoint point);
     int checkTouchQuitButton(CCPoint point);
     void updateRankCount();
+    
+    //领取排名奖励
+    void createRankReward();
+    void updateRankReward();
+    
+    void onClickGetRankReward();
+    void onSendGetRankReward();
+    void onReceiveGetRankRewardMsg(CCObject *pObject);
+    
 private:
     int m_currentTabIndex;
     vector<CRankData *> *m_vTableViewData;
@@ -85,9 +95,13 @@ private:
     CCSprite *tempSprite;
     CRankDataManager * m_pRankManager;
     
+    CRankRewardData *m_pRankRewardData;
     int m_nPlayerUid;
     int m_nRankCount;
     CCLabelTTF * m_pPlayerRankInfo;
+    
+    CCLabelTTF * m_pPlayerRankRewardInfo;
+    CCSprite * m_pGetRankRewardBtn;
     
 };
 
