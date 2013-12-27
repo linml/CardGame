@@ -222,7 +222,7 @@ void CSceneFriendHaoyouliebiao::sendPostGetFriend()
 {
     string connectData="sig=";
     connectData += m_tempGamePlayer->getUserSig();
-    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_GETFRIEND(194), "CALLBACK_CSceneFriendHaoyouliebiao_sendPostGetFriend", "REQUEST_CGamePlayer_sendUpdataHospital",connectData.c_str(),callfuncO_selector(CSceneFriendHaoyouliebiao::decodeGetFriend))
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GETFRIEND(194), "CALLBACK_CSceneFriendHaoyouliebiao_sendPostGetFriend", "REQUEST_CGamePlayer_sendUpdataHospital",connectData.c_str(),callfuncO_selector(CSceneFriendHaoyouliebiao::decodeGetFriend))
 }
 
 void CSceneFriendHaoyouliebiao::decodeGetFriend(CCObject *object)
