@@ -1,26 +1,26 @@
 /****************************************************************************
-Copyright (c) 2010 cocos2d-x.org
-
-http://www.cocos2d-x.org
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-****************************************************************************/
+ Copyright (c) 2010 cocos2d-x.org
+ 
+ http://www.cocos2d-x.org
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ THE SOFTWARE.
+ ****************************************************************************/
 #import "CCImage.h"
 #import "CCFileUtils.h"
 #import <string>
@@ -40,7 +40,7 @@ typedef struct
 
 static bool _initWithImage(CGImageRef cgImage, tImageInfo *pImageinfo)
 {
-    if(cgImage == NULL) 
+    if(cgImage == NULL)
     {
         return false;
     }
@@ -51,10 +51,10 @@ static bool _initWithImage(CGImageRef cgImage, tImageInfo *pImageinfo)
     pImageinfo->height = CGImageGetHeight(cgImage);
     
     CGImageAlphaInfo info = CGImageGetAlphaInfo(cgImage);
-    pImageinfo->hasAlpha = (info == kCGImageAlphaPremultipliedLast) 
-                            || (info == kCGImageAlphaPremultipliedFirst) 
-                            || (info == kCGImageAlphaLast) 
-                            || (info == kCGImageAlphaFirst);
+    pImageinfo->hasAlpha = (info == kCGImageAlphaPremultipliedLast)
+    || (info == kCGImageAlphaPremultipliedFirst)
+    || (info == kCGImageAlphaLast)
+    || (info == kCGImageAlphaFirst);
     
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(cgImage);
     if (colorSpace)
@@ -64,7 +64,7 @@ static bool _initWithImage(CGImageRef cgImage, tImageInfo *pImageinfo)
             info = kCGImageAlphaPremultipliedLast;
             pImageinfo->isPremultipliedAlpha = true;
         }
-        else 
+        else
         {
             info = kCGImageAlphaNoneSkipLast;
             pImageinfo->isPremultipliedAlpha = false;
@@ -80,12 +80,12 @@ static bool _initWithImage(CGImageRef cgImage, tImageInfo *pImageinfo)
     pImageinfo->bitsPerComponent = 8;
     pImageinfo->data = new unsigned char[pImageinfo->width * pImageinfo->height * 4];
     colorSpace = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(pImageinfo->data, 
-                                                 pImageinfo->width, 
+    CGContextRef context = CGBitmapContextCreate(pImageinfo->data,
+                                                 pImageinfo->width,
                                                  pImageinfo->height,
-                                                 8, 
-                                                 4 * pImageinfo->width, 
-                                                 colorSpace, 
+                                                 8,
+                                                 4 * pImageinfo->width,
+                                                 colorSpace,
                                                  info | kCGBitmapByteOrder32Big);
     
     CGContextClearRect(context, CGRectMake(0, 0, pImageinfo->width, pImageinfo->height));
@@ -94,13 +94,13 @@ static bool _initWithImage(CGImageRef cgImage, tImageInfo *pImageinfo)
     
     CGContextRelease(context);
     CFRelease(colorSpace);
-  
+    
     return true;
 }
 
 static bool _initWithFile(const char* path, tImageInfo *pImageinfo)
 {
-    CGImageRef                CGImage;    
+    CGImageRef                CGImage;
     UIImage                    *jpg;
     UIImage                    *png;
     bool            ret;
@@ -110,7 +110,7 @@ static bool _initWithFile(const char* path, tImageInfo *pImageinfo)
     NSString *fullPath = [NSString stringWithUTF8String:path];
     jpg = [[UIImage alloc] initWithContentsOfFile: fullPath];
     png = [[UIImage alloc] initWithData:UIImagePNGRepresentation(jpg)];
-    CGImage = png.CGImage;    
+    CGImage = png.CGImage;
     
     ret = _initWithImage(CGImage, pImageinfo);
     
@@ -125,7 +125,7 @@ static bool _initWithData(void * pBuffer, int length, tImageInfo *pImageinfo)
 {
     bool ret = false;
     
-    if (pBuffer) 
+    if (pBuffer)
     {
         CGImageRef CGImage;
         NSData *data;
@@ -145,9 +145,9 @@ static bool _isValidFontName(const char *fontName)
     
     NSString *fontNameNS = [NSString stringWithUTF8String:fontName];
     
-    for (NSString *familiName in [UIFont familyNames]) 
+    for (NSString *familiName in [UIFont familyNames])
     {
-        if ([familiName isEqualToString:fontNameNS]) 
+        if ([familiName isEqualToString:fontNameNS])
         {
             ret = true;
             goto out;
@@ -173,9 +173,9 @@ static CGSize _calculateStringSize(NSString *str, id font, CGSize *constrainSize
     CGSize dim = CGSizeZero;
     CGSize textRect = CGSizeZero;
     textRect.width = constrainSize->width > 0 ? constrainSize->width
-                                              : 0x7fffffff;
+    : 0x7fffffff;
     textRect.height = constrainSize->height > 0 ? constrainSize->height
-                                              : 0x7fffffff;
+    : 0x7fffffff;
     
     
     for (NSString *s in listItems)
@@ -184,7 +184,7 @@ static CGSize _calculateStringSize(NSString *str, id font, CGSize *constrainSize
         
         if (tmp.width > dim.width)
         {
-           dim.width = tmp.width; 
+            dim.width = tmp.width;
         }
         
         dim.height += tmp.height;
@@ -201,7 +201,7 @@ static CGSize _calculateStringSize(NSString *str, id font, CGSize *constrainSize
 static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAlign, const char * pFontName, int nSize, tImageInfo* pInfo)
 {
     bool bRet = false;
-    do 
+    do
     {
         CC_BREAK_IF(! pText || ! pInfo);
         
@@ -211,29 +211,29 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         constrainSize.width = pInfo->width;
         constrainSize.height = pInfo->height;
         
-        // create the font   
+        // create the font
         id font;
-        font = [UIFont fontWithName:fntName size:nSize];  
+        font = [UIFont fontWithName:fntName size:nSize];
         if (font)
         {
             dim = _calculateStringSize(str, font, &constrainSize);
-        }      
+        }
         else
         {
             fntName = _isValidFontName(pFontName) ? fntName : @"MarkerFelt-Wide";
             font = [UIFont fontWithName:fntName size:nSize];
-                
-            if (! font) 
+            
+            if (! font)
             {
                 font = [UIFont systemFontOfSize:nSize];
             }
-                
+            
             if (font)
             {
                 dim = _calculateStringSize(str, font, &constrainSize);
-            }  
+            }
         }
-
+        
         CC_BREAK_IF(! font);
         
         // compute start point
@@ -250,7 +250,7 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
             {
                 startH = (constrainSize.height - dim.height) / 2;
             }
-            else 
+            else
             {
                 startH = constrainSize.height - dim.height;
             }
@@ -264,16 +264,66 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         if (constrainSize.height > 0 && constrainSize.height > dim.height)
         {
             dim.height = constrainSize.height;
-        }         
+        }
+        //by merlin   cclabelTTF  FOR IOS7
+        /**** by merlin http://www.cocoachina.com/ask/questions/show/92695
+         unsigned char* data = new unsigned char[(int)(dim.width * dim.height * 4)];
+         memset(data, 0, (int)(dim.width * dim.height * 4));
+         
+         // draw text
+         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+         CGContextRef context = CGBitmapContextCreate(data, dim.width, dim.height, 8, dim.width * 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+         CGColorSpaceRelease(colorSpace);
+         */
+       /* const int _width  = dim.width;
+        const int _height = dim.height;
+        
+        unsigned char* data = new unsigned char[(int)(dim.width * dim.height * 4)];
+        memset(data, 0, (int)(_width * _height * 4));
+        
+        // draw text
+        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+        CGContextRef context =
+        CGBitmapContextCreate(data, _width, _height, 8, _width * 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+        //by merlin from http://www.cocoachina.com/ask/questions/show/92695
+        */
+        // compute the padding needed by shadow and stroke
+        
+        //以下是cocos2dx3.0 里面写的。 主要在那个context 里面的一个强制转化
+//        float shadowStrokePaddingX = 0.0f;
+//        float shadowStrokePaddingY = 0.0f;
+//        
+//        if ( pInfo->hasStroke )
+//        {
+//            shadowStrokePaddingX = ceilf(pInfo->strokeSize);
+//            shadowStrokePaddingY = ceilf(pInfo->strokeSize);
+//        }
+//        
+//        if ( pInfo->hasShadow )
+//        {
+//            shadowStrokePaddingX = std::max(shadowStrokePaddingX, (float)fabs(pInfo->shadowOffset.width));
+//            shadowStrokePaddingY = std::max(shadowStrokePaddingY, (float)fabs(pInfo->shadowOffset.height));
+//        }
+
+        //dim.width  += shadowStrokePaddingX;
+        //dim.height += shadowStrokePaddingY;
+        
         
         unsigned char* data = new unsigned char[(int)(dim.width * dim.height * 4)];
         memset(data, 0, (int)(dim.width * dim.height * 4));
         
         // draw text
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();    
-        CGContextRef context = CGBitmapContextCreate(data, dim.width, dim.height, 8, dim.width * 4, colorSpace, kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-        CGColorSpaceRelease(colorSpace);
+        CGColorSpaceRef colorSpace  = CGColorSpaceCreateDeviceRGB();
+        CGContextRef context        = CGBitmapContextCreate(data,
+                                                            dim.width,
+                                                            dim.height,
+                                                            8,
+                                                            (int)(dim.width) * 4,
+                                                            colorSpace,
+                                                            kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         
+        
+        /*by  merlin*/
         if (! context)
         {
             delete[] data;
@@ -288,26 +338,26 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         // measure text size with specified font and determine the rectangle to draw text in
         unsigned uHoriFlag = eAlign & 0x0f;
         UITextAlignment align = (UITextAlignment)((2 == uHoriFlag) ? UITextAlignmentRight
-                                : (3 == uHoriFlag) ? UITextAlignmentCenter
-                                : UITextAlignmentLeft);
+                                                  : (3 == uHoriFlag) ? UITextAlignmentCenter
+                                                  : UITextAlignmentLeft);
         
         // normal fonts
         /*
-        if( [font isKindOfClass:[UIFont class] ] )
-        {
-            [str drawInRect:CGRectMake(0, startH, dim.width, dim.height) withFont:font lineBreakMode:(UILineBreakMode)UILineBreakModeWordWrap alignment:align];
-        }
-        else // ZFont class 
-        {
-            [FontLabelStringDrawingHelper drawInRect:str rect:CGRectMake(0, startH, dim.width, dim.height) withZFont:font lineBreakMode:(UILineBreakMode)UILineBreakModeWordWrap alignment:align];
-        }
+         if( [font isKindOfClass:[UIFont class] ] )
+         {
+         [str drawInRect:CGRectMake(0, startH, dim.width, dim.height) withFont:font lineBreakMode:(UILineBreakMode)UILineBreakModeWordWrap alignment:align];
+         }
+         else // ZFont class
+         {
+         [FontLabelStringDrawingHelper drawInRect:str rect:CGRectMake(0, startH, dim.width, dim.height) withZFont:font lineBreakMode:(UILineBreakMode)UILineBreakModeWordWrap alignment:align];
+         }
          */
         [str drawInRect:CGRectMake(0, startH, dim.width, dim.height) withFont:font lineBreakMode:(UILineBreakMode)UILineBreakModeWordWrap alignment:align];
         
         UIGraphicsPopContext();
         
         CGContextRelease(context);
-               
+        
         // output params
         pInfo->data = data;
         pInfo->hasAlpha = true;
@@ -317,7 +367,7 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
         pInfo->height = dim.height;
         bRet = true;
     } while (0);
-
+    
     return bRet;
 }
 
@@ -344,10 +394,10 @@ bool CCImage::initWithImageFile(const char * strPath, EImageFormat eImgFmt/* = e
 	bool bRet = false;
     unsigned long nSize = 0;
     unsigned char* pBuffer = CCFileUtils::sharedFileUtils()->getFileData(
-				CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(strPath),
-				"rb",
-				&nSize);
-				
+                                                                         CCFileUtils::sharedFileUtils()->fullPathFromRelativePath(strPath),
+                                                                         "rb",
+                                                                         &nSize);
+    
     if (pBuffer != NULL && nSize > 0)
     {
         bRet = initWithImageData(pBuffer, nSize, eImgFmt);
@@ -372,8 +422,8 @@ bool CCImage::initWithImageFileThreadSafe(const char *fullpath, EImageFormat ima
     return bRet;
 }
 
-bool CCImage::initWithImageData(void * pData, 
-                                int nDataLen, 
+bool CCImage::initWithImageData(void * pData,
+                                int nDataLen,
                                 EImageFormat eFmt,
                                 int nWidth,
                                 int nHeight,
@@ -381,7 +431,7 @@ bool CCImage::initWithImageData(void * pData,
 {
     bool bRet = false;
     tImageInfo info = {0};
-    do 
+    do
     {
         CC_BREAK_IF(! pData || nDataLen <= 0);
         if (eFmt == kFmtRawData)
@@ -409,22 +459,22 @@ bool CCImage::initWithImageData(void * pData,
 bool CCImage::_initWithRawData(void *pData, int nDatalen, int nWidth, int nHeight, int nBitsPerComponent)
 {
     bool bRet = false;
-    do 
+    do
     {
         CC_BREAK_IF(0 == nWidth || 0 == nHeight);
-
+        
         m_nBitsPerComponent = nBitsPerComponent;
         m_nHeight   = (short)nHeight;
         m_nWidth    = (short)nWidth;
         m_bHasAlpha = true;
-
+        
         // only RGBA8888 supported
         int nBytesPerComponent = 4;
         int nSize = nHeight * nWidth * nBytesPerComponent;
         m_pData = new unsigned char[nSize];
         CC_BREAK_IF(! m_pData);
         memcpy(m_pData, pData, nSize);
-
+        
         bRet = true;
     } while (0);
     return bRet;
@@ -455,17 +505,17 @@ bool CCImage::_saveImageToJPG(const char *pszFilePath)
 }
 
 bool CCImage::initWithString(
-             const char * pText, 
-             int         nWidth /* = 0 */, 
-             int         nHeight /* = 0 */,
-             ETextAlign eAlignMask /* = kAlignCenter */,
-             const char * pFontName /* = nil */,
-             int         nSize /* = 0 */)
+                             const char * pText,
+                             int         nWidth /* = 0 */,
+                             int         nHeight /* = 0 */,
+                             ETextAlign eAlignMask /* = kAlignCenter */,
+                             const char * pFontName /* = nil */,
+                             int         nSize /* = 0 */)
 {
     tImageInfo info = {0};
     info.width = nWidth;
     info.height = nHeight;
-      
+    
     if (! _initWithString(pText, eAlignMask, pFontName, nSize, &info))
     {
         return false;
@@ -476,7 +526,7 @@ bool CCImage::initWithString(
     m_bHasAlpha = info.hasAlpha;
     m_bPreMulti = info.isPremultipliedAlpha;
     m_pData = info.data;
-
+    
     return true;
 }
 
@@ -489,13 +539,13 @@ bool CCImage::saveToFile(const char *pszFilePath, bool bIsToRGB)
     {
         saveToPNG = true;
     }
-        
-    int bitsPerComponent = 8;            
+    
+    int bitsPerComponent = 8;
     int bitsPerPixel = m_bHasAlpha ? 32 : 24;
     if ((! saveToPNG) || bIsToRGB)
     {
         bitsPerPixel = 24;
-    }            
+    }
     
     int bytesPerRow    = (bitsPerPixel/8) * m_nWidth;
     int myDataLength = bytesPerRow * m_nHeight;
@@ -505,7 +555,7 @@ bool CCImage::saveToFile(const char *pszFilePath, bool bIsToRGB)
     // The data has alpha channel, and want to save it with an RGB png file,
     // or want to save as jpg,  remove the alpha channel.
     if ((saveToPNG && m_bHasAlpha && bIsToRGB)
-       || (! saveToPNG))
+        || (! saveToPNG))
     {
         pixels = new unsigned char[myDataLength];
         
@@ -521,7 +571,7 @@ bool CCImage::saveToFile(const char *pszFilePath, bool bIsToRGB)
         
         needToCopyPixels = true;
     }
-        
+    
     // make data provider with data.
     CGBitmapInfo bitmapInfo = kCGBitmapByteOrderDefault;
     if (saveToPNG && m_bHasAlpha && (! bIsToRGB))
@@ -531,19 +581,19 @@ bool CCImage::saveToFile(const char *pszFilePath, bool bIsToRGB)
     CGDataProviderRef provider        = CGDataProviderCreateWithData(NULL, pixels, myDataLength, NULL);
     CGColorSpaceRef colorSpaceRef    = CGColorSpaceCreateDeviceRGB();
     CGImageRef iref                    = CGImageCreate(m_nWidth, m_nHeight,
-                                                        bitsPerComponent, bitsPerPixel, bytesPerRow,
-                                                        colorSpaceRef, bitmapInfo, provider,
-                                                        NULL, false,
-                                                        kCGRenderingIntentDefault);
-        
+                                                       bitsPerComponent, bitsPerPixel, bytesPerRow,
+                                                       colorSpaceRef, bitmapInfo, provider,
+                                                       NULL, false,
+                                                       kCGRenderingIntentDefault);
+    
     UIImage* image                    = [[UIImage alloc] initWithCGImage:iref];
-        
-    CGImageRelease(iref);    
+    
+    CGImageRelease(iref);
     CGColorSpaceRelease(colorSpaceRef);
     CGDataProviderRelease(provider);
     
     NSData *data;
-                
+    
     if (saveToPNG)
     {
         data = UIImagePNGRepresentation(image);
@@ -554,9 +604,9 @@ bool CCImage::saveToFile(const char *pszFilePath, bool bIsToRGB)
     }
     
     [data writeToFile:[NSString stringWithUTF8String:pszFilePath] atomically:YES];
-        
+    
     [image release];
-        
+    
     if (needToCopyPixels)
     {
         delete [] pixels;

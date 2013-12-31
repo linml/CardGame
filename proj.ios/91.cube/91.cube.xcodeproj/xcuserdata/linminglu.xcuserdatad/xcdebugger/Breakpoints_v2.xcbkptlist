@@ -31,7 +31,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "359"
             endingLineNumber = "359"
-            landmarkName = "CFightingCardLayerLogic::checkSendZengfu()"
+            landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -63,7 +63,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "195"
             endingLineNumber = "195"
-            landmarkName = "CFightingCardLayerLogic::checkFighting()"
+            landmarkName = "CFightingCardLayerLogic::checklogicBuffAndDead()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -95,7 +95,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "210"
             endingLineNumber = "210"
-            landmarkName = "CFightingCardLayerLogic::checkFighting()"
+            landmarkName = "CFightingCardLayerLogic::checklogicCheckIsCanSendAtk()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -303,7 +303,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "218"
             endingLineNumber = "218"
-            landmarkName = "CFightingCardLayerLogic::checkFighting()"
+            landmarkName = "CFightingCardLayerLogic::checklogicCheckIsCanSendAtk()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -319,7 +319,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
             endingLineNumber = "94"
-            landmarkName = "CFightingCardLayerLogic::logicFighting()"
+            landmarkName = "CFightingCardLayerLogic::loadFromServerTest(int loadTeamIndex)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -447,7 +447,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "291"
             endingLineNumber = "291"
-            landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
+            landmarkName = "CFightingCardLayerLogic::getNextFightCard(int index,bool isLeftFightTeam)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -463,7 +463,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "287"
             endingLineNumber = "287"
-            landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
+            landmarkName = "CFightingCardLayerLogic::getNextFightCard(int index,bool isLeftFightTeam)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -478,9 +478,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "305"
-            endingLineNumber = "305"
-            landmarkName = "CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()"
-            landmarkType = "5">
+            endingLineNumber = "305">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1779,7 +1777,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
             endingLineNumber = "63"
-            landmarkName = "CFightingCardLayerLogic::loadFromServerTest(int loadTeamIndex)"
+            landmarkName = "CFightingCardLayerLogic::loadFromCardTeamTest()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
