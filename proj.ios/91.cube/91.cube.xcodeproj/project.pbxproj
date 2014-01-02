@@ -111,7 +111,6 @@
 		6FC8906C184344DE00AC8626 /* CLackAPDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC89066184344DE00AC8626 /* CLackAPDialog.cpp */; };
 		6FC8906D184344DE00AC8626 /* CLackGPDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC89068184344DE00AC8626 /* CLackGPDialog.cpp */; };
 		6FC8906E184344DE00AC8626 /* CSpecialPropUserDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC8906A184344DE00AC8626 /* CSpecialPropUserDialog.cpp */; };
-		6FC8ED631869219B002FF88A /* CRankRewardManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC8ED611869219B002FF88A /* CRankRewardManager.cpp */; };
 		6FCA468B17F014B300346E6B /* CReward.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCA468917F014B300346E6B /* CReward.cpp */; };
 		6FCB05441834997C00848C82 /* CSceneHospitalLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB05421834997C00848C82 /* CSceneHospitalLayer.cpp */; };
 		6FCB05491834D79600848C82 /* CSceneFriendMainLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FCB05471834D79600848C82 /* CSceneFriendMainLayer.cpp */; };
@@ -614,8 +613,6 @@
 		6FC89069184344DE00AC8626 /* CLackGPDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLackGPDialog.h; sourceTree = "<group>"; };
 		6FC8906A184344DE00AC8626 /* CSpecialPropUserDialog.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSpecialPropUserDialog.cpp; sourceTree = "<group>"; };
 		6FC8906B184344DE00AC8626 /* CSpecialPropUserDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSpecialPropUserDialog.h; sourceTree = "<group>"; };
-		6FC8ED611869219B002FF88A /* CRankRewardManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRankRewardManager.cpp; sourceTree = "<group>"; };
-		6FC8ED621869219B002FF88A /* CRankRewardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRankRewardManager.h; sourceTree = "<group>"; };
 		6FCA468917F014B300346E6B /* CReward.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CReward.cpp; sourceTree = "<group>"; };
 		6FCA468A17F014B300346E6B /* CReward.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CReward.h; sourceTree = "<group>"; };
 		6FCB05421834997C00848C82 /* CSceneHospitalLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CSceneHospitalLayer.cpp; sourceTree = "<group>"; };
@@ -1841,8 +1838,6 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
-				6FC8ED611869219B002FF88A /* CRankRewardManager.cpp */,
-				6FC8ED621869219B002FF88A /* CRankRewardManager.h */,
 				6FB9D3471855878B00E752DF /* CDrawGonggaoTable.cpp */,
 				6FB9D3481855878B00E752DF /* CDrawGonggaoTable.h */,
 				6FB9D3441855874A00E752DF /* CRankDataManager.cpp */,
@@ -3298,7 +3293,6 @@
 				9FC6F27F17460BFF0091BE98 /* CCControlLoader.cpp in Sources */,
 				9FC6F28017460BFF0091BE98 /* CCData.cpp in Sources */,
 				9FC6F28117460BFF0091BE98 /* CCLabelBMFontLoader.cpp in Sources */,
-				6FC8ED631869219B002FF88A /* CRankRewardManager.cpp in Sources */,
 				9FC6F28217460BFF0091BE98 /* CCLabelTTFLoader.cpp in Sources */,
 				9FC6F28317460BFF0091BE98 /* CCLayerColorLoader.cpp in Sources */,
 				9FC6F28417460BFF0091BE98 /* CCLayerGradientLoader.cpp in Sources */,

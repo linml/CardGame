@@ -246,11 +246,9 @@ namespace GameTools {
     
 	CCRect ccRectForKey(const char *key, cocos2d::CCDictionary* dict)
 	{
-        CCAssert(dict, "map dict is NULL");
 		float tmp[4];
 		string value = string(valueForKey(key, dict));
 		stringstream ss1;
-        CCAssert(value.size()!=0, "value.size()==0");
 		ss1<<value.substr(1,value.size() - 1);
 		string sub_str;
 		int count = 0;

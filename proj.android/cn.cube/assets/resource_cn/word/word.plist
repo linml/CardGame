@@ -166,6 +166,16 @@
 	<string>已签到</string>
 	<key>hainengchouduoshaoka</key>
 	<string>剩余的友情点还能抽%d张卡</string>
+	<key>diyizhujiang</key>
+	<string>第一主将</string>
+	<key>dierzhujiang</key>
+	<string>第二主将</string>
+	<key>disanzhujiang</key>
+	<string>第三主将</string>
+	<key>disizhujiang</key>
+	<string>第四主将</string>
+	<key>diwuzhujiang</key>
+	<string>拥护</string>
 	<key>backpack_all</key>
 	<string>All</string>
 	<key>backpack_prop</key>

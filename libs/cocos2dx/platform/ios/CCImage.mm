@@ -323,7 +323,7 @@ static bool _initWithString(const char * pText, cocos2d::CCImage::ETextAlign eAl
                                                             kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
         
         
-        /*by  merlin*/
+        
         if (! context)
         {
             delete[] data;

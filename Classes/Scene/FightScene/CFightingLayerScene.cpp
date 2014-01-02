@@ -23,7 +23,6 @@
 #include "CFightCardBufferData.h"
 #include "CGameCardBuffer.h"
 #include "CPtTool.h"
-#include "LayoutLayer.h"
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
     "001",
@@ -111,7 +110,7 @@ bool CFightingLayerScene::init()
     m_bAnimationEnd=true;
     CCLog("CCardFightingLayerScene::init");
     initBggroudPng();
-   
+    PtMapUtility::addChildFromScript(this, plistPath+"zhandouui.plist");
     initText();
     initHitText();
     createHpText();
@@ -1207,8 +1206,8 @@ bool CFightingLayerScene::initText()
     labelttfVersion->setColor(ccc3(0, 0, 255));
     addChild(labelttfVersion,10,20003);
     return true;
-
 }
+
 //攻击的时候 显示的图片
 bool CFightingLayerScene::initAtkPng()
 {
@@ -1220,17 +1219,13 @@ bool CFightingLayerScene::initAtkPng()
     sprite2->setVisible(false);
     return true;
 }
-
 // 初始化 背景图片
 bool CFightingLayerScene::initBggroudPng()
 {
     CCSize  winsize=CCDirector::sharedDirector()->getWinSize();
-    CCSprite *bgSprite=CCSprite::create((g_mapImagesPath+"fighting/zhandoubeijing.png").c_str());
+    CCSprite *bgSprite=CCSprite::create((g_mapImagesPath+"fighting/bgm.png").c_str());
     assert(bgSprite!=NULL);
     bgSprite->setPosition(ccp(winsize.width*0.5,winsize.height*0.5));
     addChild(bgSprite,0);
-     PtMapUtility::addChildFromScript(this, plistPath+"zhandoujiemian_xin.plist");
-    //LayoutLayer *pLayer=LayoutLayer::create();
-    //pLayer->initWithFile(this, CSTR_FILEPTAH(plistPath, "zhandoujiemian_xin.plist"));
     return  true;
 }
