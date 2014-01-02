@@ -111,7 +111,7 @@ bool CFightingLayerScene::init()
     m_bAnimationEnd=true;
     CCLog("CCardFightingLayerScene::init");
     initBggroudPng();
-    PtMapUtility::addChildFromScript(this, plistPath+"zhandouui.plist");
+   
     initText();
     initHitText();
     createHpText();
@@ -1229,8 +1229,8 @@ bool CFightingLayerScene::initBggroudPng()
     assert(bgSprite!=NULL);
     bgSprite->setPosition(ccp(winsize.width*0.5,winsize.height*0.5));
     addChild(bgSprite,0);
-    
-    LayoutLayer *pLayer=LayoutLayer::create();
-    pLayer->initWithFile(this, CSTR_FILEPTAH(plistPath, "zhandoujiemian_xin.plist"));
+     PtMapUtility::addChildFromScript(this, plistPath+"zhandoujiemian_xin.plist");
+    //LayoutLayer *pLayer=LayoutLayer::create();
+    //pLayer->initWithFile(this, CSTR_FILEPTAH(plistPath, "zhandoujiemian_xin.plist"));
     return  true;
 }

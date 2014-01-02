@@ -3,12 +3,12 @@
     <key>mapInfo</key>
     <dict>
         <key>mapName</key>
-        <string>mapName</string>
+        <string>zhandoujiemian_xin</string>
         <key>mapSize</key>
         <string>{100,100}</string>
         <key>backgroundColor</key>
         <string>{0,0,0,255}</string>
-        <key>gridInfo</key>dan
+        <key>gridInfo</key>
         <string>{64,64,16,12}</string>
         <key>layerNameArray</key>
         <string>touxiang,ditiao</string>

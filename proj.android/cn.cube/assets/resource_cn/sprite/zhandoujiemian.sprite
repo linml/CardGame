@@ -3,7 +3,7 @@
     <key>spriteFileName</key>
     <string>zhandoujiemian</string>
     <key>imagePath</key>
-    <string>../../kapaiziyuanku/Work/images/zhandoujiemian.png</string>
+    <string>Users/linminglu/Documents/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/zhandoujiemian.png</string>
     <key>clipData</key>
     <dict>
         <key>ditiao_01.png</key>
