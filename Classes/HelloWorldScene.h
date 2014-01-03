@@ -17,6 +17,8 @@ public:
 
     // preprocessor macro for "static create()" constructor ( node() deprecated )
     CREATE_FUNC(HelloWorld);
+    
+    void sechUpdate(float  ft);
 };
 
 #endif // __HELLOWORLD_SCENE_H__

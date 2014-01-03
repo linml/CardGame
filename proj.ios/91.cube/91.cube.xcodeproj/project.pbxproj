@@ -83,6 +83,8 @@
 		6FB568EB17C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB568E917C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp */; };
 		6FB568EE17C491E500B038F8 /* CEffectInterFaceOneRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB568EC17C491E400B038F8 /* CEffectInterFaceOneRefactor.cpp */; };
 		6FB5F57517A7A1EB0026206F /* SEveryATKData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB5F57317A7A1EB0026206F /* SEveryATKData.cpp */; };
+		6FB75B0D18764D4700F092FF /* CFightCardInfoSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB75B0B18764D4700F092FF /* CFightCardInfoSprite.cpp */; };
+		6FB75B10187651DD00F092FF /* CRankRewardManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB75B0E187651DC00F092FF /* CRankRewardManager.cpp */; };
 		6FB7E44C17DEC34D004DF409 /* CGameNpcCard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7E44A17DEC34C004DF409 /* CGameNpcCard.cpp */; };
 		6FB7E45117DEEA40004DF409 /* CTriggerConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7E44D17DEEA3C004DF409 /* CTriggerConfigData.cpp */; };
 		6FB7E45217DEEA40004DF409 /* CTaskConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB7E44F17DEEA3E004DF409 /* CTaskConfigData.cpp */; };
@@ -557,6 +559,11 @@
 		6FB568ED17C491E500B038F8 /* CEffectInterFaceOneRefactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEffectInterFaceOneRefactor.h; sourceTree = "<group>"; };
 		6FB5F57317A7A1EB0026206F /* SEveryATKData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SEveryATKData.cpp; sourceTree = "<group>"; };
 		6FB5F57417A7A1EB0026206F /* SEveryATKData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SEveryATKData.h; sourceTree = "<group>"; };
+		6FB75B0B18764D4700F092FF /* CFightCardInfoSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightCardInfoSprite.cpp; sourceTree = "<group>"; };
+		6FB75B0C18764D4700F092FF /* CFightCardInfoSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightCardInfoSprite.h; sourceTree = "<group>"; };
+		6FB75B0E187651DC00F092FF /* CRankRewardManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CRankRewardManager.cpp; sourceTree = "<group>"; };
+		6FB75B0F187651DC00F092FF /* CRankRewardManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CRankRewardManager.h; sourceTree = "<group>"; };
+		6FB75B11187694AC00F092FF /* CGameCardConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameCardConfig.h; sourceTree = "<group>"; };
 		6FB7E44A17DEC34C004DF409 /* CGameNpcCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameNpcCard.cpp; sourceTree = "<group>"; };
 		6FB7E44B17DEC34D004DF409 /* CGameNpcCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameNpcCard.h; sourceTree = "<group>"; };
 		6FB7E44D17DEEA3C004DF409 /* CTriggerConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CTriggerConfigData.cpp; sourceTree = "<group>"; };
@@ -1724,6 +1731,8 @@
 		8E6CE598176EFF9800CF5C0D /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				6FB75B0B18764D4700F092FF /* CFightCardInfoSprite.cpp */,
+				6FB75B0C18764D4700F092FF /* CFightCardInfoSprite.h */,
 				8E6CE599176EFFD400CF5C0D /* FightResultConfirm.cpp */,
 				8E6CE59A176EFFD400CF5C0D /* FightResultConfirm.h */,
 				6FCD27E7182B21120043D050 /* CFightBufferPngSprite.cpp */,
@@ -1778,6 +1787,7 @@
 		9F55A10B174B0F710068E44A /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				6FB75B11187694AC00F092FF /* CGameCardConfig.h */,
 				6FAD755017A26A3800AB8D8E /* CPtTool.cpp */,
 				6FAD755117A26A3800AB8D8E /* CPtTool.h */,
 				6FAD755217A26A3800AB8D8E /* PtHttpURL.h */,
@@ -1838,6 +1848,8 @@
 		9F6227AF174F122F006A7D69 /* Struct */ = {
 			isa = PBXGroup;
 			children = (
+				6FB75B0E187651DC00F092FF /* CRankRewardManager.cpp */,
+				6FB75B0F187651DC00F092FF /* CRankRewardManager.h */,
 				6FB9D3471855878B00E752DF /* CDrawGonggaoTable.cpp */,
 				6FB9D3481855878B00E752DF /* CDrawGonggaoTable.h */,
 				6FB9D3441855874A00E752DF /* CRankDataManager.cpp */,
@@ -3235,6 +3247,7 @@
 				9FC6F25217460BFF0091BE98 /* CCSprite.cpp in Sources */,
 				9FC6F25317460BFF0091BE98 /* CCSpriteBatchNode.cpp in Sources */,
 				9FC6F25417460BFF0091BE98 /* CCSpriteFrame.cpp in Sources */,
+				6FB75B10187651DD00F092FF /* CRankRewardManager.cpp in Sources */,
 				9FC6F25517460BFF0091BE98 /* CCSpriteFrameCache.cpp in Sources */,
 				9FC6F25617460BFF0091BE98 /* base64.cpp in Sources */,
 				6FCD27E9182B21120043D050 /* CFightBufferPngSprite.cpp in Sources */,
@@ -3368,6 +3381,7 @@
 				6FB9D34018556A8900E752DF /* CEveryDayLoginLayer.cpp in Sources */,
 				6F34AE901760945F00A6433C /* LoadingScene.cpp in Sources */,
 				6F91B4511827364800B284B9 /* CEffectInterFaceThreeRefactor.cpp in Sources */,
+				6FB75B0D18764D4700F092FF /* CFightCardInfoSprite.cpp in Sources */,
 				6F780751176469830049321C /* HallScene.cpp in Sources */,
 				6F780752176469830049321C /* AsgardLayer.cpp in Sources */,
 				6F780753176469830049321C /* LogoLayer.cpp in Sources */,

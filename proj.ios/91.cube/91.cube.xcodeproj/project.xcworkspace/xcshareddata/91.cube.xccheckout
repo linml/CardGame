@@ -5,34 +5,39 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>466D72F8-2D86-445B-AA3F-F6BD16BA64EB</string>
+	<string>1E4D8195-8481-421C-8139-B64F8DE0E0B0</string>
 	<key>IDESourceControlProjectName</key>
 	<string>91.cube</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>C3950E5A-F667-4C0C-B672-B9879A7565D2</key>
-		<string>ssh://github.com/linminglu/paidemo.git</string>
+		<key>1D5922D6-F53A-414B-8716-4E13486FAAAD</key>
+		<string>svn://192.168.2.3/sdp/GameProject/CubeCOCO</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>proj.ios/91.cube/91.cube.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>C3950E5A-F667-4C0C-B672-B9879A7565D2</key>
+		<key>1D5922D6-F53A-414B-8716-4E13486FAAAD</key>
 		<string>../../../..</string>
 	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>1D5922D6-F53A-414B-8716-4E13486FAAAD</key>
+		<string>svn://192.168.2.3/sdp</string>
+	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>ssh://github.com/linminglu/paidemo.git</string>
+	<string>svn://192.168.2.3/sdp/GameProject/CubeCOCO/proj.ios/91.cube/91.cube.xcodeproj</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>110</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>C3950E5A-F667-4C0C-B672-B9879A7565D2</string>
+	<string>1D5922D6-F53A-414B-8716-4E13486FAAAD</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
-			<string>public.vcs.git</string>
+			<string>public.vcs.subversion</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>C3950E5A-F667-4C0C-B672-B9879A7565D2</string>
+			<string>1D5922D6-F53A-414B-8716-4E13486FAAAD</string>
 			<key>IDESourceControlWCCName</key>
 			<string>CubeCOCO</string>
 		</dict>

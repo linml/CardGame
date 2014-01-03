@@ -64,15 +64,11 @@ CFightingLayerScene::CFightingLayerScene()
     schudel1=new CCScheduler();
     actionManager1=new CCActionManager();
     schudel1->scheduleUpdateForTarget(actionManager1, 0, false);
-//    schudel1->retain();
-//    actionManager1->retain();
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(schudel1, 0, false);
     
     schudel2=new CCScheduler();
     actionManager2=new CCActionManager();
     schudel2->scheduleUpdateForTarget(actionManager2, 0, false);
-//    schudel2->retain();
-//    actionManager2->retain();
     CCDirector::sharedDirector()->getScheduler()->scheduleUpdateForTarget(schudel2, 0, false);
     if (m_gamePlayer->getFightKuaijin())
     {

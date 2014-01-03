@@ -141,6 +141,9 @@ const ccColor3B g_custom_color[] = {
     {0,255,0},      //22每日签到绿色
     {236,250,163},  //23每日签到黄色
     {255,255,255},  //24每日签到白色
+    {48,188,64},    //25战斗界面主将字体颜色
+    {249,126,48}    //26战斗界面拥护字体颜色
+    
 };
 
 typedef struct TPlayTask {
@@ -291,4 +294,8 @@ enum EN_LEFTTEAMORRIGHTTEAM
 #define NOTIFYTAG_LEVELUP "NOTIFYTAG_LEVELUP"
 
 #define CANNOTFIGHTEFFECTLOGICVALUE 8
+
+// 包含其他配置文件：
+#include "CGameCardConfig.h" //卡牌资源配置文件
+
 #endif

@@ -26,23 +26,9 @@ static string g_testtemp[5]={
 };
 
 
-CGamesCard::CGamesCard()
-{
-    isAddTexiao=false;
-    m_pAtkLabel = NULL;
-    m_pDefLabel = NULL;
-    m_pHpLabel = NULL;
-    m_pRvcLabel = NULL;
-    m_pLogo = NULL;
-}
-
-CGamesCard::~CGamesCard()
-{
 
 
-}
-
-
+// static method of class CGamesCard
 CGamesCard  *CGamesCard::Create(CFightCard *card)
 
 {
@@ -59,7 +45,67 @@ CGamesCard  *CGamesCard::Create(CFightCard *card)
     return cardSprite;
 }
 
+CGamesCard *CGamesCard::create(CFightCard *inCard, CGameCardFactory *inFactory)
+{
+    if (inFactory == NULL)
+    {
+        inFactory = CGameCardFactory::getInstance();
+    }
+    CGamesCard *cardSprite = new CGamesCard();
+    if (cardSprite)
+    {
+        if (cardSprite->initCGamesCard(inCard, inFactory))
+        {
+            cardSprite->autorelease();
+        }
+        else
+        {
+            delete cardSprite;
+            cardSprite = NULL;
+        }
+    }
+    return cardSprite;
+}
 
+// public method of class CGamesCard
+CGamesCard::CGamesCard()
+{
+    isAddTexiao=false;
+    m_pAtkLabel = NULL;
+    m_pDefLabel = NULL;
+    m_pHpLabel = NULL;
+    m_pRvcLabel = NULL;
+    m_pLogo = NULL;
+}
+
+CGamesCard::~CGamesCard()
+{
+    
+    
+}
+
+bool CGamesCard::initCGamesCard(CFightCard *inCard, CGameCardFactory *inFactory)
+{
+    assert(inCard != NULL&&"card is null");
+    m_sCardSize = CCSizeMake(115, 105);
+    m_pCardData = inCard;
+    if(!initWithTexture(NULL, CCRectZero))
+    {
+        return false;
+    }
+    int cardStar = inCard->m_pCard->m_nCard_star;
+    int stirps = inCard->m_pCard->m_icard_stirps;
+    
+    createBgWithStar(cardStar, inFactory);
+    createPersonWithName(inCard->m_pCard->m_scard_resources.c_str());
+    createBorderWithStar(cardStar, inFactory);
+    createStirp(stirps, inFactory);
+    createStar(cardStar, inFactory);
+    createLevel(inCard->m_iCurrLevel, inFactory);
+
+    setContentSize(m_sCardSize);
+    return true;
+}
 
 CGamesCard * CGamesCard::getCopy()
 {
@@ -515,7 +561,375 @@ void CGamesCard::setLogo(const int &inType)
             break;
     }
     m_pLogo->setPosition(point);
+}
+// protect methods of CGamesCard
+
+/*
+ * @brief 根据星级创建背景底纹（1->1-2; 2->3; 3->4; 4->5; 5->6; 6-7）
+ * @param inStar(1-7)
+ */
+void CGamesCard::createBgWithStar(int inStar ,CGameCardFactory *inFactory)
+{
+    if (inStar <= 0 & inStar > 7)
+    {
+        return;
+    }
+    CCSprite * bgSprite = NULL;
+    inStar = (inStar-1)==0? 1 : inStar-1;
+    char diwenName[15]={0};
+    sprintf(diwenName, "diwen_%d.png", inStar);
+    bgSprite = CCSprite::createWithSpriteFrame(inFactory->getSpriteFrameWithName(diwenName));
+    bgSprite->setAnchorPoint(CCPointZero);
+    addChild(bgSprite, 0);
     
+}
+/*
+ * @brief 创建小卡内的人物
+ * @param
+ */
+void CGamesCard::createPersonWithName(const char *inName)
+{
+    CCTexture2D* texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_cardResourcePath, inName));
+    CCSprite *roleSprite=CCSprite::createWithTexture(texture);
+    roleSprite->setAnchorPoint(CCPointZero);
+    addChild(roleSprite,1,TAG_GAMECARD_HERO);
+}
+/*
+ * @brief 根据星级创建小卡的外框
+ * @param
+ */
+void CGamesCard::createBorderWithStar(int inStar ,CGameCardFactory *inFactory)
+{
+    if (inStar <= 0 & inStar > 7)
+    {
+        return;
+    }
+    CCSprite * borderSprite = NULL;
+    inStar = (inStar-1)==0? 1 : inStar-1;
+    char kakuang[15]={0};
+    sprintf(kakuang, "kakuang_%d.png", inStar);
+    borderSprite = CCSprite::createWithSpriteFrame(inFactory->getSpriteFrameWithName(kakuang));
+    borderSprite->setAnchorPoint(CCPointZero);
+    addChild(borderSprite, 3);
+}
+/*
+ * @brief 创建等级信息
+ * @param
+ */
+void CGamesCard::createLevel(const int inLevel ,CGameCardFactory *inFactory)
+{
+    char buff[20]={0};
+    sprintf(buff, "LV.%d", inLevel);
+
+    CCLabelTTF *label = CCLabelTTF::create(buff, "ArialRoundedMTBold", 20);
+
+    label->setHorizontalAlignment(kCCTextAlignmentLeft);
+    label->setAnchorPoint(CCPointZero);
+    label->setPosition(ccp(m_sCardSize.width*0.35, 3));
+    addChild(label, 4);
+}
+/*
+ * @brief 创建种族标示
+ * @param
+ */
+void CGamesCard::createStirp(const int inStirp ,CGameCardFactory *inFactory)
+{
+ 
+
+    if (inStirp >=1 && inStirp <=4)
+    {
+        char zhongzhu[15]={0};
+        sprintf(zhongzhu, "zhongzhu_%d.png", inStirp); 
+        CCSprite * stripSprit =  CCSprite::createWithSpriteFrame(inFactory->getSpriteFrameWithName(zhongzhu));
+        if (stripSprit)
+        {
+            stripSprit->setAnchorPoint(ccp(0, 1));
+            stripSprit->setPosition(ccp(0-8, m_sCardSize.height+3));
+            addChild(stripSprit,4);
+        }
+    }
+
+}
+
+/*
+ * @brief 创建星级标示
+ * @param
+ */
+void CGamesCard::createStar(int inStar ,CGameCardFactory *inFactory)
+{
+     CCSprite * starSprite =  CCSprite::createWithSpriteFrame(inFactory->getSpriteFrameWithName("xingji.png"));
+    if (starSprite)
+    {
+        starSprite->setAnchorPoint(ccp(0, 0.5));
+        starSprite->setPosition(ccp(m_sCardSize.width*0.7, m_sCardSize.height*0.33));
+        addChild(starSprite, 4);
+        CCSize size = starSprite->getContentSize();
+        char buff[5]={0};
+        sprintf(buff, "%d", inStar);
+        CCLabelTTF *label = CCLabelTTF::create(buff, "ArialRoundedMTBold", 15);
+
+        label->setPosition(ccp(size.width/2, size.height/2-2));
+        starSprite->addChild(label);
+    }
+}
+
+// implement class of CGameDaCard
+
+CGameDaCard * CGameDaCard::create(CFightCard *inCard, CGameCardFactory *inFactory )
+{
+    if (inFactory == NULL)
+    {
+        inFactory = CGameCardFactory::getInstance();
+    }
+    CCAssert(inCard, "the fightcard is null");
+    CGameDaCard *card = new CGameDaCard();
+    if (card)
+    {
+        if(card->initWithCardData(inCard, inFactory))
+        {
+            card->autorelease();
+        }else
+        {
+            delete card;
+            card = NULL;
+        }
+    }
+    return card;
+}
+
+CGameDaCard::CGameDaCard()
+{
+    m_pBatchContainer = NULL;
+    m_pCardData = NULL;
+}
+CGameDaCard::~CGameDaCard()
+{
+    
+}
+bool CGameDaCard::initWithCardData(CFightCard *inCard, CGameCardFactory *inFactory)
+{
+    bool bRet = false;
+    if (!initWithTexture(NULL, CCRectZero))
+    {
+        return bRet;
+    }
+    m_pBatchContainer = CCSpriteBatchNode::createWithTexture(inFactory->getSpriteFrameWithName("daka_bg.png", CGameCardFactory::DAKA)->getTexture(), 15);
+    addChild(m_pBatchContainer, 0);
+    createBg(inFactory);
+    createPerson(inCard->m_pCard->m_scard_role.c_str());
+    createStar(inCard->m_pCard->m_nCard_star, inFactory);
+    createStirp(inCard->m_pCard->m_icard_stirps, inFactory);
+    createLevel(inCard->m_iCurrLevel);
+    createCardData(inCard->m_attack,inCard->m_defend, inCard->m_iHp,inFactory);
+    createCardName(inCard->m_pCard->m_scard_name.c_str());
+    
+    bRet = true;
+    return bRet;
+}
+
+void CGameDaCard::createBg(CGameCardFactory *inFactory)
+{
+    CCSprite *bg =CCSprite::createWithSpriteFrame(
+                                                  inFactory->getSpriteFrameWithName("daka_bg.png", CGameCardFactory::DAKA));
+    if (bg)
+    {
+        m_pBatchContainer->addChild(bg);
+        bg->setAnchorPoint(CCPointZero);
+        m_sCardSize = bg->getContentSize();
+    }
+}
+
+void CGameDaCard::createPerson(const char *inName)
+{
+    CCLog("the name : %s", inName);
+    CCTexture2D* texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_cardRolePath, inName));
+    CCSprite *roleSprite=CCSprite::createWithTexture(texture);
+    roleSprite->setPosition(ccp(m_sCardSize.width*0.45, m_sCardSize.height*0.6));
+    addChild(roleSprite,1,TAG_GAMECARD_HERO);
+
+}
+void CGameDaCard::createStar(int inStar, CGameCardFactory *inFactory)
+{
+    CCSpriteFrame *frame = inFactory->getSpriteFrameWithName("daka_xingji.png",CGameCardFactory::DAKA);
+    if (frame)
+    {
+        for (int i = 0; i < inStar; i++)
+        {
+            CCSprite *starSprite = CCSprite::createWithSpriteFrame(frame);
+            starSprite->setPosition(ccp(m_sCardSize.width*0.125 + i* 25, m_sCardSize.height*0.18));
+            addChild(starSprite,1, STARSPRITETAG+i);
+        }
+    }
+}
+void CGameDaCard::createCardData(int inAtk, int inDef, int inGP, CGameCardFactory *inFactory)
+{
+    CCSprite* atkSprite = CCSprite::createWithSpriteFrame(inFactory->getSpriteFrameWithName("daka_gong.png", CGameCardFactory::DAKA));
+    CCSprite* defSprite = CCSprite::createWithSpriteFrame(inFactory->getSpriteFrameWithName("daka_fang.png", CGameCardFactory::DAKA));
+    CCSprite* gpSprite = CCSprite::createWithSpriteFrame(inFactory->getSpriteFrameWithName("daka_xue.png", CGameCardFactory::DAKA));
+    char buffer[30]={0};
+    CCPoint point;
+    CCLabelTTF *label = NULL;
+    if (atkSprite)
+    {
+        point = ccp(m_sCardSize.width*0.08, m_sCardSize.height*0.07);
+        atkSprite->setPosition(point);
+        m_pBatchContainer->addChild(atkSprite);
+        sprintf(buffer, "%d", inAtk);
+        label = CCLabelTTF::create(buffer, "Arial", 16);
+        label->setAnchorPoint(ccp(0,0.5));
+        label->setPosition(ccp(point.x+10,point.y));
+        addChild(label);
+    }
+    
+    if (defSprite)
+    {
+        point.x += 55;
+        defSprite->setPosition(point);
+        m_pBatchContainer->addChild(defSprite);
+        sprintf(buffer, "%d", inDef);
+        label = CCLabelTTF::create(buffer, "Arial", 16);
+        label->setAnchorPoint(ccp(0,0.5));
+        label->setPosition(ccp(point.x+10,point.y));
+        addChild(label);
+    }
+    
+    if (gpSprite)
+    {
+        point.x += 55;
+        gpSprite->setPosition(point);
+        m_pBatchContainer->addChild(gpSprite);
+        sprintf(buffer, "%d", inGP);
+        label = CCLabelTTF::create(buffer, "Arial", 16);
+        label->setAnchorPoint(ccp(0,0.5));
+        label->setPosition(ccp(point.x+10,point.y));
+        addChild(label);
+
+    }
+}
+void CGameDaCard::createStirp(int inStirp, CGameCardFactory *inFactory)
+{
+    if (inStirp >= 1 && inStirp <= 4)
+    {
+        char stirpName[20]= {0};
+        sprintf(stirpName, "daka_zhongzhu_%d.png",inStirp);
+        CCSprite *stirpSprite = CCSprite::createWithSpriteFrame(inFactory->getSpriteFrameWithName(stirpName, CGameCardFactory::DAKA));
+        if (stirpSprite)
+        {
+            m_pBatchContainer->addChild(stirpSprite,1);
+            stirpSprite->setPosition(ccp(m_sCardSize.width*0.125, m_sCardSize.height*0.925));
+        }
+    }
+    
+}
+void CGameDaCard::createLevel(int inLevel)
+{
+    char buffer[10] = {0};
+    sprintf(buffer, "LV.%d", inLevel);
+    CCLabelTTF *label = CCLabelTTF::create(buffer, "Arial-Bold", 28);
+    label->setHorizontalAlignment(kCCTextAlignmentLeft);
+    label->setAnchorPoint(ccp(0,0.5));
+    label->setPosition(ccp(m_sCardSize.width*0.8, m_sCardSize.height*0.08));
+    addChild(label);
+}
+void CGameDaCard::createCardName(const char *inCardName)
+{
+    CCLabelTTF *label = CCLabelTTF::create(inCardName, "Arial-Bold", 32);
+    label->setPosition(ccp(m_sCardSize.width*0.5, m_sCardSize.height*0.925));
+    addChild(label);
+    
+}
+
+// implement class of CGameCardFactory
+
+CGameCardFactory* CGameCardFactory::getInstance()
+{
+    if (s_pInstance == NULL)
+    {
+        s_pInstance = new CGameCardFactory();
+    }
+    return s_pInstance;
+}
+void CGameCardFactory::releaseCardFactory()
+{
+    CC_SAFE_DELETE(s_pInstance);
+    s_pInstance = NULL;
+}
+CGameCardFactory* CGameCardFactory::s_pInstance = NULL;
+
+CGamesCard * CGameCardFactory::createCGameCard(CFightCard *inCard)
+{
+    return CGamesCard::create(inCard, this);
+}
+
+CGameDaCard * CGameCardFactory::createCGameDaCard(CFightCard *inCard)
+{
+     return CGameDaCard::create(inCard, this);
+}
+CCSprite *CGameCardFactory::createCardHead(CFightCard *inCard)
+{
+    CCAssert(inCard, "the card param is null");
+    CCSprite *sprite = NULL;
+    CCTexture2D *texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_cardHeadPath, inCard->m_pCard->m_scard_head.c_str()));
+    if (texture)
+    {
+        sprite = CCSprite::createWithTexture(texture);
+    }
+    return sprite;
+}
+CCSpriteFrame * CGameCardFactory::getSpriteFrameWithName(const char * spriteName ,CARDSTYLE inCardStyle)
+{
+    CCSpriteFrame *spriteFrame = (CCSpriteFrame* )m_pCardCache->objectForKey(spriteName);
+    if (spriteFrame == NULL)
+    {
+        spriteFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(spriteName);
+        if (spriteFrame == NULL)
+        {
+            if (inCardStyle == XIAOKA)
+            {
+                loadXiaoCardResource();
+            }else
+            {
+                loadDaCardResource();
+            }
+           
+            spriteFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(spriteName);
+        }
+        CCAssert(spriteFrame, "没有该card的纹理资源");
+        m_pCardCache->setObject(spriteFrame, spriteName);
+    }
+    return spriteFrame;
+}
+
+void  CGameCardFactory::clearCache()
+{
+    if (m_pCardCache)
+    {
+        m_pCardCache->removeAllObjects();
+    }
+}
+
+CGameCardFactory::CGameCardFactory()
+{
+    m_pCardCache = new CCDictionary();
+}
+CGameCardFactory::~CGameCardFactory()
+{
+    if (m_pCardCache)
+    {
+        m_pCardCache->removeAllObjects();
+        delete m_pCardCache;
+        m_pCardCache = NULL;
+    }
+}
+
+void CGameCardFactory::loadXiaoCardResource()
+{
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_cardImagePath, "card_diwen.plist"), CSTR_FILEPTAH(g_cardImagePath, "card_diwen.png"));
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_cardImagePath, "card_waikuang.plist"), CSTR_FILEPTAH(g_cardImagePath, "card_waikuang.png"));
+}
+void CGameCardFactory::loadDaCardResource()
+{
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_cardImagePath, "card_daka.plist"), CSTR_FILEPTAH(g_cardImagePath, "card_daka.png"));
     
 }
 

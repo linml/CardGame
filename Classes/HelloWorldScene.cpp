@@ -16,6 +16,7 @@
 #include "CScreenHandBookLayer.h"
 #include "CSceneFriendMainLayer.h"
 #include "CGameRankLayer.h"
+#include "CFightCardInfoSprite.h"
 
 
 using namespace cocos2d;
@@ -46,16 +47,16 @@ CCScene* HelloWorld::scene()
     CCScene *scene = CCScene::create();
     
     // 'layer' is an autorelease object
-   // HelloWorld *layer = HelloWorld::create();
+    HelloWorld *layer = HelloWorld::create();
  
     //CScreenHandBookLayer *layer=CScreenHandBookLayer::create();
    // CSceneFriendMainLayer *layer=CSceneFriendMainLayer::create();
     
-    CGameRankLayer * gamelayer=CGameRankLayer::create();
+   // CGameRankLayer * gamelayer=CGameRankLayer::create();
     //addChild(gamelayer,1,1);
    // gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5));
-    // add layer as a child to scene
-    scene->addChild(gamelayer);
+// add layer as a child to scene
+    scene->addChild(layer);
 
     // return the scene
     return scene;
@@ -148,13 +149,26 @@ bool HelloWorld::init()
 //    addChild(sprite,0,200);
 //    sprite->setPosition(ccp(size.width*0.5,size.height*0.5));
 //   CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(30005,this);
+    CCLayerColor *pLayer=CCLayerColor::create(ccc4(255, 0, 0, 255), 1027, 768);
+    addChild(pLayer,1,0);
     
- 
     
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath, "zhandoujiemianziyuan.plist"));
+    CFightCardInfoSprite  *pSprite=CFightCardInfoSprite::CreateSprite(SinglePlayer::instance()->getCardBagVector()[0], 0);
+    pSprite->setPosition(ccp(size.width *0.5, size.height *0.5));
+    addChild(pSprite,1,1);
     
+    schedule(schedule_selector(HelloWorld::sechUpdate), 3.0);
     
     return true;
 }
+
+void HelloWorld::sechUpdate(float ft)
+{
+    static int value=50;
+    ((CFightCardInfoSprite *)getChildByTag(1))->setNowAnger((value+rand())%100);
+}
+
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
