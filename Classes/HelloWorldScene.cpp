@@ -17,6 +17,7 @@
 #include "CSceneFriendMainLayer.h"
 #include "CGameRankLayer.h"
 #include "CFightCardInfoSprite.h"
+#include "CPVPRegulationLayer.h"
 
 
 using namespace cocos2d;
@@ -149,17 +150,19 @@ bool HelloWorld::init()
 //    addChild(sprite,0,200);
 //    sprite->setPosition(ccp(size.width*0.5,size.height*0.5));
 //   CGameStoryLayer *gamelayer=CGameStoryLayer::CreateStoryLayer(30005,this);
-    CCLayerColor *pLayer=CCLayerColor::create(ccc4(255, 0, 0, 255), 1027, 768);
-    addChild(pLayer,1,0);
+//    CCLayerColor *pLayer=CCLayerColor::create(ccc4(255, 0, 0, 255), 1027, 768);
+//    addChild(pLayer,1,0);
+//    
+//    
+//    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath, "zhandoujiemianziyuan.plist"));
+//    CFightCardInfoSprite  *pSprite=CFightCardInfoSprite::CreateSprite(SinglePlayer::instance()->getCardBagVector()[0], 0);
+//    pSprite->setPosition(ccp(size.width *0.5, size.height *0.5));
+//    addChild(pSprite,1,1);
+//    
+//    schedule(schedule_selector(HelloWorld::sechUpdate), 3.0);
     
-    
-    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath, "zhandoujiemianziyuan.plist"));
-    CFightCardInfoSprite  *pSprite=CFightCardInfoSprite::CreateSprite(SinglePlayer::instance()->getCardBagVector()[0], 0);
-    pSprite->setPosition(ccp(size.width *0.5, size.height *0.5));
-    addChild(pSprite,1,1);
-    
-    schedule(schedule_selector(HelloWorld::sechUpdate), 3.0);
-    
+    CPVPRegulationLayer *layer=CPVPRegulationLayer::create();
+    addChild(layer,2,1);
     return true;
 }
 

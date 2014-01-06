@@ -436,8 +436,8 @@ void CGameRankLayer::createQuitButton()
     CGameButtonControl *gameButton=CGameButtonControl::createButton(TEXTMID, "", "QuitButton_Normal.png", "QuitButton_Actived.png");
     addChild(gameButton,2,TAG_QUITBUTTON);
     gameButton->setPosition(ccp(size.width*0.5+320, size.height*0.5+220));
-    
 }
+
 int CGameRankLayer::checkTouchQuitButton(CCPoint point)
 {
     if (getChildByTag(TAG_QUITBUTTON)) {

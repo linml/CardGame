@@ -96,6 +96,7 @@
 		6FB9D3461855874A00E752DF /* CRankDataManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9D3441855874A00E752DF /* CRankDataManager.cpp */; };
 		6FB9D3491855878B00E752DF /* CDrawGonggaoTable.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9D3471855878B00E752DF /* CDrawGonggaoTable.cpp */; };
 		6FB9D34C1855B5C600E752DF /* CEveryDayLoginRewardInfoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB9D34A1855B5C600E752DF /* CEveryDayLoginRewardInfoLayer.cpp */; };
+		6FBB4011187A930A005DAFA4 /* CPVPRegulationLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBB400F187A930A005DAFA4 /* CPVPRegulationLayer.cpp */; };
 		6FBBC24A17964AF800E16CDE /* CFightSkillManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24817964AF800E16CDE /* CFightSkillManager.cpp */; };
 		6FBBC24D17966FA500E16CDE /* CAnimationSpriteGameFight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */; };
 		6FBCA8491862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCA8471862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp */; };
@@ -586,6 +587,8 @@
 		6FB9D3481855878B00E752DF /* CDrawGonggaoTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDrawGonggaoTable.h; sourceTree = "<group>"; };
 		6FB9D34A1855B5C600E752DF /* CEveryDayLoginRewardInfoLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CEveryDayLoginRewardInfoLayer.cpp; sourceTree = "<group>"; };
 		6FB9D34B1855B5C600E752DF /* CEveryDayLoginRewardInfoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEveryDayLoginRewardInfoLayer.h; sourceTree = "<group>"; };
+		6FBB400F187A930A005DAFA4 /* CPVPRegulationLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPVPRegulationLayer.cpp; sourceTree = "<group>"; };
+		6FBB4010187A930A005DAFA4 /* CPVPRegulationLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVPRegulationLayer.h; sourceTree = "<group>"; };
 		6FBBC24817964AF800E16CDE /* CFightSkillManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightSkillManager.cpp; sourceTree = "<group>"; };
 		6FBBC24917964AF800E16CDE /* CFightSkillManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightSkillManager.h; sourceTree = "<group>"; };
 		6FBBC24B17966FA300E16CDE /* CAnimationSpriteGameFight.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAnimationSpriteGameFight.cpp; sourceTree = "<group>"; };
@@ -1579,6 +1582,23 @@
 			path = EveryDayLogin;
 			sourceTree = "<group>";
 		};
+		6FBB4009187A85D7005DAFA4 /* PVP */ = {
+			isa = PBXGroup;
+			children = (
+				6FBB400B187A85E9005DAFA4 /* Layer */,
+			);
+			path = PVP;
+			sourceTree = "<group>";
+		};
+		6FBB400B187A85E9005DAFA4 /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				6FBB400F187A930A005DAFA4 /* CPVPRegulationLayer.cpp */,
+				6FBB4010187A930A005DAFA4 /* CPVPRegulationLayer.h */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
 		6FC6B057184DAE1B0098E3BF /* AnnouncementLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -2016,6 +2036,7 @@
 		9F801316175493D400EEC0BC /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				6FBB4009187A85D7005DAFA4 /* PVP */,
 				6FB9D33A18556A8900E752DF /* EveryDayLogin */,
 				6FC6B05C184DCE2B0098E3BF /* Rank */,
 				6FC6B057184DAE1B0098E3BF /* AnnouncementLayer */,
@@ -3185,6 +3206,7 @@
 				9FC6F21E17460BFF0091BE98 /* mat4.c in Sources */,
 				9FC6F21F17460BFF0091BE98 /* neon_matrix_impl.c in Sources */,
 				9FC6F22017460BFF0091BE98 /* plane.c in Sources */,
+				6FBB4011187A930A005DAFA4 /* CPVPRegulationLayer.cpp in Sources */,
 				9FC6F22117460BFF0091BE98 /* quaternion.c in Sources */,
 				9FC6F22217460BFF0091BE98 /* ray2.c in Sources */,
 				9FC6F22317460BFF0091BE98 /* utility.c in Sources */,
