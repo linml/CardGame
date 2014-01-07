@@ -414,6 +414,7 @@ namespace GameTools {
 //                    #endif
                 }
                 if(iChangeLineW == 0) {
+                    CCLog("tmpWord = %s,",vSubWord.at(i).substr(wordStart).c_str());
                     CCLabelTTF* subttf = createWord(vSubWord.at(i).substr(wordStart), fontName, fSize, ccc3(R, G, B));
                     subttf->setAnchorPoint(ccp(0,0));
                     subttf->setPosition(ccp(x,-anchor.y * subttf->getContentSize().height));
@@ -427,7 +428,7 @@ namespace GameTools {
                     //                    string
                     string tmpWord = vSubWord.at(i).substr(wordStart);
                     //                    string tmpWord = "啊大是大/%非阿德发生/%11111的发";
-                    //                    CCLog("tmpWord = %s",tmpWord.c_str());
+                     CCLog("tmpWord = %s，vSubWord.at(i)=%s",tmpWord.c_str(),vSubWord.at(i).c_str());
                     int index = 0;
                     if ((index = tmpWord.find("/%"))!=string::npos) {
                         //换行
@@ -440,10 +441,11 @@ namespace GameTools {
                             ttf->addEnter();
                             tmpLeftSubWord = tmpLeftSubWord.substr(index + 2);
                             //                            CCLog("index = %d",index);
-                            //                            CCLog("tmpSubWord 2222 = %s",tmpLeftSubWord.c_str());
+                            CCLog("tmpSubWord 2222 = %s",tmpLeftSubWord.c_str());
+                            ttf->addLabelTTF(tmpLeftSubWord.c_str(), fSize, ccc3(R, G, B),0);
                         }
                         
-                        ttf->addLabelTTF(tmpLeftSubWord.c_str(), fSize, ccc3(R, G, B),0);
+                        
                     }
                     else {
                         //换行

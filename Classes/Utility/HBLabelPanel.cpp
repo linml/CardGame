@@ -55,8 +55,7 @@ void HBLabelPanel::addLabelTTFWithStr(const char* str,int fontSize,ccColor3B col
 	CCLabelTTF* label;
 
 	label = CCLabelTTF::create(str,g_sFont.c_str(),fontSize);
-	label->setAnchorPoint(ccp(0,1));
-
+	label->setAnchorPoint(ccp(0,1)); //为什么这边有这个问题。 by merlin
 	//居中
 	if (bolCenter)
 	{
@@ -129,7 +128,7 @@ void HBLabelPanel::addSprite(const char* path,int offsetY,bool bolCenter)
 void HBLabelPanel::addLabelTTF(const char* str,int fontSize,ccColor3B color,int offsetY,bool bolCenter)
 {
 	string mainStr = str;
-
+    CCLOG("STR======%s",str);
 	CCLabelTTF* label = CCLabelTTF::create(mainStr.c_str(),g_sFont.c_str(),fontSize);
         //add bq
 //#if (CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID)

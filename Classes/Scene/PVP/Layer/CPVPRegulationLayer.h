@@ -11,9 +11,13 @@
 
 #include <iostream>
 #include "cocos2d.h"
+#include "cocos-ext.h"
 using namespace std;
+
 USING_NS_CC;
-class CPVPRegulationLayer:public cocos2d::CCLayer
+USING_NS_CC_EXT;
+
+class CPVPRegulationLayer:public cocos2d::CCLayer, public CCScrollViewDelegate
 {
 public:
     CPVPRegulationLayer();
@@ -24,6 +28,7 @@ public:
 private:
     void createBackGround();
     void createQuitButton();
+    void createScrollView();
 protected:
     void registerWithTouchDispatcher();
     void onExit();
@@ -31,8 +36,13 @@ protected:
     void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
     void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
     void ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent);
+    void scrollViewDidScroll(CCScrollView* view);
+    void scrollViewDidZoom(CCScrollView* view);
 private:
     CCSize size;
+    CCScrollView *scroll ;
+    float xOffSet;
+    float yOffSet;
     
 };
 
