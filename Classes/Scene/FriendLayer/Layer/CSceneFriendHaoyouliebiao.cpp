@@ -300,7 +300,7 @@ void CSceneFriendHaoyouliebiao::sendPostSendZanMei(int Uid)
     str.append(friendUserID, 0, friendUserID.length()-1);
     str+="]";
 
-    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_GETFRIENDLY(194), "CALLBACK_CSceneFriendHaoyouliebiao_sendPostSendZanMei", "REQUEST_CSceneFriendHaoyouliebiao_SendZanMei",str.c_str(),callfuncO_selector(CSceneFriendHaoyouliebiao::decodeDataGetFriendLy))
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GETFRIENDLY(194), "CALLBACK_CSceneFriendHaoyouliebiao_sendPostSendZanMei", "REQUEST_CSceneFriendHaoyouliebiao_SendZanMei",str.c_str(),callfuncO_selector(CSceneFriendHaoyouliebiao::decodeDataGetFriendLy))
 }
 
 

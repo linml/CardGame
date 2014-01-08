@@ -39,8 +39,16 @@ public:
     vector<CPVPStructMissionTaskReword *>m_vtaskRewordManager;
 private:
     void initLoadConfigFile();
-    
-    
+public:
+    void changeLingQuStatuas(CCArray *array);
+    void changeKeyiLingqu(int nTiaoZhanCiShu,int nTiaoZhanJifen);
+public:
+   static string getDictionStr(CPVPStructMissionTaskReword *pvp);
+   static  string getContextStr(CPVPStructMissionTaskReword *pvp);
+   static  string getItemIcon(CPVPStructMissionTaskReword *pvp);
+    static  string getJinDu(CPVPStructMissionTaskReword *pvp);
+   static int m_nTiaoZhanCishu;
+   static  int m_nTiaoZhanJifen;
 };
 
 

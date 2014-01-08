@@ -34,6 +34,7 @@
 		6F49CA7917D8851F0094874E /* CGameStory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA7517D8851F0094874E /* CGameStory.cpp */; };
 		6F49CA7A17D8851F0094874E /* CGameTalkDialog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F49CA7617D8851F0094874E /* CGameTalkDialog.cpp */; };
 		6F4B30C41832296500A57CAE /* CActivityEncounterManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F4B30C21832296400A57CAE /* CActivityEncounterManager.cpp */; };
+		6F6A56FA187D40390020E719 /* CPVPStructMissionTaskRewordLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F6A56F8187D40390020E719 /* CPVPStructMissionTaskRewordLayer.cpp */; };
 		6F6D998E1820F2200027D0D8 /* CActionItemLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F6D998C1820F2200027D0D8 /* CActionItemLayer.cpp */; };
 		6F7353B4178D34190009D548 /* CCardBufferStatus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7353B2178D34190009D548 /* CCardBufferStatus.cpp */; };
 		6F780751176469830049321C /* HallScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780746176469830049321C /* HallScene.cpp */; };
@@ -79,6 +80,7 @@
 		6FB0B79F1793CE43006D12F7 /* CFightingCardLayerLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB0B79D1793CE43006D12F7 /* CFightingCardLayerLogic.cpp */; };
 		6FB15F0F178FE83500CDD79F /* CSkillData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB15F0D178FE83400CDD79F /* CSkillData.cpp */; };
 		6FB250CB187BF02500A9C0CA /* CPVPStructMissionTaskReword.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB250C9187BF02500A9C0CA /* CPVPStructMissionTaskReword.cpp */; };
+		6FB28168187D344E0005F979 /* CPVPStructMissionTaskRewordSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB28166187D344E0005F979 /* CPVPStructMissionTaskRewordSprite.cpp */; };
 		6FB4F4BF17ABB31900DF3278 /* CPtStarConfigData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4F4BD17ABB31900DF3278 /* CPtStarConfigData.cpp */; };
 		6FB4F4C217ABB89C00DF3278 /* CCardEvolutionLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4F4C117ABB89C00DF3278 /* CCardEvolutionLayer.cpp */; };
 		6FB568EB17C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FB568E917C4806200B038F8 /* CEffectInterFaceElevenRefactor.cpp */; };
@@ -459,6 +461,8 @@
 		6F49CA7817D8851F0094874E /* CGameStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGameStory.h; sourceTree = "<group>"; };
 		6F4B30C21832296400A57CAE /* CActivityEncounterManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CActivityEncounterManager.cpp; sourceTree = "<group>"; };
 		6F4B30C31832296400A57CAE /* CActivityEncounterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CActivityEncounterManager.h; sourceTree = "<group>"; };
+		6F6A56F8187D40390020E719 /* CPVPStructMissionTaskRewordLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPVPStructMissionTaskRewordLayer.cpp; sourceTree = "<group>"; };
+		6F6A56F9187D40390020E719 /* CPVPStructMissionTaskRewordLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVPStructMissionTaskRewordLayer.h; sourceTree = "<group>"; };
 		6F6D998C1820F2200027D0D8 /* CActionItemLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CActionItemLayer.cpp; sourceTree = "<group>"; };
 		6F6D998D1820F2200027D0D8 /* CActionItemLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CActionItemLayer.h; sourceTree = "<group>"; };
 		6F7353B2178D34190009D548 /* CCardBufferStatus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCardBufferStatus.cpp; sourceTree = "<group>"; };
@@ -551,6 +555,8 @@
 		6FB15F0E178FE83400CDD79F /* CSkillData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSkillData.h; sourceTree = "<group>"; };
 		6FB250C9187BF02500A9C0CA /* CPVPStructMissionTaskReword.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPVPStructMissionTaskReword.cpp; sourceTree = "<group>"; };
 		6FB250CA187BF02500A9C0CA /* CPVPStructMissionTaskReword.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVPStructMissionTaskReword.h; sourceTree = "<group>"; };
+		6FB28166187D344E0005F979 /* CPVPStructMissionTaskRewordSprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPVPStructMissionTaskRewordSprite.cpp; sourceTree = "<group>"; };
+		6FB28167187D344E0005F979 /* CPVPStructMissionTaskRewordSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVPStructMissionTaskRewordSprite.h; sourceTree = "<group>"; };
 		6FB379E5177D1E9F00C2DB35 /* CGamesCard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGamesCard.cpp; sourceTree = "<group>"; };
 		6FB379E6177D1E9F00C2DB35 /* CGamesCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CGamesCard.h; sourceTree = "<group>"; };
 		6FB4F4BD17ABB31900DF3278 /* CPtStarConfigData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtStarConfigData.cpp; sourceTree = "<group>"; };
@@ -1608,6 +1614,10 @@
 			children = (
 				6FBB400F187A930A005DAFA4 /* CPVPRegulationLayer.cpp */,
 				6FBB4010187A930A005DAFA4 /* CPVPRegulationLayer.h */,
+				6FB28166187D344E0005F979 /* CPVPStructMissionTaskRewordSprite.cpp */,
+				6FB28167187D344E0005F979 /* CPVPStructMissionTaskRewordSprite.h */,
+				6F6A56F8187D40390020E719 /* CPVPStructMissionTaskRewordLayer.cpp */,
+				6F6A56F9187D40390020E719 /* CPVPStructMissionTaskRewordLayer.h */,
 			);
 			path = Layer;
 			sourceTree = "<group>";
@@ -3263,6 +3273,7 @@
 				9FC6F23217460BFF0091BE98 /* CCMenuItem.cpp in Sources */,
 				6F91B45A1827393900B284B9 /* CEffectInterFaceSixRefactor.cpp in Sources */,
 				6FB250CB187BF02500A9C0CA /* CPVPStructMissionTaskReword.cpp in Sources */,
+				6FB28168187D344E0005F979 /* CPVPStructMissionTaskRewordSprite.cpp in Sources */,
 				9FC6F23317460BFF0091BE98 /* CCMotionStreak.cpp in Sources */,
 				9FC6F23417460BFF0091BE98 /* CCProgressTimer.cpp in Sources */,
 				9FC6F23517460BFF0091BE98 /* CCRenderTexture.cpp in Sources */,
@@ -3335,6 +3346,7 @@
 				6FCD27E6182B20960043D050 /* CGameUserPropDialogLayer.cpp in Sources */,
 				9FC6F26D17460BFF0091BE98 /* CCTMXTiledMap.cpp in Sources */,
 				9FC6F26E17460BFF0091BE98 /* CCTMXXMLParser.cpp in Sources */,
+				6F6A56FA187D40390020E719 /* CPVPStructMissionTaskRewordLayer.cpp in Sources */,
 				9FC6F26F17460BFF0091BE98 /* CCTouch.cpp in Sources */,
 				9FC6F27017460BFF0091BE98 /* CCTouchDispatcher.cpp in Sources */,
 				9FC6F27117460BFF0091BE98 /* CCTouchHandler.cpp in Sources */,

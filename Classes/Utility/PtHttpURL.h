@@ -184,6 +184,13 @@
 //获得排名奖励
 #define STR_URL_GETRANKREWARD(UID)  URL_FACTORY("api.php?m=charts&a=rewardCharts&uid=",UID)
 
+//获取已经领取的奖励
+#define STR_URL_GETYIJINGLINGQU(UID)   URL_FACTORY("api.php?m=Pvp&a=pvpTask&uid=",UID)
+
+//点击领取PVP任务奖励
+#define STR_URL_GETLINGQUPVPJIANGLI(UID) URL_FACTORY("api.php?m=Pvp&a=getPvpTaskReward&uid=",UID)
+
+
 
 
 #endif
