@@ -96,11 +96,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/PVP/Layer/CPVPStructMissionTaskRewordLayer.cpp"
-            timestampString = "410873711.851324"
+            timestampString = "411036949.837492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "311"
+            endingLineNumber = "311"
             landmarkName = "CPVPStructMissionTaskRewordLayer::initCellItem(CCTableViewCell*cell, unsigned int idx)"
             landmarkType = "5">
          </BreakpointContent>
@@ -112,11 +112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/PVP/Layer/CPVPStructMissionTaskRewordLayer.cpp"
-            timestampString = "410873711.851324"
+            timestampString = "411036949.837492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "CPVPStructMissionTaskRewordLayer::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
             landmarkType = "5">
          </BreakpointContent>
@@ -128,12 +128,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/PVP/Layer/CPVPStructMissionTaskRewordLayer.cpp"
-            timestampString = "410873711.851324"
+            timestampString = "411036949.837492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "CPVPStructMissionTaskRewordLayer::tableCellTouched(CCTableView* table, CCTableViewCell* cell)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/PVP/DataStruct/CPVPStructMissionTaskReword.cpp"
+            timestampString = "411036949.837492"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "CPVPStructMissionTaskRewordManager::changeLingQuStatuas(CCArray *array)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

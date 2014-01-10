@@ -3185,7 +3185,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "_TARGET_BUILD_CONTENTS_PATH=$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH\necho _TARGET_BUILD_CONTENTS_PATH: $_TARGET_BUILD_CONTENTS_PATH\necho PWD: $PWD\n\necho Cleaning $_TARGET_BUILD_CONTENTS_PATH/\ncp -RLp $PWD/../../proj.android/cn.cube/assets/resource_cn/word/dictionary.plist $_TARGET_BUILD_CONTENTS_PATH/resource_cn/word/\n#cp -RLp $PWD/../res/img $_TARGET_BUILD_CONTENTS_PATH/img/\n#cp -RLp $PWD/../res/snd.ios $_TARGET_BUILD_CONTENTS_PATH/snd.ios/\n\n";
+			shellScript = "_TARGET_BUILD_CONTENTS_PATH=$TARGET_BUILD_DIR/$CONTENTS_FOLDER_PATH\necho _TARGET_BUILD_CONTENTS_PATH: $_TARGET_BUILD_CONTENTS_PATH\necho PWD: $PWD\n\necho Cleaning $_TARGET_BUILD_CONTENTS_PATH/\ncp -RLp $PWD/../../proj.android/cn.cube/assets/resource_cn/word/dictionary.plist $_TARGET_BUILD_CONTENTS_PATH/resource_cn/word/\ncp -RLp $PWD/../../proj.android/cn.cube/assets/resource_cn/pvp_task_config.plist $_TARGET_BUILD_CONTENTS_PATH/resource_cn/\n#cp -RLp $PWD/../res/img $_TARGET_BUILD_CONTENTS_PATH/img/\n#cp -RLp $PWD/../res/snd.ios $_TARGET_BUILD_CONTENTS_PATH/snd.ios/\n\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

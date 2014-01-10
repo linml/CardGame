@@ -55,20 +55,41 @@ CPVPStructMissionTaskRewordManager::~CPVPStructMissionTaskRewordManager()
     DELETE_POINT_VECTOR(m_vtaskRewordManager,vector<CPVPStructMissionTaskReword *>,CPVPStructMissionTaskReword);
 }
 
+void CPVPStructMissionTaskRewordManager::removeIndex(int index)
+{
+    if (index<0 || index>m_vtaskRewordManager.size()) {
+        return ;
+    }
+    else{
+        CPVPStructMissionTaskReword *tempValue=*(m_vtaskRewordManager.begin()+index);
+        CC_SAFE_DELETE(tempValue);
+        m_vtaskRewordManager.erase(m_vtaskRewordManager.begin()+index);
+    }
+}
+
 void CPVPStructMissionTaskRewordManager::changeLingQuStatuas(CCArray *array)
 {
     if(array->count()!=0)
     {
         for (int i=0; i<array->count(); i++)
         {
-            int id=(int)array->objectAtIndex(i);
-            for (int j=0; j<m_vtaskRewordManager.size(); j++) {
-                if (m_vtaskRewordManager[j]->getMissionTaskID()==id) {
-                    m_vtaskRewordManager[j]->setMissionTaskLingQu(true);
+            int id=((CCString *)array->objectAtIndex(i))->intValue();
+            CCLog("id=%d",id);
+            for(vector<CPVPStructMissionTaskReword *>::iterator it=m_vtaskRewordManager.begin(); it!=m_vtaskRewordManager.end(); )
+            {
+                if ((*it)->getMissionTaskID()==id)
+                {
+                    CPVPStructMissionTaskReword *temp=*it;
+                    delete temp;
+                    temp=NULL;
+                    it = m_vtaskRewordManager.erase(it); //不能写成arr.erase(it);
                     break;
                 }
+                else
+                {
+                    ++it;
+                }
             }
-            
         }
     }
     
@@ -121,12 +142,30 @@ string CPVPStructMissionTaskRewordManager::getDictionStr(CPVPStructMissionTaskRe
 string CPVPStructMissionTaskRewordManager::getJinDu(CPVPStructMissionTaskReword *pvp)
 {
     string tempResualt;
+   int showValue=0;
     switch (pvp->getMissionTaskType()) {
         case 1:
-            tempResualt=string("进度:")+ConvertToString(m_nTiaoZhanCishu)+"/"+ConvertToString(pvp->getMissionTaskNum());
+            if (m_nTiaoZhanCishu>=pvp->getMissionTaskNum()) {
+                    showValue=pvp->getMissionTaskNum();
+            }
+            else{
+                showValue=m_nTiaoZhanCishu;
+            }
+            tempResualt=string("进度:")+ConvertToString(showValue)+"/"+ConvertToString(pvp->getMissionTaskNum());
             break;
         case 2:
-            tempResualt=string("进度:")+ConvertToString(m_nTiaoZhanJifen)+"/"+ConvertToString(pvp->getMissionTaskNum());
+        {
+
+            if(m_nTiaoZhanJifen>=pvp->getMissionTaskNum())
+            {
+                showValue=pvp->getMissionTaskNum();
+                
+            }
+            else{
+                showValue=m_nTiaoZhanJifen;
+            }
+            tempResualt=string("进度:")+ConvertToString(showValue)+"/"+ConvertToString(pvp->getMissionTaskNum());
+        }
         break;
         default:
             break;
@@ -192,7 +231,7 @@ string CPVPStructMissionTaskRewordManager::getContextStr(CPVPStructMissionTaskRe
 
 void CPVPStructMissionTaskRewordManager::initLoadConfigFile()
 {
-    CCDictionary *directory = CCDictionary::createWithContentsOfFile((resRootPath+"mission_config.plist").c_str());
+    CCDictionary *directory = CCDictionary::createWithContentsOfFile((resRootPath+"pvp_task_config.plist").c_str());
     if(directory)
     {
         CCArray *vKeyArray=directory->allKeys();
@@ -205,12 +244,12 @@ void CPVPStructMissionTaskRewordManager::initLoadConfigFile()
                 CCDictionary *missionInfoDict=(CCDictionary*)(directory->objectForKey(key->m_sString));
                 missionItem->setMissionTaskID(key->intValue());
                 missionItem->setMissionTaskType(GameTools::intForKey("type", missionInfoDict));
-                missionItem->setMissionTaskNum(GameTools::intForKey("num", missionInfoDict));
-                missionItem->setMissionTaskSoul(GameTools::intForKey("soul", missionInfoDict));
+                missionItem->setMissionTaskNum(GameTools::intForKey("limit_num", missionInfoDict));
+                missionItem->setMissionTaskSoul(GameTools::intForKey("card_soul", missionInfoDict));
                 missionItem->setMissionTaskCoin(GameTools::intForKey("coin", missionInfoDict));
                 missionItem->setMissionTaskCash(GameTools::intForKey("cash",missionInfoDict));
-                missionItem->setMissionTaskItem(GameTools::intForKey("item", missionInfoDict));
-                missionItem->setMissionTaskCardId(GameTools::intForKey("card", missionInfoDict));
+                missionItem->setMissionTaskItem(GameTools::intForKey("item_id", missionInfoDict));
+                missionItem->setMissionTaskCardId(GameTools::intForKey("card_id", missionInfoDict));
                 this->m_vtaskRewordManager.push_back(missionItem);
             }
         }

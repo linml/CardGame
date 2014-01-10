@@ -42,6 +42,7 @@ private:
 public:
     void changeLingQuStatuas(CCArray *array);
     void changeKeyiLingqu(int nTiaoZhanCiShu,int nTiaoZhanJifen);
+    void removeIndex(int index);
 public:
    static string getDictionStr(CPVPStructMissionTaskReword *pvp);
    static  string getContextStr(CPVPStructMissionTaskReword *pvp);

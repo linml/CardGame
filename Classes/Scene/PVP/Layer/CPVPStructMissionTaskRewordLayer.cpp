@@ -184,7 +184,10 @@ void CPVPStructMissionTaskRewordLayer::callBackLingQuValue(CCObject *object)
                 }
             }
             m_pManager->m_vtaskRewordManager[m_nVectorIndex]->setMissionTaskLingQu(true);
-            m_pCustomTable->updateCellAtIndex(m_nCellIndex);
+            m_pManager->removeIndex(m_nVectorIndex);
+            if (m_pCustomTable) {
+                m_pCustomTable->reloadData();
+            }
         }
         else{
             CCMessageBox("error", "error");
