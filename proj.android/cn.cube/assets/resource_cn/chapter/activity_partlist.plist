@@ -7,7 +7,7 @@
 		<key>part_id</key>
 		<string>309901</string>
 		<key>part_name</key>
-		<string>第七节</string>
+		<string>限时材料副本</string>
 		<key>chapter_id</key>
 		<string>309900</string>
 		<key>order_by</key>
@@ -21,22 +21,22 @@
 		<key>max_step</key>
 		<string>10</string>
 		<key>ap</key>
-		<string>10</string>
+		<string>5</string>
 		<key>mission_id</key>
 		<string>0</string>
 		<key>left_clear</key>
-		<string>1</string>
-		<key>middle_clear</key>
 		<string>0</string>
-		<key>right_clear</key>
+		<key>middle_clear</key>
 		<string>1</string>
+		<key>right_clear</key>
+		<string>0</string>
 	</dict>
 	<key>309902</key>
 	<dict>
 		<key>part_id</key>
 		<string>309902</string>
 		<key>part_name</key>
-		<string>第八节</string>
+		<string>显示经验副本</string>
 		<key>chapter_id</key>
 		<string>309900</string>
 		<key>order_by</key>
@@ -50,13 +50,13 @@
 		<key>max_step</key>
 		<string>10</string>
 		<key>ap</key>
-		<string>10</string>
+		<string>5</string>
 		<key>mission_id</key>
 		<string>0</string>
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>right_clear</key>
 		<string>0</string>
 	</dict>
@@ -65,7 +65,7 @@
 		<key>part_id</key>
 		<string>309903</string>
 		<key>part_name</key>
-		<string>第九节</string>
+		<string>限时金币副本</string>
 		<key>chapter_id</key>
 		<string>309900</string>
 		<key>order_by</key>
@@ -79,13 +79,13 @@
 		<key>max_step</key>
 		<string>10</string>
 		<key>ap</key>
-		<string>10</string>
+		<string>5</string>
 		<key>mission_id</key>
 		<string>0</string>
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>right_clear</key>
 		<string>1</string>
 	</dict>

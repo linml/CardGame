@@ -1047,7 +1047,7 @@ void CDrawCardLayer::createTableView()
 
 
 CCTableViewCell* CDrawCardLayer::tableCellAtIndex(CCTableView *table, unsigned int idx)
-{table->dequeueCell();
+{
     CCTableViewCell* cell = table->cellAtIndex(idx);
     if (!cell) {
         cell = new CCTableViewCell();

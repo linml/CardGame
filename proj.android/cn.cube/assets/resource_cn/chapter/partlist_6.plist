@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>300501</key>
+   	<key>300501</key>
 	<dict>
 		<key>part_id</key>
 		<string>300501</string>
@@ -25,11 +25,11 @@
 		<key>mission_id</key>
 		<string>505010</string>
 		<key>left_clear</key>
-		<string>1</string>
-		<key>middle_clear</key>
 		<string>0</string>
-		<key>right_clear</key>
+		<key>middle_clear</key>
 		<string>1</string>
+		<key>right_clear</key>
+		<string>0</string>
 	</dict>
 	<key>300502</key>
 	<dict>
@@ -56,7 +56,7 @@
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>right_clear</key>
 		<string>0</string>
 	</dict>
@@ -85,7 +85,7 @@
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>right_clear</key>
 		<string>1</string>
 	</dict>
@@ -112,11 +112,11 @@
 		<key>mission_id</key>
 		<string>505040</string>
 		<key>left_clear</key>
-		<string>0</string>
-		<key>middle_clear</key>
-		<string>0</string>
-		<key>right_clear</key>
 		<string>1</string>
+		<key>middle_clear</key>
+		<string>1</string>
+		<key>right_clear</key>
+		<string>0</string>
 	</dict>
 	<key>300505</key>
 	<dict>
@@ -141,11 +141,127 @@
 		<key>mission_id</key>
 		<string>505050</string>
 		<key>left_clear</key>
+		<string>1</string>
+		<key>middle_clear</key>
+		<string>1</string>
+		<key>right_clear</key>
+		<string>1</string>
+	</dict>
+	<key>300506</key>
+	<dict>
+		<key>part_id</key>
+		<string>300506</string>
+		<key>part_name</key>
+		<string>第六节</string>
+		<key>chapter_id</key>
+		<string>300500</string>
+		<key>order_by</key>
+		<string>6</string>
+		<key>part_tips</key>
+		<string>300506</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103007</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>505060</string>
+		<key>left_clear</key>
+		<string>0</string>
+		<key>middle_clear</key>
+		<string>0</string>
+		<key>right_clear</key>
+		<string>1</string>
+	</dict>
+	<key>300507</key>
+	<dict>
+		<key>part_id</key>
+		<string>300507</string>
+		<key>part_name</key>
+		<string>第七节</string>
+		<key>chapter_id</key>
+		<string>300500</string>
+		<key>order_by</key>
+		<string>7</string>
+		<key>part_tips</key>
+		<string>300507</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103008</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>505070</string>
+		<key>left_clear</key>
 		<string>0</string>
 		<key>middle_clear</key>
 		<string>1</string>
 		<key>right_clear</key>
 		<string>0</string>
+	</dict>
+	<key>300508</key>
+	<dict>
+		<key>part_id</key>
+		<string>300508</string>
+		<key>part_name</key>
+		<string>第八节</string>
+		<key>chapter_id</key>
+		<string>300500</string>
+		<key>order_by</key>
+		<string>8</string>
+		<key>part_tips</key>
+		<string>300508</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103009</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>505080</string>
+		<key>left_clear</key>
+		<string>1</string>
+		<key>middle_clear</key>
+		<string>0</string>
+		<key>right_clear</key>
+		<string>0</string>
+	</dict>
+	<key>300509</key>
+	<dict>
+		<key>part_id</key>
+		<string>300509</string>
+		<key>part_name</key>
+		<string>第九节</string>
+		<key>chapter_id</key>
+		<string>300500</string>
+		<key>order_by</key>
+		<string>9</string>
+		<key>part_tips</key>
+		<string>300509</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103010</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>505090</string>
+		<key>left_clear</key>
+		<string>1</string>
+		<key>middle_clear</key>
+		<string>0</string>
+		<key>right_clear</key>
+		<string>1</string>
 	</dict>
 </dict>
 </plist>

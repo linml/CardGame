@@ -47,7 +47,7 @@ CCScene *pScene=CCDirector::sharedDirector()->getRunningScene(); \
 CCLayer *pLayer=CPanelLoadingLayer::create(); \
 pLayer->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width *0.5,    CCDirector::sharedDirector()->getWinSize().height*0.5)); \
 if(pScene) \
-    pScene->addChild(pLayer,7,8888888); \
+    pScene->addChild(pLayer,200,8888888); \
 stcRequestInf inf; \
 inf.m_pchURL = URL; \
 cout<<inf.m_pchURL<<endl; \

@@ -10,6 +10,7 @@
 #include "CCard.h"
 #include "gameConfig.h"
 #include "CPtTool.h"
+#include "gamePlayer.h"
 #define  TAG_GAMECARD_HERO 100
 #define CARDHPTAG 10
 #define CARDATKTAG 11
@@ -697,6 +698,27 @@ CGameDaCard * CGameDaCard::create(CFightCard *inCard, CGameCardFactory *inFactor
     return card;
 }
 
+CGameDaCard * CGameDaCard::createBasicCard(CCard *inCard, CGameCardFactory *inFactory)
+{
+    if (inFactory == NULL)
+    {
+        inFactory = CGameCardFactory::getInstance();
+    }
+    CCAssert(inCard, "the fightcard is null");
+    CGameDaCard *card = new CGameDaCard();
+    if (card)
+    {
+        if(card->initWithCardData(inCard, inFactory))
+        {
+            card->autorelease();
+        }else
+        {
+            delete card;
+            card = NULL;
+        }
+    }
+    return card;
+}
 CGameDaCard::CGameDaCard()
 {
     m_pBatchContainer = NULL;
@@ -722,11 +744,41 @@ bool CGameDaCard::initWithCardData(CFightCard *inCard, CGameCardFactory *inFacto
     createLevel(inCard->m_iCurrLevel);
     createCardData(inCard->m_attack,inCard->m_defend, inCard->m_iHp,inFactory);
     createCardName(inCard->m_pCard->m_scard_name.c_str());
-    
+    setContentSize(m_sCardSize);
     bRet = true;
     return bRet;
 }
 
+
+bool CGameDaCard::initWithCardData(CCard *inCard, CGameCardFactory *inFactory)
+{
+    bool bRet = false;
+    if (!initWithTexture(NULL, CCRectZero))
+    {
+        return bRet;
+    }
+    m_pBatchContainer = CCSpriteBatchNode::createWithTexture(inFactory->getSpriteFrameWithName("daka_bg.png", CGameCardFactory::DAKA)->getTexture(), 15);
+    addChild(m_pBatchContainer, 0);
+    createBg(inFactory);
+    createPerson(inCard->m_scard_role.c_str());
+    createStar(inCard->m_nCard_star, inFactory);
+    createStirp(inCard->m_icard_stirps, inFactory);
+    createLevel(1);
+    createCardData(inCard->m_icard_attack,inCard->m_icard_defend, inCard->m_icardhp,inFactory);
+    createCardName(inCard->m_scard_name.c_str());
+    setContentSize(m_sCardSize);
+    bRet = true;
+    return bRet;
+}
+
+void CGameDaCard::changePersionDirection()
+{
+    CCSprite * sprite = (CCSprite*) getChildByTag(TAG_GAMECARD_HERO);
+    if (sprite)
+    {
+        sprite->setFlipX(true);
+    }
+}
 void CGameDaCard::createBg(CGameCardFactory *inFactory)
 {
     CCSprite *bg =CCSprite::createWithSpriteFrame(
@@ -864,6 +916,21 @@ CGamesCard * CGameCardFactory::createCGameCard(CFightCard *inCard)
 CGameDaCard * CGameCardFactory::createCGameDaCard(CFightCard *inCard)
 {
      return CGameDaCard::create(inCard, this);
+}
+
+CGameDaCard * CGameCardFactory::createBasicCGameDaCardByCardId(int inCardId)
+{
+    CCard *inCardData = SinglePlayer::instance()->getCardByCardId(inCardId);
+    return createBasicCGameDaCardByCardData(inCardData);
+}
+CGameDaCard * CGameCardFactory::createBasicCGameDaCardByCardData(CCard *inCardData)
+{
+    CGameDaCard *card = NULL;
+    if (inCardData)
+    {
+        card = CGameDaCard::createBasicCard(inCardData, this);
+    }
+    return card;
 }
 CCSprite *CGameCardFactory::createCardHead(CFightCard *inCard)
 {

@@ -262,6 +262,17 @@ public:
     void addFriendly(int inFriendly);
     void subFriendly(int inFriendly);
     
+    //add player info 卡魂
+    void addKaHun(int inAddKaHun);
+    void subKaHun(int inSubKaHun);
+    
+    int  getPlayerKaHun();
+    void setPlayerKanHun(int inKaHun);
+    
+    int  getPlayerPVPCount();
+    void addPlayerPVPCount();
+    void subPlayerPVPCount();
+    
     void addTaskOperator(int taskType,std::vector<int> *targetIdVector);
     void subTaskOperator(int taskType,std::vector<int> *targetIdVector);
     bool isSuccessFinishTask();

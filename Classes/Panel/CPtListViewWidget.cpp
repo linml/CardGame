@@ -515,12 +515,10 @@ CCNode * TableView::getCell(CCTouch *pTouch)
                 if(pSprite->boundingBox().containsPoint(location))
                 {
                   
-                    CPtTableItem * point = (CPtTableItem *)(pSprite->getUserData());
-                
-                 //  CCLog("the point: %d" ,(int)point);
-                    return point;
-                    //return pSprite;
+                    CPtTableItem * item = (CPtTableItem *)(pSprite->getUserData());
                     
+                
+                    return item; 
                     break;
                 }
             }
@@ -580,6 +578,8 @@ CPtListViewWidget * CPtListViewWidget::create(CCArray*items, CCSize containerSiz
 
 CPtListViewWidget::CPtListViewWidget()
 {
+    m_nStartIndex = 0;
+    m_nItemCount = 0;
     m_bReverse = false;
 }
 
@@ -623,6 +623,8 @@ void CPtListViewWidget::initData(CCArray *items, CCSize containerSize, CCScrollV
     
     if (items && items->count() > 0)
     {
+        m_nStartIndex = 0;
+        m_nItemCount = items->count();
         CCNode * node = ((CPtTableItem *)items->objectAtIndex(0))->getDisplayView();
         m_cItemSize = node->getContentSize();
     }
@@ -692,11 +694,10 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
 
     if (m_cDirection == kCCScrollViewDirectionHorizontal)
     {
-       
         CPtTableItem * item = ((CPtTableItem *) m_cItems->objectAtIndex(idx));
         if (item == NULL)
         {
-            return NULL;
+            return pCell;
             
         }
         CCNode *pSprite = item->getDisplayView();
@@ -721,8 +722,8 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
         int index = 0;
         for (int i = 0; i < m_nColumcount; i++)
         {
-            index = i+idx*m_nColumcount;
-            if (index >= m_cItems->count())
+            index = i+idx*m_nColumcount+m_nStartIndex;
+            if (index >= (m_nStartIndex+m_nItemCount) )//m_cItems->count())
             {
                 break;
             }
@@ -730,12 +731,7 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
             CPtTableItem *tmp = NULL;
             if (m_bReverse)
             {
-                 index = m_cItems->count() -1 -index;
-               //(m_cItems->count()-1-i-idx*m_nColumcount));
-//            }else
-//            {
-//                 tmp= dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(i+idx*m_nColumcount));
-//            }
+                index =  (m_nItemCount+m_nStartIndex-1-index); // m_cItems->count() -1 -index;
             }
             tmp= dynamic_cast<CPtTableItem *>(m_cItems->objectAtIndex(index));
            
@@ -743,7 +739,7 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
             if (tmp)
             {
             
-               CCNode *pSprite =tmp->getDisplayView();
+                CCNode *pSprite =tmp->getDisplayView();
         
                 CCPoint point = CCPointMake(pSprite->getContentSize().width, 0);
                 if(pSprite->getParent())
@@ -753,11 +749,10 @@ CCTableViewCell* CPtListViewWidget::tableCellAtIndex(CCTableView *table, unsigne
                 
                 pSprite->setAnchorPoint(CCPointZero);
                 pSprite->setPosition(ccp(point.x *i + m_cPaddingSize.width*(i+1) , 0));
-              //  CCLog("the item: %f, %f", pSprite->getPositionX(), pSprite->getPositionY());
+         
                 pCell->addChild(pSprite, 0, i);
-               //  CCLog("the point: %d" ,(int)tmp);
                 pSprite->setUserData((void *) (tmp));
-                tmp->setUserData((void *)(index)); //(i+idx*m_nColumcount));
+                tmp->setUserData((void *)(index));
             }
         }
         
@@ -863,9 +858,13 @@ void CPtListViewWidget::reload()
     {
         m_nRows = 0;
     }
-    m_nRows = (m_cItems == NULL)? 1 : m_cItems->count() / m_nColumcount;
-    m_nRows += (m_cItems->count() % m_nColumcount) == 0 ? 0 : 1;
- //   m_pTableView->reloadData();
+    m_nStartIndex =  (m_nStartIndex < m_cItems->count())? m_nStartIndex: 0;
+    m_nItemCount = m_nItemCount+m_nStartIndex < m_cItems->count() ? m_nItemCount : m_cItems->count()-m_nStartIndex;
+    m_nRows = (m_cItems == NULL)? 1 : m_nItemCount / m_nColumcount;
+    m_nRows += (m_nItemCount % m_nColumcount) == 0 ? 0 : 1;
+    //    m_nRows = (m_cItems == NULL)? 1 : m_cItems->count() / m_nColumcount;
+    //    m_nRows += (m_cItems->count() % m_nColumcount) == 0 ? 0 : 1;
+
     ((TableView*)(m_pTableView))->reload();
     
 }

@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 	<dict>
-		<key>500000</key>
+		<key>500010</key>
 		<dict>
 			<key>task_id</key>
-			<string>500000</string>
+			<string>500010</string>
 			<key>name</key>
 			<string>通关序章第一节</string>
 			<key>type</key>
@@ -51,14 +51,14 @@
 			<key>part_id</key>
 			<string>300001</string>
 			<key>task_tags</key>
-			<string>500000</string>
+			<string>500010</string>
 		</dict>
-		<key>501010</key>
+		<key>500020</key>
 		<dict>
 			<key>task_id</key>
-			<string>501010</string>
+			<string>500020</string>
 			<key>name</key>
-			<string>通关第一章第一节</string>
+			<string>通关序章第二节</string>
 			<key>type</key>
 			<string>1</string>
 			<key>target_id</key>
@@ -66,7 +66,7 @@
 			<key>num</key>
 			<string>1</string>
 			<key>pre_task</key>
-			<string>500000</string>
+			<string>500010</string>
 			<key>exp</key>
 			<string>44</string>
 			<key>coin</key>
@@ -98,18 +98,18 @@
 			<key>card_num_3</key>
 			<string>0</string>
 			<key>chapter_id</key>
-			<string>300100</string>
+			<string>300000</string>
 			<key>part_id</key>
 			<string>300101</string>
 			<key>task_tags</key>
-			<string>501010</string>
+			<string>500020</string>
 		</dict>
-		<key>501040</key>
+		<key>500030</key>
 		<dict>
 			<key>task_id</key>
-			<string>501040</string>
+			<string>500030</string>
 			<key>name</key>
-			<string>通关第一章第四节</string>
+			<string>通关序章第仨节</string>
 			<key>type</key>
 			<string>1</string>
 			<key>target_id</key>
@@ -117,7 +117,109 @@
 			<key>num</key>
 			<string>1</string>
 			<key>pre_task</key>
-			<string>501030</string>
+			<string>500020</string>
+			<key>exp</key>
+			<string>96</string>
+			<key>coin</key>
+			<string>2652</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300000</string>
+			<key>part_id</key>
+			<string>300102</string>
+			<key>task_tags</key>
+			<string>500030</string>
+		</dict>
+		<key>500040</key>
+		<dict>
+			<key>task_id</key>
+			<string>500040</string>
+			<key>name</key>
+			<string>通关序章第四节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>500030</string>
+			<key>exp</key>
+			<string>204</string>
+			<key>coin</key>
+			<string>2829</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300000</string>
+			<key>part_id</key>
+			<string>300103</string>
+			<key>task_tags</key>
+			<string>500040</string>
+		</dict>
+		<key>500050</key>
+		<dict>
+			<key>task_id</key>
+			<string>500050</string>
+			<key>name</key>
+			<string>通关序章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>500040</string>
 			<key>exp</key>
 			<string>346</string>
 			<key>coin</key>
@@ -149,18 +251,18 @@
 			<key>card_num_3</key>
 			<string>0</string>
 			<key>chapter_id</key>
-			<string>300100</string>
+			<string>300000</string>
 			<key>part_id</key>
 			<string>300104</string>
 			<key>task_tags</key>
-			<string>501040</string>
+			<string>500050</string>
 		</dict>
-		<key>501050</key>
+		<key>501010</key>
 		<dict>
 			<key>task_id</key>
-			<string>501050</string>
+			<string>501010</string>
 			<key>name</key>
-			<string>通关第一章第五节</string>
+			<string>通关第一章第一节</string>
 			<key>type</key>
 			<string>1</string>
 			<key>target_id</key>
@@ -168,7 +270,7 @@
 			<key>num</key>
 			<string>1</string>
 			<key>pre_task</key>
-			<string>501040</string>
+			<string>500050</string>
 			<key>exp</key>
 			<string>567</string>
 			<key>coin</key>
@@ -202,213 +304,9 @@
 			<key>chapter_id</key>
 			<string>300100</string>
 			<key>part_id</key>
-			<string>300105</string>
+			<string>300101</string>
 			<key>task_tags</key>
-			<string>501050</string>
-		</dict>
-		<key>502010</key>
-		<dict>
-			<key>task_id</key>
-			<string>502010</string>
-			<key>name</key>
-			<string>通关第二章第一节</string>
-			<key>type</key>
-			<string>1</string>
-			<key>target_id</key>
-			<string>0</string>
-			<key>num</key>
-			<string>1</string>
-			<key>pre_task</key>
-			<string>501050</string>
-			<key>exp</key>
-			<string>866</string>
-			<key>coin</key>
-			<string>3299</string>
-			<key>cash</key>
-			<string>0</string>
-			<key>item_id_1</key>
-			<string>0</string>
-			<key>item_num_1</key>
-			<string>0</string>
-			<key>item_id_2</key>
-			<string>0</string>
-			<key>item_num_2</key>
-			<string>0</string>
-			<key>fit_id</key>
-			<string>0</string>
-			<key>fit_num</key>
-			<string>0</string>
-			<key>card_id_1</key>
-			<string>0</string>
-			<key>card_num_1</key>
-			<string>0</string>
-			<key>card_id_2</key>
-			<string>0</string>
-			<key>card_num_2</key>
-			<string>0</string>
-			<key>card_id_3</key>
-			<string>0</string>
-			<key>card_num_3</key>
-			<string>0</string>
-			<key>chapter_id</key>
-			<string>300200</string>
-			<key>part_id</key>
-			<string>300201</string>
-			<key>task_tags</key>
-			<string>502010</string>
-		</dict>
-		<key>502020</key>
-		<dict>
-			<key>task_id</key>
-			<string>502020</string>
-			<key>name</key>
-			<string>通关第二章第二节</string>
-			<key>type</key>
-			<string>1</string>
-			<key>target_id</key>
-			<string>0</string>
-			<key>num</key>
-			<string>1</string>
-			<key>pre_task</key>
-			<string>502010</string>
-			<key>exp</key>
-			<string>1251</string>
-			<key>coin</key>
-			<string>3488</string>
-			<key>cash</key>
-			<string>0</string>
-			<key>item_id_1</key>
-			<string>0</string>
-			<key>item_num_1</key>
-			<string>0</string>
-			<key>item_id_2</key>
-			<string>0</string>
-			<key>item_num_2</key>
-			<string>0</string>
-			<key>fit_id</key>
-			<string>0</string>
-			<key>fit_num</key>
-			<string>0</string>
-			<key>card_id_1</key>
-			<string>0</string>
-			<key>card_num_1</key>
-			<string>0</string>
-			<key>card_id_2</key>
-			<string>0</string>
-			<key>card_num_2</key>
-			<string>0</string>
-			<key>card_id_3</key>
-			<string>0</string>
-			<key>card_num_3</key>
-			<string>0</string>
-			<key>chapter_id</key>
-			<string>300200</string>
-			<key>part_id</key>
-			<string>300202</string>
-			<key>task_tags</key>
-			<string>502020</string>
-		</dict>
-		<key>502030</key>
-		<dict>
-			<key>task_id</key>
-			<string>502030</string>
-			<key>name</key>
-			<string>通关第二章第仨节</string>
-			<key>type</key>
-			<string>1</string>
-			<key>target_id</key>
-			<string>0</string>
-			<key>num</key>
-			<string>1</string>
-			<key>pre_task</key>
-			<string>502020</string>
-			<key>exp</key>
-			<string>1734</string>
-			<key>coin</key>
-			<string>3662</string>
-			<key>cash</key>
-			<string>0</string>
-			<key>item_id_1</key>
-			<string>0</string>
-			<key>item_num_1</key>
-			<string>0</string>
-			<key>item_id_2</key>
-			<string>0</string>
-			<key>item_num_2</key>
-			<string>0</string>
-			<key>fit_id</key>
-			<string>0</string>
-			<key>fit_num</key>
-			<string>0</string>
-			<key>card_id_1</key>
-			<string>0</string>
-			<key>card_num_1</key>
-			<string>0</string>
-			<key>card_id_2</key>
-			<string>0</string>
-			<key>card_num_2</key>
-			<string>0</string>
-			<key>card_id_3</key>
-			<string>0</string>
-			<key>card_num_3</key>
-			<string>0</string>
-			<key>chapter_id</key>
-			<string>300200</string>
-			<key>part_id</key>
-			<string>300203</string>
-			<key>task_tags</key>
-			<string>502030</string>
-		</dict>
-		<key>502040</key>
-		<dict>
-			<key>task_id</key>
-			<string>502040</string>
-			<key>name</key>
-			<string>通关第二章第四节</string>
-			<key>type</key>
-			<string>1</string>
-			<key>target_id</key>
-			<string>0</string>
-			<key>num</key>
-			<string>1</string>
-			<key>pre_task</key>
-			<string>502030</string>
-			<key>exp</key>
-			<string>1575</string>
-			<key>coin</key>
-			<string>3822</string>
-			<key>cash</key>
-			<string>0</string>
-			<key>item_id_1</key>
-			<string>0</string>
-			<key>item_num_1</key>
-			<string>0</string>
-			<key>item_id_2</key>
-			<string>0</string>
-			<key>item_num_2</key>
-			<string>0</string>
-			<key>fit_id</key>
-			<string>0</string>
-			<key>fit_num</key>
-			<string>0</string>
-			<key>card_id_1</key>
-			<string>0</string>
-			<key>card_num_1</key>
-			<string>0</string>
-			<key>card_id_2</key>
-			<string>0</string>
-			<key>card_num_2</key>
-			<string>0</string>
-			<key>card_id_3</key>
-			<string>0</string>
-			<key>card_num_3</key>
-			<string>0</string>
-			<key>chapter_id</key>
-			<string>300200</string>
-			<key>part_id</key>
-			<string>300204</string>
-			<key>task_tags</key>
-			<string>502040</string>
+			<string>501010</string>
 		</dict>
 		<key>501020</key>
 		<dict>
@@ -425,9 +323,9 @@
 			<key>pre_task</key>
 			<string>501010</string>
 			<key>exp</key>
-			<string>96</string>
+			<string>866</string>
 			<key>coin</key>
-			<string>2652</string>
+			<string>3299</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -476,9 +374,9 @@
 			<key>pre_task</key>
 			<string>501020</string>
 			<key>exp</key>
-			<string>204</string>
+			<string>1251</string>
 			<key>coin</key>
-			<string>2829</string>
+			<string>3488</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -512,12 +410,12 @@
 			<key>task_tags</key>
 			<string>501030</string>
 		</dict>
-		<key>502050</key>
+		<key>501040</key>
 		<dict>
 			<key>task_id</key>
-			<string>502050</string>
+			<string>501040</string>
 			<key>name</key>
-			<string>通关第二章第五节</string>
+			<string>通关第一章第四节</string>
 			<key>type</key>
 			<string>1</string>
 			<key>target_id</key>
@@ -525,7 +423,109 @@
 			<key>num</key>
 			<string>1</string>
 			<key>pre_task</key>
-			<string>502040</string>
+			<string>501030</string>
+			<key>exp</key>
+			<string>1734</string>
+			<key>coin</key>
+			<string>3662</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300100</string>
+			<key>part_id</key>
+			<string>300104</string>
+			<key>task_tags</key>
+			<string>501040</string>
+		</dict>
+		<key>501050</key>
+		<dict>
+			<key>task_id</key>
+			<string>501050</string>
+			<key>name</key>
+			<string>通关第一章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>501040</string>
+			<key>exp</key>
+			<string>1575</string>
+			<key>coin</key>
+			<string>3822</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300100</string>
+			<key>part_id</key>
+			<string>300105</string>
+			<key>task_tags</key>
+			<string>501050</string>
+		</dict>
+		<key>502010</key>
+		<dict>
+			<key>task_id</key>
+			<string>502010</string>
+			<key>name</key>
+			<string>通关第二章第一节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>501050</string>
 			<key>exp</key>
 			<string>2099</string>
 			<key>coin</key>
@@ -559,9 +559,264 @@
 			<key>chapter_id</key>
 			<string>300200</string>
 			<key>part_id</key>
+			<string>300201</string>
+			<key>task_tags</key>
+			<string>502010</string>
+		</dict>
+		<key>502020</key>
+		<dict>
+			<key>task_id</key>
+			<string>502020</string>
+			<key>name</key>
+			<string>通关第二章第二节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>502010</string>
+			<key>exp</key>
+			<string>2726</string>
+			<key>coin</key>
+			<string>4149</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300200</string>
+			<key>part_id</key>
+			<string>300202</string>
+			<key>task_tags</key>
+			<string>502020</string>
+		</dict>
+		<key>502030</key>
+		<dict>
+			<key>task_id</key>
+			<string>502030</string>
+			<key>name</key>
+			<string>通关第二章第仨节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>502020</string>
+			<key>exp</key>
+			<string>3465</string>
+			<key>coin</key>
+			<string>4252</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300200</string>
+			<key>part_id</key>
+			<string>300203</string>
+			<key>task_tags</key>
+			<string>502030</string>
+		</dict>
+		<key>502040</key>
+		<dict>
+			<key>task_id</key>
+			<string>502040</string>
+			<key>name</key>
+			<string>通关第二章第四节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>502030</string>
+			<key>exp</key>
+			<string>4324</string>
+			<key>coin</key>
+			<string>4349</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300200</string>
+			<key>part_id</key>
+			<string>300204</string>
+			<key>task_tags</key>
+			<string>502040</string>
+		</dict>
+		<key>502050</key>
+		<dict>
+			<key>task_id</key>
+			<string>502050</string>
+			<key>name</key>
+			<string>通关第二章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>502040</string>
+			<key>exp</key>
+			<string>5396</string>
+			<key>coin</key>
+			<string>4562</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300200</string>
+			<key>part_id</key>
 			<string>300205</string>
 			<key>task_tags</key>
 			<string>502050</string>
+		</dict>
+		<key>502060</key>
+		<dict>
+			<key>task_id</key>
+			<string>502060</string>
+			<key>name</key>
+			<string>通关第二章第六节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>502050</string>
+			<key>exp</key>
+			<string>6627</string>
+			<key>coin</key>
+			<string>4709</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300200</string>
+			<key>part_id</key>
+			<string>300206</string>
+			<key>task_tags</key>
+			<string>502060</string>
 		</dict>
 		<key>503010</key>
 		<dict>
@@ -578,9 +833,9 @@
 			<key>pre_task</key>
 			<string>502050</string>
 			<key>exp</key>
-			<string>2726</string>
+			<string>7924</string>
 			<key>coin</key>
-			<string>4149</string>
+			<string>4974</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -629,9 +884,9 @@
 			<key>pre_task</key>
 			<string>503010</string>
 			<key>exp</key>
-			<string>3465</string>
+			<string>9610</string>
 			<key>coin</key>
-			<string>4252</string>
+			<string>5221</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -680,9 +935,9 @@
 			<key>pre_task</key>
 			<string>503020</string>
 			<key>exp</key>
-			<string>4324</string>
+			<string>11384</string>
 			<key>coin</key>
-			<string>4349</string>
+			<string>5333</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -731,9 +986,9 @@
 			<key>pre_task</key>
 			<string>503030</string>
 			<key>exp</key>
-			<string>5396</string>
+			<string>24160</string>
 			<key>coin</key>
-			<string>4562</string>
+			<string>5463</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -782,9 +1037,9 @@
 			<key>pre_task</key>
 			<string>503040</string>
 			<key>exp</key>
-			<string>6627</string>
+			<string>48706</string>
 			<key>coin</key>
-			<string>4709</string>
+			<string>5523</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -818,6 +1073,108 @@
 			<key>task_tags</key>
 			<string>503050</string>
 		</dict>
+		<key>503060</key>
+		<dict>
+			<key>task_id</key>
+			<string>503060</string>
+			<key>name</key>
+			<string>通关第仨章第六节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>503050</string>
+			<key>exp</key>
+			<string>81750</string>
+			<key>coin</key>
+			<string>5583</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300300</string>
+			<key>part_id</key>
+			<string>300306</string>
+			<key>task_tags</key>
+			<string>503060</string>
+		</dict>
+		<key>503070</key>
+		<dict>
+			<key>task_id</key>
+			<string>503070</string>
+			<key>name</key>
+			<string>通关第仨章第七节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>503060</string>
+			<key>exp</key>
+			<string>87000</string>
+			<key>coin</key>
+			<string>5811</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300300</string>
+			<key>part_id</key>
+			<string>300307</string>
+			<key>task_tags</key>
+			<string>503070</string>
+		</dict>
 		<key>504010</key>
 		<dict>
 			<key>task_id</key>
@@ -833,9 +1190,9 @@
 			<key>pre_task</key>
 			<string>503050</string>
 			<key>exp</key>
-			<string>7924</string>
+			<string>92250</string>
 			<key>coin</key>
-			<string>4974</string>
+			<string>8939</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -884,9 +1241,9 @@
 			<key>pre_task</key>
 			<string>504010</string>
 			<key>exp</key>
-			<string>9610</string>
+			<string>97500</string>
 			<key>coin</key>
-			<string>5221</string>
+			<string>6080</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -935,9 +1292,9 @@
 			<key>pre_task</key>
 			<string>504020</string>
 			<key>exp</key>
-			<string>11384</string>
+			<string>102750</string>
 			<key>coin</key>
-			<string>5333</string>
+			<string>6320</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -986,9 +1343,9 @@
 			<key>pre_task</key>
 			<string>504030</string>
 			<key>exp</key>
-			<string>24160</string>
+			<string>108750</string>
 			<key>coin</key>
-			<string>5463</string>
+			<string>8044</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1037,9 +1394,9 @@
 			<key>pre_task</key>
 			<string>504040</string>
 			<key>exp</key>
-			<string>48706</string>
+			<string>114000</string>
 			<key>coin</key>
-			<string>5523</string>
+			<string>7885</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1073,6 +1430,159 @@
 			<key>task_tags</key>
 			<string>504050</string>
 		</dict>
+		<key>504060</key>
+		<dict>
+			<key>task_id</key>
+			<string>504060</string>
+			<key>name</key>
+			<string>通关第四章第六节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>504050</string>
+			<key>exp</key>
+			<string>120000</string>
+			<key>coin</key>
+			<string>7738</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300400</string>
+			<key>part_id</key>
+			<string>300406</string>
+			<key>task_tags</key>
+			<string>504060</string>
+		</dict>
+		<key>504070</key>
+		<dict>
+			<key>task_id</key>
+			<string>504070</string>
+			<key>name</key>
+			<string>通关第四章第七节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>504060</string>
+			<key>exp</key>
+			<string>126000</string>
+			<key>coin</key>
+			<string>5797</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300400</string>
+			<key>part_id</key>
+			<string>300407</string>
+			<key>task_tags</key>
+			<string>504070</string>
+		</dict>
+		<key>504080</key>
+		<dict>
+			<key>task_id</key>
+			<string>504080</string>
+			<key>name</key>
+			<string>通关第四章第八节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>504070</string>
+			<key>exp</key>
+			<string>132000</string>
+			<key>coin</key>
+			<string>6880</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300400</string>
+			<key>part_id</key>
+			<string>300408</string>
+			<key>task_tags</key>
+			<string>504080</string>
+		</dict>
 		<key>505010</key>
 		<dict>
 			<key>task_id</key>
@@ -1088,9 +1598,9 @@
 			<key>pre_task</key>
 			<string>504050</string>
 			<key>exp</key>
-			<string>81750</string>
+			<string>138750</string>
 			<key>coin</key>
-			<string>5583</string>
+			<string>7002</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1139,9 +1649,9 @@
 			<key>pre_task</key>
 			<string>505010</string>
 			<key>exp</key>
-			<string>87000</string>
+			<string>144750</string>
 			<key>coin</key>
-			<string>5811</string>
+			<string>6391</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1190,9 +1700,9 @@
 			<key>pre_task</key>
 			<string>505020</string>
 			<key>exp</key>
-			<string>92250</string>
+			<string>151500</string>
 			<key>coin</key>
-			<string>8939</string>
+			<string>6590</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1241,9 +1751,9 @@
 			<key>pre_task</key>
 			<string>505030</string>
 			<key>exp</key>
-			<string>97500</string>
+			<string>157500</string>
 			<key>coin</key>
-			<string>6080</string>
+			<string>6681</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1292,9 +1802,9 @@
 			<key>pre_task</key>
 			<string>505040</string>
 			<key>exp</key>
-			<string>102750</string>
+			<string>164250</string>
 			<key>coin</key>
-			<string>6320</string>
+			<string>7387</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1328,6 +1838,210 @@
 			<key>task_tags</key>
 			<string>505050</string>
 		</dict>
+		<key>505060</key>
+		<dict>
+			<key>task_id</key>
+			<string>505060</string>
+			<key>name</key>
+			<string>通关第五章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>505050</string>
+			<key>exp</key>
+			<string>171000</string>
+			<key>coin</key>
+			<string>6975</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300500</string>
+			<key>part_id</key>
+			<string>300506</string>
+			<key>task_tags</key>
+			<string>505060</string>
+		</dict>
+		<key>505070</key>
+		<dict>
+			<key>task_id</key>
+			<string>505070</string>
+			<key>name</key>
+			<string>通关第五章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>505060</string>
+			<key>exp</key>
+			<string>177750</string>
+			<key>coin</key>
+			<string>7040</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300500</string>
+			<key>part_id</key>
+			<string>300507</string>
+			<key>task_tags</key>
+			<string>505070</string>
+		</dict>
+		<key>505080</key>
+		<dict>
+			<key>task_id</key>
+			<string>505080</string>
+			<key>name</key>
+			<string>通关第五章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>505070</string>
+			<key>exp</key>
+			<string>184500</string>
+			<key>coin</key>
+			<string>7171</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300500</string>
+			<key>part_id</key>
+			<string>300508</string>
+			<key>task_tags</key>
+			<string>505080</string>
+		</dict>
+		<key>505090</key>
+		<dict>
+			<key>task_id</key>
+			<string>505090</string>
+			<key>name</key>
+			<string>通关第五章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>505080</string>
+			<key>exp</key>
+			<string>191250</string>
+			<key>coin</key>
+			<string>7317</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300500</string>
+			<key>part_id</key>
+			<string>300509</string>
+			<key>task_tags</key>
+			<string>505090</string>
+		</dict>
 		<key>506010</key>
 		<dict>
 			<key>task_id</key>
@@ -1343,9 +2057,9 @@
 			<key>pre_task</key>
 			<string>505050</string>
 			<key>exp</key>
-			<string>108750</string>
+			<string>198750</string>
 			<key>coin</key>
-			<string>8044</string>
+			<string>7472</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1394,9 +2108,9 @@
 			<key>pre_task</key>
 			<string>506010</string>
 			<key>exp</key>
-			<string>114000</string>
+			<string>205500</string>
 			<key>coin</key>
-			<string>7885</string>
+			<string>7636</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1445,9 +2159,9 @@
 			<key>pre_task</key>
 			<string>506020</string>
 			<key>exp</key>
-			<string>120000</string>
+			<string>213000</string>
 			<key>coin</key>
-			<string>7738</string>
+			<string>7438</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1496,9 +2210,9 @@
 			<key>pre_task</key>
 			<string>506030</string>
 			<key>exp</key>
-			<string>126000</string>
+			<string>220500</string>
 			<key>coin</key>
-			<string>5797</string>
+			<string>7584</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1547,9 +2261,9 @@
 			<key>pre_task</key>
 			<string>506040</string>
 			<key>exp</key>
-			<string>132000</string>
+			<string>228000</string>
 			<key>coin</key>
-			<string>6880</string>
+			<string>7650</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1583,6 +2297,261 @@
 			<key>task_tags</key>
 			<string>506050</string>
 		</dict>
+		<key>506060</key>
+		<dict>
+			<key>task_id</key>
+			<string>506060</string>
+			<key>name</key>
+			<string>通关第六章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>506050</string>
+			<key>exp</key>
+			<string>235500</string>
+			<key>coin</key>
+			<string>8095</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300600</string>
+			<key>part_id</key>
+			<string>300606</string>
+			<key>task_tags</key>
+			<string>506060</string>
+		</dict>
+		<key>506070</key>
+		<dict>
+			<key>task_id</key>
+			<string>506070</string>
+			<key>name</key>
+			<string>通关第六章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>506060</string>
+			<key>exp</key>
+			<string>243000</string>
+			<key>coin</key>
+			<string>8065</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300600</string>
+			<key>part_id</key>
+			<string>300607</string>
+			<key>task_tags</key>
+			<string>506070</string>
+		</dict>
+		<key>506080</key>
+		<dict>
+			<key>task_id</key>
+			<string>506080</string>
+			<key>name</key>
+			<string>通关第六章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>506070</string>
+			<key>exp</key>
+			<string>250500</string>
+			<key>coin</key>
+			<string>8181</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300600</string>
+			<key>part_id</key>
+			<string>300608</string>
+			<key>task_tags</key>
+			<string>506080</string>
+		</dict>
+		<key>506090</key>
+		<dict>
+			<key>task_id</key>
+			<string>506090</string>
+			<key>name</key>
+			<string>通关第六章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>506080</string>
+			<key>exp</key>
+			<string>258750</string>
+			<key>coin</key>
+			<string>8486</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300600</string>
+			<key>part_id</key>
+			<string>300609</string>
+			<key>task_tags</key>
+			<string>506090</string>
+		</dict>
+		<key>506100</key>
+		<dict>
+			<key>task_id</key>
+			<string>506100</string>
+			<key>name</key>
+			<string>通关第六章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>506090</string>
+			<key>exp</key>
+			<string>266250</string>
+			<key>coin</key>
+			<string>7673</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300600</string>
+			<key>part_id</key>
+			<string>300610</string>
+			<key>task_tags</key>
+			<string>506100</string>
+		</dict>
 		<key>507010</key>
 		<dict>
 			<key>task_id</key>
@@ -1598,9 +2567,9 @@
 			<key>pre_task</key>
 			<string>506050</string>
 			<key>exp</key>
-			<string>138750</string>
+			<string>274500</string>
 			<key>coin</key>
-			<string>7002</string>
+			<string>7804</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1649,9 +2618,9 @@
 			<key>pre_task</key>
 			<string>507010</string>
 			<key>exp</key>
-			<string>144750</string>
+			<string>282000</string>
 			<key>coin</key>
-			<string>6391</string>
+			<string>7735</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1700,9 +2669,9 @@
 			<key>pre_task</key>
 			<string>507020</string>
 			<key>exp</key>
-			<string>151500</string>
+			<string>290250</string>
 			<key>coin</key>
-			<string>6590</string>
+			<string>7901</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1751,9 +2720,9 @@
 			<key>pre_task</key>
 			<string>507030</string>
 			<key>exp</key>
-			<string>157500</string>
+			<string>298500</string>
 			<key>coin</key>
-			<string>6681</string>
+			<string>7886</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1802,9 +2771,9 @@
 			<key>pre_task</key>
 			<string>507040</string>
 			<key>exp</key>
-			<string>164250</string>
+			<string>306750</string>
 			<key>coin</key>
-			<string>7387</string>
+			<string>8077</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1838,6 +2807,312 @@
 			<key>task_tags</key>
 			<string>507050</string>
 		</dict>
+		<key>507060</key>
+		<dict>
+			<key>task_id</key>
+			<string>507060</string>
+			<key>name</key>
+			<string>通关第七章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>507050</string>
+			<key>exp</key>
+			<string>315000</string>
+			<key>coin</key>
+			<string>8102</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300700</string>
+			<key>part_id</key>
+			<string>300706</string>
+			<key>task_tags</key>
+			<string>507060</string>
+		</dict>
+		<key>507070</key>
+		<dict>
+			<key>task_id</key>
+			<string>507070</string>
+			<key>name</key>
+			<string>通关第七章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>507060</string>
+			<key>exp</key>
+			<string>324000</string>
+			<key>coin</key>
+			<string>8148</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300700</string>
+			<key>part_id</key>
+			<string>300707</string>
+			<key>task_tags</key>
+			<string>507070</string>
+		</dict>
+		<key>507080</key>
+		<dict>
+			<key>task_id</key>
+			<string>507080</string>
+			<key>name</key>
+			<string>通关第七章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>507070</string>
+			<key>exp</key>
+			<string>332250</string>
+			<key>coin</key>
+			<string>8211</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300700</string>
+			<key>part_id</key>
+			<string>300708</string>
+			<key>task_tags</key>
+			<string>507080</string>
+		</dict>
+		<key>507090</key>
+		<dict>
+			<key>task_id</key>
+			<string>507090</string>
+			<key>name</key>
+			<string>通关第七章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>507080</string>
+			<key>exp</key>
+			<string>341250</string>
+			<key>coin</key>
+			<string>8291</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300700</string>
+			<key>part_id</key>
+			<string>300709</string>
+			<key>task_tags</key>
+			<string>507090</string>
+		</dict>
+		<key>507100</key>
+		<dict>
+			<key>task_id</key>
+			<string>507100</string>
+			<key>name</key>
+			<string>通关第七章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>507090</string>
+			<key>exp</key>
+			<string>349500</string>
+			<key>coin</key>
+			<string>8994</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300700</string>
+			<key>part_id</key>
+			<string>300710</string>
+			<key>task_tags</key>
+			<string>507100</string>
+		</dict>
+		<key>507110</key>
+		<dict>
+			<key>task_id</key>
+			<string>507110</string>
+			<key>name</key>
+			<string>通关第七章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>507100</string>
+			<key>exp</key>
+			<string>358500</string>
+			<key>coin</key>
+			<string>9075</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300700</string>
+			<key>part_id</key>
+			<string>300711</string>
+			<key>task_tags</key>
+			<string>507110</string>
+		</dict>
 		<key>508010</key>
 		<dict>
 			<key>task_id</key>
@@ -1853,9 +3128,9 @@
 			<key>pre_task</key>
 			<string>507050</string>
 			<key>exp</key>
-			<string>171000</string>
+			<string>367500</string>
 			<key>coin</key>
-			<string>6975</string>
+			<string>9022</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1904,9 +3179,9 @@
 			<key>pre_task</key>
 			<string>508010</string>
 			<key>exp</key>
-			<string>177750</string>
+			<string>376500</string>
 			<key>coin</key>
-			<string>7040</string>
+			<string>9135</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -1955,9 +3230,9 @@
 			<key>pre_task</key>
 			<string>508020</string>
 			<key>exp</key>
-			<string>184500</string>
+			<string>385500</string>
 			<key>coin</key>
-			<string>7171</string>
+			<string>9258</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2006,9 +3281,9 @@
 			<key>pre_task</key>
 			<string>508030</string>
 			<key>exp</key>
-			<string>191250</string>
+			<string>394500</string>
 			<key>coin</key>
-			<string>7317</string>
+			<string>9260</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2057,9 +3332,9 @@
 			<key>pre_task</key>
 			<string>508040</string>
 			<key>exp</key>
-			<string>198750</string>
+			<string>403500</string>
 			<key>coin</key>
-			<string>7472</string>
+			<string>9282</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2093,6 +3368,363 @@
 			<key>task_tags</key>
 			<string>508050</string>
 		</dict>
+		<key>508060</key>
+		<dict>
+			<key>task_id</key>
+			<string>508060</string>
+			<key>name</key>
+			<string>通关第八章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>508050</string>
+			<key>exp</key>
+			<string>412500</string>
+			<key>coin</key>
+			<string>9319</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300800</string>
+			<key>part_id</key>
+			<string>300806</string>
+			<key>task_tags</key>
+			<string>508060</string>
+		</dict>
+		<key>508070</key>
+		<dict>
+			<key>task_id</key>
+			<string>508070</string>
+			<key>name</key>
+			<string>通关第八章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>508060</string>
+			<key>exp</key>
+			<string>422250</string>
+			<key>coin</key>
+			<string>9371</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300800</string>
+			<key>part_id</key>
+			<string>300807</string>
+			<key>task_tags</key>
+			<string>508070</string>
+		</dict>
+		<key>508080</key>
+		<dict>
+			<key>task_id</key>
+			<string>508080</string>
+			<key>name</key>
+			<string>通关第八章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>508070</string>
+			<key>exp</key>
+			<string>431250</string>
+			<key>coin</key>
+			<string>9436</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300800</string>
+			<key>part_id</key>
+			<string>300808</string>
+			<key>task_tags</key>
+			<string>508080</string>
+		</dict>
+		<key>508090</key>
+		<dict>
+			<key>task_id</key>
+			<string>508090</string>
+			<key>name</key>
+			<string>通关第八章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>508080</string>
+			<key>exp</key>
+			<string>441000</string>
+			<key>coin</key>
+			<string>9837</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300800</string>
+			<key>part_id</key>
+			<string>300809</string>
+			<key>task_tags</key>
+			<string>508090</string>
+		</dict>
+		<key>508100</key>
+		<dict>
+			<key>task_id</key>
+			<string>508100</string>
+			<key>name</key>
+			<string>通关第八章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>508090</string>
+			<key>exp</key>
+			<string>450750</string>
+			<key>coin</key>
+			<string>10258</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300800</string>
+			<key>part_id</key>
+			<string>300810</string>
+			<key>task_tags</key>
+			<string>508100</string>
+		</dict>
+		<key>508110</key>
+		<dict>
+			<key>task_id</key>
+			<string>508110</string>
+			<key>name</key>
+			<string>通关第八章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>508100</string>
+			<key>exp</key>
+			<string>460500</string>
+			<key>coin</key>
+			<string>9693</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300800</string>
+			<key>part_id</key>
+			<string>300811</string>
+			<key>task_tags</key>
+			<string>508110</string>
+		</dict>
+		<key>508120</key>
+		<dict>
+			<key>task_id</key>
+			<string>508120</string>
+			<key>name</key>
+			<string>通关第八章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>508110</string>
+			<key>exp</key>
+			<string>470250</string>
+			<key>coin</key>
+			<string>10126</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300800</string>
+			<key>part_id</key>
+			<string>300812</string>
+			<key>task_tags</key>
+			<string>508120</string>
+		</dict>
 		<key>509010</key>
 		<dict>
 			<key>task_id</key>
@@ -2108,9 +3740,9 @@
 			<key>pre_task</key>
 			<string>508050</string>
 			<key>exp</key>
-			<string>205500</string>
+			<string>480000</string>
 			<key>coin</key>
-			<string>7636</string>
+			<string>10394</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2159,9 +3791,9 @@
 			<key>pre_task</key>
 			<string>509010</string>
 			<key>exp</key>
-			<string>213000</string>
+			<string>489750</string>
 			<key>coin</key>
-			<string>7438</string>
+			<string>10605</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2210,9 +3842,9 @@
 			<key>pre_task</key>
 			<string>509020</string>
 			<key>exp</key>
-			<string>220500</string>
+			<string>499500</string>
 			<key>coin</key>
-			<string>7584</string>
+			<string>10845</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2261,9 +3893,9 @@
 			<key>pre_task</key>
 			<string>509030</string>
 			<key>exp</key>
-			<string>228000</string>
+			<string>509250</string>
 			<key>coin</key>
-			<string>7650</string>
+			<string>11326</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2312,9 +3944,9 @@
 			<key>pre_task</key>
 			<string>509040</string>
 			<key>exp</key>
-			<string>235500</string>
+			<string>519750</string>
 			<key>coin</key>
-			<string>8095</string>
+			<string>11595</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2348,6 +3980,414 @@
 			<key>task_tags</key>
 			<string>509050</string>
 		</dict>
+		<key>509060</key>
+		<dict>
+			<key>task_id</key>
+			<string>509060</string>
+			<key>name</key>
+			<string>通关第九章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>509050</string>
+			<key>exp</key>
+			<string>529500</string>
+			<key>coin</key>
+			<string>11757</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300900</string>
+			<key>part_id</key>
+			<string>300906</string>
+			<key>task_tags</key>
+			<string>509060</string>
+		</dict>
+		<key>509070</key>
+		<dict>
+			<key>task_id</key>
+			<string>509070</string>
+			<key>name</key>
+			<string>通关第九章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>509060</string>
+			<key>exp</key>
+			<string>540000</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300900</string>
+			<key>part_id</key>
+			<string>300907</string>
+			<key>task_tags</key>
+			<string>509070</string>
+		</dict>
+		<key>509080</key>
+		<dict>
+			<key>task_id</key>
+			<string>509080</string>
+			<key>name</key>
+			<string>通关第九章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>509070</string>
+			<key>exp</key>
+			<string>550500</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300900</string>
+			<key>part_id</key>
+			<string>300908</string>
+			<key>task_tags</key>
+			<string>509080</string>
+		</dict>
+		<key>509090</key>
+		<dict>
+			<key>task_id</key>
+			<string>509090</string>
+			<key>name</key>
+			<string>通关第九章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>509080</string>
+			<key>exp</key>
+			<string>561000</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300900</string>
+			<key>part_id</key>
+			<string>300909</string>
+			<key>task_tags</key>
+			<string>509090</string>
+		</dict>
+		<key>509100</key>
+		<dict>
+			<key>task_id</key>
+			<string>509100</string>
+			<key>name</key>
+			<string>通关第九章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>509090</string>
+			<key>exp</key>
+			<string>571500</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300900</string>
+			<key>part_id</key>
+			<string>300910</string>
+			<key>task_tags</key>
+			<string>509100</string>
+		</dict>
+		<key>509110</key>
+		<dict>
+			<key>task_id</key>
+			<string>509110</string>
+			<key>name</key>
+			<string>通关第九章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>509100</string>
+			<key>exp</key>
+			<string>582000</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300900</string>
+			<key>part_id</key>
+			<string>300911</string>
+			<key>task_tags</key>
+			<string>509110</string>
+		</dict>
+		<key>509120</key>
+		<dict>
+			<key>task_id</key>
+			<string>509120</string>
+			<key>name</key>
+			<string>通关第九章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>509110</string>
+			<key>exp</key>
+			<string>592500</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300900</string>
+			<key>part_id</key>
+			<string>300912</string>
+			<key>task_tags</key>
+			<string>509120</string>
+		</dict>
+		<key>509130</key>
+		<dict>
+			<key>task_id</key>
+			<string>509130</string>
+			<key>name</key>
+			<string>通关第九章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>509120</string>
+			<key>exp</key>
+			<string>603000</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>300900</string>
+			<key>part_id</key>
+			<string>300913</string>
+			<key>task_tags</key>
+			<string>509130</string>
+		</dict>
 		<key>510010</key>
 		<dict>
 			<key>task_id</key>
@@ -2363,9 +4403,9 @@
 			<key>pre_task</key>
 			<string>509050</string>
 			<key>exp</key>
-			<string>243000</string>
+			<string>613500</string>
 			<key>coin</key>
-			<string>8065</string>
+			<string>11307</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2414,9 +4454,9 @@
 			<key>pre_task</key>
 			<string>510010</string>
 			<key>exp</key>
-			<string>250500</string>
+			<string>624750</string>
 			<key>coin</key>
-			<string>8181</string>
+			<string>11307</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2465,9 +4505,9 @@
 			<key>pre_task</key>
 			<string>510020</string>
 			<key>exp</key>
-			<string>258750</string>
+			<string>635250</string>
 			<key>coin</key>
-			<string>8486</string>
+			<string>11307</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2516,9 +4556,9 @@
 			<key>pre_task</key>
 			<string>510030</string>
 			<key>exp</key>
-			<string>266250</string>
+			<string>646500</string>
 			<key>coin</key>
-			<string>7673</string>
+			<string>11307</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2567,9 +4607,9 @@
 			<key>pre_task</key>
 			<string>510040</string>
 			<key>exp</key>
-			<string>274500</string>
+			<string>657000</string>
 			<key>coin</key>
-			<string>7804</string>
+			<string>11307</string>
 			<key>cash</key>
 			<string>0</string>
 			<key>item_id_1</key>
@@ -2602,6 +4642,465 @@
 			<string>301005</string>
 			<key>task_tags</key>
 			<string>510050</string>
+		</dict>
+		<key>510060</key>
+		<dict>
+			<key>task_id</key>
+			<string>510060</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510050</string>
+			<key>exp</key>
+			<string>668250</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301006</string>
+			<key>task_tags</key>
+			<string>510060</string>
+		</dict>
+		<key>510070</key>
+		<dict>
+			<key>task_id</key>
+			<string>510070</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510060</string>
+			<key>exp</key>
+			<string>679500</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301007</string>
+			<key>task_tags</key>
+			<string>510070</string>
+		</dict>
+		<key>510080</key>
+		<dict>
+			<key>task_id</key>
+			<string>510080</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510070</string>
+			<key>exp</key>
+			<string>690750</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301008</string>
+			<key>task_tags</key>
+			<string>510080</string>
+		</dict>
+		<key>510090</key>
+		<dict>
+			<key>task_id</key>
+			<string>510090</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510080</string>
+			<key>exp</key>
+			<string>702000</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301009</string>
+			<key>task_tags</key>
+			<string>510090</string>
+		</dict>
+		<key>510100</key>
+		<dict>
+			<key>task_id</key>
+			<string>510100</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510090</string>
+			<key>exp</key>
+			<string>713250</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301010</string>
+			<key>task_tags</key>
+			<string>510100</string>
+		</dict>
+		<key>510110</key>
+		<dict>
+			<key>task_id</key>
+			<string>510110</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510100</string>
+			<key>exp</key>
+			<string>724500</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301011</string>
+			<key>task_tags</key>
+			<string>510110</string>
+		</dict>
+		<key>510120</key>
+		<dict>
+			<key>task_id</key>
+			<string>510120</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510110</string>
+			<key>exp</key>
+			<string>735750</string>
+			<key>coin</key>
+			<string>11307</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301012</string>
+			<key>task_tags</key>
+			<string>510120</string>
+		</dict>
+		<key>510130</key>
+		<dict>
+			<key>task_id</key>
+			<string>510130</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510120</string>
+			<key>exp</key>
+			<string>747750</string>
+			<key>coin</key>
+			<string>12341</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301013</string>
+			<key>task_tags</key>
+			<string>510130</string>
+		</dict>
+		<key>510140</key>
+		<dict>
+			<key>task_id</key>
+			<string>510140</string>
+			<key>name</key>
+			<string>通关第十章第五节</string>
+			<key>type</key>
+			<string>1</string>
+			<key>target_id</key>
+			<string>0</string>
+			<key>num</key>
+			<string>1</string>
+			<key>pre_task</key>
+			<string>510130</string>
+			<key>exp</key>
+			<string>759000</string>
+			<key>coin</key>
+			<string>12341</string>
+			<key>cash</key>
+			<string>0</string>
+			<key>item_id_1</key>
+			<string>0</string>
+			<key>item_num_1</key>
+			<string>0</string>
+			<key>item_id_2</key>
+			<string>0</string>
+			<key>item_num_2</key>
+			<string>0</string>
+			<key>fit_id</key>
+			<string>0</string>
+			<key>fit_num</key>
+			<string>0</string>
+			<key>card_id_1</key>
+			<string>0</string>
+			<key>card_num_1</key>
+			<string>0</string>
+			<key>card_id_2</key>
+			<string>0</string>
+			<key>card_num_2</key>
+			<string>0</string>
+			<key>card_id_3</key>
+			<string>0</string>
+			<key>card_num_3</key>
+			<string>0</string>
+			<key>chapter_id</key>
+			<string>301000</string>
+			<key>part_id</key>
+			<string>301014</string>
+			<key>task_tags</key>
+			<string>510140</string>
 		</dict>
 	</dict>
 </plist>

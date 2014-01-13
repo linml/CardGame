@@ -1,9 +1,9 @@
-﻿接口功能描述 ：获取好友信息列表
-模块 ：api.php?m=Pvp&a=pvpTask&uid=1000001(用户ID) 
+接口功能描述 ：获取PVP战报信息
+模块 ：api.php?m=Pvp&a=getPvpReport&uid=1000001(用户ID) 
 参数 ：
 	sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)
 
-cube.games.com/api.php?m=Pvp&a=pvpTask&uid=1000001&sig=2ac2b1e302c46976beaab20a68ef95
+http://cube.games.com/api.php?m=Pvp&a=getPvpReport&uid=1000001&sig=2ac2b1e302c46976beaab20a68ef95
 返回 ： 
 
     错误情况：  
@@ -11,50 +11,184 @@ cube.games.com/api.php?m=Pvp&a=pvpTask&uid=1000001&sig=2ac2b1e302c46976beaab20a6
     正常返回一（当前用户）：    
 
 
-    
+    {
+       "code": 0,
+       "result":
+       {
+           "211":
+           {
+		"status": 1, //状态 0 失败 1成功
+               "time": 1389597281,//时间点
+	       "power": 0,//战斗力
+               "username": "test",//用户名
+               "level": "19",//玩家等级
+               "team_info"://阵容信息  失败的才有
+               [
+               ]
+           },
+           "212":
+           {
+               "status": 1,
+               "time": 1389597281,
+               "power": 0,
+               "username": "test",
+               "level": "14",
+               "team_info":
+               [
+               ]
+           },
+           "213":
+           {
+               "status": 0,
+               "time": 1389597281,
+               "power": 0,
+               "username": "test",
+               "level": "1",
+               "team_info":
+               [
+               ]
+           },
+           "214":
+           {
+               "status": 0,
+               "time": 1389597281,
+               "power": 0,
+               "username": "test",
+               "level": "1",
+               "team_info":
+               [
+               ]
+           },
+           "206":
+           {
+               "status": 0,
+               "time": 1389597281,
+               "power": 0,
+               "username": "test",
+               "level": "44",
+               "team_info":
+               {
+                   "team":
+                   {
+                       "4570":
+                       {
+                           "card_id": null,
+                           "level": null
+                       }
+                   }
+               }
+           },
+           "208":
+           {
+               "status": 0,
+               "time": 1389597281,
+               "power": 0,
+               "username": "test",
+               "level": "29",
+               "team_info":
+               {
+                   "team":
+                   {
+                       "5372":
+                       {
+                           "card_id": null,
+                           "level": null
+                       }
+                   }
+               }
+           }
+       }
+    }
+
+
 
     {
        "code": 0,
        "result":
        {
-           "pvp_times": 100,
-           "pvp_score": 1000,
-           "pvp_task":
-           [
-               1001,
-               1002,
-               10032
-           ]
+           "211":
+           {
+               "status": 1, //状态 0 失败 1成功
+               "time": 1389597281,//时间点
+               "username": "test",//用户名
+               "level": "19",//玩家等级
+               "team_info"://阵容信息  失败的才有
+               [
+               ]
+           },
+           "212":
+           {
+               "status": 1,
+               "time": 1389597281,
+               "username": "test",
+               "level": "14",
+               "team_info":
+               [
+               ]
+           },
+           "213":
+           {
+               "status": 0,
+               "time": 1389597281,
+               "username": "test",
+               "level": "1",
+               "team_info":
+               [
+               ]
+           },
+           "214":
+           {
+               "status": 0,
+               "time": 1389597281,
+               "username": "test",
+               "level": "1",
+               "team_info":
+               [
+               ]
+           },
+           "206":
+           {
+               "status": 0,
+               "time": 1389597281,
+               "username": "test",
+               "level": "44",
+               "team_info":
+               {
+                   "team":
+                   {
+                       "4570":
+                       {
+                           "card_id": null,
+                           "level": null
+			   "position": 1
+                       }
+                   }
+               }
+           },
+           "208":
+           {
+               "status": 0,
+               "time": 1389597281,
+               "username": "test",
+               "level": "29",
+               "team_info":
+               {
+                   "team":
+                   {
+                       "5372":
+                       {
+                           "card_id": null,
+                           "level": null
+			   "position": 1
+                       }
+                   }
+               }
+           }
        }
     }
 
-错误情况:
 
-
-接口功能描述 ：获取好友信息列表
-模块 ：api.php?m=Pvp&a=getPvpTaskReward&uid=1000001(用户ID) 
-参数 ：
-	sig=2ac2b1e302c46976beaab20a68ef95(用户标识码)
-
-cube.games.com/api.php?m=Pvp&a=getPvpTaskReward&uid=1000001&sig=2ac2b1e302c46976beaab20a68ef95&pvp_task_id=1001
-返回 ： 
-
-    错误情况：  
-
-    正常返回一（当前用户）：    
-
-
-
-    {
-       "code": 0,
-       "result":
-       {
-           "info": 1 //成功返回 这个，其它的返回错误代码 ，客户端得到这个结果时顺便把刚领取过的信息状态改下
-	   "reward"://奖励走掉落包 ，跟原先一样，增加了一个pvp_task属性，客户端看下有没有用，没用就不用管了.
-       }
-    }
 
 
 错误情况:
-2650:已经领过了
-2651：当前任务达成条件不足
+

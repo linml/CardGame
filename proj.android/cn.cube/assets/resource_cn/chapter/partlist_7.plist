@@ -2,8 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	
-	<key>300601</key>
+    <key>300601</key>
 	<dict>
 		<key>part_id</key>
 		<string>300601</string>
@@ -28,7 +27,7 @@
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>0</string>
+		<string>1</string>
 		<key>right_clear</key>
 		<string>0</string>
 	</dict>
@@ -57,7 +56,7 @@
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>0</string>
+		<string>1</string>
 		<key>right_clear</key>
 		<string>1</string>
 	</dict>
@@ -84,11 +83,11 @@
 		<key>mission_id</key>
 		<string>506030</string>
 		<key>left_clear</key>
-		<string>1</string>
-		<key>middle_clear</key>
-		<string>1</string>
-		<key>right_clear</key>
 		<string>0</string>
+		<key>middle_clear</key>
+		<string>0</string>
+		<key>right_clear</key>
+		<string>1</string>
 	</dict>
 	<key>300604</key>
 	<dict>
@@ -113,11 +112,11 @@
 		<key>mission_id</key>
 		<string>506040</string>
 		<key>left_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>middle_clear</key>
 		<string>1</string>
 		<key>right_clear</key>
-		<string>1</string>
+		<string>0</string>
 	</dict>
 	<key>300605</key>
 	<dict>
@@ -142,11 +141,156 @@
 		<key>mission_id</key>
 		<string>506050</string>
 		<key>left_clear</key>
+		<string>1</string>
+		<key>middle_clear</key>
+		<string>0</string>
+		<key>right_clear</key>
+		<string>0</string>
+	</dict>
+	<key>300606</key>
+	<dict>
+		<key>part_id</key>
+		<string>300606</string>
+		<key>part_name</key>
+		<string>第六节</string>
+		<key>chapter_id</key>
+		<string>300600</string>
+		<key>order_by</key>
+		<string>6</string>
+		<key>part_tips</key>
+		<string>300606</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103002</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>506060</string>
+		<key>left_clear</key>
+		<string>1</string>
+		<key>middle_clear</key>
+		<string>0</string>
+		<key>right_clear</key>
+		<string>1</string>
+	</dict>
+	<key>300607</key>
+	<dict>
+		<key>part_id</key>
+		<string>300607</string>
+		<key>part_name</key>
+		<string>第七节</string>
+		<key>chapter_id</key>
+		<string>300600</string>
+		<key>order_by</key>
+		<string>7</string>
+		<key>part_tips</key>
+		<string>300607</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103003</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>506070</string>
+		<key>left_clear</key>
+		<string>1</string>
+		<key>middle_clear</key>
+		<string>1</string>
+		<key>right_clear</key>
+		<string>0</string>
+	</dict>
+	<key>300608</key>
+	<dict>
+		<key>part_id</key>
+		<string>300608</string>
+		<key>part_name</key>
+		<string>第八节</string>
+		<key>chapter_id</key>
+		<string>300600</string>
+		<key>order_by</key>
+		<string>8</string>
+		<key>part_tips</key>
+		<string>300608</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103004</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>506080</string>
+		<key>left_clear</key>
+		<string>1</string>
+		<key>middle_clear</key>
+		<string>1</string>
+		<key>right_clear</key>
+		<string>1</string>
+	</dict>
+	<key>300609</key>
+	<dict>
+		<key>part_id</key>
+		<string>300609</string>
+		<key>part_name</key>
+		<string>第九节</string>
+		<key>chapter_id</key>
+		<string>300600</string>
+		<key>order_by</key>
+		<string>9</string>
+		<key>part_tips</key>
+		<string>300609</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103005</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>506090</string>
+		<key>left_clear</key>
 		<string>0</string>
 		<key>middle_clear</key>
 		<string>0</string>
 		<key>right_clear</key>
 		<string>1</string>
+	</dict>
+	<key>300610</key>
+	<dict>
+		<key>part_id</key>
+		<string>300610</string>
+		<key>part_name</key>
+		<string>第十节</string>
+		<key>chapter_id</key>
+		<string>300600</string>
+		<key>order_by</key>
+		<string>10</string>
+		<key>part_tips</key>
+		<string>300601</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103006</string>
+		<key>max_step</key>
+		<string>25</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>506100</string>
+		<key>left_clear</key>
+		<string>0</string>
+		<key>middle_clear</key>
+		<string>1</string>
+		<key>right_clear</key>
+		<string>0</string>
 	</dict>
 </dict>
 </plist>

@@ -116,6 +116,8 @@ protected:
     CC_PROPERTY(CCArray*, m_cItems, Items);
     CC_SYNTHESIZE(CCTableViewDelegate*, m_pTableItemDelegate, TableItemDelegate);
     CC_SYNTHESIZE(CCSize, m_cItemSize, ItemSize);
+    CC_SYNTHESIZE(int, m_nStartIndex, StartIndex);
+    CC_SYNTHESIZE(int, m_nItemCount, ItemCount);
 };
 
 #endif 

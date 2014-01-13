@@ -18,7 +18,8 @@
 #include "CGameRankLayer.h"
 #include "CFightCardInfoSprite.h"
 #include "CPVPRegulationLayer.h"
-#include "CPVPStructMissionTaskRewordLayer.h";
+#include "CPVPStructMissionTaskRewordLayer.h"
+#include "PVPSceneLayer.h"
 
 
 using namespace cocos2d;
@@ -49,7 +50,7 @@ CCScene* HelloWorld::scene()
     CCScene *scene = CCScene::create();
     
     // 'layer' is an autorelease object
-    CPVPStructMissionTaskRewordLayer *layer = CPVPStructMissionTaskRewordLayer::create();
+    PVPSceneLayer *layer = PVPSceneLayer::create();
  
     //CScreenHandBookLayer *layer=CScreenHandBookLayer::create();
    // CSceneFriendMainLayer *layer=CSceneFriendMainLayer::create();

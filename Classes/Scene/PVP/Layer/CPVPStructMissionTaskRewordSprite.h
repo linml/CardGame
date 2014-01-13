@@ -16,6 +16,7 @@ using namespace std;
 using namespace cocos2d;
 using namespace extension;
 class CPVPStructMissionTaskReword;
+//PVP任务奖励 单独的一个item
 class CPVPStructMissionTaskRewordSprite :public cocos2d::CCNode
 {
 public:

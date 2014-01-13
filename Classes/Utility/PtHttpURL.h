@@ -191,6 +191,19 @@
 #define STR_URL_GETLINGQUPVPJIANGLI(UID) URL_FACTORY("api.php?m=Pvp&a=getPvpTaskReward&uid=",UID)
 
 
+//魂殿
+//合成
+#define STR_URL_COMPOSEKAHUN(UID) URL_FACTORY("api.php?m=palaceSoul&a=mergeCard&uid=",UID)
+//分解
+#define STR_URL_DECOMPOSEKAHUN(UID) URL_FACTORY("api.php?m=palaceSoul&a=splitCard&uid=",UID)
 
+//PVP
+//PVP排行榜主界面信息请求:
+#define STR_URL_GETPVPMAINUIINFO(UID) URL_FACTORY("api.php?m=Pvp&a=Arena&uid=",UID)
+//PVP搜索对手
+#define STR_URL_GETPVPSEARCHDUISHOU(UID)  URL_FACTORY("api.php?m=Pvp&a=searchPlayer&uid=" ,UID)
+
+//PVP获取战报
+#define STR_URL_GETPVPZHANBAO(UID)   URL_FACTORY("api.php?m=Pvp&a=getPvpReport&uid=",UID)
 
 #endif

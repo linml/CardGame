@@ -124,11 +124,13 @@ class CGameDaCard : public CCSprite
     
 public:
     static CGameDaCard *create(CFightCard *inCard, CGameCardFactory *inFactory = NULL);
+    static CGameDaCard *createBasicCard(CCard *inCard, CGameCardFactory *inFactory = NULL);
 public:
     CGameDaCard();
     virtual ~CGameDaCard();
     bool initWithCardData(CFightCard *inCard, CGameCardFactory *inFactory);
-    
+    bool initWithCardData(CCard *inCard, CGameCardFactory *inFactory);
+    void changePersionDirection();
 protected:
     void createBg(CGameCardFactory *inFactory);
     void createPerson(const char *inName);
@@ -165,6 +167,8 @@ protected:
 public:
     CGamesCard *createCGameCard(CFightCard *inCard);
     CGameDaCard *createCGameDaCard(CFightCard *inCard);
+    CGameDaCard *createBasicCGameDaCardByCardId(int inCardId);
+    CGameDaCard *createBasicCGameDaCardByCardData(CCard *inCardData);
     CCSprite *createCardHead(CFightCard *inCard);
     CCSpriteFrame * getSpriteFrameWithName(const char * spriteName, CARDSTYLE inCardStyle = XIAOKA);
     void clearCache();

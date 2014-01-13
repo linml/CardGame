@@ -18,7 +18,7 @@
 #include "CPVPStructMissionTaskRewordSprite.h"
 #include "CReward.h"
 #define TAG_PVP_BACKGROUD 0
-#define TAG_TASKPVP_TOUCH_PRORITY -2
+#define TAG_TASKPVP_TOUCH_PRORITY -30002
 #define TAG_TASKPVP_QUITBUTTON 2
 
 CPVPStructMissionTaskRewordLayer::CPVPStructMissionTaskRewordLayer()
@@ -76,7 +76,7 @@ void CPVPStructMissionTaskRewordLayer::createTableView()
     m_pCustomTable->setTouchPriority(TAG_TASKPVP_TOUCH_PRORITY-2);
     m_pCustomTable->setVerticalFillOrder(kCCTableViewFillTopDown);
     this->addChild(m_pCustomTable,2,999);
-    setContentSize(CCSizeMake(650, 400));
+   // m_pCustomTable->setContentSize(CCSizeMake(650, 400));
 }
 
 
@@ -176,9 +176,9 @@ void CPVPStructMissionTaskRewordLayer::callBackLingQuValue(CCObject *object)
             if (tmp)
             {
                 CReward *reward =NULL;
-                if (tmp->objectForKey("add") &&((CCDictionary*)tmp->objectForKey("add"))->objectForKey("pvptask") )
+                if (tmp->objectForKey("add") &&((CCDictionary*)tmp->objectForKey("add"))->objectForKey("pvp_task") )
                 {
-                    reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("add"))->objectForKey("pvptask"));
+                    reward = CReward::create((CCDictionary *)((CCDictionary*)tmp->objectForKey("add"))->objectForKey("pvp_task"));
                     reward->excuteReward(ADD);
                     
                 }
@@ -236,15 +236,20 @@ CCSize CPVPStructMissionTaskRewordLayer::cellSizeForTable(CCTableView *table)
 
 CCTableViewCell* CPVPStructMissionTaskRewordLayer::tableCellAtIndex(CCTableView *table, unsigned int idx)
 {
+    //table->dequeueCell();
     CCTableViewCell* cell = table->cellAtIndex(idx);
+    CCLOG("cell %d ,%d",(int)cell,idx);
     if (!cell)
     {
+    
+        CCLOG("cell====");
         cell = new CCTableViewCell();
         cell->autorelease();
         initCellItem(cell, idx);
     }
     else
     {
+       //  CCLOG("cell==%x",cell);
         //scrollBar(table);
     }
     return cell;
@@ -255,6 +260,10 @@ unsigned int CPVPStructMissionTaskRewordLayer::numberOfCellsInTableView(CCTableV
     return  (unsigned int)(m_pManager->m_vtaskRewordManager.size()+1)/2;
 }
 
+/*
+ * @brief: 判断，道具，卡牌入包
+ * @return: false(不行，则提示)； true(可以)
+ */
 bool CPVPStructMissionTaskRewordLayer::checkisCanGetData(CPVPStructMissionTaskReword *pvp)
 {
     return true;

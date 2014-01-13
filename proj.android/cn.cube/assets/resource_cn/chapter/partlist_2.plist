@@ -19,19 +19,19 @@
 		<key>scene_id</key>
 		<string>103002</string>
 		<key>max_step</key>
-		<string>5</string>
+		<string>10</string>
 		<key>ap</key>
 		<string>1</string>
 		<key>mission_id</key>
 		<string>501010</string>
 		<key>left_clear</key>
-		<string>0</string>
+		<string>1</string>
 		<key>middle_clear</key>
 		<string>1</string>
 		<key>right_clear</key>
-		<string>0</string>
+		<string>1</string>
 	</dict>
-	<key>300102</key>
+			<key>300102</key>
 	<dict>
 		<key>part_id</key>
 		<string>300102</string>
@@ -48,19 +48,19 @@
 		<key>scene_id</key>
 		<string>103003</string>
 		<key>max_step</key>
-		<string>5</string>
+		<string>10</string>
 		<key>ap</key>
 		<string>1</string>
 		<key>mission_id</key>
 		<string>501020</string>
 		<key>left_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>middle_clear</key>
 		<string>0</string>
 		<key>right_clear</key>
-		<string>0</string>
+		<string>1</string>
 	</dict>
-	<key>300103</key>
+    <key>300103</key>
 	<dict>
 		<key>part_id</key>
 		<string>300103</string>
@@ -77,17 +77,17 @@
 		<key>scene_id</key>
 		<string>103004</string>
 		<key>max_step</key>
-		<string>5</string>
+		<string>10</string>
 		<key>ap</key>
 		<string>1</string>
 		<key>mission_id</key>
 		<string>501030</string>
 		<key>left_clear</key>
-		<string>1</string>
-		<key>middle_clear</key>
 		<string>0</string>
-		<key>right_clear</key>
+		<key>middle_clear</key>
 		<string>1</string>
+		<key>right_clear</key>
+		<string>0</string>
 	</dict>
 	<key>300104</key>
 	<dict>
@@ -106,7 +106,7 @@
 		<key>scene_id</key>
 		<string>103005</string>
 		<key>max_step</key>
-		<string>5</string>
+		<string>10</string>
 		<key>ap</key>
 		<string>1</string>
 		<key>mission_id</key>
@@ -114,11 +114,12 @@
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>right_clear</key>
 		<string>0</string>
 	</dict>
-	<key>300105</key>
+
+    <key>300105</key>
 	<dict>
 		<key>part_id</key>
 		<string>300105</string>
@@ -135,7 +136,7 @@
 		<key>scene_id</key>
 		<string>103006</string>
 		<key>max_step</key>
-		<string>5</string>
+		<string>10</string>
 		<key>ap</key>
 		<string>1</string>
 		<key>mission_id</key>
@@ -143,9 +144,10 @@
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>right_clear</key>
 		<string>1</string>
 	</dict>
+
 </dict>
 </plist>

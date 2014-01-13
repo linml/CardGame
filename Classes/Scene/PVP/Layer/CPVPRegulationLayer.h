@@ -17,6 +17,7 @@ using namespace std;
 USING_NS_CC;
 USING_NS_CC_EXT;
 
+//规则界面
 class CPVPRegulationLayer:public cocos2d::CCLayer, public CCScrollViewDelegate
 {
 public:

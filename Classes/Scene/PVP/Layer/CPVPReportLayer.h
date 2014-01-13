@@ -1,13 +1,13 @@
 //
-//  CPVPStructMissionTaskRewordLayer.h
+//  CPVPReportLayer.h
 //  91.cube
 //
-//  Created by linminglu on 14-1-8.
+//  Created by linminglu on 14-1-13.
 //
 //
 
-#ifndef ___1_cube__CPVPStructMissionTaskRewordLayer__
-#define ___1_cube__CPVPStructMissionTaskRewordLayer__
+#ifndef ___1_cube__CPVPReportLayer__
+#define ___1_cube__CPVPReportLayer__
 
 #include <iostream>
 #include "cocos2d.h"
@@ -16,27 +16,24 @@ using namespace std;
 using namespace cocos2d;
 using namespace extension;
 class CCustomerTableView;
-class CPVPStructMissionTaskRewordManager;
-class CPVPStructMissionTaskReword;
-//PVP任务奖励界面
-class CPVPStructMissionTaskRewordLayer :public cocos2d::CCLayer,CCTableViewDelegate,CCTableViewDataSource
+class CPVPReportItemData ;
+
+class CPVPReportLayer :public CCLayer,CCTableViewDelegate,CCTableViewDataSource
 {
 public:
+    CPVPReportLayer();
+    ~CPVPReportLayer();
+public:
     bool init();
-    CPVPStructMissionTaskRewordLayer();
-    ~CPVPStructMissionTaskRewordLayer();
-    CREATE_FUNC(CPVPStructMissionTaskRewordLayer);
+    CREATE_FUNC(CPVPReportLayer);
 private:
     void createBackGround();
     void createQuitButton();
     void createTableView();
     void createInfo();
 public:
-    void sendLingqu();
-    void sendInitTable();
-    void callBackInitTableValue(CCObject *object);
-    void callBackLingQuValue(CCObject *object);
-protected:
+    void sendgetNextPage();
+    void callBackNextPage(CCObject *object);
 protected:
     void registerWithTouchDispatcher();
     void onExit();
@@ -53,14 +50,13 @@ protected:
     void scrollViewDidZoom(CCScrollView* view);
     void initCellItem(CCTableViewCell*cell, unsigned int idx);
 private:
-    bool checkisCanGetData(CPVPStructMissionTaskReword *pvp);
+    bool checkisCanGetData(CPVPReportItemData *pvp);
 private:
     CCustomerTableView *m_pCustomTable;
-    CPVPStructMissionTaskRewordManager *m_pManager;
     int m_nTaskId;
     CCSize size;
     int m_nVectorIndex;
     int m_nCellIndex;
-
 };
-#endif /* defined(___1_cube__CPVPStructMissionTaskRewordLayer__) */
+
+#endif /* defined(___1_cube__CPVPReportLayer__) */

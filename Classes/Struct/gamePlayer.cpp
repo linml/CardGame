@@ -1110,6 +1110,38 @@ void CGamePlayer::subFriendly(int inFriendly)
     m_gGamePlayerData->m_nFriendly = m_gGamePlayerData->m_nFriendly >= 0 ? m_gGamePlayerData->m_nFriendly : 0;
 }
 
+void CGamePlayer::addKaHun(int inAddKaHun)
+{
+    m_gGamePlayerData->m_nKaHun += inAddKaHun;
+}
+void CGamePlayer::subKaHun(int inSubKaHun)
+{
+    m_gGamePlayerData->m_nKaHun -= inSubKaHun;
+    m_gGamePlayerData->m_nKaHun  = m_gGamePlayerData->m_nKaHun >= 0 ? m_gGamePlayerData->m_nKaHun : 0;
+}
+
+int CGamePlayer::getPlayerKaHun()
+{
+    return  m_gGamePlayerData->m_nKaHun;
+}
+void CGamePlayer::setPlayerKanHun(int inKaHun)
+{
+    m_gGamePlayerData->m_nKaHun = inKaHun;
+}
+
+int CGamePlayer::getPlayerPVPCount()
+{
+    return m_gGamePlayerData->m_nPVPCount;
+}
+void CGamePlayer::addPlayerPVPCount()
+{
+    m_gGamePlayerData->m_nPVPCount++;
+}
+void CGamePlayer::subPlayerPVPCount()
+{
+    m_gGamePlayerData->m_nPVPCount--;
+}
+
 void CGamePlayer::addTaskOperator(int taskType,vector<int > *targetIdVector)
 {
     m_pTaskLogic->addTaskOperator(taskType, targetIdVector);

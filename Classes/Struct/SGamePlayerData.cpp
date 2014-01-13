@@ -25,6 +25,8 @@ tempClear.clearVector(); \
 
 CGamePlayerData::CGamePlayerData()
 {
+    m_nPVPCount = 0;
+    m_nKaHun = 0;
     m_nTotalFightPoint = 0;
     m_nTotalRechargeValue = 0;
     m_icoin=0;
@@ -172,6 +174,10 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_nOpenGridCount = GameTools::intForKey("max_bag", dict);
     m_nCardAppend = GameTools::intForKey("card_max_buy", dict);
     m_iGp=GameTools::intForKey("gp", dict);
+    
+    // 卡魂：
+    m_nKaHun = GameTools::intForKey("card_soul", dict);
+    m_nPVPCount = GameTools::intForKey("pvp_num", dict);
     
     //是否首充
     m_bFirstRecharge=GameTools::intForKey("recharge", dict);;

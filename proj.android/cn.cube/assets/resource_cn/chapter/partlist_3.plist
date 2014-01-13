@@ -2,7 +2,7 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>300201</key>
+    <key>300201</key>
 	<dict>
 		<key>part_id</key>
 		<string>300201</string>
@@ -25,11 +25,11 @@
 		<key>mission_id</key>
 		<string>502010</string>
 		<key>left_clear</key>
-		<string>0</string>
-		<key>middle_clear</key>
-		<string>0</string>
-		<key>right_clear</key>
 		<string>1</string>
+		<key>middle_clear</key>
+		<string>1</string>
+		<key>right_clear</key>
+		<string>0</string>
 	</dict>
 	<key>300202</key>
 	<dict>
@@ -54,11 +54,11 @@
 		<key>mission_id</key>
 		<string>502020</string>
 		<key>left_clear</key>
-		<string>0</string>
+		<string>1</string>
 		<key>middle_clear</key>
 		<string>1</string>
 		<key>right_clear</key>
-		<string>0</string>
+		<string>1</string>
 	</dict>
 	<key>300203</key>
 	<dict>
@@ -83,11 +83,11 @@
 		<key>mission_id</key>
 		<string>502030</string>
 		<key>left_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>middle_clear</key>
 		<string>0</string>
 		<key>right_clear</key>
-		<string>0</string>
+		<string>1</string>
 	</dict>
 	<key>300204</key>
 	<dict>
@@ -112,11 +112,11 @@
 		<key>mission_id</key>
 		<string>502040</string>
 		<key>left_clear</key>
-		<string>1</string>
-		<key>middle_clear</key>
 		<string>0</string>
-		<key>right_clear</key>
+		<key>middle_clear</key>
 		<string>1</string>
+		<key>right_clear</key>
+		<string>0</string>
 	</dict>
 	<key>300205</key>
 	<dict>
@@ -143,9 +143,39 @@
 		<key>left_clear</key>
 		<string>1</string>
 		<key>middle_clear</key>
-		<string>1</string>
+		<string>0</string>
 		<key>right_clear</key>
 		<string>0</string>
 	</dict>
+	<key>300206</key>
+	<dict>
+		<key>part_id</key>
+		<string>300206</string>
+		<key>part_name</key>
+		<string>第六节</string>
+		<key>chapter_id</key>
+		<string>300200</string>
+		<key>order_by</key>
+		<string>6</string>
+		<key>part_tips</key>
+		<string>300206</string>
+		<key>part_pic</key>
+		<string>b.png</string>
+		<key>scene_id</key>
+		<string>103002</string>
+		<key>max_step</key>
+		<string>10</string>
+		<key>ap</key>
+		<string>1</string>
+		<key>mission_id</key>
+		<string>502060</string>
+		<key>left_clear</key>
+		<string>1</string>
+		<key>middle_clear</key>
+		<string>0</string>
+		<key>right_clear</key>
+		<string>1</string>
+	</dict>
+	
 </dict>
 </plist>

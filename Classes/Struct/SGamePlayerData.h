@@ -44,6 +44,8 @@ public:
     std::string m_susername;
     
     // new add by phileas:
+    int    m_nKaHun;
+    int    m_nPVPCount;
     int    m_nTotalFightPoint;
     int    m_nTotalRechargeValue;
     int    m_icoin;
