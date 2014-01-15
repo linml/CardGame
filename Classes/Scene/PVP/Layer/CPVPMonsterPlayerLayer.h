@@ -21,8 +21,8 @@ class CPVPMonsterPlayerLayer :public CCLayer,CCTableViewDelegate,CCTableViewData
 public:
     CPVPMonsterPlayerLayer();
     ~CPVPMonsterPlayerLayer();
-    static CPVPMonsterPlayerLayer *CreateByUserID(CPVPMonsterData *pvp,bool isSearCh);
-    bool initCreateByUserId(CPVPMonsterData *pvp,bool isSearCh);
+    static CPVPMonsterPlayerLayer *CreateByUserID(CPVPMonsterData *pvp,bool isSearCh,int fuchouID=0);
+    bool initCreateByUserId(CPVPMonsterData *pvp,bool isSearCh,int fuchouID);
     void createTableView();
     void createBackGround();
     void createBackButton();
@@ -39,6 +39,12 @@ public:
     void updateLayerData();
     void handleDealWithTag(int tag);
     void startFighting();
+    void sendloadRival();
+    void sendSetTeam();
+    void callBackSetTeam(CCObject *object);
+    void updateSchudelCC(float t);
+    void createProtectTime();
+    void updateDaoJishi(float t);
 protected:
     void registerWithTouchDispatcher();
     void onExit();
@@ -57,11 +63,13 @@ protected:
 private:
 private:
     int UserID;
+    int nFuchouID;
     bool isSearch;
     CC_SYNTHESIZE(CPVPMonsterData *, m_pMonsterPvp, MonsterPvp);
     CCTableView *m_pCustomTable;
     CCSize size;
     CCArray *m_touchArray;
+    bool bMeiYouDuiShou;
 };
 
 #endif /* defined(___1_cube__CPVPMonsterPlayerLayer__) */

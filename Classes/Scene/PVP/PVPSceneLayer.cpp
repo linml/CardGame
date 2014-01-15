@@ -17,8 +17,23 @@
 #include "PtHttpClient.h"
 #include "CPVPMonsterData.h"
 #include "CPVPMonsterPlayerLayer.h"
+#include "CPVPReportLayer.h"
+#include "SceneManager.h"
+
+int PVPSceneLayer::m_nProtect_time=0;
 
 
+cocos2d::CCScene* PVPSceneLayer::scene()
+{
+    CCScene *scene = CCScene::create();
+    
+    PVPSceneLayer *layer = PVPSceneLayer::create();
+    
+    scene->addChild(layer);
+    
+    return scene;
+
+}
 // public static method:
 PVPSceneLayer* PVPSceneLayer::create()
 {
@@ -41,6 +56,7 @@ PVPSceneLayer* PVPSceneLayer::create()
 PVPSceneLayer::PVPSceneLayer()
 {
     m_pBgContainer = NULL;
+    m_nProtect_time=0;
 }
 PVPSceneLayer::~PVPSceneLayer()
 {
@@ -433,6 +449,9 @@ void PVPSceneLayer::onClickRule()
 }
 void PVPSceneLayer::onClickBattleLog()
 {
+    CPVPReportLayer *layer = CPVPReportLayer::create();
+    layer->setTouchPriority(PVPSCENETOUCH_PRIORITY-1);
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 100);
     
 }
 void PVPSceneLayer::onClickChallengeReward()
@@ -466,7 +485,7 @@ void PVPSceneLayer::onClickPVPRankReward()
 }
 void PVPSceneLayer::onClickBack()
 {
-    
+    SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
 }
 void PVPSceneLayer::onClickPVPRank()
 {
@@ -500,12 +519,15 @@ void PVPSceneLayer::callBackValue(CCObject *object)
         pMonsterData->retain();
         PVPRankData *pp=new PVPRankData();
         CCDictionary *peoInfo=(CCDictionary *)resultDict->objectForKey("pk_user");
+        if(peoInfo)
+        {
         pp->name=GameTools::valueForKey("username", peoInfo);
         pp->rank=GameTools::intForKey("pvp_num", peoInfo);
         pp->uid=GameTools::intForKey("uid", peoInfo);
         pp->level=GameTools::intForKey("level", peoInfo);
         pp->fightpointer=GameTools::intForKey("power", peoInfo);
         pp->credits =GameTools::intForKey("score", peoInfo);
+        m_nProtect_time=GameTools::intForKey("protect_time", peoInfo);
         pMonsterData->setPVPUserData(pp);
         if (CPtTool::isDictionary(resultDict->objectForKey("team_info"))) {
             CCDictionary *temp_info=(CCDictionary *)resultDict->objectForKey("team_info");
@@ -537,7 +559,12 @@ void PVPSceneLayer::callBackValue(CCObject *object)
             pMonsterData->m_vCardList.clear();
             pMonsterData->m_vCardList.resize(5);
         }
-        addPvpSearchLayer(pMonsterData);
+                    addPvpSearchLayer(pMonsterData);
+        }
+        else{
+            CCMessageBox("您太厉害了 没人是你对手", "恭喜你");
+        }
+
     }
 
 }

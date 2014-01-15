@@ -96,11 +96,52 @@ bool FightResultConfirm::init()
     } while (0);
     return bRet;
 }
+
 void FightResultConfirm::postHttpTeam()
 {
-    callBackData(NULL);
+    CGamePlayer *m_player=SinglePlayer::instance();
+    char buffer[300]={0};
+    //sig=2ac2b1e302c46976beaab20a68ef95&info={"opponent_uid":195,"uid":195,"troops":1,"fight_info":"1,2,3"}& is_pvp = 1 & revenge_id = 1
+    sprintf(buffer,"sig=%s&info={\"opponent_uid\":%d,\"uid\":%s,\"troops\":%d,\"fight_info\":\"1,2,3\"}&is_pvp=%d&revenge_id=%d",STR_USER_SIG, m_player->getFightUid(), m_player->getUserId(), 1,1,m_player->getFuChouId());
+    ADDHTTPREQUESTPOSTDATA(STR_URL_FIGHT(196),"CALLBACK_FightResultConfirm_postHttpTeam", "REQUEST_FightResultConfirm_postHttpTeam",buffer, callfuncO_selector(FightResultConfirm::callBackDataTeam));
 }
+void FightResultConfirm::callBackDataTeam(cocos2d::CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_FightResultConfirm_postHttpTeam");
+    
+    CCLog("FightResultConfirm: %s",(char*)object);
+    if(!object)
+    {
+        test_print("服务器信息错误");
+        return ;
+    }
+    char *buffer=(char *)object;
+    CCDictionary *pResult = PtJsonUtility::JsonStringParse(buffer);
+    CCLog("buffer :%s",buffer);
+    if (pResult->objectForKey("code")&&GameTools::intForKey("code", pResult)==0)
+    {
+        CCDictionary *resultDict=(CCDictionary *)pResult->objectForKey("result");
+        if(((CCString *) resultDict->objectForKey("info"))->intValue()==1)
+        {
+            m_nResult->setFightResult(1);
+            PtSoundTool::playSysSoundEffect("fight_win.mp3");
+            test_print("对手已经菊花残");
+        }
+        else
+        {
+            m_nResult->setFightResult(0);
+            PtSoundTool::playSysSoundEffect("fight_failed.mp3");
+            test_print("对手菊花完好");
+        }
+    }
+    else
+    {
+        CCMessageBox("pvp战斗信息错误", "pvp战斗信息错误");
+    }
+    delete [] buffer;
+    buffer=NULL;
 
+}
 void FightResultConfirm::postHttpNpc()
 {
    
@@ -193,6 +234,8 @@ void FightResultConfirm::callBackData(cocos2d::CCObject *object)
     {
         test_print("server: no response");
     }
+    delete [] buff;
+    buff=NULL;
     
    
     
@@ -250,7 +293,13 @@ void FightResultConfirm::handlerTouch()
 {
     if (m_nTouchTag == 2001)
     {
-        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
+        if(m_nResult->getFightType()==0)
+        {
+            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_EXPLORATIONSCENE);
+        }
+        else{
+            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_PVPSCENE);
+        }
     }
 
 }

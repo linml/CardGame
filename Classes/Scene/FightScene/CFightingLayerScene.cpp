@@ -57,6 +57,7 @@ CFightingLayerScene::CFightingLayerScene()
 {
     m_gamePlayer=SinglePlayer::instance();
     m_pSFightData=new SFightResultData();
+    m_pSFightData->setFightType(m_gamePlayer->getIsFightWithTeam());
     if(m_gamePlayer->getFightKuaijin())
     {
         CCDirector::sharedDirector()->getScheduler()->setTimeScale(2.0);
@@ -493,8 +494,6 @@ void CFightingLayerScene::winDialog()
     {
         m_pSFightData->setFightResult(1);
     }
-    
-    // int tmp = 1;
     FightResultConfirm * resultConfirm = new FightResultConfirm();
     resultConfirm->setUserData((void*)m_pSFightData);
     resultConfirm->init();

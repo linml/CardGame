@@ -546,7 +546,10 @@ void CFightingCardLayerLogic::initFightLogic(int  loadTeamIndex)
         if(m_vFightingCard[i])
         {
             //处理神坛技能buffer
-            dealWithShenTanBuffer(m_vFightingCard[i]);
+            if(!m_tempGamePlayer->getIsFightWithTeam())
+            {
+              dealWithShenTanBuffer(m_vFightingCard[i]);
+            }
             if(!isSelect)
             {
                 isSelect=true;
@@ -562,6 +565,12 @@ void CFightingCardLayerLogic::initFightLogic(int  loadTeamIndex)
             break;
         }
     }
+    if(m_vMonsterCard.size()==0)
+    {
+        logicFighting();
+    }
+    else{
     appendUpdateAction();
+    }
     
 }

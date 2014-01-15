@@ -32,8 +32,10 @@ private:
     void createTableView();
     void createInfo();
 public:
+    void sendInitTable();
     void sendgetNextPage();
     void callBackNextPage(CCObject *object);
+    void callBackInitTableValue(CCObject *object);
 protected:
     void registerWithTouchDispatcher();
     void onExit();
@@ -57,6 +59,7 @@ private:
     CCSize size;
     int m_nVectorIndex;
     int m_nCellIndex;
+    vector<CPVPReportItemData *>m_vPvpReport;
 };
 
 #endif /* defined(___1_cube__CPVPReportLayer__) */

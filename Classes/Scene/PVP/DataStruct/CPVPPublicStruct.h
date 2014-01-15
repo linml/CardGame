@@ -21,6 +21,7 @@ typedef enum
     BackBtn=7,
     PVPRankBtn=8 //排行榜
 }PVPSCENEBTNTYPE;
+
 struct PVPRankData
 {
     PVPRankData(){uid=0;fightpointer=0;credits=0;level=0;rank=0;name.clear();}

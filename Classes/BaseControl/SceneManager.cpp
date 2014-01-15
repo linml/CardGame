@@ -20,6 +20,7 @@
 #include "CCardSettingScene.h"
 #include "CFightingLayerScene.h"
 #include "HelloWorldScene.h"
+#include "PVPSceneLayer.h"
 
 SceneManager::SceneManager()
 {
@@ -107,6 +108,12 @@ void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene ,int inParam)
             break;
         case EN_CURRSCENE_HELLOWORLD:
             runHelloWorldScene();
+            break;
+        case EN_CURRSCENE_PVPFIGHTSCENE:
+            runPvpFightScene(inParam);
+            break;
+        case EN_CURRSCENE_PVPSCENE:
+            runPvpScene();
             break;
         default:
             break;
@@ -208,7 +215,23 @@ void SceneManager::runTaskScene()
         }
     }
 }
-
+void SceneManager::runPvpFightScene(int nPavarm)
+{
+    if(m_currscene!=EN_CURRSCENE_PVPFIGHTSCENE)
+    {
+        m_currscene=EN_CURRSCENE_PVPFIGHTSCENE;
+        CCDirector *pDirector=CCDirector::sharedDirector();
+        if(pDirector->getRunningScene())
+        {
+            runSceneAnimation(CFightingLayerScene::scene());
+        }
+        else
+        {
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,CFightingLayerScene::scene()));
+        }
+        
+    }
+}
 void SceneManager::runFightScene()
 {
     if(m_currscene!=EN_CURRSCENE_FIGHTSCENE)
@@ -250,6 +273,24 @@ void SceneManager::runEvolutionScene()
             pDirector->runWithScene(CCTransitionFade::create(1.0f,CEvolutionLayer::scene()));
         }
     }
+}
+
+void SceneManager::runPvpScene()
+{
+    if(m_currscene!=EN_CURRSCENE_PVPSCENE)
+    {
+        m_currscene=EN_CURRSCENE_PVPSCENE;
+        CCDirector *pDirector=CCDirector::sharedDirector();
+        if(pDirector->getRunningScene())
+        {
+            runSceneAnimation(PVPSceneLayer::scene());
+        }
+        else
+        {
+            pDirector->runWithScene(CCTransitionFade::create(1.0f,PVPSceneLayer::scene()));
+        }
+    }
+
 }
 
 void SceneManager::runHelloWorldScene()

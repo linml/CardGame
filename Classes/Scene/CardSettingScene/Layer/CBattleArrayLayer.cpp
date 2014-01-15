@@ -606,7 +606,7 @@ void CPtBattleArrayItem::onTeamArrayEnd(CCTouch *pTouch, CCEvent *pEvent)
         
         int replace = battles->getReplaceCard(m_pDelegateLayer->m_pMoveCard);
         int index = battles->getInsertIndex();
-        
+        //同一个cardid 不能存在同一个阵容里面
         if (isSameCardId(battles->getBattleArray(), m_pDelegateLayer->m_pMoveCard->getCardData()->m_pCard->m_icard_id, replace))
         {
             // can't replace has same id:

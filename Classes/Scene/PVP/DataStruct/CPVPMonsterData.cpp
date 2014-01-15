@@ -24,6 +24,7 @@ tempClear.clearVector(); \
 CPVPMonsterData::CPVPMonsterData()
 {
     m_pvpUserData=NULL;
+    fuchouID=0;
 }
 
 CPVPMonsterData::~CPVPMonsterData()

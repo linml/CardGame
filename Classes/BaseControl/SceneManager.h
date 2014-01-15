@@ -27,7 +27,10 @@ enum  EN_CURRSCENE
     EN_CURRSCENE_HALLSCENE,
     EN_CURRSCENE_LOGINSCENE,
     EN_CURRSCENE_CARDSETTINGSCENE,
-    EN_CURRSCENE_HELLOWORLD
+    EN_CURRSCENE_PVPFIGHTSCENE,
+    EN_CURRSCENE_HELLOWORLD,
+    EN_CURRSCENE_PVPSCENE,
+
     
 };
 class SceneManager
@@ -46,10 +49,13 @@ private:
     void runUpgradeScene();
     void runFightScene();
     void runLoginScene();
+    void runPvpFightScene(int nParam=0);
     void runHallScene(int inOpenType = 0);
     void runCardSettingScene(int inLastSceneTag = 0);
     void runSceneAnimation(CCScene *tagerScene);
     void runHelloWorldScene();
+    void runPvpScene();
+    //void popPvpFightScene();
     //test
 public:
     void runTest();

@@ -40,7 +40,7 @@ void LoadingScene::addParticle()
 {
     Utility::addPtActionScript("fire/fire.act");
     Utility::addPtActionScript("fire/fire2.act");
-
+    
     //加载例子特效
 }
 
@@ -55,7 +55,7 @@ bool LoadingScene::initWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targe
         m_currScene_ = currScene;
         //创建一个Label标签放在屏幕中央
         CCLabelTTF* label = CCLabelTTF::create("Loading ...",
-                                                        "Arial", 64);
+                                               "Arial", 64);
         CCSize size = CCDirector::sharedDirector()->getWinSize();
         label->setPosition(ccp(size.width / 2, size.height / 2));
         this->addChild(label);
@@ -70,17 +70,9 @@ bool LoadingScene::initWithTargetScene(EN_CURRSCENE currScene,EN_CURRSCENE targe
 
 void LoadingScene::doScheule()
 {
-    if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
+    if(targetScene_==EN_CURRSCENE_FIGHTSCENE || targetScene_==EN_CURRSCENE_PVPFIGHTSCENE)
     {
         m_clFightLogic=new CFightingCardLayerLogic();
-      
-        int Uid=0;
-        do {
-            Uid=rand()%4+194;
-        } while (Uid==atoi(SinglePlayer::instance()->getUserId()));
-        SinglePlayer::instance()->setFightUid(Uid);
-        //SinglePlayer::instance()->loadRival(Uid,3); //在阵容 进去的界面应该算这个值得啊
-        //SinglePlayer::instance()->loadNpcCardTeam(1, 1, 1, 1);
     }
     else if(targetScene_==EN_CURRSCENE_CARDSETTINGSCENE)
     {
@@ -92,22 +84,18 @@ void LoadingScene::doScheule()
 
 void LoadingScene::update(float delta) {
     
-    if(targetScene_==EN_CURRSCENE_FIGHTSCENE)
+    if(targetScene_==EN_CURRSCENE_FIGHTSCENE|| targetScene_==EN_CURRSCENE_PVPFIGHTSCENE)
     {
-        //loading the  例子效果
-//        if(SinglePlayer::instance()->isLoadFightTeam)
-//        {
-            this->unscheduleAllSelectors();
-            if(m_clFightLogic)
-            {
-                m_clFightLogic->initFightLogic(0);
-            }
-            schedule(schedule_selector(LoadingScene::fightlogic));
-    //  }
+        this->unscheduleAllSelectors();
+        if(m_clFightLogic)
+        {
+            m_clFightLogic->initFightLogic(0);
+        }
+        schedule(schedule_selector(LoadingScene::fightlogic));
     }
-    else 
+    else
     {
-    
+        
         //终止所有的预定信息
         this->unscheduleAllSelectors();
         // 通过TargetScenes这个枚举类型来决定加载哪个场景

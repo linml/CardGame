@@ -27,6 +27,7 @@ public:
     PVPSceneLayer();
     virtual ~PVPSceneLayer();
     virtual bool init();
+    static cocos2d::CCScene* scene();
 
     bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
     void ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent);
@@ -63,9 +64,11 @@ protected:
     CGamePlayer *m_pPlayer;
     int m_nTouchTag;
     CCSprite *m_pBgContainer;
+
     // btn:
     CCNode* m_pBtns[PVPSCENEBTNCOUNT]; //0->规则; 1->战报; 2->挑战奖励; 3->魂殿; 4->搜索对手;5->增加挑战次数;6->排行榜;7->返回;8->领取排名奖励;
-
+public:
+        static int m_nProtect_time;
 };
 
 #endif /* defined(___1_cube__PVPSceneLayer__) */

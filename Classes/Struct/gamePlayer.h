@@ -89,6 +89,9 @@ private:
     void initFightingCardByserverDictorny(cocos2d::CCArray *dict);
 public:
     CC_SYNTHESIZE(int, m_FightUid, FightUid);
+    CC_SYNTHESIZE(bool, m_bFightFuChou, Fuchou);
+    CC_SYNTHESIZE(int, m_nFightFuchouId, FuChouId);
+    CC_SYNTHESIZE(int ,m_bIsFightWithTeam, IsFightWithTeam); //0 npc //1  team
     CC_SYNTHESIZE(int, gameInitStatus, GameInitStatus) ;
     CC_SYNTHESIZE(int, isLoadEndCardTeam, LoadEndCardTeam);
 

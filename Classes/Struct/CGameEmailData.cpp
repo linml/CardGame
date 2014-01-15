@@ -34,9 +34,9 @@ CGameEmailData::~CGameEmailData()
 
 void CGameEmailData::getEmailCreateTime(string &str)
 {
-    //double diffValue=CPtTool::getDateIntermissionRebackMSC(time(NULL),(time_t)m_iGameEmailStartTime);
+
     CPtTool::getDataShijianChai((time_t)m_iGameEmailStartTime,time(NULL),str);
-    
+
 }
 
 bool CGameEmailData::isOutActiveTime()

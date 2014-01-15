@@ -160,11 +160,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/PVP/PVPSceneLayer.cpp"
-            timestampString = "411293133.545938"
+            timestampString = "411447896.172192"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "478"
-            endingLineNumber = "478"
+            startingLineNumber = "497"
+            endingLineNumber = "497"
             landmarkName = "PVPSceneLayer::callBackValue(CCObject *object)"
             landmarkType = "5">
          </BreakpointContent>
@@ -176,12 +176,104 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/PVP/Layer/CPVPMonsterPlayerLayer.cpp"
-            timestampString = "411299332.962661"
+            timestampString = "411385904.67341"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
             landmarkName = "CPVPMonsterPlayerLayer::createUserName()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/PVP/Layer/CPVPReportLayer.cpp"
+            timestampString = "411363098.802833"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "CPVPReportLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CPVPReportLayer::ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/PVP/Layer/CPVPReportLayer.cpp"
+                  timestampString = "411363098.983626"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "50">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CPVPReportLayer::ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/PVP/Layer/CPVPReportLayer.cpp"
+                  timestampString = "411363098.983848"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "272">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CPVPReportLayer::ccTouchEnded(cocos2d::CCTouch*, cocos2d::CCEvent*)"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/PVP/Layer/CPVPReportLayer.cpp"
+                  timestampString = "411363098.984356"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "338">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/HallScene/Layer/AsgardLayer.cpp"
+            timestampString = "411444632.158113"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "270"
+            endingLineNumber = "270"
+            landmarkName = "CAsgardLayer::handlerTouch()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/BaseControl/SceneManager.cpp"
+            timestampString = "411444737.644158"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
+            landmarkName = "SceneManager::runPvpScene()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -23,6 +23,7 @@ public:
     void clearFightingCardData();
     CC_SYNTHESIZE(PVPRankData *, m_pvpUserData, PVPUserData);
     vector<CFightCard *> m_vCardList;
+    int fuchouID;
 };
 
 #endif /* defined(___1_cube__CPVPMonsterData__) */

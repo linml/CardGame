@@ -15,17 +15,17 @@
 #include "cocos2d.h"
 using namespace std;
 using namespace cocos2d;
+class CFightCard;
 class CPVPReportItemData :public CCObject
 {
 public:
     CPVPReportItemData();
     ~CPVPReportItemData();
-    int level;
-    int zhandouli;
     int time;
-    string username;
     int status;
-    int userid;
+    int fuchouID;
+    PVPRankData m_pvpRankData;
+    vector<CFightCard *>m_vCardList;
     
 };
 

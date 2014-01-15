@@ -381,9 +381,9 @@ void CLoginScene::playGame()
     {
 
         SinglePlayer::instance()->m_bIsLogin=true;
-       // SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
         //场景切换动画 用来做测试的时候用得。 
-        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
+        //SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
     }
 }
 
@@ -530,7 +530,10 @@ void CLoginScene::msgCallback(CCObject* obj)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "xianbeiTest0");
     CCDictionary* dic = PtJsonUtility::JsonStringParse((char*)obj);
-    
+    if (dic->objectForKey("code ") && GameTools::intForKey("code", dic)) {
+        CCMessageBox("登入错误", "erroor");
+        return ;
+    }
     CCDictElement* ele = NULL;
     CCDICT_FOREACH(dic,ele)
     {

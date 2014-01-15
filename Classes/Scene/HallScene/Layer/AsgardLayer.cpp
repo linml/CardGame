@@ -146,6 +146,7 @@ void CAsgardLayer::initArsgard()
     createFriendButton();
     createRankButton();
     createQianDaoButton();
+    createChangePvpSceneButton();
     
  
 }
@@ -179,6 +180,21 @@ void CAsgardLayer::createFriendButton()
     Utility::addTouchRect(FRIEND_TOUCH_TAG, m_pFriendBtn, m_cTouches);
 
 }
+
+void CAsgardLayer::createChangePvpSceneButton()
+{
+    m_pQianDao= CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
+    m_pQianDao->setAnchorPoint(CCPointZero);
+    m_pQianDao->setPosition(ccp(800, 560));
+    addChild(m_pQianDao, 200, 77);
+//    string word = Utility::getWordWithFile("qiandao");
+    CCLabelTTF *label=CCLabelTTF::create("PVP", "Arial", 20);
+    label->setColor(g_custom_color[14]);
+    label->setPosition(ccp(65, 30));
+    m_pQianDao->addChild(label,2,999);
+    Utility::addTouchRect(TAG_ASGARD_PVPSCENE, m_pQianDao, m_cTouches);
+}
+
 
 void CAsgardLayer::createQianDaoButton()
 {
@@ -251,6 +267,9 @@ void CAsgardLayer::handlerTouch()
             // to do:
             showHandBook();
             break;
+        case TAG_ASGARD_PVPSCENE:
+            changeToPvpScene();
+            break;
         default:
             break;
     }
@@ -275,6 +294,11 @@ void CAsgardLayer::createQianDaoLayer()
     CEveryDayLoginLayer *pLayer=CEveryDayLoginLayer::create();
     addChild(pLayer,202,1);
 
+}
+
+void CAsgardLayer::changeToPvpScene()
+{
+    SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_PVPSCENE);
 }
 
 void CAsgardLayer::createRankLayer()

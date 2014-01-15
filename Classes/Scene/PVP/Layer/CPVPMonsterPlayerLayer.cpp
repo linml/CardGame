@@ -16,8 +16,8 @@
 #include "gameTools.h"
 #include "CGamesCard.h"
 #include "PtJsonUtility.h"
-
-
+#include "SceneManager.h"
+#include "PVPSceneLayer.h"
 
 
 
@@ -27,7 +27,8 @@
 #define TAG_TASKPVPMONSTER_SEARCH 3
 #define TAG_TASKPVPMONSTER_ZHANDOU 4
 #define TAG_TASKPVPMONSTER_USERNAME 5
-#define TAG_TASKPVPMONSTER_USERINFO 6
+#define TAG_TASKPVPMONSTER_USERINFO 6   //有递增
+#define TAG_TASKPVPMONSTER_TIMER   10
 
 CPVPMonsterPlayerLayer::CPVPMonsterPlayerLayer()
 {
@@ -36,6 +37,7 @@ CPVPMonsterPlayerLayer::CPVPMonsterPlayerLayer()
     size=CCDirector::sharedDirector()->getWinSize();
     m_touchArray=CCArray::create();
     m_touchArray->retain();
+    bMeiYouDuiShou=false;
 }
 
 CPVPMonsterPlayerLayer::~CPVPMonsterPlayerLayer()
@@ -44,10 +46,10 @@ CPVPMonsterPlayerLayer::~CPVPMonsterPlayerLayer()
     CC_SAFE_RELEASE(this->m_pMonsterPvp);
     
 }
-CPVPMonsterPlayerLayer *CPVPMonsterPlayerLayer::CreateByUserID(CPVPMonsterData *pvp,bool isSearCh)
+CPVPMonsterPlayerLayer *CPVPMonsterPlayerLayer::CreateByUserID(CPVPMonsterData *pvp,bool isSearCh,int fuchouID)
 {
     CPVPMonsterPlayerLayer *pNewMonster =new CPVPMonsterPlayerLayer ();
-    if (!pNewMonster|| !pNewMonster->initCreateByUserId(pvp, isSearCh))
+    if (!pNewMonster|| !pNewMonster->initCreateByUserId(pvp, isSearCh,fuchouID))
     {
         delete pNewMonster;
         pNewMonster=NULL;
@@ -56,10 +58,11 @@ CPVPMonsterPlayerLayer *CPVPMonsterPlayerLayer::CreateByUserID(CPVPMonsterData *
     pNewMonster->autorelease();
     return pNewMonster;
 }
-bool CPVPMonsterPlayerLayer::initCreateByUserId(CPVPMonsterData *pvp,bool isSearCh)
+bool CPVPMonsterPlayerLayer::initCreateByUserId(CPVPMonsterData *pvp,bool isSearCh,int fuchouID)
 {
     this->isSearch=isSearCh;
     this->m_pMonsterPvp=pvp;
+    this->nFuchouID=fuchouID;
     createBackGround();
     createBackButton();
     createUserInfo();
@@ -69,7 +72,7 @@ bool CPVPMonsterPlayerLayer::initCreateByUserId(CPVPMonsterData *pvp,bool isSear
     createTableView();
     //setTouchPriority(-100);
     setTouchEnabled(true);
-
+    
     return true;
 }
 
@@ -81,7 +84,7 @@ void CPVPMonsterPlayerLayer::createTableView()
     }
     m_pCustomTable = CCTableView::create(this, CCSizeMake(650, 200),NULL);
     m_pCustomTable->setDirection(kCCScrollViewDirectionHorizontal);
-    m_pCustomTable->setPosition(ccp(200,160));
+    m_pCustomTable->setPosition(ccp(200,260));
     m_pCustomTable->setDelegate(this);
     m_pCustomTable->setTouchPriority(TAG_TASKPVPMONSTER_TOUCH_PRORITY-2);
     m_pCustomTable->setVerticalFillOrder(kCCTableViewFillTopDown);
@@ -121,13 +124,13 @@ void CPVPMonsterPlayerLayer:: createZhanButton()
 void CPVPMonsterPlayerLayer::createSearchButton()
 {
     if (isSearch) {
-       string word = Utility::getWordWithFile("word.plist", "jixusousuo");
-       CGameButtonControl *fanhuiButton=CGameButtonControl::createButton(TEXTMID, word.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
-       addChild(fanhuiButton,1,TAG_TASKPVPMONSTER_SEARCH);
-
+        string word = Utility::getWordWithFile("word.plist", "jixusousuo");
+        CGameButtonControl *fanhuiButton=CGameButtonControl::createButton(TEXTMID, word.c_str(), "jieshouanniu_Normal.png", "jieshouanniu_Pressed.png");
+        addChild(fanhuiButton,1,TAG_TASKPVPMONSTER_SEARCH);
+        
         fanhuiButton->setPosition(ccp(size.width*0.5+200, size.height*0.5-230));
-       m_touchArray->addObject(fanhuiButton);
-   }
+        m_touchArray->addObject(fanhuiButton);
+    }
 }
 
 void CPVPMonsterPlayerLayer::createCishuLayer()
@@ -161,14 +164,15 @@ void CPVPMonsterPlayerLayer::createUserName()
 
 void CPVPMonsterPlayerLayer::getUserIdTeam(int UserId)
 {
-   
-
+    
+    
     
 }
 
 void CPVPMonsterPlayerLayer::getRandTeam()
 {
     //发送请求搜索对手
+    bMeiYouDuiShou=false;
     string str;
     str+="&sig=";
     str+=SinglePlayer::instance()->getUserSig();
@@ -177,7 +181,7 @@ void CPVPMonsterPlayerLayer::getRandTeam()
 
 void CPVPMonsterPlayerLayer::callBackGetRandTeam(CCObject *object)
 {
-    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_PVPSceneLayer_onClickSearchOpponent");
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CPVPMonsterPlayerLayer_onClickSearchOpponent");
     if (!object )
     {
         CCMessageBox("服务端传输的是", "error");
@@ -199,43 +203,55 @@ void CPVPMonsterPlayerLayer::callBackGetRandTeam(CCObject *object)
     {
         PVPRankData *tempData=m_pMonsterPvp->getPVPUserData();
         CCDictionary *peoInfo=(CCDictionary *)resultDict->objectForKey("pk_user");
-        tempData->name=GameTools::valueForKey("username", peoInfo);
-        tempData->rank=GameTools::intForKey("pvp_num", peoInfo);
-        tempData->uid=GameTools::intForKey("uid", peoInfo);
-        tempData->level=GameTools::intForKey("level", peoInfo);
-        tempData->fightpointer=GameTools::intForKey("power", peoInfo);
-        tempData->credits =GameTools::intForKey("score", peoInfo);
-        //pMonsterData->setPVPUserData(pp);
-        if (CPtTool::isDictionary(resultDict->objectForKey("team_info"))) {
-            CCDictionary *temp_info=(CCDictionary *)resultDict->objectForKey("team_info");
-            CCDictionary *team=(CCDictionary *)temp_info->objectForKey("team");
-            //
-            m_pMonsterPvp->clearFightingCardData();
-            m_pMonsterPvp->m_vCardList.resize(5);
-            CCDictElement *element = NULL;
-            CCDictionary *onlyCard=NULL;
-            CCDICT_FOREACH(team, element)
-            {
-                CCObject * object = element->getObject();
-                
-                if (object && (onlyCard = (CCDictionary *)(object)))
+        if (peoInfo)
+        {
+            tempData->name=GameTools::valueForKey("username", peoInfo);
+            tempData->rank=GameTools::intForKey("pvp_num", peoInfo);
+            tempData->uid=GameTools::intForKey("uid", peoInfo);
+            tempData->level=GameTools::intForKey("level", peoInfo);
+            tempData->fightpointer=GameTools::intForKey("power", peoInfo);
+            tempData->credits =GameTools::intForKey("score", peoInfo);
+            PVPSceneLayer::m_nProtect_time=GameTools::intForKey("protect_time", peoInfo);
+            if (PVPSceneLayer::m_nProtect_time!=0 && !getChildByTag(TAG_TASKPVPMONSTER_TIMER)->isVisible()) {
+                getChildByTag(TAG_TASKPVPMONSTER_TIMER)->setVisible(true);
+                schedule(schedule_selector(CPVPMonsterPlayerLayer::updateDaoJishi), 1.0);
+            }
+            //pMonsterData->setPVPUserData(pp);
+            if (CPtTool::isDictionary(resultDict->objectForKey("team_info"))) {
+                CCDictionary *temp_info=(CCDictionary *)resultDict->objectForKey("team_info");
+                CCDictionary *team=(CCDictionary *)temp_info->objectForKey("team");
+                //
+                m_pMonsterPvp->clearFightingCardData();
+                m_pMonsterPvp->m_vCardList.resize(5);
+                CCDictElement *element = NULL;
+                CCDictionary *onlyCard=NULL;
+                CCDICT_FOREACH(team, element)
                 {
-                    int postion=GameTools::intForKey("position", onlyCard);
-                    int cardid=GameTools::intForKey("card_id", onlyCard);
-                    int level=GameTools::intForKey("level", onlyCard);
-                    CCard *card=SinglePlayer::instance()->getCardByCardId(cardid);
-                    if(card)
+                    CCObject * object = element->getObject();
+                    
+                    if (object && (onlyCard = (CCDictionary *)(object)))
                     {
-                        CFightCard *pFightCard=new CFightCard(card,level);
-                        m_pMonsterPvp->m_vCardList[postion]=pFightCard;
+                        int postion=GameTools::intForKey("position", onlyCard);
+                        int cardid=GameTools::intForKey("card_id", onlyCard);
+                        int level=GameTools::intForKey("level", onlyCard);
+                        CCard *card=SinglePlayer::instance()->getCardByCardId(cardid);
+                        if(card)
+                        {
+                            CFightCard *pFightCard=new CFightCard(card,level);
+                            m_pMonsterPvp->m_vCardList[postion]=pFightCard;
+                        }
                     }
                 }
+                
+                
             }
-            
+            else{
+                m_pMonsterPvp->clearFightingCardData();
+                m_pMonsterPvp->m_vCardList.resize(5);
+            }
         }
         else{
-            m_pMonsterPvp->clearFightingCardData();
-            m_pMonsterPvp->m_vCardList.resize(5);
+            bMeiYouDuiShou=true;
         }
         updateLayerData();
     }
@@ -243,18 +259,41 @@ void CPVPMonsterPlayerLayer::callBackGetRandTeam(CCObject *object)
 
 void CPVPMonsterPlayerLayer::updateLayerData()
 {
-    ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_USERNAME))->setString(m_pMonsterPvp->getPVPUserData()->name.c_str());
-    
-    vector<string>datalist;
-    datalist.push_back(string("等级:")+ConvertToString(m_pMonsterPvp->getPVPUserData()->level));
-    datalist.push_back(string("积分:")+ConvertToString(m_pMonsterPvp->getPVPUserData()->credits));
-    datalist.push_back(string("排名:")+ConvertToString(m_pMonsterPvp->getPVPUserData()->rank));
-    datalist.push_back(string("战力:")+ConvertToString(m_pMonsterPvp->getPVPUserData()->fightpointer));
-    for (int i=0; i<4; i++)
+    if (bMeiYouDuiShou)
     {
-        ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_USERINFO+i))->setString(datalist[i].c_str());
+        ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_USERNAME))->setVisible(false);
+        m_pCustomTable->setVisible(false);
+        for (int i=0; i<4; i++)
+        {
+            ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_USERINFO+i))->setVisible(false);
+        }
+        getChildByTag(TAG_TASKPVPMONSTER_ZHANDOU)->setVisible(false);
+        CCMessageBox("没有对手", "恭喜你");
     }
-    m_pCustomTable->reloadData();
+    else{
+            {
+                getChildByTag(TAG_TASKPVPMONSTER_ZHANDOU)->setVisible(true);
+                ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_USERNAME))->setVisible(true);
+                m_pCustomTable->setVisible(true);
+                for (int i=0; i<4; i++)
+                {
+                    ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_USERINFO+i))->setVisible(true);
+                }
+            }
+        ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_USERNAME))->setString(m_pMonsterPvp->getPVPUserData()->name.c_str());
+        
+        vector<string>datalist;
+        datalist.push_back(string("等级:")+ConvertToString(m_pMonsterPvp->getPVPUserData()->level));
+        datalist.push_back(string("积分:")+ConvertToString(m_pMonsterPvp->getPVPUserData()->credits));
+        datalist.push_back(string("排名:")+ConvertToString(m_pMonsterPvp->getPVPUserData()->rank));
+        datalist.push_back(string("战力:")+ConvertToString(m_pMonsterPvp->getPVPUserData()->fightpointer));
+        for (int i=0; i<4; i++)
+        {
+            ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_USERINFO+i))->setString(datalist[i].c_str());
+        }
+        m_pCustomTable->reloadData();
+    }
+    
 }
 
 void CPVPMonsterPlayerLayer::callBackGetUserId(CCObject *object)
@@ -304,8 +343,113 @@ void CPVPMonsterPlayerLayer::handleDealWithTag(int tag)
 void CPVPMonsterPlayerLayer::startFighting()
 {
     CCLog("STARTFIGHTING");
+    sendloadRival();
 }
 
+void CPVPMonsterPlayerLayer::updateSchudelCC(float t)
+{
+    if (SinglePlayer::instance()->isLoadFightTeam) {
+        sendSetTeam();
+        unschedule(schedule_selector(CPVPMonsterPlayerLayer::updateSchudelCC));
+    }
+}
+void CPVPMonsterPlayerLayer::createProtectTime()
+{
+    if (isSearch)
+    {
+        string Valuer=CPtTool::stringForObjectValue(PVPSceneLayer::m_nProtect_time);
+        CCLabelTTF *labelttf= CCLabelTTF::create(Valuer.c_str(), "Arial", 25);
+        labelttf->setColor(ccc3(0, 255, 0));
+        labelttf->setPosition(ccp(size.width *0.5,size.height *0.5-200));
+        addChild(labelttf,2,TAG_TASKPVPMONSTER_TIMER);
+    }
+    if (PVPSceneLayer::m_nProtect_time==0) {
+        getChildByTag(TAG_TASKPVPMONSTER_TIMER)->setVisible(false);
+    }
+}
+void CPVPMonsterPlayerLayer::updateDaoJishi(float t)
+{
+    PVPSceneLayer::m_nProtect_time--;
+    if (PVPSceneLayer::m_nProtect_time==0) {
+        getChildByTag(TAG_TASKPVPMONSTER_TIMER)->setVisible(false);
+        unschedule(schedule_selector(CPVPMonsterPlayerLayer::updateDaoJishi));
+    }
+}
+
+void CPVPMonsterPlayerLayer::sendloadRival()
+{
+    SinglePlayer::instance()->loadRival(m_pMonsterPvp->getPVPUserData()->uid, 3);
+    //定时的去判断是否已经下载阵容完毕。
+    schedule(schedule_selector(CPVPMonsterPlayerLayer::updateSchudelCC), 1.0);
+}
+
+void CPVPMonsterPlayerLayer::sendSetTeam()
+{
+    char buffer[300] = {0};
+    int teamId = 1;
+    sprintf(buffer, "&sig=%s&team=%d",STR_USER_SIG, teamId);
+    CCLog("the send :%s", buffer);
+    
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SETFIGHTTEAM(196),"CALLBACK_CPVPMonsterPlayerLayer::onSendRequest", "REQUEST_CPVPMonsterPlayerLayer::onSendRequest",buffer, callfuncO_selector(CPVPMonsterPlayerLayer::callBackSetTeam));
+}
+
+void CPVPMonsterPlayerLayer::callBackSetTeam(CCObject *object)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this
+                                                                     , "CALLBACK_CPVPMonsterPlayerLayer::onSendRequest");
+    char *buffer = (char*) object;
+    if (buffer)
+    {
+        CCLog("the receive data: %s", buffer);
+        CCDictionary *dict = PtJsonUtility::JsonStringParse(buffer);
+        delete [] buffer;
+        if (dict)
+        {
+            CCString *tmp = (CCString*)dict->objectForKey("code");
+            CCAssert(tmp, "no code ");
+            int code = tmp->intValue();
+            if (code == 0)
+            {
+                CCDictionary *inResult=  (CCDictionary*)dict->objectForKey("result");
+                if(inResult)
+                {
+                    CCString *tmp = (CCString*) inResult->objectForKey("info");
+                    if (tmp)
+                    {
+                        int info = tmp->intValue();
+                        if (info == 1)
+                        {
+                            // set success
+                            //setFightTeamBuffer(inResult->objectForKey("chapter_buff"));
+                            CCArray *inRandomData = (CCArray*) inResult->objectForKey("random_data");
+                            SinglePlayer::instance()->parseRandomData(inRandomData);
+                            SinglePlayer::instance()->setFightUid(m_pMonsterPvp->getPVPUserData()->uid);
+                            SinglePlayer::instance()->setFuchou(!isSearch);
+                            SinglePlayer::instance()->setIsFightWithTeam(1);
+                            if (!isSearch) {
+                                SinglePlayer::instance()->setFuChouId(nFuchouID);
+                                
+                            }
+                            else{
+                                SinglePlayer::instance()->setFuChouId(0);
+                                
+                            }
+                            SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_PVPFIGHTSCENE);
+                            
+                        }else
+                        {
+                            CCMessageBox(CCString::createWithFormat("set fightTeam error: %d", info)->getCString(), "Fight Start Error");
+                        }
+                    }
+                }
+                
+            }else
+            {
+                CCMessageBox(CCString::createWithFormat("the error code : %d", code)->getCString(), "setTeam Error");
+            }
+        }
+    }
+}
 
 void CPVPMonsterPlayerLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 {
@@ -330,7 +474,7 @@ void CPVPMonsterPlayerLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 
 CCSize CPVPMonsterPlayerLayer::cellSizeForTable(CCTableView *table)
 {
-    return CCSizeMake(100, 200);
+    return CCSizeMake(150, 200);
 }
 
 

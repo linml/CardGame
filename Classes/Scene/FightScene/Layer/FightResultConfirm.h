@@ -25,7 +25,7 @@ public:
 public:
     CC_SYNTHESIZE(bool, m_bHuiFang, HuiFang);
     CC_SYNTHESIZE(int, m_iFightResult, FightResult);
-    CC_SYNTHESIZE(int, m_iFightType, FightType);
+    CC_SYNTHESIZE(int, m_iFightType, FightType); //0 是npc 战斗 1 是team战斗
     CC_SYNTHESIZE(int, m_iFightUid, FightUid);
 };
 
@@ -47,7 +47,8 @@ public:
     
     void postHttpNpc();
     void postHttpTeam();
-    void callBackData(CCObject *object);    
+    void callBackData(CCObject *object);
+    void callBackDataTeam(cocos2d::CCObject *object);
 protected:
     void initFightResultConfirm();
     void handlerTouch();

@@ -79,6 +79,8 @@ struct mk {
 
 CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getProps())
 {
+    m_bFightFuChou=false;
+    m_bIsFightWithTeam=0;
     m_pTaskLogic=new CPtTaskLogic;
     m_bAllTaskCompleted = false;
     m_nMaxSectionId = 1;
@@ -818,13 +820,13 @@ void CGamePlayer::parseRival(CCObject *object)
                     }
                     
                 }
-                CCArray *vKeyArraytempBBB=(CCArray *)(cardDirector->objectForKey("random_data"));
-                m_getRandom_data.clear();
-                m_currRandRomIndex=0;
-                for (int i=0; i<vKeyArraytempBBB->count(); i++) {
-                    CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
-                    m_getRandom_data.push_back(strtemp->intValue());
-                }
+//                CCArray *vKeyArraytempBBB=(CCArray *)(cardDirector->objectForKey("random_data"));
+//                m_getRandom_data.clear();
+//                m_currRandRomIndex=0;
+//                for (int i=0; i<vKeyArraytempBBB->count(); i++) {
+//                    CCString* strtemp=   (CCString *)vKeyArraytempBBB->objectAtIndex(i);
+//                    m_getRandom_data.push_back(strtemp->intValue());
+//                }
                 
             }
         }
@@ -1290,6 +1292,10 @@ void CGamePlayer::deleteFightMonsterCard()
 }
 void CGamePlayer::onFightExitScene()
 {
+    if(m_bIsFightWithTeam)
+    {
+        m_bIsFightWithTeam=0;
+    }
     DELETE_POINT_VECTOR(m_hashmapFightingCard, vector<CFightCard *> ,CFightCard);
     DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard *> ,CFightCard);
     DELETE_POINT_VECTOR(m_vHpAngry, vector<SEveryATKData *> ,SEveryATKData);

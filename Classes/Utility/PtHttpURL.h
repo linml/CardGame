@@ -97,7 +97,7 @@
 //获取具体事件
 #define STR_URL_NEXT_EVENT(UID)     URL_FACTORY("api.php?m=Part&a=startEvent&uid=",UID)
 
-//结束事件：
+//战斗结束事件：
 #define STR_URL_FINISH_EVENT(UID)   URL_FACTORY("api.php?m=Part&a=finishEvent&uid=",UID)
 //系统初始化
 
