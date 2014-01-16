@@ -123,15 +123,28 @@ void FightResultConfirm::callBackDataTeam(cocos2d::CCObject *object)
         CCDictionary *resultDict=(CCDictionary *)pResult->objectForKey("result");
         if(((CCString *) resultDict->objectForKey("info"))->intValue()==1)
         {
+            
             m_nResult->setFightResult(1);
             PtSoundTool::playSysSoundEffect("fight_win.mp3");
-            test_print("对手已经菊花残");
+            test_print("胜利了");
         }
         else
         {
             m_nResult->setFightResult(0);
             PtSoundTool::playSysSoundEffect("fight_failed.mp3");
-            test_print("对手菊花完好");
+            test_print("失败");
+        }
+        CCDictionary  *inAllReward=(CCDictionary *)resultDict->objectForKey("reward");
+        CReward *reward =NULL;
+        if (inAllReward->objectForKey("add") &&((CCDictionary*)inAllReward->objectForKey("add"))->objectForKey("pvp_score") ) {
+            reward = CReward::create((CCDictionary *)((CCDictionary*)inAllReward->objectForKey("add"))->objectForKey("pvp_score"));
+            reward->excuteReward(ADD);
+            
+        }
+        else if(inAllReward->objectForKey("dec") &&((CCDictionary*)inAllReward->objectForKey("dec"))->objectForKey("pvp_score"))
+        {
+            reward = CReward::create((CCDictionary *)((CCDictionary*)inAllReward->objectForKey("dec"))->objectForKey("pvp_score"));
+            reward->excuteReward(DEC);
         }
     }
     else

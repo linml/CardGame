@@ -84,8 +84,10 @@ public:
     int getExp();
     int getCash();
     int getFriendly();
+    int getKaHun();
     int getCardCount();
     int getPropCount();
+ 
    
     CCDictionary * getCards();
     CCDictionary * getProps();
@@ -110,6 +112,8 @@ protected:
     
     int m_nExtarExp; // 道具buff
     int m_nExtarCoin; // 道具buff
+    
+    int m_nKaHun;
     CCDictionary *m_pCards; // key-> card_item_id, value-> card_id+suit
     CCDictionary *m_pProps;
     

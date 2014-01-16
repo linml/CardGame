@@ -18,6 +18,7 @@ using namespace std;
 using namespace cocos2d;
 
 #define EXTENDCARDPROPID 900004
+
 enum USERTYPE
 {
     NONE = 0,

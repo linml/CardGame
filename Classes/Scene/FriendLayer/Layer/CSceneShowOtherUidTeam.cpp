@@ -178,7 +178,7 @@ void CSceneShowOtherUidTeam::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
 
 void CSceneShowOtherUidTeam::registerWithTouchDispatcher(void)
 {
-    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, -9, true);
+    CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, getTouchPriority(), true);
 }
 
 void CSceneShowOtherUidTeam::onExit()

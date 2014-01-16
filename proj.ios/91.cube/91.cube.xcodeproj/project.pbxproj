@@ -51,6 +51,8 @@
 		6F780752176469830049321C /* AsgardLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F780749176469830049321C /* AsgardLayer.cpp */; };
 		6F780753176469830049321C /* LogoLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F78074D176469830049321C /* LogoLayer.cpp */; };
 		6F780754176469830049321C /* LoginScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F78074F176469830049321C /* LoginScene.cpp */; };
+		6F7F6B891887736B00A6D727 /* CPVPAddTiaoZhanCountLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7F6B851887736B00A6D727 /* CPVPAddTiaoZhanCountLayer.cpp */; };
+		6F7F6B8A1887736B00A6D727 /* CPVPRankLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F7F6B871887736B00A6D727 /* CPVPRankLayer.cpp */; };
 		6F8E60F5178424A900AF5111 /* AnimationLogic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E60F3178424A900AF5111 /* AnimationLogic.cpp */; };
 		6F8E60FA178424BD00AF5111 /* CPtScrollWordsWidget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E60F6178424BD00AF5111 /* CPtScrollWordsWidget.cpp */; };
 		6F8E60FB178424BD00AF5111 /* CPtTableItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6F8E60F8178424BD00AF5111 /* CPtTableItem.cpp */; };
@@ -506,6 +508,10 @@
 		6F78074E176469830049321C /* LogoLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoLayer.h; sourceTree = "<group>"; };
 		6F78074F176469830049321C /* LoginScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LoginScene.cpp; sourceTree = "<group>"; };
 		6F780750176469830049321C /* LoginScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginScene.h; sourceTree = "<group>"; };
+		6F7F6B851887736B00A6D727 /* CPVPAddTiaoZhanCountLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPVPAddTiaoZhanCountLayer.cpp; sourceTree = "<group>"; };
+		6F7F6B861887736B00A6D727 /* CPVPAddTiaoZhanCountLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVPAddTiaoZhanCountLayer.h; sourceTree = "<group>"; };
+		6F7F6B871887736B00A6D727 /* CPVPRankLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPVPRankLayer.cpp; sourceTree = "<group>"; };
+		6F7F6B881887736B00A6D727 /* CPVPRankLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVPRankLayer.h; sourceTree = "<group>"; };
 		6F8E60F3178424A900AF5111 /* AnimationLogic.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AnimationLogic.cpp; sourceTree = "<group>"; };
 		6F8E60F4178424A900AF5111 /* AnimationLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationLogic.h; sourceTree = "<group>"; };
 		6F8E60F6178424BD00AF5111 /* CPtScrollWordsWidget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CPtScrollWordsWidget.cpp; sourceTree = "<group>"; };
@@ -1656,6 +1662,10 @@
 		6FBB400B187A85E9005DAFA4 /* Layer */ = {
 			isa = PBXGroup;
 			children = (
+				6F7F6B851887736B00A6D727 /* CPVPAddTiaoZhanCountLayer.cpp */,
+				6F7F6B861887736B00A6D727 /* CPVPAddTiaoZhanCountLayer.h */,
+				6F7F6B871887736B00A6D727 /* CPVPRankLayer.cpp */,
+				6F7F6B881887736B00A6D727 /* CPVPRankLayer.h */,
 				6F5CEB2118837C2F0092B3FF /* CPVPKaHunLayer.cpp */,
 				6F5CEB2218837C2F0092B3FF /* CPVPKaHunLayer.h */,
 				6FBB400F187A930A005DAFA4 /* CPVPRegulationLayer.cpp */,
@@ -3413,6 +3423,7 @@
 				9FC6F27417460BFF0091BE98 /* CocosDenshion.m in Sources */,
 				9FC6F27517460BFF0091BE98 /* SimpleAudioEngine.mm in Sources */,
 				9FC6F27617460BFF0091BE98 /* SimpleAudioEngine_objc.m in Sources */,
+				6F7F6B8A1887736B00A6D727 /* CPVPRankLayer.cpp in Sources */,
 				6F1B3E1018225861007FFE3A /* CPtPropUseManager.cpp in Sources */,
 				9FC6F27717460BFF0091BE98 /* CCBAnimationManager.cpp in Sources */,
 				9FC6F27817460BFF0091BE98 /* CCBFileLoader.cpp in Sources */,
@@ -3536,6 +3547,7 @@
 				9FFE8E5B17815A9700DF7D47 /* HBLabelPanel.cpp in Sources */,
 				9FFE8E8F1781A03F00DF7D47 /* json_reader.cpp in Sources */,
 				9FFE8E901781A03F00DF7D47 /* json_value.cpp in Sources */,
+				6F7F6B891887736B00A6D727 /* CPVPAddTiaoZhanCountLayer.cpp in Sources */,
 				6FA496BD18165DE800D48944 /* CPanelLoadingLayer.cpp in Sources */,
 				9FFE8E921781A03F00DF7D47 /* json_writer.cpp in Sources */,
 				9FD3F91F17827BD0006C7039 /* CCard.cpp in Sources */,

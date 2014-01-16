@@ -12,13 +12,18 @@
 #include "CPVPKaHunLayer.h"
 #include "CPVPRegulationLayer.h"
 #include "CPVPStructMissionTaskRewordLayer.h"
-#include "PtHttpURL.h"
 #include "PtJsonUtility.h"
+#include "CReward.h"
+#include "CPVPRankLayer.h"
+#include "CSceneShowOtherUidTeam.h"
+#include "gamePlayer.h"
+#include "PtHttpURL.h"
 #include "PtHttpClient.h"
 #include "CPVPMonsterData.h"
 #include "CPVPMonsterPlayerLayer.h"
 #include "CPVPReportLayer.h"
 #include "SceneManager.h"
+#include "CPVPPublicStruct.h"
 
 int PVPSceneLayer::m_nProtect_time=0;
 
@@ -55,11 +60,16 @@ PVPSceneLayer* PVPSceneLayer::create()
 
 PVPSceneLayer::PVPSceneLayer()
 {
+    m_pDataManager = PVPDataManager::getInstance();
     m_pBgContainer = NULL;
+    m_bCanTouch = false;
+    m_bCanGetPVPRankReward = false;
+    memset(m_pBtns, 0, sizeof(m_pBtns));
     m_nProtect_time=0;
 }
 PVPSceneLayer::~PVPSceneLayer()
 {
+    PVPDataManager::releasManager();
     
 }
 bool PVPSceneLayer::init()
@@ -98,6 +108,10 @@ void PVPSceneLayer::ccTouchMoved(CCTouch *pTouch, CCEvent *pEvent)
 }
 void PVPSceneLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
 {
+    if (!m_bCanTouch)
+    {
+        return;
+    }
     for (int i = 0; i < PVPSCENEBTNCOUNT; i++ )
     {
         if (CPtTool::isInNode(m_pBtns[i], pTouch))
@@ -121,14 +135,14 @@ void PVPSceneLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
                     case SearchOpponentBtn:
                         onClickSearchOpponent();
                         break;
-                    case AddPVPCountBtn:
-                        onClickAddPVPCount();
-                        break;
                     case BackBtn:
                         onClickBack();
                         break;
                     case PVPRankRewardBtn:
                         onClickPVPRankReward();
+                        break;
+                    case PVPRankBtn:
+                        onClickPVPRank();
                         break;
                     default:
                         break;
@@ -144,7 +158,24 @@ void PVPSceneLayer::ccTouchCancelled(CCTouch *pTouch, CCEvent *pEvent)
     
 }
 
-
+void PVPSceneLayer::callBack()
+{
+    m_bCanTouch = true;
+    
+    PVPDataManager *dataManager = PVPDataManager::getInstance();
+    int headCount ;
+    PVPRankData * data = dataManager->getHeadRankInfo(headCount);
+    createPVPRankInfo(data, headCount);
+    createPlayerPVPInfo(dataManager->getUserRankInfo());
+    PVPRankReward* rankReward = NULL;
+    m_bCanGetPVPRankReward = dataManager->getRankReward(rankReward);
+    if (m_bCanGetPVPRankReward)
+    {
+       
+    }
+    createPlayePVPRankReward(rankReward);
+    createTiaoZhanCountInfo();
+}
 
 // protected:
 
@@ -224,33 +255,37 @@ void PVPSceneLayer::initPVPSceneLayerUI()
     bg->addChild(tmpSprite);
     m_pBtns[BackBtn] = tmpSprite;
     
-    PVPRankReward reward ;
-    reward.coin = 999999;
-    reward.kahun = 999;
-    
-    createPVPRankInfo();
-    createPlayerPVPInfo();
-    createPlayePVPRankReward(&reward);
-    createTiaoZhanCountInfo();
+    PVPDataManager::getInstance()->getPVPMainUIInfo(this, callfunc_selector(PVPSceneLayer::callBack));
+
 }
 
-void PVPSceneLayer::createPlayerPVPInfo()
+void PVPSceneLayer::createPlayerPVPInfo(PVPRankData *inUserRankInfo)
 {
-    int credits = 9999; // 游戏积分
-    int coin = 9999;
-    int rank = 9999;
-    int level = 9999;
-    int fight = 9999;
+    CCSize size(30, 80);
+    m_pPlayerPVPPanel = CCNode::create();
+    m_pPlayerPVPPanel->setContentSize(size);
     CCPoint point(m_pBgContainer->getContentSize().width*0.07, m_pBgContainer->getContentSize().height*0.75);
+    m_pPlayerPVPPanel->setAnchorPoint(ccp(0, 1));
+    m_pPlayerPVPPanel->setPosition(point);
+    m_pBgContainer->addChild(m_pPlayerPVPPanel);
+    
+    int credits = inUserRankInfo->credits; // 游戏积分
+    int coin = SinglePlayer::instance()->getCoin();
+    int rank = inUserRankInfo->rank;
+    int level = inUserRankInfo->level;
+    int fight = inUserRankInfo->fightpointer;
+    
     
     // 积分
     char buffer[30] = {0};
+    point.y = size.height;
+    point.x = 0;
     snprintf(buffer, sizeof(char)*30, "积分: %d", credits);
     CCLabelTTF *label = CCLabelTTF::create(buffer, "Arail", 13);
     label->setHorizontalAlignment(kCCTextAlignmentLeft);
     label->setAnchorPoint(CCPointZero);
     label->setPosition(point);
-    m_pBgContainer->addChild(label);
+    m_pPlayerPVPPanel->addChild(label);
     
     point.y -= 25;
     snprintf(buffer, sizeof(char)*30, "金币: %d", coin);
@@ -258,15 +293,15 @@ void PVPSceneLayer::createPlayerPVPInfo()
     label->setHorizontalAlignment(kCCTextAlignmentLeft);
     label->setAnchorPoint(CCPointZero);
     label->setPosition(point);
-    m_pBgContainer->addChild(label);
-    
+    m_pPlayerPVPPanel->addChild(label);
+    m_pCoinLabel = label;
     point.y -= 25;
     snprintf(buffer, sizeof(char)*30, "排名: %d", rank);
     label = CCLabelTTF::create(buffer, "Arail", 13);
     label->setHorizontalAlignment(kCCTextAlignmentLeft);
     label->setAnchorPoint(CCPointZero);
     label->setPosition(point);
-    m_pBgContainer->addChild(label);
+    m_pPlayerPVPPanel->addChild(label);
     
     point.y -= 25;
     snprintf(buffer, sizeof(char)*30, "等级: %d", level);
@@ -274,7 +309,7 @@ void PVPSceneLayer::createPlayerPVPInfo()
     label->setHorizontalAlignment(kCCTextAlignmentLeft);
     label->setAnchorPoint(CCPointZero);
     label->setPosition(point);
-    m_pBgContainer->addChild(label);
+    m_pPlayerPVPPanel->addChild(label);
     
     point.y -= 25;
     snprintf(buffer, sizeof(char)*30, "战力: %d", fight);
@@ -282,18 +317,10 @@ void PVPSceneLayer::createPlayerPVPInfo()
     label->setHorizontalAlignment(kCCTextAlignmentLeft);
     label->setAnchorPoint(CCPointZero);
     label->setPosition(point);
-    m_pBgContainer->addChild(label);
+    m_pPlayerPVPPanel->addChild(label);
 }
-void PVPSceneLayer::createPVPRankInfo()
+void PVPSceneLayer::createPVPRankInfo(PVPRankData *inHeadRankInfo, int inCount)
 {
-    // test data:
-    PVPRankData data;
-    data.name = "杀很大";
-    data.fightpointer = 9999;
-    data.credits = 999;
-    data.level = 99;
-    data.rank = 1;
-    data.uid = 239;
     CCNode* node = NULL;
     CCSprite * rankBg = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "rankbg.png"));
     m_pBgContainer->addChild(rankBg);
@@ -301,63 +328,101 @@ void PVPSceneLayer::createPVPRankInfo()
     rankBg->setPosition(point);
     CCSize size = rankBg->getContentSize();
     
-    data.rank = 2;
-    node = createRankNode(&data);
-    node ->setPosition(ccp(size.width*0.2, size.height*0.4));
-    rankBg->addChild(node);
-    
-    data.rank = 1;
-    node =  createRankNode(&data);
-    node ->setPosition(ccp(size.width*0.5, size.height*0.4));
-    rankBg->addChild(node);
-    
-    data.rank = 3;
-    node =  createRankNode(&data);
-    node ->setPosition(ccp(size.width*0.8, size.height*0.4));
-    rankBg->addChild(node);
-    m_pBtns[PVPRankBtn]=node;
+    float posfactor[3]={0.5, 0.2, 0.8};
+    inCount = inCount >= 3? 3: inCount;
+    for (int i = 0;  i< inCount; i++)
+    {
+        node = createRankNode((inHeadRankInfo+i));
+        node ->setPosition(ccp(size.width*posfactor[i], size.height*0.4));
+        rankBg->addChild(node);
+    }
+    m_pBtns[PVPRankBtn]=rankBg;
 }
-void PVPSceneLayer::createPlayePVPRankReward(PVPRankReward * inRewardData, int inTime /*= -1*/)
+void PVPSceneLayer::createPlayePVPRankReward(PVPRankReward * inRewardData)
 {
-    CCSize size = m_pBgContainer->getContentSize();
-    CCPoint point(size.width*0.84, size.height*0.67);
-    char buffer[20] = {0};
+    CCSize bgSize = m_pBgContainer->getContentSize();
+    CCPoint point(bgSize.width*0.84, bgSize.height*0.67);
+    
+    CCSize size(30, 80);
+    m_pPVPRankRewardPanel = CCNode::create();
+    m_pPVPRankRewardPanel->setContentSize(size);
+    m_pBgContainer->addChild(m_pPVPRankRewardPanel);
+    m_pPVPRankRewardPanel->ignoreAnchorPointForPosition(false);
+    m_pPVPRankRewardPanel->setAnchorPoint(ccp(0, 1));
+    m_pPVPRankRewardPanel->setPosition(point);
+  
+    point.x = 0;
+    point.y = size.height;
+    
+    char buffer[30] = {0};
     sprintf(buffer, "此排名可获得:");
     CCLabelTTF *label = CCLabelTTF::create(buffer, "Arial", 14);
     label->setAnchorPoint(ccp(0,0));
-    m_pBgContainer->addChild(label);
+    m_pPVPRankRewardPanel->addChild(label);
     label->setPosition(point);
+    m_pLabel[0] = label;
     
-    point.y -= 25;
-    sprintf(buffer, "金币*%d", inRewardData->coin);
-    label = CCLabelTTF::create(buffer, "Arial", 14);
-    label->setAnchorPoint(ccp(0,0));
-    m_pBgContainer->addChild(label);
-    label->setPosition(point);
-    
-    point.y -= 25;
-    sprintf(buffer, "卡魂*%d", inRewardData->kahun);
-    label = CCLabelTTF::create(buffer, "Arial", 14);
-    label->setAnchorPoint(ccp(0,0));
-    m_pBgContainer->addChild(label);
-    label->setPosition(point);
+    if (inRewardData == NULL)
+    {
+        label->setString("该排名未进榜单");
+        m_pLabel[2]=m_pLabel[1] = NULL;
+        point.y -= 50;
+       
+    }
+    else
+    {
+        point.y -= 25;
+        sprintf(buffer, "金币*%d", inRewardData->coin);
+        label = CCLabelTTF::create(buffer, "Arial", 14);
+        label->setAnchorPoint(ccp(0,0));
+        m_pPVPRankRewardPanel->addChild(label);
+        label->setPosition(point);
+        m_pLabel[1] = label;
+        
+        point.y -= 25;
+        sprintf(buffer, "卡魂*%d", inRewardData->kahun);
+        label = CCLabelTTF::create(buffer, "Arial", 14);
+        label->setAnchorPoint(ccp(0,0));
+        m_pPVPRankRewardPanel->addChild(label);
+        label->setPosition(point);
+        m_pLabel[2] = label;
+
+    }
+    const char * title = "可领取";
+    int time = PVPDataManager::getInstance()->getOverTime();
+    if(time != -1)
+    {
+        m_cOverTime.hour = time/3600;
+        m_cOverTime.date = m_cOverTime.hour/24;
+        m_cOverTime.hour %= 24;
+        time %= 3600;
+        m_cOverTime.min = time/60;
+        time %= 60;
+        m_cOverTime.sec = time;
+        
+    }
+    if (!m_bCanGetPVPRankReward)
+    {
+     
+        sprintf(buffer, "%02d:%02d:%02d:%02d",m_cOverTime.date,m_cOverTime.hour, m_cOverTime.min, m_cOverTime.sec);
+        title = buffer;
+    }
     
     point.y -= 40;
     CCSprite * baoxiang = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "baoxiang.png"));
     baoxiang->setPosition(point);
     baoxiang->setAnchorPoint(ccp(0,1));
-    m_pBgContainer->addChild(baoxiang);
-    
-    const char * title = "可领取";
-    CCSprite *tmpSprite = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "jieshouanniu_Normal.png"));
+    m_pPVPRankRewardPanel->addChild(baoxiang);
+    m_pBtns[PVPRankRewardBtn] = baoxiang;
+   
     CCLabelTTF *tmpLabel = CCLabelTTF::create(title, "Arial", 14);
     point.y -= 80;
-    tmpLabel->setPosition(ccp(tmpSprite->getContentSize().width*0.5, tmpSprite->getContentSize().height*0.5));
-    tmpSprite->addChild(tmpLabel);
-    tmpSprite->setPosition(point);
-    tmpSprite->setAnchorPoint(ccp(0.125,1));
-    m_pBgContainer->addChild(tmpSprite);
-    m_pBtns[PVPRankRewardBtn] = tmpSprite;
+    point.x += 10;
+    tmpLabel->setPosition(point);
+    tmpLabel->setAnchorPoint(ccp(0.125,1));
+    m_pPVPRankRewardPanel->addChild(tmpLabel);
+    m_pTimeLabel = tmpLabel;
+    schedule(schedule_selector(PVPSceneLayer::updateTime),1);
     
 }
 
@@ -365,27 +430,43 @@ void PVPSceneLayer::createTiaoZhanCountInfo()
 {
 
     CCSize size=  m_pBgContainer->getContentSize();
-    int currentCount = m_pPlayer->getPlayerPVPCount();
+    m_pAddTiaoZhanCountPanel = CPVPAddTiaoZhanCountLayer::create();
+    m_pAddTiaoZhanCountPanel->setAnchorPoint(CCPointZero);
+    m_pAddTiaoZhanCountPanel->setPosition(ccp(size.width*0.785, size.height*0.04));
+    m_pBgContainer->addChild(m_pAddTiaoZhanCountPanel);
+    m_pAddTiaoZhanCountPanel->setTouchPriority(PVPSCENETOUCH_PRIORITY -1);
     
-    char buffer[10] = {0};
-    sprintf(buffer, "%d/%d",currentCount,5);
-    CCLabelTTF *label = CCLabelTTF::create(buffer, "Arial", 13);
-    CCPoint point(size.width*0.78, size.height*0.10);
-    label->setPosition(point);
-    label->setAnchorPoint(ccp(0,1));
-    m_pBgContainer->addChild(label);
-    
-    const char * title = "增加";
-    CCSprite *tmpSprite = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "jieshouanniu_Normal.png"));
-    CCLabelTTF *tmpLabel = CCLabelTTF::create(title, "Arial", 14);
-    point.x += 30;
-    tmpLabel->setPosition(ccp(tmpSprite->getContentSize().width*0.5, tmpSprite->getContentSize().height*0.5));
-    tmpSprite->addChild(tmpLabel);
-    tmpSprite->setPosition(point);
-    tmpSprite->setAnchorPoint(ccp(0,0.78));
-    m_pBgContainer->addChild(tmpSprite);
-    m_pBtns[AddPVPCountBtn]=tmpSprite;
 }
+
+void PVPSceneLayer::updatePVPRankReward()
+{
+    PVPDataManager *dataManager = PVPDataManager::getInstance();
+    PVPRankReward* rankReward = NULL;
+    m_bCanGetPVPRankReward = dataManager->getRankReward(rankReward);
+    if (rankReward==NULL)
+    {
+       
+        m_pLabel[0]->setString("该排名未进榜单");
+        m_pLabel[1]->setString("");
+        m_pLabel[2]->setString("");
+        return;
+    }
+    int value[2]={rankReward->coin,rankReward->kahun};
+    char buffer[30] = {0};
+    const char *names[] ={"金币*", "卡魂*"};
+    for (int i = 1; i < 3; i++)
+    {
+        snprintf(buffer, sizeof(buffer), "%s%d", names[i-1],value[i-1]);
+        m_pLabel[i]->setString(buffer);
+    }
+    if (!m_bCanGetPVPRankReward)
+    {
+         updateTimeTip();
+    }
+    snprintf(buffer, sizeof(buffer), "金币: %d", SinglePlayer::instance()->getCoin());
+    m_pCoinLabel->setString(buffer);
+}
+
 CCNode* PVPSceneLayer::createRankNode(PVPRankData * inRankData)
 {
     CCNode *node = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath+"/fighting/", "bg1.png"));
@@ -416,7 +497,7 @@ CCNode* PVPSceneLayer::createRankNode(PVPRankData * inRankData)
     node->addChild(label);
     
     point.y -= 25;
-    snprintf(buffer, sizeof(char)*30, "排名: %d", inRankData->fightpointer);
+    snprintf(buffer, sizeof(char)*30, "战力: %d", inRankData->fightpointer);
     label = CCLabelTTF::create(buffer, "Arail", 13);
     label->setHorizontalAlignment(kCCTextAlignmentLeft);
     label->setAnchorPoint(CCPointZero);
@@ -439,6 +520,58 @@ CCNode* PVPSceneLayer::createRankNode(PVPRankData * inRankData)
     label->setPosition(point);
     node->addChild(label);
     return node;
+}
+
+void PVPSceneLayer::updateTime(float dt)
+{
+    if (m_pDataManager->getOverTime() < 0)
+    {
+        this->unschedule(schedule_selector(PVPSceneLayer::updateTime));
+        reloadData();
+        
+    }
+    else
+    {
+        m_pDataManager->subOverTime();
+        if (!m_bCanGetPVPRankReward)
+        {
+            updateTimeTip();
+        }
+        
+    }
+}
+
+void PVPSceneLayer::updateTimeTip()
+{
+    m_cOverTime.sec--;
+    if (m_cOverTime.sec < 0)
+    {
+        m_cOverTime.sec += 60;
+        m_cOverTime.min--;
+        if (m_cOverTime.min < 0)
+        {
+            m_cOverTime.min += 60;
+            m_cOverTime.hour--;
+            if (m_cOverTime.hour < 0)
+            {
+                m_cOverTime.hour += 24;
+                m_cOverTime.date--;
+            }
+        }
+    }
+    char buffer[30] = {0};
+    sprintf(buffer, "%02d:%02d:%02d:%02d",m_cOverTime.date,m_cOverTime.hour, m_cOverTime.min, m_cOverTime.sec);
+    m_pTimeLabel->setString(buffer);
+    
+    
+}
+void PVPSceneLayer::reloadData()
+{
+    m_pPVPRankRewardPanel->removeFromParentAndCleanup(true);
+    m_pPlayerPVPPanel->removeFromParentAndCleanup(true);
+    m_pAddTiaoZhanCountPanel->removeFromParentAndCleanup(true);
+    m_pBtns[PVPRankBtn]->removeFromParentAndCleanup(true);
+    PVPDataManager::getInstance()->getPVPMainUIInfo(this, callfunc_selector(PVPSceneLayer::callBack));
 }
 
 void PVPSceneLayer::onClickRule()
@@ -475,22 +608,73 @@ void PVPSceneLayer::onClickSearchOpponent()
     ADDHTTPREQUESTPOSTDATA(STR_URL_GETPVPSEARCHDUISHOU(194), "CALLBACK_PVPSceneLayer_onClickSearchOpponent", "REQUEST_PVPSceneLayer_onClickSearchOpponent",str.c_str(),callfuncO_selector(PVPSceneLayer::callBackValue))
 }
 
-void PVPSceneLayer::onClickAddPVPCount()
-{
-    
-}
 void PVPSceneLayer::onClickPVPRankReward()
 {
+    if (m_bCanGetPVPRankReward)
+    {
+        sendRequestGetPVPRankReward();
+    }
+    else
+    {
+        CCMessageBox("can get current pvp rank reward","tip");
+    }
     
 }
 void PVPSceneLayer::onClickBack()
 {
     SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+
 }
 void PVPSceneLayer::onClickPVPRank()
 {
-    
+
+    CPVPRankLayer *layer = CPVPRankLayer::create();
+    CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 100);
 }
+
+void PVPSceneLayer::sendRequestGetPVPRankReward()
+{
+    char buffer[100] = {0};
+    snprintf(buffer, sizeof(buffer), "sig=%s", STR_USER_SIG);
+    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_GETPVPRANKREWARD(196), "CALLBACK_PVPSceneLayer::sendRequestGetPVPRankReward", "REQUEST_PVPSceneLayer::sendRequestGetPVPRankReward", buffer, callfuncO_selector(PVPSceneLayer::receiveGetPVPRankRewardMsg));
+}
+void PVPSceneLayer::receiveGetPVPRankRewardMsg(CCObject* pObject)
+{
+    CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_PVPSceneLayer::sendRequestGetPVPRankReward");
+    char *buffer = (char *)pObject;
+    if (buffer)
+    {
+        CCLog("buffer: %s", buffer);
+        CCDictionary *resultDict = (CCDictionary*) PtJsonUtility::JsonStringParse(buffer);
+        delete [] buffer;
+        if (resultDict)
+        {
+            int code = GameTools::intForKey("code", resultDict);
+            if (code == 0)
+            {
+                resultDict = (CCDictionary*)resultDict->objectForKey("result");
+                const char *names[]={"reward", "add", "charts_pvp"};
+                for (int i = 0; i < 3; i++)
+                {
+                    resultDict = (CCDictionary*) resultDict->objectForKey(names[i]);
+                    if (resultDict == NULL)
+                    {
+                        break;
+                    }
+                }
+                if(resultDict)
+                {
+                    CReward *reward = CReward::create(resultDict);
+                    reward->excuteReward(ADD);
+                    updatePVPRankReward();
+                }
+            }
+        }
+    }
+}
+
+    
+
 
 void PVPSceneLayer::callBackValue(CCObject *object)
 {
@@ -571,6 +755,6 @@ void PVPSceneLayer::callBackValue(CCObject *object)
 void PVPSceneLayer::addPvpSearchLayer(CPVPMonsterData *data)
 {
     CPVPMonsterPlayerLayer *layer=CPVPMonsterPlayerLayer::CreateByUserID(data, true);
-    layer->setTouchPriority(PVPSCENETOUCH_PRIORITY-1);
+    layer->setCustomerTouchProty(PVPSCENETOUCH_PRIORITY-1);
     CCDirector::sharedDirector()->getRunningScene()->addChild(layer, 100);
 }

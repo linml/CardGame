@@ -200,10 +200,23 @@
 //PVP
 //PVP排行榜主界面信息请求:
 #define STR_URL_GETPVPMAINUIINFO(UID) URL_FACTORY("api.php?m=Pvp&a=Arena&uid=",UID)
+
+//PVP排名奖励:
+#define STR_URL_GETPVPRANKREWARD(UID) URL_FACTORY("api.php?m=charts&a=rewardPvp&uid=",UID)
+
 //PVP搜索对手
 #define STR_URL_GETPVPSEARCHDUISHOU(UID)  URL_FACTORY("api.php?m=Pvp&a=searchPlayer&uid=" ,UID)
 
+
+//PVP排行榜:
+#define STR_URL_GETPVPRANKINFO(UID)   URL_FACTORY("api.php?m=charts&a=pvp&uid=",UID)
+
+//购买挑战次数
+#define STR_URL_ADDPVPFIHGHTCOUNT(UID) URL_FACTORY("api.php?m=Item&a=buyPvpNum&uid=",UID)
+
+
 //PVP获取战报
 #define STR_URL_GETPVPZHANBAO(UID)   URL_FACTORY("api.php?m=Pvp&a=getPvpReport&uid=",UID)
+
 
 #endif

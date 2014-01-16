@@ -9,6 +9,7 @@
 #ifndef _1_cube_CPVPPublicStruct_h
 #define _1_cube_CPVPPublicStruct_h
 
+
 typedef enum
 {
     RuleBtn = 0,// 规则
@@ -16,10 +17,9 @@ typedef enum
     ChallengeRewardBtn=2, //挑战奖励
     HuDianBtn=3, //魂殿
     SearchOpponentBtn=4, // 搜索对手
-    AddPVPCountBtn=5, //增加挑战次数
-    PVPRankRewardBtn=6, //领取排名奖励
-    BackBtn=7,
-    PVPRankBtn=8 //排行榜
+    PVPRankRewardBtn, //领取排名奖励
+    BackBtn,
+    PVPRankBtn //排行榜
 }PVPSCENEBTNTYPE;
 
 struct PVPRankData
@@ -33,12 +33,5 @@ struct PVPRankData
     std::string name;
 } ;
 
-typedef struct
-{
-    int rank;
-    int coin;
-    int kahun;
-    
-}PVPRankReward;
 
 #endif

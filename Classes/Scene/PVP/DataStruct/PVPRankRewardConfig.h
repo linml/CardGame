@@ -31,6 +31,8 @@ protected:
 public:
     void getPvPRankRewardByRank(int inIndex, int &outKanHun,int &outCoin);
     void getPvPRankRewardById(int inId, int &outKanHun,int &outCoin);
+    PVPRankReward *getPvPRankRewardByRank(int inIndex);
+    PVPRankReward *getPvPRankRewardById(int inId);
     
 protected:
     PVPRankRewardConfig();

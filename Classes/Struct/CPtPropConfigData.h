@@ -19,6 +19,7 @@ using namespace cocos2d;
 #define NOPROPIDEND 900999
 #define CANGETCARDIDBEGIN 900500
 #define CANGETCARDIDEND   901499
+#define TIAOZHANLINGID 901010
 
 class CPtProp : public CCObject
 {
@@ -51,7 +52,6 @@ public:
     
 public:
     bool getPropDataById(const int &inPropId);
-
     CPtProp *getPropById(const int &inPropId);
     std::string getIconName(const int &inPropId);
     std::string getPropName(const int inPropId);

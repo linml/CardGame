@@ -744,6 +744,15 @@ bool CBackpackPageLayer::canUseItemById(int inPropId)
     CGamePlayer *player = SinglePlayer::instance();
     CPtPropConfigData *propConfigData = SinglePropConfigData::instance();
     bool bRet = true;
+    if (inPropId == TIAOZHANLINGID)
+    {
+        if (player->getPlayerPVPCount() >= player->getPVPTotalNum())
+        {
+            CCMessageBox("当前挑战次数够", "tip");
+            return false;
+        }
+        return true;
+    }
     if (propConfigData->isCanGetCardById(inPropId) && player->cardBagIsMoreThanConfig())
     {
        // CCMessageBox("卡包满了", "产生卡片的道具");
@@ -862,7 +871,12 @@ void CBackpackPageLayer::onReceiveUsePropMsg(CCObject *pOject)
 //                  
                     reloadPage(it, m_cGridDataIterator.begin()+index);
                 }
-
+                //挑战令
+                if (it->first == TIAOZHANLINGID)
+                {
+                    SinglePlayer::instance()->addPlayerPVPCount();
+                    return;
+                }
                 // success:
                 
                 CCDictionary *result = (CCDictionary*) tmp->objectForKey("result");

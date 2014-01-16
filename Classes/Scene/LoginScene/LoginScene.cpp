@@ -129,6 +129,7 @@ void CLoginScene::dealWithCompleteTask(CCObject *object)
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CLOGINSCENE_COMPLATETASK");
     if (!object) {
         CCMessageBox("服务端传输NULL数据Complatetask", "ERROR");
+        return;
     }
     //判断code 是否等于0  如果等于0 代表校验成功， 之后执行doin
     int codeValue=0;
@@ -178,7 +179,8 @@ void CLoginScene::dealWithCompleteTask(CCObject *object)
 void CLoginScene::dealWithAddTask(CCObject *object)
 {
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CLOGINSCENE_COMPLATETASK");
-    if (!object) {
+    if (!object)
+    {
         CCMessageBox("服务端传输NULL数据Complatetask", "ERROR");
     }
     int codeValue=0;
@@ -203,7 +205,6 @@ void CLoginScene::dealWithAddTask(CCObject *object)
         }
     }
 
-    
     char messageData[100];
     sprintf(messageData, "服务端说不能添加本地的当前任务 出错CODE::%d",codeValue);
     CCMessageBox(messageData,"ALTER");
@@ -382,8 +383,11 @@ void CLoginScene::playGame()
 
         SinglePlayer::instance()->m_bIsLogin=true;
         SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+
         //场景切换动画 用来做测试的时候用得。 
-        //SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
+
+//        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
+
     }
 }
 

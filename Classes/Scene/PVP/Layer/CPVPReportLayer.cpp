@@ -295,8 +295,8 @@ void CPVPReportLayer::tableCellTouched(CCTableView* table, CCTableViewCell* cell
                             pvpdata->m_vCardList[i]=new CFightCard(*m_vPvpReport[tempIndex]->m_vCardList[i]);
                         }
                     }
-                    CCLayer *pLayer=CPVPMonsterPlayerLayer::CreateByUserID(pvpdata, false);
-                    pLayer->setTouchPriority(getTouchPriority()-1);
+                    CPVPMonsterPlayerLayer *pLayer=CPVPMonsterPlayerLayer::CreateByUserID(pvpdata, false,pvpdata->fuchouID);
+                    pLayer->setCustomerTouchProty(getTouchPriority()-1);
                     CCDirector::sharedDirector()->getRunningScene()->addChild(pLayer,101);
                     break;
                 }

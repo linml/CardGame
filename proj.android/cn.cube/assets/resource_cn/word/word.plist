@@ -4,6 +4,8 @@
 <dict>
 	<key>name</key>
 	<string>DEMO</string>
+	<key>pvp</key>
+	<string>竞技场</string>
 	<key>friend</key>
 	<string>好友</string>
 	<key>rank</key>

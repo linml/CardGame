@@ -147,8 +147,6 @@ void CAsgardLayer::initArsgard()
     createRankButton();
     createQianDaoButton();
     createChangePvpSceneButton();
-    
- 
 }
 
 void CAsgardLayer::createHospitolButton()
@@ -226,7 +224,6 @@ void CAsgardLayer::createRankButton()
 }
 
 
-
 void CAsgardLayer::handlerTouch()
 {
     CCLog("CAsgardLayer m_nTag : %d ", m_nTouchTag);
@@ -267,6 +264,7 @@ void CAsgardLayer::handlerTouch()
             // to do:
             showHandBook();
             break;
+
         case TAG_ASGARD_PVPSCENE:
             changeToPvpScene();
             break;
@@ -295,6 +293,7 @@ void CAsgardLayer::createQianDaoLayer()
     addChild(pLayer,202,1);
 
 }
+
 
 void CAsgardLayer::changeToPvpScene()
 {

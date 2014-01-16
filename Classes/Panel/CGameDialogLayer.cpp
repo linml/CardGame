@@ -79,6 +79,7 @@ void CPtDialog:: setRightHandler(CCObject *inRightTarget,SEL_CallFuncO  inRightS
 
 void CPtDialog::setButtonText(std::string inLeftText, std::string inRightText)
 {
+   
     if (m_pLeft)
     {
         m_pLeft->setString(inLeftText.c_str());

@@ -15,6 +15,7 @@
 using namespace std;
 using namespace cocos2d;
 using namespace extension;
+class CPVPAddTiaoZhanCountLayer;
 class CPVPMonsterData;
 class CPVPMonsterPlayerLayer :public CCLayer,CCTableViewDelegate,CCTableViewDataSource
 {
@@ -22,6 +23,9 @@ public:
     CPVPMonsterPlayerLayer();
     ~CPVPMonsterPlayerLayer();
     static CPVPMonsterPlayerLayer *CreateByUserID(CPVPMonsterData *pvp,bool isSearCh,int fuchouID=0);
+    void setCustomerTouchProty(int nCukongdengji);
+protected:
+    
     bool initCreateByUserId(CPVPMonsterData *pvp,bool isSearCh,int fuchouID);
     void createTableView();
     void createBackGround();
@@ -45,6 +49,8 @@ public:
     void updateSchudelCC(float t);
     void createProtectTime();
     void updateDaoJishi(float t);
+    void okDialogButton(CCObject *object);
+    void cancelDialogButton(CCObject *object);
 protected:
     void registerWithTouchDispatcher();
     void onExit();
@@ -60,7 +66,7 @@ protected:
     void scrollViewDidScroll(CCScrollView* view);
     void scrollViewDidZoom(CCScrollView* view);
     void initCellItem(CCTableViewCell*cell, unsigned int idx);
-private:
+
 private:
     int UserID;
     int nFuchouID;
@@ -70,6 +76,7 @@ private:
     CCSize size;
     CCArray *m_touchArray;
     bool bMeiYouDuiShou;
+    CPVPAddTiaoZhanCountLayer *m_pAddTiaoZhanCountPanel ;
 };
 
 #endif /* defined(___1_cube__CPVPMonsterPlayerLayer__) */

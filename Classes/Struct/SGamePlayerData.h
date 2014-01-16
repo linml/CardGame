@@ -44,6 +44,8 @@ public:
     std::string m_susername;
     
     // new add by phileas:
+    int    m_nMaxPVPCount;   //最大挑战次数
+    int    m_nAddPVPCashPer; //购买挑战次数所需要消耗的钻石数目
     int    m_nKaHun;
     int    m_nPVPCount;
     int    m_nTotalFightPoint;

@@ -18,7 +18,8 @@
 #include "PtJsonUtility.h"
 #include "SceneManager.h"
 #include "PVPSceneLayer.h"
-
+#include "CGameDialogLayer.h"
+#include "CPVPAddTiaoZhanCountLayer.h"
 
 
 #define TAG_TASKPVPMONSTER_TOUCH_PRORITY  -3
@@ -70,6 +71,8 @@ bool CPVPMonsterPlayerLayer::initCreateByUserId(CPVPMonsterData *pvp,bool isSear
     createZhanButton();
     createSearchButton();
     createTableView();
+    createProtectTime();
+    createCishuLayer();
     //setTouchPriority(-100);
     setTouchEnabled(true);
     
@@ -135,9 +138,20 @@ void CPVPMonsterPlayerLayer::createSearchButton()
 
 void CPVPMonsterPlayerLayer::createCishuLayer()
 {
-    
+    m_pAddTiaoZhanCountPanel= CPVPAddTiaoZhanCountLayer::create();
+    m_pAddTiaoZhanCountPanel->setAnchorPoint(CCPointZero);
+    m_pAddTiaoZhanCountPanel->setPosition(ccp(size.width*0.7, size.height*0.5-200));
+    addChild(m_pAddTiaoZhanCountPanel,2);
+   
 }
-
+void CPVPMonsterPlayerLayer::setCustomerTouchProty(int nCukongdengji)
+{
+    setTouchPriority(nCukongdengji);
+    if(m_pAddTiaoZhanCountPanel)
+    {
+      m_pAddTiaoZhanCountPanel->setTouchPriority(nCukongdengji-2);
+    }
+}
 void CPVPMonsterPlayerLayer::createUserInfo()
 {
     vector<string>datalist;
@@ -340,10 +354,30 @@ void CPVPMonsterPlayerLayer::handleDealWithTag(int tag)
     }
 }
 
+void CPVPMonsterPlayerLayer::okDialogButton(CCObject *object)
+{
+    
+}
+
+void CPVPMonsterPlayerLayer::cancelDialogButton(CCObject *object)
+{
+        
+}
+
 void CPVPMonsterPlayerLayer::startFighting()
 {
     CCLog("STARTFIGHTING");
-    sendloadRival();
+    if(SinglePlayer::instance()->getPlayerPVPCount()>0)
+    {
+        sendloadRival();
+    }
+    else{
+        //调用对话框 做警告
+        CCMessageBox("挑战次数不够,快去购买", "错误提示");
+//        CPtDialog *dialog=CPtDialog::create("挑战券不够哦", this, NULL ,callfuncO_selector(CPVPMonsterPlayerLayer::okDialogButton) , NULL,NULL, NULL);
+//        dialog->setButtonText("", "确定");
+//        addChild(dialog,7);
+    }
 }
 
 void CPVPMonsterPlayerLayer::updateSchudelCC(float t)
@@ -362,10 +396,15 @@ void CPVPMonsterPlayerLayer::createProtectTime()
         labelttf->setColor(ccc3(0, 255, 0));
         labelttf->setPosition(ccp(size.width *0.5,size.height *0.5-200));
         addChild(labelttf,2,TAG_TASKPVPMONSTER_TIMER);
+        
+        if (PVPSceneLayer::m_nProtect_time==0) {
+            getChildByTag(TAG_TASKPVPMONSTER_TIMER)->setVisible(false);
+        }
+        else{
+            schedule(schedule_selector(CPVPMonsterPlayerLayer::updateDaoJishi), 1.0);
+        }
     }
-    if (PVPSceneLayer::m_nProtect_time==0) {
-        getChildByTag(TAG_TASKPVPMONSTER_TIMER)->setVisible(false);
-    }
+   
 }
 void CPVPMonsterPlayerLayer::updateDaoJishi(float t)
 {
@@ -373,6 +412,11 @@ void CPVPMonsterPlayerLayer::updateDaoJishi(float t)
     if (PVPSceneLayer::m_nProtect_time==0) {
         getChildByTag(TAG_TASKPVPMONSTER_TIMER)->setVisible(false);
         unschedule(schedule_selector(CPVPMonsterPlayerLayer::updateDaoJishi));
+    }
+    else
+    {
+        string Valuer=CPtTool::stringForObjectValue(PVPSceneLayer::m_nProtect_time);
+        ((CCLabelTTF *)getChildByTag(TAG_TASKPVPMONSTER_TIMER))->setString(Valuer.c_str());
     }
 }
 

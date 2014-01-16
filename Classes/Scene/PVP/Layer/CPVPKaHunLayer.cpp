@@ -162,6 +162,7 @@ void EnchantCardItem::onClickCompose()
 
     if (SinglePlayer::instance()->getPlayerKaHun() > m_pData->echantCards->mergeValue)
     {
+        CCMessageBox(CCString::createWithFormat("合成该卡耗费:%d", m_pData->echantCards->mergeValue)->getCString(), "tip");
         char buffer[200]={0};
         sprintf(buffer, "sig=%s&card_id=%d",STR_USER_SIG,m_pData->echantCards->cardid);
         ADDHTTPREQUESTPOSTDATA(STR_URL_COMPOSEKAHUN(194), "CALLBACK_EnchantCardItem::onClickCompose",

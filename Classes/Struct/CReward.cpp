@@ -227,13 +227,14 @@ int CReward::excuteReward(OPEARTORTYPE inType)
         {
             m_pPlayer= SinglePlayer::instance();
             m_pPlayer->addCoin(m_nCoin);
-            bool leveUP = m_pPlayer->addPalyerExp(m_nExp);
+            bool leveUP = m_pPlayer->addPlayerExp(m_nExp);
             m_pPlayer->addPlayerCash(m_nCash);
             m_pPlayer->addPlayerAp(m_nEnergy);
             m_pPlayer->addPlayerGp(m_nHp);
             m_pPlayer->addCoin(m_nExtarCoin);
-            m_pPlayer->addPalyerExp(m_nExtarExp);
+            m_pPlayer->addPlayerExp(m_nExtarExp);
             m_pPlayer->addFriendly(m_nFriendly);
+            m_pPlayer->addKaHun(m_nKaHun);
             addCards();
             addProps();
             
@@ -250,6 +251,7 @@ int CReward::excuteReward(OPEARTORTYPE inType)
             m_pPlayer->subPlayerAp(m_nEnergy);
             m_pPlayer->subPlayerGp(m_nHp);
             m_pPlayer->subFriendly(m_nFriendly);
+            m_pPlayer->subKaHun(m_nKaHun);
             subCards();
             subProps();
             
@@ -298,7 +300,10 @@ int CReward::getFriendly()
 {
     return m_nFriendly;
 }
-
+int CReward::getKaHun()
+{
+    return m_nKaHun;
+}
 int CReward::getCardCount()
 {
     return m_pCards == NULL ? 0 : m_pCards->count(); 
@@ -320,6 +325,7 @@ CCDictionary * CReward::getProps()
 // protected method:
 void CReward::initData()
 {
+    m_nKaHun = 0;
     m_nCoin = 0;
     m_nHp = 0;
     m_nEnergy = 0;
@@ -348,6 +354,7 @@ void CReward::copyWithCReward(CReward * inReward)
     m_nExtarCoin = inReward->getExtarCoin();
     m_nExtarExp = inReward->getExtarExp();
     m_nFriendly = inReward->getFriendly();
+    m_nKaHun = inReward->getKaHun();
     
     m_pCards = inReward->getCards();
     m_pProps = inReward->getProps();
@@ -366,6 +373,7 @@ void CReward::addCReward(CReward *inAddReward)
     m_nExtarExp += inAddReward->getExtarExp();
     m_nExtarCoin += inAddReward->getExtarCoin();
     m_nFriendly  += inAddReward->getFriendly();
+    m_nKaHun  += inAddReward->getKaHun();
     
     if (m_pCards == NULL)
     {
@@ -389,6 +397,7 @@ void CReward::parseDict(cocos2d::CCDictionary *inReward)
         m_nExp = GameTools::intForKey("exp", inReward);
         m_nCash = GameTools::intForKey("cash", inReward);
         m_nFriendly = GameTools::intForKey("friendly", inReward);
+        m_nKaHun = GameTools::intForKey("card_soul", inReward);
         
         m_pCards = (CCDictionary*)inReward->objectForKey("card");
         m_pProps = (CCDictionary*)inReward->objectForKey("item");

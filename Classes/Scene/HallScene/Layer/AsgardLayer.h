@@ -31,6 +31,7 @@ using namespace cocos2d;
 #define TAG_ASGARD_PVPSCENE  (QIANDAO_TOUCH_TAG+1)
 
 
+
 class CAsgardLayer : public CCLayer {
     
 public:
@@ -60,12 +61,15 @@ protected:
     void createFriendButton();
     void createRankButton();
     void createQianDaoButton();
+
     void createHospitalLayer();
     void createFriendLayer();
     void createRankLayer();
     void createQianDaoLayer();
+
     void createChangePvpSceneButton();
     void changeToPvpScene();
+
 protected:
     bool m_bLoadTaskInfo;
     int m_nTouchTag;

@@ -232,7 +232,7 @@ public:
     int getExpMax();
     int getFriendMax();
     
-    
+
     int setPlayerGp(int iValue); //神力
     int setPlayerAp(int iValue);
     int setPlayerCash(int iValue);
@@ -241,6 +241,7 @@ public:
     void addPlayerGp(int inAddHp);
     void subPlayerGp(int inSubHp);
     
+    
     void addPlayerAp(int inAddEnergy);
     void subPlayerAp(int inSubEnergy);
       
@@ -248,7 +249,7 @@ public:
     void subPlayerCash(int iValue);
 
     
-    bool addPalyerExp(int inAddExp);
+    bool addPlayerExp(int inAddExp);
     void subPlayerExp(int inSubExp);
     
     void setPlayerExp(int inExpValue);
@@ -265,6 +266,8 @@ public:
     void addFriendly(int inFriendly);
     void subFriendly(int inFriendly);
     
+    
+    
     //add player info 卡魂
     void addKaHun(int inAddKaHun);
     void subKaHun(int inSubKaHun);
@@ -272,7 +275,11 @@ public:
     int  getPlayerKaHun();
     void setPlayerKanHun(int inKaHun);
     
+    
+    int getPVPTotalNum();
+    int getCostCashPerAddPVPCount();
     int  getPlayerPVPCount();
+    void setPlayerPVPCount(int number);
     void addPlayerPVPCount();
     void subPlayerPVPCount();
     

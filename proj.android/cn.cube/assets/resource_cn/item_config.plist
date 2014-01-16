@@ -288,7 +288,7 @@
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
-		<string>0</string>
+		<string>4</string>
 		<key>item_effect_id</key>
 		<string>0</string>
 		<key>use_scene</key>
@@ -309,7 +309,7 @@
 		<key>name</key>
 		<string>单位金币</string>
 		<key>type</key>
-		<string>5</string>
+		<string>4</string>
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
@@ -334,7 +334,7 @@
 		<key>name</key>
 		<string>单位钻石</string>
 		<key>type</key>
-		<string>5</string>
+		<string>4</string>
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
@@ -451,6 +451,31 @@
 		<string>0</string>
 		<key>tips</key>
 		<string>900007</string>
+	</dict>
+	<key>901010</key>
+	<dict>
+		<key>item_id</key>
+		<string>901010</string>
+		<key>name</key>
+		<string>挑战令</string>
+		<key>type</key>
+		<string>4</string>
+		<key>unlock_level</key>
+		<string>1</string>
+		<key>use_delete</key>
+		<string>1</string>
+		<key>item_effect_id</key>
+		<string>0</string>
+		<key>use_scene</key>
+		<string>0</string>
+		<key>icon</key>
+		<string>icon_004.png</string>
+		<key>limit_num</key>
+		<string>5</string>
+		<key>is_only</key>
+		<string>0</string>
+		<key>tips</key>
+		<string>901010</string>
 	</dict>
 	<key>901000</key>
 	<dict>
@@ -838,7 +863,7 @@
 		<key>unlock_level</key>
 		<string>1</string>
 		<key>use_delete</key>
-		<string>1</string>
+		<string>4</string>
 		<key>item_effect_id</key>
 		<string>907050</string>
 		<key>use_scene</key>

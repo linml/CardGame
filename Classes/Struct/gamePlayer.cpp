@@ -637,6 +637,7 @@ void CGamePlayer::loadRival(int  usid,int  troops)
     string connectData="sig=";
     connectData += m_strSig;
     connectData+="&"+str;
+    connectData+="&is_pvp=1";
     //http://cube.games.com/api.php?m=Fight&a=getTeamInfo&uid=194&sig=2ac2b1e302c46976beaab20a68ef95
     ADDHTTPREQUESTPOSTDATA(STR_URL_CHOOSE_TEAM(connectData), "CALLBACK_CGamePlayer_GetFightTeam", "REQUEST_CGamePlayer_GetFightTeam",connectData.c_str(),callfuncO_selector(CGamePlayer::parseRival));
 }
@@ -778,7 +779,7 @@ void CGamePlayer::parseRival(CCObject *object)
         {
             CCString *key=(CCString *)vKeyArrayresult->objectAtIndex(i);
             CCDictionary *cardDirector=(CCDictionary*)(dictresult->objectForKey(key->m_sString));
-            if(cardDirector)
+            if(CPtTool::isDictionary(cardDirector))
             {
                 DELETE_POINT_VECTOR(m_hashmapMonsterCard, vector<CFightCard*> ,CFightCard);
                 m_hashmapMonsterCard.resize(5);
@@ -972,6 +973,7 @@ int CGamePlayer::getPlayerAp()  //体力
     return m_gGamePlayerData->m_iAp;
 }
 
+
 bool CGamePlayer::getPlayrHadRecharged()
 {
     return m_gGamePlayerData->m_bFirstRecharge;
@@ -1005,6 +1007,7 @@ int CGamePlayer::setPlayerCash(int iValue)
     m_gGamePlayerData->m_icash=iValue;
     return m_gGamePlayerData->m_icash;
 }
+
 
 
 void CGamePlayer::addPlayerGp(int inAddHp)
@@ -1057,7 +1060,7 @@ void CGamePlayer::subPlayerCash(int iValue)
 
 
 
-bool CGamePlayer::addPalyerExp(int inAddExp)
+bool CGamePlayer::addPlayerExp(int inAddExp)
 {
     bool bRet = false;
     m_gGamePlayerData->m_iexp += inAddExp;
@@ -1116,6 +1119,7 @@ void CGamePlayer::addKaHun(int inAddKaHun)
 {
     m_gGamePlayerData->m_nKaHun += inAddKaHun;
 }
+
 void CGamePlayer::subKaHun(int inSubKaHun)
 {
     m_gGamePlayerData->m_nKaHun -= inSubKaHun;
@@ -1131,10 +1135,24 @@ void CGamePlayer::setPlayerKanHun(int inKaHun)
     m_gGamePlayerData->m_nKaHun = inKaHun;
 }
 
+int CGamePlayer::getPVPTotalNum()
+{
+    return m_gGamePlayerData->m_nMaxPVPCount;
+}
+int CGamePlayer::getCostCashPerAddPVPCount()
+{
+    return m_gGamePlayerData->m_nAddPVPCashPer;
+}
+
 int CGamePlayer::getPlayerPVPCount()
 {
     return m_gGamePlayerData->m_nPVPCount;
 }
+void CGamePlayer::setPlayerPVPCount(int number)
+{
+    m_gGamePlayerData->m_nPVPCount = number;
+}
+
 void CGamePlayer::addPlayerPVPCount()
 {
     m_gGamePlayerData->m_nPVPCount++;
@@ -1651,7 +1669,7 @@ void CGamePlayer::receiveEmail(map<int, int> inProps, int inAddPlayerExp, int in
     }
     
     // add play exp and coin:
-    addPalyerExp(inAddPlayerExp);
+    addPlayerExp(inAddPlayerExp);
     addCoin(inAddPlayerCoin);
     
 }
@@ -2163,6 +2181,13 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             {
                 m_pUpdateAp->start(value, 0.0);
             }
+        }
+        // 设置PVP的总次数和购买挑战的钻石耗费值
+        CCDictionary *pvpDict = (CCDictionary*) dictresult->objectForKey("pvp");
+        if (CPtTool::isDictionary(pvpDict))
+        {
+            m_gGamePlayerData->m_nMaxPVPCount = GameTools::intForKey("max_pvp_num", pvpDict);
+            m_gGamePlayerData->m_nAddPVPCashPer = GameTools::intForKey("buy_pvp_num_cash", pvpDict);
         }
         
         //获得AP

@@ -23,8 +23,12 @@ CEmrysClearVectorMemory< __TYPECLASSNAME__ *> tempClear(VECTORARRAY) ; \
 tempClear.clearVector(); \
 }
 
+
+
 CGamePlayerData::CGamePlayerData()
 {
+    m_nMaxPVPCount = 5;   //最大挑战次数
+    m_nAddPVPCashPer = 10;
     m_nPVPCount = 0;
     m_nKaHun = 0;
     m_nTotalFightPoint = 0;
@@ -79,6 +83,7 @@ int CGamePlayerData::getFriendMax()
 {
     return m_sLevelPlayer->m_iFriend_max;
 }
+
 
 int CGamePlayerData::getCardBagAppend()
 {
