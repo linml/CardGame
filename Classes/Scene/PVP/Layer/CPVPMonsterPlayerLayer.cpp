@@ -565,5 +565,10 @@ void CPVPMonsterPlayerLayer::initCellItem(CCTableViewCell*cell, unsigned int idx
             gameCard->setPosition(ccp(100, 100));
             
         }
+        else
+        {
+            //如果位置为空的地方可以加入这个排行 让其 填空的 区间
+            cell->setContentSize(cellSizeForTable(NULL));
+        }
     }
 }

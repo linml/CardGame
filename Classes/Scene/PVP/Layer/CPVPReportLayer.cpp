@@ -157,18 +157,23 @@ void CPVPReportLayer::callBackInitTableValue(CCObject *object)
                     CCDictionary *teamonlyCard=NULL;
                     CCDICT_FOREACH(team, element2)
                     {
-                        CCObject * object = element->getObject();
+                        CCObject * object2 = element2->getObject();
                         
-                        if (object && (teamonlyCard = (CCDictionary *)(object)))
+                        if (object2 && (teamonlyCard = (CCDictionary *)(object2)))
                         {
                             int postion=GameTools::intForKey("position", teamonlyCard);
+                            if (postion==0) {
+                                CCLog("服务端数据有错误");
+                                appendFileLog("服务端数据 在阵容的适合 传递的postion位数为1");
+                                continue;
+                            }
                             int cardid=GameTools::intForKey("card_id", teamonlyCard);
                             int level=GameTools::intForKey("level", teamonlyCard);
                             CCard *card=SinglePlayer::instance()->getCardByCardId(cardid);
                             if(card)
                             {
                                 CFightCard *pFightCard=new CFightCard(card,level);
-                                tempdata->m_vCardList[postion]=pFightCard;
+                                tempdata->m_vCardList[postion-1]=pFightCard;
                             }
                         }
                     }
