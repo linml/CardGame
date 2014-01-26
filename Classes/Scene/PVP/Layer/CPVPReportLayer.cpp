@@ -128,7 +128,7 @@ void CPVPReportLayer::callBackInitTableValue(CCObject *object)
         return ;
     }
     CCDictionary *resultDict=(CCDictionary *)dict->objectForKey("result");
-    if (resultDict)
+    if (CPtTool::isDictionary(resultDict)&&resultDict)
     {
         CCDictElement *element = NULL;
         CCDictionary *onlyCard=NULL;
@@ -187,7 +187,7 @@ void CPVPReportLayer::callBackInitTableValue(CCObject *object)
     }
     
 }
-
+//1389752647
 void CPVPReportLayer::registerWithTouchDispatcher()
 {
     CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this, getTouchPriority(), true);

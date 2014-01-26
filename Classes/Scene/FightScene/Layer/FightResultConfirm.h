@@ -16,6 +16,11 @@
 
 using namespace std;
 using namespace cocos2d;
+
+
+
+
+
 // m_iFightType 0 : fight with npc, 1: fight with team
 class SFightResultData
 {

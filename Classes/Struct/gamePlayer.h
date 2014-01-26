@@ -46,6 +46,8 @@ class CGamePlayer : cocos2d::CCObject
     void loadGamesConfig();
     void onExitGameApp();
     void clearShangchengData();
+    
+    void resetGameData();
 public:
      map<int ,CCard *> *getCardMap();
      CCard *getCardByCardId(int cardid);
@@ -55,6 +57,8 @@ public:
      string getBufferPlistByEffectId(int effectID);
      string getBufferPngByEffectId(int effectID);
      CImapact *findByImpactId( int tempImpactId);
+protected:
+    void initData();
 private:
    //读取卡牌表格
     void clearAllCard();
@@ -117,7 +121,7 @@ public: //读取卡包的信息
     bool cardBagIsMoreThanConfig();
 public:
     //系统初始化信息
-    void onGameBegin(const char* pchNickname);
+    void onGameBegin(const char* pchNickname, const int nGender);
     void onGameBeginCallBack(CCObject *object);
     void parseJsonUserInfo(CCDictionary *dict);
     void parseTaskInfo(CCDictionary *dict);
@@ -168,6 +172,7 @@ public:
     void setUserId(string strUid);
     const char* getUserSig();
     void setUserSig(string sig);
+    const int getPlayerGender();
 public:
     vector<CFightCard *> & getCardBagVector();
     vector<vector<CFightCard *> > &getCardBattleArray();

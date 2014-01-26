@@ -427,3 +427,161 @@ bool CSubLoginLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
     return true;
 }
 
+
+
+CRegisterNickNameLayer* CRegisterNickNameLayer::create(void* parent)
+{
+    CRegisterNickNameLayer *pRet = new CRegisterNickNameLayer();
+    pRet->m_Parent = parent;
+    if (pRet && pRet->init())
+    {
+        pRet->autorelease();
+        return pRet; 
+    }
+    else
+    {
+        delete pRet;
+        pRet = NULL;
+        return NULL;
+    }
+}
+
+bool CRegisterNickNameLayer::init()
+{
+    //////////////////////////////
+    // 1. super init first
+    if ( !CCLayer::init() )
+    {
+        return false;
+    }
+    
+    m_nGender = 0;
+    
+    CCLayerColor* bg = CCLayerColor::create(ccc4(0, 0, 0,200));
+    addChild(bg,-1);
+    
+    m_pEditName = CCEditBox::create(CCSizeMake(400, 60), CCScale9Sprite::create("resource_cn/img/tabButton_normal.png"));
+    m_pEditName->setPosition(ccp(650,400));
+    m_pEditName->setMaxLength(14);
+    m_pEditName->setPlaceHolder("请填写昵称");
+    addChild(m_pEditName);
+    
+    m_hero = CCSprite::create("resource_cn/img/play_male.png");
+    m_hero->setPosition(ccp(200,384));
+    addChild(m_hero);
+    
+    
+    m_roleMale = CCSprite::create("resource_cn/img/headIcon_male.png");
+    m_roleMale->setPosition(ccp(500,584));
+    addChild(m_roleMale);
+    Utility::addTouchRect(2000, m_roleMale, touchRect);
+    
+    m_roleFemale = CCSprite::create("resource_cn/img/headIcon_female.png");
+    m_roleFemale->setPosition(ccp(800,584));
+    addChild(m_roleFemale);
+    Utility::addTouchRect(2001, m_roleFemale, touchRect);
+    
+    m_selectSprite = CCSprite::spriteWithFile("resource_cn/img/select.png");
+    CCSize headIconSize = m_roleMale->getContentSize();
+    m_selectSprite->setPosition(ccp(headIconSize.width/2-5,headIconSize.height/2+5));
+    m_roleMale->addChild(m_selectSprite);
+    CCActionInterval* rotate = CCRotateBy::create(0.2, 15);
+    CCActionInterval* fade1 = CCFadeTo::create(0.5,50);
+    CCActionInterval* fade2 = CCFadeTo::create(0.5,250);
+    CCActionInterval*  fadeseq = (CCActionInterval*)(CCSequence::actions(fade1, fade2, NULL));
+    CCFiniteTimeAction* faderep = CCRepeatForever::actionWithAction(fadeseq);
+    CCFiniteTimeAction* rotaterep = CCRepeatForever::actionWithAction(rotate);
+    m_selectSprite->runAction(faderep);
+    m_selectSprite->runAction(rotaterep);
+
+    CCSprite* confirm = CCSprite::create("resource_cn/img/tabButton_normal.png");
+    confirm->setPosition(ccp(500, 200));
+    addChild(confirm);
+    Utility::addTouchRect(1000, confirm, touchRect);
+    CCLabelTTF* textConfirm = CCLabelTTF::create();
+    textConfirm->setString("确认");
+    textConfirm->setFontSize(24);
+    textConfirm->setPosition(ccp(70, 15));
+    confirm->addChild(textConfirm);
+    
+    CCSprite* cancel = CCSprite::create("resource_cn/img/tabButton_normal.png");
+    cancel->setPosition(ccp(800, 200));
+    addChild(cancel);
+    Utility::addTouchRect(1001, cancel, touchRect);
+    CCLabelTTF* textCancel = CCLabelTTF::create();
+    textCancel->setString("取消");
+    textCancel->setFontSize(24);
+    textCancel->setPosition(ccp(70, 15));
+    cancel->addChild(textCancel);
+
+
+    
+    this->setTouchEnabled(true);
+    this->setTouchMode(kCCTouchesOneByOne);
+    
+    return true;
+}
+
+bool CRegisterNickNameLayer::ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent)
+{
+    return true;
+}
+
+void CRegisterNickNameLayer::ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent)
+{
+    handleTouchSpritePool(pTouch->getLocation());
+}
+
+bool CRegisterNickNameLayer::handleTouchSpritePool(CCPoint point)
+{
+    bool bRet = false;
+    int tag = -1;
+    CCSprite* touchSprite = NULL;
+    tag = TouchRect::SearchTouchTag(point, touchRect, &touchSprite);
+    switch (tag) {
+        case 1000:
+            if(!m_pEditName->getText()||!strcmp(m_pEditName->getText(), ""))
+            {
+                Middle::showAlertView("昵称不能为空！");
+            }
+            else if(m_pEditName->getText() && strchr(m_pEditName->getText(),' '))
+            {
+                Middle::showAlertView("昵称不能含空格！");
+            }
+            else{
+                if(m_Parent)
+                {
+                    CLoginScene* tmp = (CLoginScene*)m_Parent;
+                    tmp->m_nickNameTip->setVisible(false);
+                    tmp->m_nGender = m_nGender;
+                    tmp->m_pEditName->setString(m_pEditName->getText());
+                    removeFromParentAndCleanup(true);
+                }
+            }
+            break;
+        case 1001:
+            removeFromParentAndCleanup(true);
+            break;
+        case 2000:
+            if(m_selectSprite->getParent() != touchSprite)
+            {
+                m_selectSprite->removeFromParentAndCleanup(false);
+                touchSprite->addChild(m_selectSprite);
+                CCSprite* tex = CCSprite::create("resource_cn/img/play_male.png");
+                m_hero->setTexture(tex->getTexture());
+                m_nGender = 0;
+            }
+            break;
+        case 2001:
+            if(m_selectSprite->getParent() != touchSprite)
+            {
+                m_selectSprite->removeFromParentAndCleanup(false);
+                touchSprite->addChild(m_selectSprite);
+                CCSprite* tex = CCSprite::create("resource_cn/img/play_female.png");
+                m_hero->setTexture(tex->getTexture());
+                m_nGender = 1;
+            }
+            break;
+    }
+    return true;
+}

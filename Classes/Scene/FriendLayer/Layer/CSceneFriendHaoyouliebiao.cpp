@@ -181,7 +181,7 @@ void CSceneFriendHaoyouliebiao::sendDeleteFriendUid(int Uid)
     m_nTouchFriendUid=Uid;
     str+=m_tempGamePlayer->getUserSig();
     str+="&friend_uid="+ConvertToString(Uid);
-    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_DELFRIEND(194), "CALLBACK_CSceneFriendHaoyouliebiao_sendDeleteFriendUid", "REQUEST_CSceneFriendHaoyouliebiao_sendDeleteFriendUid",str.c_str(),callfuncO_selector(CSceneFriendHaoyouliebiao::decodeGetServerDeleteFriend));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_DELFRIEND(194), "CALLBACK_CSceneFriendHaoyouliebiao_sendDeleteFriendUid", "REQUEST_CSceneFriendHaoyouliebiao_sendDeleteFriendUid",str.c_str(),callfuncO_selector(CSceneFriendHaoyouliebiao::decodeGetServerDeleteFriend));
     
     
 }

@@ -61,7 +61,7 @@ bool CEveryDayLoginLayer::init()
 }
 void CEveryDayLoginLayer::createColorBackGroud()
 {
-    CCLayerColor *layer=CCLayerColor::create(ccc4(0, 0, 255, 120), 800, 600);
+    CCLayerColor *layer=CCLayerColor::create(ccc4(128, 128, 128, 255),800,600);
     addChild(layer,0);
     layer->ignoreAnchorPointForPosition(false);
     
@@ -74,7 +74,7 @@ void CEveryDayLoginLayer::sendQianDao()
     if (!m_tempPlayer->isTodayHaveGet()) {
         string connectData="sig=";
         connectData += m_tempPlayer->getUserSig();
-        ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_QIANDAO(194), "CALLBACK_CEveryDayLoginLayer_sendQianDao", "REQUEST_CEveryDayLoginLayer_sendQianDao",connectData.c_str(),callfuncO_selector(CEveryDayLoginLayer::callBackGetLingQu));
+        ADDHTTPREQUESTPOSTDATA(STR_URL_QIANDAO(194), "CALLBACK_CEveryDayLoginLayer_sendQianDao", "REQUEST_CEveryDayLoginLayer_sendQianDao",connectData.c_str(),callfuncO_selector(CEveryDayLoginLayer::callBackGetLingQu));
     }
 }
 void CEveryDayLoginLayer::runCCLayerBel()

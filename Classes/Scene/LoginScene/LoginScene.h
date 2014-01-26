@@ -37,7 +37,8 @@ class CLoginScene : public cocos2d::CCLayer,public cocos2d::extension::CCTableVi
 public:
     CREATE_FUNC(CLoginScene);
     static  CCScene *scene();
-    
+protected:
+    static bool s_bFirstStartLogin;
 public:
     CLoginScene();
     ~CLoginScene();
@@ -99,9 +100,13 @@ protected:
     bool isGameInit;
     bool isLoadBackPack;
     CCTableView* m_serverTable;
-    CCEditBox* m_pEditName;
     set<int> m_serverSet;
     int m_nSelectServerId;
+public:
+    CCLabelTTF* m_pEditName;
+    CCLabelTTF* m_nickNameTip;
+    int m_nGender;
+    
     
 };
 

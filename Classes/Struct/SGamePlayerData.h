@@ -65,6 +65,7 @@ public:
     int    m_irvc;
     int    m_iGp;   //神力
     bool   m_bFirstRecharge;
+    int    m_nGender;
     int     m_nFriendly;
     struct SLevelPlayer *m_sLevelPlayer;
     int    m_nOpenGridCount;

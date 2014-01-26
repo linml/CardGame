@@ -735,8 +735,12 @@ bool CGameDaCard::initWithCardData(CFightCard *inCard, CGameCardFactory *inFacto
     {
         return bRet;
     }
+    m_pBasicCardNode = CCNode::create();
+    m_pBasicCardNode->setAnchorPoint(CCPointZero);
+    m_pBasicCardNode->setPosition(CCPointZero);
+    addChild(m_pBasicCardNode, 0);
     m_pBatchContainer = CCSpriteBatchNode::createWithTexture(inFactory->getSpriteFrameWithName("daka_bg.png", CGameCardFactory::DAKA)->getTexture(), 15);
-    addChild(m_pBatchContainer, 0);
+    m_pBasicCardNode->addChild(m_pBatchContainer, 0);
     createBg(inFactory);
     createPerson(inCard->m_pCard->m_scard_role.c_str());
     createStar(inCard->m_pCard->m_nCard_star, inFactory);
@@ -757,8 +761,12 @@ bool CGameDaCard::initWithCardData(CCard *inCard, CGameCardFactory *inFactory)
     {
         return bRet;
     }
+    m_pBasicCardNode = CCNode::create();
+    m_pBasicCardNode->setAnchorPoint(CCPointZero);
+    m_pBasicCardNode->setPosition(CCPointZero);
+    addChild(m_pBasicCardNode, 0);
     m_pBatchContainer = CCSpriteBatchNode::createWithTexture(inFactory->getSpriteFrameWithName("daka_bg.png", CGameCardFactory::DAKA)->getTexture(), 15);
-    addChild(m_pBatchContainer, 0);
+    m_pBasicCardNode->addChild(m_pBatchContainer, 0);
     createBg(inFactory);
     createPerson(inCard->m_scard_role.c_str());
     createStar(inCard->m_nCard_star, inFactory);
@@ -779,6 +787,16 @@ void CGameDaCard::changePersionDirection()
         sprite->setFlipX(true);
     }
 }
+
+void CGameDaCard::resetCard()
+{
+    m_pBasicCardNode->retain();
+    removeAllChildrenWithCleanup(true);
+    m_pBasicCardNode->setParent(NULL);
+    addChild(m_pBasicCardNode, 0);
+    CC_SAFE_RELEASE(m_pBasicCardNode);
+}
+
 void CGameDaCard::createBg(CGameCardFactory *inFactory)
 {
     CCSprite *bg =CCSprite::createWithSpriteFrame(
@@ -797,7 +815,7 @@ void CGameDaCard::createPerson(const char *inName)
     CCTexture2D* texture = CCTextureCache::sharedTextureCache()->addImage(CSTR_FILEPTAH(g_cardRolePath, inName));
     CCSprite *roleSprite=CCSprite::createWithTexture(texture);
     roleSprite->setPosition(ccp(m_sCardSize.width*0.45, m_sCardSize.height*0.6));
-    addChild(roleSprite,1,TAG_GAMECARD_HERO);
+    m_pBasicCardNode->addChild(roleSprite,1,TAG_GAMECARD_HERO);
 
 }
 void CGameDaCard::createStar(int inStar, CGameCardFactory *inFactory)
@@ -809,7 +827,7 @@ void CGameDaCard::createStar(int inStar, CGameCardFactory *inFactory)
         {
             CCSprite *starSprite = CCSprite::createWithSpriteFrame(frame);
             starSprite->setPosition(ccp(m_sCardSize.width*0.125 + i* 25, m_sCardSize.height*0.18));
-            addChild(starSprite,1, STARSPRITETAG+i);
+            m_pBasicCardNode->addChild(starSprite,1, STARSPRITETAG+i);
         }
     }
 }
@@ -830,7 +848,7 @@ void CGameDaCard::createCardData(int inAtk, int inDef, int inGP, CGameCardFactor
         label = CCLabelTTF::create(buffer, "Arial", 16);
         label->setAnchorPoint(ccp(0,0.5));
         label->setPosition(ccp(point.x+10,point.y));
-        addChild(label);
+        m_pBasicCardNode->addChild(label);
     }
     
     if (defSprite)
@@ -842,7 +860,7 @@ void CGameDaCard::createCardData(int inAtk, int inDef, int inGP, CGameCardFactor
         label = CCLabelTTF::create(buffer, "Arial", 16);
         label->setAnchorPoint(ccp(0,0.5));
         label->setPosition(ccp(point.x+10,point.y));
-        addChild(label);
+        m_pBasicCardNode->addChild(label);
     }
     
     if (gpSprite)
@@ -854,7 +872,7 @@ void CGameDaCard::createCardData(int inAtk, int inDef, int inGP, CGameCardFactor
         label = CCLabelTTF::create(buffer, "Arial", 16);
         label->setAnchorPoint(ccp(0,0.5));
         label->setPosition(ccp(point.x+10,point.y));
-        addChild(label);
+        m_pBasicCardNode->addChild(label);
 
     }
 }
@@ -881,13 +899,13 @@ void CGameDaCard::createLevel(int inLevel)
     label->setHorizontalAlignment(kCCTextAlignmentLeft);
     label->setAnchorPoint(ccp(0,0.5));
     label->setPosition(ccp(m_sCardSize.width*0.8, m_sCardSize.height*0.08));
-    addChild(label);
+    m_pBasicCardNode->addChild(label);
 }
 void CGameDaCard::createCardName(const char *inCardName)
 {
     CCLabelTTF *label = CCLabelTTF::create(inCardName, "Arial-Bold", 32);
     label->setPosition(ccp(m_sCardSize.width*0.5, m_sCardSize.height*0.925));
-    addChild(label);
+    m_pBasicCardNode->addChild(label);
     
 }
 

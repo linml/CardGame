@@ -185,7 +185,10 @@ void CGamePlayerData::decodeDictnory(CCDictionary *dict)
     m_nPVPCount = GameTools::intForKey("pvp_num", dict);
     
     //是否首充
-    m_bFirstRecharge=GameTools::intForKey("recharge", dict);;
+    m_bFirstRecharge=GameTools::intForKey("recharge", dict);
+    
+    //获取性别 wood modify
+    m_nGender = GameTools::intForKey("sex", dict);
     
     CCUserDefault::sharedUserDefault()->setStringForKey("name",m_susername);
 

@@ -55,13 +55,10 @@ CCScene *CFightingLayerScene::scene()
 
 CFightingLayerScene::CFightingLayerScene()
 {
+    m_pTotalFrightMana=CGameCardFactory::getInstance();
     m_gamePlayer=SinglePlayer::instance();
     m_pSFightData=new SFightResultData();
     m_pSFightData->setFightType(m_gamePlayer->getIsFightWithTeam());
-    if(m_gamePlayer->getFightKuaijin())
-    {
-        CCDirector::sharedDirector()->getScheduler()->setTimeScale(2.0);
-    }
     schudel1=new CCScheduler();
     actionManager1=new CCActionManager();
     schudel1->scheduleUpdateForTarget(actionManager1, 0, false);
@@ -85,6 +82,10 @@ CFightingLayerScene::CFightingLayerScene()
 
 CFightingLayerScene::~CFightingLayerScene()
 {
+    if(m_pTotalFrightMana)
+    {
+        m_pTotalFrightMana->releaseCardFactory();
+    }
     if(m_pSFightData)
     {
         delete m_pSFightData;
@@ -699,11 +700,14 @@ void CFightingLayerScene::createHero()
     {
         if(m_vFightingCard[i])
         {
-            FILE *fp = fopen(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_role+".png").c_str()), "r");
+            CCLog("==》%s",(g_strresource+m_vFightingCard[i]->m_pCard->m_scard_role).c_str());
+            FILE *fp = fopen(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_role).c_str()), "r");
             if(fp==NULL)
             {
                 string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+"_000"+".png";
-                CCSprite *sprite=CCSprite::create(cardfile.c_str());
+                //CCSprite *sprite=CCSprite::create(cardfile.c_str());
+                CCLog("relo %s",m_vFightingCard[i]->m_pCard->m_scard_role.c_str());
+                CCSprite *sprite=m_pTotalFrightMana->createCGameDaCard(m_vFightingCard[i]);
                 addChild(sprite,1,m_vFightingCard[i]->tag+10);
                 sprite->setPosition(ccp(wndSize.width*0.5-300,wndSize.height*0.5));
                 sprite->setVisible(false);
@@ -712,7 +716,8 @@ void CFightingLayerScene::createHero()
             else
             {
                 fclose(fp);
-                CCSprite *sprite=CCSprite::create((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_role+".png").c_str());
+                //CCSprite *sprite=CCSprite::create((g_strresource+m_vFightingCard[i]->m_pCard->m_scard_role+".png").c_str());
+                CCSprite *sprite=m_pTotalFrightMana->createCGameDaCard(m_vFightingCard[i]);
                 addChild(sprite,1,m_vFightingCard[i]->tag+10);
                 sprite->setPosition(ccp(wndSize.width*0.5-300,wndSize.height*0.5));
                 sprite->setVisible(false);
@@ -724,11 +729,13 @@ void CFightingLayerScene::createHero()
     for (int i=0; i<m_vMonsterCard.size(); i++) {
         if(m_vMonsterCard[i])
         {
-            FILE *fp = fopen(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_role+".png").c_str()), "r");
+            CCLog("==》%s",(g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_role).c_str());
+            FILE *fp = fopen(CCFileUtils::sharedFileUtils()->fullPathFromRelativePath((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_role).c_str()), "r");
             if(fp==NULL)
             {
                 string cardfile=g_strresource+"card_res_"+g_testtemp[rand()%3]+"_000"+".png";
-                CCSprite *sprite=CCSprite::create(cardfile.c_str());
+                m_vMonsterCard[i]->m_pCard->m_scard_role +=".png";
+                CCSprite *sprite=m_pTotalFrightMana->createCGameDaCard(m_vMonsterCard[i]);
                 addChild(sprite,1,m_vMonsterCard[i]->tag+10);
                 sprite->setPosition(ccp(wndSize.width*0.5+300,wndSize.height*0.5));
                 sprite->setVisible(false);
@@ -738,7 +745,7 @@ void CFightingLayerScene::createHero()
             else
             {
                 fclose(fp);
-                CCSprite *sprite=CCSprite::create((g_strresource+m_vMonsterCard[i]->m_pCard->m_scard_role+".png").c_str());
+                CCSprite *sprite=m_pTotalFrightMana->createCGameDaCard(m_vMonsterCard[i]);
                 addChild(sprite,1,m_vMonsterCard[i]->tag+10);
                 sprite->setPosition(ccp(wndSize.width*0.5+300,wndSize.height*0.5));
                 sprite->setVisible(false);
@@ -1112,11 +1119,12 @@ void CFightingLayerScene::clearAllHeroTexiao()
 {
     for (int i=0; i<m_vFightHero.size();i++ ) {
         if(m_vFightHero[i])
-            m_vFightHero[i]->removeAllChildrenWithCleanup(true);
+            ((CGameDaCard *)m_vFightHero[i])->resetCard();
     }
     for (int i=0; i<m_vMonsterHero.size();i++ ) {
         if(m_vMonsterHero[i])
-            m_vMonsterHero[i]->removeAllChildrenWithCleanup(true);
+            ((CGameDaCard *)m_vMonsterHero[i])->resetCard();
+        //CCSprite::removeFromParentAndCleanup(true);
     }
 }
 

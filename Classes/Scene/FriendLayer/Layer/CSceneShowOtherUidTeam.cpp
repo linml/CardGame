@@ -230,7 +230,7 @@ void CSceneShowOtherUidTeam::sendGetTeamInfo()
     str+=m_tempGamePlayer->getUserSig();
     str+="&friend_uid=";
     str+=ConvertToString(m_nUid);
-    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_GET_TEAM(194), "CALLBACK_CSceneShowOtherUidTeam_sendGetTeamInfo", "REQUEST_CSceneShowOtherUidTeam_sendGetTeamInfo",str.c_str(),callfuncO_selector(CSceneShowOtherUidTeam::decodeGetTeamInfo))
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GET_TEAM(194), "CALLBACK_CSceneShowOtherUidTeam_sendGetTeamInfo", "REQUEST_CSceneShowOtherUidTeam_sendGetTeamInfo",str.c_str(),callfuncO_selector(CSceneShowOtherUidTeam::decodeGetTeamInfo))
 }
 
 void CSceneShowOtherUidTeam::decodeGetTeamInfo(CCObject *object)

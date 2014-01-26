@@ -79,8 +79,27 @@ public:
     
 };
 
-
-
-
+class CRegisterNickNameLayer : public CCLayer
+{
+public:
+    // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)
+    virtual bool init();
+    CREATE_FUNC(CRegisterNickNameLayer);
+    static CRegisterNickNameLayer* create(void* parent);
+    void* m_Parent;
+    CCEditBox* m_pEditName;
+    CCSprite* m_hero;
+    
+    CCSprite* m_roleMale;
+    CCSprite* m_roleFemale;
+    CCSprite* m_selectSprite;
+    
+    virtual bool ccTouchBegan(CCTouch *pTouch, CCEvent *pEvent);
+    virtual void ccTouchEnded(CCTouch *pTouch, CCEvent *pEvent);
+    bool handleTouchSpritePool(CCPoint point);
+    vector<TouchRect> touchRect;
+    
+    int m_nGender;
+};
 
 #endif

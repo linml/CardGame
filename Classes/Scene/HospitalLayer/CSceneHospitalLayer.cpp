@@ -142,7 +142,7 @@ void CSceneHospitalLayer::sendHttpToAskTimer(){
     isCanTouch=false;
     string connectData="sig=";
     connectData += m_tempGamePlayer->getUserSig();
-    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_GPLEVELTIME(194), "CALLBACK_CGamePlayer_sendUpdataHospital", "REQUEST_CGamePlayer_sendUpdataHospital",connectData.c_str(),callfuncO_selector(CSceneHospitalLayer::decodeSubTimer));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GPLEVELTIME(194), "CALLBACK_CGamePlayer_sendUpdataHospital", "REQUEST_CGamePlayer_sendUpdataHospital",connectData.c_str(),callfuncO_selector(CSceneHospitalLayer::decodeSubTimer));
 }
 void CSceneHospitalLayer::decodeSubTimer(CCObject *object)
 {

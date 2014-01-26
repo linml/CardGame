@@ -20,7 +20,7 @@ class SEveryATKData;
 class CGameCardBuffer;
 class SFightResultData;
 class CGamePlayer;
-
+class CGameCardFactory;
 class CFightingLayerScene :public CCLayer
 {
 public:
@@ -119,6 +119,7 @@ private:
     CCActionManager *actionManager1;
     CCScheduler *schudel1;
     CCScheduler *schudel2;
+    CGameCardFactory *m_pTotalFrightMana;
     
 };
 #endif /* defined(___1_cube__CFightingLayerScene__) */

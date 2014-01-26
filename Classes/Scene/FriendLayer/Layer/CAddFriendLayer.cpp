@@ -41,7 +41,7 @@ void CAddFriendLayer::sendAddFriend()
     string connectData="sig=";
     connectData += SinglePlayer::instance()->getUserSig();
     connectData +=string("&friend_uid=")+m_pEditUid->getText();
-    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_SEARCHFRIEND(194), "CALLBACK_CAddFriendLayer_sendAddFriend", "REQUEST_CAddFriendLayer_sendAddFriend",connectData.c_str(),callfuncO_selector(CAddFriendLayer::decodeAddFriend));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SEARCHFRIEND(194), "CALLBACK_CAddFriendLayer_sendAddFriend", "REQUEST_CAddFriendLayer_sendAddFriend",connectData.c_str(),callfuncO_selector(CAddFriendLayer::decodeAddFriend));
 }
 
 void CAddFriendLayer::decodeAddFriend(CCObject *object)

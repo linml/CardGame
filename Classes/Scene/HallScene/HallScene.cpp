@@ -40,10 +40,10 @@ CCScene *CHallScene::scene(int pType)
     CHallScene *layer = CHallScene::create(pType);
     scene->addChild(layer, 0, 100);
     
-//    CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
-//    CCSize size=CCDirector::sharedDirector()->getWinSize();
-//    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5+320));
-//    scene->addChild(gamelayer,1);
+    CAnnouncementLayer * gamelayer=CAnnouncementLayer::create();
+    CCSize size=CCDirector::sharedDirector()->getWinSize();
+    gamelayer->setPosition(ccp(size.width*0.5,size.height*0.5+200));
+    layer->addChild(gamelayer,1);
 
     return scene;
     
@@ -67,6 +67,7 @@ CHallScene * CHallScene::create(int pType)
 
 CHallScene::CHallScene()
 {
+    m_pPropBuffNode = NULL;
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::updateEmailNumber), "youjiangengxin", NULL);
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showBackNotice), "CAONIMAXIANSHIBEIBAO", NULL);
     CCNotificationCenter::sharedNotificationCenter()->addObserver(this, callfuncO_selector(CHallScene::showRechargeView), "CHONGZHIJIEMIAN", NULL);
@@ -107,8 +108,22 @@ bool CHallScene::createEveryDataLogin()
     //签到的layer
     CEveryDayLoginLayer *pLayer=CEveryDayLoginLayer::create();
     addChild(pLayer,202,1);
+    CCLayerColor* bg = CCLayerColor::create(ccc4(0, 0, 0, 200));
+    pLayer->addChild(bg, -1);
+    
     return true;
     
+}
+
+void CHallScene::onClickQuitGame()
+{
+    // release source:
+    if (m_pPropBuffNode)
+    {
+        m_pPropBuffNode->removeFromParentAndCleanup(true);
+    }
+    SinglePlayer::instance()->onExitGameApp();
+    SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_LOGINSCENE);
 }
 
 
@@ -248,6 +263,7 @@ void CHallScene::createPropBufferTips()
 {
     CGamePropBufferTipLayer *layer = CGamePropBufferTipLayer::create();
     addChild(layer);
+    m_pPropBuffNode = layer;
 }
 
 // protectd method:
@@ -267,6 +283,12 @@ bool CHallScene::initHall(int inType)
         m_cplist->retain();
         m_cplist->initWithFile(layer, CSTR_FILEPTAH(plistPath, "hall.plist"));
         
+        char fileName[64]="";
+        sprintf(fileName, "%sheadIcon_%d_h.png",g_mapImagesPath.c_str(),SinglePlayer::instance()->getPlayerGender());
+        //没有资源
+        //CCSprite* playIcon = CCSprite::create(fileName);
+        //playIcon->setPosition(ccp(80, size.height-80));
+        //addChild(playIcon,100);
         
         // add the bg,maybe it will be separate to a layer
         CCSprite *bg = CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "hall.png"));
@@ -296,7 +318,7 @@ bool CHallScene::initHall(int inType)
             this->addChild(btnActivity, 200, 2001);
             Utility::addTouchRect(2001, btnActivity, m_cTouches);
             
-            string word = Utility::getWordWithFile("word.plist", "option");
+            string word = Utility::getWordWithFile("word.plist", "quit");
             CCLog("word :%s",word.c_str());
             CCLabelTTF* pLabel = CCLabelTTF::create(word.c_str(), "Scissor Cuts", 20);
             pLabel->setPosition(ccp(65,30));
@@ -472,7 +494,8 @@ void CHallScene::handlerTouch()
     switch (m_nTouchTag)
     {
         case 2001:
-            
+            // quit game:
+            onClickQuitGame();
             break;            
         case 2002:
             createEmailLayer();

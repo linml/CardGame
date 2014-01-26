@@ -78,6 +78,7 @@ CGameTimerManager::CGameTimerManager()
 
 CGameTimerManager::~CGameTimerManager()
 {
+    stopTimer();
 }
 
 void CGameTimerManager::timeCallBack(float dt)

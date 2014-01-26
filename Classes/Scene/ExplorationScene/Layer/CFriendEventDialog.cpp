@@ -207,7 +207,7 @@ void CFriendEventDialog::onClickYes(CCObject *pObject)
     string connectData="sig=";
     connectData += SinglePlayer::instance()->getUserSig();
     connectData +=string("&friend_uid=")+buffer;
-    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_SEARCHFRIEND(196), "CALLBACK_CFriendEventDialog::onClickYes", "CFriendEventDialog::onClickYes",connectData.c_str(),callfuncO_selector(CFriendEventDialog::onReceiveMsg));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_SEARCHFRIEND(196), "CALLBACK_CFriendEventDialog::onClickYes", "CFriendEventDialog::onClickYes",connectData.c_str(),callfuncO_selector(CFriendEventDialog::onReceiveMsg));
 }
 void CFriendEventDialog::onClickNo(CCObject *pObject)
 {

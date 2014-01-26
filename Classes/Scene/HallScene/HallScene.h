@@ -54,12 +54,15 @@ protected:
     void showNiuDanJieMian();
     void createPropBufferTips();
     bool createEveryDataLogin();
+    void onClickQuitGame();
 protected:
     int m_nTouchTag;
     CCSprite* m_touchSprite;
     LayoutLayer* m_cplist;
     CAsgardLayer *m_pAsgardLayer;
     vector<TouchRect> m_cTouches;
+    
+    CCNode *m_pPropBuffNode;
     
 
 };

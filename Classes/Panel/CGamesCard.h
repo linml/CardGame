@@ -131,6 +131,8 @@ public:
     bool initWithCardData(CFightCard *inCard, CGameCardFactory *inFactory);
     bool initWithCardData(CCard *inCard, CGameCardFactory *inFactory);
     void changePersionDirection();
+    
+    void resetCard();
 protected:
     void createBg(CGameCardFactory *inFactory);
     void createPerson(const char *inName);
@@ -140,10 +142,12 @@ protected:
     void createLevel(int inLevel);
     void createCardName(const char *inCardName);
     
+    
 protected:
     CCSpriteBatchNode *m_pBatchContainer;
     CCSize m_sCardSize;
     CFightCard *m_pCardData;
+    CCNode *m_pBasicCardNode;
 
 };
 /*

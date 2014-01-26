@@ -2094,6 +2094,7 @@ void CExploration::goSection()
     m_bCanTouch = false;
     scheduleOnce(schedule_selector(CExploration::callback), 1.5f);
 }
+
 void CExploration::callback(float dt)
 {
     m_bCanTouch = false;

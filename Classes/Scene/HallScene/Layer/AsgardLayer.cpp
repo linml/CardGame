@@ -153,7 +153,7 @@ void CAsgardLayer::createHospitolButton()
 {
     pHospital= CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
     pHospital->setAnchorPoint(CCPointZero);
-    pHospital->setPosition(ccp(500, 500));
+    pHospital->setPosition(ccp(220, 450));
     addChild(pHospital, 200, 999);
     string word = Utility::getWordWithFile("yiwushi");
     CCLabelTTF *label=CCLabelTTF::create(word.c_str(), "Arial", 20);
@@ -199,7 +199,7 @@ void CAsgardLayer::createQianDaoButton()
 
         m_pQianDao= CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
         m_pQianDao->setAnchorPoint(CCPointZero);
-        m_pQianDao->setPosition(ccp(450, 560));
+        m_pQianDao->setPosition(ccp(400, 260));
         addChild(m_pQianDao, 200, 77);
         string word = Utility::getWordWithFile("qiandao");
         CCLabelTTF *label=CCLabelTTF::create(word.c_str(), "Arial", 20);
@@ -213,7 +213,7 @@ void CAsgardLayer::createRankButton()
 {
     m_pRankBtn= CCSprite::create(CSTR_FILEPTAH(g_mapImagesPath, "button.png"));
     m_pRankBtn->setAnchorPoint(CCPointZero);
-    m_pRankBtn->setPosition(ccp(680, 560));
+    m_pRankBtn->setPosition(ccp(780, 360));
     addChild(m_pRankBtn, 200, 77);
     string word = Utility::getWordWithFile("rank");
     CCLabelTTF *label=CCLabelTTF::create(word.c_str(), "Arial", 20);
@@ -235,6 +235,8 @@ void CAsgardLayer::handlerTouch()
         case GLADSHEIM_TOUCH_TAG:
         {
             CSceneActionGameLayer *active=CSceneActionGameLayer::create();
+            CCLayerColor* bg = CCLayerColor::create(ccc4(0, 0, 0, 200));
+            active->addChild(bg,-1);
             addChild(active,1000,20000);
         }
             break;
@@ -277,12 +279,17 @@ void CAsgardLayer::createHospitalLayer()
 {
     CCLayer *layer=CSceneHospitalLayer::create();
     addChild(layer,1000);
+    CCLayerColor* bg = CCLayerColor::create(ccc4(128, 128, 128, 200));
+    layer->addChild(bg,-1);
+
     CCLog("CSceneHospitalLayer create");
 
 }
 void CAsgardLayer::createFriendLayer()
 {
     CCLayer *layer = CSceneFriendMainLayer::create();
+    CCLayerColor* bg = CCLayerColor::create(ccc4(0, 0, 0, 180));
+    layer->addChild(bg,-1);
     addChild(layer, 1000);
     
 }
@@ -304,6 +311,8 @@ void CAsgardLayer::createRankLayer()
 {
     CRankDataManager::getInstance()->startRankDataManger();
     CCLayer *layer = CGameRankLayer::create();
+    CCLayerColor* bg = CCLayerColor::create(ccc4(0, 0, 0, 200));
+    layer->addChild(bg,-1);
     addChild(layer, 1000);
 }
 void CAsgardLayer::showHandBook()

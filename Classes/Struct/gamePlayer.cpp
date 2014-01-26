@@ -36,6 +36,7 @@
 #include "CRankDataManager.h"
 #include "CDrawGonggaoTable.h"
 #include "CEveryDayLoginData.h"
+#include "PVPDataManager.h"
 
 
 
@@ -59,8 +60,7 @@ inline bool dealWithCallbackObject(CCObject *object)
 {\
 for (VECTORITETYPE::iterator it=VECTORARRAY.begin(); it!= VECTORARRAY.end(); it++) { \
 __TYPECLASSNAME__ *temp=*it; \
-delete temp; \
-temp=NULL; \
+CC_SAFE_DELETE(temp); \
 } \
 VECTORARRAY.erase(VECTORARRAY.begin(),VECTORARRAY.end()); \
 CEmrysClearVectorMemory< __TYPECLASSNAME__ *> tempClear(VECTORARRAY) ; \
@@ -78,6 +78,11 @@ struct mk {
 //
 
 CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getProps())
+{
+    initData();
+}
+
+void CGamePlayer::initData()
 {
     m_bFightFuChou=false;
     m_bIsFightWithTeam=0;
@@ -117,19 +122,9 @@ CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getPr
 
 CGamePlayer::~CGamePlayer()
 {
-    CC_SAFE_DELETE(m_pEveryDataLogin);
-    CC_SAFE_RELEASE(m_gonggaoCard);
-    CC_SAFE_DELETE(m_pUpdateGp);
-    CC_SAFE_DELETE(m_pUpdateAp);
-    CC_SAFE_DELETE(m_pTaskLogic);
+   
     onExitGameApp();
-    if(m_gGamePlayerData)
-    {
-        delete m_gGamePlayerData;
-        m_gGamePlayerData=NULL;
-    }
     
-    CC_SAFE_DELETE(m_pAnno);
 }
 
 void CGamePlayer::loadGamesConfig()
@@ -148,8 +143,65 @@ void CGamePlayer::loadGamesConfig()
     loadCardGonggao();
 }
 
+
+void CGamePlayer::resetGameData(){
+    CC_SAFE_DELETE(m_pEveryDataLogin);
+    CC_SAFE_RELEASE(m_gonggaoCard);
+    CC_SAFE_DELETE(m_pUpdateGp);
+    CC_SAFE_DELETE(m_pUpdateAp);
+    CC_SAFE_DELETE(m_pTaskLogic);
+    onExitGameApp();
+    if(m_gGamePlayerData)
+    {
+        delete m_gGamePlayerData;
+        m_gGamePlayerData=NULL;
+    }
+    CC_SAFE_DELETE(m_pAnno);
+    m_rAllProps=SinglePropConfigData::instance()->getProps();
+    m_bFightFuChou=false;
+    m_bIsFightWithTeam=0;
+    m_pTaskLogic=new CPtTaskLogic;
+    m_bAllTaskCompleted = false;
+    m_nMaxSectionId = 1;
+    m_nMaxSectionId = 1;
+    m_nCurrentTaskId=0;
+    m_strSig = "";
+    m_strUid = "";
+    for (int i=0; i<m_vvBattleArray.size(); i++) {
+        DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> ,CFightCard );
+    }
+    m_vvBattleArray.clear();
+    m_gGamePlayerData=new CGamePlayerData();
+    m_gameShopManager=new CStructShopInfoManager;
+    loadGamesConfig();
+    if ( m_gGamePlayerData->m_sLevelPlayer==NULL) {
+        m_gGamePlayerData->settestInit(1);
+    }
+    m_bFightKuaijin=false;
+    if (!m_pTaskLogic)
+    {
+        CCLog("m_pTaskLogic == NULL");
+        appendFileLog("m_pTaskLogic ISnULL");
+    }
+    m_pAnno=new CAnnouncementDataManager;
+    m_pUpdateAp=new CGlobalUpdateAp(1);
+    m_pUpdateGp=new CGlobalUpdateGp(2);
+    m_vGonggaoId.clear();
+    m_nActionGonggao=0;
+    m_pUpdateGetGonggao=new CGlobalGetGongGao(10);
+    m_pEveryDataLogin=NULL;
+    m_bIsLogin=false;
+    gameInitStatus=0;;
+}
+
 void CGamePlayer::onExitGameApp()
 {
+   
+    CC_SAFE_DELETE(m_pEveryDataLogin);
+    CC_SAFE_RELEASE(m_gonggaoCard);
+    CC_SAFE_DELETE(m_pUpdateGp);
+    CC_SAFE_DELETE(m_pUpdateAp);
+    CC_SAFE_DELETE(m_pTaskLogic);
     clearAllEffectInfo();
     clearAllSkillInfo();
     clearAllCard();
@@ -161,7 +213,16 @@ void CGamePlayer::onExitGameApp()
     CGameTimerManager::releaseManager();
     CPtPropUserManager::releaseManager();
     CRankDataManager::releaseDataManager();
+    PVPDataManager::releasManager();
     
+    if(m_gGamePlayerData)
+    {
+        delete m_gGamePlayerData;
+        m_gGamePlayerData=NULL;
+    }
+    
+    CC_SAFE_DELETE(m_pAnno);
+    initData();
 }
 void CGamePlayer::clearShangchengData()
 {
@@ -2084,6 +2145,13 @@ void CGamePlayer::setUserSig(string sig)
 {
     m_strSig = sig;
 }
+
+//获取性别
+const int CGamePlayer::getPlayerGender()
+{
+    return m_gGamePlayerData->m_nGender;
+}
+
 bool CGamePlayer::isTodayHaveGet()
 {
     if (m_pEveryDataLogin) {
@@ -2091,13 +2159,13 @@ bool CGamePlayer::isTodayHaveGet()
     }
     return false;
 }
-void CGamePlayer::onGameBegin(const char* pchNickname)
+void CGamePlayer::onGameBegin(const char* pchNickname, const int nGender)
 {
     //xianbei modify
     gameInitStatus=0;
     int getEmailMax=G_GAMESINGEMAIL::instance()->getCurrentTotalEmail();
     char data[256];
-    sprintf(data, "&info={\"max_id\":%d,\"name\":\"%s\"}",getEmailMax,pchNickname);
+    sprintf(data, "&info={\"max_id\":%d,\"name\":\"%s\",\"sex\":\"%d\"}",getEmailMax,pchNickname,nGender);
     string connectData="sig=";
     connectData += m_strSig;
     connectData+=data;

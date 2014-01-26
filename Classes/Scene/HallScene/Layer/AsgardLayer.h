@@ -61,6 +61,8 @@ protected:
     void createFriendButton();
     void createRankButton();
     void createQianDaoButton();
+    
+    void createQuitGameButton();
 
     void createHospitalLayer();
     void createFriendLayer();

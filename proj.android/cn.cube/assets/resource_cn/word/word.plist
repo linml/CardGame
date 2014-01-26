@@ -6,6 +6,8 @@
 	<string>DEMO</string>
 	<key>pvp</key>
 	<string>竞技场</string>
+	<key>quit</key>
+	<string>退出</string>
 	<key>friend</key>
 	<string>好友</string>
 	<key>rank</key>
@@ -101,7 +103,7 @@
 	<key>packsack</key>
 	<string>背包</string>
 	<key>indeterminate</key>
-	<string>无用</string>
+	<string>充值</string>
 	<key>level</key>
 	<string>Lv3</string>
 	<key>win</key>

@@ -636,7 +636,7 @@ void PVPSceneLayer::sendRequestGetPVPRankReward()
 {
     char buffer[100] = {0};
     snprintf(buffer, sizeof(buffer), "sig=%s", STR_USER_SIG);
-    ADDHTTPREQUESTPOSTDATANOLOCK(STR_URL_GETPVPRANKREWARD(196), "CALLBACK_PVPSceneLayer::sendRequestGetPVPRankReward", "REQUEST_PVPSceneLayer::sendRequestGetPVPRankReward", buffer, callfuncO_selector(PVPSceneLayer::receiveGetPVPRankRewardMsg));
+    ADDHTTPREQUESTPOSTDATA(STR_URL_GETPVPRANKREWARD(196), "CALLBACK_PVPSceneLayer::sendRequestGetPVPRankReward", "REQUEST_PVPSceneLayer::sendRequestGetPVPRankReward", buffer, callfuncO_selector(PVPSceneLayer::receiveGetPVPRankRewardMsg));
 }
 void PVPSceneLayer::receiveGetPVPRankRewardMsg(CCObject* pObject)
 {
@@ -668,6 +668,10 @@ void PVPSceneLayer::receiveGetPVPRankRewardMsg(CCObject* pObject)
                     reward->excuteReward(ADD);
                     updatePVPRankReward();
                 }
+            }
+            else
+            {
+                CCMessageBox(CCString::createWithFormat("error code : %d")->getCString(), "error");
             }
         }
     }
