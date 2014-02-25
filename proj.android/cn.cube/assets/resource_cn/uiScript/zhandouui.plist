@@ -12,11 +12,11 @@
 			<string>1</string>
 		</dict>
 		<key>layerFile</key>
-		<string>zhandouui.map</string>
+		<string>zhandoujiemian_xin.map</string>
 		<key>type</key>
 		<string>Layer</string>
 		<key>z</key>
-		<string>15</string>
+		<string>0</string>
 	</dict>
 </dict>
 </plist>

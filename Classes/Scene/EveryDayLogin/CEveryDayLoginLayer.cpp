@@ -26,7 +26,6 @@
 CEveryDayLoginLayer::CEveryDayLoginLayer()
 {
     m_vTouchArray=new CCArray;
-    m_vTouchArray->retain();
     size=CCDirector::sharedDirector()->getWinSize();
     CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_plistPath, "seller.plist"), CSTR_FILEPTAH(g_mapImagesPath, "seller.png"));
     m_tempPlayer=SinglePlayer::instance();

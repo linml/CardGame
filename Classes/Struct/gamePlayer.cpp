@@ -80,50 +80,89 @@ struct mk {
 CGamePlayer::CGamePlayer() : m_rAllProps(SinglePropConfigData::instance()->getProps())
 {
     initData();
+    m_gGamePlayerData = new CGamePlayerData();
+    m_gameShopManager=new CStructShopInfoManager;
+    loadGamesConfig();
+    m_gGamePlayerData->settestInit(1);
+    m_pAnno = new CAnnouncementDataManager();
+    m_pTaskLogic = new CPtTaskLogic();
+    m_pUpdateAp=new CGlobalUpdateAp(1);
+    m_pUpdateGp=new CGlobalUpdateGp(2);
+    m_pUpdateGetGonggao=new CGlobalGetGongGao(10);
+
+    
+
 }
 
 void CGamePlayer::initData()
 {
-    m_bFightFuChou=false;
+    // gameplayer attribute data:
+    m_gGamePlayerData= NULL;
+    m_gameShopManager= NULL;
+    m_pTaskLogic = NULL;
+    m_pAnno= NULL;
+    m_pUpdateAp = NULL;
+    m_pUpdateGp= NULL;
+    m_pUpdateGetGonggao= NULL;
+    m_pEveryDataLogin=NULL;
+    m_gonggaoCard = NULL;
+    
+    gameInitStatus = 0;
     m_bIsFightWithTeam=0;
-    m_pTaskLogic=new CPtTaskLogic;
-    m_bAllTaskCompleted = false;
+    m_nActionGonggao=0;
     m_nMaxSectionId = 1;
     m_nMaxSectionId = 1;
     m_nCurrentTaskId=0;
+    
+    m_bAllTaskCompleted = false;
+    m_bFightKuaijin=false;
+    m_bFightFuChou=false;
+    m_bIsLogin=false;
+    
     m_strSig = "";
     m_strUid = "";
-    for (int i=0; i<m_vvBattleArray.size(); i++) {
+    
+    for (int i=0; i<m_vvBattleArray.size(); i++)
+    {
         DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> ,CFightCard );
     }
     m_vvBattleArray.clear();
-    m_gGamePlayerData=new CGamePlayerData();
-    //loaditem表格;
-    m_gameShopManager=new CStructShopInfoManager;
-    loadGamesConfig();
-    if ( m_gGamePlayerData->m_sLevelPlayer==NULL) {
-        m_gGamePlayerData->settestInit(1);
-    }
-    m_bFightKuaijin=false;
-    if (!m_pTaskLogic)
-    {
-        CCLog("m_pTaskLogic == NULL");
-        appendFileLog("m_pTaskLogic ISnULL");
-    }
-    m_pAnno=new CAnnouncementDataManager;
+    m_vGonggaoId.clear();
+    m_vProps.clear();
+    m_vCardBag.clear();
+    
+    
+  
+    
+}
+
+void CGamePlayer::restData()
+{
+    //本地配置文件
+    CGamePlayerData *tmp = m_gGamePlayerData;
+    CStructShopInfoManager * tmpShop = m_gameShopManager;
+    CCArray *tmpGongGao =  m_gonggaoCard;
+    initData();
+    
+    m_gonggaoCard = tmpGongGao;
+    m_gGamePlayerData = tmp;
+    m_gameShopManager = tmpShop;
+    
+    m_pEveryDataLogin = new CEveryDayLoginData() ;
+    m_pAnno = new CAnnouncementDataManager();
+    m_pTaskLogic = new CPtTaskLogic();
     m_pUpdateAp=new CGlobalUpdateAp(1);
     m_pUpdateGp=new CGlobalUpdateGp(2);
-    m_vGonggaoId.clear();
-    m_nActionGonggao=0;
     m_pUpdateGetGonggao=new CGlobalGetGongGao(10);
-    m_pEveryDataLogin=NULL;
-    m_bIsLogin=false;
+    
+    m_gGamePlayerData->settestInit(1);
 }
+
 
 CGamePlayer::~CGamePlayer()
 {
    
-    onExitGameApp();
+    releasAllResource();
     
 }
 
@@ -133,7 +172,7 @@ void CGamePlayer::loadGamesConfig()
     initPlayerTable((resRootPath +"level_config.plist").c_str());
     loadAllSkillInfo((resRootPath+"skill_config.plist").c_str());
     loadAllEffectInfo((resRootPath + "skill_effect_config.plist").c_str());
-    loadNpcCard((resRootPath+"npc_config.plist").c_str());
+    loadNpcCard((resRootPath+"event_npc_config.plist").c_str());
     
     G_SingleCConfigResourceLoad::instance()->loadSkillStripTable(m_haspMapSkillStrips,(resRootPath + "skill_strips_config.plist").c_str());
     
@@ -143,65 +182,122 @@ void CGamePlayer::loadGamesConfig()
     loadCardGonggao();
 }
 
-
-void CGamePlayer::resetGameData(){
-    CC_SAFE_DELETE(m_pEveryDataLogin);
-    CC_SAFE_RELEASE(m_gonggaoCard);
-    CC_SAFE_DELETE(m_pUpdateGp);
-    CC_SAFE_DELETE(m_pUpdateAp);
-    CC_SAFE_DELETE(m_pTaskLogic);
-    onExitGameApp();
-    if(m_gGamePlayerData)
-    {
-        delete m_gGamePlayerData;
-        m_gGamePlayerData=NULL;
-    }
-    CC_SAFE_DELETE(m_pAnno);
-    m_rAllProps=SinglePropConfigData::instance()->getProps();
-    m_bFightFuChou=false;
-    m_bIsFightWithTeam=0;
-    m_pTaskLogic=new CPtTaskLogic;
-    m_bAllTaskCompleted = false;
-    m_nMaxSectionId = 1;
-    m_nMaxSectionId = 1;
-    m_nCurrentTaskId=0;
-    m_strSig = "";
-    m_strUid = "";
-    for (int i=0; i<m_vvBattleArray.size(); i++) {
-        DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> ,CFightCard );
-    }
-    m_vvBattleArray.clear();
-    m_gGamePlayerData=new CGamePlayerData();
-    m_gameShopManager=new CStructShopInfoManager;
-    loadGamesConfig();
-    if ( m_gGamePlayerData->m_sLevelPlayer==NULL) {
-        m_gGamePlayerData->settestInit(1);
-    }
-    m_bFightKuaijin=false;
-    if (!m_pTaskLogic)
-    {
-        CCLog("m_pTaskLogic == NULL");
-        appendFileLog("m_pTaskLogic ISnULL");
-    }
-    m_pAnno=new CAnnouncementDataManager;
-    m_pUpdateAp=new CGlobalUpdateAp(1);
-    m_pUpdateGp=new CGlobalUpdateGp(2);
-    m_vGonggaoId.clear();
-    m_nActionGonggao=0;
-    m_pUpdateGetGonggao=new CGlobalGetGongGao(10);
-    m_pEveryDataLogin=NULL;
-    m_bIsLogin=false;
-    gameInitStatus=0;;
-}
+//
+//void CGamePlayer::resetGameData(){
+//    CC_SAFE_DELETE(m_pEveryDataLogin);
+//    CC_SAFE_RELEASE(m_gonggaoCard);
+//    CC_SAFE_DELETE(m_pUpdateGp);
+//    CC_SAFE_DELETE(m_pUpdateAp);
+//    CC_SAFE_DELETE(m_pTaskLogic);
+//    onExitGameApp();
+//    if(m_gGamePlayerData)
+//    {
+//        delete m_gGamePlayerData;
+//        m_gGamePlayerData=NULL;
+//    }
+//    CC_SAFE_DELETE(m_pAnno);
+//    m_rAllProps=SinglePropConfigData::instance()->getProps();
+//    m_bFightFuChou=false;
+//    m_bIsFightWithTeam=0;
+//    m_pTaskLogic=new CPtTaskLogic;
+//    m_bAllTaskCompleted = false;
+//    m_nMaxSectionId = 1;
+//    m_nMaxSectionId = 1;
+//    m_nCurrentTaskId=0;
+//    m_strSig = "";
+//    m_strUid = "";
+//    for (int i=0; i<m_vvBattleArray.size(); i++) {
+//        DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> ,CFightCard );
+//    }
+//    m_vvBattleArray.clear();
+//    m_gGamePlayerData=new CGamePlayerData();
+//    m_gameShopManager=new CStructShopInfoManager;
+//    loadGamesConfig();
+//    if ( m_gGamePlayerData->m_sLevelPlayer==NULL) {
+//        m_gGamePlayerData->settestInit(1);
+//    }
+//    m_bFightKuaijin=false;
+//    if (!m_pTaskLogic)
+//    {
+//        CCLog("m_pTaskLogic == NULL");
+//        appendFileLog("m_pTaskLogic ISnULL");
+//    }
+//    m_pAnno=new CAnnouncementDataManager;
+//    m_pUpdateAp=new CGlobalUpdateAp(1);
+//    m_pUpdateGp=new CGlobalUpdateGp(2);
+//    m_vGonggaoId.clear();
+//    m_nActionGonggao=0;
+//    m_pUpdateGetGonggao=new CGlobalGetGongGao(10);
+//    m_pEveryDataLogin=NULL;
+//    m_bIsLogin=false;
+//    gameInitStatus=0;;
+//}
 
 void CGamePlayer::onExitGameApp()
 {
+    
    
     CC_SAFE_DELETE(m_pEveryDataLogin);
-    CC_SAFE_RELEASE(m_gonggaoCard);
+    m_pEveryDataLogin = NULL;
+    
     CC_SAFE_DELETE(m_pUpdateGp);
+    m_pUpdateGp = NULL;
+    
     CC_SAFE_DELETE(m_pUpdateAp);
+    m_pUpdateAp = NULL;
+    
+    CC_SAFE_DELETE(m_pUpdateGetGonggao);
+    m_pUpdateGetGonggao = NULL;
+    
     CC_SAFE_DELETE(m_pTaskLogic);
+    m_pTaskLogic = NULL;
+    
+    CC_SAFE_DELETE(m_pAnno);
+    m_pAnno = NULL;
+ 
+    CPlayerBufferManager::releaseBufferManager(); // 取出player身上的buff add by phileas
+    CGameTimerManager::releaseManager();
+    CPtPropUserManager::releaseManager();
+    CRankDataManager::releaseDataManager();
+    PVPDataManager::releasManager();
+  
+    restData();
+
+}
+
+void CGamePlayer::releasAllResource()
+{
+    
+    
+    
+    // clear memory data:
+    CC_SAFE_DELETE(m_pEveryDataLogin);
+    m_pEveryDataLogin = NULL;
+    
+    CC_SAFE_DELETE(m_pUpdateGp);
+    m_pUpdateGp = NULL;
+    
+    CC_SAFE_DELETE(m_pUpdateAp);
+    m_pUpdateAp = NULL;
+    
+    CC_SAFE_DELETE(m_pUpdateGetGonggao);
+    m_pUpdateGetGonggao = NULL;
+    
+    CC_SAFE_DELETE(m_pTaskLogic);
+    m_pTaskLogic = NULL;
+    
+    CC_SAFE_DELETE(m_pAnno);
+    m_pAnno = NULL;
+    
+    CC_SAFE_DELETE(m_gonggaoCard);
+    m_gonggaoCard = NULL;
+   
+    for (int i=0; i<m_vvBattleArray.size(); i++)
+    {
+        DELETE_POINT_VECTOR(m_vvBattleArray[i],vector<CFightCard*> ,CFightCard );
+    }
+
+    // clear config data
     clearAllEffectInfo();
     clearAllSkillInfo();
     clearAllCard();
@@ -209,21 +305,11 @@ void CGamePlayer::onExitGameApp()
     clearPlayerTable();
     clearShangchengData();
     clearSkillStrip();
-    CPlayerBufferManager::releaseBufferManager(); // 取出player身上的buff add by phileas
-    CGameTimerManager::releaseManager();
-    CPtPropUserManager::releaseManager();
-    CRankDataManager::releaseDataManager();
-    PVPDataManager::releasManager();
     
-    if(m_gGamePlayerData)
-    {
-        delete m_gGamePlayerData;
-        m_gGamePlayerData=NULL;
-    }
-    
-    CC_SAFE_DELETE(m_pAnno);
-    initData();
+    CC_SAFE_DELETE(m_gGamePlayerData);
+    m_gGamePlayerData = NULL;
 }
+
 void CGamePlayer::clearShangchengData()
 {
     //当程序关闭的适合 需要释放商店里面的信息
@@ -242,8 +328,8 @@ void CGamePlayer::clearShangchengData()
 
 void CGamePlayer::loadCardGonggao()
 {
+    CC_SAFE_DELETE(m_gonggaoCard);
     m_gonggaoCard=new CCArray;
-    m_gonggaoCard->retain();
     
     //先读取一个公告表格  然后加载到要公告的卡的表格里面
     CCDictionary *directory = CCDictionary::createWithContentsOfFile((resRootPath+"card_random_config.plist").c_str());
@@ -325,11 +411,15 @@ CCard *CGamePlayer::getCardByCardId(int cardid)
 
 void CGamePlayer::clearPlayerTable()
 {
-    if (m_gGamePlayerData) {
+    if (m_gGamePlayerData)
+    {
         m_gGamePlayerData->clearPlayerData();
     }
 }
 
+/*
+ * @brief: loading local file level_config
+ */
 void CGamePlayer::initPlayerTable(const char *playerFileName)
 {
     if(m_gGamePlayerData)
@@ -477,11 +567,11 @@ void CGamePlayer::getSeverPlayerInfo(cocos2d::CCObject *object)
 
 void CGamePlayer::decodeCardDictAppendCardBag(cocos2d::CCDictionary *directory)
 {
-    CCArray *array=directory->allKeys();;
-    for (int i=0; i<array->count(); i++) {
+    CCArray *array=directory->allKeys();
+    for (int i=0; i<array->count(); i++)
+    {
         CCString *key=(CCString *)array->objectAtIndex(i);
         CCDictionary *detail=(CCDictionary*)(directory->objectForKey(key->m_sString));
-        
         int level=GameTools::intForKey("level", detail);
         if (level == 0)
         {
@@ -489,7 +579,7 @@ void CGamePlayer::decodeCardDictAppendCardBag(cocos2d::CCDictionary *directory)
         }
         int card_id=GameTools::intForKey("card_id", detail);
         int cardexp=GameTools::intForKey("exp", detail);
-        int card_item_id= key->intValue(); //GameTools::intForKey("card_item_id", detail);
+        int card_item_id= key->intValue(); 
         int card_suit = GameTools::intForKey("suit", detail);
         
         CFightCard *fightCard=new CFightCard(m_hashmapAllCard[card_id],level);
@@ -609,15 +699,20 @@ void CGamePlayer::deleteFromCardBag(vector<int>user_CardId)
     }
 }
 
+/*
+ * @breif:解析阵容信息
+ */
 void CGamePlayer::loadCardTeamInfoCallBackByDict(CCDictionary *dictresult)
 {
     m_vvBattleArray.resize(3);
+    // 空阵容情况
     if (!dictresult)
     {
-        for (int i=0; i<m_vvBattleArray.size(); i++) {
+        for (int i=0; i<m_vvBattleArray.size(); i++)
+        {
             if(m_vvBattleArray[i].size()==0)
             {
-                vector<CFightCard *>tempVectory(5);
+                vector<CFightCard *>tempVectory(5); //空位置初始化为NULL
                 m_vvBattleArray[i]=tempVectory;
             }
         }
@@ -1391,7 +1486,6 @@ void CGamePlayer::parseProsInfoByDict(CCDictionary *tmpDictionary)
         int propId = 0;
         int propCount = 0;
         
-        
         CCArray * items =(CCArray*) tmpDictionary ;
         for (int i = 0;  items!= NULL && i < items->count(); i++)
         {
@@ -1842,7 +1936,8 @@ void CGamePlayer::setChapterAndSectionByTask()
     {
         m_nMaxChapterId = task->getChapterId();
         m_nMaxSectionId = task->getSectionId();
-        if (m_pTaskLogic) {
+        if (m_pTaskLogic)
+        {
             m_pTaskLogic->setInitDataByCPtTask(task);
         }
         m_nCurrentTaskId=task->getTaskId();
@@ -1895,6 +1990,7 @@ bool CGamePlayer::isCheckSameGongGao(cocos2d::CCArray *array)
 }
 void CGamePlayer::decodeDataGonggao(CCObject *object)
 {
+   
     CCNotificationCenter::sharedNotificationCenter()->removeObserver(this, "CALLBACK_CGamePlayer_decodeDataGonggao");
     if(!object)
     {
@@ -2154,7 +2250,8 @@ const int CGamePlayer::getPlayerGender()
 
 bool CGamePlayer::isTodayHaveGet()
 {
-    if (m_pEveryDataLogin) {
+    if (m_pEveryDataLogin)
+    {
         return m_pEveryDataLogin->getIsLogin();
     }
     return false;
@@ -2190,25 +2287,32 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
     {
         gameInitStatus=codeReslut;
     }
-    else{
+    else
+    {
+        // gameplayer data:
         CCDictionary *dictresult=(CCDictionary *)dict->objectForKey("result");
         string teamStrType;
-        if (dictresult->objectForKey("inbox_info"))
+        
+        //email info:
+        CCObject *infoObject = dictresult->objectForKey("inbox_info");
+        if (CPtTool::isDictionary(infoObject))
         {
-            teamStrType=typeid(*dictresult->objectForKey("inbox_info")).name();
-            if(teamStrType.find("CCDictionary")!=std::string::npos)
-            {
-                CCDictionary *dicinfobox_info=(CCDictionary *)dictresult->objectForKey("inbox_info");
-                G_GAMESINGEMAIL::instance()->decodeEmap(dicinfobox_info);
-            }
+            G_GAMESINGEMAIL::instance()->decodeEmap((CCDictionary*) infoObject);
         }
+        
+        // everyday login
+        CC_SAFE_DELETE(m_pEveryDataLogin);
         m_pEveryDataLogin=new CEveryDayLoginData;
-        if (dictresult->objectForKey("sign_info")) {
+        if (dictresult->objectForKey("sign_info"))
+        {
             string strDateArray=GameTools::valueForKey("sign_info", dictresult);
             initDayInfo(strDateArray);
         }
         m_pEveryDataLogin->m_nServerTime=GameTools::intForKey("server_time", dictresult);
-        if (dictresult->objectForKey("task_info")) {
+        
+        //task info:
+        if (dictresult->objectForKey("task_info"))
+        {
             teamStrType=typeid(*dictresult->objectForKey("task_info")).name();
             if(teamStrType.find("CCDictionary")!=std::string::npos)
             {
@@ -2240,6 +2344,7 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
                 m_pUpdateGp->start(value, 0.0);
             }
         }
+        //获得AP
         teamStrType=typeid(*dictresult->objectForKey("ap")).name();
         if(teamStrType.find("CCDictionary")!=std::string::npos)
         {
@@ -2250,6 +2355,7 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
                 m_pUpdateAp->start(value, 0.0);
             }
         }
+        
         // 设置PVP的总次数和购买挑战的钻石耗费值
         CCDictionary *pvpDict = (CCDictionary*) dictresult->objectForKey("pvp");
         if (CPtTool::isDictionary(pvpDict))
@@ -2258,7 +2364,6 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             m_gGamePlayerData->m_nAddPVPCashPer = GameTools::intForKey("buy_pvp_num_cash", pvpDict);
         }
         
-        //获得AP
         
         // 必须先加载user_info的信息，在加载阵容的信息
         teamStrType=typeid(*dictresult->objectForKey("user_info")).name();
@@ -2269,10 +2374,9 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
             gameInitStatus=1;
         }
         
-        
-        
         CCDictionary *getCardItem=(CCDictionary *)dictresult->objectForKey("card_team");
         loadCardTeamInfoCallBackByDict(getCardItem);
+        
         m_pUpdateGetGonggao->start(2, BEGINGAMEGETNOTIFACE);
         SingleActivityEncounterManager::instance()->parseActivityByDic((CCDictionary*)dictresult->objectForKey("activity_config"));
     }
@@ -2281,7 +2385,8 @@ void CGamePlayer::onGameBeginCallBack(CCObject *object)
 void CGamePlayer::initDayInfo(string strDateArray)
 {
     vector<int>tempLogin=GameTools::spliteStringToIntArray(strDateArray, ",");
-    for (int i=0; i<tempLogin.size(); i++) {
+    for (int i=0; i<tempLogin.size(); i++)
+    {
         m_pEveryDataLogin->m_nQianDaoArray[tempLogin[i]-1]=true;
     }
     
@@ -2289,8 +2394,9 @@ void CGamePlayer::initDayInfo(string strDateArray)
 
 void CGamePlayer::parseTaskInfo(CCDictionary *dict)
 {
-    CCArray *array=dict->allKeys();;
-    for (int i=0; i<array->count(); i++) {
+    CCArray *array=dict->allKeys();
+    for (int i=0; i<array->count(); i++)
+    {
         CCString *key=(CCString *)array->objectAtIndex(i);
         CCDictionary *detail=(CCDictionary*)(dict->objectForKey(key->m_sString));
         CCLog("CURRENT TASK INFO IS %d",key->intValue());
@@ -2312,12 +2418,16 @@ void CGamePlayer::parseJsonUserInfo(CCDictionary *dict)
     {
         m_gGamePlayerData->decodeDictnory(dict);
     }
+    // clear cardbag:
+    m_vCardBag.clear();
     CCDictionary *cardinfo=(CCDictionary *)(dict->objectForKey("card_item"));
     if (cardinfo)
     {
         decodeCardDictAppendCardBag(cardinfo);
     }
     
+    // clear backpack:
+    m_vProps.clear();
     CCDictionary *bag_info=(CCDictionary *)(dict->objectForKey("bag_info"));
     if(bag_info)
     {

@@ -115,6 +115,7 @@ bool CHallScene::createEveryDataLogin()
     
 }
 
+#include "LoginScene.h"
 void CHallScene::onClickQuitGame()
 {
     // release source:
@@ -123,7 +124,13 @@ void CHallScene::onClickQuitGame()
         m_pPropBuffNode->removeFromParentAndCleanup(true);
     }
     SinglePlayer::instance()->onExitGameApp();
+//    if (SinglePlayer::instance()) {
+//        CGamePlayer *temPlayer= SinglePlayer::instance();
+//        CC_SAFE_DELETE(temPlayer);
+//    }
     SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_LOGINSCENE);
+
+   // CCDirector::sharedDirector()->replaceScene(CLoginScene::scene());
 }
 
 

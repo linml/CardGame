@@ -7,10 +7,10 @@
 		<key>actions</key>
 		<array>
 			<string>Spawn(Item 1,Item 2)</string>
-			<string>MoveTo(0.2,{252,100})</string>
+			<string>MoveTo(0.2,{252,20})</string>
 			<string>ScaleTo(0.2,0.8)</string>
 			<string>ResetZorder(6)</string>
-			<string>Sequence(Item 0,Item 3)</string>
+			<string>Sequence(Item 1,Item 3)</string>
 		</array>
 		<key>runAction</key>
 		<string>Item 4</string>
@@ -20,10 +20,10 @@
 		<key>actions</key>
 		<array>
 			<string>Spawn(Item 1,Item 2)</string>
-			<string>MoveTo(0.2,{412,120})</string>
+			<string>MoveTo(0.2,{412,20})</string>
 			<string>ScaleTo(0.2,1.0)</string>
 			<string>ResetZorder(9)</string>
-			<string>Sequence(Item 0,Item 3)</string>
+			<string>Sequence(Item 1,Item 3)</string>
 		</array>
 		<key>runAction</key>
 		<string>Item 4</string>
@@ -33,10 +33,10 @@
 		<key>actions</key>
 		<array>
 			<string>Spawn(Item 1,Item 2)</string>
-			<string>MoveTo(0.2,{312,100})</string>
+			<string>MoveTo(0.2,{312,20})</string>
 			<string>ScaleTo(0.2,0.8)</string>
 			<string>ResetZorder(8)</string>
-			<string>Sequence(Item 0,Item 3)</string>
+			<string>Sequence(Item 1,Item 3)</string>
 		</array>
 		<key>runAction</key>
 		<string>Item 4</string>
@@ -46,10 +46,10 @@
 		<key>actions</key>
 		<array>
 			<string>Spawn(Item 1,Item 2)</string>
-			<string>MoveTo(0.2,{282,100})</string>
+			<string>MoveTo(0.2,{282,20})</string>
 			<string>ScaleTo(0.2,0.8)</string>
 			<string>ResetZorder(7)</string>
-			<string>Sequence(Item 0,Item 3)</string>
+			<string>Sequence(Item 1,Item 3)</string>
 		</array>
 		<key>runAction</key>
 		<string>Item 4</string>
@@ -59,10 +59,10 @@
 		<key>actions</key>
 		<array>
 			<string>Spawn(Item 1,Item 2)</string>
-			<string>MoveTo(0.2,{772,100})</string>
+			<string>MoveTo(0.2,{772,20})</string>
 			<string>ScaleTo(0.2,0.8)</string>
 			<string>ResetZorder(5)</string>
-			<string>Sequence(Item 0,Item 3)</string>
+			<string>Sequence(Item 1,Item 3)</string>
 		</array>
 		<key>runAction</key>
 		<string>Item 4</string>
@@ -72,10 +72,10 @@
 		<key>actions</key>
 		<array>
 			<string>Spawn(Item 1,Item 2)</string>
-			<string>MoveTo(0.2,{612,120})</string>
+			<string>MoveTo(0.2,{612,20})</string>
 			<string>ScaleTo(0.2,1.0)</string>
 			<string>ResetZorder(9)</string>
-			<string>Sequence(Item 0,Item 3)</string>
+			<string>Sequence(Item 1,Item 3)</string>
 		</array>
 		<key>runAction</key>
 		<string>Item 4</string>
@@ -85,10 +85,10 @@
 		<key>actions</key>
 		<array>
 			<string>Spawn(Item 1,Item 2)</string>
-			<string>MoveTo(0.2,{712,100})</string>
+			<string>MoveTo(0.2,{712,20})</string>
 			<string>ScaleTo(0.2,0.8)</string>
 			<string>ResetZorder(8)</string>
-			<string>Sequence(Item 0,Item 3)</string>
+			<string>Sequence(Item 1,Item 3)</string>
 		</array>
 		<key>runAction</key>
 		<string>Item 4</string>
@@ -98,10 +98,10 @@
 		<key>actions</key>
 		<array>
 			<string>Spawn(Item 1,Item 2)</string>
-			<string>MoveTo(0.2,{742,100})</string>
+			<string>MoveTo(0.2,{742,20})</string>
 			<string>ScaleTo(0.2,0.8)</string>
 			<string>ResetZorder(7)</string>
-			<string>Sequence(Item 0,Item 3)</string>
+			<string>Sequence(Item 1,Item 3)</string>
 		</array>
 		<key>runAction</key>
 		<string>Item 4</string>

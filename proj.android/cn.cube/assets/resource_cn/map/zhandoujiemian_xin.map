@@ -3,7 +3,7 @@
     <key>mapInfo</key>
     <dict>
         <key>mapName</key>
-        <string>zhandoujiemian_xin</string>
+        <string>mapName</string>
         <key>mapSize</key>
         <string>{100,100}</string>
         <key>backgroundColor</key>
@@ -92,104 +92,26 @@
                 <key>spriteName</key>
                 <string>zhandoujiemian</string>
                 <key>mapSpriteName</key>
-                <string>ditiao_01.png</string>
+                <string>zhandou1.png</string>
                 <key>pos</key>
-                <string>{0,732}</string>
+                <string>{-4,671}</string>
                 <key>z</key>
-                <integer>0</integer>
+                <integer>40</integer>
                 <key>tag</key>
-                <integer>0</integer>
+                <integer>8</integer>
             </dict>
             <key>mapSprite1</key>
             <dict>
                 <key>spriteName</key>
                 <string>zhandoujiemian</string>
                 <key>mapSpriteName</key>
-                <string>ditiao_02.png</string>
+                <string>zhandou2.png</string>
                 <key>pos</key>
-                <string>{182,750}</string>
+                <string>{591,671}</string>
                 <key>z</key>
-                <integer>5</integer>
+                <integer>45</integer>
                 <key>tag</key>
-                <integer>1</integer>
-            </dict>
-            <key>mapSprite2</key>
-            <dict>
-                <key>spriteName</key>
-                <string>zhandoujiemian</string>
-                <key>mapSpriteName</key>
-                <string>ditiao_02.png</string>
-                <key>pos</key>
-                <string>{333,750}</string>
-                <key>z</key>
-                <integer>10</integer>
-                <key>tag</key>
-                <integer>2</integer>
-            </dict>
-            <key>mapSprite3</key>
-            <dict>
-                <key>spriteName</key>
-                <string>zhandoujiemian</string>
-                <key>mapSpriteName</key>
-                <string>ditiao_02.png</string>
-                <key>pos</key>
-                <string>{482,750}</string>
-                <key>z</key>
-                <integer>15</integer>
-                <key>tag</key>
-                <integer>3</integer>
-            </dict>
-            <key>mapSprite4</key>
-            <dict>
-                <key>spriteName</key>
-                <string>zhandoujiemian</string>
-                <key>mapSpriteName</key>
-                <string>ditiao_02.png</string>
-                <key>pos</key>
-                <string>{633,750}</string>
-                <key>z</key>
-                <integer>20</integer>
-                <key>tag</key>
-                <integer>4</integer>
-            </dict>
-            <key>mapSprite5</key>
-            <dict>
-                <key>spriteName</key>
-                <string>zhandoujiemian</string>
-                <key>mapSpriteName</key>
-                <string>ditiao_02.png</string>
-                <key>pos</key>
-                <string>{784,750}</string>
-                <key>z</key>
-                <integer>25</integer>
-                <key>tag</key>
-                <integer>5</integer>
-            </dict>
-            <key>mapSprite6</key>
-            <dict>
-                <key>spriteName</key>
-                <string>zhandoujiemian</string>
-                <key>mapSpriteName</key>
-                <string>ditiao_03.png</string>
-                <key>pos</key>
-                <string>{936,732}</string>
-                <key>z</key>
-                <integer>30</integer>
-                <key>tag</key>
-                <integer>6</integer>
-            </dict>
-            <key>mapSprite7</key>
-            <dict>
-                <key>spriteName</key>
-                <string>zhandoujiemian</string>
-                <key>mapSpriteName</key>
-                <string>ditiao_02.png</string>
-                <key>pos</key>
-                <string>{87,750}</string>
-                <key>z</key>
-                <integer>35</integer>
-                <key>tag</key>
-                <integer>7</integer>
+                <integer>9</integer>
             </dict>
         </dict>
     </dict>

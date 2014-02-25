@@ -53,6 +53,7 @@ CLoginScene::CLoginScene()
 CLoginScene::~CLoginScene()
 {
     maps->release();
+    CCLog("the release time: %l", time(NULL));
 }
 
 bool CLoginScene::init()
@@ -189,6 +190,7 @@ void CLoginScene::dealWithAddTask(CCObject *object)
     int codeValue=0;
     char *buff=(char *)object;
     CCDictionary *tmp= PtJsonUtility::JsonStringParse(buff);
+    CCLog("the add buffer: %s", buff);
     delete [] buff;
     buff=NULL;
     if (tmp)
@@ -392,6 +394,7 @@ void CLoginScene::onReceiveLoginMsg(CCObject* obj)
 
 void CLoginScene::playGame()
 {
+    CCNode *node = Utility::getNodeByTag(this, "0,2,0");
     if(Utility::getNodeByTag(this, "0,2,0")->isVisible())
     {
 
@@ -697,7 +700,8 @@ void CLoginScene::addFunctionInitGames(float t)
                         }
 
                     }
-                    else{
+                    else
+                    {
                         dointAddTask();
                     }
 //xianbei

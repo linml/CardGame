@@ -6,30 +6,28 @@
     <string>Users/linminglu/Documents/CubeCOCO/proj.android/cn.cube/assets/resource_cn/img/zhandoujiemian.png</string>
     <key>clipData</key>
     <dict>
-        <key>ditiao_01.png</key>
-        <string>{200,170,91,37}</string>
-        <key>ditiao_02.png</key>
-        <string>{2,234,153,19}</string>
-        <key>ditiao_03.png</key>
-        <string>{200,209,89,37}</string>
+        <key>zhandou1.png</key>
+        <string>{2,272,439,98}</string>
+        <key>zhandou2.png</key>
+        <string>{2,172,439,98}</string>
         <key>zhandou_01.png</key>
-        <string>{2,86,482,82}</string>
+        <string>{2,87,482,83}</string>
         <key>zhandou_02.png</key>
-        <string>{2,170,97,62}</string>
+        <string>{2,436,97,62}</string>
         <key>zhandou_03.png</key>
-        <string>{2,2,482,82}</string>
+        <string>{2,2,482,83}</string>
         <key>zhandou_04.png</key>
         <string>{486,75,9,62}</string>
         <key>zhandou_05.png</key>
         <string>{486,2,23,71}</string>
         <key>zhandou_07.png</key>
-        <string>{101,170,97,62}</string>
+        <string>{2,372,97,62}</string>
     </dict>
     <key>mapSpriteData</key>
     <dict>
-        <key>ditiao_01.png</key>
+        <key>zhandou1.png</key>
         <dict>
-            <key>ditiao_01.png</key>
+            <key>zhandou1.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>
@@ -43,25 +41,9 @@
                 <string>{0,1}</string>
             </dict>
         </dict>
-        <key>ditiao_02.png</key>
+        <key>zhandou2.png</key>
         <dict>
-            <key>ditiao_02.png</key>
-            <dict>
-                <key>pos</key>
-                <string>{0,0}</string>
-                <key>filp</key>
-                <integer>0</integer>
-                <key>scale</key>
-                <string>1</string>
-                <key>rotate</key>
-                <string>0</string>
-                <key>anchor</key>
-                <string>{0,1}</string>
-            </dict>
-        </dict>
-        <key>ditiao_03.png</key>
-        <dict>
-            <key>ditiao_03.png</key>
+            <key>zhandou2.png</key>
             <dict>
                 <key>pos</key>
                 <string>{0,0}</string>

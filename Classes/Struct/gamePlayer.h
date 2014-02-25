@@ -46,8 +46,7 @@ class CGamePlayer : cocos2d::CCObject
     void loadGamesConfig();
     void onExitGameApp();
     void clearShangchengData();
-    
-    void resetGameData();
+    void releasAllResource();
 public:
      map<int ,CCard *> *getCardMap();
      CCard *getCardByCardId(int cardid);
@@ -59,6 +58,8 @@ public:
      CImapact *findByImpactId( int tempImpactId);
 protected:
     void initData();
+    void restData();
+    
 private:
    //读取卡牌表格
     void clearAllCard();
@@ -332,13 +333,15 @@ public:
     // 或取当前阵容的全部领导力
     int getAllRvcBattlerArray(const int& inType);
     
+    
+// data section:
 protected:
     CGamePlayerData *m_gGamePlayerData;
     map<int, CPtProp*> &m_rAllProps; // 静态配置中道具信息
     map<int, int> m_vProps;          // 用户道具列表
     
 private:
-    map<int, CCard *>m_hashmapAllCard;
+    map<int, CCard *>m_hashmapAllCard; // 静态配置表里的所有卡的信息
     map<int ,CSkillData *>m_vSkillInfo;
     vector< CImapact * >m_vImpactInfo;
     map<int ,CCard *>m_hashmapNpcAllCard;

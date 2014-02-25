@@ -74,6 +74,9 @@ void SceneManager::runCreateCardScene()
 
 void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene ,int inParam)
 {
+    if (!CCDirector::sharedDirector()->isDisplayStats()) {
+        CCDirector::sharedDirector()->setDisplayStats(true);
+    }
     switch (en_targetScene) {
             
         case EN_CURRSCENE_LOGINSCENE:
@@ -234,6 +237,7 @@ void SceneManager::runPvpFightScene(int nPavarm)
 }
 void SceneManager::runFightScene()
 {
+    CCDirector::sharedDirector()->setDisplayStats(false);
     if(m_currscene!=EN_CURRSCENE_FIGHTSCENE)
     {
         // create a scene. it's an autorelease object

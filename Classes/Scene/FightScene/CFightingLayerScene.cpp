@@ -951,36 +951,23 @@ void CFightingLayerScene::createFightCard()
     for (int i=0; i<m_vFightingCard.size(); i++)
     {
         CGamesCard *gameCard=NULL;
-        if(i!=m_vFightingCard.size()-1 &&m_vFightingCard[i])
+        if (m_vFightingCard[i])
         {
-            gameCard=CGamesCard::Create(m_vFightingCard[i]);
-            m_vFightingCard[i]->tag=100+i;
-            gameCard->setTag(m_vFightingCard[i]->tag);
-            addChild(gameCard,8-i,m_vFightingCard[i]->tag);
-            gameCard->setPosition(getCardPoint(i,true));
-            if(i!=0)
+            gameCard=m_pTotalFrightMana->createCGameCard(m_vFightingCard[i]);
+            if(i!=m_vFightingCard.size()-1)
             {
-                gameCard->setScale(0.8);
+                m_vFightingCard[i]->tag=100+i;
+
+            }else{
+                m_vFightingCard[i]->tag=100*(i+1);
+                gameCard->setActionManager(actionManager1);
             }
-            CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
-        }
-        else if(m_vFightingCard[i])
-        {
-            gameCard=CGamesCard::Create(m_vFightingCard[i]);
-            m_vFightingCard[i]->tag=100*(i+1);
+            gameCard->setPosition(getCardPoint(i,true));
             gameCard->setTag(m_vFightingCard[i]->tag);
-            gameCard->setPosition(ccp(20,20));
-            gameCard->setAnchorPoint(CCPointZero);
-            gameCard->setScale(0.8);
             addChild(gameCard,8-i,m_vFightingCard[i]->tag);
-            CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
-            gameCard->setActionManager(actionManager1);
-        }
-        if (gameCard) {
-            gameCard->hideGameCardData();
+            gameCard->setAnchorPoint(CCPointZero);
         }
     }
-    
 }
 
 void CFightingLayerScene::createMonsterCard()
@@ -1000,39 +987,23 @@ void CFightingLayerScene::createMonsterCard()
     for (int  i=0; i<m_vMonsterCard.size(); i++)
     {
         CGamesCard *gameCard=NULL;
-        if(i!=m_vMonsterCard.size()-1 && m_vMonsterCard[i]!=NULL)
+        if (m_vMonsterCard[i]!=NULL)
         {
-            gameCard=CGamesCard::Create(m_vMonsterCard[i]);
-            m_vMonsterCard[i]->tag=1000*(i+1);
-            gameCard->setTag(m_vMonsterCard[i]->tag);
-            addChild(gameCard,9-i, m_vMonsterCard[i]->tag);
-            gameCard->setPosition(getCardPoint(i, false));
-            gameCard->setFlipX(true);
-            if(i!=0)
+             gameCard=m_pTotalFrightMana->createCGameCard(m_vMonsterCard[i]);
+            if (i!=m_vMonsterCard.size()-1)
             {
-                gameCard->setScale(0.8);
+               m_vMonsterCard[i]->tag=1000*(i+1);
             }
-            CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
-            
-        }
-        else if(m_vMonsterCard[i])
-        {
-            
-            gameCard=CGamesCard::Create(m_vMonsterCard[i]);
-            m_vMonsterCard[i]->tag=1000+i;
+            else{
+                m_vMonsterCard[i]->tag=1000+i;
+                gameCard->setActionManager(actionManager1);
+            }
+            gameCard->setPosition(getCardPoint(i, false));
             gameCard->setTag(m_vMonsterCard[i]->tag);
-            gameCard->setPosition(ccp(wndsize.width-150,20));
             gameCard->setFlipX(true);
-            gameCard->setAnchorPoint(CCPointZero);
-            gameCard->setScale(0.8);
+            gameCard->setAnchorPoint(CCPoint(1,0));
             addChild(gameCard,9-i, m_vMonsterCard[i]->tag);
-            CCLog("%f,%f",gameCard->getPosition().x,gameCard->getPosition().y);
-            gameCard->setActionManager(actionManager1);
         }
-        if (gameCard) {
-            gameCard->hideGameCardData();
-        }
-        
     }
     
 }
@@ -1044,18 +1015,29 @@ void CFightingLayerScene::deleteBackGamePlayerFightMonsterCard()
 
 CCPoint CFightingLayerScene::getCardPoint(int index, bool isLeftCard)
 {
-    CCPoint point;
     int value=isLeftCard?-1:1;
     CCSize  size=CCDirector::sharedDirector()->getWinSize();
-    if(index==0)
-    {
-        return CCPoint(size.width*0.5+100*value,120);
+    switch (index) {
+        case 0:
+        case 1:
+        case 2:
+        case 3:
+            return CCPoint(size.width*0.5+value*(150+110*index),20);
+            break;
+        case 4:
+            //如果是用户位置的话 放屏幕的两侧 大概是多数呢？
+        {
+            if (isLeftCard)
+            {
+                return CCPoint(0,5);
+            }
+            return CCPoint(size.width,5);
+        }
+            break;
+        default:
+            break;
     }
-    else
-    {
-        return CCPoint(size.width*0.5+200*value+30*value*(index-1),100);
-    }
-    
+    return CCPointZero;
 }
 
 void CFightingLayerScene::textSkillInfo(CAnimationSctrip *fight)
@@ -1124,7 +1106,6 @@ void CFightingLayerScene::clearAllHeroTexiao()
     for (int i=0; i<m_vMonsterHero.size();i++ ) {
         if(m_vMonsterHero[i])
             ((CGameDaCard *)m_vMonsterHero[i])->resetCard();
-        //CCSprite::removeFromParentAndCleanup(true);
     }
 }
 
@@ -1139,14 +1120,6 @@ void CFightingLayerScene::resetCardPosition()
             CGamesCard *gameCard=(CGamesCard*)getChildByTag(m_vFightingCard[i]->tag);
             gameCard->setPosition(getCardPoint(i,true));
             gameCard->setLive();
-            if(i!=0)
-            {
-                gameCard->setScale(0.8);
-            }
-            else
-            {
-                gameCard->setScale(1.0f);
-            }
         }
     }
     for (int i=0; i<m_vMonsterCard.size(); i++)
@@ -1156,15 +1129,6 @@ void CFightingLayerScene::resetCardPosition()
             CGamesCard *gameCard=(CGamesCard*)getChildByTag(m_vMonsterCard[i]->tag);
             gameCard->setPosition(getCardPoint(i,false));
             gameCard->setLive();
-            if(i!=0)
-            {
-                gameCard->setScale(0.8);
-            }
-            else
-            {
-                gameCard->setScale(1.0f);
-            }
-            
         }
     }
 }
@@ -1226,7 +1190,7 @@ bool CFightingLayerScene::initAtkPng()
 bool CFightingLayerScene::initBggroudPng()
 {
     CCSize  winsize=CCDirector::sharedDirector()->getWinSize();
-    CCSprite *bgSprite=CCSprite::create((g_mapImagesPath+"fighting/bgm.png").c_str());
+    CCSprite *bgSprite=CCSprite::create((g_mapImagesPath+"fighting/zhandoubeijing.png").c_str());
     assert(bgSprite!=NULL);
     bgSprite->setPosition(ccp(winsize.width*0.5,winsize.height*0.5));
     addChild(bgSprite,0);

@@ -20,7 +20,8 @@ using namespace std;
 #define APPENDCOUNTPERTIME 10
 
 struct SLevelPlayer;
-class CGamePlayerData {
+class CGamePlayerData
+{
 public:
     CGamePlayerData();
     ~CGamePlayerData();

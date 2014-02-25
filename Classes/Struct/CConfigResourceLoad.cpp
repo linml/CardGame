@@ -87,7 +87,8 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
         CCard *card=new CNpcCard();
         card->m_icard_id=GameTools::intForKey("npc_id", cardDirector);
         card->m_scard_name=string(GameTools::valueForKey("name", cardDirector));
-        card->m_ccard_next=GameTools::intForKey("card_next", cardDirector);  ///背景底色
+//        card->m_ccard_next=GameTools::intForKey("card_next", cardDirector);  ///背景底色
+        ((CNpcCard *)card)->m_npcCardLevel=GameTools::intForKey("level",cardDirector);
         card->m_nCard_star=GameTools::intForKey("star", cardDirector);
         card->m_icard_stirps=GameTools::intForKey("stirps", cardDirector);   //种族
         card->m_icard_suit=GameTools::intForKey("suit", cardDirector);      //随机数值
@@ -100,13 +101,13 @@ bool CConfigResourceLoad::loadNPCCardInfo(map<int, CCard *> &hashMapNpcCardAll, 
         card->m_iskillHelp=GameTools::intForKey("skill_help", cardDirector);
         card->m_iskillDead=GameTools::intForKey("skill_dead", cardDirector);
         card->m_iskillBuff=GameTools::intForKey("skill_buff", cardDirector);
-        card->m_scard_tips=GameTools::valueForKey("card_tips", cardDirector);
-        card->m_scard_resources=GameTools::valueForKey("card_resources", cardDirector);
-        card->m_scard_head=GameTools::valueForKey("card_head", cardDirector);
-        card->m_scard_ground=GameTools::valueForKey("card_ground", cardDirector);
-        card->m_scard_role="card_role_"+card->m_scard_resources+".png";
-        card->m_scard_resources="peo"+card->m_scard_resources+".png";
-        ((CNpcCard *)card)->m_npcCardLevel=GameTools::intForKey("level",cardDirector);
+//        card->m_scard_tips=GameTools::valueForKey("card_tips", cardDirector);
+        card->m_scard_resources=GameTools::valueForKey("resources", cardDirector);
+        card->m_scard_head=GameTools::valueForKey("head", cardDirector);
+        card->m_scard_ground=GameTools::valueForKey("ground", cardDirector);
+        card->m_scard_role=GameTools::valueForKey("role", cardDirector);
+//        card->m_scard_resources="peo"+card->m_scard_resources+".png";
+        
         int index = card->m_nCard_star -1;
         index = abs(index) > 7 ? 7: abs(index);
         card->m_ileve_max = g_aMaxLevel[index];
@@ -323,7 +324,8 @@ bool CConfigResourceLoad::loadShopSellItem(CStructShopInfoManager *shopInfoManag
                             shopInfo->mapShopItem.push_back(item);
                         }
                     }
-                if (shopInfo->getShopItemCount()>0) {
+                if (shopInfo->getShopItemCount()>0)
+                {
                     shopInfoManager->m_gameShopList[shopInfo->getShopId()]=shopInfo;
                     CCLOG("商城加载个数%d",shopInfoManager->m_gameShopList.size());
                 }

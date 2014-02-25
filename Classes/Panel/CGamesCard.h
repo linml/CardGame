@@ -131,7 +131,6 @@ public:
     bool initWithCardData(CFightCard *inCard, CGameCardFactory *inFactory);
     bool initWithCardData(CCard *inCard, CGameCardFactory *inFactory);
     void changePersionDirection();
-    
     void resetCard();
 protected:
     void createBg(CGameCardFactory *inFactory);
