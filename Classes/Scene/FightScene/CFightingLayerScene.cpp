@@ -115,12 +115,12 @@ bool CFightingLayerScene::init()
     createEngryText();
     createFightCard();
     createMonsterCard();
+    SetCardOnGameBeiginFirstPosition();
     deleteBackGamePlayerFightMonsterCard();
     createHero();
     initHpEngry();
     createKuaiJin();
     createShowFightUid();
-
     setTouchEnabled(true);
     setTouchMode(kCCTouchesOneByOne);
     setTouchPriority(1);
@@ -756,92 +756,89 @@ void CFightingLayerScene::createHero()
     }
 }
 
-/*
-void CFightingLayerScene::showSkillBuffer(cocos2d::CCSprite *pFightSprite, cocos2d::CCSprite *pMonsterSprite2, int skillid, CAnimationSpriteGameFight *fightAnimation)
+void CFightingLayerScene::SetCardOnGameBeiginFirstPosition()
 {
-    
-    if(pMonsterSprite2)
-    {
-        CCNode *node=pMonsterSprite2->getChildByTag(fightAnimation->spritetag);
-        if(!node)
-        {
-            string filePath=fightAnimation->m_sBufferPlist;
-            CCAction *animation=PtActionUtility::getRunActionWithActionFile(filePath.c_str());
-            CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingLayerScene::AnimaitonEnd));
-            pMonsterSprite2->runAction(CCSequence::create((CCFiniteTimeAction*)animation,endAnimation,NULL));
-        }
-        else{
-            AnimaitonEnd();
+    CCSize size=CCDirector::sharedDirector()->getWinSize();
+    for (int i=0; i<m_vFightingCard.size()-1; i++) {
+        if (m_vFightingCard[i]) {
+            CCSprite * tempSprite=(CCSprite *)getChildByTag(m_vFightingCard[i]->tag);
+            if (i==0) {
+                tempSprite->setOpacity(0);
+                tempSprite->setPosition(ccp(size.width/2-(300+55),size.height/2-52));
+            }
+            else{
+                tempSprite->setPosition(ccp(tempSprite->getPositionX()-110,20));
+            }
         }
     }
-    
-}
-*/
-/*
-void CFightingLayerScene::actionPFightSkill(const char *fightName,CCSprite *pFight,CCSprite *pMonster)
-{
-    CCLog("fightName:%s",fightName);
-    CCAction *animation=PtActionUtility::getRunActionWithActionFile(fightName);
-    CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingLayerScene::showHpAnimation));
-    CCCallFuncN *rebb=CCCallFuncN::create(this, callfuncN_selector(CFightingLayerScene::actionReorderZorderNode));
-    CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingLayerScene::AnimaitonEnd));
-    reorderChild(pFight,2);
-    pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,rebb,CCDelayTime::create(0.6f),endAnimation,NULL));
-    if(pMonster)
-    {
-        pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
+    for (int i=0; i<m_vMonsterCard.size()-1; i++) {
+        if (m_vMonsterCard[i]) {
+            CCSprite * tempSprite=(CCSprite *)getChildByTag(m_vMonsterCard[i]->tag);
+            if (i==0) {
+                tempSprite->setOpacity(0);
+                tempSprite->setPosition(ccp(size.width/2+(300+55),size.height/2-52));
+            }
+            else{
+          
+                tempSprite->setPosition(ccp(tempSprite->getPositionX()+110,20));
+            }
+        }
     }
 }
-*/
-/*
-void CFightingLayerScene::actionHelpSprite(const char *fightName,CCSprite *pFight,CCSprite *pMonster)
-{
-    
-    CCAction *animation=PtActionUtility::getRunActionWithActionFile(fightName);
-    //    CCCallFuncND *nd=CCCallFuncND::create(this,callfuncND_selector(CFightingCardLayerScene::animationShouShang),(void *)pMonster);
-    CCCallFunc *callback=CCCallFunc::create(this, callfunc_selector(CFightingLayerScene::showHpAnimation));
-    CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingLayerScene::AnimaitonEnd));
-    pFight->runAction(CCSequence::create((CCFiniteTimeAction*)animation,callback,CCDelayTime::create(0.6),endAnimation,NULL));
-    pMonster->runAction(PtActionUtility::getRunActionWithActionFile(fightName,"shoushang"));
-}
-*/
 
 void CFightingLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goIndex,bool isLeft)
 {
+    CCLOG("GO INDEX =%d",goIndex);
     if(vCard.size()<=2)
     {
         return;
     }
     else
     {
-        vector<CFightCard *>vectemp;
-        vectemp.clear();
-        for (int i=goIndex; i<=vCard.size()-2; i++) {
-            vectemp.push_back(vCard[i]);
+        int MovePointX=-1;
+        if (!isLeft) {
+            MovePointX=1;
         }
-        for (int i=goIndex-1; i>=0; i--) {
-            vectemp.push_back(vCard[i]);
-        }
-        char data[20];
-        for (int i=0 ; i<vectemp.size(); i++)
+        if (goIndex!=vCard.size()-1)
         {
-            if (vectemp[i])
             {
-                if(isLeft)
-                {
-                    sprintf(data, "left%0.2d",i);
+                //自己
+                ((CCSprite *)getChildByTag(vCard[goIndex]->tag))->runAction(CCSpawn::create(CCFadeIn::create(0.2), CCMoveTo::create(0.2, getCardPoint(2,isLeft)),NULL));
+                ((CGamesCard *)getChildByTag(vCard[goIndex]->tag))->setDead();
+            }
+            //让自己的下一个往中间跑
+            {
+                if (goIndex+1 < vCard.size()-1 &&vCard[goIndex+1]) {
+                    CCSize size=CCDirector::sharedDirector()->getWinSize();
+                    CCPoint  point=ccp(size.width/2+(MovePointX)*(300+55),size.height/2-52);
+                    ((CCSprite *)getChildByTag(vCard[goIndex+1]->tag))->runAction(CCSpawn::create(CCFadeOut::create(0.2), CCMoveTo::create(0.2, point),NULL));
                 }
-                else
+                
+            }
+            {
+                for (int i=goIndex+2; i<vCard.size()-1; i++)
                 {
-                    sprintf(data, "right%0.2d",i);
-                    
+                    //后面的往前面移动。
+                    if(vCard[i])
+                    {
+                        ((CCSprite *)getChildByTag(vCard[i]->tag))->runAction(CCMoveBy::create(0.2,CCPoint(110*MovePointX, 0)));
+                    }
                 }
-                CCLog("%s,%d,0x%x",data,vectemp[i]->tag,(CCSprite *)getChildByTag(vectemp[i]->tag));
-                PtActionUtility::readSpriteActionFile(g_ActionFilePath+"movecard.plist",(CCSprite *)getChildByTag(vectemp[i]->tag),string(data));
+            }
+            {
+                for (int i=goIndex-1;i>=0;i--)
+                {
+                    if(vCard[i])
+                    {
+                        ((CCSprite *)getChildByTag(vCard[i]->tag))->runAction(CCMoveBy::create(0.2,CCPoint(110*MovePointX, 0)));
+                    }
+                }
+                
             }
             
         }
-        ((CGamesCard *)getChildByTag(vCard[goIndex]->tag))->setDead();
+        
+        
         runAction(CCSequence::create(CCDelayTime::create(0.3f),CCCallFunc::create(this, callfunc_selector(CFightingLayerScene::AnimaitonEnd)),NULL));
     }
 }
@@ -962,10 +959,11 @@ void CFightingLayerScene::createFightCard()
                 m_vFightingCard[i]->tag=100*(i+1);
                 gameCard->setActionManager(actionManager1);
             }
+            gameCard->setAnchorPoint(CCPointZero);
             gameCard->setPosition(getCardPoint(i,true));
             gameCard->setTag(m_vFightingCard[i]->tag);
             addChild(gameCard,8-i,m_vFightingCard[i]->tag);
-            gameCard->setAnchorPoint(CCPointZero);
+         
         }
     }
 }
@@ -1005,7 +1003,6 @@ void CFightingLayerScene::createMonsterCard()
             addChild(gameCard,9-i, m_vMonsterCard[i]->tag);
         }
     }
-    
 }
 
 void CFightingLayerScene::deleteBackGamePlayerFightMonsterCard()
@@ -1022,7 +1019,12 @@ CCPoint CFightingLayerScene::getCardPoint(int index, bool isLeftCard)
         case 1:
         case 2:
         case 3:
-            return CCPoint(size.width*0.5+value*(150+110*index),20);
+        {
+            float kongbaifang=size.width-8*110;
+            CCPoint point=CCPoint(size.width*0.5+value*(kongbaifang/2+110*(3-index)),20);
+            CCLOG("index %d,CCPoint: %f",index,point.x);
+            return point;
+        }
             break;
         case 4:
             //如果是用户位置的话 放屏幕的两侧 大概是多数呢？
@@ -1131,6 +1133,7 @@ void CFightingLayerScene::resetCardPosition()
             gameCard->setLive();
         }
     }
+    SetCardOnGameBeiginFirstPosition();
 }
 
 //

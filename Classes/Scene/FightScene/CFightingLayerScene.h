@@ -99,6 +99,7 @@ private:
     void AnimaitonEnd();
     void showHp(int leftHp,int RightHp); //回调该方法显示血液
     void moveCardSprite(vector<CFightCard *> &vCard,int goIndex,bool isLeft);
+    void SetCardOnGameBeiginFirstPosition();
     
     
 public:
