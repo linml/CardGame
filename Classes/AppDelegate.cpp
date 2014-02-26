@@ -12,7 +12,6 @@
 #include "cocos2d.h"
 #include "HelloWorldScene.h"
 #include "SceneManager.h"
-#include "MemoryGameCollabLayer.h"
 #include "CGameEmailManager.h"
 #include "CPtTool.h"
 #include "Pt_AES.h"

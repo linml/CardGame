@@ -7,11 +7,6 @@
 //
 
 #include "SceneManager.h"
-#include "MapScene.h"
-#include "CardFactoryLayer.h"
-#include "TaskSceneLayer.h"
-#include "ExplorationLayer.h"
-#include "CEvolutionLayer.h"
 #include "gameConfig.h"
 #include "LoadingScene.h"
 #include "ExplorationScene.h"
@@ -29,47 +24,47 @@ SceneManager::SceneManager()
 }
 void SceneManager::runMapScene()
 {
-    if(m_currscene!=EN_CURRSCENE_MAPSCENE)
-    {
-        // create a scene. it's an autorelease object
-        CCDirector *pDirector=CCDirector::sharedDirector();
-        CCScene *pScene = CCScene::create();
-        MapScene *mapLayer = new MapScene();
-        mapLayer->setUserData((void*)(scene_datting.c_str()));
-        mapLayer->init();
-        mapLayer->autorelease();
-        pScene->addChild(mapLayer);
-        if(pDirector->getRunningScene())
-        {
-           runSceneAnimation(pScene);
-        }
-        else{
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
-        }
-        m_currscene=EN_CURRSCENE_MAPSCENE;
-    }
-    
+//    if(m_currscene!=EN_CURRSCENE_MAPSCENE)
+//    {
+//        // create a scene. it's an autorelease object
+//        CCDirector *pDirector=CCDirector::sharedDirector();
+//        CCScene *pScene = CCScene::create();
+//        MapScene *mapLayer = new MapScene();
+//        mapLayer->setUserData((void*)(scene_datting.c_str()));
+//        mapLayer->init();
+//        mapLayer->autorelease();
+//        pScene->addChild(mapLayer);
+//        if(pDirector->getRunningScene())
+//        {
+//           runSceneAnimation(pScene);
+//        }
+//        else{
+//            pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
+//        }
+//        m_currscene=EN_CURRSCENE_MAPSCENE;
+//    }
+//    
 }
 
 void SceneManager::runCreateCardScene()
 {
-    if(m_currscene!=EN_CURRSCENE_CARDFACTORYSCENE)
-    {
-        m_currscene=EN_CURRSCENE_CARDFACTORYSCENE;
-        
-        CCDirector *pDirector=CCDirector::sharedDirector();
-        CCScene *scene=CCScene::create();
-        CardFactoryLayer *cardfactory=CardFactoryLayer::Create<CardFactoryLayer>(scene_suipian.c_str());
-        scene->addChild(cardfactory);
-        if(pDirector->getRunningScene())
-        {
-            runSceneAnimation(scene);
-        }
-        else
-        {
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,scene));
-        }
-    }
+//    if(m_currscene!=EN_CURRSCENE_CARDFACTORYSCENE)
+//    {
+//        m_currscene=EN_CURRSCENE_CARDFACTORYSCENE;
+//        
+//        CCDirector *pDirector=CCDirector::sharedDirector();
+//        CCScene *scene=CCScene::create();
+//        CardFactoryLayer *cardfactory=CardFactoryLayer::Create<CardFactoryLayer>(scene_suipian.c_str());
+//        scene->addChild(cardfactory);
+//        if(pDirector->getRunningScene())
+//        {
+//            runSceneAnimation(scene);
+//        }
+//        else
+//        {
+//            pDirector->runWithScene(CCTransitionFade::create(1.0f,scene));
+//        }
+//    }
 }
 
 void SceneManager::runTargetScene(EN_CURRSCENE en_targetScene ,int inParam)
@@ -201,22 +196,22 @@ void SceneManager::runCardSettingScene(int inLastSceneTag)
 
 void SceneManager::runTaskScene()
 {
-    if(m_currscene!=EN_CURRSCENE_TASKSCENE)
-    {
-        m_currscene=EN_CURRSCENE_TASKSCENE;
-        CCDirector *pDirector=CCDirector::sharedDirector();
-        CCScene *pScene=CCScene::create();
-        TaskSceneLayer *taskscene=TaskSceneLayer::Create<TaskSceneLayer>(scene_task.c_str());
-        pScene->addChild(taskscene);
-        if(pDirector->getRunningScene())
-        {
-             runSceneAnimation(pScene);
-        }
-        else
-        {
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
-        }
-    }
+//    if(m_currscene!=EN_CURRSCENE_TASKSCENE)
+//    {
+//        m_currscene=EN_CURRSCENE_TASKSCENE;
+//        CCDirector *pDirector=CCDirector::sharedDirector();
+//        CCScene *pScene=CCScene::create();
+//        TaskSceneLayer *taskscene=TaskSceneLayer::Create<TaskSceneLayer>(scene_task.c_str());
+//        pScene->addChild(taskscene);
+//        if(pDirector->getRunningScene())
+//        {
+//             runSceneAnimation(pScene);
+//        }
+//        else
+//        {
+//            pDirector->runWithScene(CCTransitionFade::create(1.0f,pScene));
+//        }
+//    }
 }
 void SceneManager::runPvpFightScene(int nPavarm)
 {
@@ -264,19 +259,19 @@ void SceneManager::runUpgradeScene()
 
 void SceneManager::runEvolutionScene()
 {
-    if(m_currscene!=EN_CURRSCENE_EVOLUTIONSCENE)
-    {
-        m_currscene=EN_CURRSCENE_EVOLUTIONSCENE;
-        CCDirector *pDirector=CCDirector::sharedDirector();
-        if(pDirector->getRunningScene())
-        {
-            runSceneAnimation(CEvolutionLayer::scene());
-        }
-        else
-        {
-            pDirector->runWithScene(CCTransitionFade::create(1.0f,CEvolutionLayer::scene()));
-        }
-    }
+//    if(m_currscene!=EN_CURRSCENE_EVOLUTIONSCENE)
+//    {
+//        m_currscene=EN_CURRSCENE_EVOLUTIONSCENE;
+//        CCDirector *pDirector=CCDirector::sharedDirector();
+//        if(pDirector->getRunningScene())
+//        {
+//            runSceneAnimation(CEvolutionLayer::scene());
+//        }
+//        else
+//        {
+//            pDirector->runWithScene(CCTransitionFade::create(1.0f,CEvolutionLayer::scene()));
+//        }
+//    }
 }
 
 void SceneManager::runPvpScene()

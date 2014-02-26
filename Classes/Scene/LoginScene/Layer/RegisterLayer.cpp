@@ -481,16 +481,16 @@ bool CRegisterNickNameLayer::init()
     addChild(m_roleFemale);
     Utility::addTouchRect(2001, m_roleFemale, touchRect);
     
-    m_selectSprite = CCSprite::spriteWithFile("resource_cn/img/select.png");
+    m_selectSprite = CCSprite::create("resource_cn/img/select.png");
     CCSize headIconSize = m_roleMale->getContentSize();
     m_selectSprite->setPosition(ccp(headIconSize.width/2-5,headIconSize.height/2+5));
     m_roleMale->addChild(m_selectSprite);
     CCActionInterval* rotate = CCRotateBy::create(0.2, 15);
     CCActionInterval* fade1 = CCFadeTo::create(0.5,50);
     CCActionInterval* fade2 = CCFadeTo::create(0.5,250);
-    CCActionInterval*  fadeseq = (CCActionInterval*)(CCSequence::actions(fade1, fade2, NULL));
-    CCFiniteTimeAction* faderep = CCRepeatForever::actionWithAction(fadeseq);
-    CCFiniteTimeAction* rotaterep = CCRepeatForever::actionWithAction(rotate);
+    CCActionInterval*  fadeseq = (CCActionInterval*)(CCSequence::create(fade1, fade2, NULL));
+    CCFiniteTimeAction* faderep = CCRepeatForever::create(fadeseq);
+    CCFiniteTimeAction* rotaterep = CCRepeatForever::create(rotate);
     m_selectSprite->runAction(faderep);
     m_selectSprite->runAction(rotaterep);
 

@@ -23,6 +23,7 @@
 #include "CFightCardBufferData.h"
 #include "CGameCardBuffer.h"
 #include "CPtTool.h"
+#include "CFightHeadLayer.h"
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
     "001",
@@ -570,6 +571,10 @@ void CFightingLayerScene::initHpEngry()
             m_vMonsterHero[i]->setVisible(true);
             break;
         }
+    }
+    if (!getChildByTag(700)) {
+        CFightHeadLayer *pFight=CFightHeadLayer::create(m_vFightingCard[0], 600, 600);
+        addChild(pFight,3);
     }
 }
 void CFightingLayerScene::showVectorBuffer()
