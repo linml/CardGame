@@ -24,6 +24,7 @@
 #include "CGameCardBuffer.h"
 #include "CPtTool.h"
 #include "CFightHeadLayer.h"
+#include "CFightCardInfoSprite.h"
 static string  g_strresource=g_mapImagesPath+"fighting/";
 static string g_testtemp[5]={
     "001",
@@ -56,6 +57,11 @@ CCScene *CFightingLayerScene::scene()
 
 CFightingLayerScene::CFightingLayerScene()
 {
+    if(!CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName("xuetiaobackgroud.png"))
+    {
+        CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath+"fighting/", "zhandoujiemianziyuan.plist"));
+    }
+    wndSize=CCDirector::sharedDirector()->getWinSize();
     m_pTotalFrightMana=CGameCardFactory::getInstance();
     m_gamePlayer=SinglePlayer::instance();
     m_pSFightData=new SFightResultData();
@@ -83,6 +89,7 @@ CFightingLayerScene::CFightingLayerScene()
 
 CFightingLayerScene::~CFightingLayerScene()
 {
+    CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath+"fighting/", "zhandoujiemianziyuan.plist"));
     if(m_pTotalFrightMana)
     {
         m_pTotalFrightMana->releaseCardFactory();
@@ -552,9 +559,34 @@ void CFightingLayerScene::hideAllHero()
         }
     }
 }
-
+void CFightingLayerScene::createHeadLayer(bool isLeft)
+{
+    if (m_nHpEngryIndex<m_gamePlayer->getHpAngryVectory().size()) {
+        SEveryATKData *eveyatk=m_gamePlayer->getHpAngryVectory()[m_nHpEngryIndex];
+        SSpriteStatus *spriteleft =eveyatk->data[0];
+        SSpriteStatus *spriteRight=eveyatk->data[1];
+        if (isLeft && !getChildByTag(700)) {
+            
+            CFightHeadLayer *pFight=CFightHeadLayer::create(m_vFightingCard[0], spriteleft->m_iCurrTotalHp, spriteleft->m_iEngry,true);
+           
+            addChild(pFight,3,700);
+            pFight->setAnchorPoint(CCPointZero);
+            pFight->setPosition(ccp(0, wndSize.height-80));
+        }else if(!isLeft && !getChildByTag(701))
+        {
+            CFightHeadLayer *pFight=CFightHeadLayer::create(m_vMonsterCard[0], spriteRight->m_iCurrTotalHp, spriteRight->m_iEngry,false);
+            addChild(pFight,3,701);
+            pFight->ignoreAnchorPointForPosition(true);
+            pFight->setAnchorPoint(ccp(1,0));
+            pFight->setPosition(ccp(wndSize.width-440,wndSize.height-80));
+        }
+    }
+    
+}
 void CFightingLayerScene::initHpEngry()
 {
+    createHeadLayer(true);
+    createHeadLayer(false);
     updateHpAndAngry();
     for (int i=0; i<m_vFightHero.size(); i++)
     {
@@ -572,10 +604,7 @@ void CFightingLayerScene::initHpEngry()
             break;
         }
     }
-    if (!getChildByTag(700)) {
-        CFightHeadLayer *pFight=CFightHeadLayer::create(m_vFightingCard[0], 600, 600);
-        addChild(pFight,3);
-    }
+
 }
 void CFightingLayerScene::showVectorBuffer()
 {
@@ -685,10 +714,16 @@ void CFightingLayerScene::updateHpAndAngry()
             if (spriteleft)
             {
                 initSetUpdateHp(spriteleft->m_iCurrHp,spriteleft->m_iCurrTotalHp,spriteleft->m_iEngry,true);
+                CFightHeadLayer *pLayer=(CFightHeadLayer *) getChildByTag(700);
+                pLayer->setCurrHP(spriteleft->m_iCurrHp,spriteleft->m_iCurrTotalHp);
+                pLayer->setCurrEngry(spriteleft->m_iEngry, 0);
             }
             if (spriteRight)
             {
                 initSetUpdateHp(spriteRight->m_iCurrHp,spriteRight->m_iCurrTotalHp,spriteRight->m_iEngry,false);
+                CFightHeadLayer *pLayer=(CFightHeadLayer *) getChildByTag(701);
+                pLayer->setCurrHP(spriteRight->m_iCurrHp,spriteRight->m_iCurrTotalHp);
+                 pLayer->setCurrEngry(spriteRight->m_iEngry, 0);
             }
         }
         m_nHpEngryIndex++;
@@ -700,7 +735,7 @@ void CFightingLayerScene::createHero()
 {
     m_vFightHero.resize(5);//(5, NULL);
     m_vMonsterHero.resize(5);//, NULL);
-    CCSize wndSize=CCDirector::sharedDirector()->getWinSize();
+
     for (int i=0; i<m_vFightingCard.size(); i++)
     {
         if(m_vFightingCard[i])
@@ -763,13 +798,12 @@ void CFightingLayerScene::createHero()
 
 void CFightingLayerScene::SetCardOnGameBeiginFirstPosition()
 {
-    CCSize size=CCDirector::sharedDirector()->getWinSize();
     for (int i=0; i<m_vFightingCard.size()-1; i++) {
         if (m_vFightingCard[i]) {
             CCSprite * tempSprite=(CCSprite *)getChildByTag(m_vFightingCard[i]->tag);
             if (i==0) {
                 tempSprite->setOpacity(0);
-                tempSprite->setPosition(ccp(size.width/2-(300+55),size.height/2-52));
+                tempSprite->setPosition(ccp(wndSize.width/2-(300+55),wndSize.height/2-52));
             }
             else{
                 tempSprite->setPosition(ccp(tempSprite->getPositionX()-110,20));
@@ -781,7 +815,7 @@ void CFightingLayerScene::SetCardOnGameBeiginFirstPosition()
             CCSprite * tempSprite=(CCSprite *)getChildByTag(m_vMonsterCard[i]->tag);
             if (i==0) {
                 tempSprite->setOpacity(0);
-                tempSprite->setPosition(ccp(size.width/2+(300+55),size.height/2-52));
+                tempSprite->setPosition(ccp(wndSize.width/2+(300+55),wndSize.height/2-52));
             }
             else{
           
@@ -814,10 +848,20 @@ void CFightingLayerScene::moveCardSprite(vector<CFightCard *> &vCard,int goIndex
             //让自己的下一个往中间跑
             {
                 if (goIndex+1 < vCard.size()-1 &&vCard[goIndex+1]) {
-                    CCSize size=CCDirector::sharedDirector()->getWinSize();
-                    CCPoint  point=ccp(size.width/2+(MovePointX)*(300+55),size.height/2-52);
+                    CCPoint  point=ccp(wndSize.width/2+(MovePointX)*(300+55),wndSize.height/2-52);
                     ((CCSprite *)getChildByTag(vCard[goIndex+1]->tag))->runAction(CCSpawn::create(CCFadeOut::create(0.2), CCMoveTo::create(0.2, point),NULL));
                 }
+                //并且设置下更新下 头像 和等级。
+                CFightHeadLayer *pHead;
+                if (isLeft) {
+                    pHead=(CFightHeadLayer*)getChildByTag(700);
+                    
+                }
+                else{
+                    pHead=(CFightHeadLayer*)getChildByTag(701);
+                  
+                }
+                 pHead->setNewInit(vCard[goIndex+1]);
                 
             }
             {
@@ -861,7 +905,7 @@ void CFightingLayerScene::showHp(int leftHp,int RightHp)
     if(hpValue!=0)
     {
         
-        CCPoint point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5-200),(CCDirector::sharedDirector()->getWinSize().height*0.5));
+        CCPoint point=ccp((wndSize.width*0.5-200),(wndSize.height*0.5));
         CCLabelTTF *labelTTF=(CCLabelTTF *)getChildByTag(30002);
         sprintf(data, "%d",hpValue*(1));
         labelTTF->setString(data);
@@ -885,7 +929,7 @@ void CFightingLayerScene::showHp(int leftHp,int RightHp)
     if(hpValue!=0)
     {
         
-        point=ccp((CCDirector::sharedDirector()->getWinSize().width*0.5+200),(CCDirector::sharedDirector()->getWinSize().height*0.5));
+        point=ccp((wndSize.width*0.5+200),(wndSize.height*0.5));
         labelTTF=(CCLabelTTF *)getChildByTag(30003);
         sprintf(data, "%d",hpValue*(1));
         labelTTF->setString(data);
@@ -948,14 +992,14 @@ void CFightingLayerScene::loadFromServerTest()
 
 void CFightingLayerScene::createFightCard()
 {
-    CCSize winsize=CCDirector::sharedDirector()->getWinSize();
+   
     loadFromServerTest();
     for (int i=0; i<m_vFightingCard.size(); i++)
     {
-        CGamesCard *gameCard=NULL;
+        CFightCardInfoSprite *gameCard=NULL;
         if (m_vFightingCard[i])
         {
-            gameCard=m_pTotalFrightMana->createCGameCard(m_vFightingCard[i]);
+            gameCard=CFightCardInfoSprite::CreateSprite(m_vFightingCard[i],i);
             if(i!=m_vFightingCard.size()-1)
             {
                 m_vFightingCard[i]->tag=100+i;
@@ -975,7 +1019,6 @@ void CFightingLayerScene::createFightCard()
 
 void CFightingLayerScene::createMonsterCard()
 {
-    CCSize wndsize=CCDirector::sharedDirector()->getWinSize();
     
     for (int i=0; i<m_gamePlayer->m_hashmapMonsterCard.size(); i++)
     {
@@ -992,7 +1035,7 @@ void CFightingLayerScene::createMonsterCard()
         CGamesCard *gameCard=NULL;
         if (m_vMonsterCard[i]!=NULL)
         {
-             gameCard=m_pTotalFrightMana->createCGameCard(m_vMonsterCard[i]);
+            gameCard=CFightCardInfoSprite::CreateSprite(m_vMonsterCard[i],i);
             if (i!=m_vMonsterCard.size()-1)
             {
                m_vMonsterCard[i]->tag=1000*(i+1);
@@ -1018,15 +1061,14 @@ void CFightingLayerScene::deleteBackGamePlayerFightMonsterCard()
 CCPoint CFightingLayerScene::getCardPoint(int index, bool isLeftCard)
 {
     int value=isLeftCard?-1:1;
-    CCSize  size=CCDirector::sharedDirector()->getWinSize();
     switch (index) {
         case 0:
         case 1:
         case 2:
         case 3:
         {
-            float kongbaifang=size.width-8*110;
-            CCPoint point=CCPoint(size.width*0.5+value*(kongbaifang/2+110*(3-index)),20);
+            float kongbaifang=wndSize.width-8*110;
+            CCPoint point=CCPoint(wndSize.width*0.5+value*(kongbaifang/2+110*(3-index)),20);
             CCLOG("index %d,CCPoint: %f",index,point.x);
             return point;
         }
@@ -1038,7 +1080,7 @@ CCPoint CFightingLayerScene::getCardPoint(int index, bool isLeftCard)
             {
                 return CCPoint(0,5);
             }
-            return CCPoint(size.width,5);
+            return CCPoint(wndSize.width,5);
         }
             break;
         default:
@@ -1166,18 +1208,17 @@ void CFightingLayerScene::createHpText()
 {
     CCLabelTTF *labelttf=CCLabelTTF::create("", "Arail", 25);
     addChild(labelttf,99999,77777);
-    labelttf->setPosition(ccp(150,750));
+    labelttf->setPosition(ccp(150,670));
     labelttf=CCLabelTTF::create("", "Arail", 25);
     addChild(labelttf,99999,77778);
-    labelttf->setPosition(ccp(724,750));
+    labelttf->setPosition(ccp(724,670));
 }
 
 bool CFightingLayerScene::initText()
 {
-    CCSize winsize=CCDirector::sharedDirector()->getWinSize();
     //中间显示战斗时候的界面 显示信息
     CCLabelTTF *labelttfVersion=CCLabelTTF::create("", "Arial", 50);
-    labelttfVersion->setPosition(ccp(winsize.width*0.5,winsize.height-100));
+    labelttfVersion->setPosition(ccp(wndSize.width*0.5,wndSize.height-100));
     labelttfVersion->setColor(ccc3(0, 0, 255));
     addChild(labelttfVersion,10,20003);
     return true;
@@ -1197,10 +1238,9 @@ bool CFightingLayerScene::initAtkPng()
 // 初始化 背景图片
 bool CFightingLayerScene::initBggroudPng()
 {
-    CCSize  winsize=CCDirector::sharedDirector()->getWinSize();
     CCSprite *bgSprite=CCSprite::create((g_mapImagesPath+"fighting/zhandoubeijing.png").c_str());
     assert(bgSprite!=NULL);
-    bgSprite->setPosition(ccp(winsize.width*0.5,winsize.height*0.5));
+    bgSprite->setPosition(ccp(wndSize.width*0.5,wndSize.height*0.5));
     addChild(bgSprite,0);
     return  true;
 }

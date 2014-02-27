@@ -232,7 +232,7 @@ void SceneManager::runPvpFightScene(int nPavarm)
 }
 void SceneManager::runFightScene()
 {
-    CCDirector::sharedDirector()->setDisplayStats(false);
+    CCDirector::sharedDirector()->setDisplayStats(true);
     if(m_currscene!=EN_CURRSCENE_FIGHTSCENE)
     {
         // create a scene. it's an autorelease object

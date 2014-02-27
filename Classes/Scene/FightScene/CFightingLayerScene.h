@@ -76,6 +76,7 @@ private:
     void updateHpAndAngry();
     void hideAllHero();
     void initHpEngry();
+    void createHeadLayer(bool isLeft);
     void updateBuffer();
     void clearUpVectorBuffer();
     void showVectorBuffer();
@@ -121,6 +122,7 @@ private:
     CCScheduler *schudel1;
     CCScheduler *schudel2;
     CGameCardFactory *m_pTotalFrightMana;
+    CCSize  wndSize;
     
 };
 #endif /* defined(___1_cube__CFightingLayerScene__) */

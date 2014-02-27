@@ -558,6 +558,9 @@ void CLoginScene::serverInf(CCDictionary* dic)
 {
     CCDictElement* ele = NULL;
     CCDictionary* subDic0 = (CCDictionary*)dic->objectForKey("result");
+    if (!subDic0) {
+        return ;
+    }
     CCDictionary* subDic1 = (CCDictionary*)subDic0->objectForKey("server_config");
     STC_SERVER_INF inf;
     CCDICT_FOREACH(subDic1,ele)

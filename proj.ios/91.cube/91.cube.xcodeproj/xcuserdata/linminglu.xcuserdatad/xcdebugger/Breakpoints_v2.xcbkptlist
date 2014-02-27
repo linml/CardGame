@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415101547.322552"
+            timestampString = "415187700.812849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "714"
-            endingLineNumber = "714"
+            startingLineNumber = "749"
+            endingLineNumber = "749"
             landmarkName = "CFightingLayerScene::createHero()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415101547.322552"
+            timestampString = "415187700.812849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1037"
-            endingLineNumber = "1037"
+            startingLineNumber = "1079"
+            endingLineNumber = "1079"
             landmarkName = "CFightingLayerScene::getCardPoint(int index, bool isLeftCard)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,13 +90,89 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415101547.322552"
+            timestampString = "415187700.812849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "766"
-            endingLineNumber = "766"
+            startingLineNumber = "800"
+            endingLineNumber = "800"
             landmarkName = "CFightingLayerScene::SetCardOnGameBeiginFirstPosition()"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/Layer/CFightHeadLayer.cpp"
+            timestampString = "415187700.812849"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "CFightHeadLayer::setCurrHP(int CurrHp, int CurrTtotalhp)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
+            timestampString = "415187700.812849"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "702"
+            endingLineNumber = "702"
+            landmarkName = "CFightingLayerScene::updateHpAndAngry()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFightingLayerScene::updateHpAndAngry()"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/FightScene/CFightingLayerScene.cpp"
+                  timestampString = "415180005.841479"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "696"
+                  endingLineNumber = "696"
+                  offsetFromSymbolStart = "30">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFightingLayerScene::updateHpAndAngry()"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/FightScene/CFightingLayerScene.cpp"
+                  timestampString = "415180005.841874"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "696"
+                  endingLineNumber = "696"
+                  offsetFromSymbolStart = "748">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CFightingLayerScene::updateHpAndAngry()"
+                  moduleName = "91.cube"
+                  urlString = "file:///Users/linminglu/Documents/CubeCOCO/Classes/Scene/FightScene/CFightingLayerScene.cpp"
+                  timestampString = "415180005.84244"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "696"
+                  endingLineNumber = "696"
+                  offsetFromSymbolStart = "850">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

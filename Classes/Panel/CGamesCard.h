@@ -31,8 +31,8 @@ public:
     CGamesCard();
     ~CGamesCard();
     bool initCreate(CFightCard *card);
-    void setDead();
-    void setLive();
+    virtual  void setDead();
+    virtual  void setLive();
     virtual CGamesCard *getCopy();
     bool getSuit(int &outSuit, int &outSequence);
     void updateToLevel(const int & inLevel);
