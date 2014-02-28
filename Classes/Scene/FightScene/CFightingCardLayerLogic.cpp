@@ -455,12 +455,14 @@ void CFightingCardLayerLogic::appendHpAngryUpdate()
         pEveryAtk=new SEveryATKData;
         pEveryAtk->data[0]=new SSpriteStatus;
         pEveryAtk->data[0]->m_iCurrHp=m_vFightingCard[m_iFightCardIndex]->m_iCurrHp;
+        pEveryAtk->data[0]->actionIndex=m_iFightCardIndex;
         pEveryAtk->data[0]->m_iCurrTotalHp=m_vFightingCard[m_iFightCardIndex]->m_iHp;
         pEveryAtk->data[0]->m_iEngry=m_vFightingCard[m_iFightCardIndex]->m_iCurrEngry;
         int value=0;
-        for (int i=m_iFightCardIndex+1; i<m_vFightingCard.size(); i++) {
+        for (int i=0; i<m_vFightingCard.size()-1; i++,value++) {
             if (m_vFightingCard[i]) {
-                pEveryAtk->data[0]->m_HouxuKaDeEngry[value++]=m_vFightingCard[i]->m_iCurrEngry;
+                pEveryAtk->data[0]->m_HouxuKaDeEngry[value]=m_vFightingCard[i]->m_iCurrEngry;
+                CCLog("pEveryAtk->data[0]->m_iEngry finghte %d, %d",i,m_vFightingCard[i]->m_iCurrEngry);
             }
         }
         CCLog("pEveryAtk->data[0]->m_iEngry:%d",pEveryAtk->data[0]->m_iEngry);
@@ -477,11 +479,13 @@ void CFightingCardLayerLogic::appendHpAngryUpdate()
         pEveryAtk->data[1]->m_iEngry=m_vMonsterCard[m_iMonsterCardIndex]->m_iCurrEngry;
         CCLog(" pEveryAtk->data[1]->m_iCurrTotalHp:%d",pEveryAtk->data[1]->m_iCurrHp);
         int value=0;
-        for (int i=m_iMonsterCardIndex+1; i<m_vMonsterCard.size(); i++) {
+        for (int i=0; i<m_vMonsterCard.size()-1; i++,value++) {
             if (m_vMonsterCard[i]) {
-                pEveryAtk->data[1]->m_HouxuKaDeEngry[value++]=m_vMonsterCard[i]->m_iCurrEngry;
+                pEveryAtk->data[1]->m_HouxuKaDeEngry[value]=m_vMonsterCard[i]->m_iCurrEngry;
+                 CCLog("pEveryAtk->data[0]->m_iEngry monster:%d, %d",i,m_vMonsterCard[i]->m_iCurrEngry);
             }
         }
+        pEveryAtk->data[0]->actionIndex=m_iMonsterCardIndex;
     }
     if(pEveryAtk)
     {

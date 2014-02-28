@@ -21,6 +21,8 @@ class CGameCardBuffer;
 class SFightResultData;
 class CGamePlayer;
 class CGameCardFactory;
+//备注！！！！！
+//如果有代码重构的话 把自己阵容抽成一个类。 对手阵容也抽成相同类的话 那么做成的代码就会更优化。  类似一个group的操作。
 class CFightingLayerScene :public CCLayer
 {
 public:

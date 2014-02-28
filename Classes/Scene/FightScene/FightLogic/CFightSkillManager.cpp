@@ -213,9 +213,11 @@ void CFightSkillManager::logicSkill_1(CFightCard *pCard,vector<CFightCard *>Figh
         switch (pSkill->skill_type)
         {
             case 1:
+                //如果是普通攻击对手加怒气30
                 MonsterCard[MonsterIndex]->appendEngry(30);
                 break;
             case 3:
+                
                 for (int i=FightIndex+1; i<FightCard.size(); i++)
                 {
                     if(FightCard[i])

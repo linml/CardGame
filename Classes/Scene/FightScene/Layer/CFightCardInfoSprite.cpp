@@ -34,6 +34,7 @@ CFightCardInfoSprite * CFightCardInfoSprite::CreateSprite(CFightCard *pCard,int 
 bool  CFightCardInfoSprite::initSprite(CFightCard *pCard, int nIndex)
 {
     CGamesCard::initCGamesCard(pCard, CGameCardFactory::getInstance());
+    en_gryMax=pCard->m_iEngryMax;
     CCSprite *pBackGroud=CCSprite::createWithSpriteFrameName("xiaonuqibackgroud.png");
     pBackGroud->setPosition(ccp(0,-10));//下面的配置参加testcpp的样例代码
     pBackGroud->setAnchorPoint(ccp(0,0));  //默认是中间，要设置左下角
@@ -42,7 +43,7 @@ bool  CFightCardInfoSprite::initSprite(CFightCard *pCard, int nIndex)
     CCProgressTimer* progressTimeEngry = CCProgressTimer::create(CCSprite::createWithSpriteFrameName("xiaonuqifront.png"));
     progressTimeEngry->setPosition(ccp(0,-10));//下面的配置参加testcpp的样例代码
     progressTimeEngry->setAnchorPoint(ccp(0,0));  //默认是中间，要设置左下角
-    progressTimeEngry->setPercentage(0.0);  //初始的百分比
+    progressTimeEngry->setPercentage(0);  //初始的百分比
     progressTimeEngry->setMidpoint(ccp(0, 0));  //设置中点位置，默认是四周向重点变化。现在把重点设置为左边(纵向居中)，使血从右向左减少
     progressTimeEngry->setBarChangeRate(ccp(1, 0));//横向
     progressTimeEngry->setType(kCCProgressTimerTypeBar);//暂时不知道什么用
@@ -70,6 +71,7 @@ bool  CFightCardInfoSprite::initSprite(CFightCard *pCard, int nIndex)
         default:
             break;
     }
+    CCLog("str=%s",str.c_str());
     CCLabelTTF *labelTTF=CCLabelTTF ::create(str.c_str(), "Arial", 15);
     labelTTF->setPosition(ccp(0,100));
     if (nIndex!=4) {
@@ -79,7 +81,7 @@ bool  CFightCardInfoSprite::initSprite(CFightCard *pCard, int nIndex)
         labelTTF->setColor(g_custom_color[25]);
     }
     labelTTF->setAnchorPoint(CCPointZero);
-    addChild(labelTTF,1,3);
+    addChild(labelTTF,2,3);
     return true;
 }
 void CFightCardInfoSprite::setDead()
@@ -119,9 +121,9 @@ void CFightCardInfoSprite::setNowAnger(int value)
 {
     if (getChildByTag(TAG_NUQITIAO)) {
         int nCurrValue=((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->getPercentage();
-        if (nCurrValue!=value) {
-            
-            CCProgressFromTo *pFrame=CCProgressFromTo::create(0.2, nCurrValue, value);
+        CCLog("value*100/en_gryMax:%d",value*100/en_gryMax);
+        if (nCurrValue!=value*100/en_gryMax) {
+            CCProgressFromTo *pFrame=CCProgressFromTo::create(0.2, nCurrValue, value*100/en_gryMax);
             ((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->runAction(pFrame);
         }
     }

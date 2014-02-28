@@ -27,6 +27,7 @@ public:
 private:
     CC_SYNTHESIZE(CFightCard *, m_pFightCard, FightCardInfo);
     int m_nIndex;
+    int en_gryMax;
 };
 
 #endif /* defined(___1_cube__CFightCardInfoSprite__) */

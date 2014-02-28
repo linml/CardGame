@@ -14,7 +14,8 @@ struct  SSpriteStatus
     int m_iCurrHp;
     int m_iCurrTotalHp;
     int m_iEngry;
-    int m_HouxuKaDeEngry[3];//用来保存剩下未上场的 卡牌的怒气
+    int actionIndex;
+    int m_HouxuKaDeEngry[4];//用来保存剩下未上场的 卡牌的怒气
 };
 
 class SEveryATKData

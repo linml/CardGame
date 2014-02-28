@@ -470,7 +470,6 @@ void CFightingLayerScene::animationSwf(CAnimationSctrip *fightAnimation)
 void CFightingLayerScene::animationSchudel(float t)
 {
     if (m_bAnimationEnd && m_nAnimationAndex<m_nTotalAnimation) {
-
         CCLog("animationAndex:%d,%d",m_bAnimationEnd,m_nAnimationAndex);
         m_bAnimationEnd=false;
         CAnimationSctrip *fightAnimation=G_FightSkillManager::instance()->m_vAnimationStrip[m_nAnimationAndex];
@@ -717,6 +716,12 @@ void CFightingLayerScene::updateHpAndAngry()
                 CFightHeadLayer *pLayer=(CFightHeadLayer *) getChildByTag(700);
                 pLayer->setCurrHP(spriteleft->m_iCurrHp,spriteleft->m_iCurrTotalHp);
                 pLayer->setCurrEngry(spriteleft->m_iEngry, 0);
+                int arrayIndex=0;
+                for (int i=0;i<=3 ; i++,arrayIndex++) {
+                    if (m_vFightingCard[i]) {
+                        ((CFightCardInfoSprite*)(getChildByTag(m_vFightingCard[i]->tag)))->setNowAnger(spriteleft->m_HouxuKaDeEngry[arrayIndex]);
+                    }
+                }
             }
             if (spriteRight)
             {
@@ -724,6 +729,13 @@ void CFightingLayerScene::updateHpAndAngry()
                 CFightHeadLayer *pLayer=(CFightHeadLayer *) getChildByTag(701);
                 pLayer->setCurrHP(spriteRight->m_iCurrHp,spriteRight->m_iCurrTotalHp);
                  pLayer->setCurrEngry(spriteRight->m_iEngry, 0);
+                int arrayIndex=0;
+                for (int i=0;i<=3 ; i++,arrayIndex++) {
+                    if (m_vMonsterCard[i]) {
+                        ((CFightCardInfoSprite*)(getChildByTag(m_vMonsterCard[i]->tag)))->setNowAnger(spriteRight->m_HouxuKaDeEngry[arrayIndex]);
+                        CCLog("spriteRight->m_HouxuKaDeEngry[arrayIndex++]:%d,%d",arrayIndex-1,spriteRight->m_HouxuKaDeEngry[arrayIndex-1]);
+                    }
+                }
             }
         }
         m_nHpEngryIndex++;

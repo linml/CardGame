@@ -19,7 +19,7 @@ public:
     CSkillData();
     ~CSkillData(){}
     int skill_id;        //技能ID
-    int skill_type;      //技能类型
+    int skill_type;      //技能类型0普通攻击 1怒气技能 2援护技能 3死亡加持  4增益技能
     int skill_logic;
     //技能逻辑ID 根据策划定义 该ID 可以指定 以下的parameter_1 ,parameter_2,parameter_3,parameter_4代表的是否是standarimpact.plist里面的ID;
    

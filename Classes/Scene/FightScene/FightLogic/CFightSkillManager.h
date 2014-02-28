@@ -37,7 +37,14 @@ static void FUNCTIONNAME(CFightCard *pCard,vector<CFightCard *>FightCard,vector<
 typedef void (*pFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pSkill,EN_ATKFIGHT_INDEX enAtkIndex); //skill
 typedef int (*pbFunc) (CFightCard *pCard,vector<CFightCard *>FightCard,vector<CFightCard *>MonsterCard,int FightIndex,int MonsterIndex,CSkillData *pData);  //cost;
 typedef string (*pbEffFunc) (CFightCard *pCard,CFightCard *pMonterCard,CSkillData *pSkill,CImapact *pCimapact,EN_ATKOBJECT enAtkobject); //effect
-
+/*
+ pskill-skill_type  代表如下
+0普通攻击
+1怒气技能
+2援护技能
+3死亡加持
+4增益技能
+ */
 class CFightSkillManager
 {
     typedef map<string,pFunc>::iterator    IteratorMapPfunc;
