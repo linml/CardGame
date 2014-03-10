@@ -44,6 +44,7 @@ public:
     
 public:
     bool initCGamesCard(CFightCard *inCard, CGameCardFactory *inFactory);
+    void setOpacity(GLubyte opacity); // override method
 protected:
    
     /*
@@ -107,6 +108,7 @@ protected:
     CCSprite * m_pLogo;
     CFightCard *m_pCardData;
 
+    CCLabelTTF *m_pTextInStarSprite;
     // new ui:
     CCSize m_sCardSize; // 小卡的整体外观大小
     

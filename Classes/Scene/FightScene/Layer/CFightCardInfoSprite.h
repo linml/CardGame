@@ -24,6 +24,8 @@ public:
     void setNowAnger(int value);
     void setDead();
     void setLive();
+    void setOpacity(GLubyte opacity);
+   
 private:
     CC_SYNTHESIZE(CFightCard *, m_pFightCard, FightCardInfo);
     int m_nIndex;

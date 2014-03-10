@@ -812,26 +812,26 @@ void CFightingLayerScene::SetCardOnGameBeiginFirstPosition()
 {
     for (int i=0; i<m_vFightingCard.size()-1; i++) {
         if (m_vFightingCard[i]) {
-            CCSprite * tempSprite=(CCSprite *)getChildByTag(m_vFightingCard[i]->tag);
+            CFightCardInfoSprite * tempSprite=(CFightCardInfoSprite *)getChildByTag(m_vFightingCard[i]->tag);
             if (i==0) {
                 tempSprite->setOpacity(0);
                 tempSprite->setPosition(ccp(wndSize.width/2-(300+55),wndSize.height/2-52));
             }
             else{
-                tempSprite->setPosition(ccp(tempSprite->getPositionX()-110,20));
+                tempSprite->setPosition(getCardPoint(i-1, true));
             }
         }
     }
     for (int i=0; i<m_vMonsterCard.size()-1; i++) {
         if (m_vMonsterCard[i]) {
-            CCSprite * tempSprite=(CCSprite *)getChildByTag(m_vMonsterCard[i]->tag);
+            CFightCardInfoSprite * tempSprite=(CFightCardInfoSprite *)getChildByTag(m_vMonsterCard[i]->tag);
             if (i==0) {
                 tempSprite->setOpacity(0);
                 tempSprite->setPosition(ccp(wndSize.width/2+(300+55),wndSize.height/2-52));
             }
             else{
           
-                tempSprite->setPosition(ccp(tempSprite->getPositionX()+110,20));
+                tempSprite->setPosition(getCardPoint(i-1, false));
             }
         }
     }
@@ -1023,6 +1023,7 @@ void CFightingLayerScene::createFightCard()
             gameCard->setAnchorPoint(CCPointZero);
             gameCard->setPosition(getCardPoint(i,true));
             gameCard->setTag(m_vFightingCard[i]->tag);
+            //gameCard->setScale(0.9);
             addChild(gameCard,8-i,m_vFightingCard[i]->tag);
          
         }
@@ -1059,6 +1060,7 @@ void CFightingLayerScene::createMonsterCard()
             gameCard->setPosition(getCardPoint(i, false));
             gameCard->setTag(m_vMonsterCard[i]->tag);
             gameCard->setFlipX(true);
+            //gameCard->setScale(0.9);
             gameCard->setAnchorPoint(CCPoint(1,0));
             addChild(gameCard,9-i, m_vMonsterCard[i]->tag);
         }
@@ -1079,8 +1081,8 @@ CCPoint CFightingLayerScene::getCardPoint(int index, bool isLeftCard)
         case 2:
         case 3:
         {
-            float kongbaifang=wndSize.width-8*110;
-            CCPoint point=CCPoint(wndSize.width*0.5+value*(kongbaifang/2+110*(3-index)),20);
+            float kongbaifang=wndSize.width-8*100;
+            CCPoint point=CCPoint(wndSize.width*0.5+value*(kongbaifang/2+100*(3-index)),10);
             CCLOG("index %d,CCPoint: %f",index,point.x);
             return point;
         }
@@ -1208,10 +1210,10 @@ void CFightingLayerScene::createEngryText()
 {
     CCLabelTTF *labelttf=CCLabelTTF::create("1", "Arail", 25);
     addChild(labelttf,99999,87777);
-    labelttf->setPosition(ccp(300,750));
+    labelttf->setPosition(ccp(300,670));
     labelttf=CCLabelTTF::create("2", "Arail", 25);
     addChild(labelttf,99999,87778);
-    labelttf->setPosition(ccp(874,750));
+    labelttf->setPosition(ccp(874,670));
 }
 
 

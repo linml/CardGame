@@ -122,7 +122,7 @@ protected:
 public: //for test
     friend inline ostream & operator << (ostream & os, CFightCard &t1)
     {
-        cout <<"{"
+        os <<"{"
              <<"\t卡牌HP   :"<< t1.m_iCurrHp<<"\n"
              << "\t卡牌ENGRY:"<< t1.m_iCurrEngry<<"\n"
              << "\t卡牌ATK  :"<< t1.m_attack<<"\n"

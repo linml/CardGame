@@ -77,6 +77,7 @@ CGamesCard::CGamesCard()
     m_pHpLabel = NULL;
     m_pRvcLabel = NULL;
     m_pLogo = NULL;
+    m_pTextInStarSprite = NULL;
 }
 
 CGamesCard::~CGamesCard()
@@ -107,6 +108,21 @@ bool CGamesCard::initCGamesCard(CFightCard *inCard, CGameCardFactory *inFactory)
     setContentSize(m_sCardSize);
     return true;
 }
+
+/**
+ * @brief: is override method, use for changing the card's opacity
+ */
+
+void CGamesCard::setOpacity(GLubyte opacity)
+{
+    CCSprite::setOpacity(opacity);
+    arrayMakeObjectsPerformSelectorWithObject(this->getChildren(), setOpacity, opacity, CCRGBAProtocol*);
+    if (m_pTextInStarSprite)
+    {
+        m_pTextInStarSprite->setOpacity(opacity);
+    }
+}
+
 
 CGamesCard * CGamesCard::getCopy()
 {
@@ -206,25 +222,26 @@ void CGamesCard::setLive(CCNode *node)
     vec4 col = texture2D(u_texture, v_texCoord); \n \
     gl_FragColor = col; \n \
     }";
-    if(node)
-    {
-        CCGLProgram* pProgram = new CCGLProgram();
-        pProgram->initWithVertexShaderByteArray(ccPositionTextureColor_vert, pszFragSource);
-        node->setShaderProgram(pProgram);
-        pProgram->release();
-        CHECK_GL_ERROR_DEBUG();
-        
-        node->getShaderProgram()->addAttribute(kCCAttributeNamePosition, kCCVertexAttrib_Position);
-        node->getShaderProgram()->addAttribute(kCCAttributeNameColor, kCCVertexAttrib_Color);
-        node->getShaderProgram()->addAttribute(kCCAttributeNameTexCoord, kCCVertexAttrib_TexCoords);
-        CHECK_GL_ERROR_DEBUG();
-        
-        node->getShaderProgram()->link();
-        CHECK_GL_ERROR_DEBUG();
-        
-        node->getShaderProgram()->updateUniforms();
-        CHECK_GL_ERROR_DEBUG();
-    }
+    updateColor();
+//    if(node)
+//    {
+//        CCGLProgram* pProgram = new CCGLProgram();
+//        pProgram->initWithVertexShaderByteArray(ccPositionTextureColor_vert, pszFragSource);
+//        node->setShaderProgram(pProgram);
+//        pProgram->release();
+//        CHECK_GL_ERROR_DEBUG();
+//        
+//        node->getShaderProgram()->addAttribute(kCCAttributeNamePosition, kCCVertexAttrib_Position);
+//        node->getShaderProgram()->addAttribute(kCCAttributeNameColor, kCCVertexAttrib_Color);
+//        node->getShaderProgram()->addAttribute(kCCAttributeNameTexCoord, kCCVertexAttrib_TexCoords);
+//        CHECK_GL_ERROR_DEBUG();
+//        
+//        node->getShaderProgram()->link();
+//        CHECK_GL_ERROR_DEBUG();
+//        
+//        node->getShaderProgram()->updateUniforms();
+//        CHECK_GL_ERROR_DEBUG();
+//    }
 
 }
 /*
@@ -671,6 +688,7 @@ void CGamesCard::createStar(int inStar ,CGameCardFactory *inFactory)
 
         label->setPosition(ccp(size.width/2, size.height/2-2));
         starSprite->addChild(label);
+        m_pTextInStarSprite = label;
     }
 }
 

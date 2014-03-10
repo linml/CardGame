@@ -34,6 +34,7 @@ CFightCardInfoSprite * CFightCardInfoSprite::CreateSprite(CFightCard *pCard,int 
 bool  CFightCardInfoSprite::initSprite(CFightCard *pCard, int nIndex)
 {
     CGamesCard::initCGamesCard(pCard, CGameCardFactory::getInstance());
+    // this->setScale(0.9);
     en_gryMax=pCard->m_iEngryMax;
     CCSprite *pBackGroud=CCSprite::createWithSpriteFrameName("xiaonuqibackgroud.png");
     pBackGroud->setPosition(ccp(0,-10));//下面的配置参加testcpp的样例代码
@@ -113,18 +114,75 @@ void CFightCardInfoSprite::setLive()
         default:
             break;
     }
-
+    
     ((CCLabelTTF *)getChildByTag(3))->setString(str.c_str());
 }
 
 void CFightCardInfoSprite::setNowAnger(int value)
 {
-    if (getChildByTag(TAG_NUQITIAO)) {
-        int nCurrValue=((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->getPercentage();
-        CCLog("value*100/en_gryMax:%d",value*100/en_gryMax);
-        if (nCurrValue!=value*100/en_gryMax) {
-            CCProgressFromTo *pFrame=CCProgressFromTo::create(0.2, nCurrValue, value*100/en_gryMax);
-            ((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->runAction(pFrame);
+    if ( ((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->isVisible()) {
+        
+        
+        if (getChildByTag(TAG_NUQITIAO)) {
+            int nCurrValue=((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->getPercentage();
+            CCLog("value*100/en_gryMax:%d",value*100/en_gryMax);
+            if (nCurrValue!=value*100/en_gryMax) {
+                CCProgressFromTo *pFrame=CCProgressFromTo::create(0.2, nCurrValue, value*100/en_gryMax);
+                ((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->runAction(pFrame);
+            }
         }
     }
 }
+
+void CFightCardInfoSprite::setOpacity(GLubyte opacity)
+{
+   
+    m_nOpacity = opacity;
+     if (opacity<100)
+     {
+         if (m_pChildren && m_pChildren->count() > 0)
+         {
+        CCObject* pObject = NULL;
+        CCARRAY_FOREACH(m_pChildren, pObject)
+        {
+            CCNode* pChild = dynamic_cast<CCNode*>(pObject);
+//            if (pChild)
+//            {
+//                CCRGBAProtocol *pRGBAProtocol = dynamic_cast<CCRGBAProtocol*>(pChild);
+//                if (pRGBAProtocol)
+//                {
+//                    pRGBAProtocol->setOpacity(m_nOpacity);
+//                }
+//            }
+            pChild->setVisible(false);
+        }
+         }
+     }
+    else
+    {
+        if (m_pChildren && m_pChildren->count() > 0)
+        {
+            CCObject* pObject = NULL;
+            CCARRAY_FOREACH(m_pChildren, pObject)
+            {
+                CCNode* pChild = dynamic_cast<CCNode*>(pObject);
+                //            if (pChild)
+                //            {
+                //                CCRGBAProtocol *pRGBAProtocol = dynamic_cast<CCRGBAProtocol*>(pChild);
+                //                if (pRGBAProtocol)
+                //                {
+                //                    pRGBAProtocol->setOpacity(m_nOpacity);
+                //                }
+                //            }
+                pChild->setVisible(true);
+            }
+        }
+//        ((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->setVisible(false);
+    }
+//    else{
+//        ((CCProgressTimer *)(getChildByTag(TAG_NUQITIAO)))->setVisible(true);
+//    }
+    
+    
+}
+
