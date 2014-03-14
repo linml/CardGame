@@ -452,10 +452,10 @@ void CGamePlayer::getBufferPlistByEffectId(int effectID,string  &effectStrPlist,
         if(m_vImpactInfo[i]->m_ieffect_id==effectID)
         {
             vector<string>tempstr=GameTools::splitString(m_vImpactInfo[i]->m_sEffectFile.c_str(), ",");
-            if(tempstr.size()>2)
+            if(tempstr.size()>1)
             {
                 effectStrPlist=tempstr[0];
-                longLivePlist=tempstr[1];
+                longLivePlist="NULL";
                 return ;
             }
         }

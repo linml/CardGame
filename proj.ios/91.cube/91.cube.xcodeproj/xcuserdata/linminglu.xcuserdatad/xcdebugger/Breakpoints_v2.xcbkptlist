@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415246099.002619"
+            timestampString = "416478841.387885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "762"
-            endingLineNumber = "762"
+            startingLineNumber = "778"
+            endingLineNumber = "778"
             landmarkName = "CFightingLayerScene::createHero()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415607326.092136"
+            timestampString = "416478841.387885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1094"
-            endingLineNumber = "1094"
+            startingLineNumber = "1110"
+            endingLineNumber = "1110"
             landmarkName = "CFightingLayerScene::getCardPoint(int index, bool isLeftCard)"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415246099.002619"
+            timestampString = "416478841.387885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "813"
-            endingLineNumber = "813"
+            startingLineNumber = "829"
+            endingLineNumber = "829"
             landmarkName = "CFightingLayerScene::SetCardOnGameBeiginFirstPosition()"
             landmarkType = "5">
             <Locations>
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415187700.812849"
+            timestampString = "416478841.387885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "702"
-            endingLineNumber = "702"
+            startingLineNumber = "718"
+            endingLineNumber = "718"
             landmarkName = "CFightingLayerScene::updateHpAndAngry()"
             landmarkType = "5">
             <Locations>
@@ -240,11 +240,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415246513.479561"
+            timestampString = "416478841.387885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "729"
-            endingLineNumber = "729"
+            startingLineNumber = "745"
+            endingLineNumber = "745"
             landmarkName = "CFightingLayerScene::updateHpAndAngry()"
             landmarkType = "5">
          </BreakpointContent>
@@ -272,11 +272,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415612837.480463"
+            timestampString = "416478841.387885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1179"
-            endingLineNumber = "1179"
+            startingLineNumber = "1195"
+            endingLineNumber = "1195"
             landmarkName = "CFightingLayerScene::resetCardPosition()"
             landmarkType = "5">
             <Locations>
@@ -346,13 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "../../Classes/Scene/FightScene/CFightingLayerScene.cpp"
-            timestampString = "415612846.235878"
+            timestampString = "416478841.387885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1197"
-            endingLineNumber = "1197"
-            landmarkName = "CFightingLayerScene::resetCardPosition()"
-            landmarkType = "5">
+            startingLineNumber = "1213"
+            endingLineNumber = "1213">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

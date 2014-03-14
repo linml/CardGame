@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>gongji</key>
+	<dict>
+		<key>actions</key>
+		<array>
+			<string>Delay(0.2)</string>
+			<string>TintTo(0.2,255,255,255)</string>
+			<string>TintTo(0.2,255,0,0)</string>
+			<string>MoveBy(0.1,{-40,40})</string>
+			<string>MoveBy(0.1,{40,-40})</string>
+			<string>Sequence(Item 0,Item 6,Item 7)</string>
+			<string>Spawn(Item 4,Item 2)</string>
+			<string>Spawn(Item 3,Item 1)</string>
+		</array>
+		<key>runAction</key>
+		<string>Item 5</string>
+	</dict>
+</dict>
+</plist>

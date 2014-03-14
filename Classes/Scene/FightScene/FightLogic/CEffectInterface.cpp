@@ -48,7 +48,7 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
 
         if (needDealWithHpAtkDefImmideala)
         {
-            m_sNeadLongLiveBufferFile="NULL";
+            m_sNeadAppendBufferFile="";
             pMonster->appendHp(iChangeShanghaiHp);
             pMonster->subAtk(-iChangeatk);
             pMonster->subDef(-iChangedef);
@@ -73,7 +73,7 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
         SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id,m_sNeadAppendBufferFile,m_sNeadLongLiveBufferFile);
         if (isNeedAdd)
         {
-            m_sNeadLongLiveBufferFile="NULL";
+            m_sNeadAppendBufferFile="";
         }
         CCLog("m_sNeadAppendBufferFile :%s",m_sNeadAppendBufferFile.c_str());
     }

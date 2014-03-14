@@ -665,7 +665,6 @@ string CFightSkillManager::effect_1(CFightCard *pCard,CFightCard *pMonterCard,CS
     CEffectInterface *effect=new CEffectInterfaceOneRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     string result=effect->getNeedAppendBufferFile();
-    result+=","+effect->getNeadLongLiveBufferFile();
     CC_SAFE_DELETE(effect);
     return result;
 }
@@ -675,7 +674,6 @@ string CFightSkillManager::effect_2(CFightCard *pCard,CFightCard *pMonterCard,CS
     CEffectInterface *effect=new CEffectInterFaceTwoRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     string result=effect->getNeedAppendBufferFile();
-    result+=","+effect->getNeadLongLiveBufferFile();
     CC_SAFE_DELETE(effect);
     return result;
 }
@@ -685,7 +683,6 @@ string CFightSkillManager::effect_3(CFightCard *pCard,CFightCard *pMonterCard,CS
     CEffectInterface *effect=new CEffectInterFaceThreeRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     string result=effect->getNeedAppendBufferFile();
-    result+=","+effect->getNeadLongLiveBufferFile();
     CC_SAFE_DELETE(effect);
     return result;
 }
@@ -695,7 +692,6 @@ string CFightSkillManager::effect_4(CFightCard *pCard,CFightCard *pMonterCard,CS
     CEffectInterface *effect=new CEffectInterFaceFourRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     string result=effect->getNeedAppendBufferFile();
-    result+=","+effect->getNeadLongLiveBufferFile();
     CC_SAFE_DELETE(effect);
     return result;
 }
@@ -705,7 +701,6 @@ string CFightSkillManager::effect_5(CFightCard *pCard,CFightCard *pMonterCard,CS
     CEffectInterface *effect=new CEffectInterFaceFiveRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     string result=effect->getNeedAppendBufferFile();
-    result+=","+effect->getNeadLongLiveBufferFile();
     CC_SAFE_DELETE(effect);
     return result;
 }
@@ -730,7 +725,6 @@ string CFightSkillManager::effect_8(CFightCard *pCard,CFightCard *pMonterCard,CS
        CEffectInterface *effect=new CEffectInterFaceEightRefactor();
         effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
         string result=effect->getNeedAppendBufferFile();
-        result+=","+effect->getNeadLongLiveBufferFile();
         CC_SAFE_DELETE(effect);
         return result;
 }
@@ -751,7 +745,6 @@ string CFightSkillManager::effect_11(CFightCard *pCard,CFightCard *pMonterCard,C
     CEffectInterface *effect=new CEffectInterFaceElevenRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     string result=effect->getNeedAppendBufferFile();
-    result+=","+effect->getNeadLongLiveBufferFile();
     CCLog("result :%s",result.c_str());
     CC_SAFE_DELETE(effect);
     return result;
@@ -762,7 +755,6 @@ string CFightSkillManager::effect_21(CFightCard *pCard,CFightCard *pMonterCard,C
     CEffectInterface *effect=new CEffectInterFaceTwentyOneRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     string result=effect->getNeedAppendBufferFile();
-    result+=","+effect->getNeadLongLiveBufferFile();
     CC_SAFE_DELETE(effect);
     return result;
 }
@@ -772,7 +764,6 @@ string CFightSkillManager::effect_24(CFightCard *pCard,CFightCard *pMonterCard,C
     CEffectInterface *effect=new CEffectInterFaceTwentyFourRefactor();
     effect->logicFightingCardByFightAndMonster(pCard,pMonterCard,pCimapact);
     string result=effect->getNeedAppendBufferFile();
-    result+=","+effect->getNeadLongLiveBufferFile();
     CC_SAFE_DELETE(effect);
     return result;
 }

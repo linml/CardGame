@@ -242,17 +242,19 @@ void CFightingLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSpr
             AnimaitonEnd();
             return;
         }
+        vector<string>tempPlist=GameTools::splitArgString(fightAnimation->m_sRunActionFile.c_str(), ",");
+        
         if (fightAnimation->m_enAnimationType!=EN_ANIMATIONTYPEREFACTOR_BUFFER_OWN &&fightAnimation->m_enAnimationType!=EN_ANIMATIONTYPEREFACTOR_BUFFER_MONSTER )
         {
             if (fightAnimation->m_enAtkFightIndex == EN_ATKFIGHT_INDEX_RIGHT_LORD ||
                 fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
             {
-                filePath = fightAnimation->m_sRunActionFile+"_r.plist";
+                filePath = tempPlist[0]+"_r.plist";
             }
             else if(fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_LEFT_LORD ||
                 fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
             {
-                filePath =fightAnimation->m_sRunActionFile+ "_l.plist";
+                filePath =tempPlist[0]+ "_l.plist";
             }
         }
         else{
@@ -278,12 +280,26 @@ void CFightingLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSpr
 
         if(pMonsterSprite2)
         {
-            CCAction *action=PtActionUtility::getRunActionWithActionFile(filePath,"shoushang");
-            if (action)
-            {
-                 pMonsterSprite2->setActionManager(actionManager2);
-                 pMonsterSprite2->runAction(action);
+            if ( tempPlist.size()>1) {
+                if (fightAnimation->m_enAtkFightIndex == EN_ATKFIGHT_INDEX_RIGHT_LORD ||
+                    fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_RIGHT_SUPPORT)
+                {
+                    filePath = tempPlist[1]+"_l.plist";
+                }
+                else if(fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_LEFT_LORD ||
+                        fightAnimation->m_enAtkFightIndex==EN_ATKFIGHT_INDEX_LEFT_SUPPORT)
+                {
+                    filePath =tempPlist[1]+ "_r.plist";
+                }
+                CCAction *action=PtActionUtility::getRunActionWithActionFile(filePath,"gongji");
+                if (action)
+                {
+                    pMonsterSprite2->setActionManager(actionManager2);
+                    pMonsterSprite2->runAction(action);
+                }
             }
+            
+            
         }
     }
     else

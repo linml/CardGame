@@ -130,15 +130,14 @@ void CFightingCardLayerLogic::loadAnimatePlist()
     CFightSkillManager *skillManager=G_FightSkillManager::instance();
     for (int i= 0; i<skillManager->m_vAnimationStrip.size(); i++)
     {
-       vector<string>temp_plist=GameTools::splitArgString(skillManager->m_vAnimationStrip[i]->m_sRunActionFile.c_str(), ",");
+        vector<string>temp_plist=GameTools::splitArgString(skillManager->m_vAnimationStrip[i]->m_sRunActionFile.c_str(), ",");
         CCLog("aaaaaadasdfsadfasdfas %s",skillManager->m_vAnimationStrip[i]->m_sRunActionFile.c_str());
         for (int i=0; i<temp_plist.size(); i++) {
             string  strPlist=temp_plist[i];
-            if(strPlist.empty())
+            if(strPlist.empty() || strPlist=="NULL")
             {
                 continue;
             }
-            CCLog("aaaaaaa:%s",strPlist.c_str());
             if(strPlist.compare(strPlist.length()-6, 6, ".plist"))
             {
                 strPlist+="_l.plist";
