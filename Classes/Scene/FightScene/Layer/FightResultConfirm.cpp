@@ -121,7 +121,7 @@ void FightResultConfirm::callBackDataTeam(cocos2d::CCObject *object)
     if (pResult->objectForKey("code")&&GameTools::intForKey("code", pResult)==0)
     {
         CCDictionary *resultDict=(CCDictionary *)pResult->objectForKey("result");
-        if(((CCString *) resultDict->objectForKey("info"))->intValue()==1)
+        if(((CCString *) resultDict->objectForKey("event_info"))->intValue()==1)
         {
             
             m_nResult->setFightResult(1);
@@ -213,7 +213,7 @@ void FightResultConfirm::callBackData(cocos2d::CCObject *object)
                    
                     handlerEventReward(NULL);
                 }
-                if(((CCString *) pResult->objectForKey("info"))->intValue()==1)
+                if(((CCString *) pResult->objectForKey("event_info"))->intValue()==1)
                 {
                     m_nResult->setFightResult(1);
                     PtSoundTool::playSysSoundEffect("fight_win.mp3");

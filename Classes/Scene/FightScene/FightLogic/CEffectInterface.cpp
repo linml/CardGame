@@ -71,7 +71,8 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
             isNeedAdd=false;
         }
         SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id,m_sNeadAppendBufferFile,m_sNeadLongLiveBufferFile);
-        if (isNeedAdd)
+        
+        if (!isNeedAdd)
         {
             m_sNeadAppendBufferFile="";
         }
