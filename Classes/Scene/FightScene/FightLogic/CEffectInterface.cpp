@@ -43,11 +43,12 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
             {
                 needDealWithHpAtkDefImmideala=false;
             }
-             m_sNeadAppendBufferFile=SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id);
         }
+        SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id,m_sNeadAppendBufferFile,m_sNeadLongLiveBufferFile);
+
         if (needDealWithHpAtkDefImmideala)
         {
-            m_sNeadAppendBufferFile="";
+            m_sNeadLongLiveBufferFile="NULL";
             pMonster->appendHp(iChangeShanghaiHp);
             pMonster->subAtk(-iChangeatk);
             pMonster->subDef(-iChangedef);
@@ -69,9 +70,10 @@ void CEffectInterface::dealWithBufferAndImmediately(CFightCard *pCard, CFightCar
         {
             isNeedAdd=false;
         }
+        SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id,m_sNeadAppendBufferFile,m_sNeadLongLiveBufferFile);
         if (isNeedAdd)
         {
-            m_sNeadAppendBufferFile=SinglePlayer::instance()->getBufferPlistByEffectId(pImapact->m_ieffect_id);//需要播放的特效
+            m_sNeadLongLiveBufferFile="NULL";
         }
         CCLog("m_sNeadAppendBufferFile :%s",m_sNeadAppendBufferFile.c_str());
     }

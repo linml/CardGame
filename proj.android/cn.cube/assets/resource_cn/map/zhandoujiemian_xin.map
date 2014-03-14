@@ -9,7 +9,7 @@
         <key>backgroundColor</key>
         <string>{0,0,0,255}</string>
         <key>gridInfo</key>
-        <string>{64,64,16,12}</string>
+        <string>{64,64,15,10}</string>
         <key>layerNameArray</key>
         <string>touxiang,ditiao</string>
     </dict>
@@ -26,7 +26,7 @@
                 <key>mapSpriteName</key>
                 <string>zhandou_05.png</string>
                 <key>pos</key>
-                <string>{499,1}</string>
+                <string>{470,0}</string>
                 <key>z</key>
                 <integer>0</integer>
                 <key>tag</key>
@@ -39,7 +39,7 @@
                 <key>mapSpriteName</key>
                 <string>zhandou_07.png</string>
                 <key>pos</key>
-                <string>{522,1}</string>
+                <string>{493,0}</string>
                 <key>z</key>
                 <integer>5</integer>
                 <key>tag</key>
@@ -52,7 +52,7 @@
                 <key>mapSpriteName</key>
                 <string>zhandou_02.png</string>
                 <key>pos</key>
-                <string>{402,1}</string>
+                <string>{373,0}</string>
                 <key>z</key>
                 <integer>10</integer>
                 <key>tag</key>
@@ -65,7 +65,7 @@
                 <key>mapSpriteName</key>
                 <string>zhandou_01.png</string>
                 <key>pos</key>
-                <string>{-8,1}</string>
+                <string>{-38,0}</string>
                 <key>z</key>
                 <integer>15</integer>
                 <key>tag</key>
@@ -78,7 +78,7 @@
                 <key>mapSpriteName</key>
                 <string>zhandou_03.png</string>
                 <key>pos</key>
-                <string>{553,1}</string>
+                <string>{519,0}</string>
                 <key>z</key>
                 <integer>20</integer>
                 <key>tag</key>
@@ -94,7 +94,7 @@
                 <key>mapSpriteName</key>
                 <string>zhandou1.png</string>
                 <key>pos</key>
-                <string>{-4,671}</string>
+                <string>{-2,544}</string>
                 <key>z</key>
                 <integer>40</integer>
                 <key>tag</key>
@@ -107,7 +107,7 @@
                 <key>mapSpriteName</key>
                 <string>zhandou2.png</string>
                 <key>pos</key>
-                <string>{591,671}</string>
+                <string>{524,544}</string>
                 <key>z</key>
                 <integer>45</integer>
                 <key>tag</key>

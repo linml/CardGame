@@ -32,6 +32,7 @@ protected:
     int iChangeengry;
 public:
     CC_SYNTHESIZE(string, m_sNeadAppendBufferFile, NeedAppendBufferFile);
+    CC_SYNTHESIZE(string, m_sNeadLongLiveBufferFile, NeadLongLiveBufferFile);
 };
 
 #endif /* defined(___1_cube__CEffectInterface__) */

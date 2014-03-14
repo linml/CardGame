@@ -53,7 +53,7 @@ public:
      CSkillData *getPutongGongji(CFightCard *pCard);
      CSkillData *getSkillBySkillId(int skillId);
      CImapact *getEffectTableByEffectId(int effectId);
-     string getBufferPlistByEffectId(int effectID);
+     void getBufferPlistByEffectId(int effectID,string  &effectStrPlist,string &longLivePlist);
      string getBufferPngByEffectId(int effectID);
      CImapact *findByImpactId( int tempImpactId);
 protected:

@@ -261,10 +261,7 @@ void CFightingLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSpr
         //播放特效文件
         CCAction *animation=PtActionUtility::getRunActionWithActionFile(filePath);
         CCCallFunc *endAnimation=CCCallFunc::create(this, callfunc_selector(CFightingLayerScene::AnimaitonEnd));
-        
-   
-        
-        
+  
         if (fightAnimation->m_enAtkFightIndex == EN_ATKFIGHT_INDEX_LEFT_LORD || fightAnimation->m_enAtkFightIndex ==EN_ATKFIGHT_INDEX_RIGHT_LORD)
         {
             reorderChild(pFightSprite, 2);
@@ -285,7 +282,7 @@ void CFightingLayerScene::showSkill(CCSprite *pFightSprite,CCSprite *pMonsterSpr
             if (action)
             {
                  pMonsterSprite2->setActionManager(actionManager2);
-                pMonsterSprite2->runAction(action);
+                 pMonsterSprite2->runAction(action);
             }
         }
     }

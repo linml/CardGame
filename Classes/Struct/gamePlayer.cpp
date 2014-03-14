@@ -446,24 +446,22 @@ void CGamePlayer::clearAllSkillInfo()
     m_vSkillInfo.erase(m_vSkillInfo.begin(),m_vSkillInfo.end());
 }
 
-string CGamePlayer::getBufferPlistByEffectId(int effectID)
+void CGamePlayer::getBufferPlistByEffectId(int effectID,string  &effectStrPlist,string &longLivePlist)
 {
     for (int i=0; i<m_vImpactInfo.size(); i++) {
         if(m_vImpactInfo[i]->m_ieffect_id==effectID)
         {
             vector<string>tempstr=GameTools::splitString(m_vImpactInfo[i]->m_sEffectFile.c_str(), ",");
-            if(tempstr.size()>1)
+            if(tempstr.size()>2)
             {
-                return tempstr[0];
+                effectStrPlist=tempstr[0];
+                longLivePlist=tempstr[1];
+                return ;
             }
-            else{
-                return "";
-            }
-            
-            
         }
     }
-    return "";
+    effectStrPlist="NULL";
+    longLivePlist="NULL";
 }
 
 string CGamePlayer::getBufferPngByEffectId(int effectID)

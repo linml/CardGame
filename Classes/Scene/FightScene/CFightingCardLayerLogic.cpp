@@ -130,38 +130,44 @@ void CFightingCardLayerLogic::loadAnimatePlist()
     CFightSkillManager *skillManager=G_FightSkillManager::instance();
     for (int i= 0; i<skillManager->m_vAnimationStrip.size(); i++)
     {
+       vector<string>temp_plist=GameTools::splitArgString(skillManager->m_vAnimationStrip[i]->m_sRunActionFile.c_str(), ",");
         CCLog("aaaaaadasdfsadfasdfas %s",skillManager->m_vAnimationStrip[i]->m_sRunActionFile.c_str());
-        string  strPlist=skillManager->m_vAnimationStrip[i]->m_sRunActionFile;
-        if(strPlist.empty())
-        {
-            continue;
-        }
-        CCLog("aaaaaaa:%s",strPlist.c_str());
-        if(strPlist.compare(strPlist.length()-6, 6, ".plist"))
-        {
-            strPlist+="_l.plist";
-        }
-        bool  needInsert=true;
-        for (int j=0; j<m_vSskillFile.size(); j++)
-        {
-            string data=m_vSskillFile[j];
-            if(data==strPlist) {
-                needInsert=false;
-                break;
+        for (int i=0; i<temp_plist.size(); i++) {
+            string  strPlist=temp_plist[i];
+            if(strPlist.empty())
+            {
+                continue;
+            }
+            CCLog("aaaaaaa:%s",strPlist.c_str());
+            if(strPlist.compare(strPlist.length()-6, 6, ".plist"))
+            {
+                strPlist+="_l.plist";
+            }
+            bool  needInsert=true;
+            for (int j=0; j<m_vSskillFile.size(); j++)
+            {
+                string data=m_vSskillFile[j];
+                if(data==strPlist) {
+                    needInsert=false;
+                    break;
+                }
+            }
+            if(needInsert)
+            {
+                CCLog("load plist %s",strPlist.c_str());
+                m_vSskillFile.push_back(strPlist);
+                PtActionUtility::getAppendHBActionCachWithActionFile(strPlist, m_vNeedAnimate);
             }
         }
-        if(needInsert)
-        {
-            CCLog("load plist %s",strPlist.c_str());
-            m_vSskillFile.push_back(strPlist);
-            PtActionUtility::getAppendHBActionCachWithActionFile(strPlist, m_vNeedAnimate);
-        }
+        
     }
 }
 
 bool CFightingCardLayerLogic::checklogicBuffAndDead()
 {
-    m_enHuiheIndex++;
+    //坑爹的XCODE5.1 必须这么做
+    int value=(int)m_enHuiheIndex;
+    m_enHuiheIndex=(EN_ATKFIGHT_INDEX)(++value);
     if(m_enHuiheIndex==EN_ATKFIGHT_INDEX_LEFT_LORD&&m_vFightingCard[m_iFightCardIndex])
     {
         CFightSkillManager::dealWithBuffer(m_vFightingCard[m_iFightCardIndex],m_iFightCardIndex,m_iMonsterCardIndex, EN_ATKFIGHT_INDEX_LEFT_LORD);
