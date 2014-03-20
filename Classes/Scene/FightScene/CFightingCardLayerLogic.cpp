@@ -337,7 +337,7 @@ bool CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()
             }
             CCLog("用户移动位置");
             //            G_FightSkillManager::instance()->appendAnimation(backIndex, m_iFightCardIndex, 0, 0, 0, 0, 0, EN_ANIMATIONTYPE_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE);
-            G_FightSkillManager::instance()->appendVector(EN_ANIMATIONTYPEREFACTOR_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE, 0, m_iFightCardIndex, 0, 0, 0, "");
+            G_FightSkillManager::instance()->appendVector(EN_ANIMATIONTYPEREFACTOR_DEADMOVE, EN_ATKFIGHT_INDEX_LEFT_MOVE, 0, backIndex, 0, 0, 0, "");
             appendUpdateAction();
             result=true;
         }
@@ -359,7 +359,7 @@ bool CFightingCardLayerLogic::whenDeadSendDeadSkillAndMove()
             CCLog("右边第%d个 发动死亡技能",m_iMonsterCardIndex);
             
             int indexNext= getNextFightCard(m_iMonsterCardIndex,false);
-            if(indexNext<m_vFightingCard.size()-1)
+            if(indexNext<m_vMonsterCard.size()-1)
             {
                 if(G_FightSkillManager::instance()->CardFighting(m_vMonsterCard[backIndex], m_vMonsterCard ,m_vFightingCard,backIndex ,m_iFightCardIndex,EN_SEND_SKILL_DEAD,EN_ATKFIGHT_INDEX_RIGHT_LORD))
                 {

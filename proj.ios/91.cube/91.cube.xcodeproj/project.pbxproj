@@ -111,6 +111,9 @@
 		6FBCA8491862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCA8471862CDB8009F51D6 /* CSceneGameSingleShopLayer.cpp */; };
 		6FBCC6BA181F670B008865DD /* CPlayerBufferManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBCC6B8181F670B008865DD /* CPlayerBufferManager.cpp */; };
 		6FBDD9151828A16900870AF4 /* CFightingLayerScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBDD9131828A16900870AF4 /* CFightingLayerScene.cpp */; };
+		6FBFAE0E18DAF9CE0000753B /* CNodeGoubian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FBFAE0C18DAF9CE0000753B /* CNodeGoubian.cpp */; };
+		6FBFAE1218DAFC710000753B /* Role_Shader_Edge_Light.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 6FBFAE1018DAFC710000753B /* Role_Shader_Edge_Light.fsh */; };
+		6FBFAE1318DAFC710000753B /* Role_Shader_Edge_Light.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 6FBFAE1118DAFC710000753B /* Role_Shader_Edge_Light.vsh */; };
 		6FC6B05A184DAE2F0098E3BF /* CAnnouncementLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6B058184DAE2F0098E3BF /* CAnnouncementLayer.cpp */; };
 		6FC6B060184DCE450098E3BF /* CGameRankLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6B05E184DCE450098E3BF /* CGameRankLayer.cpp */; };
 		6FC6B063184DD0AB0098E3BF /* CUtilityTableView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6FC6B061184DD0AB0098E3BF /* CUtilityTableView.cpp */; };
@@ -628,6 +631,10 @@
 		6FBCC6B9181F670B008865DD /* CPlayerBufferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPlayerBufferManager.h; sourceTree = "<group>"; };
 		6FBDD9131828A16900870AF4 /* CFightingLayerScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CFightingLayerScene.cpp; sourceTree = "<group>"; };
 		6FBDD9141828A16900870AF4 /* CFightingLayerScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CFightingLayerScene.h; sourceTree = "<group>"; };
+		6FBFAE0C18DAF9CE0000753B /* CNodeGoubian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CNodeGoubian.cpp; sourceTree = "<group>"; };
+		6FBFAE0D18DAF9CE0000753B /* CNodeGoubian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNodeGoubian.h; sourceTree = "<group>"; };
+		6FBFAE1018DAFC710000753B /* Role_Shader_Edge_Light.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Role_Shader_Edge_Light.fsh; path = Resources/Role_Shader_Edge_Light.fsh; sourceTree = "<group>"; };
+		6FBFAE1118DAFC710000753B /* Role_Shader_Edge_Light.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = Role_Shader_Edge_Light.vsh; path = Resources/Role_Shader_Edge_Light.vsh; sourceTree = "<group>"; };
 		6FC6B058184DAE2F0098E3BF /* CAnnouncementLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAnnouncementLayer.cpp; sourceTree = "<group>"; };
 		6FC6B059184DAE2F0098E3BF /* CAnnouncementLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAnnouncementLayer.h; sourceTree = "<group>"; };
 		6FC6B05E184DCE450098E3BF /* CGameRankLayer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CGameRankLayer.cpp; sourceTree = "<group>"; };
@@ -2178,6 +2185,8 @@
 		9FC6ED971746084F0091BE98 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6FBFAE1018DAFC710000753B /* Role_Shader_Edge_Light.fsh */,
+				6FBFAE1118DAFC710000753B /* Role_Shader_Edge_Light.vsh */,
 				9F55A129174B154B0068E44A /* resource_cn */,
 				9FC6ED981746084F0091BE98 /* CloseNormal.png */,
 				9FC6ED9A1746084F0091BE98 /* CloseSelected.png */,
@@ -2206,6 +2215,8 @@
 		9FC6F03317460BFF0091BE98 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				6FBFAE0C18DAF9CE0000753B /* CNodeGoubian.cpp */,
+				6FBFAE0D18DAF9CE0000753B /* CNodeGoubian.h */,
 				9F801315175493D400EEC0BC /* Panel */,
 				9F801316175493D400EEC0BC /* Scene */,
 				6FA6AFA9174F6A1D00608A73 /* BaseControl */,
@@ -3184,6 +3195,7 @@
 				6F28A6E91807F52200225C09 /* Default-568h@2x.png in Resources */,
 				9FC6EDA31746084F0091BE98 /* Icon-Small-50.png in Resources */,
 				9FC6EDA5174608500091BE98 /* Icon-Small.png in Resources */,
+				6FBFAE1318DAFC710000753B /* Role_Shader_Edge_Light.vsh in Resources */,
 				9FC6EDA7174608500091BE98 /* Icon-Small@2x.png in Resources */,
 				9FC6EDA9174608500091BE98 /* Icon.png in Resources */,
 				9FC6EDAB174608500091BE98 /* Icon@2x.png in Resources */,
@@ -3196,6 +3208,7 @@
 				9F70A520177C114D00E995FC /* writer.inl in Resources */,
 				9FFE8E8D1781A03F00DF7D47 /* json_internalarray.inl in Resources */,
 				9FFE8E8E1781A03F00DF7D47 /* json_internalmap.inl in Resources */,
+				6FBFAE1218DAFC710000753B /* Role_Shader_Edge_Light.fsh in Resources */,
 				9FFE8E911781A03F00DF7D47 /* json_valueiterator.inl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3287,6 +3300,7 @@
 				9FC6F22717460BFF0091BE98 /* CCKeypadDelegate.cpp in Sources */,
 				9FC6F22817460BFF0091BE98 /* CCKeypadDispatcher.cpp in Sources */,
 				6FC89053184343EC00AC8626 /* CGameSelectDialog.cpp in Sources */,
+				6FBFAE0E18DAF9CE0000753B /* CNodeGoubian.cpp in Sources */,
 				9FC6F22917460BFF0091BE98 /* CCLabelAtlas.cpp in Sources */,
 				6FB9D33F18556A8900E752DF /* CEveryDayLoginData.cpp in Sources */,
 				9FC6F22A17460BFF0091BE98 /* CCLabelBMFont.cpp in Sources */,
@@ -3703,12 +3717,13 @@
 					"\"$(SRCROOT)/../../libs/cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../../libs/PtTool\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F32C032B-CD35-4C68-85B0-DC074F243DCE";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALID_ARCHS = armv7;
@@ -3751,12 +3766,13 @@
 					"\"$(SRCROOT)/../../libs/cocos2dx/platform/third_party/ios/libraries\"",
 					"\"$(SRCROOT)/../../libs/PtTool\"",
 				);
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lxml2",
 					"-lz",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "F32C032B-CD35-4C68-85B0-DC074F243DCE";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;

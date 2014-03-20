@@ -399,11 +399,11 @@ void CLoginScene::playGame()
     {
 
         SinglePlayer::instance()->m_bIsLogin=true;
-        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
+        //SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HALLSCENE);
 
         //场景切换动画 用来做测试的时候用得。 
 
-//        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
+        SingleSceneManager::instance()->runSceneSelect(EN_CURRSCENE_HELLOWORLD);
 
     }
 }

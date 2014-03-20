@@ -61,7 +61,8 @@ CFightingLayerScene::CFightingLayerScene()
     {
         CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath+"fighting/", "zhandoujiemianziyuan.plist"));
     }
-    wndSize=CCDirector::sharedDirector()->getWinSize();
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile(CSTR_FILEPTAH(g_mapImagesPath, "zhandouhuiheshuzi.plist"));
+    wndSize=CCSize(960,640);
     m_pTotalFrightMana=CGameCardFactory::getInstance();
     m_gamePlayer=SinglePlayer::instance();
     m_pSFightData=new SFightResultData();
@@ -89,6 +90,7 @@ CFightingLayerScene::CFightingLayerScene()
 
 CFightingLayerScene::~CFightingLayerScene()
 {
+   CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath, "zhandouhuiheshuzi.plist"));
     CCSpriteFrameCache::sharedSpriteFrameCache()->removeSpriteFrameByName(CSTR_FILEPTAH(g_mapImagesPath+"fighting/", "zhandoujiemianziyuan.plist"));
     if(m_pTotalFrightMana)
     {
@@ -445,7 +447,8 @@ void CFightingLayerScene::animationSwf(CAnimationSctrip *fightAnimation)
             updateBuffer();
             m_vFightHero[m_currCAnimationHP->m_nATKindex]->setVisible(false);
             moveCardSprite(m_vFightingCard,m_currCAnimationHP->m_nATKindex,true);//移动 card
-            if(m_currCAnimationHP->m_nATKindex+1<m_vMonsterHero.size()-1 &&m_vFightingCard[m_currCAnimationHP->m_nATKindex+1])
+            CCLog("%d",m_currCAnimationHP->m_nATKindex+1);
+            if(m_currCAnimationHP->m_nATKindex+1<m_vFightHero.size() &&m_vFightingCard[m_currCAnimationHP->m_nATKindex+1])
             {
                 m_vFightHero[m_currCAnimationHP->m_nATKindex+1]->setVisible(true);
             }
@@ -1213,9 +1216,11 @@ void CFightingLayerScene::resetCardPosition()
 //
 void CFightingLayerScene::createKuaiJin()
 {
-    CCSprite *sprite=CCSprite::create("Icon-Small@2x.png");
-    addChild(sprite,100,911);
-    sprite->setPosition(ccp(512,700));
+    CCLabelTTF *labelTTF=CCLabelTTF::create("x2", "Arial", 45);
+    labelTTF->setColor(ccc3(255, 0, 255));
+   // CCSprite *sprite=CCSprite::create("Icon-Small@2x.png");
+    addChild(labelTTF,100,911);
+    labelTTF->setPosition(ccp(wndSize.width*0.5,20));
 }
 
 // 创建显示文本比如，怒气，Hp信息;

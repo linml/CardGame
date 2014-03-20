@@ -20,6 +20,7 @@
 #include "CPVPRegulationLayer.h"
 #include "CPVPStructMissionTaskRewordLayer.h"
 #include "PVPSceneLayer.h"
+#include "CNodeGoubian.h"
 
 
 using namespace cocos2d;
@@ -50,7 +51,7 @@ CCScene* HelloWorld::scene()
     CCScene *scene = CCScene::create();
     
     // 'layer' is an autorelease object
-    PVPSceneLayer *layer = PVPSceneLayer::create();
+    HelloWorld *layer = HelloWorld::create();
  
     //CScreenHandBookLayer *layer=CScreenHandBookLayer::create();
    // CSceneFriendMainLayer *layer=CSceneFriendMainLayer::create();
@@ -167,8 +168,28 @@ bool HelloWorld::init()
 //    
 //    schedule(schedule_selector(HelloWorld::sechUpdate), 3.0);
     
-    CPVPRegulationLayer *layer=CPVPRegulationLayer::create();
-    addChild(layer,2,1);
+//    CPVPRegulationLayer *layer=CPVPRegulationLayer::create();
+//    addChild(layer,2,1);
+    
+    CGamesCard *p=CGameCardFactory::getInstance()->createCGameCard(SinglePlayer::instance()->getCardBagVector()[0]);
+    //addChild(p,2,2);
+    //p->setPosition(ccp(size.width / 2, size.height /2));
+    
+    CCRenderTexture *pRender=CCRenderTexture::create(140, 140);
+    pRender->begin();
+    p->setPosition(CCPoint(10,0));
+    p->setAnchorPoint(CCPointZero);
+    p->setScale(1.1);
+    p->visit();//创建一个sprite;
+    pRender->end();
+    CCSprite *temp=CCSprite::createWithTexture(pRender->getSprite()->getTexture());
+    CCSprite *node=CNodeGoubian::createWithTexture(temp->getTexture());
+    addChild(node,3);
+    node->setFlipY(true);
+    ((CNodeGoubian *) node)->initProgram("Role_Shader_Edge_Light.fsh", "Role_Shader_Edge_Light.vsh");
+    node->setPosition(ccp(size.width / 2, size.height /2));
+    
+    
     return true;
 }
 

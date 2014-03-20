@@ -42,7 +42,6 @@ public:
     int  m_nTotalAnimation ;//总共多个动画
     int  m_nHpEngryIndex;
     int  m_nBufferIndex;
-   
 private:
     void textSkillInfo(CAnimationSctrip *fight);
 private:
